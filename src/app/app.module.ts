@@ -85,6 +85,7 @@ import { BasicDemoDropdownComponent } from './showcase/at-demo-dropdown/basic-de
 import { AtDemoPagenationComponent } from './showcase/at-demo-pagenation/at-demo-pagenation.component';
 import { DropdownMenuItemComponent } from './components/menu/dropdown-menu-item/dropdown-menu-item.component';
 import { DropMenuListComponent } from './components/menu/drop-menu-list/drop-menu-list.component';
+import { DemoPlaceDropdownComponent } from './showcase/at-demo-dropdown/demo-place-dropdown/demo-place-dropdown.component';
 
 
 @NgModule({
@@ -169,6 +170,7 @@ import { DropMenuListComponent } from './components/menu/drop-menu-list/drop-men
     AtDemoPagenationComponent,
     DropdownMenuItemComponent,
     DropMenuListComponent,
+    DemoPlaceDropdownComponent,
 
   ],
   imports: [

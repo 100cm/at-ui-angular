@@ -16,20 +16,22 @@ export class DropdownMenuItemComponent implements OnInit {
   private _divided = false
 
 
-  @HostBinding('class.at-dropdown-menu__item--disabled')
+  @Input()
   get disabled(): boolean {
     return this._disabled;
   }
+
 
   set disabled(value: boolean) {
     this._disabled = value;
   }
 
-  @HostBinding('class.at-dropdown-menu__item--divided')
+
   get divided(): boolean {
     return this._divided;
   }
 
+  @Input()
   set divided(value: boolean) {
     this._divided = value;
   }
@@ -55,8 +57,15 @@ export class DropdownMenuItemComponent implements OnInit {
     return this._active
   }
 
+  @HostBinding('class.at-dropdown-menu__item--divided')
+  get getDivide() {
+    return this._divided
+  }
 
-
+  @HostBinding('class.at-dropdown-menu__item--disabled')
+  get getDisableCls() {
+    return this.disabled
+  }
 
   @Input('active')
   set active(active: boolean) {
