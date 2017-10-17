@@ -7,8 +7,16 @@ import {RadioGroupComponent} from "./radio-group/radio-group.component";
 @Component({
   selector: '[atRadio]',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './radio.component.html',
-  styleUrls: ['./radio.component.css']
+  template: `<span class="at-radio__input">
+    <span class="at-radio__inner" [ngClass]="{'at-radio--checked':checked ,'at-radio--disabled': disabled}"></span>
+    <input type="radio" [disabled]="disabled" class="at-radio__original" [(ngModel)]="checked"></span>
+  <span class="at-radio__label">
+    <ng-content>
+
+    </ng-content>
+  </span>
+
+  `,
 })
 export class RadioComponent implements OnInit {
 

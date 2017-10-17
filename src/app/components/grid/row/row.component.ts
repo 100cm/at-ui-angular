@@ -1,13 +1,13 @@
 import {Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
-import {ClassHelper} from "../../../utils/class-helper";
+import {ClassHelper} from "../../utils/class-helper";
 
 export  type RowFlexType = 'center' | 'end' | 'start' | 'around' | 'between'
 export type RowFlexAlign = 'top' | 'middle' | 'bottom'
 
 @Component({
   selector: '[atRow]',
-  templateUrl: './row.component.html',
-  styleUrls: ['./row.component.css']
+  template: `<ng-content></ng-content>
+`,
 })
 export class RowComponent implements OnInit, ClassHelper {
 

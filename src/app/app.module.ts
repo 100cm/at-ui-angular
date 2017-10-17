@@ -51,64 +51,48 @@ import {AtDemoRadioComponent} from './showcase/at-demo-radio/at-demo-radio.compo
 import {DemoBasicRadioComponent} from './showcase/at-demo-radio/demo-basic-radio/demo-basic-radio.component';
 import {RadioComponent} from "./components/radio/radio.component";
 import {RadioGroupComponent} from "./components/radio/radio-group/radio-group.component";
-import { RadioButtonComponent } from './components/radio/radio-button/radio-button.component';
-import { DemoButtonRadioComponent } from './showcase/at-demo-radio/demo-button-radio/demo-button-radio.component';
-import { DemoDisableRadioComponent } from './showcase/at-demo-radio/demo-disable-radio/demo-disable-radio.component';
-import { DemoSizeRadioComponent } from './showcase/at-demo-radio/demo-size-radio/demo-size-radio.component';
-import { DemoColorRadioComponent } from './showcase/at-demo-radio/demo-color-radio/demo-color-radio.component';
-import { SelectComponent } from './components/select/select.component';
-import { AtDemoSelectComponent } from './showcase/at-demo-select/at-demo-select.component';
-import { DemoSelectBasicComponent } from './showcase/at-demo-select/demo-select-basic/demo-select-basic.component';
-import { OptionComponent } from './components/select/option/option.component';
-import { DemoSelectMultipleComponent } from './showcase/at-demo-select/demo-select-multiple/demo-select-multiple.component';
-import { DemoSelectSizeComponent } from './showcase/at-demo-select/demo-select-size/demo-select-size.component';
-import { DemoSelectClearComponent } from './showcase/at-demo-select/demo-select-clear/demo-select-clear.component';
-import { DemoInputSelectComponent } from './showcase/at-demo-select/demo-input-select/demo-input-select.component';
-import { DemoSearchSelectComponent } from './showcase/at-demo-select/demo-search-select/demo-search-select.component';
-import { SwitchComponent } from './components/switch/switch.component';
-import { AtDemoSwitchComponent } from './showcase/at-demo-switch/at-demo-switch.component';
-import { SwicthBasicComponent } from './showcase/at-demo-switch/swicth-basic/swicth-basic.component';
-import { SliderComponent } from './components/slider/slider.component';
-import { AtDemoSliderComponent } from './showcase/at-demo-slider/at-demo-slider.component';
-import { DemoBasicSliderComponent } from './showcase/at-demo-slider/demo-basic-slider/demo-basic-slider.component';
-import { TextareaComponent } from './components/textarea/textarea.component';
-import { AtDemoTextareaComponent } from './showcase/at-demo-textarea/at-demo-textarea.component';
-import { DemoBasicTextareaComponent } from './showcase/at-demo-textarea/demo-basic-textarea/demo-basic-textarea.component';
-import { IntroComponent } from './showcase/intro/intro.component';
-import { InstallComponent } from './showcase/install/install.component';
-import { UpdateLogComponent } from './showcase/update-log/update-log.component';
-import { StartupComponent } from './showcase/startup/startup.component';
-import { ConnectComponent } from './showcase/connect/connect.component';
-import { DropdownComponent } from './components/dropdown/dropdown.component';
-import { AtDemoDropdownComponent } from './showcase/at-demo-dropdown/at-demo-dropdown.component';
-import { BasicDemoDropdownComponent } from './showcase/at-demo-dropdown/basic-demo-dropdown/basic-demo-dropdown.component';
-import { AtDemoPagenationComponent } from './showcase/at-demo-pagenation/at-demo-pagenation.component';
-import { DropdownMenuItemComponent } from './components/menu/dropdown-menu-item/dropdown-menu-item.component';
-import { DropMenuListComponent } from './components/menu/drop-menu-list/drop-menu-list.component';
-import { DemoPlaceDropdownComponent } from './showcase/at-demo-dropdown/demo-place-dropdown/demo-place-dropdown.component';
+import {RadioButtonComponent} from './components/radio/radio-button/radio-button.component';
+import {DemoButtonRadioComponent} from './showcase/at-demo-radio/demo-button-radio/demo-button-radio.component';
+import {DemoDisableRadioComponent} from './showcase/at-demo-radio/demo-disable-radio/demo-disable-radio.component';
+import {DemoSizeRadioComponent} from './showcase/at-demo-radio/demo-size-radio/demo-size-radio.component';
+import {DemoColorRadioComponent} from './showcase/at-demo-radio/demo-color-radio/demo-color-radio.component';
+import {SelectComponent} from './components/select/select.component';
+import {AtDemoSelectComponent} from './showcase/at-demo-select/at-demo-select.component';
+import {DemoSelectBasicComponent} from './showcase/at-demo-select/demo-select-basic/demo-select-basic.component';
+import {OptionComponent} from './components/select/option/option.component';
+import {DemoSelectMultipleComponent} from './showcase/at-demo-select/demo-select-multiple/demo-select-multiple.component';
+import {DemoSelectSizeComponent} from './showcase/at-demo-select/demo-select-size/demo-select-size.component';
+import {DemoSelectClearComponent} from './showcase/at-demo-select/demo-select-clear/demo-select-clear.component';
+import {DemoInputSelectComponent} from './showcase/at-demo-select/demo-input-select/demo-input-select.component';
+import {DemoSearchSelectComponent} from './showcase/at-demo-select/demo-search-select/demo-search-select.component';
+import {SwitchComponent} from './components/switch/switch.component';
+import {AtDemoSwitchComponent} from './showcase/at-demo-switch/at-demo-switch.component';
+import {SwicthBasicComponent} from './showcase/at-demo-switch/swicth-basic/swicth-basic.component';
+import {SliderComponent} from './components/slider/slider.component';
+import {AtDemoSliderComponent} from './showcase/at-demo-slider/at-demo-slider.component';
+import {DemoBasicSliderComponent} from './showcase/at-demo-slider/demo-basic-slider/demo-basic-slider.component';
+import {TextareaComponent} from './components/textarea/textarea.component';
+import {AtDemoTextareaComponent} from './showcase/at-demo-textarea/at-demo-textarea.component';
+import {DemoBasicTextareaComponent} from './showcase/at-demo-textarea/demo-basic-textarea/demo-basic-textarea.component';
+import {IntroComponent} from './showcase/intro/intro.component';
+import {InstallComponent} from './showcase/install/install.component';
+import {UpdateLogComponent} from './showcase/update-log/update-log.component';
+import {StartupComponent} from './showcase/startup/startup.component';
+import {ConnectComponent} from './showcase/connect/connect.component';
+import {DropdownComponent} from './components/dropdown/dropdown.component';
+import {AtDemoDropdownComponent} from './showcase/at-demo-dropdown/at-demo-dropdown.component';
+import {BasicDemoDropdownComponent} from './showcase/at-demo-dropdown/basic-demo-dropdown/basic-demo-dropdown.component';
+import {AtDemoPagenationComponent} from './showcase/at-demo-pagenation/at-demo-pagenation.component';
+import {DropdownMenuItemComponent} from './components/menu/dropdown-menu-item/dropdown-menu-item.component';
+import {DropMenuListComponent} from './components/menu/drop-menu-list/drop-menu-list.component';
+import {DemoPlaceDropdownComponent} from './showcase/at-demo-dropdown/demo-place-dropdown/demo-place-dropdown.component';
+import {AtModule} from "./components/at-ng.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ButtonComponent,
-    HollowDirective,
-    ButtonGroupComponent,
-    MenuComponent,
-    MenuItemComponent,
-    SubMenuComponent,
-    MenuItemGroupComponent,
-    MenuListComponent,
-    RadioGroupComponent,
-    RadioComponent,
-    InlineMenuComponent,
-    RowComponent,
-    ColComponent,
-    TagComponent,
-    IconComponent,
     AtDemoButtonComponent,
     AtDemoComponentsComponent,
-    HighLightComponent,
     AtDemoDocSectionComponent,
     AtDemoLayoutComponent,
     AtDemoTagComponent,
@@ -119,11 +103,8 @@ import { DemoPlaceDropdownComponent } from './showcase/at-demo-dropdown/demo-pla
     DemoVerticalMenuComponent,
     DemoInlineMenuComponent,
     AtDemoCheckboxComponent,
-    CheckboxComponent,
     DemoBasicCheckboxComponent,
     DemoGroupCheckboxComponent,
-    CheckboxGroupComponent,
-    InputComponent,
     AtDemoInputComponent,
     DemoBasicInputComponent,
     DemoPendInputComponent,
@@ -135,41 +116,34 @@ import { DemoPlaceDropdownComponent } from './showcase/at-demo-dropdown/demo-pla
     DemoSizeNumberInputComponent,
     DemoStepNumberInputComponent,
     AtDemoRadioComponent,
+    SwicthBasicComponent,
+    AppComponent,
     DemoBasicRadioComponent,
-    RadioButtonComponent,
     DemoButtonRadioComponent,
     DemoDisableRadioComponent,
     DemoSizeRadioComponent,
     DemoColorRadioComponent,
-    SelectComponent,
     AtDemoSelectComponent,
     DemoSelectBasicComponent,
-    OptionComponent,
     DemoSelectMultipleComponent,
     DemoSelectSizeComponent,
     DemoSelectClearComponent,
     DemoInputSelectComponent,
     DemoSearchSelectComponent,
-    SwitchComponent,
     AtDemoSwitchComponent,
-    SwicthBasicComponent,
-    SliderComponent,
     AtDemoSliderComponent,
     DemoBasicSliderComponent,
-    TextareaComponent,
     AtDemoTextareaComponent,
     DemoBasicTextareaComponent,
+    HighLightComponent,
     IntroComponent,
     InstallComponent,
     UpdateLogComponent,
     StartupComponent,
     ConnectComponent,
-    DropdownComponent,
     AtDemoDropdownComponent,
     BasicDemoDropdownComponent,
     AtDemoPagenationComponent,
-    DropdownMenuItemComponent,
-    DropMenuListComponent,
     DemoPlaceDropdownComponent,
 
   ],
@@ -177,6 +151,7 @@ import { DemoPlaceDropdownComponent } from './showcase/at-demo-dropdown/demo-pla
     routing,
     CommonModule,
     FormsModule,
+    AtModule.forRoot(),
     BrowserModule, BrowserAnimationsModule
   ],
   providers: [],

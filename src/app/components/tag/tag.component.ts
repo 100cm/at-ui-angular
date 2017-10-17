@@ -1,16 +1,25 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import {ClassHelper} from "../../utils/class-helper";
+import {ClassHelper} from "../utils/class-helper";
 import {TagAnimation} from "../animations/tag-animation";
 
 const tagThemes: Array<string> = ['default', 'primary', 'success', 'error', 'warning']
 
 @Component({
   selector: 'atTag',
-  templateUrl: './tag.component.html',
+  template:`<span #tag *ngIf="!closed"
+                  [@tagAnimation]
+  >
+  <span class="at-tag__text">
+    <ng-content></ng-content>
+    <i class="icon icon-x at-tag__close" *ngIf="closeable" (click)="closeTag()"></i>
+</span>
+
+</span>
+
+  `,
   animations   : [
     TagAnimation
   ],
-  styleUrls: ['./tag.component.css']
 })
 export class TagComponent implements OnInit, ClassHelper {
   nativeElement: any;

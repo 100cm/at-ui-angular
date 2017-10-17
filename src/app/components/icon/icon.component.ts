@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'atIcon',
-  templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.css']
+  template:`<i class="icon icon-{{type}}"></i>
+  `,
 })
 export class IconComponent implements OnInit {
 

@@ -4,7 +4,12 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atRadioGroup',
-  templateUrl: './radio-group.component.html',
+  template:`<div class="at-radio-group">
+    <ng-content>
+
+    </ng-content>
+  </div>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -12,7 +17,7 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       multi: true
     }
   ],
-  styleUrls: ['./radio-group.component.css']
+
 })
 export class RadioGroupComponent implements OnInit {
 

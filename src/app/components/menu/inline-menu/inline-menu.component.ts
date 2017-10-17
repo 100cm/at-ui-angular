@@ -2,8 +2,8 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: '[inlineMenu]',
-  templateUrl: './inline-menu.component.html',
-  styleUrls: ['./inline-menu.component.css']
+  template:`<ng-content></ng-content>
+  `,
 })
 export class InlineMenuComponent implements OnInit {
 

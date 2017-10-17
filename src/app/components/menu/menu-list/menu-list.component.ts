@@ -2,8 +2,9 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
   selector: '[atMenuList]',
-  templateUrl: './menu-list.component.html',
-  styleUrls: ['./menu-list.component.css']
+  template: `<ng-content></ng-content>
+`,
+
 })
 export class MenuListComponent implements OnInit {
 

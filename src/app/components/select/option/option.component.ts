@@ -3,8 +3,8 @@ import {SelectComponent} from "../select.component";
 
 @Component({
   selector: 'atOption',
-  templateUrl: './option.component.html',
-  styleUrls: ['./option.component.css']
+  template: `<ng-content></ng-content>
+`,
 })
 export class OptionComponent implements OnInit {
 

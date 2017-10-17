@@ -5,8 +5,9 @@ export type atMenuTheme = 'light' | 'dark'
 
 @Component({
   selector: '[atMenu]',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  template:`<div selector></div>
+  <ng-content ></ng-content>
+  `,
 })
 export class MenuComponent implements OnInit {
 

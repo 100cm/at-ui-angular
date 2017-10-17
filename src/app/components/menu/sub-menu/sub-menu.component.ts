@@ -7,7 +7,30 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: '[atSubMenu]',
-  templateUrl: './sub-menu.component.html',
+  template:`<div class="at-menu__submenu-title"
+                 (mouseenter)="onMouseEnterEvent($event)"
+                 (mouseleave)="onMouseLeaveEvent($event)"
+                 (click)="show()"
+  >
+    <ng-content select="[title]"></ng-content>
+  </div>
+  <div
+    *ngIf="isOpen && parent.atType != 'inline'"
+    [ngStyle]="{'left': _popoverCss.left ,'right': _popoverCss.right,'top': _popoverCss.top}"
+    (mouseenter)="onMouseEnterEvent($event)"
+    (mouseleave)="onMouseLeaveEvent($event)"
+    class="at-dropdown__popover">
+    <ng-content></ng-content>
+  </div>
+  <!--<ng-content [@slide-up] *ngIf="isOpen" select="[inlineMenu]"></ng-content>-->
+
+  <div
+    [@fadeAnimation]
+    [@expandAnimation]="expandState"
+    *ngIf="isOpen">
+    <ng-content select="[inlineMenu]"></ng-content>
+  </div>
+  `,
   animations: [
     trigger('fadeAnimation', [
       state('*', style({opacity: 1})),
@@ -30,7 +53,6 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
       ])
     ])
   ],
-  styleUrls: ['./sub-menu.component.css'],
 })
 export class SubMenuComponent implements OnInit {
 

@@ -6,8 +6,12 @@ export type AtButtonSize = 'small' | 'large' | 'smaller' ;
 
 @Component({
   selector: '[atButton]',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  template: `<i *ngIf="atIcon != null" class="at-btn__icon icon {{atIcon}}"></i>
+  <span #text [hidden]="!showText" class="at-btn__text">
+  <ng-content></ng-content>
+</span>
+
+  `,
 })
 export class ButtonComponent implements OnInit {
 

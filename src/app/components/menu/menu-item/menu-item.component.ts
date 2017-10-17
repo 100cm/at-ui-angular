@@ -2,8 +2,8 @@ import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Rendere
 
 @Component({
   selector: '[atMenuItem]',
-  templateUrl: './menu-item.component.html',
-  styleUrls: ['./menu-item.component.css']
+  template:`<ng-content></ng-content>
+`,
 })
 export class MenuItemComponent implements OnInit {
 

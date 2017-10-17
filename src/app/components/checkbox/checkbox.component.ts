@@ -3,7 +3,17 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atCheckbox',
-  templateUrl: './checkbox.component.html',
+  template:`<label (click)="check($event)" [ngClass]="{'at-checkbox--checked': checked,'at-checkbox--disabled': atDisabled}"
+                   class="at-checkbox">
+
+  <span class="at-checkbox__input"><span
+    class="at-checkbox__inner"></span>
+
+  <input type="checkbox" class="at-checkbox__original"></span>
+
+    <span class="at-checkbox__label">{{label}}</span>
+  </label>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -11,7 +21,6 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       multi: true
     }
   ],
-  styleUrls: ['./checkbox.component.css']
 })
 export class CheckboxComponent implements OnInit {
 

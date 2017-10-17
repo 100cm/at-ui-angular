@@ -2,8 +2,8 @@ import {Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
 
 @Component({
   selector: '[atCol]',
-  templateUrl: './col.component.html',
-  styleUrls: ['./col.component.css']
+  template: `<ng-content></ng-content>
+  `,
 })
 export class ColComponent implements OnInit {
 

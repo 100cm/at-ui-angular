@@ -4,7 +4,18 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'atDropdown',
-  templateUrl: './dropdown.component.html',
+  template: `<div (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" class="at-dropdown">
+  <div #trigger (click)="setdropDown()" class="at-dropdown__trigger">
+    <ng-content></ng-content>
+  </div>
+  <div #popover
+       class="at-dropdown__popover">
+    <ul (click)="hide($event)" *ngIf="dropDown" atDropMenuList [@dropDownAnimation]="dropDownPosition">
+      <ng-content select="[atDropMenuItem]"></ng-content>
+    </ul>
+  </div>
+</div>
+`,
   animations: [DropDownAnimation, trigger('fadeAnimation', [
     state('*', style({opacity: 1})),
     transition('* => void', [
@@ -15,8 +26,6 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
       animate(150, style({opacity: 1}))
     ])
   ]),],
-  styleUrls:
-    ['./dropdown.component.css']
 })
 
 export class DropdownComponent implements OnInit {

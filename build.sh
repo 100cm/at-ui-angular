@@ -3,8 +3,8 @@
 readonly currentDir=$(cd $(dirname $0); pwd)
 cd ${currentDir}
 rm -rf publish
-cp -r src/components src/__gen_components
-node ./less.convert.js
+cp -r src/app/components src/__gen_components
+
 
 echo 'Generating entry file using Angular compiler'
 $(npm bin)/ngc -p tsconfig-build.json
@@ -27,7 +27,7 @@ export ROLLUP_FORMAT=umd
 $(npm bin)/rollup -c rollup.config.js
 
 echo 'Minifying umd module'
-$(npm bin)/uglifyjs publish/bundles/ng-zorro-antd.umd.js --output publish/bundles/ng-zorro-antd.umd.min.js
+$(npm bin)/uglifyjs publish/bundles/at-ng.umd.js --output publish/bundles/at-ng.umd.min.js
 
 echo 'Copying package.json'
 cp package.json publish/package.json

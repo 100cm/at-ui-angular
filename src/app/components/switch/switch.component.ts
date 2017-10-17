@@ -3,7 +3,12 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atSwitch',
-  templateUrl: './switch.component.html',
+  template:`<span class="at-switch at-switch--{{atSize}}" [ngClass]="{'at-switch--checked':_value,'at-switch--disabled':disabled}">
+  <span class="at-switch__text">
+    {{_value ? checkText : unCheckText}}
+  </span>
+</span>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -11,7 +16,6 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       multi: true
     }
   ],
-  styleUrls: ['./switch.component.css']
 })
 export class SwitchComponent implements OnInit {
 

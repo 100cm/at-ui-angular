@@ -3,7 +3,12 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atTextarea',
-  templateUrl: './textarea.component.html',
+  template:`<div class="at-textarea" data-v-a01f69b8="">
+  <textarea [placeholder]="atPlaceholder" [(ngModel)]="value" rows="2" class="at-textarea__original" style="">
+
+  </textarea>
+  </div>
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -11,7 +16,6 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       multi: true
     }
   ],
-  styleUrls: ['./textarea.component.css']
 })
 export class TextareaComponent implements OnInit {
 

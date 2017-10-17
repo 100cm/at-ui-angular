@@ -4,7 +4,14 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atCheckboxGroup',
-  templateUrl: './checkbox-group.component.html',
+  template: `<div class="at-checkbox-group">
+  <atCheckbox *ngFor="let option of _checkList" [label]="option.label"
+              [(ngModel)]="option.checked"
+              (changeCheck)="changeList()">
+
+  </atCheckbox>
+</div>
+`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -12,7 +19,6 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       multi: true
     }
   ],
-  styleUrls: ['./checkbox-group.component.css']
 })
 export class CheckboxGroupComponent implements OnInit {
 
