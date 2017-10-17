@@ -1,7 +1,8 @@
 {
-  "name": "ng-ice-at",
-  "version": "0.0.0",
+  "name": "at-ng",
+  "version": "0.0.2",
   "license": "MIT",
+  "author":"zhou351711778",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +11,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^4.2.4",
     "@angular/common": "^4.2.4",
