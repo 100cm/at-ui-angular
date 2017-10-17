@@ -12,4 +12,11 @@ export class ConnectComponent implements OnInit {
   ngOnInit() {
   }
 
+  active(href) {
+    let location = window.location.hash
+    location = location.replace("#", '')
+    let bol = location.indexOf(href) != -1
+    return bol
+  }
+
 }
