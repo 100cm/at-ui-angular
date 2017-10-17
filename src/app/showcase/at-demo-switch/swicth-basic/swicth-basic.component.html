@@ -1,0 +1,17 @@
+<atSwitch [(ngModel)]="check" ></atSwitch>
+{{check}}
+<hr>
+<p>多个大小 [atSize]</p>
+<atSwitch [(ngModel)]="check" [atSize]="'small'"></atSwitch>
+<atSwitch [(ngModel)]="check" [atSize]="'normal'"></atSwitch>
+<atSwitch [(ngModel)]="check" [atSize]="'large'"></atSwitch>
+<hr>
+
+<p>不可选中</p>
+<atSwitch [(ngModel)]="check" [disabled]="true"></atSwitch>
+
+<hr>
+
+<p>携带文字</p>
+<atSwitch [(ngModel)]="check" [checkText]="'ok'" [unCheckText]="'error'"></atSwitch>
+

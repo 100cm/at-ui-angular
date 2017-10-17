@@ -1,0 +1,11 @@
+<div (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" class="at-dropdown">
+  <div #trigger (click)="setdropDown()" class="at-dropdown__trigger">
+    <ng-content></ng-content>
+  </div>
+  <div #popover
+       class="at-dropdown__popover">
+    <ul (click)="hide($event)" *ngIf="dropDown" atDropMenuList [@dropDownAnimation]="dropDownPosition">
+      <ng-content select="[atDropMenuItem]"></ng-content>
+    </ul>
+  </div>
+</div>

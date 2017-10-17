@@ -1,0 +1,7 @@
+<div class="at-checkbox-group">
+  <atCheckbox *ngFor="let option of _checkList" [label]="option.label"
+              [(ngModel)]="option.checked"
+              (changeCheck)="changeList()">
+
+  </atCheckbox>
+</div>

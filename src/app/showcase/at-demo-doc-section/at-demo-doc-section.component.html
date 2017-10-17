@@ -1,0 +1,17 @@
+<h2>{{title}}</h2>
+<p class="doc-code">
+  <ng-content select="[desc]">
+
+  </ng-content>
+</p>
+<div *ngIf="sample" class="at-component__container">
+  <div class="at-component__sample">
+    <ng-content select="[sample]"></ng-content>
+  </div>
+  <div *ngIf="showCode" class="at-component__code"  [@fadeAnimation]
+       [@expandAnimation]="expandState">
+    <div  app-high-light [atLanguage]="language" [atCode]="code">
+
+    </div>
+    <span class="btn-copy"><i class="icon icon-clipboard"></i></span></div>
+  <a (click)="setShow()" class="at-component__code-toggle">显示代码</a></div>

@@ -1,0 +1,11 @@
+<div>
+  checkbox 的值为 {{checked}}
+</div>
+<atCheckbox [label]="'check me!'" [(ngModel)]="checked">
+
+</atCheckbox>
+<hr>
+<div>不可用的多选框</div>
+<atCheckbox [label]="'check me!'" [atDisabled]="true" [(ngModel)]="checked">
+
+</atCheckbox>

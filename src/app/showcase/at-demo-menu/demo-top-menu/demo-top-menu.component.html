@@ -1,0 +1,41 @@
+<ul atMenu [atType]="'horizontal'">
+  <li atMenuItem>
+    <div title><i class="icon icon-home"></i>导航菜单1</div>
+  </li>
+  <li atSubMenu>
+    <div title><i class="icon icon-home"></i>导航菜单2</div>
+    <ul itemGroup [label]="'小分组'">
+      <li atMenuItem>
+        分组1
+      </li>
+      <li atMenuItem>
+        分组1
+      </li>
+    </ul>
+  </li>
+  <li atSubMenu>
+    <div title><i class="icon icon-home"></i>导航菜单3</div>
+    <ul atMenuList>
+      <li atMenuItem>
+        分组1
+      </li>
+      <li atMenuItem>
+        分组1
+      </li>
+      <li atSubMenu>
+        <div title><i class="icon icon-chevron-down at-menu__submenu-icon"></i>分组3</div>
+        <ul atMenuList>
+          <li atMenuItem>
+            分组2
+          </li>
+          <li atMenuItem>
+            分组2
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li atMenuItem>
+    <div title><i class="icon icon-home"></i>导航菜单4</div>
+  </li>
+</ul>

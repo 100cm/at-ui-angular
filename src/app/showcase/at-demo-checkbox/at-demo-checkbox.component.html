@@ -1,0 +1,79 @@
+<section>
+  <h1>Checkbox 多选框</h1>
+  <hr>
+  <doc-section [title]="'基本多选框'" [code]="basicCheck">
+    <p desc>独立使用时，需要单独绑定 <code>ngModel ，</code>添加&nbsp;<code>atDisabled</code>&nbsp;属性禁用多选框</p>
+    <div sample>
+      <app-demo-basic-checkbox></app-demo-basic-checkbox>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'多选框组'" [code]="checkGroup">
+    <div sample>
+      <app-demo-group-checkbox></app-demo-group-checkbox>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'atCheckbox 属性'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>label</td>
+        <td>标题</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>是否禁用按钮</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>checked</td>
+        <td>是否已勾选（双向绑定）</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+
+  <doc-section [title]="'checkbox group 属性'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>list</td>
+        <td>标题</td>
+        <td>Array any</td>
+        <td>-</td>
+        <td>[]</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+</section>
+

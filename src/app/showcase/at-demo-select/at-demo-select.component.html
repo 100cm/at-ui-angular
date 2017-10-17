@@ -1,0 +1,205 @@
+<section>
+  <h1>
+    select
+  </h1>
+  <doc-section [title]="'基础使用'" [code]="basic_s">
+    <p desc>基本用法，可添加&nbsp;<code>disabled</code>&nbsp;属性禁用选择器</p>
+    <div sample>
+      <app-demo-select-basic>
+
+      </app-demo-select-basic>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'多选'" [code]="multiple_s">
+    <p desc>设置&nbsp;<code>multiple</code>&nbsp;属性可开启多项选择器，此时绑定的&nbsp;<code>model</code>&nbsp;将接受数组类型的数据</p>
+
+    <div sample>
+      <app-demo-select-multiple>
+
+      </app-demo-select-multiple>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'不同的大小'" [code]="size_s">
+    <p desc>可设置&nbsp;<code>size</code>&nbsp;属性控制选择器大小，提供三种尺寸：<code>large</code>，<code>normal</code>，<code>small</code>
+    </p>
+    <div sample>
+      <app-demo-select-size>
+
+      </app-demo-select-size>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'允许清空'">
+    <p desc>设置&nbsp;<code>clearable</code>&nbsp;属性可清空已选项</p>
+
+    <div sample>
+      <app-demo-select-clear>
+
+      </app-demo-select-clear>
+    </div>
+  </doc-section>
+
+
+  <doc-section [title]="'允许输入'" [code]="tag_s">
+    <p desc>设置&nbsp;<code>tagAble</code>&nbsp;属性可以输入(仅限多选)</p>
+
+    <div sample>
+      <app-demo-input-select>
+
+      </app-demo-input-select>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'允许搜索'" [code]="search_s">
+    <p desc>设置&nbsp;<code>searchable</code>&nbsp;进行下拉框搜索</p>
+
+    <div sample>
+      <app-demo-search-select>
+
+      </app-demo-search-select>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'atSelect 参数'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>ngModel</td>
+        <td>指定当前组件的 value 值，可通过&nbsp;<code>ngModel双向</code>&nbsp;绑定</td>
+        <td>String / Number / Array</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>multiple</td>
+        <td>是否支持多选</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>是否禁用选择器</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>allowClear</td>
+        <td>是否支持清空功能</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>searchable</td>
+        <td>是否支持搜索功能</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>atPlaceholder</td>
+        <td>选择器的占位文案</td>
+        <td>String</td>
+        <td>-</td>
+        <td>请选择</td>
+      </tr>
+
+      <tr>
+        <td>atSize</td>
+        <td>设置选择器的尺寸</td>
+        <td>String</td>
+        <td><code>large</code>,&nbsp;<code>normal</code>,&nbsp;<code>small</code></td>
+        <td>normal</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </doc-section>
+
+
+  <doc-section [title]="'atOption 参数'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr>
+        <td>disabled</td>
+        <td>是否禁用选择器</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+
+      <tr>
+        <td>atLabel</td>
+        <td>标题</td>
+        <td>string | number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>atValue</td>
+        <td>对应的值</td>
+        <td>string | number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </doc-section>
+
+  <doc-section [title]="'atSelect 事件'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr>
+        <td>change</td>
+        <td>更新选中值都后进行回调</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </doc-section>
+
+</section>

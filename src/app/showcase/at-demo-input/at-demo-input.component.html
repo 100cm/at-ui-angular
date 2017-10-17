@@ -1,0 +1,122 @@
+<section>
+  <h1>Input 输入框</h1>
+  <hr>
+  <doc-section [title]="'单行输入框  '" [code]="basic_input">
+
+    <div sample>
+      <app-demo-basic-input>
+
+      </app-demo-basic-input>
+    </div>
+
+  </doc-section>
+
+  <doc-section [title]="'带有icon的输入框'" [code]="icon_input">
+
+    <div sample>
+      <app-demo-icon-input>
+
+      </app-demo-icon-input>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'前置 / 后置标签型输入框'" [code]="prepend">
+
+    <div sample>
+      <app-demo-pend-input>
+
+      </app-demo-pend-input>
+    </div>
+  </doc-section>
+
+
+  <doc-section [title]="'不同色彩的'" [code]="status_input">
+
+    <div sample>
+      <app-demo-status-input>
+
+      </app-demo-status-input>
+    </div>
+  </doc-section>
+
+
+  <doc-section [title]="'不同大小的'" [code]="size_input">
+
+    <div sample>
+      <app-demo-size-input>
+
+      </app-demo-size-input>
+    </div>
+  </doc-section>
+
+
+  <doc-section [title]="'atInput参数'" [sample]="false">
+
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>type</td>
+        <td>输入框类型，原生属性</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>[(ngModel)]</td>
+        <td>绑定的值</td>
+        <td>String / Number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>placeholder</td>
+        <td>占位文本</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>是否禁用</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>icon</td>
+        <td>icon图标</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>size</td>
+        <td>输入框尺寸</td>
+        <td>String</td>
+        <td><code>small</code>,&nbsp;<code>normal</code>,&nbsp;<code>large</code></td>
+        <td>normal</td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td>输入框类型</td>
+        <td>String</td>
+        <td>success, error, warning, info</td>
+        <td>-</td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </doc-section>
+
+
+</section>
