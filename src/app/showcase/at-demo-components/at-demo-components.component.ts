@@ -20,4 +20,25 @@ export class AtDemoComponentsComponent implements OnInit {
     return bol
   }
 
+  routes = [
+    {
+      name: '模态框',
+      url: '/components/modal',
+      name_en: 'Modal'
+    }, {
+      name: '消息',
+      url: '/components/message',
+      name_en: 'Message'
+    },
+    {
+      name: '弹出框',
+      url: '/components/popover',
+      name_en: 'Popover'
+    },{
+      name: '进度条',
+      url: '/components/progress',
+      name_en: 'Progress'
+    }
+  ]
+
 }

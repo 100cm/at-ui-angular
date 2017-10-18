@@ -31,6 +31,13 @@ import {DropMenuListComponent} from "./menu/drop-menu-list/drop-menu-list.compon
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ComponentCreator} from "./core/component-creator";
+import {AtDemoNotificationComponent} from "../showcase/at-demo-notification/at-demo-notification.component";
+import {NotificationComponent} from './notification/notification/notification.component';
+import {ComponentCreatorBase} from "./core/component-creator-base";
+import {NotificationContainerComponent} from './notification/notification-container/notification-container.component';
+import {NotificationBaseService} from "./notification/notification-base.service";
+import {AtNotificationService} from "./notification/notification.service";
 
 @NgModule({
   declarations: [
@@ -61,6 +68,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DropdownComponent,
     DropdownMenuItemComponent,
     DropMenuListComponent,
+    NotificationComponent,
+    NotificationContainerComponent,
   ],
   exports: [
     ButtonComponent,
@@ -90,17 +99,23 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DropdownComponent,
     DropdownMenuItemComponent,
     DropMenuListComponent,
+    NotificationComponent,
+    NotificationContainerComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    BrowserModule, BrowserAnimationsModule
+  entryComponents: [NotificationComponent, NotificationContainerComponent],
+  imports:
+    [
+      CommonModule,
+      FormsModule,
+      BrowserModule, BrowserAnimationsModule
 
-  ],
+    ],
 })
+
 export class AtModule {
   static forRoot(): ModuleWithProviders {
     return {
+      providers: [ComponentCreator, AtNotificationService, ComponentCreatorBase, NotificationBaseService],
       ngModule: AtModule,
     };
   }

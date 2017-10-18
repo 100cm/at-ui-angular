@@ -87,6 +87,17 @@ import {DropdownMenuItemComponent} from './components/menu/dropdown-menu-item/dr
 import {DropMenuListComponent} from './components/menu/drop-menu-list/drop-menu-list.component';
 import {DemoPlaceDropdownComponent} from './showcase/at-demo-dropdown/demo-place-dropdown/demo-place-dropdown.component';
 import {AtModule} from "./components/at-ng.module";
+import { AtDemoNotificationComponent } from './showcase/at-demo-notification/at-demo-notification.component';
+import { AtDemoAlertComponent } from './showcase/at-demo-alert/at-demo-alert.component';
+import { AtDemoBadgeComponent } from './showcase/at-demo-badge/at-demo-badge.component';
+import { AtDemoLoadingbarComponent } from './showcase/at-demo-loadingbar/at-demo-loadingbar.component';
+import { AtDemoModalComponent } from './showcase/at-demo-modal/at-demo-modal.component';
+import { AtDemoMessageComponent } from './showcase/at-demo-message/at-demo-message.component';
+import { AtDemoPopoverComponent } from './showcase/at-demo-popover/at-demo-popover.component';
+import { AtDemoProgressComponent } from './showcase/at-demo-progress/at-demo-progress.component';
+import { AtDemoTooltipComponent } from './showcase/at-demo-tooltip/at-demo-tooltip.component';
+import { AtDemoTableComponent } from './showcase/at-demo-table/at-demo-table.component';
+import { DemoBasicNotificationComponent } from './showcase/at-demo-notification/demo-basic-notification/demo-basic-notification.component';
 
 
 @NgModule({
@@ -145,6 +156,17 @@ import {AtModule} from "./components/at-ng.module";
     BasicDemoDropdownComponent,
     AtDemoPagenationComponent,
     DemoPlaceDropdownComponent,
+    AtDemoNotificationComponent,
+    AtDemoAlertComponent,
+    AtDemoBadgeComponent,
+    AtDemoLoadingbarComponent,
+    AtDemoModalComponent,
+    AtDemoMessageComponent,
+    AtDemoPopoverComponent,
+    AtDemoProgressComponent,
+    AtDemoTooltipComponent,
+    AtDemoTableComponent,
+    DemoBasicNotificationComponent,
 
   ],
   imports: [

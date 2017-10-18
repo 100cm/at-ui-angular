@@ -78,6 +78,34 @@
         <li atSubMenu [isOpen]="true">
           <div title>
             <atIcon [type]="'chevron-down'"></atIcon>
+            视图组件
+          </div>
+          <ul inlineMenu>
+            <ul itemGroup>
+              <li atMenuItem [active]="active('/components/notificatio')"><a
+                [routerLink]="['/components/notification']"> 提示<span
+                class="component_item_span">notification</span></a></li>
+              <li atMenuItem [active]="active('/components/alert')"><a
+                [routerLink]="['/components/alert']">Alert<span
+                class="component_item_span">弹出框</span></a>
+              </li>
+              <li atMenuItem [active]="active('/components/badge')"><a [routerLink]="['/components/badge']">徽标<span
+                class="component_item_span">Badge</span></a>
+              </li>
+              <li atMenuItem [active]="active('/components/loading-bar')"><a [routerLink]="['/components/loading-bar']">LoadingBar<span
+                class="component_item_span">加载条</span>
+              </a></li>
+
+              <li atMenuItem *ngFor="let route of routes" [active]="active(route.url)"><a [routerLink]="[route.url]">{{route.name_en}}<span
+                class="component_item_span">{{route.name}}</span>
+              </a></li>
+            </ul>
+          </ul>
+        </li>
+
+        <li atSubMenu [isOpen]="true">
+          <div title>
+            <atIcon [type]="'chevron-down'"></atIcon>
             导航组件
           </div>
           <ul inlineMenu>
@@ -105,7 +133,8 @@
     <div class="container">
       <div class="footer-logo"></div>
       <div class="footer-desc">
-        <div class="footer-copyright">© 2017 Created by<a href="//ng-at.thunderjava.com" target="_blank">Icepoint1999</a></div>
+        <div class="footer-copyright">© 2017 Created by<a href="//ng-at.thunderjava.com"
+                                                          target="_blank">Icepoint1999</a></div>
       </div>
       <div><a data-redirect="https://github.com/icepoint0">Github（戳我）</a></div>
     </div>

@@ -21,6 +21,16 @@ import {InstallComponent} from "../app/showcase/install/install.component";
 import {ConnectComponent} from "../app/showcase/connect/connect.component";
 import {AtDemoPagenationComponent} from "../app/showcase/at-demo-pagenation/at-demo-pagenation.component";
 import {AtDemoDropdownComponent} from "../app/showcase/at-demo-dropdown/at-demo-dropdown.component";
+import {AtDemoNotificationComponent} from "../app/showcase/at-demo-notification/at-demo-notification.component";
+import {AtDemoAlertComponent} from "../app/showcase/at-demo-alert/at-demo-alert.component";
+import {AtDemoBadgeComponent} from "../app/showcase/at-demo-badge/at-demo-badge.component";
+import {AtDemoModalComponent} from "../app/showcase/at-demo-modal/at-demo-modal.component";
+import {AtDemoLoadingbarComponent} from "../app/showcase/at-demo-loadingbar/at-demo-loadingbar.component";
+import {AtDemoMessageComponent} from "../app/showcase/at-demo-message/at-demo-message.component";
+import {AtDemoPopoverComponent} from "../app/showcase/at-demo-popover/at-demo-popover.component";
+import {AtDemoProgressComponent} from "../app/showcase/at-demo-progress/at-demo-progress.component";
+import {AtDemoTooltipComponent} from "../app/showcase/at-demo-tooltip/at-demo-tooltip.component";
+import {AtDemoTableComponent} from "../app/showcase/at-demo-table/at-demo-table.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/button', pathMatch: 'full'},
@@ -45,7 +55,19 @@ const appRoutes: Routes = [
       {path: 'introduction', component: IntroComponent},
       {path: 'quickstart', component: StartupComponent},
       {path: 'changelog', component: UpdateLogComponent},
-      {path: 'installation', component: InstallComponent}
+      {path: 'installation', component: InstallComponent},
+
+
+      {path: 'notification', component: AtDemoNotificationComponent},
+      {path: 'alert', component: AtDemoAlertComponent},
+      {path: 'badge', component: AtDemoBadgeComponent},
+      {path: 'loading-bar', component: AtDemoLoadingbarComponent},
+      {path: 'modal', component: AtDemoModalComponent},
+      {path: 'message', component: AtDemoMessageComponent},
+      {path: 'popover', component: AtDemoPopoverComponent},
+      {path: 'progress', component: AtDemoProgressComponent},
+      {path: 'tooltip', component: AtDemoTooltipComponent},
+      {path: 'table', component: AtDemoTableComponent},
     ]
 
   },
