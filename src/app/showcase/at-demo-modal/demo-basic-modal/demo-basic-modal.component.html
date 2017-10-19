@@ -1,0 +1,13 @@
+<p>从按钮处伸展出来</p>
+<atModal [show]="show" (onCancel)="close()">
+
+  <div body>
+    <button atButton>asd</button>
+  </div>
+
+</atModal>
+
+<button atButton (click)="setShow()"> 显示/隐藏</button>
+
+
+<button atButton (click)="open()">service调用</button>

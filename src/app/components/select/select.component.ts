@@ -10,22 +10,23 @@ import {TagAnimation} from "../animations/tag-animation";
 
 @Component({
   selector: 'atSelect',
-  template:`<div (click)="handleDrop($event)" (mouseenter)="dropDown()" (mouseleave)="dropUp()"
-                 class="at-select at-select--{{disabled ? 'disabled' : 'visiable' }} at-select--{{multiple ? 'multiple' : 'single' }} at-select--{{atSize}}">
+  template: `
+    <div (click)="handleDrop($event)" (mouseenter)="dropDown()" (mouseleave)="dropUp()"
+         class="at-select at-select--{{disabled ? 'disabled' : 'visiable' }} at-select--{{multiple ? 'multiple' : 'single' }} at-select--{{atSize}}">
 
-    <div *ngIf="multiple" #selection class="at-select__selection">
+      <div *ngIf="multiple" #selection class="at-select__selection">
     <span *ngFor="let item of selectedOptions" class="at-tag" [@tagAnimation]>
       <span class="at-tag__text">{{item.atLabel}}</span>
       <i (click)="rejectData($event,item)" class="icon icon-x at-tag__close"></i>
     </span>
-      <span class="at-select__placeholder" *ngIf="selectedOptions.length == 0 && showLabel">
+        <span class="at-select__placeholder" *ngIf="selectedOptions.length == 0 && showLabel">
 
     </span>
-      <input *ngIf="tagAble" #tag_input type="text"
-             [(ngModel)]="_searchText"
-             (focus)="resetOption()"
-             (ngModelChange)="updateFilterOption()"
-             placeholder="" (keyup)="onKey($event)" style="
+        <input *ngIf="tagAble" #tag_input type="text"
+               [(ngModel)]="_searchText"
+               (focus)="resetOption()"
+               (ngModelChange)="updateFilterOption()"
+               placeholder="" (keyup)="onKey($event)" style="
     border: none;
     outline: none;
     left: 0;
@@ -33,39 +34,41 @@ import {TagAnimation} from "../animations/tag-animation";
     display: inline-block;
     margin: 0 24px 0 8px;
     background-color: transparent;">
-      <i class="icon icon-chevron-down at-select__arrow"></i>
-      <i *ngIf="allowClear" (click)="clearData($event)" style="background: white" class="icon icon-x at-select__clear">
-      </i>
+        <i class="icon icon-chevron-down at-select__arrow"></i>
+        <i *ngIf="allowClear" (click)="clearData($event)" style="background: white"
+           class="icon icon-x at-select__clear">
+        </i>
+      </div>
+
+
+      <div #selection *ngIf="!multiple" class="at-select__selection">
+        <span class="at-select__placeholder" *ngIf="!selectedLabel && showLabel">请选择</span>
+        <span *ngIf="selectedLabel && showLabel"
+              class="at-select__selected">{{selectedLabel}}</span>
+        <input *ngIf="searchable" #search_input type="text" [(ngModel)]="_searchText"
+               (focus)="resetOption()"
+               (ngModelChange)="updateFilterOption()" class="at-select__input">
+        <i class="icon icon-chevron-down at-select__arrow"></i>
+        <i *ngIf="allowClear" (click)="clearData($event)" style="background: white"
+           class="icon icon-x at-select__clear">
+        </i>
+      </div>
+
+      <div *ngIf="_dropdown" [@dropDownAnimation] class="at-select__dropdown at-select__dropdown--bottom"
+           [ngStyle]="{'top':top}" style="left: 0px;">
+        <ul class="at-select__not-found" *ngIf="filterOptions.length == 0">
+          <li>无匹配数据</li>
+        </ul>
+        <ul class="at-select__list">
+          <li (click)="selectOption($event,option)"
+              [ngClass]="{'at-select__option--selected': option._selected,'at-select__option--disabled':option.disabled}"
+              class="at-select__option" *ngFor="let option of filterOptions">
+            {{option.atLabel}}
+          </li>
+        </ul>
+      </div>
+
     </div>
-
-
-    <div #selection *ngIf="!multiple" class="at-select__selection">
-      <span class="at-select__placeholder" *ngIf="!selectedLabel && showLabel">请选择</span>
-      <span *ngIf="selectedLabel && showLabel"
-            class="at-select__selected">{{selectedLabel}}</span>
-      <input *ngIf="searchable" #search_input type="text" [(ngModel)]="_searchText"
-             (focus)="resetOption()"
-             (ngModelChange)="updateFilterOption()" class="at-select__input">
-      <i class="icon icon-chevron-down at-select__arrow"></i>
-      <i *ngIf="allowClear" (click)="clearData($event)" style="background: white" class="icon icon-x at-select__clear">
-      </i>
-    </div>
-
-    <div *ngIf="_dropdown" [@dropDownAnimation] class="at-select__dropdown at-select__dropdown--bottom"
-         [ngStyle]="{'top':top}" style="left: 0px;">
-      <ul class="at-select__not-found" *ngIf="filterOptions.length == 0">
-        <li>无匹配数据</li>
-      </ul>
-      <ul class="at-select__list">
-        <li (click)="selectOption($event,option)"
-            [ngClass]="{'at-select__option--selected': option._selected,'at-select__option--disabled':option.disabled}"
-            class="at-select__option" *ngFor="let option of filterOptions">
-          {{option.atLabel}}
-        </li>
-      </ul>
-    </div>
-
-  </div>
   `,
   providers: [
     {

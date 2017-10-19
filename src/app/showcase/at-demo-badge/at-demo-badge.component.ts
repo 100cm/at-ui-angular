@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-badge',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtDemoBadgeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
+  basic = require('!!raw-loader!./demo-basic-badge/demo-basic-badge.component.html')
+  combine = require('!!raw-loader!./demo-combine-badge/demo-combine-badge.component.html')
+  dynamic = require('!!raw-loader!./demo-dynamic-badge/demo-dynamic-badge.component.html')
 
 }

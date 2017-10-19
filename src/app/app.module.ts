@@ -99,6 +99,10 @@ import { AtDemoTooltipComponent } from './showcase/at-demo-tooltip/at-demo-toolt
 import { AtDemoTableComponent } from './showcase/at-demo-table/at-demo-table.component';
 import { DemoBasicNotificationComponent } from './showcase/at-demo-notification/demo-basic-notification/demo-basic-notification.component';
 import { DemoAlertBasicComponent } from './showcase/at-demo-alert/demo-alert-basic/demo-alert-basic.component';
+import { DemoBasicBadgeComponent } from './showcase/at-demo-badge/demo-basic-badge/demo-basic-badge.component';
+import { DemoCombineBadgeComponent } from './showcase/at-demo-badge/demo-combine-badge/demo-combine-badge.component';
+import { DemoDynamicBadgeComponent } from './showcase/at-demo-badge/demo-dynamic-badge/demo-dynamic-badge.component';
+import { DemoBasicModalComponent } from './showcase/at-demo-modal/demo-basic-modal/demo-basic-modal.component';
 
 
 @NgModule({
@@ -169,6 +173,10 @@ import { DemoAlertBasicComponent } from './showcase/at-demo-alert/demo-alert-bas
     AtDemoTableComponent,
     DemoBasicNotificationComponent,
     DemoAlertBasicComponent,
+    DemoBasicBadgeComponent,
+    DemoCombineBadgeComponent,
+    DemoDynamicBadgeComponent,
+    DemoBasicModalComponent,
 
   ],
   imports: [

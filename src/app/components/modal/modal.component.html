@@ -1,0 +1,39 @@
+<div>
+  <div [hidden]="!show" class="at-modal__mask"></div>
+
+  <div [ngStyle]="{'display': show ? '' : 'none'}"
+       class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
+  >
+    <div #modal_content class="at-modal" [@enterLeave]="state"
+         [ngStyle]="positionStyle"
+         [style.width]="width +'px'">
+      <div class="at-modal__header">
+        <div class="at-modal__title">
+          <ng-content  select="[header]">
+            {{title ? title : ''}}
+          </ng-content>
+        </div>
+      </div>
+      <div class="at-modal__body" #modal_body>
+        <ng-content select="[body]"></ng-content>
+        {{message ? message :''}}
+      </div>
+      <div class="at-modal__footer">
+        <div #custom_footer>
+          <ng-content select="[footer]"></ng-content>
+        </div>
+        <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
+          <button atButton (click)="cancel()">取消</button>
+          <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
+          <span class="at-btn__text">确认
+          </span>
+          </button>
+        </div>
+      </div>
+      <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
+      <span *ngIf="closeable == true" class="at-modal__close"><i class="icon icon-x"></i></span>
+    </div>
+  </div>
+
+</div>
+

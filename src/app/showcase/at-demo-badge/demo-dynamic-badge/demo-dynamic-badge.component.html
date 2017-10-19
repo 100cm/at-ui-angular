@@ -1,0 +1,10 @@
+<p>
+  添加dot
+</p>
+<atBadge [dot]="true" [atType]="'error'">
+  消息
+</atBadge>
+
+<atBadge [dot]="true" [atType]="'error'" [show]="show">
+  <button atButton (click)="show = false">隐藏红点</button>
+</atBadge>

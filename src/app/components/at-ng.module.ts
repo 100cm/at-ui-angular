@@ -38,6 +38,10 @@ import {NotificationBaseService} from "./notification/notification-base.service"
 import {AtNotificationService} from "./notification/notification.service";
 import {AlertComponent} from './alert/alert.component';
 import {BadgeComponent} from './badge/badge.component';
+import {ModalComponent} from './modal/modal.component';
+import {AtGlobalMonitorService} from "./at-global-monitor.service";
+import {AtModalService} from "./modal/at-modal.service";
+import {ModalBaseService} from "./modal/modal-base.service";
 
 @NgModule({
   declarations: [
@@ -72,6 +76,7 @@ import {BadgeComponent} from './badge/badge.component';
     NotificationContainerComponent,
     AlertComponent,
     BadgeComponent,
+    ModalComponent,
   ],
   exports: [
     ButtonComponent,
@@ -104,9 +109,10 @@ import {BadgeComponent} from './badge/badge.component';
     NotificationComponent,
     NotificationContainerComponent,
     AlertComponent,
-    BadgeComponent
+    BadgeComponent,
+    ModalComponent
   ],
-  entryComponents: [NotificationComponent, NotificationContainerComponent],
+  entryComponents: [NotificationComponent, NotificationContainerComponent, ModalComponent],
   imports:
     [
       CommonModule,
@@ -114,12 +120,14 @@ import {BadgeComponent} from './badge/badge.component';
       BrowserModule, BrowserAnimationsModule
 
     ],
+  providers: [AtGlobalMonitorService]
 })
 
 export class AtModule {
   static forRoot(): ModuleWithProviders {
     return {
-      providers: [AtNotificationService, ComponentCreatorBase, NotificationBaseService],
+      providers: [AtNotificationService, AtModalService, ModalBaseService,
+        ComponentCreatorBase, NotificationBaseService],
       ngModule: AtModule,
     };
   }
