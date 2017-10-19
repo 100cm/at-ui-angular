@@ -5,7 +5,7 @@ import {NotificationContainerComponent} from "../notification-container/notifica
 
 @Component({
   selector: 'atNotification',
-  template: `    
+  template: `
     <div (mouseenter)="stopRemove()" (mouseleave)="startRemove()"
          [@enterLeave]="config.state"
          class="at-notification-contained  at-notification--{{config.type}}"
@@ -79,10 +79,12 @@ export class NotificationComponent implements OnInit {
   }
 
   startRemove() {
-    clearTimeout(this.timer)
-    this.timer = setTimeout(() => {
-      this.remove()
-    }, this.config.duration)
+    if (this.config.duration != 0) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.remove()
+      }, this.config.duration)
+    }
   }
 
   stopRemove() {

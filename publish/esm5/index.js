@@ -1,10 +1,11 @@
 import * as tslib_1 from "tslib";
-import { Component, ContentChildren, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Injectable, Input, NgModule, NgZone, Output, Renderer2, RendererFactory2, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, ContentChildren, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Injectable, Injector, Input, NgModule, NgZone, Output, Renderer2, RendererFactory2, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AUTO_STYLE, AnimationBuilder, AnimationFactory, NoopAnimationPlayer, animate, sequence, state, style, transition, trigger, ɵAnimationGroupPlayer, ɵPRE_STYLE } from '@angular/animations';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BrowserModule, DOCUMENT, ɵDomRendererFactory2 } from '@angular/platform-browser';
 import { __extends } from 'tslib';
+import { setTimeout as setTimeout$1 } from 'timers';
 var ButtonComponent = (function () {
     /**
      * @param {?} _elementRef
@@ -3065,7 +3066,7 @@ DropMenuListComponent.decorators = [
  */
 DropMenuListComponent.ctorParameters = function () { return []; };
 /**
- * @license Angular v4.4.5
+ * @license Angular v4.4.6
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -3459,384 +3460,34 @@ function dashCaseToCamelCase(input) {
 function allowPreviousPlayerStylesMerge(duration, delay) {
     return duration === 0 || delay === 0;
 }
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-var EMPTY_ANIMATION_OPTIONS = {};
-/**
- * @abstract
- */
-var Ast = (function () {
-    function Ast() {
-        this.options = EMPTY_ANIMATION_OPTIONS;
-    }
-    /**
-     * @abstract
-     * @param {?} ast
-     * @param {?} context
-     * @return {?}
-     */
-    Ast.prototype.visit = function (ast, context) { };
-    Object.defineProperty(Ast.prototype, "params", {
-        /**
-         * @return {?}
-         */
-        get: function () { return this.options['params'] || null; },
-        enumerable: true,
-        configurable: true
-    });
-    return Ast;
-}());
-var TriggerAst = (function (_super) {
-    __extends(TriggerAst, _super);
-    /**
-     * @param {?} name
-     * @param {?} states
-     * @param {?} transitions
-     */
-    function TriggerAst(name, states, transitions) {
-        var _this = _super.call(this) || this;
-        _this.name = name;
-        _this.states = states;
-        _this.transitions = transitions;
-        _this.queryCount = 0;
-        _this.depCount = 0;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    TriggerAst.prototype.visit = function (visitor, context) { return visitor.visitTrigger(this, context); };
-    return TriggerAst;
-}(Ast));
-var StateAst = (function (_super) {
-    __extends(StateAst, _super);
-    /**
-     * @param {?} name
-     * @param {?} style
-     */
-    function StateAst(name, style$$1) {
-        var _this = _super.call(this) || this;
-        _this.name = name;
-        _this.style = style$$1;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    StateAst.prototype.visit = function (visitor, context) { return visitor.visitState(this, context); };
-    return StateAst;
-}(Ast));
-var TransitionAst = (function (_super) {
-    __extends(TransitionAst, _super);
-    /**
-     * @param {?} matchers
-     * @param {?} animation
-     */
-    function TransitionAst(matchers, animation) {
-        var _this = _super.call(this) || this;
-        _this.matchers = matchers;
-        _this.animation = animation;
-        _this.queryCount = 0;
-        _this.depCount = 0;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    TransitionAst.prototype.visit = function (visitor, context) { return visitor.visitTransition(this, context); };
-    return TransitionAst;
-}(Ast));
-var SequenceAst = (function (_super) {
-    __extends(SequenceAst, _super);
-    /**
-     * @param {?} steps
-     */
-    function SequenceAst(steps) {
-        var _this = _super.call(this) || this;
-        _this.steps = steps;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    SequenceAst.prototype.visit = function (visitor, context) { return visitor.visitSequence(this, context); };
-    return SequenceAst;
-}(Ast));
-var GroupAst = (function (_super) {
-    __extends(GroupAst, _super);
-    /**
-     * @param {?} steps
-     */
-    function GroupAst(steps) {
-        var _this = _super.call(this) || this;
-        _this.steps = steps;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    GroupAst.prototype.visit = function (visitor, context) { return visitor.visitGroup(this, context); };
-    return GroupAst;
-}(Ast));
-var AnimateAst = (function (_super) {
-    __extends(AnimateAst, _super);
-    /**
-     * @param {?} timings
-     * @param {?} style
-     */
-    function AnimateAst(timings, style$$1) {
-        var _this = _super.call(this) || this;
-        _this.timings = timings;
-        _this.style = style$$1;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    AnimateAst.prototype.visit = function (visitor, context) { return visitor.visitAnimate(this, context); };
-    return AnimateAst;
-}(Ast));
-var StyleAst = (function (_super) {
-    __extends(StyleAst, _super);
-    /**
-     * @param {?} styles
-     * @param {?} easing
-     * @param {?} offset
-     */
-    function StyleAst(styles, easing, offset) {
-        var _this = _super.call(this) || this;
-        _this.styles = styles;
-        _this.easing = easing;
-        _this.offset = offset;
-        _this.isEmptyStep = false;
-        _this.containsDynamicStyles = false;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    StyleAst.prototype.visit = function (visitor, context) { return visitor.visitStyle(this, context); };
-    return StyleAst;
-}(Ast));
-var KeyframesAst = (function (_super) {
-    __extends(KeyframesAst, _super);
-    /**
-     * @param {?} styles
-     */
-    function KeyframesAst(styles) {
-        var _this = _super.call(this) || this;
-        _this.styles = styles;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    KeyframesAst.prototype.visit = function (visitor, context) { return visitor.visitKeyframes(this, context); };
-    return KeyframesAst;
-}(Ast));
-var ReferenceAst = (function (_super) {
-    __extends(ReferenceAst, _super);
-    /**
-     * @param {?} animation
-     */
-    function ReferenceAst(animation) {
-        var _this = _super.call(this) || this;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    ReferenceAst.prototype.visit = function (visitor, context) { return visitor.visitReference(this, context); };
-    return ReferenceAst;
-}(Ast));
-var AnimateChildAst = (function (_super) {
-    __extends(AnimateChildAst, _super);
-    function AnimateChildAst() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    AnimateChildAst.prototype.visit = function (visitor, context) { return visitor.visitAnimateChild(this, context); };
-    return AnimateChildAst;
-}(Ast));
-var AnimateRefAst = (function (_super) {
-    __extends(AnimateRefAst, _super);
-    /**
-     * @param {?} animation
-     */
-    function AnimateRefAst(animation) {
-        var _this = _super.call(this) || this;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    AnimateRefAst.prototype.visit = function (visitor, context) { return visitor.visitAnimateRef(this, context); };
-    return AnimateRefAst;
-}(Ast));
-var QueryAst = (function (_super) {
-    __extends(QueryAst, _super);
-    /**
-     * @param {?} selector
-     * @param {?} limit
-     * @param {?} optional
-     * @param {?} includeSelf
-     * @param {?} animation
-     */
-    function QueryAst(selector, limit, optional, includeSelf, animation) {
-        var _this = _super.call(this) || this;
-        _this.selector = selector;
-        _this.limit = limit;
-        _this.optional = optional;
-        _this.includeSelf = includeSelf;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    QueryAst.prototype.visit = function (visitor, context) { return visitor.visitQuery(this, context); };
-    return QueryAst;
-}(Ast));
-var StaggerAst = (function (_super) {
-    __extends(StaggerAst, _super);
-    /**
-     * @param {?} timings
-     * @param {?} animation
-     */
-    function StaggerAst(timings, animation) {
-        var _this = _super.call(this) || this;
-        _this.timings = timings;
-        _this.animation = animation;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    StaggerAst.prototype.visit = function (visitor, context) { return visitor.visitStagger(this, context); };
-    return StaggerAst;
-}(Ast));
-var TimingAst = (function (_super) {
-    __extends(TimingAst, _super);
-    /**
-     * @param {?} duration
-     * @param {?=} delay
-     * @param {?=} easing
-     */
-    function TimingAst(duration, delay, easing) {
-        if (delay === void 0) {
-            delay = 0;
-        }
-        if (easing === void 0) {
-            easing = null;
-        }
-        var _this = _super.call(this) || this;
-        _this.duration = duration;
-        _this.delay = delay;
-        _this.easing = easing;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    TimingAst.prototype.visit = function (visitor, context) { return visitor.visitTiming(this, context); };
-    return TimingAst;
-}(Ast));
-var DynamicTimingAst = (function (_super) {
-    __extends(DynamicTimingAst, _super);
-    /**
-     * @param {?} value
-     */
-    function DynamicTimingAst(value) {
-        var _this = _super.call(this, 0, 0, '') || this;
-        _this.value = value;
-        return _this;
-    }
-    /**
-     * @param {?} visitor
-     * @param {?} context
-     * @return {?}
-     */
-    DynamicTimingAst.prototype.visit = function (visitor, context) { return visitor.visitTiming(this, context); };
-    return DynamicTimingAst;
-}(TimingAst));
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @param {?} visitor
- * @param {?} node
- * @param {?} context
- * @return {?}
- */
-function visitAnimationNode(visitor, node, context) {
+function visitDslNode(visitor, node, context) {
     switch (node.type) {
         case 7 /* Trigger */:
-            return visitor.visitTrigger(/** @type {?} */ (node), context);
+            return visitor.visitTrigger(node, context);
         case 0 /* State */:
-            return visitor.visitState(/** @type {?} */ (node), context);
+            return visitor.visitState(node, context);
         case 1 /* Transition */:
-            return visitor.visitTransition(/** @type {?} */ (node), context);
+            return visitor.visitTransition(node, context);
         case 2 /* Sequence */:
-            return visitor.visitSequence(/** @type {?} */ (node), context);
+            return visitor.visitSequence(node, context);
         case 3 /* Group */:
-            return visitor.visitGroup(/** @type {?} */ (node), context);
+            return visitor.visitGroup(node, context);
         case 4 /* Animate */:
-            return visitor.visitAnimate(/** @type {?} */ (node), context);
+            return visitor.visitAnimate(node, context);
         case 5 /* Keyframes */:
-            return visitor.visitKeyframes(/** @type {?} */ (node), context);
+            return visitor.visitKeyframes(node, context);
         case 6 /* Style */:
-            return visitor.visitStyle(/** @type {?} */ (node), context);
+            return visitor.visitStyle(node, context);
         case 8 /* Reference */:
-            return visitor.visitReference(/** @type {?} */ (node), context);
+            return visitor.visitReference(node, context);
         case 9 /* AnimateChild */:
-            return visitor.visitAnimateChild(/** @type {?} */ (node), context);
+            return visitor.visitAnimateChild(node, context);
         case 10 /* AnimateRef */:
-            return visitor.visitAnimateRef(/** @type {?} */ (node), context);
+            return visitor.visitAnimateRef(node, context);
         case 11 /* Query */:
-            return visitor.visitQuery(/** @type {?} */ (node), context);
+            return visitor.visitQuery(node, context);
         case 12 /* Stagger */:
-            return visitor.visitStagger(/** @type {?} */ (node), context);
+            return visitor.visitStagger(node, context);
         default:
             throw new Error("Unable to resolve animation metadata node #" + node.type);
     }
@@ -3906,20 +3557,28 @@ function parseAnimationAlias(alias, errors) {
             return '* => *';
     }
 }
+var TRUE_BOOLEAN_VALUES = new Set();
+TRUE_BOOLEAN_VALUES.add('true');
+TRUE_BOOLEAN_VALUES.add('1');
+var FALSE_BOOLEAN_VALUES = new Set();
+FALSE_BOOLEAN_VALUES.add('false');
+FALSE_BOOLEAN_VALUES.add('0');
 /**
  * @param {?} lhs
  * @param {?} rhs
  * @return {?}
  */
 function makeLambdaFromStates(lhs, rhs) {
+    var /** @type {?} */ LHS_MATCH_BOOLEAN = TRUE_BOOLEAN_VALUES.has(lhs) || FALSE_BOOLEAN_VALUES.has(lhs);
+    var /** @type {?} */ RHS_MATCH_BOOLEAN = TRUE_BOOLEAN_VALUES.has(rhs) || FALSE_BOOLEAN_VALUES.has(rhs);
     return function (fromState, toState) {
         var /** @type {?} */ lhsMatch = lhs == ANY_STATE || lhs == fromState;
         var /** @type {?} */ rhsMatch = rhs == ANY_STATE || rhs == toState;
-        if (!lhsMatch && typeof fromState === 'boolean') {
-            lhsMatch = fromState ? lhs === 'true' : lhs === 'false';
+        if (!lhsMatch && LHS_MATCH_BOOLEAN && typeof fromState === 'boolean') {
+            lhsMatch = fromState ? TRUE_BOOLEAN_VALUES.has(lhs) : FALSE_BOOLEAN_VALUES.has(lhs);
         }
-        if (!rhsMatch && typeof toState === 'boolean') {
-            rhsMatch = toState ? rhs === 'true' : rhs === 'false';
+        if (!rhsMatch && RHS_MATCH_BOOLEAN && typeof toState === 'boolean') {
+            rhsMatch = toState ? TRUE_BOOLEAN_VALUES.has(rhs) : FALSE_BOOLEAN_VALUES.has(rhs);
         }
         return lhsMatch && rhsMatch;
     };
@@ -3957,7 +3616,7 @@ var AnimationAstBuilderVisitor = (function () {
     AnimationAstBuilderVisitor.prototype.build = function (metadata, errors) {
         var /** @type {?} */ context = new AnimationAstBuilderContext(errors);
         this._resetContextStyleTimingState(context);
-        return (visitAnimationNode(this, normalizeAnimationEntry(metadata), context));
+        return (visitDslNode(this, normalizeAnimationEntry(metadata), context));
     };
     /**
      * @param {?} context
@@ -4001,11 +3660,11 @@ var AnimationAstBuilderVisitor = (function () {
                 context.errors.push('only state() and transition() definitions can sit inside of a trigger()');
             }
         });
-        var /** @type {?} */ ast = new TriggerAst(metadata.name, states, transitions);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        ast.queryCount = queryCount;
-        ast.depCount = depCount;
-        return ast;
+        return {
+            type: 7 /* Trigger */,
+            name: metadata.name, states: states, transitions: transitions, queryCount: queryCount, depCount: depCount,
+            options: null
+        };
     };
     /**
      * @param {?} metadata
@@ -4035,11 +3694,12 @@ var AnimationAstBuilderVisitor = (function () {
                 context.errors.push("state(\"" + metadata.name + "\", ...) must define default values for all the following style substitutions: " + missingSubsArr.join(', '));
             }
         }
-        var /** @type {?} */ stateAst = new StateAst(metadata.name, styleAst);
-        if (astParams) {
-            stateAst.options = { params: astParams };
-        }
-        return stateAst;
+        return {
+            type: 0 /* State */,
+            name: metadata.name,
+            style: styleAst,
+            options: astParams ? { params: astParams } : null
+        };
     };
     /**
      * @param {?} metadata
@@ -4049,13 +3709,16 @@ var AnimationAstBuilderVisitor = (function () {
     AnimationAstBuilderVisitor.prototype.visitTransition = function (metadata, context) {
         context.queryCount = 0;
         context.depCount = 0;
-        var /** @type {?} */ entry = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
+        var /** @type {?} */ animation = visitDslNode(this, normalizeAnimationEntry(metadata.animation), context);
         var /** @type {?} */ matchers = parseTransitionExpr(metadata.expr, context.errors);
-        var /** @type {?} */ ast = new TransitionAst(matchers, entry);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        ast.queryCount = context.queryCount;
-        ast.depCount = context.depCount;
-        return ast;
+        return {
+            type: 1 /* Transition */,
+            matchers: matchers,
+            animation: animation,
+            queryCount: context.queryCount,
+            depCount: context.depCount,
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4064,9 +3727,11 @@ var AnimationAstBuilderVisitor = (function () {
      */
     AnimationAstBuilderVisitor.prototype.visitSequence = function (metadata, context) {
         var _this = this;
-        var /** @type {?} */ ast = new SequenceAst(metadata.steps.map(function (s) { return visitAnimationNode(_this, s, context); }));
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
+        return {
+            type: 2 /* Sequence */,
+            steps: metadata.steps.map(function (s) { return visitDslNode(_this, s, context); }),
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4079,14 +3744,16 @@ var AnimationAstBuilderVisitor = (function () {
         var /** @type {?} */ furthestTime = 0;
         var /** @type {?} */ steps = metadata.steps.map(function (step) {
             context.currentTime = currentTime;
-            var /** @type {?} */ innerAst = visitAnimationNode(_this, step, context);
+            var /** @type {?} */ innerAst = visitDslNode(_this, step, context);
             furthestTime = Math.max(furthestTime, context.currentTime);
             return innerAst;
         });
         context.currentTime = furthestTime;
-        var /** @type {?} */ ast = new GroupAst(steps);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
+        return {
+            type: 3 /* Group */,
+            steps: steps,
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4096,10 +3763,10 @@ var AnimationAstBuilderVisitor = (function () {
     AnimationAstBuilderVisitor.prototype.visitAnimate = function (metadata, context) {
         var /** @type {?} */ timingAst = constructTimingAst(metadata.timings, context.errors);
         context.currentAnimateTimings = timingAst;
-        var /** @type {?} */ styles;
+        var /** @type {?} */ styleAst;
         var /** @type {?} */ styleMetadata = metadata.styles ? metadata.styles : style({});
         if (styleMetadata.type == 5 /* Keyframes */) {
-            styles = this.visitKeyframes(/** @type {?} */ (styleMetadata), context);
+            styleAst = this.visitKeyframes(/** @type {?} */ (styleMetadata), context);
         }
         else {
             var /** @type {?} */ styleMetadata_1 = (metadata.styles);
@@ -4113,12 +3780,17 @@ var AnimationAstBuilderVisitor = (function () {
                 styleMetadata_1 = style(newStyleData);
             }
             context.currentTime += timingAst.duration + timingAst.delay;
-            var /** @type {?} */ styleAst = this.visitStyle(styleMetadata_1, context);
-            styleAst.isEmptyStep = isEmpty;
-            styles = styleAst;
+            var /** @type {?} */ _styleAst = this.visitStyle(styleMetadata_1, context);
+            _styleAst.isEmptyStep = isEmpty;
+            styleAst = _styleAst;
         }
         context.currentAnimateTimings = null;
-        return new AnimateAst(timingAst, styles);
+        return {
+            type: 4 /* Animate */,
+            timings: timingAst,
+            style: styleAst,
+            options: null
+        };
     };
     /**
      * @param {?} metadata
@@ -4176,9 +3848,13 @@ var AnimationAstBuilderVisitor = (function () {
                 }
             }
         });
-        var /** @type {?} */ ast = new StyleAst(styles, collectedEasing, metadata.offset);
-        ast.containsDynamicStyles = containsDynamicStyles;
-        return ast;
+        return {
+            type: 6 /* Style */,
+            styles: styles,
+            easing: collectedEasing,
+            offset: metadata.offset, containsDynamicStyles: containsDynamicStyles,
+            options: null
+        };
     };
     /**
      * @param {?} ast
@@ -4226,9 +3902,10 @@ var AnimationAstBuilderVisitor = (function () {
      */
     AnimationAstBuilderVisitor.prototype.visitKeyframes = function (metadata, context) {
         var _this = this;
+        var /** @type {?} */ ast = { type: 5 /* Keyframes */, styles: [], options: null };
         if (!context.currentAnimateTimings) {
             context.errors.push("keyframes() must be placed inside of a call to animate()");
-            return new KeyframesAst([]);
+            return ast;
         }
         var /** @type {?} */ MAX_KEYFRAME_OFFSET = 1;
         var /** @type {?} */ totalKeyframesWithOffsets = 0;
@@ -4275,8 +3952,9 @@ var AnimationAstBuilderVisitor = (function () {
             currentAnimateTimings.duration = durationUpToThisFrame;
             _this._validateStyleAst(kf, context);
             kf.offset = offset;
+            ast.styles.push(kf);
         });
-        return new KeyframesAst(keyframes);
+        return ast;
     };
     /**
      * @param {?} metadata
@@ -4284,10 +3962,11 @@ var AnimationAstBuilderVisitor = (function () {
      * @return {?}
      */
     AnimationAstBuilderVisitor.prototype.visitReference = function (metadata, context) {
-        var /** @type {?} */ entry = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
-        var /** @type {?} */ ast = new ReferenceAst(entry);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
+        return {
+            type: 8 /* Reference */,
+            animation: visitDslNode(this, normalizeAnimationEntry(metadata.animation), context),
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4296,9 +3975,10 @@ var AnimationAstBuilderVisitor = (function () {
      */
     AnimationAstBuilderVisitor.prototype.visitAnimateChild = function (metadata, context) {
         context.depCount++;
-        var /** @type {?} */ ast = new AnimateChildAst();
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
+        return {
+            type: 9 /* AnimateChild */,
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4306,10 +3986,11 @@ var AnimationAstBuilderVisitor = (function () {
      * @return {?}
      */
     AnimationAstBuilderVisitor.prototype.visitAnimateRef = function (metadata, context) {
-        var /** @type {?} */ animation = this.visitReference(metadata.animation, context);
-        var /** @type {?} */ ast = new AnimateRefAst(animation);
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
+        return {
+            type: 10 /* AnimateRef */,
+            animation: this.visitReference(metadata.animation, context),
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4325,13 +4006,17 @@ var AnimationAstBuilderVisitor = (function () {
         context.currentQuerySelector =
             parentSelector.length ? (parentSelector + ' ' + selector) : selector;
         getOrSetAsInMap(context.collectedStyles, context.currentQuerySelector, {});
-        var /** @type {?} */ entry = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
+        var /** @type {?} */ animation = visitDslNode(this, normalizeAnimationEntry(metadata.animation), context);
         context.currentQuery = null;
         context.currentQuerySelector = parentSelector;
-        var /** @type {?} */ ast = new QueryAst(selector, options.limit || 0, !!options.optional, includeSelf, entry);
-        ast.originalSelector = metadata.selector;
-        ast.options = normalizeAnimationOptions(metadata.options);
-        return ast;
+        return {
+            type: 11 /* Query */,
+            selector: selector,
+            limit: options.limit || 0,
+            optional: !!options.optional, includeSelf: includeSelf, animation: animation,
+            originalSelector: metadata.selector,
+            options: normalizeAnimationOptions(metadata.options)
+        };
     };
     /**
      * @param {?} metadata
@@ -4345,8 +4030,11 @@ var AnimationAstBuilderVisitor = (function () {
         var /** @type {?} */ timings = metadata.timings === 'full' ?
             { duration: 0, delay: 0, easing: 'full' } :
             resolveTiming(metadata.timings, context.errors, true);
-        var /** @type {?} */ animation = visitAnimationNode(this, normalizeAnimationEntry(metadata.animation), context);
-        return new StaggerAst(timings, animation);
+        return {
+            type: 12 /* Stagger */,
+            animation: visitDslNode(this, normalizeAnimationEntry(metadata.animation), context), timings: timings,
+            options: null
+        };
     };
     return AnimationAstBuilderVisitor;
 }());
@@ -4434,15 +4122,18 @@ function constructTimingAst(value, errors) {
     }
     else if (typeof value == 'number') {
         var /** @type {?} */ duration = resolveTiming(/** @type {?} */ (value), errors).duration;
-        return new TimingAst(/** @type {?} */ (value), 0, '');
+        return makeTimingAst(/** @type {?} */ (duration), 0, '');
     }
     var /** @type {?} */ strValue = (value);
     var /** @type {?} */ isDynamic = strValue.split(/\s+/).some(function (v) { return v.charAt(0) == '{' && v.charAt(1) == '{'; });
     if (isDynamic) {
-        return new DynamicTimingAst(strValue);
+        var /** @type {?} */ ast = (makeTimingAst(0, 0, ''));
+        ast.dynamic = true;
+        ast.strValue = strValue;
+        return (ast);
     }
     timings = timings || resolveTiming(strValue, errors);
-    return new TimingAst(timings.duration, timings.delay, timings.easing);
+    return makeTimingAst(timings.duration, timings.delay, timings.easing);
 }
 /**
  * @param {?} options
@@ -4459,6 +4150,15 @@ function normalizeAnimationOptions(options) {
         options = {};
     }
     return options;
+}
+/**
+ * @param {?} duration
+ * @param {?} delay
+ * @param {?} easing
+ * @return {?}
+ */
+function makeTimingAst(duration, delay, easing) {
+    return { duration: duration, delay: delay, easing: easing };
 }
 /**
  * @license
@@ -4597,7 +4297,7 @@ var AnimationTimelineBuilderVisitor = (function () {
         var /** @type {?} */ context = new AnimationTimelineContext(driver, rootElement, subInstructions, errors, []);
         context.options = options;
         context.currentTimeline.setStyles([startingStyles], null, context.errors, options);
-        ast.visit(this, context);
+        visitDslNode(this, ast, context);
         // this checks to see if an actual animation happened
         var /** @type {?} */ timelines = context.timelines.filter(function (timeline) { return timeline.containsAnimation(); });
         if (timelines.length && Object.keys(finalStyles).length) {
@@ -4693,7 +4393,7 @@ var AnimationTimelineBuilderVisitor = (function () {
      */
     AnimationTimelineBuilderVisitor.prototype.visitReference = function (ast, context) {
         context.updateOptions(ast.options, true);
-        ast.animation.visit(this, context);
+        visitDslNode(this, ast.animation, context);
         context.previousNode = ast;
     };
     /**
@@ -4710,7 +4410,7 @@ var AnimationTimelineBuilderVisitor = (function () {
             ctx = context.createSubContext(options);
             ctx.transformIntoNewTimeline();
             if (options.delay != null) {
-                if (ctx.previousNode instanceof StyleAst) {
+                if (ctx.previousNode.type == 6 /* Style */) {
                     ctx.currentTimeline.snapshotCurrentStyles();
                     ctx.previousNode = DEFAULT_NOOP_PREVIOUS_NODE;
                 }
@@ -4719,7 +4419,7 @@ var AnimationTimelineBuilderVisitor = (function () {
             }
         }
         if (ast.steps.length) {
-            ast.steps.forEach(function (s) { return s.visit(_this, ctx); });
+            ast.steps.forEach(function (s) { return visitDslNode(_this, s, ctx); });
             // this is here just incase the inner steps only contain or end with a style() call
             ctx.currentTimeline.applyStylesToKeyframe();
             // this means that some animation function within the sequence
@@ -4746,7 +4446,7 @@ var AnimationTimelineBuilderVisitor = (function () {
             if (delay) {
                 innerContext.delayNextStep(delay);
             }
-            s.visit(_this, innerContext);
+            visitDslNode(_this, s, innerContext);
             furthestTime = Math.max(furthestTime, innerContext.currentTimeline.currentTime);
             innerTimelines.push(innerContext.currentTimeline);
         });
@@ -4762,12 +4462,11 @@ var AnimationTimelineBuilderVisitor = (function () {
      * @param {?} context
      * @return {?}
      */
-    AnimationTimelineBuilderVisitor.prototype.visitTiming = function (ast, context) {
-        if (ast instanceof DynamicTimingAst) {
-            var /** @type {?} */ strValue = context.params ?
-                interpolateParams(ast.value, context.params, context.errors) :
-                ast.value.toString();
-            return resolveTiming(strValue, context.errors);
+    AnimationTimelineBuilderVisitor.prototype._visitTiming = function (ast, context) {
+        if (((ast)).dynamic) {
+            var /** @type {?} */ strValue = ((ast)).strValue;
+            var /** @type {?} */ timingValue = context.params ? interpolateParams(strValue, context.params, context.errors) : strValue;
+            return resolveTiming(timingValue, context.errors);
         }
         else {
             return { duration: ast.duration, delay: ast.delay, easing: ast.easing };
@@ -4779,14 +4478,14 @@ var AnimationTimelineBuilderVisitor = (function () {
      * @return {?}
      */
     AnimationTimelineBuilderVisitor.prototype.visitAnimate = function (ast, context) {
-        var /** @type {?} */ timings = context.currentAnimateTimings = this.visitTiming(ast.timings, context);
+        var /** @type {?} */ timings = context.currentAnimateTimings = this._visitTiming(ast.timings, context);
         var /** @type {?} */ timeline = context.currentTimeline;
         if (timings.delay) {
             context.incrementTime(timings.delay);
             timeline.snapshotCurrentStyles();
         }
         var /** @type {?} */ style$$1 = ast.style;
-        if (style$$1 instanceof KeyframesAst) {
+        if (style$$1.type == 5 /* Keyframes */) {
             this.visitKeyframes(style$$1, context);
         }
         else {
@@ -4857,7 +4556,7 @@ var AnimationTimelineBuilderVisitor = (function () {
         var /** @type {?} */ startTime = context.currentTimeline.currentTime;
         var /** @type {?} */ options = ((ast.options || {}));
         var /** @type {?} */ delay = options.delay ? resolveTimingValue(options.delay) : 0;
-        if (delay && (context.previousNode instanceof StyleAst ||
+        if (delay && (context.previousNode.type === 6 /* Style */ ||
             (startTime == 0 && context.currentTimeline.getCurrentStyleProperties().length))) {
             context.currentTimeline.snapshotCurrentStyles();
             context.previousNode = DEFAULT_NOOP_PREVIOUS_NODE;
@@ -4875,7 +4574,7 @@ var AnimationTimelineBuilderVisitor = (function () {
             if (element === context.element) {
                 sameElementTimeline = innerContext.currentTimeline;
             }
-            ast.animation.visit(_this, innerContext);
+            visitDslNode(_this, ast.animation, innerContext);
             // this is here just incase the inner steps only contain or end
             // with a style() call (which is here to signal that this is a preparatory
             // call to style an element before it is animated again)
@@ -4918,7 +4617,7 @@ var AnimationTimelineBuilderVisitor = (function () {
             timeline.delayNextStep(delay);
         }
         var /** @type {?} */ startingTime = timeline.currentTime;
-        ast.animation.visit(this, context);
+        visitDslNode(this, ast.animation, context);
         context.previousNode = ast;
         // time = duration + delay
         // the reason why this computation is so complex is because
@@ -5004,7 +4703,7 @@ var AnimationTimelineContext = (function () {
             var /** @type {?} */ oldParams_1 = this.options.params;
             if (oldParams_1) {
                 var /** @type {?} */ params_2 = options['params'] = {};
-                Object.keys(this.options.params).forEach(function (name) { params_2[name] = oldParams_1[name]; });
+                Object.keys(oldParams_1).forEach(function (name) { params_2[name] = oldParams_1[name]; });
             }
         }
         return options;
@@ -5862,8 +5561,15 @@ var AnimationTrigger = (function () {
  */
 function createFallbackTransition(triggerName, states) {
     var /** @type {?} */ matchers = [function (fromState, toState) { return true; }];
-    var /** @type {?} */ animation = new SequenceAst([]);
-    var /** @type {?} */ transition$$1 = new TransitionAst(matchers, animation);
+    var /** @type {?} */ animation = { type: 2 /* Sequence */, steps: [], options: null };
+    var /** @type {?} */ transition$$1 = {
+        type: 1 /* Transition */,
+        animation: animation,
+        matchers: matchers,
+        options: null,
+        queryCount: 0,
+        depCount: 0
+    };
     return new AnimationTransitionFactory(triggerName, transition$$1, states);
 }
 /**
@@ -6936,7 +6642,7 @@ var TransitionAnimationEngine = (function () {
      * @return {?}
      */
     TransitionAnimationEngine.prototype.reportError = function (errors) {
-        throw new Error("Unable to process animations due to the following failed trigger transitions\n " + errors.join("\n"));
+        throw new Error("Unable to process animations due to the following failed trigger transitions\n " + errors.join('\n'));
     };
     /**
      * @param {?} cleanupFns
@@ -7594,12 +7300,10 @@ function deleteOrUnsetInMap(map, key, value) {
  * @return {?}
  */
 function normalizeTriggerValue(value) {
-    switch (typeof value) {
-        case 'boolean':
-            return value ? '1' : '0';
-        default:
-            return value != null ? value.toString() : null;
-    }
+    // we use `!= null` here because it's the most simple
+    // way to test against a "falsy" value without mixing
+    // in empty strings or a zero value. DO NOT OPTIMIZE.
+    return value != null ? value : null;
 }
 /**
  * @param {?} node
@@ -8281,7 +7985,7 @@ function supportsWebAnimations() {
     return typeof Element !== 'undefined' && typeof ((Element)).prototype['animate'] === 'function';
 }
 /**
- * @license Angular v4.4.5
+ * @license Angular v4.4.6
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -8986,6 +8690,328 @@ NoopAnimationsModule.decorators = [
  * @nocollapse
  */
 NoopAnimationsModule.ctorParameters = function () { return []; };
+var NotificationContainerComponent = (function () {
+    /**
+     * @param {?} el
+     */
+    function NotificationContainerComponent(el) {
+        this.el = el;
+        this.notifications = [];
+    }
+    /**
+     * @return {?}
+     */
+    NotificationContainerComponent.prototype.ngOnInit = function () {
+    };
+    /**
+     * @param {?} notification
+     * @return {?}
+     */
+    NotificationContainerComponent.prototype.addMessage = function (notification) {
+        this.notifications.push(notification);
+    };
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    NotificationContainerComponent.prototype.remove = function (index) {
+        var /** @type {?} */ notification = this.notifications.find(function (n) {
+            return n.index == index;
+        });
+        notification.state = 'leave';
+        this.removeByIndex(index);
+    };
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    NotificationContainerComponent.prototype.removeByIndex = function (index) {
+        var _this = this;
+        setTimeout$1(function (_) {
+            _this.notifications = _this.notifications.filter(function (no) {
+                return (no.index != index);
+            });
+        }, 110);
+    };
+    return NotificationContainerComponent;
+}());
+NotificationContainerComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'app-notification-container',
+                template: "\n    <div class=\"at-notification-container\">\n      <atNotification *ngFor=\"let item of notifications\" [config]=\"item\"></atNotification>\n    </div>\n  ",
+                styles: [
+                    ":host ::ng-deep .at-notification-container {\n      top: 20px;\n      position: fixed;\n      display: block;\n      right: 16px;\n      width: 320px;\n      height: auto;\n      z-index: 1040;\n    }"
+                ]
+            },] },
+];
+/**
+ * @nocollapse
+ */
+NotificationContainerComponent.ctorParameters = function () { return [
+    { type: ElementRef, },
+]; };
+var NotificationComponent = (function () {
+    /**
+     * @param {?} notificationContainer
+     */
+    function NotificationComponent(notificationContainer) {
+        this.notificationContainer = notificationContainer;
+    }
+    /**
+     * @return {?}
+     */
+    NotificationComponent.prototype.ngOnInit = function () {
+        if (this.config.duration != 0) {
+            this.startRemove();
+        }
+    };
+    /**
+     * @return {?}
+     */
+    NotificationComponent.prototype.remove = function () {
+        this.notificationContainer.remove(this.config.index);
+    };
+    /**
+     * @return {?}
+     */
+    NotificationComponent.prototype.startRemove = function () {
+        var _this = this;
+        if (this.config.duration != 0) {
+            clearTimeout(this.timer);
+            this.timer = setTimeout(function () {
+                _this.remove();
+            }, this.config.duration);
+        }
+    };
+    /**
+     * @return {?}
+     */
+    NotificationComponent.prototype.stopRemove = function () {
+        clearTimeout(this.timer);
+    };
+    return NotificationComponent;
+}());
+NotificationComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'atNotification',
+                template: "\n    <div (mouseenter)=\"stopRemove()\" (mouseleave)=\"startRemove()\"\n         [@enterLeave]=\"config.state\"\n         class=\"at-notification-contained  at-notification--{{config.type}}\"\n         [ngClass]=\"{'at-notification--with-message ': config.message !=''}\"\n    >\n      <i class=\"icon at-notification__icon icon-x-circle\"></i>\n      <div class=\"at-notification__content\"><p class=\"at-notification__title\">{{config.title}}</p>\n        <p class=\"at-notification__message\">{{config.message}}</p></div>\n      <i *ngIf=\"config.showClose\" (click)=\"remove()\" class=\"icon icon-x at-notification__close\">\n      </i>\n    </div>\n\n  ",
+                animations: [
+                    trigger('enterLeave', [
+                        state('enter', style({ opacity: 1, transform: 'translateX(0)' })),
+                        transition('* => enter', [
+                            style({ opacity: 0, transform: 'translateX(5%)' }),
+                            animate('100ms linear')
+                        ]),
+                        state('leave', style({ opacity: 0, transform: 'translateY(-10%)' })),
+                        transition('* => leave', [
+                            style({ opacity: 1, transform: 'translateY(0)' }),
+                            animate('100ms linear')
+                        ]),
+                    ])
+                ],
+                styles: ["\n    :host ::ng-deep .at-notification-contained {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      margin-bottom: 15px;\n      right: 16px;\n      width: 320px;\n      padding: 8px 16px;\n      color: #3f536e;\n      background-color: #fff;\n      line-height: 1.5;\n      border-radius: 4px;\n      -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);\n      box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);\n      -webkit-transition: opacity .3s, top .4s, -webkit-transform .3s;\n      transition: opacity .3s, top .4s, -webkit-transform .3s;\n      transition: opacity .3s, transform .3s, top .4s;\n      transition: opacity .3s, transform .3s, top .4s, -webkit-transform .3s;\n      z-index: 1010;\n    }\n  "]
+            },] },
+];
+/**
+ * @nocollapse
+ */
+NotificationComponent.ctorParameters = function () { return [
+    { type: NotificationContainerComponent, },
+]; };
+NotificationComponent.propDecorators = {
+    'config': [{ type: Input },],
+};
+var ComponentCreatorBase = (function () {
+    /**
+     * @param {?} componentFactoryResolver
+     * @param {?} appRef
+     * @param {?} injector
+     */
+    function ComponentCreatorBase(componentFactoryResolver, appRef, injector) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.appRef = appRef;
+        this.injector = injector;
+    }
+    return ComponentCreatorBase;
+}());
+ComponentCreatorBase.decorators = [
+    { type: Injectable },
+];
+/**
+ * @nocollapse
+ */
+ComponentCreatorBase.ctorParameters = function () { return [
+    { type: ComponentFactoryResolver, },
+    { type: ApplicationRef, },
+    { type: Injector, },
+]; };
+var ComponentCreator = (function () {
+    /**
+     * @param {?} base
+     * @param {?=} component
+     */
+    function ComponentCreator(base, component) {
+        this.base = base;
+        this.component = component;
+    }
+    /**
+     * @return {?}
+     */
+    ComponentCreator.prototype.create = function () {
+        this.componentRef = (this.base.componentFactoryResolver
+            .resolveComponentFactory(this.component)
+            .create(this.base.injector));
+        this.base.appRef.attachView(this.componentRef.hostView);
+        this.domElem = (((this.componentRef.hostView))
+            .rootNodes[0]);
+        document.body.appendChild(this.domElem);
+    };
+    /**
+     * @return {?}
+     */
+    ComponentCreator.prototype.remove = function () {
+        this.base.appRef.detachView(this.componentRef.hostView);
+        this.componentRef.destroy();
+    };
+    /**
+     * @template T
+     * @return {?}
+     */
+    ComponentCreator.prototype.getElem = function () {
+        return this.componentRef;
+    };
+    /**
+     * @return {?}
+     */
+    ComponentCreator.prototype.getDom = function () {
+        return this.domElem;
+    };
+    return ComponentCreator;
+}());
+var NotificationBaseService = (function (_super) {
+    tslib_1.__extends(NotificationBaseService, _super);
+    /**
+     * @param {?} component_base
+     */
+    function NotificationBaseService(component_base) {
+        var _this = _super.call(this, component_base, NotificationContainerComponent) || this;
+        _this.component_base = component_base;
+        _this.create();
+        return _this;
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    NotificationBaseService.prototype.addMessage = function (config) {
+        this.getElem().instance.addMessage(config);
+    };
+    return NotificationBaseService;
+}(ComponentCreator));
+NotificationBaseService.decorators = [
+    { type: Injectable },
+];
+/**
+ * @nocollapse
+ */
+NotificationBaseService.ctorParameters = function () { return [
+    { type: ComponentCreatorBase, },
+]; };
+var NotificationConfig = (function () {
+    /**
+     * @param {?} options
+     * @param {?=} type
+     */
+    function NotificationConfig(options, type) {
+        this.index = this.guid();
+        this.title = options.title || '';
+        this.state = 'enter';
+        this.duration = options.duration == 0 ? 0 : (options.duration || 4000);
+        this.message = options.message || '';
+        this.icon = options.icon || '';
+        this.showClose = options.showClose || true;
+        this.type = type || options.type || 'info';
+    }
+    /**
+     * @return {?}
+     */
+    NotificationConfig.prototype.guid = function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var /** @type {?} */ r = Math.random() * 16 | 0, /** @type {?} */ v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+    return NotificationConfig;
+}());
+var AtNotificationService = (function (_super) {
+    tslib_1.__extends(AtNotificationService, _super);
+    /**
+     * @param {?} containerbase
+     * @param {?} component_base
+     */
+    function AtNotificationService(containerbase, component_base) {
+        var _this = _super.call(this, component_base, NotificationContainerComponent) || this;
+        _this.containerbase = containerbase;
+        _this.component_base = component_base;
+        return _this;
+    }
+    /**
+     * @param {?=} options
+     * @return {?}
+     */
+    AtNotificationService.prototype.success = function (options) {
+        if (options === void 0) { options = {}; }
+        var /** @type {?} */ config = new NotificationConfig(options, 'success');
+        this.containerbase.addMessage(config);
+    };
+    /**
+     * @param {?=} options
+     * @return {?}
+     */
+    AtNotificationService.prototype.info = function (options) {
+        if (options === void 0) { options = {}; }
+        var /** @type {?} */ config = new NotificationConfig(options, 'info');
+        this.containerbase.addMessage(config);
+    };
+    /**
+     * @param {?=} options
+     * @return {?}
+     */
+    AtNotificationService.prototype.show = function (options) {
+        if (options === void 0) { options = {}; }
+        var /** @type {?} */ config = new NotificationConfig(options);
+        this.containerbase.addMessage(config);
+    };
+    /**
+     * @param {?=} options
+     * @return {?}
+     */
+    AtNotificationService.prototype.warning = function (options) {
+        if (options === void 0) { options = {}; }
+        var /** @type {?} */ config = new NotificationConfig(options, 'warning');
+        this.containerbase.addMessage(config);
+    };
+    /**
+     * @param {?=} options
+     * @return {?}
+     */
+    AtNotificationService.prototype.error = function (options) {
+        if (options === void 0) { options = {}; }
+        var /** @type {?} */ config = new NotificationConfig(options, 'error');
+        this.containerbase.addMessage(config);
+    };
+    return AtNotificationService;
+}(ComponentCreator));
+AtNotificationService.decorators = [
+    { type: Injectable },
+];
+/**
+ * @nocollapse
+ */
+AtNotificationService.ctorParameters = function () { return [
+    { type: NotificationBaseService, },
+    { type: ComponentCreatorBase, },
+]; };
 var AtModule = (function () {
     function AtModule() {
     }
@@ -8994,6 +9020,7 @@ var AtModule = (function () {
      */
     AtModule.forRoot = function () {
         return {
+            providers: [AtNotificationService, ComponentCreatorBase, NotificationBaseService],
             ngModule: AtModule,
         };
     };
@@ -9029,6 +9056,8 @@ AtModule.decorators = [
                     DropdownComponent,
                     DropdownMenuItemComponent,
                     DropMenuListComponent,
+                    NotificationComponent,
+                    NotificationContainerComponent,
                 ],
                 exports: [
                     ButtonComponent,
@@ -9058,7 +9087,10 @@ AtModule.decorators = [
                     DropdownComponent,
                     DropdownMenuItemComponent,
                     DropMenuListComponent,
+                    NotificationComponent,
+                    NotificationContainerComponent
                 ],
+                entryComponents: [NotificationComponent, NotificationContainerComponent],
                 imports: [
                     CommonModule,
                     FormsModule,
@@ -9073,4 +9105,4 @@ AtModule.ctorParameters = function () { return []; };
 /**
  * Generated bundle index. Do not edit.
  */
-export { AtModule, DropDownAnimation as ɵv, FadeAnimation as ɵw, TagAnimation as ɵo, ButtonGroupComponent as ɵc, ButtonComponent as ɵa, HollowDirective as ɵb, CheckboxGroupComponent as ɵr, CheckboxComponent as ɵq, DropdownComponent as ɵbb, ColComponent as ɵm, RowComponent as ɵl, IconComponent as ɵp, InputComponent as ɵs, DropMenuListComponent as ɵbd, DropdownMenuItemComponent as ɵbc, InlineMenuComponent as ɵk, MenuItemGroupComponent as ɵg, MenuItemComponent as ɵe, MenuListComponent as ɵh, MenuComponent as ɵd, SubMenuComponent as ɵf, RadioButtonComponent as ɵt, RadioGroupComponent as ɵi, RadioComponent as ɵj, OptionComponent as ɵx, SelectComponent as ɵu, SliderComponent as ɵz, SwitchComponent as ɵy, TagComponent as ɵn, TextareaComponent as ɵba };
+export { AtModule, DropDownAnimation as ɵv, FadeAnimation as ɵw, TagAnimation as ɵo, ButtonGroupComponent as ɵc, ButtonComponent as ɵa, HollowDirective as ɵb, CheckboxGroupComponent as ɵr, CheckboxComponent as ɵq, ComponentCreator as ɵbh, ComponentCreatorBase as ɵbi, DropdownComponent as ɵbb, ColComponent as ɵm, RowComponent as ɵl, IconComponent as ɵp, InputComponent as ɵs, DropMenuListComponent as ɵbd, DropdownMenuItemComponent as ɵbc, InlineMenuComponent as ɵk, MenuItemGroupComponent as ɵg, MenuItemComponent as ɵe, MenuListComponent as ɵh, MenuComponent as ɵd, SubMenuComponent as ɵf, NotificationBaseService as ɵbj, NotificationContainerComponent as ɵbf, AtNotificationService as ɵbg, NotificationComponent as ɵbe, RadioButtonComponent as ɵt, RadioGroupComponent as ɵi, RadioComponent as ɵj, OptionComponent as ɵx, SelectComponent as ɵu, SliderComponent as ɵz, SwitchComponent as ɵy, TagComponent as ɵn, TextareaComponent as ɵba };

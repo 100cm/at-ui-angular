@@ -15,7 +15,6 @@ import {RowComponent} from "./grid/row/row.component";
 import {ColComponent} from "./grid/col/col.component";
 import {TagComponent} from "./tag/tag.component";
 import {IconComponent} from "./icon/icon.component";
-import {HighLightComponent} from "./high-light/high-light.component";
 import {CheckboxComponent} from "./checkbox/checkbox.component";
 import {CheckboxGroupComponent} from "./checkbox/checkbox-group/checkbox-group.component";
 import {InputComponent} from "./input/input.component";
@@ -32,12 +31,13 @@ import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ComponentCreator} from "./core/component-creator";
-import {AtDemoNotificationComponent} from "../showcase/at-demo-notification/at-demo-notification.component";
 import {NotificationComponent} from './notification/notification/notification.component';
 import {ComponentCreatorBase} from "./core/component-creator-base";
 import {NotificationContainerComponent} from './notification/notification-container/notification-container.component';
 import {NotificationBaseService} from "./notification/notification-base.service";
 import {AtNotificationService} from "./notification/notification.service";
+import {AlertComponent} from './alert/alert.component';
+import {BadgeComponent} from './badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +70,8 @@ import {AtNotificationService} from "./notification/notification.service";
     DropMenuListComponent,
     NotificationComponent,
     NotificationContainerComponent,
+    AlertComponent,
+    BadgeComponent,
   ],
   exports: [
     ButtonComponent,
@@ -100,7 +102,9 @@ import {AtNotificationService} from "./notification/notification.service";
     DropdownMenuItemComponent,
     DropMenuListComponent,
     NotificationComponent,
-    NotificationContainerComponent
+    NotificationContainerComponent,
+    AlertComponent,
+    BadgeComponent
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent],
   imports:
@@ -115,7 +119,7 @@ import {AtNotificationService} from "./notification/notification.service";
 export class AtModule {
   static forRoot(): ModuleWithProviders {
     return {
-      providers: [ComponentCreator, AtNotificationService, ComponentCreatorBase, NotificationBaseService],
+      providers: [AtNotificationService, ComponentCreatorBase, NotificationBaseService],
       ngModule: AtModule,
     };
   }

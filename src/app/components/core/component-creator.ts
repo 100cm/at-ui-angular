@@ -1,11 +1,11 @@
 import {
-  ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Inject, Injectable, Injector, Type
+  ComponentRef, EmbeddedViewRef, Inject, Injectable, Injector, Optional, Type
 } from "@angular/core";
-import {NotificationComponent} from "../notification/notification/notification.component";
 import {ComponentCreatorBase} from "./component-creator-base";
 
-@Injectable()
 export class ComponentCreator<T> {
+
+
   constructor(private base: ComponentCreatorBase, private component?: Type<T>) {
 
   }
@@ -13,8 +13,8 @@ export class ComponentCreator<T> {
   domElem: HTMLElement
   componentRef: ComponentRef<T>
 
-  create(component?: any) {
-    this.componentRef = this.base.componentFactoryResolver
+  create() {
+    this.componentRef = <any>this.base.componentFactoryResolver
       .resolveComponentFactory(this.component)
       .create(this.base.injector);
     this.base.appRef.attachView(this.componentRef.hostView);

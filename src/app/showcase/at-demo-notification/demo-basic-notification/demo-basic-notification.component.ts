@@ -25,7 +25,7 @@ export class DemoBasicNotificationComponent implements OnInit {
 
   }
 
-  show(option) {
+  show(option = {}) {
     this.component_creator.show({
       title: '你好',
       message: '这是消息内容哦～～～',

@@ -98,6 +98,7 @@ import { AtDemoProgressComponent } from './showcase/at-demo-progress/at-demo-pro
 import { AtDemoTooltipComponent } from './showcase/at-demo-tooltip/at-demo-tooltip.component';
 import { AtDemoTableComponent } from './showcase/at-demo-table/at-demo-table.component';
 import { DemoBasicNotificationComponent } from './showcase/at-demo-notification/demo-basic-notification/demo-basic-notification.component';
+import { DemoAlertBasicComponent } from './showcase/at-demo-alert/demo-alert-basic/demo-alert-basic.component';
 
 
 @NgModule({
@@ -167,6 +168,7 @@ import { DemoBasicNotificationComponent } from './showcase/at-demo-notification/
     AtDemoTooltipComponent,
     AtDemoTableComponent,
     DemoBasicNotificationComponent,
+    DemoAlertBasicComponent,
 
   ],
   imports: [

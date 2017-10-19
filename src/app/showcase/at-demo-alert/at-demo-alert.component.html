@@ -1,3 +1,85 @@
-<p>
-  at-demo-alert works!
-</p>
+<section>
+  <h1>Alert</h1>
+  <doc-section [code]="basic" [title]="'基本使用'">
+    <div sample>
+      <app-demo-alert-basic>
+
+      </app-demo-alert-basic>
+    </div>
+  </doc-section>
+  <doc-section [title]="'参数设置'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>type</td>
+        <td>警告提示的类别</td>
+        <td>String</td>
+        <td><code>success</code>,&nbsp;<code>error</code>,&nbsp;<code>warning</code>,&nbsp;<code>info</code></td>
+        <td><code>info</code></td>
+      </tr>
+      <tr>
+        <td>message</td>
+        <td>必填，警告的主要内容，也可作为标题</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>desc</td>
+        <td>警告的辅助内容</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>icon</td>
+        <td>是否显示警告类别的 ICON</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>closeText</td>
+        <td>自定义关闭样式</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+
+  <doc-section [title]="'事件'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>onClose</td>
+        <td>关闭后的回调函数</td>
+        <td>Function</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+</section>
