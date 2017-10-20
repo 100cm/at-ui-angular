@@ -103,6 +103,16 @@ import { DemoBasicBadgeComponent } from './showcase/at-demo-badge/demo-basic-bad
 import { DemoCombineBadgeComponent } from './showcase/at-demo-badge/demo-combine-badge/demo-combine-badge.component';
 import { DemoDynamicBadgeComponent } from './showcase/at-demo-badge/demo-dynamic-badge/demo-dynamic-badge.component';
 import { DemoBasicModalComponent } from './showcase/at-demo-modal/demo-basic-modal/demo-basic-modal.component';
+import { DemoServiceModalComponent } from './showcase/at-demo-modal/demo-service-modal/demo-service-modal.component';
+import { DemoCustomModalComponent } from './showcase/at-demo-modal/demo-custom-modal/demo-custom-modal.component';
+import { DemoPositionModalComponent } from './showcase/at-demo-modal/demo-position-modal/demo-position-modal.component';
+import { DemoBasicTableComponent } from './showcase/at-demo-table/demo-basic-table/demo-basic-table.component';
+import { DemoBasicPageComponent } from './showcase/at-demo-pagenation/demo-basic-page/demo-basic-page.component';
+import { DemoSizePageComponent } from './showcase/at-demo-pagenation/demo-size-page/demo-size-page.component';
+import { DemoSimplePageComponent } from './showcase/at-demo-pagenation/demo-simple-page/demo-simple-page.component';
+import { DemoFullPageComponent } from './showcase/at-demo-pagenation/demo-full-page/demo-full-page.component';
+import { DemoPageTableComponent } from './showcase/at-demo-table/demo-page-table/demo-page-table.component';
+import { DemoSizeTableComponent } from './showcase/at-demo-table/demo-size-table/demo-size-table.component';
 
 
 @NgModule({
@@ -177,6 +187,16 @@ import { DemoBasicModalComponent } from './showcase/at-demo-modal/demo-basic-mod
     DemoCombineBadgeComponent,
     DemoDynamicBadgeComponent,
     DemoBasicModalComponent,
+    DemoServiceModalComponent,
+    DemoCustomModalComponent,
+    DemoPositionModalComponent,
+    DemoBasicTableComponent,
+    DemoBasicPageComponent,
+    DemoSizePageComponent,
+    DemoSimplePageComponent,
+    DemoFullPageComponent,
+    DemoPageTableComponent,
+    DemoSizeTableComponent,
 
   ],
   imports: [

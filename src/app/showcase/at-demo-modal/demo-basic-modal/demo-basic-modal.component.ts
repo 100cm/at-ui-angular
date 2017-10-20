@@ -28,8 +28,8 @@ export class DemoBasicModalComponent implements OnInit {
     this.atModalService.modal({
       status: 'error',
       atType: 'confirm',
-      message: 'fuck u',
-      title: 'fuck'
+      message: '我是错误',
+      title: '我是错误的标题'
     })
   }
 

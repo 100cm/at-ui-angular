@@ -1,0 +1,59 @@
+<button atButton (click)="header = !header">
+  没有头部
+</button>
+
+<button atButton (click)="footer = !footer">
+  自定义尾部
+</button>
+
+<button atButton (click)="closer = !closer">
+  缺少关闭
+</button>
+
+<button atButton (click)="confirmer = !confirmer">
+  设置为confirm
+</button>
+
+<atModal [show]="header" (onCancel)="footer=false" (onOk)="footer = false">
+  <div body>
+    我只有身体
+  </div>
+</atModal>
+
+<atModal [show]="footer" (onCancel)="footer=false" (onOk)="footer = false">
+  <div header>
+    其实我有
+  </div>
+  <div body>
+    我也没有头部 还有自定义脚
+  </div>
+  <div footer>
+    <button atButton>自定义尾部</button>
+  </div>
+</atModal>
+
+<atModal [show]="closer" (onCancel)="closer=false" (onOk)="closer = false" [closeable]="false">
+  <div header>
+    其实我有
+  </div>
+  <div body>
+    我没有右上角的关闭
+  </div>
+  <div footer>
+    <button atButton>自定义尾部</button>
+  </div>
+</atModal>
+
+<atModal [show]="confirmer" [atType]="'confirm'" (onCancel)="confirmer=false" (onOk)="confirmer = false"
+         [closeable]="false">
+  <div header>
+    我来组成头部
+  </div>
+  <div body>
+    我也没有右上角的关闭
+  </div>
+  <div footer>
+    <button atButton>自定义尾部</button>
+  </div>
+</atModal>
+

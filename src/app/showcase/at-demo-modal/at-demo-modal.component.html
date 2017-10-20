@@ -1,7 +1,28 @@
 <section>
   <h1>Modal 模态框</h1>
   <hr>
-  <doc-section>
+  <doc-section [sample]="false">
+    <div desc>
+      <p>模态对话框，当需要询问用户处理事务，又不希望跳转页面时，可以使用模态框&nbsp;<code>Modal</code>&nbsp;在当前页面打开一个浮层并承载相应的操作。</p>
+
+      <p>
+        当需要弹出一个简洁的确认框时，也可以使用默认的精简版模态框。<code>AT-UI</code>&nbsp;在&nbsp;<code>Vue.prototype</code>&nbsp;中添加了全局对象&nbsp;<code>atModalService.</code>，可以直接通过&nbsp;<code>this.atModalService.</code>&nbsp;对象操作实例方法
+      </p>
+
+      <h2>Modal 实例方法</h2>
+      <p>通过调用&nbsp;<code>this.atModalService.</code>&nbsp;的方法来使用：</p>
+      <br>
+      <ul>
+        <li><code>this.atModalService.modal(config)</code></li>
+        <li><code>this.atModalService.info(config)</code></li>
+        <li><code>this.atModalService..success(config)</code></li>
+        <li><code>this.atModalService..warning(config)</code></li>
+        <li><code>this.atModalService..error(config)</code></li>
+      </ul>
+
+    </div>
+  </doc-section>
+  <doc-section [code]="basic" [title]="'基础用法'">
     <div sample>
       <div atRow>
         <div atCol [span]="8">
@@ -21,4 +42,29 @@
       </div>
     </div>
   </doc-section>
+
+  <doc-section [title]="'用服务启动多种状态'" [language]="'typescript'" [code]="service">
+    <div sample>
+      <app-demo-service-modal>
+
+      </app-demo-service-modal>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'组件化使用'" [code]="custom">
+    <div sample>
+      <app-demo-custom-modal>
+
+      </app-demo-custom-modal>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'改变大小位置样式'" [code]="position">
+    <div sample>
+      <app-demo-position-modal>
+
+      </app-demo-position-modal>
+    </div>
+  </doc-section>
+
 </section>

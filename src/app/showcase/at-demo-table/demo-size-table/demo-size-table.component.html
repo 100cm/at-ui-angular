@@ -1,0 +1,166 @@
+<p>small</p>
+<hr>
+<atTable [size]="'small'">
+  <thead atThead>
+  <tr><!---->
+    <th atTh style="cursor: text;" [atWidth]="219">姓名</th>
+    <th atTh style="cursor: text;">年龄</th>
+    <th atTh style="cursor: text;">地址</th>
+  </tr>
+  </thead>
+  <tbody atTbody>
+  <tr atTbodyTr>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+  </tr>
+  <tr atTbodyTr><!---->
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd> 库里</td>
+  </tr>
+  </tbody>
+</atTable>
+<hr>
+<p>normal</p>
+<hr>
+<atTable [size]="'normal'">
+  <thead atThead>
+  <tr><!---->
+    <th atTh style="cursor: text;" [atWidth]="219">姓名</th>
+    <th atTh style="cursor: text;">年龄</th>
+    <th atTh style="cursor: text;">地址</th>
+  </tr>
+  </thead>
+  <tbody atTbody>
+  <tr atTbodyTr>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+  </tr>
+  <tr atTbodyTr><!---->
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd> 库里</td>
+  </tr>
+  </tbody>
+</atTable>
+<hr>
+<p>large</p>
+<hr>
+<atTable [size]="'large'">
+  <thead atThead>
+  <tr><!---->
+    <th atTh style="cursor: text;" [atWidth]="219">姓名</th>
+    <th atTh style="cursor: text;">年龄</th>
+    <th atTh style="cursor: text;">地址</th>
+  </tr>
+  </thead>
+  <tbody atTbody>
+  <tr atTbodyTr>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+  </tr>
+  <tr atTbodyTr><!---->
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd> 库里</td>
+  </tr>
+  </tbody>
+</atTable>
+
+<hr>
+<p>带border 带隔层灰</p>
+
+<atTable [stripe]="true" [border]="true">
+  <thead atThead>
+  <tr><!---->
+    <th atTh style="cursor: text;" [atWidth]="219">姓名</th>
+    <th atTh style="cursor: text;">年龄</th>
+    <th atTh style="cursor: text;">地址</th>
+  </tr>
+  </thead>
+  <tbody atTbody>
+  <tr atTbodyTr>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+  </tr>
+  <tr atTbodyTr><!---->
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd> 库里</td>
+  </tr>
+  <tr atTbodyTr><!---->
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd> 库里</td>
+  </tr>
+  <tr atTbodyTr><!---->
+    <td atTd>库里</td>
+    <td atTd>库里</td>
+    <td atTd> 库里</td>
+  </tr>
+  </tbody>
+</atTable>
+
+<hr>
+<p>带高度并且固定</p>
+
+<atTable [stripe]="true" [border]="true" [height]="200">
+  <ng-template #fixedHead>
+    <thead atThead>
+    <tr><!---->
+      <th atTh style="cursor: text;" [atWidth]="219">姓名</th>
+      <th atTh style="cursor: text;">年龄</th>
+      <th atTh style="cursor: text;">地址</th>
+    </tr>
+    </thead>
+  </ng-template>
+  <ng-template #fixedBody>
+    <tbody atTbody>
+    <tr atTbodyTr>
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+    <tr atTbodyTr><!---->
+      <td atTd>库里</td>
+      <td atTd>库里</td>
+      <td atTd> 库里</td>
+    </tr>
+
+    </tbody>
+  </ng-template>
+</atTable>

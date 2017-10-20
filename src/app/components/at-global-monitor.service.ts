@@ -16,7 +16,6 @@ export class AtGlobalMonitorService {
 
   clickDocumentObserve() {
     document.addEventListener('click', (e) => {
-      console.log(e)
       this.lastClickPosition = {
         x: e.clientX,
         y: e.clientY

@@ -17,7 +17,49 @@ import {StatusIconType} from "../icon/icon-status-type";
       animate('150ms linear')
     ]),
   ])],
-  templateUrl: './modal.component.html',
+  template: `
+    <div>
+      <div [hidden]="!show" class="at-modal__mask"></div>
+
+      <div [ngStyle]="{'display': show ? '' : 'none'}"
+           role="dialog"
+           (click)="cancelFromMask($event)"
+           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
+      >
+        <div #modal_content class="at-modal" [@enterLeave]="state"
+             [ngStyle]="positionStyle"
+             [style.width]="width +'px'">
+          <div [ngClass]="{'at-modal__header': headerContains()}">
+            <div class="at-modal__title" #custom_title>
+              <ng-content select="[header]">
+              </ng-content>
+              {{title ? title : ''}}
+            </div>
+          </div>
+          <div class="at-modal__body" #modal_body>
+            <ng-content select="[body]"></ng-content>
+            {{message ? message : ''}}
+          </div>
+          <div class="at-modal__footer">
+            <div #custom_footer>
+              <ng-content select="[footer]"></ng-content>
+            </div>
+            <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
+              <button atButton (click)="cancel()">取消</button>
+              <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
+          <span class="at-btn__text">确认
+          </span>
+              </button>
+            </div>
+          </div>
+          <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
+          <span *ngIf="closeable" (click)="cancel()" class="at-modal__close"><i class="icon icon-x"></i></span>
+        </div>
+      </div>
+
+    </div>
+
+  `,
 })
 export class ModalComponent implements OnInit {
 
@@ -32,16 +74,29 @@ export class ModalComponent implements OnInit {
   position: Position
   icon_status = StatusIconType
 
-  @Input() width: number = 520
-  @Input() closeable: boolean = true
+
+  private _closeable: boolean = true
   private _atType: 'confirm' | 'normal' = 'normal'
   private _status: 'error' | 'success' | 'warning' | 'info' = 'info'
   private _show: boolean = false
   private _message: string
+  @Input() width: number = 520
+  @Input() top: number = 100
+  @Input() maskClose: boolean = true
   @Output() onCancel: EventEmitter<boolean> = new EventEmitter()
   @Output() onOk: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('modal_content') modal_content: ElementRef
 
+
+  get closeable(): boolean {
+    return this._closeable;
+  }
+
+  @Input()
+  set closeable(value: boolean) {
+    console.log(value)
+    this._closeable = value;
+  }
 
   get message(): string {
     return this._message;
@@ -79,9 +134,14 @@ export class ModalComponent implements OnInit {
   set show(value: boolean) {
     value == true ? this.state = 'enter' : this.state = 'leave'
     setTimeout(_ => {
-      this.setStyle()
+      setTimeout(_ => {
+        this.setStyle()
+
+      })
+      this._show = value;
     })
-    this._show = value;
+
+
   }
 
   cancel() {
@@ -107,7 +167,7 @@ export class ModalComponent implements OnInit {
     const origin = this.global_service.lastClickPosition
     let el = this.modal_content.nativeElement;
     let transformOrigin = `${origin.x - el.offsetLeft}px ${origin.y - el.offsetTop }px 0px`;
-    this.positionStyle = {'transform-origin': transformOrigin}
+    this.positionStyle = {'transform-origin': transformOrigin, 'top': this.top + 'px'}
     return this.positionStyle
   }
 
@@ -120,4 +180,16 @@ export class ModalComponent implements OnInit {
 
   }
 
+  cancelFromMask(e) {
+    if (e.target.getAttribute('role') === 'dialog' && this.maskClose) {
+      this.cancel()
+    }
+  }
+
+  @ViewChild('custom_title') customTitle: ElementRef
+
+  headerContains() {
+    let custom_title = this.customTitle.nativeElement
+    return ( custom_title.children.length > 0 || custom_title.innerText.length > 0)
+  }
 }

@@ -34,10 +34,15 @@ export class AtDemoComponentsComponent implements OnInit {
       name: '弹出框',
       url: '/components/popover',
       name_en: 'Popover'
-    },{
+    }, {
       name: '进度条',
       url: '/components/progress',
       name_en: 'Progress'
+    },
+    {
+      name: '表格',
+      url: '/components/table',
+      name_en: 'Table'
     }
   ]
 

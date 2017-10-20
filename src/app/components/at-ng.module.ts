@@ -42,6 +42,13 @@ import {ModalComponent} from './modal/modal.component';
 import {AtGlobalMonitorService} from "./at-global-monitor.service";
 import {AtModalService} from "./modal/at-modal.service";
 import {ModalBaseService} from "./modal/modal-base.service";
+import {TableComponent} from './table/table.component';
+import {AtTbodyDirective} from './table/at-tbody.directive';
+import {AtTdDirective} from './table/at-td.directive';
+import {AtThDirective} from './table/at-th.directive';
+import {AtTbodyTrDirective} from './table/at-tbody-tr.directive';
+import {AtTheadDirective} from './table/at-thead.directive';
+import { PagenationComponent } from './pagenation/pagenation.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +84,13 @@ import {ModalBaseService} from "./modal/modal-base.service";
     AlertComponent,
     BadgeComponent,
     ModalComponent,
+    TableComponent,
+    AtTbodyDirective,
+    AtTdDirective,
+    AtThDirective,
+    AtTbodyTrDirective,
+    AtTheadDirective,
+    PagenationComponent,
   ],
   exports: [
     ButtonComponent,
@@ -110,7 +124,16 @@ import {ModalBaseService} from "./modal/modal-base.service";
     NotificationContainerComponent,
     AlertComponent,
     BadgeComponent,
-    ModalComponent
+    ModalComponent,
+    TableComponent,
+    PagenationComponent,
+
+    AtThDirective,
+    AtTbodyDirective,
+    AtTbodyTrDirective,
+    AtTheadDirective,
+    AtTdDirective,
+
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent, ModalComponent],
   imports:

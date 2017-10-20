@@ -1,10 +1,13 @@
 <p>从按钮处伸展出来</p>
-<atModal [show]="show" (onCancel)="close()">
-
-  <div body>
-    <button atButton>asd</button>
+<atModal [show]="show" (onCancel)="close()" (onOk)="show = false">
+  <div header>
+    我来组成头部
   </div>
-
+  <div body>
+    <p>
+      我来组成身体
+    </p>
+  </div>
 </atModal>
 
 <button atButton (click)="setShow()"> 显示/隐藏</button>

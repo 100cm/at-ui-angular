@@ -2,16 +2,18 @@
   <div [hidden]="!show" class="at-modal__mask"></div>
 
   <div [ngStyle]="{'display': show ? '' : 'none'}"
+       role="dialog"
+       (click)="cancelFromMask($event)"
        class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
   >
     <div #modal_content class="at-modal" [@enterLeave]="state"
          [ngStyle]="positionStyle"
          [style.width]="width +'px'">
-      <div class="at-modal__header">
-        <div class="at-modal__title">
-          <ng-content  select="[header]">
-            {{title ? title : ''}}
+      <div [ngClass]="{'at-modal__header': headerContains()}">
+        <div class="at-modal__title" #custom_title>
+          <ng-content select="[header]">
           </ng-content>
+          {{title ? title : ''}}
         </div>
       </div>
       <div class="at-modal__body" #modal_body>
@@ -31,7 +33,7 @@
         </div>
       </div>
       <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
-      <span *ngIf="closeable == true" class="at-modal__close"><i class="icon icon-x"></i></span>
+      <span *ngIf="closeable" (click)="cancel()" class="at-modal__close"><i class="icon icon-x"></i></span>
     </div>
   </div>
 
