@@ -113,6 +113,19 @@ import { DemoSimplePageComponent } from './showcase/at-demo-pagenation/demo-simp
 import { DemoFullPageComponent } from './showcase/at-demo-pagenation/demo-full-page/demo-full-page.component';
 import { DemoPageTableComponent } from './showcase/at-demo-table/demo-page-table/demo-page-table.component';
 import { DemoSizeTableComponent } from './showcase/at-demo-table/demo-size-table/demo-size-table.component';
+import { AtDemoBreadcrumbComponent } from './showcase/at-demo-breadcrumb/at-demo-breadcrumb.component';
+import { DemoBasicBreadcrumbComponent } from './showcase/at-demo-breadcrumb/demo-basic-breadcrumb/demo-basic-breadcrumb.component';
+import { DemoSeparateBreadcrumbComponent } from './showcase/at-demo-breadcrumb/demo-separate-breadcrumb/demo-separate-breadcrumb.component';
+import { DemoBasicMessageComponent } from './showcase/at-demo-message/demo-basic-message/demo-basic-message.component';
+import { DemoLoadingMessageComponent } from './showcase/at-demo-message/demo-loading-message/demo-loading-message.component';
+import { DemoBasicPopoverComponent } from './showcase/at-demo-popover/demo-basic-popover/demo-basic-popover.component';
+import { DemoContentPopoverComponent } from './showcase/at-demo-popover/demo-content-popover/demo-content-popover.component';
+import { DemoPositionPopoverComponent } from './showcase/at-demo-popover/demo-position-popover/demo-position-popover.component';
+import { DemoBasicProgressComponent } from './showcase/at-demo-progress/demo-basic-progress/demo-basic-progress.component';
+import { DemoStrokeProgressComponent } from './showcase/at-demo-progress/demo-stroke-progress/demo-stroke-progress.component';
+import { DemoStatusProgressComponent } from './showcase/at-demo-progress/demo-status-progress/demo-status-progress.component';
+import { DemoBasicTooltipComponent } from './showcase/at-demo-tooltip/demo-basic-tooltip/demo-basic-tooltip.component';
+import { DemoPositionTooltipComponent } from './showcase/at-demo-tooltip/demo-position-tooltip/demo-position-tooltip.component';
 
 
 @NgModule({
@@ -197,6 +210,19 @@ import { DemoSizeTableComponent } from './showcase/at-demo-table/demo-size-table
     DemoFullPageComponent,
     DemoPageTableComponent,
     DemoSizeTableComponent,
+    AtDemoBreadcrumbComponent,
+    DemoBasicBreadcrumbComponent,
+    DemoSeparateBreadcrumbComponent,
+    DemoBasicMessageComponent,
+    DemoLoadingMessageComponent,
+    DemoBasicPopoverComponent,
+    DemoContentPopoverComponent,
+    DemoPositionPopoverComponent,
+    DemoBasicProgressComponent,
+    DemoStrokeProgressComponent,
+    DemoStatusProgressComponent,
+    DemoBasicTooltipComponent,
+    DemoPositionTooltipComponent,
 
   ],
   imports: [

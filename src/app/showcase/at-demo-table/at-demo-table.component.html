@@ -1,7 +1,7 @@
 <section>
   <h1>Table</h1>
   <hr>
-  <doc-section [title]="'基础使用'">
+  <doc-section [title]="'基础使用'" [code]="baisc">
     <div sample>
       <app-demo-basic-table>
 
@@ -9,7 +9,7 @@
     </div>
   </doc-section>
 
-  <doc-section [title]="'不同size的表格'">
+  <doc-section [title]="'不同size的表格'" [code]="size">
     <div sample>
       <app-demo-size-table>
 
@@ -17,12 +17,58 @@
     </div>
   </doc-section>
 
-  <doc-section [title]="'带有分页的表格'">
+  <doc-section [title]="'带有分页的表格'" [code]="page">
     <div sample>
       <app-demo-page-table>
 
       </app-demo-page-table>
     </div>
+  </doc-section>
+
+
+  <doc-section [title]="'表格参数'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>size</td>
+        <td>表格的尺寸</td>
+        <td>String</td>
+        <td><code>small</code>,&nbsp;<code>normal</code>,&nbsp;<code>large</code></td>
+        <td><code>normal</code></td>
+      </tr>
+      <tr>
+        <td>stripe</td>
+        <td>是否启用斑马线风格</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>border</td>
+        <td>是否显示列边框</td>
+        <td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+
+      <tr>
+        <td>height</td>
+        <td>指定表格的高度</td>
+        <td>Number / String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
   </doc-section>
 
 </section>

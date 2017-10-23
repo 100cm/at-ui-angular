@@ -39,6 +39,13 @@ export class AtDemoComponentsComponent implements OnInit {
       url: '/components/progress',
       name_en: 'Progress'
     },
+
+    {
+      name: '文字提示',
+      url: '/components/tooltip',
+      name_en: 'ToolTip'
+    },
+
     {
       name: '表格',
       url: '/components/table',

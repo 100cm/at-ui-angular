@@ -1,3 +1,52 @@
-<p>
-  at-demo-tooltip works!
-</p>
+<section>
+  <h1>ToolTip</h1>
+  <hr>
+  <doc-section [title]="'基础使用'">
+    <div sample>
+      <app-demo-basic-tooltip></app-demo-basic-tooltip>
+    </div>
+  </doc-section>
+  <doc-section [title]="'不同的位置'">
+    <div sample>
+      <app-demo-position-tooltip></app-demo-position-tooltip>
+    </div>
+  </doc-section>
+  <doc-section [sample]="false" [title]="'tooltip 属性'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>tooltipContent</td>
+        <td>自定义提示内容</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>tooltipTrigger</td>
+        <td>自定义提示选择</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>placement</td>
+        <td>气泡框位置</td>
+        <td>String</td>
+        <td>
+          <code>top</code>,&nbsp;<code>top-left</code>,&nbsp;<code>top-right</code>,&nbsp;<code>left</code>,&nbsp;<code>left-top</code>,&nbsp;<code>left-bottom</code>,&nbsp;<code>right</code>,&nbsp;<code>right-top</code>,&nbsp;<code>right-bottom</code>,&nbsp;<code>bottom</code>,&nbsp;<code>bottom-left</code>,&nbsp;<code>bottom-right</code>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+</section>

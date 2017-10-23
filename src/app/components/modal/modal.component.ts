@@ -94,13 +94,14 @@ export class ModalComponent implements OnInit {
 
   @Input()
   set closeable(value: boolean) {
-    console.log(value)
     this._closeable = value;
   }
 
   get message(): string {
     return this._message;
   }
+
+  @Input() title: string
 
   @Input()
   set message(value: string) {

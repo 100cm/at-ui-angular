@@ -1,0 +1,8 @@
+<div class="at-message--wrapper" [@enterLeave]="message.state">
+  <div class="at-message at-message--{{message.type}}">
+    <i class="icon at-message__icon {{status[message.type]}}"></i>
+    <span class="at-message__content">
+      {{message.message}}
+    </span>
+  </div>
+</div>

@@ -12,7 +12,7 @@
           <li><a href="/components/" [ngClass]="{'router-link-active': active('/components')}">组件</a></li>
           <li><a [routerLink]="'/connect'" class="">联系我</a></li>
         </ul>
-        <div class="btn-language">EN</div>
+        <!--<div class="btn-language">EN</div>-->
       </div>
     </div>
   </header>
@@ -92,9 +92,9 @@
               <li atMenuItem [active]="active('/components/badge')"><a [routerLink]="['/components/badge']">徽标<span
                 class="component_item_span">Badge</span></a>
               </li>
-              <li atMenuItem [active]="active('/components/loading-bar')"><a [routerLink]="['/components/loading-bar']">LoadingBar<span
-                class="component_item_span">加载条</span>
-              </a></li>
+              <!--<li atMenuItem [active]="active('/components/loading-bar')"><a [routerLink]="['/components/loading-bar']">LoadingBar<span-->
+                <!--class="component_item_span">加载条</span>-->
+              <!--</a></li>-->
 
               <li atMenuItem *ngFor="let route of routes" [active]="active(route.url)"><a [routerLink]="[route.url]">{{route.name_en}}<span
                 class="component_item_span">{{route.name}}</span>

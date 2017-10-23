@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations';
 import {NotificationConfig} from "./notification-config";
 import {NotificationContainerComponent} from "../notification-container/notification-container.component";
+import {StatusIconType} from "../../icon/icon-status-type";
 
 @Component({
   selector: 'atNotification',
@@ -11,7 +12,7 @@ import {NotificationContainerComponent} from "../notification-container/notifica
          class="at-notification-contained  at-notification--{{config.type}}"
          [ngClass]="{'at-notification--with-message ': config.message !=''}"
     >
-      <i class="icon at-notification__icon icon-x-circle"></i>
+      <i class="icon at-notification__icon {{status[config.type]}}"></i>
       <div class="at-notification__content"><p class="at-notification__title">{{config.title}}</p>
         <p class="at-notification__message">{{config.message}}</p></div>
       <i *ngIf="config.showClose" (click)="remove()" class="icon icon-x at-notification__close">
@@ -63,6 +64,8 @@ export class NotificationComponent implements OnInit {
   }
 
   timer: any
+
+  status = StatusIconType
 
   ngOnInit() {
     if (this.config.duration != 0) {

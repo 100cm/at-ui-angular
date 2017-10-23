@@ -1,0 +1,27 @@
+<atPopover [placement]="'top'">
+  <button atButton popTrigger>
+    hello
+  </button>
+  <div popContent>
+    你好吗？
+  </div>
+</atPopover>
+
+
+<atPopover [placement]="'top'" [trigger]="'hover'">
+  <button atButton popTrigger>
+    hello
+  </button>
+  <div popContent>
+    <div class="at-popover__content"><p >这是一段内容，确定删除吗？</p>
+      <div data-v-60dc7244="" style="text-align: right; margin-top: 8px;">
+        <button  type="default" class="at-btn at-btn--default at-btn--smaller">
+          <span
+          class="at-btn__text">取消</span></button>
+        <button type="primary" class="at-btn at-btn--primary at-btn--smaller">
+          <span
+          class="at-btn__text">确定</span></button>
+      </div>
+    </div>
+  </div>
+</atPopover>

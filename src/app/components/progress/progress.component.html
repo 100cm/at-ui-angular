@@ -1,0 +1,11 @@
+<div class="at-progress at-progress--bar at-progress--{{status}}">
+  <div class="at-progress-bar">
+    <div class="at-progress-bar__wraper"  [ngStyle]="{'height':stroke+'px'}">
+      <div class="at-progress-bar__inner" [ngStyle]="{'width': width+'%'}"></div>
+    </div>
+  </div>
+  <div class="at-progress__text">
+    <span *ngIf="!status">{{width}}%</span>
+    <i *ngIf="status" class="icon {{ statusIcon[status]}}"></i>
+  </div>
+</div>

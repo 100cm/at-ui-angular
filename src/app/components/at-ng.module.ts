@@ -30,7 +30,6 @@ import {DropMenuListComponent} from "./menu/drop-menu-list/drop-menu-list.compon
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ComponentCreator} from "./core/component-creator";
 import {NotificationComponent} from './notification/notification/notification.component';
 import {ComponentCreatorBase} from "./core/component-creator-base";
 import {NotificationContainerComponent} from './notification/notification-container/notification-container.component';
@@ -48,7 +47,17 @@ import {AtTdDirective} from './table/at-td.directive';
 import {AtThDirective} from './table/at-th.directive';
 import {AtTbodyTrDirective} from './table/at-tbody-tr.directive';
 import {AtTheadDirective} from './table/at-thead.directive';
-import { PagenationComponent } from './pagenation/pagenation.component';
+import {PagenationComponent} from './pagenation/pagenation.component';
+import {BreadcrumbComponent} from './breadcrumb/breadcrumb.component';
+import {AtBreadItemDirective} from './breadcrumb/breadcrumb-item/at-bread-item.directive';
+import {MessageContainerComponent} from './message/message-container/message-container.component';
+import {MessageComponent} from './message/message/message.component';
+import {AtMessageService} from "./message/at-message.service";
+import {AtMessageContainerService} from "./message/at-message-container.service";
+import {PopoverComponent} from './popover/popover.component';
+import {ProgressComponent} from './progress/progress.component';
+import {TooltipComponent} from './tooltip/tooltip.component';
+
 
 @NgModule({
   declarations: [
@@ -91,6 +100,13 @@ import { PagenationComponent } from './pagenation/pagenation.component';
     AtTbodyTrDirective,
     AtTheadDirective,
     PagenationComponent,
+    BreadcrumbComponent,
+    AtBreadItemDirective,
+    MessageContainerComponent,
+    MessageComponent,
+    PopoverComponent,
+    ProgressComponent,
+    TooltipComponent,
   ],
   exports: [
     ButtonComponent,
@@ -133,9 +149,18 @@ import { PagenationComponent } from './pagenation/pagenation.component';
     AtTbodyTrDirective,
     AtTheadDirective,
     AtTdDirective,
+    BreadcrumbComponent,
+    AtBreadItemDirective,
 
+    MessageContainerComponent,
+    MessageComponent,
+    PopoverComponent,
+    ProgressComponent,
+    TooltipComponent
   ],
-  entryComponents: [NotificationComponent, NotificationContainerComponent, ModalComponent],
+  entryComponents: [NotificationComponent, NotificationContainerComponent,
+    MessageContainerComponent, MessageComponent,
+    ModalComponent],
   imports:
     [
       CommonModule,
@@ -149,7 +174,9 @@ import { PagenationComponent } from './pagenation/pagenation.component';
 export class AtModule {
   static forRoot(): ModuleWithProviders {
     return {
-      providers: [AtNotificationService, AtModalService, ModalBaseService,
+      providers: [AtNotificationService,
+        AtMessageService, AtMessageContainerService,
+        AtModalService, ModalBaseService,
         ComponentCreatorBase, NotificationBaseService],
       ngModule: AtModule,
     };

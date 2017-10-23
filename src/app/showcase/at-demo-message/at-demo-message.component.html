@@ -1,3 +1,76 @@
-<p>
-  at-demo-message works!
-</p>
+<section>
+  <h1>Message </h1>
+  <doc-section [title]="'基础用法'" [code]="basic" [language]="'typescript'">
+    <div desc>
+      <p>相比&nbsp;<code>Notification</code>，<code>Message</code>&nbsp;更轻量，居中显示在页面顶部，用于展示全局消息，例如操作的反馈信息</p>
+
+      <ul>
+        <li>提供消息、成功、错误、警告等反馈提示</li>
+        <li>在顶部居中显示，并自动消失，是一种不打断用户操作的轻量级提示</li>
+      </ul>
+
+      <p>在&nbsp;<code>组件</code>&nbsp;中注入&nbsp;<code>message_service</code>，我们可以直接通过&nbsp;<code>this.message_service</code>&nbsp;操作实例</p>
+
+      <ul>
+        <li><code>this.message_service(config)</code></li>
+        <li><code>this.message_service.info(config)</code></li>
+        <li><code>this.message_service.success(config)</code></li>
+        <li><code>this.message_service.warning(config)</code></li>
+        <li><code>this.message_service.error(config)</code></li>
+        <li><code>this.message_service.loading(config)</code></li>
+      </ul>
+
+    </div>
+    <div sample>
+      <app-demo-basic-message></app-demo-basic-message>
+    </div>
+  </doc-section>
+
+
+  <doc-section [title]="'loading'" [code]="load" [language]="'typescript'">
+    <div sample>
+      <app-demo-loading-message></app-demo-loading-message>
+    </div>
+  </doc-section>
+  <doc-section [sample]="false" [title]="'Message 配置参数'">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>type</td>
+        <td>通知提醒的类别</td>
+        <td>String</td>
+        <td><code>success</code>,&nbsp;<code>error</code>,&nbsp;<code>warning</code>,&nbsp;<code>info</code></td>
+        <td><code>info</code></td>
+      </tr>
+
+      <tr>
+        <td>message</td>
+        <td>通知的内容</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>duration</td>
+        <td>自动关闭的延时，单位为毫秒</td>
+        <td>Number</td>
+        <td>-</td>
+        <td>4000</td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </doc-section>
+
+
+</section>

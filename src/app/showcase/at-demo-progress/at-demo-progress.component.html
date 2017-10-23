@@ -1,3 +1,68 @@
-<p>
-  at-demo-progress works!
-</p>
+<section>
+  <h1>Progress</h1>
+  <doc-section [title]="'基础使用'" [code]="basic" [language]="'typescript'">
+    <div sample>
+      <app-demo-basic-progress>
+
+      </app-demo-basic-progress>
+    </div>
+  </doc-section>
+
+
+  <doc-section [title]="'设置状态'" [code]="status">
+    <div sample>
+      <app-demo-status-progress>
+
+      </app-demo-status-progress>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'设置宽度'" [code]="stroke">
+    <div sample>
+      <app-demo-stroke-progress>
+
+      </app-demo-stroke-progress>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'Progress 参数'" [sample]="false">
+    <table>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>width</td>
+        <td>百分比</td>
+        <td>Number</td>
+        <td>-</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <td>status</td>
+        <td>进度条状态</td>
+        <td>String</td>
+        <td><code>success</code>,&nbsp;<code>error</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>stroke</td>
+        <td>进度条的线宽</td>
+        <td>Number</td>
+        <td>-</td>
+        <td>8</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+
+</section>
+
+

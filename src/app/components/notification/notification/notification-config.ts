@@ -1,4 +1,4 @@
-export type NotificationConfigType = 'success' | 'info' | 'error' | 'warning'
+export type NotificationConfigType = 'success' | 'info' | 'error' | 'warning' | 'loading'
 
 export class NotificationConfig {
   index: any

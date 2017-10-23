@@ -31,9 +31,10 @@ import {AtDemoPopoverComponent} from "../app/showcase/at-demo-popover/at-demo-po
 import {AtDemoProgressComponent} from "../app/showcase/at-demo-progress/at-demo-progress.component";
 import {AtDemoTooltipComponent} from "../app/showcase/at-demo-tooltip/at-demo-tooltip.component";
 import {AtDemoTableComponent} from "../app/showcase/at-demo-table/at-demo-table.component";
+import {AtDemoBreadcrumbComponent} from "../app/showcase/at-demo-breadcrumb/at-demo-breadcrumb.component";
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'components/button', pathMatch: 'full'},
+  {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
   {
     path: 'components', component: AtDemoComponentsComponent,
     children: [
@@ -59,6 +60,7 @@ const appRoutes: Routes = [
 
 
       {path: 'notification', component: AtDemoNotificationComponent},
+      {path: 'breadcrumb', component: AtDemoBreadcrumbComponent},
       {path: 'alert', component: AtDemoAlertComponent},
       {path: 'badge', component: AtDemoBadgeComponent},
       {path: 'loading-bar', component: AtDemoLoadingbarComponent},

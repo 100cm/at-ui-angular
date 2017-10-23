@@ -12,4 +12,20 @@ export class StartupComponent implements OnInit {
   ngOnInit() {
   }
 
+  code = `@NgModule({
+  declarations: [
+  ],
+  imports: [
+    routing,
+    CommonModule,
+    FormsModule,
+    AtModule.forRoot(),
+    BrowserModule, BrowserAnimationsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}`
+
 }

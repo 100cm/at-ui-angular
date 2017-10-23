@@ -3,8 +3,9 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atCheckbox',
-  template:`<label (click)="check($event)" [ngClass]="{'at-checkbox--checked': checked,'at-checkbox--disabled': atDisabled}"
-                   class="at-checkbox">
+  template: `<label (click)="check($event)"
+                    [ngClass]="{'at-checkbox--checked': checked,'at-checkbox--disabled': atDisabled}"
+                    class="at-checkbox">
 
   <span class="at-checkbox__input"><span
     class="at-checkbox__inner"></span>
@@ -62,9 +63,11 @@ export class CheckboxComponent implements OnInit {
 
   check(e) {
     e.preventDefault()
-    this._checked = !this._checked
-    this.onChange(this._checked)
-    this.changeCheck.emit(this._checked)
+    if (!this.atDisabled) {
+      this._checked = !this._checked
+      this.onChange(this._checked)
+      this.changeCheck.emit(this._checked)
+    }
   }
 
   // ngModel Access
