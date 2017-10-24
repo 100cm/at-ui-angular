@@ -1308,9 +1308,11 @@ class CheckboxComponent {
      */
     check(e) {
         e.preventDefault();
-        this._checked = !this._checked;
-        this.onChange(this._checked);
-        this.changeCheck.emit(this._checked);
+        if (!this.atDisabled) {
+            this._checked = !this._checked;
+            this.onChange(this._checked);
+            this.changeCheck.emit(this._checked);
+        }
     }
     /**
      * @param {?} value
@@ -1337,8 +1339,9 @@ class CheckboxComponent {
 CheckboxComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atCheckbox',
-                template: `<label (click)="check($event)" [ngClass]="{'at-checkbox--checked': checked,'at-checkbox--disabled': atDisabled}"
-                   class="at-checkbox">
+                template: `<label (click)="check($event)"
+                    [ngClass]="{'at-checkbox--checked': checked,'at-checkbox--disabled': atDisabled}"
+                    class="at-checkbox">
 
   <span class="at-checkbox__input"><span
     class="at-checkbox__inner"></span>
@@ -9028,7 +9031,21 @@ class BadgeComponent {
 BadgeComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atBadge',
-                templateUrl: './badge.component.html'
+                template: `<span class="at-badge at-badge--{{atType}}">
+  <span #content>
+  <ng-content>
+
+  </ng-content>
+  </span>
+  <span *ngIf="!dot && show" class="at-badge"
+        [ngClass]="{'at-badge--corner':(content.innerText.length > 0 || content.children.length >0),
+        'at-badge--alone':(content.innerText.length == 0 && content.children.length == 0 )}">
+  <sup class="at-badge__content" [ngClass]="{'at-badge--dot':dot}">{{dot ? '' : atValue}}</sup>
+  </span>
+    <sup *ngIf="dot && show" class="at-badge__content" [ngClass]="{'at-badge--dot':dot,'at-badge--corner':(content.innerText.length > 0 || content.children.length >0),
+        'at-badge--alone':(content.innerText.length == 0 && content.children.length == 0 )}">{{dot ? '' : atValue}}</sup>
+</span>
+`
             },] },
 ];
 /**
@@ -9996,7 +10013,13 @@ class MessageContainerComponent extends NotificationContainerComponent {
 MessageContainerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'app-message-container',
-                templateUrl: './message-container.component.html',
+                template: `
+    <div class="at-message__wrapper">
+
+      <atMessage [message]="message" *ngFor="let message of notifications"></atMessage>
+
+    </div>
+  `,
                 styles: [`
     :host ::ng-deep .at-message__wrapper {
       z-index: 1110;
@@ -10037,7 +10060,16 @@ class MessageComponent {
 MessageComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atMessage',
-                templateUrl: './message.component.html',
+                template: `
+    <div class="at-message--wrapper" [@enterLeave]="message.state">
+      <div class="at-message at-message--{{message.type}}">
+        <i class="icon at-message__icon {{status[message.type]}}"></i>
+        <span class="at-message__content">
+      {{message.message}}
+    </span>
+      </div>
+    </div>
+  `,
                 animations: [
                     trigger('enterLeave', [
                         state('enter', style({ opacity: 1, transform: 'translateY(0)' })),
@@ -10439,8 +10471,22 @@ class TooltipComponent extends PopoverComponent {
 TooltipComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atTooltip',
-                templateUrl: './tooltip.component.html',
-                styleUrls: ['./tooltip.component.css']
+                template: `
+    <div class="at-tooltip">
+    <span (mouseenter)="mouseOver()" (mouseleave)="mouseOut()" class="at-tooltip__trigger"
+          #trigger>
+      <ng-content select="[tooltipTrigger]"></ng-content>
+    </span>
+      <div
+        (mouseenter)="mouseOver()" (mouseleave)="mouseOut()" [ngStyle]="{'display': pop ? '' :'none'}"
+        class="at-tooltip__popper at-tooltip--{{placement}}" #popover>
+        <div class="at-tooltip__arrow"></div>
+        <div class="at-tooltip__content">
+          <ng-content select="[tooltipContent]"></ng-content>
+        </div>
+      </div>
+    </div>
+  `,
             },] },
 ];
 /**
@@ -10449,6 +10495,222 @@ TooltipComponent.decorators = [
 TooltipComponent.ctorParameters = () => [];
 TooltipComponent.propDecorators = {
     'placement': [{ type: Input },],
+};
+
+class FormComponent {
+    constructor() {
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+    }
+}
+FormComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'app-form',
+                template: `
+    <ng-content></ng-content>`,
+            },] },
+];
+/**
+ * @nocollapse
+ */
+FormComponent.ctorParameters = () => [];
+
+class AtFormDirective {
+    constructor() {
+        this.form = true;
+        this.type = 'horizontal';
+    }
+    /**
+     * @return {?}
+     */
+    get inline() {
+        return this.type == 'inline';
+    }
+    /**
+     * @return {?}
+     */
+    get horizontal() {
+        return this.type == 'horizontal';
+    }
+}
+AtFormDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atForm]'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormDirective.ctorParameters = () => [];
+AtFormDirective.propDecorators = {
+    'form': [{ type: HostBinding, args: ['class.at-form',] },],
+    'inline': [{ type: HostBinding, args: ['class.at-form--inline',] },],
+    'horizontal': [{ type: HostBinding, args: ['class.at-form--horizontal',] },],
+    'type': [{ type: Input },],
+};
+
+class AtFormItemDirective {
+    constructor() {
+        this.item = true;
+    }
+}
+AtFormItemDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atFormItem]'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormItemDirective.ctorParameters = () => [];
+AtFormItemDirective.propDecorators = {
+    'item': [{ type: HostBinding, args: ['class.at-form-item',] },],
+};
+
+class AtFormLabelDirective {
+    constructor() {
+        this.required = false;
+        this.label = true;
+    }
+    /**
+     * @return {?}
+     */
+    get require() {
+        return this.required;
+    }
+}
+AtFormLabelDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atFormLabel]'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormLabelDirective.ctorParameters = () => [];
+AtFormLabelDirective.propDecorators = {
+    'required': [{ type: Input },],
+    'label': [{ type: HostBinding, args: ['class.at-form-item__label',] },],
+    'require': [{ type: HostBinding, args: ['class.at-form-item__label—-required',] },],
+};
+
+class AtFormContentDirective {
+    constructor() {
+        this.content = true;
+    }
+}
+AtFormContentDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atFormContent]'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormContentDirective.ctorParameters = () => [];
+AtFormContentDirective.propDecorators = {
+    'content': [{ type: HostBinding, args: ['class.at-form-item__content',] },],
+};
+
+class AtFormErrorDirective {
+    constructor() {
+        this.error = true;
+    }
+}
+AtFormErrorDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atFormError]'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormErrorDirective.ctorParameters = () => [];
+AtFormErrorDirective.propDecorators = {
+    'error': [{ type: HostBinding, args: ['class.at-form-item__error-tip',] },],
+};
+
+class AtFormFeedbackDirective {
+    constructor() {
+        this.feedback = true;
+    }
+    /**
+     * @return {?}
+     */
+    get success() {
+        return this.isSuccess;
+    }
+    /**
+     * @return {?}
+     */
+    get warning() {
+        return this.isWarning;
+    }
+    /**
+     * @return {?}
+     */
+    get error() {
+        return this.isError;
+    }
+    /**
+     * @return {?}
+     */
+    get isWarning() {
+        return this._isDirtyAndError('warning');
+    }
+    ;
+    /**
+     * @return {?}
+     */
+    get isValidate() {
+        return this._isDirtyAndError('validating') || this.status === 'pending' || this.status && this.status.dirty && this.status.pending;
+    }
+    ;
+    /**
+     * @return {?}
+     */
+    get isError() {
+        return this._isDirtyAndError('error')
+            || this._isDirtyAndError('required')
+            || this._isDirtyAndError('pattern')
+            || this._isDirtyAndError('email')
+            || this._isDirtyAndError('maxlength')
+            || this._isDirtyAndError('minlength');
+    }
+    ;
+    /**
+     * @return {?}
+     */
+    get isSuccess() {
+        return this.status === 'success' || this.status && this.status.dirty && this.status.valid;
+    }
+    ;
+    /**
+     * @param {?} name
+     * @return {?}
+     */
+    _isDirtyAndError(name) {
+        return this.status === name || this.status && this.status.dirty && this.status.hasError && this.status.hasError(name);
+    }
+}
+AtFormFeedbackDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atFormFeedback]'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormFeedbackDirective.ctorParameters = () => [];
+AtFormFeedbackDirective.propDecorators = {
+    'status': [{ type: Input },],
+    'feedback': [{ type: HostBinding, args: ['class.feedback',] },],
+    'success': [{ type: HostBinding, args: ['class.feedback_success',] },],
+    'warning': [{ type: HostBinding, args: ['class.feedback_warning',] },],
+    'error': [{ type: HostBinding, args: ['class.feedback_error',] },],
 };
 
 class AtModule {
@@ -10514,6 +10776,13 @@ AtModule.decorators = [
                     PopoverComponent,
                     ProgressComponent,
                     TooltipComponent,
+                    FormComponent,
+                    AtFormDirective,
+                    AtFormItemDirective,
+                    AtFormLabelDirective,
+                    AtFormContentDirective,
+                    AtFormErrorDirective,
+                    AtFormFeedbackDirective,
                 ],
                 exports: [
                     ButtonComponent,
@@ -10561,7 +10830,14 @@ AtModule.decorators = [
                     MessageComponent,
                     PopoverComponent,
                     ProgressComponent,
-                    TooltipComponent
+                    TooltipComponent,
+                    FormComponent,
+                    AtFormContentDirective,
+                    AtFormDirective,
+                    AtFormItemDirective,
+                    AtFormLabelDirective,
+                    AtFormErrorDirective,
+                    AtFormFeedbackDirective,
                 ],
                 entryComponents: [NotificationComponent, NotificationContainerComponent,
                     MessageContainerComponent, MessageComponent,
@@ -10571,7 +10847,7 @@ AtModule.decorators = [
                     FormsModule,
                     BrowserModule, BrowserAnimationsModule
                 ],
-                providers: [AtGlobalMonitorService]
+                providers: [AtGlobalMonitorService,]
             },] },
 ];
 /**
@@ -10583,4 +10859,4 @@ AtModule.ctorParameters = () => [];
  * Generated bundle index. Do not edit.
  */
 
-export { AtModule, AlertComponent as ɵbg, DropDownAnimation as ɵv, FadeAnimation as ɵw, TagAnimation as ɵo, AtGlobalMonitorService as ɵbj, BadgeComponent as ɵbh, AtBreadItemDirective as ɵbs, BreadcrumbComponent as ɵbr, ButtonGroupComponent as ɵc, ButtonComponent as ɵa, HollowDirective as ɵb, CheckboxGroupComponent as ɵr, CheckboxComponent as ɵq, ComponentCreator as ɵbz, ComponentCreatorBase as ɵca, DropdownComponent as ɵbb, ColComponent as ɵm, RowComponent as ɵl, IconComponent as ɵp, InputComponent as ɵs, DropMenuListComponent as ɵbd, DropdownMenuItemComponent as ɵbc, InlineMenuComponent as ɵk, MenuItemGroupComponent as ɵg, MenuItemComponent as ɵe, MenuListComponent as ɵh, MenuComponent as ɵd, SubMenuComponent as ɵf, AtMessageContainerService as ɵcd, AtMessageService as ɵcc, MessageContainerComponent as ɵbt, MessageComponent as ɵbu, AtModalService as ɵce, ModalBaseService as ɵcf, ModalComponent as ɵbi, NotificationBaseService as ɵcb, NotificationContainerComponent as ɵbf, AtNotificationService as ɵby, NotificationComponent as ɵbe, PagenationComponent as ɵbq, PopoverComponent as ɵbv, ProgressComponent as ɵbw, RadioButtonComponent as ɵt, RadioGroupComponent as ɵi, RadioComponent as ɵj, OptionComponent as ɵx, SelectComponent as ɵu, SliderComponent as ɵz, SwitchComponent as ɵy, AtTbodyTrDirective as ɵbo, AtTbodyDirective as ɵbm, AtTdDirective as ɵbn, AtThDirective as ɵbl, AtTheadDirective as ɵbp, TableComponent as ɵbk, TagComponent as ɵn, TextareaComponent as ɵba, TooltipComponent as ɵbx };
+export { AtModule, AlertComponent as ɵbg, DropDownAnimation as ɵv, FadeAnimation as ɵw, TagAnimation as ɵo, AtGlobalMonitorService as ɵbj, BadgeComponent as ɵbh, AtBreadItemDirective as ɵbs, BreadcrumbComponent as ɵbr, ButtonGroupComponent as ɵc, ButtonComponent as ɵa, HollowDirective as ɵb, CheckboxGroupComponent as ɵr, CheckboxComponent as ɵq, ComponentCreator as ɵcg, ComponentCreatorBase as ɵch, DropdownComponent as ɵbb, AtFormContentDirective as ɵcc, AtFormErrorDirective as ɵcd, AtFormFeedbackDirective as ɵce, AtFormItemDirective as ɵca, AtFormLabelDirective as ɵcb, AtFormDirective as ɵbz, FormComponent as ɵby, ColComponent as ɵm, RowComponent as ɵl, IconComponent as ɵp, InputComponent as ɵs, DropMenuListComponent as ɵbd, DropdownMenuItemComponent as ɵbc, InlineMenuComponent as ɵk, MenuItemGroupComponent as ɵg, MenuItemComponent as ɵe, MenuListComponent as ɵh, MenuComponent as ɵd, SubMenuComponent as ɵf, AtMessageContainerService as ɵck, AtMessageService as ɵcj, MessageContainerComponent as ɵbt, MessageComponent as ɵbu, AtModalService as ɵcl, ModalBaseService as ɵcm, ModalComponent as ɵbi, NotificationBaseService as ɵci, NotificationContainerComponent as ɵbf, AtNotificationService as ɵcf, NotificationComponent as ɵbe, PagenationComponent as ɵbq, PopoverComponent as ɵbv, ProgressComponent as ɵbw, RadioButtonComponent as ɵt, RadioGroupComponent as ɵi, RadioComponent as ɵj, OptionComponent as ɵx, SelectComponent as ɵu, SliderComponent as ɵz, SwitchComponent as ɵy, AtTbodyTrDirective as ɵbo, AtTbodyDirective as ɵbm, AtTdDirective as ɵbn, AtThDirective as ɵbl, AtTheadDirective as ɵbp, TableComponent as ɵbk, TagComponent as ɵn, TextareaComponent as ɵba, TooltipComponent as ɵbx };

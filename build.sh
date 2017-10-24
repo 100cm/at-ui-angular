@@ -31,3 +31,6 @@ $(npm bin)/uglifyjs publish/bundles/at-ng.umd.js --output publish/bundles/at-ng.
 
 echo 'Copying package.json'
 cp package.json publish/package.json
+
+echo 'moving styles'
+cp -r src/assets/stylesheets publish/assets

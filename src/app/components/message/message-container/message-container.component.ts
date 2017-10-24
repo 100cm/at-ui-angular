@@ -3,7 +3,13 @@ import {NotificationContainerComponent} from "../../notification/notification-co
 
 @Component({
   selector: 'app-message-container',
-  templateUrl: './message-container.component.html',
+  template: `
+    <div class="at-message__wrapper">
+
+      <atMessage [message]="message" *ngFor="let message of notifications"></atMessage>
+
+    </div>
+  `,
   styles: [`
     :host ::ng-deep .at-message__wrapper {
       z-index: 1110;

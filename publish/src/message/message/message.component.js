@@ -23,7 +23,16 @@ export class MessageComponent {
 MessageComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atMessage',
-                templateUrl: './message.component.html',
+                template: `
+    <div class="at-message--wrapper" [@enterLeave]="message.state">
+      <div class="at-message at-message--{{message.type}}">
+        <i class="icon at-message__icon {{status[message.type]}}"></i>
+        <span class="at-message__content">
+      {{message.message}}
+    </span>
+      </div>
+    </div>
+  `,
                 animations: [
                     trigger('enterLeave', [
                         state('enter', style({ opacity: 1, transform: 'translateY(0)' })),

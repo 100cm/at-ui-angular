@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-at-demo-components',
@@ -7,7 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AtDemoComponentsComponent implements OnInit {
 
-  constructor() {
+  constructor(private route: Router) {
   }
 
   ngOnInit() {
@@ -50,7 +51,22 @@ export class AtDemoComponentsComponent implements OnInit {
       name: '表格',
       url: '/components/table',
       name_en: 'Table'
+    },
+    {
+      name: '表单',
+      url: '/components/form',
+      name_en: 'Form'
     }
   ]
 
+  goRoute(e) {
+    e.stopPropagation()
+    let a = e.target.children[0]
+    if (a && a.attributes.getNamedItem('href')) {
+      let link = a.attributes.getNamedItem('href').value
+      link = link.split("#")[1]
+      this.route.navigate([link])
+    }
+
+  }
 }

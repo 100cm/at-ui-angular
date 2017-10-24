@@ -27,7 +27,7 @@ import {TextareaComponent} from "./textarea/textarea.component";
 import {DropdownComponent} from "./dropdown/dropdown.component";
 import {DropdownMenuItemComponent} from "./menu/dropdown-menu-item/dropdown-menu-item.component";
 import {DropMenuListComponent} from "./menu/drop-menu-list/drop-menu-list.component";
-import {FormsModule} from "@angular/forms";
+import {ControlContainer, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NotificationComponent} from './notification/notification/notification.component';
@@ -57,6 +57,13 @@ import {AtMessageContainerService} from "./message/at-message-container.service"
 import {PopoverComponent} from './popover/popover.component';
 import {ProgressComponent} from './progress/progress.component';
 import {TooltipComponent} from './tooltip/tooltip.component';
+import {FormComponent} from './form/form.component';
+import {AtFormDirective} from './form/at-form.directive';
+import {AtFormItemDirective} from './form/at-form-item.directive';
+import {AtFormLabelDirective} from './form/at-form-label.directive';
+import {AtFormContentDirective} from './form/at-form-content.directive';
+import {AtFormErrorDirective} from './form/at-form-error.directive';
+import {AtFormFeedbackDirective} from './form/at-form-feedback.directive';
 
 
 @NgModule({
@@ -107,6 +114,13 @@ import {TooltipComponent} from './tooltip/tooltip.component';
     PopoverComponent,
     ProgressComponent,
     TooltipComponent,
+    FormComponent,
+    AtFormDirective,
+    AtFormItemDirective,
+    AtFormLabelDirective,
+    AtFormContentDirective,
+    AtFormErrorDirective,
+    AtFormFeedbackDirective,
   ],
   exports: [
     ButtonComponent,
@@ -156,7 +170,17 @@ import {TooltipComponent} from './tooltip/tooltip.component';
     MessageComponent,
     PopoverComponent,
     ProgressComponent,
-    TooltipComponent
+    TooltipComponent,
+
+    FormComponent,
+    AtFormContentDirective,
+    AtFormDirective,
+    AtFormItemDirective,
+    AtFormLabelDirective,
+    AtFormErrorDirective,
+    AtFormFeedbackDirective,
+
+
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent,
     MessageContainerComponent, MessageComponent,
@@ -168,7 +192,7 @@ import {TooltipComponent} from './tooltip/tooltip.component';
       BrowserModule, BrowserAnimationsModule
 
     ],
-  providers: [AtGlobalMonitorService]
+  providers: [AtGlobalMonitorService,]
 })
 
 export class AtModule {

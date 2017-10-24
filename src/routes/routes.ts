@@ -32,6 +32,8 @@ import {AtDemoProgressComponent} from "../app/showcase/at-demo-progress/at-demo-
 import {AtDemoTooltipComponent} from "../app/showcase/at-demo-tooltip/at-demo-tooltip.component";
 import {AtDemoTableComponent} from "../app/showcase/at-demo-table/at-demo-table.component";
 import {AtDemoBreadcrumbComponent} from "../app/showcase/at-demo-breadcrumb/at-demo-breadcrumb.component";
+import {AtDemoFormComponent} from "../app/showcase/at-demo-form/at-demo-form.component";
+import {AtDemoIconComponent} from "../app/showcase/at-demo-icon/at-demo-icon.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
     children: [
       {path: 'button', component: AtDemoButtonComponent},
       {path: 'layout', component: AtDemoLayoutComponent},
+      {path: 'icon', component: AtDemoIconComponent},
       {path: 'tag', component: AtDemoTagComponent},
       {path: 'menu', component: AtDemoMenuComponent},
       {path: 'checkbox', component: AtDemoCheckboxComponent},
@@ -70,6 +73,7 @@ const appRoutes: Routes = [
       {path: 'progress', component: AtDemoProgressComponent},
       {path: 'tooltip', component: AtDemoTooltipComponent},
       {path: 'table', component: AtDemoTableComponent},
+      {path: 'form', component: AtDemoFormComponent}
     ]
 
   },

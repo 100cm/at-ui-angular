@@ -3,18 +3,16 @@
   <hr>
   <doc-section [sample]="false">
     <div desc>
-      <pre>
-在使用之前，推荐学习&nbsp;<code>Angular 4 +</code>&nbsp;和&nbsp;<code>ES2016</code>&nbsp;，并正确配置&nbsp;<code>Node.js</code>&nbsp;v6.x 或以上版本
-</pre>
-
+      <p>
+        在使用之前，推荐学习&nbsp;<code>Angular 4 +</code>&nbsp;和&nbsp;<code>ES2016</code>&nbsp;，并正确配置&nbsp;<code>Node.js</code>&nbsp;v6.x
+        或以上版本
+      </p>
     </div>
   </doc-section>
 
-  <doc-section>
+  <doc-section [sample]="false">
     <div desc>
-      先在我们的项目中引入
-    </div>
-    <div sample>
+      <p>先在我们的项目中引入我们的at-ng模块</p>
       <div app-high-light [atCode]="code" [atLanguage]="'typescript'">
 
       </div>
@@ -22,7 +20,13 @@
         然后就可以愉快的开发了！
       </p>
     </div>
+  </doc-section>
 
-
+  <doc-section [sample]="false" [title]="'主题'">
+    <div desc>
+      <p>先在我们的项目中引入我们的at-ng模块</p>
+      <p><code>AT-UI</code>&nbsp;的样式已抽离成单独的目录&nbsp;，各个组件的样式变量都存放在&nbsp;<code>assets/sass/variables/default.scss</code>&nbsp;文件中。用户可根据实际需要，自定义组件的样式
+      </p>
+    </div>
   </doc-section>
 </section>

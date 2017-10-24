@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/at-ui-style/css/at.css"
+        "assets/stylesheets/index.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

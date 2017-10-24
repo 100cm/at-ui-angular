@@ -1,0 +1,30 @@
+.at-icon-list__item {
+  position: relative;
+  height: 100px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+  transition: all .2s
+}
+
+.at-icon-list__item:hover {
+  background-color: #ECF5FD;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2)
+}
+
+.at-icon-list__item i {
+  font-size: 26px
+}
+
+.at-icon-list__item p {
+  margin-top: 5px;
+  font-size: 12px
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 10px
+}
