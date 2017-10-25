@@ -64,6 +64,8 @@ import {AtFormLabelDirective} from './form/at-form-label.directive';
 import {AtFormContentDirective} from './form/at-form-content.directive';
 import {AtFormErrorDirective} from './form/at-form-error.directive';
 import {AtFormFeedbackDirective} from './form/at-form-feedback.directive';
+import {DatetimepickerComponent} from './datetimepicker/datetimepicker.component';
+import {CalendarComponent} from './datetimepicker/calendar/calendar.component';
 
 
 @NgModule({
@@ -121,6 +123,8 @@ import {AtFormFeedbackDirective} from './form/at-form-feedback.directive';
     AtFormContentDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
+    DatetimepickerComponent,
+    CalendarComponent,
   ],
   exports: [
     ButtonComponent,
@@ -179,6 +183,9 @@ import {AtFormFeedbackDirective} from './form/at-form-feedback.directive';
     AtFormLabelDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
+
+    CalendarComponent,
+    DatetimepickerComponent,
 
 
   ],

@@ -130,6 +130,8 @@ import {AtDemoFormComponent} from './showcase/at-demo-form/at-demo-form.componen
 import {DemoFormBasicComponent} from './showcase/at-demo-form/demo-form-basic/demo-form-basic.component';
 import { DemoPositionFormComponent } from './showcase/at-demo-form/demo-position-form/demo-position-form.component';
 import { AtDemoIconComponent } from './showcase/at-demo-icon/at-demo-icon.component';
+import { AtDemoDatetimepickerComponent } from './showcase/at-demo-datetimepicker/at-demo-datetimepicker.component';
+import { DemoBasicDatepickerComponent } from './showcase/at-demo-datetimepicker/demo-basic-datepicker/demo-basic-datepicker.component';
 
 
 @NgModule({
@@ -231,6 +233,8 @@ import { AtDemoIconComponent } from './showcase/at-demo-icon/at-demo-icon.compon
     DemoFormBasicComponent,
     DemoPositionFormComponent,
     AtDemoIconComponent,
+    AtDemoDatetimepickerComponent,
+    DemoBasicDatepickerComponent,
 
   ],
   imports: [

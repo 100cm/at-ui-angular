@@ -1,0 +1,25 @@
+<table class="at-calendar-table">
+  <thead>
+  <th class="column-header"><span class="column-header-inner">日</span></th>
+  <th class="column-header"><span class="column-header-inner">一</span></th>
+  <th class="column-header"><span class="column-header-inner">二</span></th>
+  <th class="column-header"><span class="column-header-inner">三</span></th>
+  <th class="column-header"><span class="column-header-inner">四</span></th>
+  <th class="column-header"><span class="column-header-inner">五</span></th>
+  <th class="column-header"><span class="column-header-inner">六</span></th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let week of weeks">
+    <td
+      *ngFor="let day of week.days" class="at-date-cell"
+      (click)="clickDay(day.date)"
+      [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
+              'at-date-cell--selected':day.isSelectedDay ,
+              'at-date-cell--today':day.isCurrentDay,
+              'at-date-cell--next-month':day.isNextMonth}">
+      <div class="at-date">{{day.number}}</div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+

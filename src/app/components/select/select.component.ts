@@ -379,11 +379,11 @@ export class SelectComponent implements OnInit {
       $event.target.value = ''
 
 
-      if (this.options.filter((op) => {
-          return (  op.atValue == option.atValue)
-        }).length == 0) {
+      // if (this.options.filter((op) => {
+      //     return (  op.atValue == option.atValue)
+      //   }).length == 0) {
         this.options.push(option)
-      }
+      // }
 
       this.updateValue(value, false, option)
       this._searchText = ''

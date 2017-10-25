@@ -174,6 +174,15 @@
       font-size: 10px;
     }
   }
+  &--normal {
+    .at-select__selection {
+      height: $select-selection-height-base;
+      line-height: $select-selection-height-base;
+    }
+    .at-select__dropdown .at-select__option {
+      font-size: $select-dropdown-font-size-base;
+    }
+  }
   &--small {
     font-size: $select-font-size-sm;
 

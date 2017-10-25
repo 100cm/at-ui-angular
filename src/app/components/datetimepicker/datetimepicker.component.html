@@ -1,0 +1,25 @@
+<div class="at-datepicker">
+  <div class="at-datepicker--panel">
+    <div class="at-datepicker--panel--header">
+      <div style="position: relative">
+        <a (click)="preMonth()" class="pre-year-btn">
+        </a>
+        <a (click)="preMonth()" class="pre-month-btn">
+        </a>
+
+        <span class="current-select-label">
+            <a class="month-select">{{atMonth+1}}月</a>
+            <a class="year-select">{{atYear}}年</a>
+          </span>
+
+        <a (click)="nextMonth()" class="next-month-btn">
+        </a>
+        <a (click)="nextYear()" class="next-year-btn">
+        </a>
+      </div>
+    </div>
+    <div class="at-datepicker--panel--body">
+      <atCalendar (_clickDate)="clickDate($event)" [atYear]="atYear" [atMonth]="atMonth" [atValue]="atValue"></atCalendar>
+    </div>
+  </div>
+</div>

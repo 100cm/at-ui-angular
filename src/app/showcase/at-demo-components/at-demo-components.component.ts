@@ -56,7 +56,12 @@ export class AtDemoComponentsComponent implements OnInit {
       name: '表单',
       url: '/components/form',
       name_en: 'Form'
-    }
+    },
+    {
+      name: '时间选择',
+      url: '/components/datepicker',
+      name_en: 'DatePicker'
+    },
   ]
 
   goRoute(e) {

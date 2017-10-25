@@ -1,14 +1,17 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {FadeAnimation} from "../animations/fade-animation";
 
 @Component({
   selector: 'atPopover',
+  animations: [FadeAnimation],
   template: `
     <div class="at-popover">
   <span (mouseenter)="mouseOver()" (mouseleave)="mouseOut()" (click)="activePop()" class="at-popover__trigger" #trigger>
   <ng-content select="[popTrigger]">
   </ng-content>
 </span>
-      <div #popover (mouseenter)="mouseOver()" (mouseleave)="mouseOut()" [ngStyle]="{'display': pop ? '' :'none'}"
+      <div #popover [@fadeAnimation] (mouseenter)="mouseOver()" (mouseleave)="mouseOut()"
+           [ngStyle]="{'display': pop ? '' :'none'}"
            class="at-popover__popper at-popover--{{placement}}">
         <div class="at-popover__arrow"></div>
         <div *ngIf="title" class="at-popover__title">
