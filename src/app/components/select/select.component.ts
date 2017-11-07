@@ -15,7 +15,7 @@ import {TagAnimation} from "../animations/tag-animation";
          class="at-select at-select--{{disabled ? 'disabled' : 'visiable' }} at-select--{{multiple ? 'multiple' : 'single' }} at-select--{{atSize}}">
 
       <div *ngIf="multiple" #selection class="at-select__selection">
-    <span *ngFor="let item of selectedOptions" class="at-tag" [@tagAnimation]>
+    <span *ngFor="let item of _selectedOptions" class="at-tag" [@tagAnimation]>
       <span class="at-tag__text">{{item.atLabel}}</span>
       <i (click)="rejectData($event,item)" class="icon icon-x at-tag__close"></i>
     </span>
@@ -61,7 +61,7 @@ import {TagAnimation} from "../animations/tag-animation";
         </ul>
         <ul class="at-select__list">
           <li (click)="selectOption($event,option)"
-              [ngClass]="{'at-select__option--selected': option._selected,'at-select__option--disabled':option.disabled}"
+              [ngClass]="{'at-select__option--selected': isInSet(_selectedOptions,option) || _selectedOption?.atValue == option.atValue ,'at-select__option--disabled':option.disabled}"
               class="at-select__option" *ngFor="let option of filterOptions">
             {{option.atLabel}}
           </li>
@@ -197,15 +197,13 @@ export class SelectComponent implements OnInit {
   }
 
   get selectedLabel() {
-    let label = ((this.options.filter((option) => {
-      return option._selected == true
-    }) || [] )[0] || {})['atLabel']
-    return label
+    return (this._selectedOption || {})['atLabel'] || null
   }
 
 
   addOption(option: OptionComponent) {
     this.options.push(option)
+    this.forceUpdateSelectedOption(this._value)
   }
 
   constructor() {
@@ -280,7 +278,7 @@ export class SelectComponent implements OnInit {
 
 
   writeValue(value: any): void {
-    this.updateValue(value, true)
+    this.updateValue(value, false)
   }
 
   registerOnChange(fn: (_: any) => {}): void {
@@ -291,60 +289,117 @@ export class SelectComponent implements OnInit {
     this.onTouched = fn;
   }
 
+  selectOption(e, option: OptionComponent, isUserClick = true) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
 
-  selectOption(e, option: OptionComponent) {
-    this.filterOptions = this.options
-    this.updateValue(option.atValue)
+    if (option) {
+      if (!this.multiple) {
+        this._selectedOption = option
+        this._value = option.atValue;
+        if (isUserClick) {
+          this.onChange(option.atValue);
+          this.change.emit(option.atValue)
+        }
+      } else {
+        this.isInSet(this._selectedOptions, option) ? this.unSelectMultipleOption(option) : this.selectMultipleOption(option);
+
+      }
+    }
+    this._dropdown = false
   }
 
-  updateValue(value, init = false, option = {isTag: false}) {
-    if (this._value === value) {
+
+  unSelectMultipleOption = (option, $event?, emitChange = true) => {
+
+    this._selectedOptions.delete(option);
+    if ($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+    }
+    if (emitChange) {
+      const arrayOptions = <any>Array.from(this._selectedOptions);
+      this.onChange(arrayOptions.map(item => item.atValue));
+    }
+  }
+
+
+  selectMultipleOption(option, $event?) {
+    this._selectedOptions.add(option)
+    const arrayOptions = <any>Array.from(this._selectedOptions);
+    this.onChange(arrayOptions.map(item => item.atValue));
+  }
+
+
+  isInSet(set, option) {
+    return ((Array.from(set) as Array<OptionComponent>).find((data: OptionComponent) => data.atValue === option.atValue))
+  }
+
+  updateValue(value, emitChange = true) {
+    // if (this._value === value) {
+    //   return;
+    // }
+    if ((value == null) && this.multiple) {
+      this._value = [];
+    } else {
+      this._value = value;
+    }
+    if (!this.multiple) {
+      if (value == null) {
+        this._selectedOption = null;
+      } else {
+        this.updateSelectedOption(value);
+      }
+    } else {
+      if (value) {
+        if (value.length === 0) {
+          this.clearAllSelectedOption();
+        } else {
+          this.updateSelectedOption(value, emitChange);
+        }
+      } else if (value == null) {
+        this.clearAllSelectedOption();
+      }
+    }
+
+  }
+
+  _selectedOption: OptionComponent;
+  _selectedOptions: Set<OptionComponent> = new Set();
+
+  updateSelectedOption(currentModelValue, triggerByNgModel = false) {
+    if (currentModelValue == null) {
       return;
     }
     if (this.multiple) {
-      if ((value == null)) {
-        this._value = [];
-      } else {
-        //初始化全部push
-        if (init) {
-          this._value = value
-        }
-        //非初始化
-        else {
-          if (!this._value.includes(value) || option.isTag == true) {
-            this._value.push(value)
+      const selectedOptions = this.options.filter((item) => {
+        return (item != null) && (currentModelValue.indexOf(item.atValue) !== -1);
+      });
+      if ((!triggerByNgModel)) {
+        selectedOptions.forEach(option => {
+          if (!this._selectedOptions.has(option)) {
+            this._selectedOptions.add(option);
           }
-          else {
-            //remove index
-            this._value = this._value.filter((data) => {
-              return (data != value)
-            })
-          }
-        }
-      }
-    }
-
-    if (!this.multiple) {
-      this._value = value
-      this._searchText = this._value
-    }
-
-    this.options.forEach((option) => {
-      let selected = false
-      // 多选
-      if (this.multiple == true) {
-        selected = this._value.includes(option._atValue) ? true : false
+        });
       } else {
-        selected = this._value === option._atValue
+        this._selectedOptions = new Set();
+        selectedOptions.forEach(option => {
+          this._selectedOptions.add(option);
+        });
       }
-      option._selected = selected
-    })
 
+    } else {
+      const selectedOption = this.options.filter((item) => {
+        return (item != null) && (item.atValue === currentModelValue);
+      });
+      this.selectOption(null, selectedOption[0], false);
+    }
+  }
 
-    this.onChange(this._value)
-    //emit the output
-    this.change.emit(this._value)
-
+  clearAllSelectedOption() {
+    this._selectedOptions = new Set()
   }
 
   clearData(e) {
@@ -360,7 +415,7 @@ export class SelectComponent implements OnInit {
         return (option.atValue != data.atValue || option.isTag != true )
       })
     }
-    this.updateValue(data.atValue)
+    this.selectOption(e, data)
   }
 
 
@@ -378,18 +433,21 @@ export class SelectComponent implements OnInit {
       }
       $event.target.value = ''
 
-
-      // if (this.options.filter((op) => {
-      //     return (  op.atValue == option.atValue)
-      //   }).length == 0) {
-        this.options.push(option)
-      // }
-
-      this.updateValue(value, false, option)
+      this.options.push(option)
+      this.selectOption(null, option)
       this._searchText = ''
       this.updateTop()
     }
 
+  }
+
+  forceUpdateSelectedOption(value) {
+    if (value == null) {
+      return
+    }
+    setTimeout(_ => {
+      this.updateValue(value);
+    })
   }
 
   updateTop() {

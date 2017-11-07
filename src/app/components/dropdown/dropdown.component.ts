@@ -4,18 +4,19 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'atDropdown',
-  template: `<div (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" class="at-dropdown">
-  <div #trigger (click)="setdropDown()" class="at-dropdown__trigger">
-    <ng-content></ng-content>
-  </div>
-  <div #popover
-       class="at-dropdown__popover">
-    <ul (click)="hide($event)" *ngIf="dropDown" atDropMenuList [@dropDownAnimation]="dropDownPosition">
-      <ng-content select="[atDropMenuItem]"></ng-content>
-    </ul>
-  </div>
-</div>
-`,
+  template: `
+    <div (mouseenter)="mouseEnter($event)" (mouseleave)="mouseLeave($event)" class="at-dropdown">
+      <div #trigger (click)="setdropDown()" class="at-dropdown__trigger">
+        <ng-content></ng-content>
+      </div>
+      <div #popover
+           class="at-dropdown__popover">
+        <ul *ngIf="dropDown" atDropMenuList [@dropDownAnimation]="dropDownPosition">
+          <ng-content select="[atDropMenuItem]"></ng-content>
+        </ul>
+      </div>
+    </div>
+  `,
   animations: [DropDownAnimation, trigger('fadeAnimation', [
     state('*', style({opacity: 1})),
     transition('* => void', [
@@ -30,7 +31,7 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
 
 export class DropdownComponent implements OnInit {
 
-  constructor() {
+  constructor(private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -45,6 +46,8 @@ export class DropdownComponent implements OnInit {
 
   @Input()
   trigger: 'click' | 'hover' = 'click'
+
+  @Input() autoClose: boolean = false
 
   @Output() dropDownChange: EventEmitter<boolean> = new EventEmitter()
 
@@ -80,8 +83,15 @@ export class DropdownComponent implements OnInit {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(e) {
-    this.dropDown = false
+  onDocumentClick(event) {
+    if (this.el.nativeElement.contains(event.target)) {
+      if (this.autoClose) {
+        this.dropDown = false
+      }
+    } else {
+      this.dropDown = false
+      this.emitDropDown()
+    }
   }
 
   hide(e) {

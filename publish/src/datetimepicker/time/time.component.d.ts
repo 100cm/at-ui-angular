@@ -1,0 +1,30 @@
+import { EventEmitter, OnInit } from '@angular/core';
+export declare class TimeComponent implements OnInit {
+    constructor();
+    ngOnInit(): void;
+    seconds: Array<any>;
+    minutes: Array<any>;
+    hours: Array<any>;
+    private _selected_second;
+    private _selected_minutes;
+    private _selected_hour;
+    selectHour: EventEmitter<any>;
+    selectMinute: EventEmitter<any>;
+    selectSecond: EventEmitter<any>;
+    selected_second: number;
+    selected_minutes: number;
+    selected_hour: number;
+    _buildHours(): void;
+    _buildMinutes(): void;
+    _buildSeconds(): void;
+    hour_panel: any;
+    minute_panel: any;
+    second_panel: any;
+    inited: boolean;
+    ngAfterViewChecked(): void;
+    ngAfterContentInited(): void;
+    setPosition(): void;
+    _select_minutes(index: any): void;
+    _select_hour(index: any): void;
+    _select_second(index: any): void;
+}

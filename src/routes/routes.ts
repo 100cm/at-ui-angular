@@ -35,6 +35,7 @@ import {AtDemoBreadcrumbComponent} from "../app/showcase/at-demo-breadcrumb/at-d
 import {AtDemoFormComponent} from "../app/showcase/at-demo-form/at-demo-form.component";
 import {AtDemoIconComponent} from "../app/showcase/at-demo-icon/at-demo-icon.component";
 import {AtDemoDatetimepickerComponent} from "../app/showcase/at-demo-datetimepicker/at-demo-datetimepicker.component";
+import {AtDemoCardComponent} from "../app/showcase/at-demo-card/at-demo-card.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -64,6 +65,7 @@ const appRoutes: Routes = [
 
 
       {path: 'notification', component: AtDemoNotificationComponent},
+      {path: 'card', component: AtDemoCardComponent},
       {path: 'breadcrumb', component: AtDemoBreadcrumbComponent},
       {path: 'alert', component: AtDemoAlertComponent},
       {path: 'badge', component: AtDemoBadgeComponent},

@@ -15,6 +15,6 @@ export class DemoSelectBasicComponent implements OnInit {
 
   selected = ['first']
 
-  single = 'first'
+  single = 13
 
 }

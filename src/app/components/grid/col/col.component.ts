@@ -7,7 +7,7 @@ import {Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
 })
 export class ColComponent implements OnInit {
 
-  constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
+  constructor(public _elementRef: ElementRef, private _renderer: Renderer2) {
     this._el = this._elementRef.nativeElement;
   }
 

@@ -4,7 +4,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 @Component({
   selector: 'app-demo-form-basic',
   template: `
-    <form nz-form [formGroup]="validateForm">
+    <form atForm [formGroup]="validateForm">
       <div class="at-form-item" atRow>
         <label [required]="true" atFormLabel atCol [span]="4">
           Username

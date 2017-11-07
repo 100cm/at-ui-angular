@@ -20,7 +20,6 @@ import {routing} from "../routes/routes";
 import {AtDemoButtonComponent} from './showcase/at-demo-button/at-demo-button.component';
 import {AtDemoComponentsComponent} from './showcase/at-demo-components/at-demo-components.component';
 import {CommonModule} from "@angular/common";
-import {HighLightComponent} from './components/high-light/high-light.component';
 import {AtDemoDocSectionComponent} from './showcase/at-demo-doc-section/at-demo-doc-section.component';
 import {AtDemoLayoutComponent} from './showcase/at-demo-layout/at-demo-layout.component';
 import {AtDemoTagComponent} from './showcase/at-demo-tag/at-demo-tag.component';
@@ -132,6 +131,8 @@ import { DemoPositionFormComponent } from './showcase/at-demo-form/demo-position
 import { AtDemoIconComponent } from './showcase/at-demo-icon/at-demo-icon.component';
 import { AtDemoDatetimepickerComponent } from './showcase/at-demo-datetimepicker/at-demo-datetimepicker.component';
 import { DemoBasicDatepickerComponent } from './showcase/at-demo-datetimepicker/demo-basic-datepicker/demo-basic-datepicker.component';
+import { AtDemoCardComponent } from './showcase/at-demo-card/at-demo-card.component';
+import {HighLightComponent} from "./showcase/high-light/high-light.component";
 
 
 @NgModule({
@@ -235,6 +236,8 @@ import { DemoBasicDatepickerComponent } from './showcase/at-demo-datetimepicker/
     AtDemoIconComponent,
     AtDemoDatetimepickerComponent,
     DemoBasicDatepickerComponent,
+    AtDemoCardComponent,
+
 
   ],
   imports: [

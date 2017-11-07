@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {FadeAnimation} from "../animations/fade-animation";
 
 @Component({
@@ -27,7 +27,7 @@ import {FadeAnimation} from "../animations/fade-animation";
 })
 export class PopoverComponent implements OnInit {
 
-  constructor() {
+  constructor(private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -68,6 +68,15 @@ export class PopoverComponent implements OnInit {
 
   get pop(): boolean {
     return this._pop;
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.el.nativeElement.contains(event.target)) {
+
+    } else {
+      this.pop = false
+    }
   }
 
   @Input()

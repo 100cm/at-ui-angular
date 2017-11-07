@@ -121,8 +121,7 @@
         }
 
         tbody {
-
-          .at-date-cell {
+          .at-date-cell, .at-month-cell {
             padding: 4px 0;
             .at-date {
               display: block;
@@ -169,6 +168,14 @@
               }
             }
 
+          }
+          .at-month-cell {
+            text-align: center;
+            .at-date {
+              width: 40px;
+              height: 36px;
+              line-height: 36px;
+            }
           }
         }
       }

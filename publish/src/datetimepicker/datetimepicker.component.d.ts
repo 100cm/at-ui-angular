@@ -1,0 +1,31 @@
+import { OnInit } from '@angular/core';
+export declare class DatetimepickerComponent implements OnInit {
+    constructor();
+    private _atType;
+    atType: string;
+    private _atValue;
+    atValue: any;
+    atYear: number;
+    atMonth: number;
+    selectedDate: number;
+    selectedYear: number;
+    selectedMonth: number;
+    onChange: any;
+    onTouched: any;
+    format: any;
+    writeValue(value: any): void;
+    registerOnChange(fn: (_: any) => {}): void;
+    registerOnTouched(fn: () => {}): void;
+    ngOnInit(): void;
+    preYear(): void;
+    nextYear(): void;
+    preMonth(): void;
+    nextMonth(): void;
+    clickDate(date: any): void;
+    updateDate(value: any): void;
+    clickMonth(month: any): void;
+    clickYear(year: any): void;
+    setCal(s: any): void;
+    preCentury(): void;
+    nextCenury(): void;
+}

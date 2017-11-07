@@ -58,6 +58,11 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'Form'
     },
     {
+      name: '卡片',
+      url: '/components/card',
+      name_en: 'Card'
+    },
+    {
       name: '时间选择',
       url: '/components/datepicker',
       name_en: 'DatePicker'

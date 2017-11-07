@@ -3,13 +3,78 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as moment from 'moment';
 import {Moment} from "moment";
 import {AtDate} from "../at-day";
+import 'moment/locale/zh-cn';
 
 @Component({
   selector: 'atCalendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css']
+  template: `
+    <table *ngIf="atType =='full'" class="at-calendar-table">
+      <thead>
+      <th class="column-header"><span class="column-header-inner">日</span></th>
+      <th class="column-header"><span class="column-header-inner">一</span></th>
+      <th class="column-header"><span class="column-header-inner">二</span></th>
+      <th class="column-header"><span class="column-header-inner">三</span></th>
+      <th class="column-header"><span class="column-header-inner">四</span></th>
+      <th class="column-header"><span class="column-header-inner">五</span></th>
+      <th class="column-header"><span class="column-header-inner">六</span></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let week of weeks">
+        <td
+          *ngFor="let day of week.days" class="at-date-cell"
+          (click)="clickDay(day.date)"
+          [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
+'at-date-cell--selected':day.isSelectedDay ,
+'at-date-cell--today':day.isCurrentDay,
+'at-date-cell--next-month':day.isNextMonth}">
+          <div class="at-date">{{day.number}}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf="atType=='month'" class="at-calendar-table">
+      <tbody>
+      <tr *ngFor="let month of months">
+        <td
+          *ngFor="let single of month" class="at-month-cell"
+          (click)="clickMonth(single)"
+          [ngClass]="{
+              'at-date-cell--selected':single.isSelectedMonth ,
+              'at-date-cell--today':single.isCurrentMonth}">
+          <div class="at-date">{{single.name}}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf="atType=='year'" class="at-calendar-table">
+      <tbody>
+      <tr *ngFor="let section of years">
+        <td
+          *ngFor="let year of section" class="at-month-cell"
+          (click)="clickYear(year)"
+          [ngClass]="{
+              'at-date-cell--selected':year.isSelectedMonth ,
+              'at-date-cell--today':year.isCurrentMonth}">
+          <div class="at-date">{{year}}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+  `,
+
 })
 export class CalendarComponent implements OnInit {
+
+
+  @Output() _clickMonth: EventEmitter<any> = new EventEmitter();
+  @Output() _clickYear: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
@@ -17,9 +82,46 @@ export class CalendarComponent implements OnInit {
   @Output() _clickDate: EventEmitter<any> = new EventEmitter()
 
 
+  monthName = []
+
+
+  @Input() private
+  _atType: 'full' | 'month' | 'year' = 'full'
+
+
+  get atType() {
+    return this._atType;
+  }
+
+  @Input()
+  set atType(value) {
+    this._atType = value;
+    this.buildCalendar()
+  }
+
   private _weeks: Array<any> = []
 
-  private _atValue
+  private _months: Array<any> = []
+
+  private _years: Array<any> = []
+
+
+  get years(): Array<any> {
+    return this._years;
+  }
+
+  set years(value: Array<any>) {
+    this._years = value;
+  }
+
+  get months(): Array<any> {
+    return this._months;
+  }
+
+  set months(value: Array<any>) {
+    this._months = value;
+  }
+
 
   get atValue() {
     return this._atValue || new Date();
@@ -33,11 +135,9 @@ export class CalendarComponent implements OnInit {
     this.buildCalendar()
   }
 
-
+  private _atValue
   private _atYear = moment(new Date()).year()
-
   private _atMonth = moment(new Date()).month()
-
   private _atDay
 
 
@@ -81,7 +181,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.monthName = moment.months()
   }
 
   buildMonth(d: Moment): Array<AtDate> {
@@ -123,14 +223,58 @@ export class CalendarComponent implements OnInit {
     return days;
   };
 
+  buildCentury(year) {
+    let century = [];
+    let temparray = []
+    for (const i of Array.from(Array(20).keys())) {
+      century.push(i - 10 + year);
+    }
+    for (let i = 0, j = century.length; i < j; i += 5) {
+      temparray.push(century.slice(i, i + 5));
+      // do whatever
+    }
+    century = temparray
+
+    return century;
+  }
+
+  buildYears(date: Moment) {
+    let formatMonths = [];
+    let months: Array<any> = [];
+    for (let i = 0; i < 12; i++) {
+      months.push({
+        index: i,
+        name: this.monthName[i],
+        isCurrentMonth: moment(new Date()).month() === i && date.isSame(new Date(), 'year'),
+        isSelectedMonth: this.atMonth === i
+      });
+      if ((i + 1) % 3 === 0) {
+        formatMonths.push(months);
+        months = [];
+      }
+    }
+    return formatMonths;
+  };
+
 
   buildCalendar() {
+    moment.locale('zh-cn')
     let date = moment(this.atValue).year(this.atYear).month(this.atMonth)
     this.weeks = this.buildMonth(date)
+    this.months = this.buildYears(date)
+    this._years = this.buildCentury(this.atYear)
   }
 
 
   clickDay(day) {
     this._clickDate.emit(day)
+  }
+
+  clickMonth(single) {
+    this._clickMonth.emit(single)
+  }
+
+  clickYear(year) {
+    this._clickYear.emit(year)
   }
 }

@@ -4,7 +4,45 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'atDatetimePicker',
-  templateUrl: './datetimepicker.component.html',
+  template: `<div class="at-datepicker">
+  <div class="at-datepicker--panel">
+    <div class="at-datepicker--panel--header">
+      <div style="position: relative">
+        <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
+        </a>
+        <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
+        </a>
+
+        <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
+        </a>
+
+
+        <span class="current-select-label">
+            <a (click)="setCal('month')" class="month-select">{{atMonth+1}}月</a>
+            <a (click)="setCal('year')" class="year-select">{{atYear}}年</a>
+          </span>
+
+        <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
+        </a>
+        <a (click)="nextYear()" class="next-year-btn">
+        </a>
+
+        <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
+        </a>
+
+      </div>
+    </div>
+    <div class="at-datepicker--panel--body">
+      <atCalendar (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)" (_clickMonth)="clickMonth($event)"
+                  [atType]="atType"
+                  [atYear]="atYear" [atMonth]="atMonth"
+                  [atValue]="atValue"></atCalendar>
+
+      <atTime></atTime>
+    </div>
+  </div>
+</div>
+`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -12,13 +50,25 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       multi: true
     }
   ],
-  styleUrls: ['./datetimepicker.component.css']
+
 })
 export class DatetimepickerComponent implements OnInit {
 
   constructor() {
   }
 
+
+  private _atType = 'full'
+
+
+  get atType(): string {
+    return this._atType;
+  }
+
+  @Input()
+  set atType(value: string) {
+    this._atType = value;
+  }
 
   private _atValue = null
 
@@ -108,4 +158,26 @@ export class DatetimepickerComponent implements OnInit {
 
   }
 
+  clickMonth(month) {
+    // this.atValue = moment(this.atValue).year(this.atYear).month(month.index).toDate();
+    this.atMonth = month.index
+    this.atType = 'full'
+  }
+
+  clickYear(year) {
+    this.atYear = year
+    this.atType = 'month'
+  }
+
+  setCal(s) {
+    this.atType = s
+  }
+
+  preCentury() {
+    this.atYear = this.atYear - 10
+  }
+
+  nextCenury() {
+    this.atYear = this.atYear + 10
+  }
 }

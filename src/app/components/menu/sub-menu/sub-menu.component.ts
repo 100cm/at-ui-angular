@@ -7,29 +7,30 @@ import {style, animate, state, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: '[atSubMenu]',
-  template:`<div class="at-menu__submenu-title"
-                 (mouseenter)="onMouseEnterEvent($event)"
-                 (mouseleave)="onMouseLeaveEvent($event)"
-                 (click)="show()"
-  >
-    <ng-content select="[title]"></ng-content>
-  </div>
-  <div
-    *ngIf="isOpen && parent.atType != 'inline'"
-    [ngStyle]="{'left': _popoverCss.left ,'right': _popoverCss.right,'top': _popoverCss.top}"
-    (mouseenter)="onMouseEnterEvent($event)"
-    (mouseleave)="onMouseLeaveEvent($event)"
-    class="at-dropdown__popover">
-    <ng-content></ng-content>
-  </div>
-  <!--<ng-content [@slide-up] *ngIf="isOpen" select="[inlineMenu]"></ng-content>-->
+  template: `
+    <div class="at-menu__submenu-title"
+         (mouseenter)="onMouseEnterEvent($event)"
+         (mouseleave)="onMouseLeaveEvent($event)"
+         (click)="show()"
+    >
+      <ng-content select="[title]"></ng-content>
+    </div>
+    <div
+      *ngIf="isOpen && parent.atType != 'inline'"
+      [ngStyle]="{'left': _popoverCss.left ,'right': _popoverCss.right,'top': _popoverCss.top}"
+      (mouseenter)="onMouseEnterEvent($event)"
+      (mouseleave)="onMouseLeaveEvent($event)"
+      class="at-dropdown__popover">
+      <ng-content></ng-content>
+    </div>
+    <!--<ng-content [@slide-up] *ngIf="isOpen" select="[inlineMenu]"></ng-content>-->
 
-  <div
-    [@fadeAnimation]
-    [@expandAnimation]="expandState"
-    *ngIf="isOpen">
-    <ng-content select="[inlineMenu]"></ng-content>
-  </div>
+    <div
+      [@fadeAnimation]
+      [@expandAnimation]="expandState"
+      *ngIf="isOpen">
+      <ng-content select="[inlineMenu]"></ng-content>
+    </div>
   `,
   animations: [
     trigger('fadeAnimation', [
@@ -61,7 +62,7 @@ export class SubMenuComponent implements OnInit {
 
   _el: any
   nativeElement: any
-  _active = false
+  _active:boolean = false
   _isOpen = false
   _popoverCss = {left: '0px', right: '0px', top: '0px'}
   timeout: any
@@ -109,9 +110,9 @@ export class SubMenuComponent implements OnInit {
   }
 
 
-  @Input('active')
+  @Input()
   set active(active: boolean) {
-    this._active = true
+    this._active = active
   }
 
 

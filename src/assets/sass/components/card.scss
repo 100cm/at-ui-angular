@@ -1,0 +1,20 @@
+@import "../variables/index";
+
+.at-card {
+  background: #fff;
+  border-radius: 2px;
+  font-size: 12px;
+  position: relative;
+  transition: all .3s;
+  .at-card-body {
+    padding: 0;
+  }
+
+  &:hover {
+    box-shadow: 0 1px 6px $grey-50;
+  }
+}
+
+.at-card-bordered {
+  border: 1px solid $grey-100;
+}
