@@ -46,9 +46,7 @@ export declare class SelectComponent implements OnInit {
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
     selectOption(e: any, option: OptionComponent, isUserClick?: boolean): void;
-    /** cancel select multiple option */
     unSelectMultipleOption: (option: any, $event?: any, emitChange?: boolean) => void;
-    /** select multiple option */
     selectMultipleOption(option: any, $event?: any): void;
     isInSet(set: any, option: any): OptionComponent;
     updateValue(value: any, emitChange?: boolean): void;

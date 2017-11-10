@@ -1909,9 +1909,6 @@ var SelectComponent = (function () {
         // ngModel Access
         this.onChange = Function.prototype;
         this.onTouched = Function.prototype;
-        /**
-         * cancel select multiple option
-         */
         this.unSelectMultipleOption = function (option, $event, emitChange) {
             if (emitChange === void 0) { emitChange = true; }
             _this._selectedOptions.delete(option);
@@ -1920,7 +1917,7 @@ var SelectComponent = (function () {
                 $event.stopPropagation();
             }
             if (emitChange) {
-                var arrayOptions = Array.from(_this._selectedOptions);
+                var /** @type {?} */ arrayOptions = (Array.from(_this._selectedOptions));
                 _this.onChange(arrayOptions.map(function (item) { return item.atValue; }));
             }
         };
@@ -2226,15 +2223,14 @@ var SelectComponent = (function () {
                 this.isInSet(this._selectedOptions, option) ? this.unSelectMultipleOption(option) : this.selectMultipleOption(option);
             }
         }
+        this._dropdown = false;
     };
     /**
-     * select multiple option
      * @param {?} option
      * @param {?=} $event
      * @return {?}
      */
     SelectComponent.prototype.selectMultipleOption = function (option, $event) {
-        // this.addOption(option);
         this._selectedOptions.add(option);
         var /** @type {?} */ arrayOptions = (Array.from(this._selectedOptions));
         this.onChange(arrayOptions.map(function (item) { return item.atValue; }));
@@ -2367,11 +2363,7 @@ var SelectComponent = (function () {
                 _selectComponent: this
             });
             $event.target.value = '';
-            // if (this.options.filter((op) => {
-            //     return (  op.atValue == option.atValue)
-            //   }).length == 0) {
             this.options.push(option);
-            // }
             this.selectOption(null, option);
             this._searchText = '';
             this.updateTop();

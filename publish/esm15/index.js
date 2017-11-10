@@ -1831,9 +1831,6 @@ class SelectComponent {
         // ngModel Access
         this.onChange = Function.prototype;
         this.onTouched = Function.prototype;
-        /**
-         * cancel select multiple option
-         */
         this.unSelectMultipleOption = (option, $event, emitChange = true) => {
             this._selectedOptions.delete(option);
             if ($event) {
@@ -1841,7 +1838,7 @@ class SelectComponent {
                 $event.stopPropagation();
             }
             if (emitChange) {
-                const arrayOptions = Array.from(this._selectedOptions);
+                const /** @type {?} */ arrayOptions = (Array.from(this._selectedOptions));
                 this.onChange(arrayOptions.map(item => item.atValue));
             }
         };
@@ -2102,15 +2099,14 @@ class SelectComponent {
                 this.isInSet(this._selectedOptions, option) ? this.unSelectMultipleOption(option) : this.selectMultipleOption(option);
             }
         }
+        this._dropdown = false;
     }
     /**
-     * select multiple option
      * @param {?} option
      * @param {?=} $event
      * @return {?}
      */
     selectMultipleOption(option, $event) {
-        // this.addOption(option);
         this._selectedOptions.add(option);
         const /** @type {?} */ arrayOptions = (Array.from(this._selectedOptions));
         this.onChange(arrayOptions.map(item => item.atValue));
@@ -2240,11 +2236,7 @@ class SelectComponent {
                 _selectComponent: this
             });
             $event.target.value = '';
-            // if (this.options.filter((op) => {
-            //     return (  op.atValue == option.atValue)
-            //   }).length == 0) {
             this.options.push(option);
-            // }
             this.selectOption(null, option);
             this._searchText = '';
             this.updateTop();

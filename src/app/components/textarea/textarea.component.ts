@@ -1,7 +1,8 @@
-import {Component, OnInit, forwardRef, Input} from '@angular/core';
+import {Component, OnInit, forwardRef, Input, ViewEncapsulation} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
+  encapsulation:ViewEncapsulation.None,
   selector: 'atTextarea',
   template:`<div class="at-textarea" data-v-a01f69b8="">
   <textarea [placeholder]="atPlaceholder" [(ngModel)]="value" rows="2" class="at-textarea__original" style="">
