@@ -1,48 +1,56 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, forwardRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import * as moment from 'moment'
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import {InputComponent} from "../input/input.component";
 
 @Component({
   selector: 'atDatetimePicker',
-  template: `<div class="at-datepicker">
-  <div class="at-datepicker--panel">
-    <div class="at-datepicker--panel--header">
-      <div style="position: relative">
-        <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
-        </a>
-        <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
-        </a>
+  template: `
+    <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="choosePicker()"
+             (click)="choosePicker()"></atInput>
+    <div *ngIf="show" class="over-flow-wrapper" [ngStyle]="{'top':cssTop}">
+      <div class="at-datepicker">
+        <div class="at-datepicker--panel">
+          <div class="at-datepicker--panel--header">
+            <div style="position: relative">
+              <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
+              </a>
+              <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
+              </a>
 
-        <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
-        </a>
+              <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
+              </a>
 
 
-        <span class="current-select-label">
-            <a (click)="setCal('month')" class="month-select">{{atMonth+1}}月</a>
+              <span class="current-select-label">
+            <a (click)="setCal('month')" class="month-select">{{atMonth + 1}}月</a>
             <a (click)="setCal('year')" class="year-select">{{atYear}}年</a>
           </span>
 
-        <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
-        </a>
-        <a (click)="nextYear()" class="next-year-btn">
-        </a>
+              <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
+              </a>
+              <a (click)="nextYear()" class="next-year-btn">
+              </a>
 
-        <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
-        </a>
+              <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
+              </a>
 
+            </div>
+          </div>
+          <div class="at-datepicker--panel--body">
+            <atCalendar (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
+                        (_clickMonth)="clickMonth($event)"
+                        [format]="format"
+                        [disableDate]="disableDate"
+                        [atType]="atType"
+                        [atYear]="atYear" [atMonth]="atMonth"
+                        [atValue]="atValue"></atCalendar>
+
+          </div>
+        </div>
       </div>
     </div>
-    <div class="at-datepicker--panel--body">
-      <atCalendar (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)" (_clickMonth)="clickMonth($event)"
-                  [atType]="atType"
-                  [atYear]="atYear" [atMonth]="atMonth"
-                  [atValue]="atValue"></atCalendar>
-
-      <atTime></atTime>
-    </div>
-  </div>
-</div>
-`,
+  `,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -54,11 +62,15 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 })
 export class DatetimepickerComponent implements OnInit {
 
-  constructor() {
+  constructor(private el: ElementRef) {
   }
 
 
   private _atType = 'full'
+
+  show = false
+
+  private cssTop
 
 
   get atType(): string {
@@ -92,7 +104,8 @@ export class DatetimepickerComponent implements OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  @Input() format
+  @Input() format = "YYYY-MM-DD"
+  @Input() disableDate
 
   writeValue(value: any): void {
     this.updateDate(value);
@@ -109,6 +122,15 @@ export class DatetimepickerComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event) {
+    if (!this.el.nativeElement.contains(event.target)) {
+      this.show = false
+    }
+  }
+
+  @ViewChild('timeinput') input: InputComponent
 
   preYear() {
     this.atYear = this.atYear - 1;
@@ -137,7 +159,7 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   clickDate(date) {
-    this.updateDate(date)
+    this.updateDate(date.date)
     let change_date = this.atValue
     if (this.format) {
       change_date = change_date.format(this.format)
@@ -156,6 +178,10 @@ export class DatetimepickerComponent implements OnInit {
     this.atYear = moment(this.atValue).year();
     this.atMonth = moment(this.atValue).month();
 
+  }
+
+  ngAfterViewInit() {
+    this.cssTop = this.input.inputField.nativeElement.offsetHeight + 'px'
   }
 
   clickMonth(month) {
@@ -179,5 +205,9 @@ export class DatetimepickerComponent implements OnInit {
 
   nextCenury() {
     this.atYear = this.atYear + 10
+  }
+
+  choosePicker() {
+    this.show = true
   }
 }

@@ -7,6 +7,8 @@ export declare class ColComponent implements OnInit {
     private _offset;
     _el: any;
     _classList: Array<any>;
+    _col_type: 'md' | 'sm' | 'xs' | 'lg';
+    colType: "md" | "sm" | "xs" | "lg";
     span: number;
     offset: number;
     ngOnInit(): void;

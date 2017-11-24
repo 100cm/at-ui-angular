@@ -64,7 +64,7 @@ export class RowComponent implements OnInit, ClassHelper {
     this._setClassMap()
   }
 
-  constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
+  constructor(public _elementRef: ElementRef, private _renderer: Renderer2) {
     this._el = this._elementRef.nativeElement;
     this._renderer.addClass(this._el, 'row')
     this._renderer.addClass(this._el, 'at-row')

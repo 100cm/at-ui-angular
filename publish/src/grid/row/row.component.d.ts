@@ -3,7 +3,7 @@ import { ClassHelper } from "../../utils/class-helper";
 export declare type RowFlexType = 'center' | 'end' | 'start' | 'around' | 'between';
 export declare type RowFlexAlign = 'top' | 'middle' | 'bottom';
 export declare class RowComponent implements OnInit, ClassHelper {
-    private _elementRef;
+    _elementRef: ElementRef;
     private _renderer;
     _prefixCls: string;
     _classList: Array<any>;

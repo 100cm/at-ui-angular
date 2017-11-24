@@ -22,11 +22,12 @@ import 'moment/locale/zh-cn';
       <tr *ngFor="let week of weeks">
         <td
           *ngFor="let day of week.days" class="at-date-cell"
-          (click)="clickDay(day.date)"
+          (click)="clickDay(day)"
           [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
 'at-date-cell--selected':day.isSelectedDay ,
 'at-date-cell--today':day.isCurrentDay,
-'at-date-cell--next-month':day.isNextMonth}">
+'at-date-cell--next-month':day.isNextMonth,
+'at-date-cell--disabled':day.disabled}">
           <div class="at-date">{{day.number}}</div>
         </td>
       </tr>
@@ -81,9 +82,19 @@ export class CalendarComponent implements OnInit {
 
   @Output() _clickDate: EventEmitter<any> = new EventEmitter()
 
+  @Input()
+  set disableDate(value) {
+    this._disabledDate = value
+    this.buildCalendar()
+  }
+
+  get disableDate() {
+    return this._disabledDate
+  }
+
 
   monthName = []
-
+  _disabledDate
 
   @Input() private
   _atType: 'full' | 'month' | 'year' = 'full'
@@ -164,6 +175,8 @@ export class CalendarComponent implements OnInit {
     return this._atMonth;
   }
 
+  @Input() format: string
+
   @Input()
   set atMonth(value: number) {
     this._atMonth = value;
@@ -211,9 +224,9 @@ export class CalendarComponent implements OnInit {
         isNextMonth: date.month() > month.month(),
         isCurrentDay: date.isSame(new Date(), 'day'),
         isSelectedDay: date.isSame(this.atValue, 'day'),
-        title: date.format('YYYY-MM-DD'),
+        title: date.format(this.format),
         date: date,
-        disabled: false,
+        disabled: date.isBefore(this.disableDate, 'day'),
         firstDisabled: false,
         lastDisabled: false,
       });
@@ -246,7 +259,7 @@ export class CalendarComponent implements OnInit {
         index: i,
         name: this.monthName[i],
         isCurrentMonth: moment(new Date()).month() === i && date.isSame(new Date(), 'year'),
-        isSelectedMonth: this.atMonth === i
+        isSelectedMonth: this.atMonth === i,
       });
       if ((i + 1) % 3 === 0) {
         formatMonths.push(months);
@@ -267,7 +280,9 @@ export class CalendarComponent implements OnInit {
 
 
   clickDay(day) {
-    this._clickDate.emit(day)
+    if (!day.disabled) {
+      this._clickDate.emit(day)
+    }
   }
 
   clickMonth(single) {

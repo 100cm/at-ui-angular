@@ -1,39 +1,47 @@
-import {Component, forwardRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {
+  Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnInit, Output,
+  ViewChild
+} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 export type atInputSize = 'small' | 'normal' | 'large'
 
 @Component({
   selector: 'atInput',
-  template:`<div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}}"
-                 [ngClass]="_BindClass">
-    <div #prepend [hidden]="!showPrepend" [ngClass]="{'at-input-group__prepend': showPrepend}">
-      <ng-content select="[atPrepend]"></ng-content>
-    </div>
-
-    <ng-template [ngIf]="atType == 'normal'">
-      <input [(ngModel)]="value" placeholder="{{placeholder}}" type="{{type}}" [disabled]="disabled"
-             class="{{_prefixCls}}__original">
-    </ng-template>
-
-    <ng-template [ngIf]="atType == 'number'">
-      <div class="at-input-number__input">
-        <input [(ngModel)]="value" placeholder="{{placeholder}}" type="number" [disabled]="disabled"
-               class="{{_prefixCls}}__original">
-
-        <div class="at-input-number__handler">
-          <span (click)="numberUp()" class="at-input-number__up" [ngClass]="{'at-input-number__up--disabled':isMax}"><i class="icon icon-chevron-up"  ></i></span>
-          <span  (click)="numberDown()" class="at-input-number__down" [ngClass]="{'at-input-number__up--disabled':isMin}"><i class="icon icon-chevron-down"></i></span></div>
+  template: `
+    <div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}}"
+         [ngClass]="_BindClass">
+      <div #prepend [hidden]="!showPrepend" [ngClass]="{'at-input-group__prepend': showPrepend}">
+        <ng-content select="[atPrepend]"></ng-content>
       </div>
-    </ng-template>
 
-    <i *ngIf="icon" class="at-input__icon icon icon-{{icon}}"></i>
+      <ng-template [ngIf]="atType == 'normal'">
+        <input #input [(ngModel)]="value" placeholder="{{placeholder}}"
+               (focus)="focus($event)" (focusout)="focusOut($event)" type="{{type}}" [disabled]="disabled"
+               class="{{_prefixCls}}__original">
+      </ng-template>
 
-    <div #append [ngClass]="{'at-input-group__append': showAppend}" [hidden]="!showAppend">
-      <ng-content select="[atAppend]"></ng-content>
+      <ng-template [ngIf]="atType == 'number'">
+        <div class="at-input-number__input">
+          <input [(ngModel)]="value" placeholder="{{placeholder}}" type="number" [disabled]="disabled"
+                 class="{{_prefixCls}}__original">
+
+          <div class="at-input-number__handler">
+            <span (click)="numberUp()" class="at-input-number__up"
+                  [ngClass]="{'at-input-number__up--disabled':isMax}"><i class="icon icon-chevron-up"></i></span>
+            <span (click)="numberDown()" class="at-input-number__down"
+                  [ngClass]="{'at-input-number__up--disabled':isMin}"><i class="icon icon-chevron-down"></i></span>
+          </div>
+        </div>
+      </ng-template>
+
+      <i *ngIf="icon" class="at-input__icon icon icon-{{icon}}"></i>
+
+      <div #append [ngClass]="{'at-input-group__append': showAppend}" [hidden]="!showAppend">
+        <ng-content select="[atAppend]"></ng-content>
+      </div>
+
     </div>
-
-  </div>
   `,
   providers: [
     {
@@ -46,7 +54,7 @@ export type atInputSize = 'small' | 'normal' | 'large'
 export class InputComponent implements OnInit {
 
 
-  constructor() {
+  constructor(public el: ElementRef) {
   }
 
   ngOnInit() {
@@ -112,6 +120,9 @@ export class InputComponent implements OnInit {
       this._value = this.value || 0
     }
   }
+
+  @Output() onFocus: EventEmitter<any> = new EventEmitter()
+  @Output() onFocusOut: EventEmitter<any> = new EventEmitter()
 
   get value(): any {
 
@@ -190,6 +201,8 @@ export class InputComponent implements OnInit {
   @ViewChild('prepend') prepend: any
   @ViewChild('append') append: any
 
+  @ViewChild('input') inputField: ElementRef
+
 
   ngAfterContentInit() {
     this.showAppend = (this.trim(this.append.nativeElement.innerHTML).length > 0);
@@ -259,6 +272,14 @@ export class InputComponent implements OnInit {
     } else {
       this.isMin = false
     }
+  }
+
+  focus($event) {
+    this.onFocus.emit($event)
+  }
+
+  focusOut($event) {
+    this.onFocusOut.emit($event)
   }
 
 }

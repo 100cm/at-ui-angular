@@ -8,7 +8,22 @@ export class ColComponent {
         this._elementRef = _elementRef;
         this._renderer = _renderer;
         this._classList = [];
+        this._col_type = 'md';
         this._el = this._elementRef.nativeElement;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set colType(value) {
+        this._col_type = value;
+        this.setClassMap();
+    }
+    /**
+     * @return {?}
+     */
+    get colType() {
+        return this._col_type;
     }
     /**
      * @return {?}
@@ -52,8 +67,8 @@ export class ColComponent {
             this._renderer.removeClass(this._el, _className);
         });
         this._classList = [
-            this.span && `col-md-${this.span}`,
-            this.offset && `col-md-offset-${this.offset}`
+            this.span && `col-${this.colType}-${this.span}`,
+            this.offset && `col-${this.colType}-offset-${this.offset}`
         ];
         this._classList = this._classList.filter((item) => {
             return !!item;
@@ -66,7 +81,8 @@ export class ColComponent {
 ColComponent.decorators = [
     { type: Component, args: [{
                 selector: '[atCol]',
-                template: `<ng-content></ng-content>
+                template: `
+    <ng-content></ng-content>
   `,
             },] },
 ];
@@ -78,6 +94,7 @@ ColComponent.ctorParameters = () => [
     { type: Renderer2, },
 ];
 ColComponent.propDecorators = {
+    'colType': [{ type: Input },],
     'span': [{ type: Input },],
     'offset': [{ type: Input },],
 };
@@ -99,6 +116,8 @@ function ColComponent_tsickle_Closure_declarations() {
     ColComponent.prototype._el;
     /** @type {?} */
     ColComponent.prototype._classList;
+    /** @type {?} */
+    ColComponent.prototype._col_type;
     /** @type {?} */
     ColComponent.prototype._elementRef;
     /** @type {?} */

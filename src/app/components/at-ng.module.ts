@@ -68,6 +68,7 @@ import {DatetimepickerComponent} from './datetimepicker/datetimepicker.component
 import {CalendarComponent} from './datetimepicker/calendar/calendar.component';
 import {TimeComponent} from './datetimepicker/time/time.component';
 import {CardComponent} from './card/card.component';
+import { AtFormatPipe } from './datetimepicker/at-format.pipe';
 
 
 export {CommonModule} from '@angular/common';
@@ -197,6 +198,7 @@ export {CardComponent} from './card/card.component';
     CalendarComponent,
     TimeComponent,
     CardComponent,
+    AtFormatPipe,
   ],
   exports: [
     ButtonComponent,
@@ -259,6 +261,7 @@ export {CardComponent} from './card/card.component';
     DatetimepickerComponent,
     TimeComponent,
     CardComponent,
+    AtFormatPipe
 
 
   ],
@@ -269,7 +272,7 @@ export {CardComponent} from './card/card.component';
     [
       CommonModule,
       FormsModule,
-      BrowserModule, BrowserAnimationsModule
+      // BrowserModule,
 
     ],
   providers: [AtGlobalMonitorService]

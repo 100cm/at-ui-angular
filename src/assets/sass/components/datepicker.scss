@@ -1,5 +1,10 @@
 @import '../variables/index.scss';
 
+.over-flow-wrapper {
+  position: absolute;
+  z-index: 2;
+}
+
 @mixin date-header() {
   position: absolute;
   top: 0;
@@ -164,6 +169,18 @@
                 color: white;
                 &:hover {
                   background: $blue-500 !important;
+                }
+              }
+            }
+            &--disabled {
+              cursor: not-allowed;
+              color: $grey-500;
+              background: $grey-100;
+              .at-date {
+                cursor: not-allowed;
+                &:hover {
+                  cursor: not-allowed;
+                  background: $grey-100;
                 }
               }
             }
