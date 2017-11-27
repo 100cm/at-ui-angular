@@ -13,6 +13,6 @@ export class DemoBasicDatepickerComponent implements OnInit {
   ngOnInit() {
   }
 
-  current_date = '2017-09-26'
+  current_date = ''
 
 }

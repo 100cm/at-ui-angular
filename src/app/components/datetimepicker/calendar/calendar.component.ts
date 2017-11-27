@@ -92,6 +92,18 @@ export class CalendarComponent implements OnInit {
     return this._disabledDate
   }
 
+  _show_value
+
+  @Input()
+  set showValue(value) {
+    this._show_value = value
+    this.buildCalendar()
+  }
+
+  get showValue() {
+    return this._show_value || new Date()
+  }
+
 
   monthName = []
   _disabledDate
@@ -141,8 +153,9 @@ export class CalendarComponent implements OnInit {
   @Input()
   set atValue(value) {
     this._atValue = value;
-    this.atMonth = moment(value).month()
-    this.atYear = moment(value).year()
+    let day = value || new Date()
+    this.atMonth = moment(day).month()
+    this.atYear = moment(day).year()
     this.buildCalendar()
   }
 
@@ -226,7 +239,7 @@ export class CalendarComponent implements OnInit {
         isSelectedDay: date.isSame(this.atValue, 'day'),
         title: date.format(this.format),
         date: date,
-        disabled: date.isBefore(this.disableDate, 'day'),
+        disabled: this.disableDate && date.isBefore(this.disableDate, 'day'),
         firstDisabled: false,
         lastDisabled: false,
       });
@@ -272,7 +285,8 @@ export class CalendarComponent implements OnInit {
 
   buildCalendar() {
     moment.locale('zh-cn')
-    let date = moment(this.atValue).year(this.atYear).month(this.atMonth)
+    let time = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue
+    let date = moment(time).year(this.atYear).month(this.atMonth)
     this.weeks = this.buildMonth(date)
     this.months = this.buildYears(date)
     this._years = this.buildCentury(this.atYear)

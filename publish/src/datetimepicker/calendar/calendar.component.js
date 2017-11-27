@@ -15,6 +15,34 @@ export class CalendarComponent {
         this._atMonth = moment(new Date()).month();
     }
     /**
+     * @param {?} value
+     * @return {?}
+     */
+    set disableDate(value) {
+        this._disabledDate = value;
+        this.buildCalendar();
+    }
+    /**
+     * @return {?}
+     */
+    get disableDate() {
+        return this._disabledDate;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set showValue(value) {
+        this._show_value = value;
+        this.buildCalendar();
+    }
+    /**
+     * @return {?}
+     */
+    get showValue() {
+        return this._show_value || new Date();
+    }
+    /**
      * @return {?}
      */
     get atType() {
@@ -66,8 +94,9 @@ export class CalendarComponent {
      */
     set atValue(value) {
         this._atValue = value;
-        this.atMonth = moment(value).month();
-        this.atYear = moment(value).year();
+        let /** @type {?} */ day = value || new Date();
+        this.atMonth = moment(day).month();
+        this.atYear = moment(day).year();
         this.buildCalendar();
     }
     /**
@@ -166,9 +195,9 @@ export class CalendarComponent {
                 isNextMonth: date.month() > month.month(),
                 isCurrentDay: date.isSame(new Date(), 'day'),
                 isSelectedDay: date.isSame(this.atValue, 'day'),
-                title: date.format('YYYY-MM-DD'),
+                title: date.format(this.format),
                 date: date,
-                disabled: false,
+                disabled: this.disableDate && date.isBefore(this.disableDate, 'day'),
                 firstDisabled: false,
                 lastDisabled: false,
             });
@@ -207,7 +236,7 @@ export class CalendarComponent {
                 index: i,
                 name: this.monthName[i],
                 isCurrentMonth: moment(new Date()).month() === i && date.isSame(new Date(), 'year'),
-                isSelectedMonth: this.atMonth === i
+                isSelectedMonth: this.atMonth === i,
             });
             if ((i + 1) % 3 === 0) {
                 formatMonths.push(months);
@@ -222,7 +251,8 @@ export class CalendarComponent {
      */
     buildCalendar() {
         moment.locale('zh-cn');
-        let /** @type {?} */ date = moment(this.atValue).year(this.atYear).month(this.atMonth);
+        let /** @type {?} */ time = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue;
+        let /** @type {?} */ date = moment(time).year(this.atYear).month(this.atMonth);
         this.weeks = this.buildMonth(date);
         this.months = this.buildYears(date);
         this._years = this.buildCentury(this.atYear);
@@ -232,7 +262,9 @@ export class CalendarComponent {
      * @return {?}
      */
     clickDay(day) {
-        this._clickDate.emit(day);
+        if (!day.disabled) {
+            this._clickDate.emit(day);
+        }
     }
     /**
      * @param {?} single
@@ -267,11 +299,12 @@ CalendarComponent.decorators = [
       <tr *ngFor="let week of weeks">
         <td
           *ngFor="let day of week.days" class="at-date-cell"
-          (click)="clickDay(day.date)"
+          (click)="clickDay(day)"
           [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
 'at-date-cell--selected':day.isSelectedDay ,
 'at-date-cell--today':day.isCurrentDay,
-'at-date-cell--next-month':day.isNextMonth}">
+'at-date-cell--next-month':day.isNextMonth,
+'at-date-cell--disabled':day.disabled}">
           <div class="at-date">{{day.number}}</div>
         </td>
       </tr>
@@ -323,10 +356,13 @@ CalendarComponent.propDecorators = {
     '_clickMonth': [{ type: Output },],
     '_clickYear': [{ type: Output },],
     '_clickDate': [{ type: Output },],
+    'disableDate': [{ type: Input },],
+    'showValue': [{ type: Input },],
     'private': [{ type: Input },],
     'atType': [{ type: Input },],
     'atValue': [{ type: Input },],
     'atYear': [{ type: Input },],
+    'format': [{ type: Input },],
     'atMonth': [{ type: Input },],
     'atDay': [{ type: Input },],
 };
@@ -347,7 +383,11 @@ function CalendarComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     CalendarComponent.prototype._clickDate;
     /** @type {?} */
+    CalendarComponent.prototype._show_value;
+    /** @type {?} */
     CalendarComponent.prototype.monthName;
+    /** @type {?} */
+    CalendarComponent.prototype._disabledDate;
     /** @type {?} */
     CalendarComponent.prototype.private;
     /** @type {?} */
@@ -366,4 +406,6 @@ function CalendarComponent_tsickle_Closure_declarations() {
     CalendarComponent.prototype._atMonth;
     /** @type {?} */
     CalendarComponent.prototype._atDay;
+    /** @type {?} */
+    CalendarComponent.prototype.format;
 }

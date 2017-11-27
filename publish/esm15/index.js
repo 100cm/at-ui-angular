@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, ComponentFactoryResolver, ContentChild, ContentChildren, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Injectable, InjectionToken, Injector, Input, NgModule, Output, Renderer2, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, ContentChild, ContentChildren, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Injectable, InjectionToken, Injector, Input, NgModule, Output, Pipe, Renderer2, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -1463,7 +1463,11 @@ CheckboxGroupComponent.propDecorators = {
 };
 
 class InputComponent {
-    constructor() {
+    /**
+     * @param {?} el
+     */
+    constructor(el) {
+        this.el = el;
         this._atStatus = "original";
         this._atType = "normal";
         this._disabled = false;
@@ -1475,6 +1479,8 @@ class InputComponent {
         this.isMin = false;
         this._prefixCls = 'at-input';
         this._BindClass = {};
+        this.onFocus = new EventEmitter();
+        this.onFocusOut = new EventEmitter();
         this.showAppend = true;
         this.showPrepend = true;
         // ngModel Access
@@ -1726,39 +1732,58 @@ class InputComponent {
             this.isMin = false;
         }
     }
+    /**
+     * @param {?} $event
+     * @return {?}
+     */
+    focus($event) {
+        this.onFocus.emit($event);
+    }
+    /**
+     * @param {?} $event
+     * @return {?}
+     */
+    focusOut($event) {
+        this.onFocusOut.emit($event);
+    }
 }
 InputComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atInput',
-                template: `<div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}}"
-                 [ngClass]="_BindClass">
-    <div #prepend [hidden]="!showPrepend" [ngClass]="{'at-input-group__prepend': showPrepend}">
-      <ng-content select="[atPrepend]"></ng-content>
-    </div>
-
-    <ng-template [ngIf]="atType == 'normal'">
-      <input [(ngModel)]="value" placeholder="{{placeholder}}" type="{{type}}" [disabled]="disabled"
-             class="{{_prefixCls}}__original">
-    </ng-template>
-
-    <ng-template [ngIf]="atType == 'number'">
-      <div class="at-input-number__input">
-        <input [(ngModel)]="value" placeholder="{{placeholder}}" type="number" [disabled]="disabled"
-               class="{{_prefixCls}}__original">
-
-        <div class="at-input-number__handler">
-          <span (click)="numberUp()" class="at-input-number__up" [ngClass]="{'at-input-number__up--disabled':isMax}"><i class="icon icon-chevron-up"  ></i></span>
-          <span  (click)="numberDown()" class="at-input-number__down" [ngClass]="{'at-input-number__up--disabled':isMin}"><i class="icon icon-chevron-down"></i></span></div>
+                template: `
+    <div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}}"
+         [ngClass]="_BindClass">
+      <div #prepend [hidden]="!showPrepend" [ngClass]="{'at-input-group__prepend': showPrepend}">
+        <ng-content select="[atPrepend]"></ng-content>
       </div>
-    </ng-template>
 
-    <i *ngIf="icon" class="at-input__icon icon icon-{{icon}}"></i>
+      <ng-template [ngIf]="atType == 'normal'">
+        <input #input [(ngModel)]="value" placeholder="{{placeholder}}"
+               (focus)="focus($event)" (focusout)="focusOut($event)" type="{{type}}" [disabled]="disabled"
+               class="{{_prefixCls}}__original">
+      </ng-template>
 
-    <div #append [ngClass]="{'at-input-group__append': showAppend}" [hidden]="!showAppend">
-      <ng-content select="[atAppend]"></ng-content>
+      <ng-template [ngIf]="atType == 'number'">
+        <div class="at-input-number__input">
+          <input [(ngModel)]="value" placeholder="{{placeholder}}" type="number" [disabled]="disabled"
+                 class="{{_prefixCls}}__original">
+
+          <div class="at-input-number__handler">
+            <span (click)="numberUp()" class="at-input-number__up"
+                  [ngClass]="{'at-input-number__up--disabled':isMax}"><i class="icon icon-chevron-up"></i></span>
+            <span (click)="numberDown()" class="at-input-number__down"
+                  [ngClass]="{'at-input-number__up--disabled':isMin}"><i class="icon icon-chevron-down"></i></span>
+          </div>
+        </div>
+      </ng-template>
+
+      <i *ngIf="icon" class="at-input__icon icon icon-{{icon}}"></i>
+
+      <div #append [ngClass]="{'at-input-group__append': showAppend}" [hidden]="!showAppend">
+        <ng-content select="[atAppend]"></ng-content>
+      </div>
+
     </div>
-
-  </div>
   `,
                 providers: [
                     {
@@ -1772,12 +1797,16 @@ InputComponent.decorators = [
 /**
  * @nocollapse
  */
-InputComponent.ctorParameters = () => [];
+InputComponent.ctorParameters = () => [
+    { type: ElementRef, },
+];
 InputComponent.propDecorators = {
     'max': [{ type: Input },],
     'min': [{ type: Input },],
     'step': [{ type: Input },],
     'atType': [{ type: Input },],
+    'onFocus': [{ type: Output },],
+    'onFocusOut': [{ type: Output },],
     'atSize': [{ type: Input },],
     'icon': [{ type: Input },],
     'type': [{ type: Input },],
@@ -1786,6 +1815,7 @@ InputComponent.propDecorators = {
     'placeholder': [{ type: Input },],
     'prepend': [{ type: ViewChild, args: ['prepend',] },],
     'append': [{ type: ViewChild, args: ['append',] },],
+    'inputField': [{ type: ViewChild, args: ['input',] },],
 };
 
 const DropDownAnimation = trigger('dropDownAnimation', [
@@ -5274,17 +5304,23 @@ AtFormFeedbackDirective.propDecorators = {
 };
 
 class DatetimepickerComponent {
-    constructor() {
+    /**
+     * @param {?} el
+     */
+    constructor(el) {
+        this.el = el;
         this._atType = 'full';
+        this.show = false;
         this._atValue = null;
-        this.atYear = moment(this.atValue).year();
-        this.atMonth = moment(this.atValue).month();
+        this.atYear = moment(this.atValue || this.showValue).year();
+        this.atMonth = moment(this.atValue || this.showValue).month();
         this.selectedDate = moment(this.atValue).date();
         this.selectedYear = moment(this.atValue).year();
         this.selectedMonth = moment(this.atValue).month();
         // ngModel Access
         this.onChange = Function.prototype;
         this.onTouched = Function.prototype;
+        this.format = "YYYY-MM-DD";
     }
     /**
      * @return {?}
@@ -5303,21 +5339,41 @@ class DatetimepickerComponent {
      * @return {?}
      */
     get atValue() {
-        return this._atValue || new Date();
+        return this._atValue;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set showValue(value) {
+        if (value) {
+            this._show_value = value;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    get showValue() {
+        return this._show_value;
     }
     /**
      * @param {?} value
      * @return {?}
      */
     set atValue(value) {
-        this._atValue = value;
+        if (value) {
+            this._atValue = value;
+            this._show_value = value;
+        }
     }
     /**
      * @param {?} value
      * @return {?}
      */
     writeValue(value) {
-        this.updateDate(value);
+        if (value) {
+            this.updateDate(value);
+        }
     }
     /**
      * @param {?} fn
@@ -5337,6 +5393,15 @@ class DatetimepickerComponent {
      * @return {?}
      */
     ngOnInit() {
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    onDocumentClick(event) {
+        if (!this.el.nativeElement.contains(event.target)) {
+            this.show = false;
+        }
     }
     /**
      * @return {?}
@@ -5379,7 +5444,7 @@ class DatetimepickerComponent {
      * @return {?}
      */
     clickDate(date) {
-        this.updateDate(date);
+        this.updateDate(date.date);
         let /** @type {?} */ change_date = this.atValue;
         if (this.format) {
             change_date = change_date.format(this.format);
@@ -5400,6 +5465,12 @@ class DatetimepickerComponent {
         this.selectedDate = moment(this.atValue).date();
         this.atYear = moment(this.atValue).year();
         this.atMonth = moment(this.atValue).month();
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        // this.cssTop = this.input.inputField.nativeElement.offsetHeight + 'px'
     }
     /**
      * @param {?} month
@@ -5437,49 +5508,63 @@ class DatetimepickerComponent {
     nextCenury() {
         this.atYear = this.atYear + 10;
     }
+    /**
+     * @return {?}
+     */
+    choosePicker() {
+        this.show = true;
+    }
 }
 DatetimepickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atDatetimePicker',
-                template: `<div class="at-datepicker">
-  <div class="at-datepicker--panel">
-    <div class="at-datepicker--panel--header">
-      <div style="position: relative">
-        <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
-        </a>
-        <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
-        </a>
+                template: `
+    <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="choosePicker()"
+             (click)="choosePicker()"></atInput>
+    <div *ngIf="show" class="over-flow-wrapper" [ngStyle]="{'top':cssTop}">
+      <div class="at-datepicker">
+        <div class="at-datepicker--panel">
+          <div class="at-datepicker--panel--header">
+            <div style="position: relative">
+              <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
+              </a>
+              <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
+              </a>
 
-        <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
-        </a>
+              <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
+              </a>
 
 
-        <span class="current-select-label">
-            <a (click)="setCal('month')" class="month-select">{{atMonth+1}}月</a>
+              <span class="current-select-label">
+            <a (click)="setCal('month')" class="month-select">{{atMonth + 1}}月</a>
             <a (click)="setCal('year')" class="year-select">{{atYear}}年</a>
           </span>
 
-        <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
-        </a>
-        <a (click)="nextYear()" class="next-year-btn">
-        </a>
+              <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
+              </a>
+              <a (click)="nextYear()" class="next-year-btn">
+              </a>
 
-        <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
-        </a>
+              <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
+              </a>
 
+            </div>
+          </div>
+          <div class="at-datepicker--panel--body">
+            <atCalendar (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
+                        (_clickMonth)="clickMonth($event)"
+                        [format]="format"
+                        [disableDate]="disableDate"
+                        [atType]="atType"
+                        [atYear]="atYear" [atMonth]="atMonth"
+                        [showValue]="showValue"
+                        [atValue]="atValue"></atCalendar>
+
+          </div>
+        </div>
       </div>
     </div>
-    <div class="at-datepicker--panel--body">
-      <atCalendar (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)" (_clickMonth)="clickMonth($event)"
-                  [atType]="atType"
-                  [atYear]="atYear" [atMonth]="atMonth"
-                  [atValue]="atValue"></atCalendar>
-
-      <atTime></atTime>
-    </div>
-  </div>
-</div>
-`,
+  `,
                 providers: [
                     {
                         provide: NG_VALUE_ACCESSOR,
@@ -5492,10 +5577,15 @@ DatetimepickerComponent.decorators = [
 /**
  * @nocollapse
  */
-DatetimepickerComponent.ctorParameters = () => [];
+DatetimepickerComponent.ctorParameters = () => [
+    { type: ElementRef, },
+];
 DatetimepickerComponent.propDecorators = {
     'atType': [{ type: Input },],
     'format': [{ type: Input },],
+    'disableDate': [{ type: Input },],
+    'onDocumentClick': [{ type: HostListener, args: ['document:click', ['$event'],] },],
+    'input': [{ type: ViewChild, args: ['timeinput',] },],
 };
 
 class CalendarComponent {
@@ -5510,6 +5600,34 @@ class CalendarComponent {
         this._years = [];
         this._atYear = moment(new Date()).year();
         this._atMonth = moment(new Date()).month();
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set disableDate(value) {
+        this._disabledDate = value;
+        this.buildCalendar();
+    }
+    /**
+     * @return {?}
+     */
+    get disableDate() {
+        return this._disabledDate;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set showValue(value) {
+        this._show_value = value;
+        this.buildCalendar();
+    }
+    /**
+     * @return {?}
+     */
+    get showValue() {
+        return this._show_value || new Date();
     }
     /**
      * @return {?}
@@ -5563,8 +5681,9 @@ class CalendarComponent {
      */
     set atValue(value) {
         this._atValue = value;
-        this.atMonth = moment(value).month();
-        this.atYear = moment(value).year();
+        let /** @type {?} */ day = value || new Date();
+        this.atMonth = moment(day).month();
+        this.atYear = moment(day).year();
         this.buildCalendar();
     }
     /**
@@ -5663,9 +5782,9 @@ class CalendarComponent {
                 isNextMonth: date.month() > month.month(),
                 isCurrentDay: date.isSame(new Date(), 'day'),
                 isSelectedDay: date.isSame(this.atValue, 'day'),
-                title: date.format('YYYY-MM-DD'),
+                title: date.format(this.format),
                 date: date,
-                disabled: false,
+                disabled: this.disableDate && date.isBefore(this.disableDate, 'day'),
                 firstDisabled: false,
                 lastDisabled: false,
             });
@@ -5704,7 +5823,7 @@ class CalendarComponent {
                 index: i,
                 name: this.monthName[i],
                 isCurrentMonth: moment(new Date()).month() === i && date.isSame(new Date(), 'year'),
-                isSelectedMonth: this.atMonth === i
+                isSelectedMonth: this.atMonth === i,
             });
             if ((i + 1) % 3 === 0) {
                 formatMonths.push(months);
@@ -5719,7 +5838,8 @@ class CalendarComponent {
      */
     buildCalendar() {
         moment.locale('zh-cn');
-        let /** @type {?} */ date = moment(this.atValue).year(this.atYear).month(this.atMonth);
+        let /** @type {?} */ time = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue;
+        let /** @type {?} */ date = moment(time).year(this.atYear).month(this.atMonth);
         this.weeks = this.buildMonth(date);
         this.months = this.buildYears(date);
         this._years = this.buildCentury(this.atYear);
@@ -5729,7 +5849,9 @@ class CalendarComponent {
      * @return {?}
      */
     clickDay(day) {
-        this._clickDate.emit(day);
+        if (!day.disabled) {
+            this._clickDate.emit(day);
+        }
     }
     /**
      * @param {?} single
@@ -5764,11 +5886,12 @@ CalendarComponent.decorators = [
       <tr *ngFor="let week of weeks">
         <td
           *ngFor="let day of week.days" class="at-date-cell"
-          (click)="clickDay(day.date)"
+          (click)="clickDay(day)"
           [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
 'at-date-cell--selected':day.isSelectedDay ,
 'at-date-cell--today':day.isCurrentDay,
-'at-date-cell--next-month':day.isNextMonth}">
+'at-date-cell--next-month':day.isNextMonth,
+'at-date-cell--disabled':day.disabled}">
           <div class="at-date">{{day.number}}</div>
         </td>
       </tr>
@@ -5820,10 +5943,13 @@ CalendarComponent.propDecorators = {
     '_clickMonth': [{ type: Output },],
     '_clickYear': [{ type: Output },],
     '_clickDate': [{ type: Output },],
+    'disableDate': [{ type: Input },],
+    'showValue': [{ type: Input },],
     'private': [{ type: Input },],
     'atType': [{ type: Input },],
     'atValue': [{ type: Input },],
     'atYear': [{ type: Input },],
+    'format': [{ type: Input },],
     'atMonth': [{ type: Input },],
     'atDay': [{ type: Input },],
 };
@@ -6053,6 +6179,31 @@ CardComponent.propDecorators = {
     'border': [{ type: Input },],
 };
 
+class AtFormatPipe {
+    /**
+     * @param {?} value
+     * @param {?} formatString
+     * @return {?}
+     */
+    transform(value, formatString) {
+        if (value) {
+            return moment(value).format(formatString);
+        }
+        else {
+            return '';
+        }
+    }
+}
+AtFormatPipe.decorators = [
+    { type: Pipe, args: [{
+                name: 'atFormat'
+            },] },
+];
+/**
+ * @nocollapse
+ */
+AtFormatPipe.ctorParameters = () => [];
+
 class AtModule {
     /**
      * @param {?=} options
@@ -6131,6 +6282,7 @@ AtModule.decorators = [
                     CalendarComponent,
                     TimeComponent,
                     CardComponent,
+                    AtFormatPipe,
                 ],
                 exports: [
                     ButtonComponent,
@@ -6190,6 +6342,7 @@ AtModule.decorators = [
                     DatetimepickerComponent,
                     TimeComponent,
                     CardComponent,
+                    AtFormatPipe
                 ],
                 entryComponents: [NotificationComponent, NotificationContainerComponent,
                     MessageContainerComponent, MessageComponent,
@@ -6211,5 +6364,5 @@ const AT_ROOT_CONFIG = new InjectionToken('AtRootConfig');
  * Generated bundle index. Do not edit.
  */
 
-export { ButtonComponent, HollowDirective, ButtonGroupComponent, MenuComponent, MenuItemComponent, SubMenuComponent, MenuItemGroupComponent, MenuListComponent, RadioGroupComponent, RadioComponent, InlineMenuComponent, RowComponent, ColComponent, TagComponent, IconComponent, CheckboxComponent, CheckboxGroupComponent, InputComponent, SelectComponent, RadioButtonComponent, SwitchComponent, OptionComponent, SliderComponent, TextareaComponent, DropdownComponent, DropdownMenuItemComponent, DropMenuListComponent, NotificationComponent, ComponentCreatorBase, NotificationContainerComponent, NotificationBaseService, AtNotificationService, AlertComponent, BadgeComponent, ModalComponent, AtGlobalMonitorService, AtModalService, ModalBaseService, TableComponent, AtTbodyDirective, AtTdDirective, AtThDirective, AtTbodyTrDirective, AtTheadDirective, PagenationComponent, BreadcrumbComponent, AtBreadItemDirective, MessageContainerComponent, MessageComponent, AtMessageService, AtMessageContainerService, PopoverComponent, ProgressComponent, TooltipComponent, FormComponent, AtFormDirective, AtFormItemDirective, AtFormLabelDirective, AtFormContentDirective, AtFormErrorDirective, AtFormFeedbackDirective, DatetimepickerComponent, CalendarComponent, TimeComponent, CardComponent, AtModule, AT_ROOT_CONFIG, DropDownAnimation as ɵb, FadeAnimation as ɵc, TagAnimation as ɵa, ComponentCreator as ɵd };
+export { ButtonComponent, HollowDirective, ButtonGroupComponent, MenuComponent, MenuItemComponent, SubMenuComponent, MenuItemGroupComponent, MenuListComponent, RadioGroupComponent, RadioComponent, InlineMenuComponent, RowComponent, ColComponent, TagComponent, IconComponent, CheckboxComponent, CheckboxGroupComponent, InputComponent, SelectComponent, RadioButtonComponent, SwitchComponent, OptionComponent, SliderComponent, TextareaComponent, DropdownComponent, DropdownMenuItemComponent, DropMenuListComponent, NotificationComponent, ComponentCreatorBase, NotificationContainerComponent, NotificationBaseService, AtNotificationService, AlertComponent, BadgeComponent, ModalComponent, AtGlobalMonitorService, AtModalService, ModalBaseService, TableComponent, AtTbodyDirective, AtTdDirective, AtThDirective, AtTbodyTrDirective, AtTheadDirective, PagenationComponent, BreadcrumbComponent, AtBreadItemDirective, MessageContainerComponent, MessageComponent, AtMessageService, AtMessageContainerService, PopoverComponent, ProgressComponent, TooltipComponent, FormComponent, AtFormDirective, AtFormItemDirective, AtFormLabelDirective, AtFormContentDirective, AtFormErrorDirective, AtFormFeedbackDirective, DatetimepickerComponent, CalendarComponent, TimeComponent, CardComponent, AtModule, AT_ROOT_CONFIG, DropDownAnimation as ɵb, FadeAnimation as ɵc, TagAnimation as ɵa, ComponentCreator as ɵe, AtFormatPipe as ɵd };
 export { CommonModule } from '@angular/common';

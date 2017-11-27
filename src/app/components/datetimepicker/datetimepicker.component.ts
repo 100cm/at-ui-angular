@@ -44,6 +44,7 @@ import {InputComponent} from "../input/input.component";
                         [disableDate]="disableDate"
                         [atType]="atType"
                         [atYear]="atYear" [atMonth]="atMonth"
+                        [showValue]="showValue"
                         [atValue]="atValue"></atCalendar>
 
           </div>
@@ -85,16 +86,31 @@ export class DatetimepickerComponent implements OnInit {
   private _atValue = null
 
   get atValue() {
-    return this._atValue || new Date();
+    return this._atValue
+  }
+
+  _show_value
+
+  set showValue(value) {
+    if (value) {
+      this._show_value = value
+    }
+  }
+
+  get showValue() {
+    return this._show_value
   }
 
   set atValue(value) {
-    this._atValue = value;
+    if (value) {
+      this._atValue = value;
+      this._show_value = value
+    }
   }
 
-  atYear = moment(this.atValue).year()
+  atYear = moment(this.atValue || this.showValue).year()
 
-  atMonth = moment(this.atValue).month()
+  atMonth = moment(this.atValue || this.showValue).month()
 
   selectedDate = moment(this.atValue).date();
   selectedYear = moment(this.atValue).year();
@@ -108,7 +124,9 @@ export class DatetimepickerComponent implements OnInit {
   @Input() disableDate
 
   writeValue(value: any): void {
-    this.updateDate(value);
+    if (value) {
+      this.updateDate(value);
+    }
   }
 
   registerOnChange(fn: (_: any) => {}): void {
@@ -181,7 +199,7 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.cssTop = this.input.inputField.nativeElement.offsetHeight + 'px'
+    // this.cssTop = this.input.inputField.nativeElement.offsetHeight + 'px'
   }
 
   clickMonth(month) {

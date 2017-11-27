@@ -1,10 +1,16 @@
-import { OnInit } from '@angular/core';
+import { ElementRef, OnInit } from '@angular/core';
+import { InputComponent } from "../input/input.component";
 export declare class DatetimepickerComponent implements OnInit {
-    constructor();
+    private el;
+    constructor(el: ElementRef);
     private _atType;
+    show: boolean;
+    private cssTop;
     atType: string;
     private _atValue;
     atValue: any;
+    _show_value: any;
+    showValue: any;
     atYear: number;
     atMonth: number;
     selectedDate: number;
@@ -12,20 +18,25 @@ export declare class DatetimepickerComponent implements OnInit {
     selectedMonth: number;
     onChange: any;
     onTouched: any;
-    format: any;
+    format: string;
+    disableDate: any;
     writeValue(value: any): void;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
     ngOnInit(): void;
+    onDocumentClick(event: any): void;
+    input: InputComponent;
     preYear(): void;
     nextYear(): void;
     preMonth(): void;
     nextMonth(): void;
     clickDate(date: any): void;
     updateDate(value: any): void;
+    ngAfterViewInit(): void;
     clickMonth(month: any): void;
     clickYear(year: any): void;
     setCal(s: any): void;
     preCentury(): void;
     nextCenury(): void;
+    choosePicker(): void;
 }

@@ -1,7 +1,8 @@
-import { OnInit } from '@angular/core';
+import { ElementRef, EventEmitter, OnInit } from '@angular/core';
 export declare type atInputSize = 'small' | 'normal' | 'large';
 export declare class InputComponent implements OnInit {
-    constructor();
+    el: ElementRef;
+    constructor(el: ElementRef);
     ngOnInit(): void;
     private _atStatus;
     private _atType;
@@ -22,6 +23,8 @@ export declare class InputComponent implements OnInit {
     _BindClass: {};
     atType: string;
     step: number;
+    onFocus: EventEmitter<any>;
+    onFocusOut: EventEmitter<any>;
     value: any;
     atSize: atInputSize;
     icon: string;
@@ -33,6 +36,7 @@ export declare class InputComponent implements OnInit {
     showPrepend: boolean;
     prepend: any;
     append: any;
+    inputField: ElementRef;
     ngAfterContentInit(): void;
     trim(str: any): any;
     onChange: any;
@@ -43,4 +47,6 @@ export declare class InputComponent implements OnInit {
     numberUp(): void;
     numberDown(): void;
     setNumberStatus(): void;
+    focus($event: any): void;
+    focusOut($event: any): void;
 }

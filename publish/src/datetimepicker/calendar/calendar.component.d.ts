@@ -7,7 +7,11 @@ export declare class CalendarComponent implements OnInit {
     _clickYear: EventEmitter<any>;
     constructor();
     _clickDate: EventEmitter<any>;
+    disableDate: any;
+    _show_value: any;
+    showValue: any;
     monthName: any[];
+    _disabledDate: any;
     private: any;
     _atType: 'full' | 'month' | 'year';
     atType: "year" | "month" | "full";
@@ -24,6 +28,7 @@ export declare class CalendarComponent implements OnInit {
     weeks: Array<any>;
     atYear: number;
     atMonth: number;
+    format: string;
     atDay: number;
     ngOnInit(): void;
     buildMonth(d: Moment): Array<AtDate>;
