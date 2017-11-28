@@ -68,9 +68,17 @@ import {DatetimepickerComponent} from './datetimepicker/datetimepicker.component
 import {CalendarComponent} from './datetimepicker/calendar/calendar.component';
 import {TimeComponent} from './datetimepicker/time/time.component';
 import {CardComponent} from './card/card.component';
-import { AtFormatPipe } from './datetimepicker/at-format.pipe';
+import {AtFormatPipe} from './datetimepicker/at-format.pipe';
+import {TabComponent} from './tab/tab.component';
+import {TabContentComponent} from './tab/tab-content/tab-content.component';
+import {TabSetComponent} from './tab/tab-set/tab-set.component';
+import { TabBodyComponent } from './tab/tab-body/tab-body.component';
+import { TabHeaderComponent } from './tab/tab-header/tab-header.component';
+import { AtTabInkDirective } from './tab/at-tab-ink.directive';
+import { TabNavsComponent } from './tab/tab-navs/tab-navs.component';
+import { TabLabelDirective } from './tab/tab-label.directive';
 
-
+export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
 export {ButtonComponent} from "./button/button.component";
 export {HollowDirective} from "./button/hollow/hollow.directive";
@@ -199,6 +207,14 @@ export {CardComponent} from './card/card.component';
     TimeComponent,
     CardComponent,
     AtFormatPipe,
+    TabComponent,
+    TabContentComponent,
+    TabSetComponent,
+    TabBodyComponent,
+    TabHeaderComponent,
+    AtTabInkDirective,
+    TabNavsComponent,
+    TabLabelDirective,
   ],
   exports: [
     ButtonComponent,
@@ -261,7 +277,10 @@ export {CardComponent} from './card/card.component';
     DatetimepickerComponent,
     TimeComponent,
     CardComponent,
-    AtFormatPipe
+    AtFormatPipe,
+    TabComponent,
+    TabContentComponent,
+    TabSetComponent
 
 
   ],

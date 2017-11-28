@@ -133,6 +133,8 @@ import { AtDemoDatetimepickerComponent } from './showcase/at-demo-datetimepicker
 import { DemoBasicDatepickerComponent } from './showcase/at-demo-datetimepicker/demo-basic-datepicker/demo-basic-datepicker.component';
 import { AtDemoCardComponent } from './showcase/at-demo-card/at-demo-card.component';
 import {HighLightComponent} from "./showcase/high-light/high-light.component";
+import { AtDemoTabsComponent } from './showcase/at-demo-tabs/at-demo-tabs.component';
+import { DemoBasicTabComponent } from './showcase/at-demo-tabs/demo-basic-tab/demo-basic-tab.component';
 
 
 @NgModule({
@@ -237,6 +239,8 @@ import {HighLightComponent} from "./showcase/high-light/high-light.component";
     AtDemoDatetimepickerComponent,
     DemoBasicDatepickerComponent,
     AtDemoCardComponent,
+    AtDemoTabsComponent,
+    DemoBasicTabComponent,
 
 
   ],

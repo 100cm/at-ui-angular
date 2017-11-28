@@ -67,6 +67,8 @@ export class AtDemoComponentsComponent implements OnInit {
       url: '/components/datepicker',
       name_en: 'DatePicker'
     },
+
+    {name: 'tab', url: '/components/tab', name_en: 'tab'}
   ]
 
   goRoute(e) {
