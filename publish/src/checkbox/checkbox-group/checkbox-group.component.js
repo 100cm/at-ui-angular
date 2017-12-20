@@ -44,7 +44,6 @@ export class CheckboxGroupComponent {
      * @return {?}
      */
     ngAfterContentInit() {
-        console.log(this.checkbox);
     }
 }
 CheckboxGroupComponent.decorators = [

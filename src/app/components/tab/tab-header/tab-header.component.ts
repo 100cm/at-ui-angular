@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tab-header',
-  template:``,
+  template:`<ng-content>
+    
+  </ng-content>`,
 })
 export class TabHeaderComponent implements OnInit {
 

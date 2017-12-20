@@ -72,11 +72,13 @@ import {AtFormatPipe} from './datetimepicker/at-format.pipe';
 import {TabComponent} from './tab/tab.component';
 import {TabContentComponent} from './tab/tab-content/tab-content.component';
 import {TabSetComponent} from './tab/tab-set/tab-set.component';
-import { TabBodyComponent } from './tab/tab-body/tab-body.component';
-import { TabHeaderComponent } from './tab/tab-header/tab-header.component';
-import { AtTabInkDirective } from './tab/at-tab-ink.directive';
-import { TabNavsComponent } from './tab/tab-navs/tab-navs.component';
-import { TabLabelDirective } from './tab/tab-label.directive';
+import {TabBodyComponent} from './tab/tab-body/tab-body.component';
+import {TabHeaderComponent} from './tab/tab-header/tab-header.component';
+import {AtTabInkDirective} from './tab/at-tab-ink.directive';
+import {TabNavsComponent} from './tab/tab-navs/tab-navs.component';
+import {TabLabelDirective} from './tab/tab-label.directive';
+import {OverlayModule} from "./core/overlay/index";
+import { DropdownDirective } from './dropdown/dropdown.directive';
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -215,6 +217,7 @@ export {CardComponent} from './card/card.component';
     AtTabInkDirective,
     TabNavsComponent,
     TabLabelDirective,
+    DropdownDirective,
   ],
   exports: [
     ButtonComponent,
@@ -272,6 +275,7 @@ export {CardComponent} from './card/card.component';
     AtFormLabelDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
+    DropdownDirective,
 
     CalendarComponent,
     DatetimepickerComponent,
@@ -292,6 +296,7 @@ export {CardComponent} from './card/card.component';
       CommonModule,
       FormsModule,
       // BrowserModule,
+      OverlayModule,
 
     ],
   providers: [AtGlobalMonitorService]

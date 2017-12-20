@@ -54,7 +54,7 @@ export class TabNavsComponent implements OnInit {
   }
 
   alignInk(index) {
-    if (this._inkBar && this._labelWrappers) {
+    if (this._labelWrappers) {
       this._inkBar.alignToElement(this._labelWrappers.toArray()[index].elementRef.nativeElement)
     }
   }

@@ -54,7 +54,8 @@ export class CheckboxGroupComponent implements OnInit {
   @ContentChildren(CheckboxComponent) checkbox: QueryList<CheckboxComponent>
 
   ngAfterContentInit() {
-    console.log(this.checkbox)
+
   }
+
 
 }

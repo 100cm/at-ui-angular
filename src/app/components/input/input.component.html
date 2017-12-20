@@ -5,7 +5,7 @@
   </div>
 
   <ng-template [ngIf]="atType == 'normal'">
-    <input [(ngModel)]="value" placeholder="{{placeholder}}" type="{{type}}" [disabled]="disabled"
+    <input  (change_="change" [(ngModel)]="value" placeholder="{{placeholder}}" type="{{type}}" [disabled]="disabled"
            class="{{_prefixCls}}__original">
   </ng-template>
 

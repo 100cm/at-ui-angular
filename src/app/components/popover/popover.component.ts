@@ -180,6 +180,6 @@ export class PopoverComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
-    this.setPopPosition()
+    // this.setPopPosition()
   }
 }

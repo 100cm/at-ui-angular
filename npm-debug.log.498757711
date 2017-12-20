@@ -1,0 +1,22 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/7.7.3/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'bin' ]
+2 info using npm@4.1.2
+3 info using node@v7.7.3
+4 verbose exit [ 0, true ]
+5 verbose stack Error: write EPIPE
+5 verbose stack     at exports._errnoException (util.js:1033:11)
+5 verbose stack     at WriteWrap.afterWrite [as oncomplete] (net.js:816:14)
+6 verbose cwd /Users/icepoint1999/code/ng-ice-at
+7 error Darwin 17.0.0
+8 error argv "/usr/local/Cellar/node/7.7.3/bin/node" "/usr/local/bin/npm" "bin"
+9 error node v7.7.3
+10 error npm  v4.1.2
+11 error code EPIPE
+12 error errno EPIPE
+13 error syscall write
+14 error write EPIPE
+15 error If you need help, you may report this error at:
+15 error     <https://github.com/npm/npm/issues>
+16 verbose exit [ 1, true ]

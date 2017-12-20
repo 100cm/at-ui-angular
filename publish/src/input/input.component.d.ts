@@ -47,6 +47,8 @@ export declare class InputComponent implements OnInit {
     numberUp(): void;
     numberDown(): void;
     setNumberStatus(): void;
+    value_change: EventEmitter<any>;
+    change(): void;
     focus($event: any): void;
     focusOut($event: any): void;
 }

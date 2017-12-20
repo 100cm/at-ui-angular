@@ -14,13 +14,15 @@ export class ComponentCreator<T> {
   componentRef: ComponentRef<T>
 
   create() {
-    this.componentRef = <any>this.base.componentFactoryResolver
-      .resolveComponentFactory(this.component)
-      .create(this.base.injector);
-    this.base.appRef.attachView(this.componentRef.hostView);
-    this.domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
-      .rootNodes[0] as HTMLElement;
-    document.body.appendChild(this.domElem);
+    setTimeout(() => {
+      this.componentRef = <any>this.base.componentFactoryResolver
+        .resolveComponentFactory(this.component)
+        .create(this.base.injector);
+      this.base.appRef.attachView(this.componentRef.hostView);
+      this.domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
+        .rootNodes[0] as HTMLElement;
+      document.body.appendChild(this.domElem);
+    })
   }
 
   remove() {

@@ -27,6 +27,7 @@ let globals = {
   'rxjs/operator/debounceTime': 'Rx.Observable.prototype',
   'rxjs/operator/distinctUntilChanged': 'Rx.Observable.prototype',
   'rxjs/operator/do': 'Rx.Observable.prototype',
+  'rxjs/operator/share': 'Rx.Observable.prototype',
   'rxjs/operator/filter': 'Rx.Observable.prototype',
   'rxjs/operator/finally': 'Rx.Observable.prototype',
   'rxjs/operator/first': 'Rx.Observable.prototype',

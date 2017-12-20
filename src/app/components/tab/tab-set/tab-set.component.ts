@@ -45,7 +45,9 @@ export class TabSetComponent implements OnInit {
 
   @Input() position: 'vertical' | 'horizontal' = 'horizontal'
 
+  @Input()
   selected_index = 0
+
   tabs: TabComponent[] = []
 
   selectTab(i) {

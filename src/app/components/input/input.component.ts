@@ -186,6 +186,7 @@ export class InputComponent implements OnInit {
     this._atStatus = value;
   }
 
+
   get placeholder(): string {
     return this._placeholder;
   }
@@ -272,6 +273,12 @@ export class InputComponent implements OnInit {
     } else {
       this.isMin = false
     }
+  }
+
+  @Output() value_change: EventEmitter<any> = new EventEmitter()
+
+  change() {
+    this.value_change.emit(this._value)
   }
 
   focus($event) {

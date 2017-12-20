@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-tab',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemoBasicTabComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  project = {}
 }

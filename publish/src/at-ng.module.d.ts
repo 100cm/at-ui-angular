@@ -1,4 +1,5 @@
 import { InjectionToken, ModuleWithProviders } from '@angular/core';
+export { TabComponent } from './tab/tab.component';
 export { CommonModule } from '@angular/common';
 export { ButtonComponent } from "./button/button.component";
 export { HollowDirective } from "./button/hollow/hollow.directive";

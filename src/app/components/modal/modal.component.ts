@@ -9,12 +9,12 @@ import {StatusIconType} from "../icon/icon-status-type";
     state('enter', style({opacity: 1, transform: 'scale(1)'})),
     transition('* => enter', [
       style({opacity: 0, transform: 'scale(0.1)'}),
-      animate('150ms linear')
+      animate('100ms linear')
     ]),
     state('leave', style({opacity: 0, transform: 'scale(0)'})),
     transition('* => leave', [
       style({opacity: 1, transform: 'scale(1)'}),
-      animate('150ms linear')
+      animate('100ms linear')
     ]),
   ])],
   template: `
@@ -150,7 +150,7 @@ export class ModalComponent implements OnInit {
     setTimeout(_ => {
       this._show = false
       this.onCancel.emit(this._show)
-    }, 180)
+    }, 20)
 
   }
 
@@ -158,7 +158,7 @@ export class ModalComponent implements OnInit {
     this.state = 'enter'
     setTimeout(_ => {
       this._show = true
-    }, 180)
+    }, 20)
   }
 
 
@@ -177,9 +177,10 @@ export class ModalComponent implements OnInit {
     setTimeout(_ => {
       this._show = false
       this.onOk.emit(this._show)
-    }, 180)
+    }, 20)
 
   }
+
 
   cancelFromMask(e) {
     if (e.target.getAttribute('role') === 'dialog' && this.maskClose) {

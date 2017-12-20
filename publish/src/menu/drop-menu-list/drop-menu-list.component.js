@@ -1,6 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { MenuListComponent } from '../menu-list/menu-list.component';
 export class DropMenuListComponent extends MenuListComponent {
+    /**
+     * @param {?} el
+     * @param {?} render
+     */
+    constructor(el, render) {
+        super();
+        this.el = el;
+        this.render = render;
+    }
     /**
      * @return {?}
      */
@@ -10,13 +19,17 @@ export class DropMenuListComponent extends MenuListComponent {
 DropMenuListComponent.decorators = [
     { type: Component, args: [{
                 selector: '[atDropMenuList]',
-                template: `<ng-content></ng-content>`,
+                template: `
+    <ng-content></ng-content>`,
             },] },
 ];
 /**
  * @nocollapse
  */
-DropMenuListComponent.ctorParameters = () => [];
+DropMenuListComponent.ctorParameters = () => [
+    { type: ElementRef, },
+    { type: Renderer2, },
+];
 function DropMenuListComponent_tsickle_Closure_declarations() {
     /** @type {?} */
     DropMenuListComponent.decorators;
@@ -25,4 +38,8 @@ function DropMenuListComponent_tsickle_Closure_declarations() {
      * @type {?}
      */
     DropMenuListComponent.ctorParameters;
+    /** @type {?} */
+    DropMenuListComponent.prototype.el;
+    /** @type {?} */
+    DropMenuListComponent.prototype.render;
 }
