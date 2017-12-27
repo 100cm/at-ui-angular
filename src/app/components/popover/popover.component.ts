@@ -1,185 +1,218 @@
-import {Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
-import {FadeAnimation} from "../animations/fade-animation";
+import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from '@angular/cdk/overlay';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {fromEvent} from 'rxjs/observable/fromEvent';
+import {debounceTime} from 'rxjs/operators/debounceTime';
+import {mapTo} from 'rxjs/operators/mapTo';
+import {merge} from 'rxjs/operators/merge';
+import {DropDownAnimation} from "../animations/drop-down-animation";
+import {DEFAULT_DROPDOWN_POSITIONS, POSITION_MAP} from "../core/overlay/overlay-position-map";
+import {DropdownMenuItemComponent} from "../menu/dropdown-menu-item/dropdown-menu-item.component";
+import {PopTriggerDirective} from "./pop-trigger.directive";
 
 @Component({
   selector: 'atPopover',
-  animations: [FadeAnimation],
+  animations: [DropDownAnimation],
   template: `
     <div class="at-popover">
-  <span (mouseenter)="mouseOver()" (mouseleave)="mouseOut()" (click)="activePop()" class="at-popover__trigger" #trigger>
-  <ng-content select="[popTrigger]">
-  </ng-content>
-</span>
-      <div #popover [@fadeAnimation] (mouseenter)="mouseOver()" (mouseleave)="mouseOut()"
-           [ngStyle]="{'display': pop ? '' :'none'}"
-           class="at-popover__popper at-popover--{{placement}}">
-        <div class="at-popover__arrow"></div>
-        <div *ngIf="title" class="at-popover__title">
-          <ng-content select="[popTitle]"></ng-content>
-        </div>
-        <div class="at-popover__content">
-          <ng-content select="[popContent]"></ng-content>
-        </div>
-      </div>
+      <ng-content></ng-content>
     </div>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+      [cdkConnectedOverlayPositions]="_positions"
+      [cdkConnectedOverlayOrigin]="_atOrigin"
+      (backdropClick)="_hide()"
+      [cdkConnectedOverlayMinWidth]="_triggerWidth"
+      (positionChange)="_onPositionChange($event)"
+      [cdkConnectedOverlayOpen]="atVisible"
+    >
+      <div
+        class="at-popover__popper__{{placement}} "
+        [@dropDownAnimation]="_dropDownPosition"
+        (mouseenter)="_onMouseEnterEvent($event)"
+        (mouseleave)="_onMouseLeaveEvent($event)"
+        [style.minWidth.px]="_triggerWidth"
+        (click)="_clickDropDown($event)">
+        <div class="at-popover__popper at-popover--{{placement || _placement}}">
+          <div class="at-popover__arrow"></div>
+          <div *ngIf="title" class="at-popover__title">
+            <ng-content select="[popTitle]"></ng-content>
+          </div>
+          <div class="at-popover__content">
+            <ng-content select="[popContent]"></ng-content>
+          </div>
+        </div>
+        <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
+      </div>
+    </ng-template>
+
 
   `
 })
 export class PopoverComponent implements OnInit {
 
-  constructor(private el: ElementRef) {
+  private _clickHide = true;
+  private _visible = false;
+  hasFilterButton = false;
+  _triggerWidth = 0;
+  _placement: any = 'bottom';
+  _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
+  _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
+  _subscription: Subscription;
+
+  @ContentChild(DropdownMenuItemComponent) _atMenu;
+  @ContentChild(PopTriggerDirective) _atOrigin
+
+  @Input() trigger: 'click' | 'hover' = 'hover';
+  @Output() _visibleChange = new Subject<boolean>();
+  @Output() atVisibleChange: EventEmitter<boolean> = new EventEmitter();
+  @ViewChild(CdkConnectedOverlay) _cdkOverlay: CdkConnectedOverlay;
+
+  toBoolean(value: boolean | string): boolean {
+    return value === '' || (value && value !== 'false');
   }
 
-  ngOnInit() {
 
+  @Input()
+  set atClickHide(value: boolean) {
+    this._clickHide = this.toBoolean(value);
   }
 
-  _placement = 'top'
-  private _trigger = 'click'
-  position: any = {}
-  timer
-  private _title: any
-
-
-  get title(): any {
-    return this._title;
+  get atClickHide(): boolean {
+    return this._clickHide;
   }
 
   @Input()
-  set title(value: any) {
-    this._title = value;
+  set atVisible(value: boolean) {
+    this._visible = this.toBoolean(value);
   }
 
-  get trigger(): string {
-    return this._trigger;
+  get atVisible(): boolean {
+    return this._visible;
   }
 
   @Input()
-  set trigger(value: string) {
-    this._trigger = value;
+  set placement(value: any) {
+    this._placement = value;
+    this._dropDownPosition = (this.atPlacement.indexOf('top') !== -1) ? 'top' : 'bottom';
+    this._positions.unshift(POSITION_MAP[this._placement] as ConnectionPositionPair);
   }
 
-  get placement(): string {
+  get atPlacement(): any {
     return this._placement;
   }
 
-  private _pop = false
-
-
-  get pop(): boolean {
-    return this._pop;
-  }
-
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    if (this.el.nativeElement.contains(event.target)) {
-
-    } else {
-      this.pop = false
+  _onClickEvent(): void {
+    if (this.trigger === 'click') {
+      this._show();
     }
   }
 
-  @Input()
-  set pop(value: boolean) {
-    this._pop = value;
-  }
-
-  @Input()
-  set placement(value: string) {
-    this._placement = value;
-  }
-
-  @ViewChild('trigger') triggerEle: ElementRef
-  @ViewChild('popover') popover: ElementRef
-
-  setPopPosition() {
-    let trigger = this.triggerEle.nativeElement
-    let popover = this.popover.nativeElement
-    switch (this.placement) {
-      case 'top' :
-        this.position.left = trigger.offsetLeft - (popover.offsetWidth / 2) + (trigger.offsetWidth / 2)
-        this.position.top = trigger.offsetTop - popover.offsetHeight
-        break
-      case 'top-left':
-        this.position.left = trigger.offsetLeft
-        this.position.top = trigger.offsetTop - popover.offsetHeight
-        break
-      case 'top-right':
-        this.position.left = trigger.offsetLeft + trigger.offsetWidth - popover.offsetWidth
-        this.position.top = trigger.offsetTop - popover.offsetHeight
-        break
-      case 'left':
-        this.position.left = trigger.offsetLeft - popover.offsetWidth
-        this.position.top = trigger.offsetTop + (trigger.offsetHeight / 2) - (popover.offsetHeight / 2)
-        break
-      case 'left-top':
-        this.position.left = trigger.offsetLeft - popover.offsetWidth
-        this.position.top = trigger.offsetTop
-        break
-      case 'left-bottom':
-        this.position.left = trigger.offsetLeft - popover.offsetWidth
-        this.position.top = trigger.offsetTop + trigger.offsetHeight - popover.offsetHeight
-        break
-      case 'right':
-        this.position.left = trigger.offsetLeft + trigger.offsetWidth
-        this.position.top = trigger.offsetTop + (trigger.offsetHeight / 2) - (popover.offsetHeight / 2)
-        break
-      case 'right-top':
-        this.position.left = trigger.offsetLeft + trigger.offsetWidth
-        this.position.top = trigger.offsetTop
-        break
-      case 'right-bottom':
-        this.position.left = trigger.offsetLeft + trigger.offsetWidth
-        this.position.top = trigger.offsetTop + trigger.offsetHeight - popover.offsetHeight
-        break
-      case 'bottom':
-        this.position.left = trigger.offsetLeft - (popover.offsetWidth / 2) + (trigger.offsetWidth / 2)
-        this.position.top = trigger.offsetTop + trigger.offsetHeight
-        break
-      case 'bottom-left':
-        this.position.left = trigger.offsetLeft
-        this.position.top = trigger.offsetTop + trigger.offsetHeight
-        break
-      case 'bottom-right':
-        this.position.left = trigger.offsetLeft + trigger.offsetWidth - popover.offsetWidth
-        this.position.top = trigger.offsetTop + trigger.offsetHeight
-        break
-      default:
-        // if user set wrong placement, then use default 'top'
-        this.position.left = trigger.offsetLeft - (popover.offsetWidth / 2) + (trigger.offsetWidth / 2)
-        this.position.top = trigger.offsetTop - popover.offsetHeight
-        break
-    }
-    popover.style.top = `${this.position.top}px`
-    popover.style.left = `${this.position.left}px`
-  }
-
-  activePop() {
-    if (this.trigger == 'click') {
-      this.pop = !this.pop
+  _onMouseEnterEvent(e: MouseEvent): void {
+    if (this.trigger === 'hover') {
+      this._show();
     }
   }
 
-  mouseOver() {
-    if (this.trigger == 'hover') {
-      clearTimeout(this.timer)
-      this.timer = setTimeout(_ => {
-        this.pop = true
-      }, 300)
+  _onMouseLeaveEvent(e: MouseEvent): void {
+    if (this.trigger === 'hover') {
+      this._hide();
     }
   }
 
-  mouseOut() {
-    if (this.trigger == 'hover') {
-      clearTimeout(this.timer)
-      this.timer = setTimeout(_ => {
-        this.pop = false
-      }, 300)
+  _hide(): void {
+    this._visibleChange.next(false);
+  }
 
+  _show(): void {
+    this._visibleChange.next(true);
+  }
+
+  _onPositionChange(position: ConnectedOverlayPositionChange): void {
+    this._dropDownPosition = position.connectionPair.originY;
+  }
+
+  _clickDropDown($event: MouseEvent): void {
+    $event.stopPropagation();
+    if (this.atClickHide) {
+      this._hide();
     }
   }
 
-  ngAfterViewChecked() {
-    // this.setPopPosition()
+  _setTriggerWidth(): void {
+    this._triggerWidth = this._atOrigin.elementRef.nativeElement.getBoundingClientRect().width;
+    /** should remove after https://github.com/angular/material2/pull/8765 merged **/
+    if (this._cdkOverlay && this._cdkOverlay.overlayRef) {
+      this._cdkOverlay.overlayRef.updateSize({
+        minWidth: this._triggerWidth
+      });
+    }
+  }
+
+  _onVisibleChange = (visible: boolean) => {
+    if (visible) {
+      this._setTriggerWidth();
+    }
+    if (this.atVisible !== visible) {
+      this.atVisible = visible;
+      this.atVisibleChange.emit(this.atVisible);
+    }
+    this._changeDetector.markForCheck();
+  }
+
+  _startSubscribe(observable$: Observable<boolean>): void {
+    this._subscription = observable$.pipe(debounceTime(50))
+      .subscribe(this._onVisibleChange);
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  ngOnDestroy(): void {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
+  }
+
+  ngAfterViewInit(): void {
+    let mouse$: Observable<boolean>;
+    if (this.trigger === 'hover') {
+      const mouseEnterOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseenter').pipe(mapTo(true));
+      const mouseLeaveOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseleave').pipe(mapTo(false));
+      mouse$ = mouseEnterOrigin$.pipe(merge(mouseLeaveOrigin$));
+    }
+    if (this.trigger === 'click') {
+      mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
+      this._renderer.listen(this._atOrigin.elementRef.nativeElement, 'click', (e) => {
+        e.preventDefault();
+      });
+    }
+    const observable$ = mouse$.pipe(merge(this._visibleChange));
+    this._startSubscribe(observable$);
+  }
+
+  get _hasBackdrop(): boolean {
+    return this.trigger === 'click';
+  }
+
+  constructor(private _renderer: Renderer2, protected _changeDetector: ChangeDetectorRef) {
   }
 }

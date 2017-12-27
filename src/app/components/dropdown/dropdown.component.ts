@@ -1,15 +1,27 @@
+import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from '@angular/cdk/overlay';
 import {
-  Component, ElementRef, HostListener, Input, OnInit, Output, ViewChild, EventEmitter,
-  Renderer2, ChangeDetectorRef, SimpleChanges, ContentChild, ChangeDetectionStrategy
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {fromEvent} from 'rxjs/observable/fromEvent';
+import {debounceTime} from 'rxjs/operators/debounceTime';
+import {mapTo} from 'rxjs/operators/mapTo';
+import {merge} from 'rxjs/operators/merge';
 import {DropDownAnimation} from "../animations/drop-down-animation";
-import {style, animate, state, transition, trigger} from '@angular/animations';
-import {merge} from "rxjs/observable/merge";
-import {Observer} from "rxjs/Observer";
-import {Observable} from "rxjs/Observable";
-import {debounceTime} from "rxjs/operator/debounceTime";
-import {Subscription} from "rxjs/Subscription";
-import {ConnectionPositionPair} from "../core/overlay/position/connected-position";
 import {DEFAULT_DROPDOWN_POSITIONS, POSITION_MAP} from "../core/overlay/overlay-position-map";
 import {DropdownMenuItemComponent} from "../menu/dropdown-menu-item/dropdown-menu-item.component";
 import {DropdownDirective} from "./dropdown.directive";
@@ -17,22 +29,22 @@ import {DropdownDirective} from "./dropdown.directive";
 @Component({
   selector: 'atDropdown',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `    
+  template: `
     <div>
       <ng-content></ng-content>
     </div>
     <ng-template
-      nz-connected-overlay
-      [hasBackdrop]="_hasBackdrop"
-      [positions]="_positions"
-      [origin]="_nzOrigin"
+      cdkConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+      [cdkConnectedOverlayPositions]="_positions"
+      [cdkConnectedOverlayOrigin]="_atOrigin"
       (backdropClick)="_hide()"
-      (detach)="_hide()"
-      [minWidth]="_triggerWidth"
+      [cdkConnectedOverlayMinWidth]="_triggerWidth"
       (positionChange)="_onPositionChange($event)"
-      [open]="atVisible">
+      [cdkConnectedOverlayOpen]="atVisible"
+    >
       <div
-
+        class="{{'at-dropdown at-dropdown-placement-'+atPlacement}}"
         [@dropDownAnimation]="_dropDownPosition"
         (mouseenter)="_onMouseEnterEvent($event)"
         (mouseleave)="_onMouseLeaveEvent($event)"
@@ -42,154 +54,161 @@ import {DropdownDirective} from "./dropdown.directive";
           <ul *ngIf="!custom_content" atDropMenuList>
             <ng-content select="[atDropMenuItem]"></ng-content>
           </ul>
-          <!--<ng-content select="[nz-table-filter]"></ng-content>-->
+          <!--<ng-content select="[at-table-filter]"></ng-content>-->
           <ng-content select="[atDropMenuCustomItem]"></ng-content>
         </div>
-        <!--<ng-content select="[nz-dropdown-custom]"></ng-content>-->
+        <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
       </div>
     </ng-template>
   `,
-  animations: [DropDownAnimation, trigger('fadeAnimation', [
-    state('*', style({opacity: 1})),
-    transition('* => void', [
-      animate(50, style({opacity: 0, display: 'hidden'}))
-    ]),
-    transition('void => *', [
-      style({opacity: '0'}),
-      animate(50, style({opacity: 1,}))
-    ])
-  ]),],
+  animations: [DropDownAnimation],
 })
 
 export class DropdownComponent implements OnInit {
+  private _clickHide = true;
+  private _visible = false;
   hasFilterButton = false;
   _triggerWidth = 0;
-  _placement: string = 'bottomLeft';
-  _dropDownPosition: 'top' | 'bottom' = 'bottom';
+  _placement: any = 'bottom';
+  _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
   _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
   _subscription: Subscription;
-  @ContentChild(DropdownMenuItemComponent) _nzMenu;
-  @ContentChild(DropdownDirective) _nzOrigin
+  @ContentChild(DropdownDirective) _atOrigin;
+  @ContentChild(DropdownMenuItemComponent) _atMenu;
   @Input() trigger: 'click' | 'hover' = 'hover';
-  @Input() autoClose = false;
-  @Input() atVisible = false;
-  @Output() dropDownChange: EventEmitter<boolean> = new EventEmitter();
-  @Input() custom_content:boolean = false
+  @Output() _visibleChange = new Subject<boolean>();
+  @Output() atVisibleChange: EventEmitter<boolean> = new EventEmitter();
+  @ViewChild(CdkConnectedOverlay) _cdkOverlay: CdkConnectedOverlay;
+
+  toBoolean(value: boolean | string): boolean {
+    return value === '' || (value && value !== 'false');
+  }
+
 
   @Input()
-  set placement(value: string) {
-    this._placement = value;
-    this._dropDownPosition = (this.placement.indexOf('top') !== -1) ? 'top' : 'bottom';
-    this._positions.unshift(POSITION_MAP[this._placement] as ConnectionPositionPair);
-  };
+  set atClickHide(value: boolean) {
+    this._clickHide = this.toBoolean(value);
+  }
 
-  get placement(): string {
+  get atClickHide(): boolean {
+    return this._clickHide;
+  }
+
+  @Input()
+  set atVisible(value: boolean) {
+    this._visible = this.toBoolean(value);
+  }
+
+  get atVisible(): boolean {
+    return this._visible;
+  }
+
+  @Input()
+  set placement(value: any) {
+    this._placement = value;
+    this._dropDownPosition = (this.atPlacement.indexOf('top') !== -1) ? 'top' : 'bottom';
+    this._positions.unshift(POSITION_MAP[this._placement] as ConnectionPositionPair);
+  }
+
+  get atPlacement(): any {
     return this._placement;
   }
 
-  _onClickEvent() {
+  _onClickEvent(): void {
     if (this.trigger === 'click') {
       this._show();
     }
   }
 
-  _onMouseEnterEvent(e) {
+  _onMouseEnterEvent(e: MouseEvent): void {
     if (this.trigger === 'hover') {
       this._show();
     }
   }
 
-  _onMouseLeaveEvent(e) {
+  _onMouseLeaveEvent(e: MouseEvent): void {
     if (this.trigger === 'hover') {
       this._hide();
     }
   }
 
-  _hide() {
-    this.dropDownChange.emit(false);
+  _hide(): void {
+    this._visibleChange.next(false);
   }
 
-  _show() {
-    this.dropDownChange.emit(true);
+  _show(): void {
+    this._visibleChange.next(true);
   }
 
-  _onPositionChange(position) {
+  _onPositionChange(position: ConnectedOverlayPositionChange): void {
     this._dropDownPosition = position.connectionPair.originY;
   }
 
-  _clickDropDown($event) {
+  _clickDropDown($event: MouseEvent): void {
     $event.stopPropagation();
-    if (this.autoClose) {
-      this.atVisible = false;
+    if (this.atClickHide) {
+      console.log('click')
+      this._hide();
     }
   }
 
   _setTriggerWidth(): void {
-    this._triggerWidth = this._nzOrigin.elementRef.nativeElement.getBoundingClientRect().width;
+    this._triggerWidth = this._atOrigin.elementRef.nativeElement.getBoundingClientRect().width;
+    /** should remove after https://github.com/angular/material2/pull/8765 merged **/
+    if (this._cdkOverlay && this._cdkOverlay.overlayRef) {
+      this._cdkOverlay.overlayRef.updateSize({
+        minWidth: this._triggerWidth
+      });
+    }
   }
 
   _onVisibleChange = (visible: boolean) => {
     if (visible) {
-      if (!this._triggerWidth) {
-        this._setTriggerWidth();
-      }
+      this._setTriggerWidth();
     }
-    this.atVisible = visible;
+    if (this.atVisible !== visible) {
+      this.atVisible = visible;
+      this.atVisibleChange.emit(this.atVisible);
+    }
     this._changeDetector.markForCheck();
   }
 
-  _startSubscribe(observable$: Observable<boolean>) {
-    this._subscription = debounceTime.call(observable$, 300)
-      .subscribe(this._onVisibleChange)
+  _startSubscribe(observable$: Observable<boolean>): void {
+    this._subscription = observable$.pipe(debounceTime(50))
+      .subscribe(this._onVisibleChange);
   }
 
-  ngOnInit() {
-    // if (this._nzMenu) {
-    //   this._nzMenu.setDropDown(true);
-    // }
+  ngOnInit(): void {
+
   }
 
-  ngOnDestroy() {
-    this._subscription.unsubscribe();
+  ngOnDestroy(): void {
+    if (this._subscription) {
+      this._subscription.unsubscribe();
+    }
   }
 
-  ngAfterViewInit() {
-    let mouse$: Observable<boolean>
+  ngAfterViewInit(): void {
+    let mouse$: Observable<boolean>;
     if (this.trigger === 'hover') {
-      mouse$ = Observable.create((observer: Observer<boolean>) => {
-        const disposeMouseEnter = this._renderer.listen(this._nzOrigin.elementRef.nativeElement, 'mouseenter', () => {
-          observer.next(true);
-        });
-        const disposeMouseLeave = this._renderer.listen(this._nzOrigin.elementRef.nativeElement, 'mouseleave', () => {
-          observer.next(false);
-        });
-        return () => {
-          disposeMouseEnter();
-          disposeMouseLeave();
-        }
-      });
+      const mouseEnterOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseenter').pipe(mapTo(true));
+      const mouseLeaveOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseleave').pipe(mapTo(false));
+      mouse$ = mouseEnterOrigin$.pipe(merge(mouseLeaveOrigin$));
     }
     if (this.trigger === 'click') {
-      mouse$ = Observable.create((observer: Observer<boolean>) => {
-        const dispose = this._renderer.listen(this._nzOrigin.elementRef.nativeElement, 'click', (e) => {
-          e.preventDefault();
-          observer.next(true);
-        });
-        return () => dispose();
+      mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
+      this._renderer.listen(this._atOrigin.elementRef.nativeElement, 'click', (e) => {
+        e.preventDefault();
       });
     }
-    const observable$ = merge(
-      mouse$,
-      this.dropDownChange.asObservable()
-    );
+    const observable$ = mouse$.pipe(merge(this._visibleChange));
     this._startSubscribe(observable$);
   }
 
-  get _hasBackdrop() {
+  get _hasBackdrop(): boolean {
     return this.trigger === 'click';
   }
 
   constructor(private _renderer: Renderer2, protected _changeDetector: ChangeDetectorRef) {
   }
-
 }

@@ -77,8 +77,9 @@ import {TabHeaderComponent} from './tab/tab-header/tab-header.component';
 import {AtTabInkDirective} from './tab/at-tab-ink.directive';
 import {TabNavsComponent} from './tab/tab-navs/tab-navs.component';
 import {TabLabelDirective} from './tab/tab-label.directive';
-import {OverlayModule} from "./core/overlay/index";
-import { DropdownDirective } from './dropdown/dropdown.directive';
+import {DropdownDirective} from './dropdown/dropdown.directive';
+import {PopTriggerDirective} from './popover/pop-trigger.directive';
+import {OverlayModule} from "@angular/cdk/overlay";
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -218,6 +219,7 @@ export {CardComponent} from './card/card.component';
     TabNavsComponent,
     TabLabelDirective,
     DropdownDirective,
+    PopTriggerDirective,
   ],
   exports: [
     ButtonComponent,
@@ -276,6 +278,7 @@ export {CardComponent} from './card/card.component';
     AtFormErrorDirective,
     AtFormFeedbackDirective,
     DropdownDirective,
+    PopTriggerDirective,
 
     CalendarComponent,
     DatetimepickerComponent,
@@ -295,8 +298,8 @@ export {CardComponent} from './card/card.component';
     [
       CommonModule,
       FormsModule,
-      // BrowserModule,
       OverlayModule,
+      // BrowserModule,
 
     ],
   providers: [AtGlobalMonitorService]

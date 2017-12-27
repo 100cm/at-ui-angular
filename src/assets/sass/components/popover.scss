@@ -12,12 +12,18 @@
     position: relative;
   }
   &__popper {
-    position: absolute;
+    position: relative;
     max-width: $popover-popper-max-width;
     border: 1px solid $popover-border-color;
     box-shadow: 0 1px 6px $popover-border-color;
     background-color: $color-white;
     z-index: $zindex-popover;
+    &__top {
+      padding-bottom: 10px;
+    }
+    &__left {
+      padding-right: 10px;
+    }
   }
   &__title {
     margin: 0;
@@ -52,7 +58,7 @@
   &--top,
   &--top-left,
   &--top-right {
-    margin-top: -12px;
+    margin-bottom: 10px;
 
     .at-popover__arrow {
       bottom: 0;
@@ -94,7 +100,7 @@
       top: 0;
       left: 50%;
       margin-left: -$popover-arrow-size;
-      margin-top: -$popover-arrow-size;
+      margin-top: -10px;
       border-top-width: 0;
       border-bottom-color: $popover-border-color;
 
@@ -124,7 +130,7 @@
   &--left,
   &--left-top,
   &--left-bottom {
-    margin-left: -12px;
+    margin-right: 10px;
 
     .at-popover__arrow {
       top: 50%;
