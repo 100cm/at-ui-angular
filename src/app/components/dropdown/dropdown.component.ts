@@ -65,7 +65,10 @@ import {DropdownDirective} from "./dropdown.directive";
 })
 
 export class DropdownComponent implements OnInit {
-  private _clickHide = true;
+
+  @Input() custom_content = false
+
+  private _clickHide = false;
   private _visible = false;
   hasFilterButton = false;
   _triggerWidth = 0;
@@ -86,11 +89,11 @@ export class DropdownComponent implements OnInit {
 
 
   @Input()
-  set atClickHide(value: boolean) {
+  set autoClose(value: boolean) {
     this._clickHide = this.toBoolean(value);
   }
 
-  get atClickHide(): boolean {
+  get autoClose(): boolean {
     return this._clickHide;
   }
 
@@ -146,7 +149,7 @@ export class DropdownComponent implements OnInit {
 
   _clickDropDown($event: MouseEvent): void {
     $event.stopPropagation();
-    if (this.atClickHide) {
+    if (this.autoClose) {
       console.log('click')
       this._hide();
     }

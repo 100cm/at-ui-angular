@@ -68,7 +68,7 @@ import {PopTriggerDirective} from "./pop-trigger.directive";
 })
 export class PopoverComponent implements OnInit {
 
-  private _clickHide = true;
+  private _clickHide = false;
   private _visible = false;
   hasFilterButton = false;
   _triggerWidth = 0;
