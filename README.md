@@ -69,7 +69,7 @@ MIT
 
 
 [npm-version-image]: https://img.shields.io/npm/v/at-ui.svg?style=flat-square
-[npm-version-url]: https://www.npmjs.com/package/at-ui
+[npm-version-url]: https://www.npmjs.com/package/at-ng
 [david-dm-image]: https://david-dm.org/AT-UI/at-ui.svg?style=flat-square
 [david-dm-url]: https://david-dm.org/AT-UI/at-ui
 [travis-image]: https://img.shields.io/travis/AT-UI/at-ui/master.svg?style=flat-square
