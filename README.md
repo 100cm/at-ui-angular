@@ -30,7 +30,7 @@ AT-UI is a modular front-end UI framework for developing fast and powerful web i
 - [Home Page](http://ng-at.thunderjava.com)
 - [Angular](https://angular.io/)
 - [Webpack](https://webpack.js.org/)
-- [AT-UI for Vue](https://github.com/icepoint0/at-angular) (official library)
+- [AT-UI for Vue](https://github.com/AT-UI/at-ui) (official library)
 
 ## Install
 
