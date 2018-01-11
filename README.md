@@ -8,7 +8,7 @@
 
 [![NPM][npm-version-image]][npm-version-url] [![david-dm][david-dm-image]][david-dm-url] [![travis][travis-image]][travis-url]
 
-AT-UI is a modular front-end UI framework for developing fast and powerful web interfaces based on Vue.js.
+ng-at is a modular front-end UI framework for developing fast and powerful web interfaces based on Angular 4+.
 
 
 ## Features
