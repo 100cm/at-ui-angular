@@ -1,34 +1,42 @@
-<atDropdown [placement]="'top'" [trigger]="'click'">
-  <button atButton at-dropdown>不同的位置菜单top</button>
-  <div atDropMenuCustomItem style="background: black;width: 100%">
-    asdasd
+<div atRow [flexType]="'center'">
+  <div atCol [span]="6">
+    <atDropdown [placement]="'top'" [trigger]="'click'">
+      <button atButton at-dropdown>不同的位置菜单top</button>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem [disabled]="true">菜单1</li>
+      <li atDropMenuItem [divided]="true">菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+    </atDropdown>
   </div>
-</atDropdown>
-
-<!--<atDropdown [nzPlacement]="'left'">-->
-<!--<button atButton atContent>不同的位置菜单left</button>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--<li atDropMenuItem [disabled]="true">菜单1</li>-->
-<!--<li atDropMenuItem [divided]="true">菜单1</li>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--</atDropdown>-->
-
-<!--<atDropdown [nzPlacement]="'right'">-->
-<!--<button atButton atContent>不同的位置菜单right</button>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--<li atDropMenuItem [disabled]="true">菜单1</li>-->
-<!--<li atDropMenuItem [divided]="true">菜单1</li>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--</atDropdown>-->
-
-<!--<atDropdown [nzPlacement]="'top-left'">-->
-<!--<button atButton atContent>不同的位置菜单top-left</button>-->
-<!--<li atDropMenuCustomItem>菜单1</li>-->
-<!--<li atDropMenuItem [disabled]="true">菜单1</li>-->
-<!--<li atDropMenuItem [divided]="true">菜单1</li>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--<li atDropMenuItem>菜单1</li>-->
-<!--</atDropdown>-->
-
+  <div atCol [span]="6">
+    <atDropdown [placement]="'bottom'" [trigger]="'click'">
+      <button atButton at-dropdown>不同的位置菜单 bottom</button>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem [disabled]="true">菜单1</li>
+      <li atDropMenuItem [divided]="true">菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+    </atDropdown>
+  </div>
+  <div atCol [span]="6">
+    <atDropdown [placement]="'left'" [trigger]="'click'">
+      <button atButton at-dropdown>不同的位置菜单 left</button>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem [disabled]="true">菜单1</li>
+      <li atDropMenuItem [divided]="true">菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+    </atDropdown>
+  </div>
+  <div atCol [span]="6">
+    <atDropdown [placement]="'right'" [trigger]="'click'">
+      <button atButton at-dropdown>不同的位置菜单 right</button>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem [disabled]="true">菜单1</li>
+      <li atDropMenuItem [divided]="true">菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+      <li atDropMenuItem>菜单1</li>
+    </atDropdown>
+  </div>
+</div>
