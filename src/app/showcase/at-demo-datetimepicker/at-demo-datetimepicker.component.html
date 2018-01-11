@@ -1,9 +1,49 @@
 <section>
   <h1>日期选择</h1>
+  <hr>
+  <p>点击TimePicker，然后可以在浮层中选择某一时间</p>
 
   <doc-section>
     <div sample>
       <app-demo-basic-datepicker></app-demo-basic-datepicker>
     </div>
+  </doc-section>
+
+  <doc-section [title]="'参数设置'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>disableDate</td>
+        <td>该日期前的不可选</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>format</td>
+        <td>日期格式</td>
+        <td>String</td>
+        <td>-</td>
+        <td><code>YYYY-MM-DD</code>, <code>MM-DD</code></td>
+      </tr>
+      <tr>
+        <td>ngModel</td>
+        <td>当前已选日期</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+
   </doc-section>
 </section>
