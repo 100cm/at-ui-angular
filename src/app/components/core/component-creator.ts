@@ -14,7 +14,7 @@ export class ComponentCreator<T> {
   componentRef: ComponentRef<T>
 
   create() {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.componentRef = <any>this.base.componentFactoryResolver
         .resolveComponentFactory(this.component)
         .create(this.base.injector);
@@ -22,7 +22,7 @@ export class ComponentCreator<T> {
       this.domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
         .rootNodes[0] as HTMLElement;
       document.body.appendChild(this.domElem);
-    })
+    // })
   }
 
   remove() {

@@ -80,6 +80,7 @@ import {TabLabelDirective} from './tab/tab-label.directive';
 import {DropdownDirective} from './dropdown/dropdown.directive';
 import {PopTriggerDirective} from './popover/pop-trigger.directive';
 import {OverlayModule} from "@angular/cdk/overlay";
+import { ModalBodyDirective } from './modal/modal-body.directive';
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -205,6 +206,7 @@ export {CardComponent} from './card/card.component';
     AtFormContentDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
+    ModalBodyDirective,
     DatetimepickerComponent,
     CalendarComponent,
     TimeComponent,
@@ -220,6 +222,7 @@ export {CardComponent} from './card/card.component';
     TabLabelDirective,
     DropdownDirective,
     PopTriggerDirective,
+    ModalBodyDirective,
   ],
   exports: [
     ButtonComponent,
@@ -259,6 +262,7 @@ export {CardComponent} from './card/card.component';
     AtThDirective,
     AtTbodyDirective,
     AtTbodyTrDirective,
+    ModalBodyDirective,
     AtTheadDirective,
     AtTdDirective,
     BreadcrumbComponent,

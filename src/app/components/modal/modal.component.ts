@@ -1,7 +1,11 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, ContentChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {AtGlobalMonitorService, Position} from "../at-global-monitor.service";
 import {StatusIconType} from "../icon/icon-status-type";
+import {CdkOverlayOrigin, ConnectionPositionPair} from "@angular/cdk/overlay";
+import {DEFAULT_DROPDOWN_POSITIONS} from "../core/overlay/overlay-position-map";
+import {DropdownDirective} from "../dropdown/dropdown.directive";
+import {ModalBodyDirective} from "./modal-body.directive";
 
 @Component({
   selector: 'atModal',
@@ -19,43 +23,56 @@ import {StatusIconType} from "../icon/icon-status-type";
   ])],
   template: `
     <div>
-      <div [hidden]="!show" class="at-modal__mask"></div>
+      <ng-content></ng-content>
+      <div #overlays></div>
 
-      <div [ngStyle]="{'display': show ? '' : 'none'}"
-           role="dialog"
-           (click)="cancelFromMask($event)"
-           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayHasBackdrop]="true"
+        (backdropClick)="_hide()"
+        [cdkConnectedOverlayPositions]="_positions"
+        [cdkConnectedOverlayOrigin]="overlay"
+        [cdkConnectedOverlayMinWidth]="width"
+        [cdkConnectedOverlayOpen]="show"
       >
-        <div #modal_content class="at-modal" [@enterLeave]="state"
-             [ngStyle]="positionStyle"
-             [style.width]="width +'px'">
-          <div [ngClass]="{'at-modal__header': headerContains()}">
-            <div class="at-modal__title" #custom_title>
-              <ng-content select="[header]">
-              </ng-content>
-              {{title ? title : ''}}
+        <div [ngStyle]="{'display': show ? '' : 'none'}"
+        class="at-modal__mask"></div>
+        <div
+          role="dialog"
+          (click)="cancelFromMask($event)"
+          class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
+        >
+          <div  class="at-modal" [@enterLeave]="state"
+               [ngStyle]="positionStyle"
+               [style.width]="width +'px'">
+            <div [ngClass]="{'at-modal__header': headerContains()}">
+              <div class="at-modal__title" #custom_title>
+                <ng-content select="[header]">
+                </ng-content>
+                {{title ? title : ''}}
+              </div>
             </div>
-          </div>
-          <div class="at-modal__body" #modal_body>
-            <ng-content select="[body]"></ng-content>
-            {{message ? message : ''}}
-          </div>
-          <div class="at-modal__footer">
-            <div #custom_footer>
-              <ng-content select="[footer]"></ng-content>
+            <div class="at-modal__body" #modal_body>
+              <ng-content select="[body]"></ng-content>
+              {{message ? message : ''}}
             </div>
-            <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
-              <button atButton (click)="cancel()">取消</button>
-              <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
+            <div class="at-modal__footer">
+              <div #custom_footer>
+                <ng-content select="[footer]"></ng-content>
+              </div>
+              <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
+                <button atButton (click)="cancel()">取消</button>
+                <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
           <span class="at-btn__text">确认
           </span>
-              </button>
+                </button>
+              </div>
             </div>
+            <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
+            <span *ngIf="closeable" (click)="cancel()" class="at-modal__close"><i class="icon icon-x"></i></span>
           </div>
-          <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
-          <span *ngIf="closeable" (click)="cancel()" class="at-modal__close"><i class="icon icon-x"></i></span>
         </div>
-      </div>
+      </ng-template>
 
     </div>
 
@@ -80,12 +97,18 @@ export class ModalComponent implements OnInit {
   private _status: 'error' | 'success' | 'warning' | 'info' = 'info'
   private _show: boolean = false
   private _message: string
+  _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
   @Input() width: number = 520
   @Input() top: number = 100
   @Input() maskClose: boolean = true
   @Output() onCancel: EventEmitter<boolean> = new EventEmitter()
   @Output() onOk: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('modal_content') modal_content: ElementRef
+  @ViewChild('overlays') _overlay: CdkOverlayOrigin
+  @ContentChild(ModalBodyDirective) body:ModalBodyDirective,
+  get overlay() {
+    return {elementRef: this._overlay}
+  }
 
 
   get closeable(): boolean {
@@ -165,11 +188,11 @@ export class ModalComponent implements OnInit {
   positionStyle = {}
 
   setStyle() {
-    const origin = this.global_service.lastClickPosition
-    let el = this.modal_content.nativeElement;
-    let transformOrigin = `${origin.x - el.offsetLeft}px ${origin.y - el.offsetTop }px 0px`;
-    this.positionStyle = {'transform-origin': transformOrigin, 'top': this.top + 'px'}
-    return this.positionStyle
+    // const origin = this.global_service.lastClickPosition
+    // let el = this.body.elementRef.nativeElement;
+    // let transformOrigin = `${origin.x - el.offsetLeft}px ${origin.y - el.offsetTop }px 0px`;
+    // this.positionStyle = {'transform-origin': transformOrigin, 'top': this.top + 'px'}
+    // return this.positionStyle
   }
 
   ok() {
@@ -191,7 +214,12 @@ export class ModalComponent implements OnInit {
   @ViewChild('custom_title') customTitle: ElementRef
 
   headerContains() {
-    let custom_title = this.customTitle.nativeElement
-    return ( custom_title.children.length > 0 || custom_title.innerText.length > 0)
+    // let custom_title = this.customTitle.nativeElement
+    // return ( custom_title.children.length > 0 || custom_title.innerText.length > 0)
+    return true
+  }
+
+  ngAfterViewInit() {
+
   }
 }

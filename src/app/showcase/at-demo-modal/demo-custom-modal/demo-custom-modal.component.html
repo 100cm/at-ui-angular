@@ -15,12 +15,14 @@
 </button>
 
 <atModal [show]="header" (onCancel)="header=false" (onOk)="header = false">
+  <div cdkOverlayOrigin at-dropdown></div>
   <div body>
     我只有身体
   </div>
 </atModal>
 
 <atModal [show]="footer" (onCancel)="footer=false" (onOk)="footer = false">
+  <div cdkOverlayOrigin at-dropdown></div>
   <div header>
     其实我有
   </div>
@@ -33,6 +35,7 @@
 </atModal>
 
 <atModal [show]="closer" (onCancel)="closer=false" (onOk)="closer = false" [closeable]="false">
+  <div cdkOverlayOrigin at-dropdown></div>
   <div header>
     其实我有
   </div>
@@ -46,6 +49,7 @@
 
 <atModal [show]="confirmer" [atType]="'confirm'" (onCancel)="confirmer=false" (onOk)="confirmer = false"
          [closeable]="false">
+  <div cdkOverlayOrigin at-dropdown></div>
   <div header>
     我来组成头部
   </div>
