@@ -29,7 +29,6 @@ import {ModalBodyDirective} from "./modal-body.directive";
       <ng-template
         cdkConnectedOverlay
         [cdkConnectedOverlayHasBackdrop]="true"
-        (backdropClick)="_hide()"
         [cdkConnectedOverlayPositions]="_positions"
         [cdkConnectedOverlayOrigin]="overlay"
         [cdkConnectedOverlayMinWidth]="width"
@@ -105,7 +104,7 @@ export class ModalComponent implements OnInit {
   @Output() onOk: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('modal_content') modal_content: ElementRef
   @ViewChild('overlays') _overlay: CdkOverlayOrigin
-  @ContentChild(ModalBodyDirective) body:ModalBodyDirective,
+  @ContentChild(ModalBodyDirective) body:ModalBodyDirective
   get overlay() {
     return {elementRef: this._overlay}
   }
@@ -189,7 +188,7 @@ export class ModalComponent implements OnInit {
 
   setStyle() {
     // const origin = this.global_service.lastClickPosition
-    // let el = this.body.elementRef.nativeElement;
+    // let el = this.modal_content.nativeElement;
     // let transformOrigin = `${origin.x - el.offsetLeft}px ${origin.y - el.offsetTop }px 0px`;
     // this.positionStyle = {'transform-origin': transformOrigin, 'top': this.top + 'px'}
     // return this.positionStyle

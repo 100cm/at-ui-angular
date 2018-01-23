@@ -68,6 +68,12 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'DatePicker'
     },
 
+    {
+      name: '步骤条',
+      url: '/components/steps',
+      name_en: 'Setps'
+    },
+
     {name: 'tab', url: '/components/tab', name_en: 'tab'}
   ]
 

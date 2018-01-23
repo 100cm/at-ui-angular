@@ -80,7 +80,9 @@ import {TabLabelDirective} from './tab/tab-label.directive';
 import {DropdownDirective} from './dropdown/dropdown.directive';
 import {PopTriggerDirective} from './popover/pop-trigger.directive';
 import {OverlayModule} from "@angular/cdk/overlay";
-import { ModalBodyDirective } from './modal/modal-body.directive';
+import {ModalBodyDirective} from './modal/modal-body.directive';
+import {StepsComponent} from './steps/steps.component';
+import { StepComponent } from './steps/step/step.component';
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -223,6 +225,8 @@ export {CardComponent} from './card/card.component';
     DropdownDirective,
     PopTriggerDirective,
     ModalBodyDirective,
+    StepsComponent,
+    StepComponent,
   ],
   exports: [
     ButtonComponent,
@@ -291,8 +295,9 @@ export {CardComponent} from './card/card.component';
     AtFormatPipe,
     TabComponent,
     TabContentComponent,
-    TabSetComponent
-
+    TabSetComponent,
+    StepsComponent,
+    StepComponent,
 
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent,

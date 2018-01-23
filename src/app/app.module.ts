@@ -135,6 +135,8 @@ import { AtDemoCardComponent } from './showcase/at-demo-card/at-demo-card.compon
 import {HighLightComponent} from "./showcase/high-light/high-light.component";
 import { AtDemoTabsComponent } from './showcase/at-demo-tabs/at-demo-tabs.component';
 import { DemoBasicTabComponent } from './showcase/at-demo-tabs/demo-basic-tab/demo-basic-tab.component';
+import { AtDemoStepsComponent } from './showcase/at-demo-steps/at-demo-steps.component';
+import { DemoBasicStepsComponent } from './showcase/at-demo-steps/demo-basic-steps/demo-basic-steps.component';
 
 
 @NgModule({
@@ -241,6 +243,8 @@ import { DemoBasicTabComponent } from './showcase/at-demo-tabs/demo-basic-tab/de
     AtDemoCardComponent,
     AtDemoTabsComponent,
     DemoBasicTabComponent,
+    AtDemoStepsComponent,
+    DemoBasicStepsComponent,
 
 
   ],

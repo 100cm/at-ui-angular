@@ -542,6 +542,39 @@ $tooltip-font-size          : $font-size-smer;
 $tooltip-bg-color           : rgba(0, 0, 0, .75);
 $tooltip-border-color       : rgba(0, 0, 0, .75);
 
+/* Steps */
+$step-font-size                      : $font-size-base;
+$step-font-size-sm                   : $font-size-smer;
+$step-description-font-size          : $font-size-smer;
+$step-description-font-size-sm       : $font-size-smest;
+
+$step-color                          : $grey-600;
+$step-color-active                   : $color-white;
+$step-color-process                  : $text-color;
+$step-color-error                    : $red-500;
+$step-text-color                     : $black-200;
+
+$step-bg-color                       : $color-white;
+$step-bg-color-active                : $brand-blue-500;
+$step-bg-color-error                 : $red-500;
+
+$step-border-color                   : $grey-600;
+$step-border-color-active            : $brand-blue-500;
+$step-border-color-error             : $red-500;
+
+$step-icon-color                     : $grey-600;
+$step-icon-color-active              : $brand-blue-500;
+$step-icon-color-error               : $red-500;
+
+$step-label-size                     : 30px;
+$step-label-size-sm                  : 18px;
+
+$step-line-color                     : $grey-600;
+$step-line-color-active              : $brand-blue-500;
+
+$step-main-height-vertical           : 64px;
+$step-main-height-vertical-sm        : 48px;
+
 /* Table */
 $table-font-size-small      : $font-size-smest;
 $table-font-size            : $font-size-smer;

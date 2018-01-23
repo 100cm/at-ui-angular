@@ -123,6 +123,7 @@
 /* Popover */
 /* Progress */
 /* Tooltip */
+/* Steps */
 /* Table */
 /* Breadcrumb */
 /* Dropdown */
@@ -8814,4 +8815,224 @@ $info-color               : #78A4FA;
   border-left: 1px solid #e9e9e9;
   overflow: hidden;
   margin-top: 0 !important;
+}
+
+/**
+ * Steps Style
+ */
+/* line 6, ../sass/components/steps.scss */
+.at-steps {
+  font-size: 0;
+  /* modifier */
+}
+/* line 11, ../sass/components/steps.scss */
+.at-steps--small .at-step__label {
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  line-height: 16px;
+}
+/* line 17, ../sass/components/steps.scss */
+.at-steps--small .at-step__title {
+  font-size: 12px;
+  line-height: 18px;
+}
+/* line 21, ../sass/components/steps.scss */
+.at-steps--small .at-step__line {
+  top: 8px;
+}
+/* line 26, ../sass/components/steps.scss */
+.at-steps--small.at-steps--vertical .at-step__main {
+  min-height: 48px;
+}
+/* line 32, ../sass/components/steps.scss */
+.at-steps--vertical .at-step {
+  display: block;
+  /* element */
+  /* modifier */
+}
+/* line 36, ../sass/components/steps.scss */
+.at-steps--vertical .at-step__line {
+  margin: 0;
+  left: 22px;
+  top: 0;
+  bottom: 2px;
+  width: 1px;
+  height: auto;
+}
+/* line 44, ../sass/components/steps.scss */
+.at-steps--vertical .at-step__line::before, .at-steps--vertical .at-step__line::after {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+/* line 49, ../sass/components/steps.scss */
+.at-steps--vertical .at-step__line::after {
+  height: 0;
+}
+/* line 53, ../sass/components/steps.scss */
+.at-steps--vertical .at-step__head {
+  padding-bottom: 2px;
+}
+/* line 56, ../sass/components/steps.scss */
+.at-steps--vertical .at-step__main {
+  min-height: 64px;
+}
+/* line 62, ../sass/components/steps.scss */
+.at-steps--vertical .at-step.at-step--finish .at-step__line::after {
+  height: 100%;
+}
+/* line 69, ../sass/components/steps.scss */
+.at-steps--vertical.at-steps--small .at-step__line {
+  left: 8px;
+}
+
+/* line 76, ../sass/components/steps.scss */
+.at-step {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  /* element */
+}
+/* line 83, ../sass/components/steps.scss */
+.at-step__head, .at-step__main {
+  position: relative;
+  font-size: 14px;
+}
+/* line 87, ../sass/components/steps.scss */
+.at-step__head {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #FFF;
+}
+/* line 93, ../sass/components/steps.scss */
+.at-step__label {
+  margin-right: 8px;
+  width: 30px;
+  height: 30px;
+  color: #B9B9B9;
+  line-height: 28px;
+  text-align: center;
+  border: 1px solid #B9B9B9;
+  border-radius: 50%;
+  margin-left: 8px;
+  transition: all .3s ease-in-out;
+}
+/* line 105, ../sass/components/steps.scss */
+.at-step--process .at-step__label:not(.at-step__icon) {
+  color: #FFF;
+  border-color: #6190E8;
+  background-color: #6190E8;
+}
+/* line 111, ../sass/components/steps.scss */
+.at-step--process .at-step__label.at-step__icon {
+  color: #6190E8;
+}
+/* line 115, ../sass/components/steps.scss */
+.at-step--finish .at-step__label {
+  color: #6190E8;
+  border-color: #6190E8;
+}
+/* line 119, ../sass/components/steps.scss */
+.at-step--finish .at-step__label.at-step__icon {
+  border-color: transparent;
+}
+/* line 124, ../sass/components/steps.scss */
+.at-step--error .at-step__label {
+  color: #FF4949;
+  border-color: #FF4949;
+}
+/* line 129, ../sass/components/steps.scss */
+.at-step__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 14px;
+  width: calc(100% - 40px);
+  margin: 0 10px;
+  height: 1px;
+}
+/* line 138, ../sass/components/steps.scss */
+.at-step--finish .at-step__line::after {
+  width: 100%;
+}
+/* line 142, ../sass/components/steps.scss */
+.at-step--next-error .at-step__line::after {
+  width: 100%;
+  background-color: #FF4949;
+}
+/* line 147, ../sass/components/steps.scss */
+.at-step__line::before, .at-step__line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+/* line 155, ../sass/components/steps.scss */
+.at-step__line::before {
+  background-color: #B9B9B9;
+}
+/* line 158, ../sass/components/steps.scss */
+.at-step__line::after {
+  width: 0;
+  background-color: #6190E8;
+  transition: all .3s;
+}
+/* line 164, ../sass/components/steps.scss */
+.at-step__main {
+  display: inline-block;
+  width: calc(100% - 40px);
+  vertical-align: top;
+  white-space: normal;
+  overflow: hidden;
+}
+/* line 171, ../sass/components/steps.scss */
+.at-step__title {
+  display: inline-block;
+  padding-right: 8px;
+  max-width: 80%;
+  color: #96A0AD;
+  font-weight: bold;
+  line-height: 30px;
+  vertical-align: top;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: #FFF;
+  overflow: hidden;
+}
+/* line 184, ../sass/components/steps.scss */
+.at-step--process .at-step__title {
+  color: #3F536E;
+}
+/* line 188, ../sass/components/steps.scss */
+.at-step--error .at-step__title {
+  color: #FF4949;
+}
+/* line 192, ../sass/components/steps.scss */
+.at-step__description {
+  color: #96A0AD;
+  font-size: 12px;
+  word-wrap: break-word;
+}
+/* line 197, ../sass/components/steps.scss */
+.at-step--process .at-step__description {
+  color: #3F536E;
+}
+/* line 201, ../sass/components/steps.scss */
+.at-step--error .at-step__description {
+  color: #FF4949;
+}
+/* line 205, ../sass/components/steps.scss */
+.at-step__icon {
+  font-size: 28px;
+  border-color: transparent;
+  background-color: #FFF;
+}
+/* line 210, ../sass/components/steps.scss */
+.at-step__title, .at-step__description, .at-step__icon {
+  transition: all .3s ease-in-out;
 }

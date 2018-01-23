@@ -1,0 +1,8 @@
+<at-steps [current]="current" [direction]="'vertical'">
+  <at-step [title]="'step1'"></at-step>
+  <at-step [title]="'step2'"></at-step>
+  <at-step [title]="'step3'" [description]="'asjdkasjdkajskdjaksjdkasjdk'"></at-step>
+</at-steps>
+
+<button atButton (click)="current =current +1">下一步</button>
+<button atButton (click)="current = current-1">上一步</button>

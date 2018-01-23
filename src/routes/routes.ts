@@ -37,6 +37,7 @@ import {AtDemoIconComponent} from "../app/showcase/at-demo-icon/at-demo-icon.com
 import {AtDemoDatetimepickerComponent} from "../app/showcase/at-demo-datetimepicker/at-demo-datetimepicker.component";
 import {AtDemoCardComponent} from "../app/showcase/at-demo-card/at-demo-card.component";
 import {AtDemoTabsComponent} from "../app/showcase/at-demo-tabs/at-demo-tabs.component";
+import {AtDemoStepsComponent} from "../app/showcase/at-demo-steps/at-demo-steps.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -79,7 +80,8 @@ const appRoutes: Routes = [
       {path: 'table', component: AtDemoTableComponent},
       {path: 'form', component: AtDemoFormComponent},
       {path: 'datepicker', component: AtDemoDatetimepickerComponent},
-      {path: 'tab', component: AtDemoTabsComponent}
+      {path: 'tab', component: AtDemoTabsComponent},
+      {path: 'steps', component: AtDemoStepsComponent}
     ]
 
   },
