@@ -3,8 +3,11 @@ import {StepsComponent} from "../steps.component";
 
 @Component({
   selector: 'at-step',
-  templateUrl: './step.component.html',
-  styleUrls: ['./step.component.css']
+  template: `
+    <ng-content>
+
+    </ng-content>
+  `,
 })
 export class StepComponent implements OnInit {
 

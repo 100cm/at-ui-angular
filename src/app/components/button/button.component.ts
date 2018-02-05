@@ -106,7 +106,7 @@ export class ButtonComponent implements OnInit {
 
   ngAfterContentInit() {
     // console.log(this.text)
-    this.showText = (this.text.nativeElement.innerText.length > 0 || this.text.nativeElement.children.length > 0);
+    this.showText = ((this.text.nativeElement.innerText || []).length > 0 || (this.text.nativeElement.children || [] ).length > 0);
   }
 
 }

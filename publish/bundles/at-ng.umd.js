@@ -165,7 +165,7 @@ var ButtonComponent = (function () {
      */
     ButtonComponent.prototype.ngAfterContentInit = function () {
         // console.log(this.text)
-        this.showText = (this.text.nativeElement.innerText.length > 0 || this.text.nativeElement.children.length > 0);
+        this.showText = ((this.text.nativeElement.innerText || []).length > 0 || (this.text.nativeElement.children || []).length > 0);
     };
     return ButtonComponent;
 }());
@@ -6830,6 +6830,179 @@ TabNavsComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+var StepsComponent = (function () {
+    function StepsComponent() {
+        this._direction = 'horizontal';
+        this.steps = [];
+        this._current = 0;
+    }
+    Object.defineProperty(StepsComponent.prototype, "current", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return this._current;
+        },
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        set: function (value) {
+            if (value < 0) {
+                return;
+            }
+            console.log(this._current);
+            this._current = value;
+            this.steps[value].status = 'process';
+            //all before success
+            this.steps.filter(function (s, i) {
+                return i < value;
+            }).forEach(function (step) { return step.status = 'finish'; });
+            //all after wait
+            this.steps.filter(function (s, i) {
+                return i > value;
+            }).forEach(function (step) { return step.status = 'wait'; });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(StepsComponent.prototype, "direction", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return this._direction;
+        },
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        set: function (value) {
+            this._direction = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @return {?}
+     */
+    StepsComponent.prototype.ngOnInit = function () {
+        //init status
+        this.steps[0].status = 'process';
+    };
+    /**
+     * @param {?} step
+     * @return {?}
+     */
+    StepsComponent.prototype.addStep = function (step) {
+        this.steps.push(step);
+    };
+    Object.defineProperty(StepsComponent.prototype, "marginPx", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return -this.margin + 'px';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    StepsComponent.prototype.stepWidth = function (i) {
+        var /** @type {?} */ width = i == (this.steps.length - 1) ? '' : (100 / (this.steps.length - 1)) + '%';
+        return width;
+    };
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    StepsComponent.prototype.isLast = function (i) {
+        return i != this.steps.length - 1;
+    };
+    /**
+     * @return {?}
+     */
+    StepsComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        var /** @type {?} */ array = this.stepList.toArray();
+        var /** @type {?} */ last = array[array.length - 1];
+        var /** @type {?} */ width = last.nativeElement.offsetWidth;
+        setTimeout(function (_) {
+            _this.margin = (width + 10) / (_this.steps.length - 1);
+        });
+    };
+    return StepsComponent;
+}());
+StepsComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'at-steps',
+                template: "\n    <div class=\"at-steps at-steps--{{direction}}\">\n      <div #steps *ngFor=\"let step of steps;let i = index\"\n           class=\"at-step at-step--{{step.status}}\"\n           [ngStyle]=\"{width: stepWidth(i) , 'margin-right':marginPx}\">\n        <div *ngIf=\"isLast(i)\" class=\"at-step__line\"></div>\n        <div class=\"at-step__head\">\n          <div class=\"at-step__label\" [ngClass]=\"{'at-step__icon': step.icon}\">\n            <div *ngIf=\"step.status !='finish' && !step.icon\" class=\"at-step__order\">\n              {{ i+1}}\n            </div>\n            <div *ngIf=\"step.icon\">\n              <i class=\"icon {{step.icon}}\"></i>\n            </div>\n            <div *ngIf=\"step.status === 'finish'\">\n              <i class=\"icon icon-check\"></i>\n            </div>\n            <div *ngIf=\"step.status === 'error'\">\n              <i class=\"icon icon-x\"></i>\n            </div>\n          </div>\n        </div>\n        <div class=\"at-step__main\">\n          <div class=\"at-step__title\">{{step.title}}</div>\n          <div class=\"at-step__description\">{{step.description}}</div>\n        </div>\n      </div>\n    </div>\n\n  ",
+            },] },
+];
+/** @nocollapse */
+StepsComponent.ctorParameters = function () { return []; };
+StepsComponent.propDecorators = {
+    "current": [{ type: core.Input },],
+    "direction": [{ type: core.Input },],
+    "stepList": [{ type: core.ViewChildren, args: ['steps',] },],
+};
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var StepComponent = (function () {
+    /**
+     * @param {?} parent
+     * @param {?} el
+     */
+    function StepComponent(parent, el) {
+        this.parent = parent;
+        this.el = el;
+        this.status = 'wait';
+        this.title = '';
+        this.description = '';
+        this.parent.addStep(this);
+    }
+    /**
+     * @return {?}
+     */
+    StepComponent.prototype.ngOnInit = function () {
+    };
+    Object.defineProperty(StepComponent.prototype, "finnalStatus", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return StepComponent;
+}());
+StepComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'at-step',
+                template: "\n    <ng-content>\n\n    </ng-content>\n  ",
+            },] },
+];
+/** @nocollapse */
+StepComponent.ctorParameters = function () { return [
+    { type: StepsComponent, },
+    { type: core.ElementRef, },
+]; };
+StepComponent.propDecorators = {
+    "icon": [{ type: core.Input },],
+    "title": [{ type: core.Input },],
+    "description": [{ type: core.Input },],
+};
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 var AtModule = (function () {
     function AtModule() {
     }
@@ -6923,6 +7096,8 @@ AtModule.decorators = [
                     DropdownDirective,
                     PopTriggerDirective,
                     ModalBodyDirective,
+                    StepsComponent,
+                    StepComponent,
                 ],
                 exports: [
                     ButtonComponent,
@@ -6988,7 +7163,9 @@ AtModule.decorators = [
                     AtFormatPipe,
                     TabComponent,
                     TabContentComponent,
-                    TabSetComponent
+                    TabSetComponent,
+                    StepsComponent,
+                    StepComponent,
                 ],
                 entryComponents: [NotificationComponent, NotificationContainerComponent,
                     MessageContainerComponent, MessageComponent,
@@ -7079,11 +7256,13 @@ exports.AT_ROOT_CONFIG = AT_ROOT_CONFIG;
 exports.ɵb = DropDownAnimation;
 exports.ɵc = FadeAnimation;
 exports.ɵa = TagAnimation;
-exports.ɵo = ComponentCreator;
+exports.ɵq = ComponentCreator;
 exports.ɵg = AtFormatPipe;
 exports.ɵd = DropdownDirective;
 exports.ɵe = ModalBodyDirective;
 exports.ɵf = PopTriggerDirective;
+exports.ɵp = StepComponent;
+exports.ɵo = StepsComponent;
 exports.ɵl = AtTabInkDirective;
 exports.ɵj = TabBodyComponent;
 exports.ɵi = TabContentComponent;

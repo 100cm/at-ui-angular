@@ -1,4 +1,4 @@
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ContentChild, ContentChildren, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Injectable, InjectionToken, Injector, Input, NgModule, NgZone, Output, Pipe, Renderer2, TemplateRef, ViewChild, ViewEncapsulation, forwardRef } from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ContentChild, ContentChildren, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Inject, Injectable, InjectionToken, Injector, Input, NgModule, NgZone, Output, Pipe, Renderer2, TemplateRef, ViewChild, ViewChildren, ViewEncapsulation, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -124,7 +124,7 @@ class ButtonComponent {
      */
     ngAfterContentInit() {
         // console.log(this.text)
-        this.showText = (this.text.nativeElement.innerText.length > 0 || this.text.nativeElement.children.length > 0);
+        this.showText = ((this.text.nativeElement.innerText || []).length > 0 || (this.text.nativeElement.children || []).length > 0);
     }
 }
 ButtonComponent.decorators = [
@@ -7032,6 +7032,195 @@ TabNavsComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class StepsComponent {
+    constructor() {
+        this._direction = 'horizontal';
+        this.steps = [];
+        this._current = 0;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set current(value) {
+        if (value < 0) {
+            return;
+        }
+        console.log(this._current);
+        this._current = value;
+        this.steps[value].status = 'process';
+        //all before success
+        this.steps.filter((s, i) => {
+            return i < value;
+        }).forEach((step) => step.status = 'finish');
+        //all after wait
+        this.steps.filter((s, i) => {
+            return i > value;
+        }).forEach((step) => step.status = 'wait');
+    }
+    /**
+     * @return {?}
+     */
+    get current() {
+        return this._current;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set direction(value) {
+        this._direction = value;
+    }
+    /**
+     * @return {?}
+     */
+    get direction() {
+        return this._direction;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        //init status
+        this.steps[0].status = 'process';
+    }
+    /**
+     * @param {?} step
+     * @return {?}
+     */
+    addStep(step) {
+        this.steps.push(step);
+    }
+    /**
+     * @return {?}
+     */
+    get marginPx() {
+        return -this.margin + 'px';
+    }
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    stepWidth(i) {
+        let /** @type {?} */ width = i == (this.steps.length - 1) ? '' : (100 / (this.steps.length - 1)) + '%';
+        return width;
+    }
+    /**
+     * @param {?} i
+     * @return {?}
+     */
+    isLast(i) {
+        return i != this.steps.length - 1;
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        let /** @type {?} */ array = this.stepList.toArray();
+        let /** @type {?} */ last = array[array.length - 1];
+        let /** @type {?} */ width = last.nativeElement.offsetWidth;
+        setTimeout(_ => {
+            this.margin = (width + 10) / (this.steps.length - 1);
+        });
+    }
+}
+StepsComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'at-steps',
+                template: `
+    <div class="at-steps at-steps--{{direction}}">
+      <div #steps *ngFor="let step of steps;let i = index"
+           class="at-step at-step--{{step.status}}"
+           [ngStyle]="{width: stepWidth(i) , 'margin-right':marginPx}">
+        <div *ngIf="isLast(i)" class="at-step__line"></div>
+        <div class="at-step__head">
+          <div class="at-step__label" [ngClass]="{'at-step__icon': step.icon}">
+            <div *ngIf="step.status !='finish' && !step.icon" class="at-step__order">
+              {{ i+1}}
+            </div>
+            <div *ngIf="step.icon">
+              <i class="icon {{step.icon}}"></i>
+            </div>
+            <div *ngIf="step.status === 'finish'">
+              <i class="icon icon-check"></i>
+            </div>
+            <div *ngIf="step.status === 'error'">
+              <i class="icon icon-x"></i>
+            </div>
+          </div>
+        </div>
+        <div class="at-step__main">
+          <div class="at-step__title">{{step.title}}</div>
+          <div class="at-step__description">{{step.description}}</div>
+        </div>
+      </div>
+    </div>
+
+  `,
+            },] },
+];
+/** @nocollapse */
+StepsComponent.ctorParameters = () => [];
+StepsComponent.propDecorators = {
+    "current": [{ type: Input },],
+    "direction": [{ type: Input },],
+    "stepList": [{ type: ViewChildren, args: ['steps',] },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+class StepComponent {
+    /**
+     * @param {?} parent
+     * @param {?} el
+     */
+    constructor(parent, el) {
+        this.parent = parent;
+        this.el = el;
+        this.status = 'wait';
+        this.title = '';
+        this.description = '';
+        this.parent.addStep(this);
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+    }
+    /**
+     * @return {?}
+     */
+    get finnalStatus() {
+        return '';
+    }
+}
+StepComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'at-step',
+                template: `
+    <ng-content>
+
+    </ng-content>
+  `,
+            },] },
+];
+/** @nocollapse */
+StepComponent.ctorParameters = () => [
+    { type: StepsComponent, },
+    { type: ElementRef, },
+];
+StepComponent.propDecorators = {
+    "icon": [{ type: Input },],
+    "title": [{ type: Input },],
+    "description": [{ type: Input },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 class AtModule {
     /**
      * @param {?=} options
@@ -7122,6 +7311,8 @@ AtModule.decorators = [
                     DropdownDirective,
                     PopTriggerDirective,
                     ModalBodyDirective,
+                    StepsComponent,
+                    StepComponent,
                 ],
                 exports: [
                     ButtonComponent,
@@ -7187,7 +7378,9 @@ AtModule.decorators = [
                     AtFormatPipe,
                     TabComponent,
                     TabContentComponent,
-                    TabSetComponent
+                    TabSetComponent,
+                    StepsComponent,
+                    StepComponent,
                 ],
                 entryComponents: [NotificationComponent, NotificationContainerComponent,
                     MessageContainerComponent, MessageComponent,
@@ -7216,5 +7409,5 @@ const AT_ROOT_CONFIG = new InjectionToken('AtRootConfig');
  * Generated bundle index. Do not edit.
  */
 
-export { TabComponent, ButtonComponent, HollowDirective, ButtonGroupComponent, MenuComponent, MenuItemComponent, SubMenuComponent, MenuItemGroupComponent, MenuListComponent, RadioGroupComponent, RadioComponent, InlineMenuComponent, RowComponent, ColComponent, TagComponent, IconComponent, CheckboxComponent, CheckboxGroupComponent, InputComponent, SelectComponent, RadioButtonComponent, SwitchComponent, OptionComponent, SliderComponent, TextareaComponent, DropdownComponent, DropdownMenuItemComponent, DropMenuListComponent, NotificationComponent, ComponentCreatorBase, NotificationContainerComponent, NotificationBaseService, AtNotificationService, AlertComponent, BadgeComponent, ModalComponent, AtGlobalMonitorService, AtModalService, ModalBaseService, TableComponent, AtTbodyDirective, AtTdDirective, AtThDirective, AtTbodyTrDirective, AtTheadDirective, PagenationComponent, BreadcrumbComponent, AtBreadItemDirective, MessageContainerComponent, MessageComponent, AtMessageService, AtMessageContainerService, PopoverComponent, ProgressComponent, TooltipComponent, FormComponent, AtFormDirective, AtFormItemDirective, AtFormLabelDirective, AtFormContentDirective, AtFormErrorDirective, AtFormFeedbackDirective, DatetimepickerComponent, CalendarComponent, TimeComponent, CardComponent, AtModule, AT_ROOT_CONFIG, DropDownAnimation as ɵb, FadeAnimation as ɵc, TagAnimation as ɵa, ComponentCreator as ɵo, AtFormatPipe as ɵg, DropdownDirective as ɵd, ModalBodyDirective as ɵe, PopTriggerDirective as ɵf, AtTabInkDirective as ɵl, TabBodyComponent as ɵj, TabContentComponent as ɵi, TabHeaderComponent as ɵk, TabLabelDirective as ɵn, TabNavsComponent as ɵm, TabSetComponent as ɵh };
+export { TabComponent, ButtonComponent, HollowDirective, ButtonGroupComponent, MenuComponent, MenuItemComponent, SubMenuComponent, MenuItemGroupComponent, MenuListComponent, RadioGroupComponent, RadioComponent, InlineMenuComponent, RowComponent, ColComponent, TagComponent, IconComponent, CheckboxComponent, CheckboxGroupComponent, InputComponent, SelectComponent, RadioButtonComponent, SwitchComponent, OptionComponent, SliderComponent, TextareaComponent, DropdownComponent, DropdownMenuItemComponent, DropMenuListComponent, NotificationComponent, ComponentCreatorBase, NotificationContainerComponent, NotificationBaseService, AtNotificationService, AlertComponent, BadgeComponent, ModalComponent, AtGlobalMonitorService, AtModalService, ModalBaseService, TableComponent, AtTbodyDirective, AtTdDirective, AtThDirective, AtTbodyTrDirective, AtTheadDirective, PagenationComponent, BreadcrumbComponent, AtBreadItemDirective, MessageContainerComponent, MessageComponent, AtMessageService, AtMessageContainerService, PopoverComponent, ProgressComponent, TooltipComponent, FormComponent, AtFormDirective, AtFormItemDirective, AtFormLabelDirective, AtFormContentDirective, AtFormErrorDirective, AtFormFeedbackDirective, DatetimepickerComponent, CalendarComponent, TimeComponent, CardComponent, AtModule, AT_ROOT_CONFIG, DropDownAnimation as ɵb, FadeAnimation as ɵc, TagAnimation as ɵa, ComponentCreator as ɵq, AtFormatPipe as ɵg, DropdownDirective as ɵd, ModalBodyDirective as ɵe, PopTriggerDirective as ɵf, StepComponent as ɵp, StepsComponent as ɵo, AtTabInkDirective as ɵl, TabBodyComponent as ɵj, TabContentComponent as ɵi, TabHeaderComponent as ɵk, TabLabelDirective as ɵn, TabNavsComponent as ɵm, TabSetComponent as ɵh };
 export { CommonModule } from '@angular/common';
