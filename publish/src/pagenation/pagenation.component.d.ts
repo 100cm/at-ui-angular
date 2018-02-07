@@ -36,4 +36,5 @@ export declare class PagenationComponent implements OnInit {
     _jumpBefore(pageSize: any): void;
     _jumpAfter(pageSize: any): void;
     _atPageIndexChange(value: any): void;
+    _atPageSizeChange(value: any): void;
 }

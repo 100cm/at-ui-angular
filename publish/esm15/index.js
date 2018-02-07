@@ -4726,6 +4726,14 @@ class PagenationComponent {
         this._buildIndexes();
         this.pageIndexChange.emit(this._current);
     }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    _atPageSizeChange(value) {
+        this.pageSize = value;
+        this.pageSizeChange.emit(this.pageSize);
+    }
 }
 PagenationComponent.decorators = [
     { type: Component, args: [{
@@ -4784,7 +4792,7 @@ PagenationComponent.decorators = [
         </li>
 
         <div *ngIf="atPageSizer" class="at-pagination__sizer">
-          <atSelect [(ngModel)]="pageSize">
+          <atSelect [(ngModel)]="pageSize" (ngModelChange)="_atPageSizeChange($event)">
             <atOption *ngFor="let item of _options" [atValue]="item" [atLabel]="item+' 条/页'">
 
             </atOption>
