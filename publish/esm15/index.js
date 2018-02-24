@@ -1304,7 +1304,7 @@ class IconComponent {
 IconComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atIcon',
-                template: `<i class="icon icon-{{type}}"></i>
+                template: `<i [ngStyle]="{'font-size':size+'px'}" class="icon icon-{{type}}"></i>
   `,
             },] },
 ];
@@ -1312,6 +1312,7 @@ IconComponent.decorators = [
 IconComponent.ctorParameters = () => [];
 IconComponent.propDecorators = {
     "type": [{ type: Input },],
+    "size": [{ type: Input },],
 };
 
 /**

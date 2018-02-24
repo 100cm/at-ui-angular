@@ -17,17 +17,19 @@ export class BreadcrumbComponent implements OnInit {
   ngOnInit() {
   }
 
+  items: Array<AtBreadItemDirective> = []
+
   @Input() separator = '/'
 
   @ContentChild('breadItem') breadItem: TemplateRef<any>;
 
-  @ContentChildren(AtBreadItemDirective)
-  set setThs(value: QueryList<AtBreadItemDirective>) {
-    let items = value.toArray()
-    items.forEach((item) => {
-      item.separator = this.separator
-    })
-  }
+  // @ContentChildren(AtBreadItemDirective)
+  // set setThs(value: QueryList<AtBreadItemDirective>) {
+  //   let items = value.toArray()
+  //   items.forEach((item) => {
+  //     item.separator = this.separator
+  //   })
+  // }
 
 
 }

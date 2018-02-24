@@ -150,7 +150,6 @@ export class DropdownComponent implements OnInit {
   _clickDropDown($event: MouseEvent): void {
     $event.stopPropagation();
     if (this.autoClose) {
-      console.log('click')
       this._hide();
     }
   }

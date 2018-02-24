@@ -82,7 +82,8 @@ import {PopTriggerDirective} from './popover/pop-trigger.directive';
 import {OverlayModule} from "@angular/cdk/overlay";
 import {ModalBodyDirective} from './modal/modal-body.directive';
 import {StepsComponent} from './steps/steps.component';
-import { StepComponent } from './steps/step/step.component';
+import {StepComponent} from './steps/step/step.component';
+import {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component';
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -151,7 +152,7 @@ export {DatetimepickerComponent} from './datetimepicker/datetimepicker.component
 export {CalendarComponent} from './datetimepicker/calendar/calendar.component';
 export {TimeComponent} from './datetimepicker/time/time.component';
 export {CardComponent} from './card/card.component';
-
+export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component'
 
 @NgModule({
   declarations: [
@@ -227,6 +228,7 @@ export {CardComponent} from './card/card.component';
     ModalBodyDirective,
     StepsComponent,
     StepComponent,
+    AtBreadItemComponent,
   ],
   exports: [
     ButtonComponent,
@@ -271,6 +273,7 @@ export {CardComponent} from './card/card.component';
     AtTdDirective,
     BreadcrumbComponent,
     AtBreadItemDirective,
+    AtBreadItemComponent,
 
     MessageContainerComponent,
     MessageComponent,

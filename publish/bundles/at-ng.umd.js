@@ -1399,13 +1399,14 @@ var IconComponent = (function () {
 IconComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'atIcon',
-                template: "<i class=\"icon icon-{{type}}\"></i>\n  ",
+                template: "<i [ngStyle]=\"{'font-size':size+'px'}\" class=\"icon icon-{{type}}\"></i>\n  ",
             },] },
 ];
 /** @nocollapse */
 IconComponent.ctorParameters = function () { return []; };
 IconComponent.propDecorators = {
     "type": [{ type: core.Input },],
+    "size": [{ type: core.Input },],
 };
 /**
  * @fileoverview added by tsickle
