@@ -3,23 +3,25 @@ import {SelectComponent} from "../select.component";
 
 @Component({
   selector: 'atOption',
-  template: `<ng-content></ng-content>
-`,
+  template: `
+    <ng-content></ng-content>
+  `,
 })
 export class OptionComponent implements OnInit {
 
 
   constructor(public _selectComponent: SelectComponent) {
-    this._selectComponent.addOption(this)
+
   }
 
   ngOnInit() {
+    this._selectComponent.addOption(this)
   }
 
   _atLabel: string
   _selected: boolean = false
   _atValue: any
-  private _isTag:boolean = false
+  private _isTag: boolean = false
 
 
   get isTag(): boolean {

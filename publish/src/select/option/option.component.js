@@ -13,12 +13,12 @@ export class OptionComponent {
         this._selected = false;
         this._isTag = false;
         this._disabled = false;
-        this._selectComponent.addOption(this);
     }
     /**
      * @return {?}
      */
     ngOnInit() {
+        this._selectComponent.addOption(this);
     }
     /**
      * @return {?}
@@ -76,8 +76,9 @@ export class OptionComponent {
 OptionComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atOption',
-                template: `<ng-content></ng-content>
-`,
+                template: `
+    <ng-content></ng-content>
+  `,
             },] },
 ];
 /** @nocollapse */

@@ -1,9 +1,5 @@
 <atSelect [(ngModel)]="selected" [multiple]="true">
-  <atOption [atLabel]="'first'" [atValue]="'first'">
-  </atOption>
-  <atOption [atLabel]="'second'" [atValue]="'second'">
-  </atOption>
-  <atOption [atLabel]="'next'" [atValue]="'next'">
+  <atOption *ngFor="let item of items" [atLabel]="item" [atValue]="item">
   </atOption>
 </atSelect>
 

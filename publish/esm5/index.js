@@ -2209,8 +2209,11 @@ var SelectComponent = (function () {
      * @return {?}
      */
     SelectComponent.prototype.addOption = function (option) {
+        var _this = this;
         this.options.push(option);
-        this.forceUpdateSelectedOption(this._value);
+        setTimeout(function (_) {
+            _this.forceUpdateSelectedOption(_this._value);
+        });
     };
     /**
      * @return {?}
@@ -2350,7 +2353,11 @@ var SelectComponent = (function () {
      * @return {?}
      */
     SelectComponent.prototype.isInSet = function (set, option) {
-        return (((Array.from(set))).find(function (data) { return data.atValue === option.atValue; }));
+        var /** @type {?} */ ined = (((Array.from(set)))).find(function (data) {
+            return data.atValue === option.atValue;
+        });
+        // console.log(ined)
+        return ined;
     };
     /**
      * @param {?} value
@@ -2390,6 +2397,16 @@ var SelectComponent = (function () {
             }
         }
     };
+    Object.defineProperty(SelectComponent.prototype, "ArraySelectOptions", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return Array.from(this._selectedOptions);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @param {?} currentModelValue
      * @param {?=} triggerByNgModel
@@ -2403,9 +2420,9 @@ var SelectComponent = (function () {
         }
         if (this.multiple) {
             var /** @type {?} */ selectedOptions = this.options.filter(function (item) {
-                return (item != null) && (currentModelValue.indexOf(item.atValue) !== -1);
+                return (item != null) && (currentModelValue.indexOf(item._atValue) != -1);
             });
-            if ((!triggerByNgModel)) {
+            if (!triggerByNgModel) {
                 selectedOptions.forEach(function (option) {
                     if (!_this._selectedOptions.has(option)) {
                         _this._selectedOptions.add(option);
@@ -2511,7 +2528,7 @@ var SelectComponent = (function () {
 SelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atSelect',
-                template: "\n    <div (click)=\"handleDrop($event)\" (mouseenter)=\"dropDown()\" (mouseleave)=\"dropUp()\"\n         class=\"at-select at-select--{{disabled ? 'disabled' : 'visiable' }} at-select--{{multiple ? 'multiple' : 'single' }} at-select--{{atSize}}\">\n\n      <div *ngIf=\"multiple\" #selection class=\"at-select__selection\">\n    <span *ngFor=\"let item of _selectedOptions\" class=\"at-tag\" [@tagAnimation]>\n      <span class=\"at-tag__text\">{{item.atLabel}}</span>\n      <i (click)=\"rejectData($event,item)\" class=\"icon icon-x at-tag__close\"></i>\n    </span>\n        <span class=\"at-select__placeholder\" *ngIf=\"selectedOptions.length == 0 && showLabel\">\n\n    </span>\n        <input *ngIf=\"tagAble\" #tag_input type=\"text\"\n               [(ngModel)]=\"_searchText\"\n               (focus)=\"resetOption()\"\n               (ngModelChange)=\"updateFilterOption()\"\n               placeholder=\"\" (keyup)=\"onKey($event)\" style=\"\n    border: none;\n    outline: none;\n    left: 0;\n    top: 0;\n    display: inline-block;\n    margin: 0 24px 0 8px;\n    background-color: transparent;\">\n        <i class=\"icon icon-chevron-down at-select__arrow\"></i>\n        <i *ngIf=\"allowClear\" (click)=\"clearData($event)\" style=\"background: white\"\n           class=\"icon icon-x at-select__clear\">\n        </i>\n      </div>\n\n\n      <div #selection *ngIf=\"!multiple\" class=\"at-select__selection\">\n        <span class=\"at-select__placeholder\" *ngIf=\"!selectedLabel && showLabel\">\u8BF7\u9009\u62E9</span>\n        <span *ngIf=\"selectedLabel && showLabel\"\n              class=\"at-select__selected\">{{selectedLabel}}</span>\n        <input *ngIf=\"searchable\" #search_input type=\"text\" [(ngModel)]=\"_searchText\"\n               (focus)=\"resetOption()\"\n               (ngModelChange)=\"updateFilterOption()\" class=\"at-select__input\">\n        <i class=\"icon icon-chevron-down at-select__arrow\"></i>\n        <i *ngIf=\"allowClear\" (click)=\"clearData($event)\" style=\"background: white\"\n           class=\"icon icon-x at-select__clear\">\n        </i>\n      </div>\n\n      <div *ngIf=\"_dropdown\" [@dropDownAnimation] class=\"at-select__dropdown at-select__dropdown--bottom\"\n           [ngStyle]=\"{'top':top}\" style=\"left: 0px;\">\n        <ul class=\"at-select__not-found\" *ngIf=\"filterOptions.length == 0\">\n          <li>\u65E0\u5339\u914D\u6570\u636E</li>\n        </ul>\n        <ul class=\"at-select__list\">\n          <li (click)=\"selectOption($event,option)\"\n              [ngClass]=\"{'at-select__option--selected': isInSet(_selectedOptions,option) || _selectedOption?.atValue == option.atValue ,'at-select__option--disabled':option.disabled}\"\n              class=\"at-select__option\" *ngFor=\"let option of filterOptions\">\n            {{option.atLabel}}\n          </li>\n        </ul>\n      </div>\n\n    </div>\n  ",
+                template: "\n    <div (click)=\"handleDrop($event)\" (mouseenter)=\"dropDown()\" (mouseleave)=\"dropUp()\"\n         class=\"at-select at-select--{{disabled ? 'disabled' : 'visiable' }} at-select--{{multiple ? 'multiple' : 'single' }} at-select--{{atSize}}\">\n\n      <div *ngIf=\"multiple\" #selection class=\"at-select__selection\">\n    <span *ngFor=\"let item of ArraySelectOptions\" class=\"at-tag\" [@tagAnimation]>\n      <span class=\"at-tag__text\">{{item.atLabel}}</span>\n      <i (click)=\"rejectData($event,item)\" class=\"icon icon-x at-tag__close\"></i>\n    </span>\n        <span class=\"at-select__placeholder\" *ngIf=\"selectedOptions.length == 0 && showLabel\">\n\n    </span>\n        <input *ngIf=\"tagAble\" #tag_input type=\"text\"\n               [(ngModel)]=\"_searchText\"\n               (focus)=\"resetOption()\"\n               (ngModelChange)=\"updateFilterOption()\"\n               placeholder=\"\" (keyup)=\"onKey($event)\" style=\"\n    border: none;\n    outline: none;\n    left: 0;\n    top: 0;\n    display: inline-block;\n    margin: 0 24px 0 8px;\n    background-color: transparent;\">\n        <i class=\"icon icon-chevron-down at-select__arrow\"></i>\n        <i *ngIf=\"allowClear\" (click)=\"clearData($event)\" style=\"background: white\"\n           class=\"icon icon-x at-select__clear\">\n        </i>\n      </div>\n\n\n      <div #selection *ngIf=\"!multiple\" class=\"at-select__selection\">\n        <span class=\"at-select__placeholder\" *ngIf=\"!selectedLabel && showLabel\">\u8BF7\u9009\u62E9</span>\n        <span *ngIf=\"selectedLabel && showLabel\"\n              class=\"at-select__selected\">{{selectedLabel}}</span>\n        <input *ngIf=\"searchable\" #search_input type=\"text\" [(ngModel)]=\"_searchText\"\n               (focus)=\"resetOption()\"\n               (ngModelChange)=\"updateFilterOption()\" class=\"at-select__input\">\n        <i class=\"icon icon-chevron-down at-select__arrow\"></i>\n        <i *ngIf=\"allowClear\" (click)=\"clearData($event)\" style=\"background: white\"\n           class=\"icon icon-x at-select__clear\">\n        </i>\n      </div>\n\n      <div *ngIf=\"_dropdown\" [@dropDownAnimation] class=\"at-select__dropdown at-select__dropdown--bottom\"\n           [ngStyle]=\"{'top':top}\" style=\"left: 0px;\">\n        <ul class=\"at-select__not-found\" *ngIf=\"filterOptions.length == 0\">\n          <li>\u65E0\u5339\u914D\u6570\u636E</li>\n        </ul>\n        <ul class=\"at-select__list\">\n          <li (click)=\"selectOption($event,option)\"\n              [ngClass]=\"{'at-select__option--selected': isInSet(_selectedOptions,option) || _selectedOption?.atValue == option.atValue ,'at-select__option--disabled':option.disabled}\"\n              class=\"at-select__option\" *ngFor=\"let option of filterOptions\">\n            {{option.atLabel}}\n          </li>\n        </ul>\n      </div>\n\n    </div>\n  ",
                 providers: [
                     {
                         provide: NG_VALUE_ACCESSOR,
@@ -2691,12 +2708,12 @@ var OptionComponent = (function () {
         this._selected = false;
         this._isTag = false;
         this._disabled = false;
-        this._selectComponent.addOption(this);
     }
     /**
      * @return {?}
      */
     OptionComponent.prototype.ngOnInit = function () {
+        this._selectComponent.addOption(this);
     };
     Object.defineProperty(OptionComponent.prototype, "isTag", {
         /**
@@ -2771,7 +2788,7 @@ var OptionComponent = (function () {
 OptionComponent.decorators = [
     { type: Component, args: [{
                 selector: 'atOption',
-                template: "<ng-content></ng-content>\n",
+                template: "\n    <ng-content></ng-content>\n  ",
             },] },
 ];
 /** @nocollapse */
@@ -3331,7 +3348,6 @@ var DropdownComponent = (function () {
     DropdownComponent.prototype._clickDropDown = function ($event) {
         $event.stopPropagation();
         if (this.autoClose) {
-            console.log('click');
             this._hide();
         }
     };
@@ -4736,53 +4752,9 @@ PagenationComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-var AtBreadItemDirective = (function () {
-    /**
-     * @param {?} el
-     */
-    function AtBreadItemDirective(el) {
-        this.el = el;
-        this.inited = false;
-        this.item = true;
-        this.separator = '/';
-        this._inner = this.el.nativeElement.children;
-    }
-    /**
-     * @return {?}
-     */
-    AtBreadItemDirective.prototype.ngAfterContentInit = function () {
-        if (!this.inited) {
-            var /** @type {?} */ html_1 = '';
-            Array.from(this._inner).forEach(function (_el) {
-                html_1 += _el.outerHTML;
-            });
-            html_1 ? html_1 : html_1 += this.el.nativeElement.innerText;
-            this.el.nativeElement.innerHTML =
-                "<span class=\"at_breadcrumb__text\">" + html_1 + "</span>\n    <span class=\"at-breadcrumb__separator\">" + this.separator + "</span>";
-            this.inited = true;
-        }
-    };
-    return AtBreadItemDirective;
-}());
-AtBreadItemDirective.decorators = [
-    { type: Directive, args: [{
-                selector: '[atBreadItem]'
-            },] },
-];
-/** @nocollapse */
-AtBreadItemDirective.ctorParameters = function () { return [
-    { type: ElementRef, },
-]; };
-AtBreadItemDirective.propDecorators = {
-    "item": [{ type: HostBinding, args: ['class.at-breadcrumb__item',] },],
-    "separator": [{ type: Input },],
-};
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
 var BreadcrumbComponent = (function () {
     function BreadcrumbComponent() {
+        this.items = [];
         this.separator = '/';
     }
     /**
@@ -4790,21 +4762,6 @@ var BreadcrumbComponent = (function () {
      */
     BreadcrumbComponent.prototype.ngOnInit = function () {
     };
-    Object.defineProperty(BreadcrumbComponent.prototype, "setThs", {
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        set: function (value) {
-            var _this = this;
-            var /** @type {?} */ items = value.toArray();
-            items.forEach(function (item) {
-                item.separator = _this.separator;
-            });
-        },
-        enumerable: true,
-        configurable: true
-    });
     return BreadcrumbComponent;
 }());
 BreadcrumbComponent.decorators = [
@@ -4813,13 +4770,65 @@ BreadcrumbComponent.decorators = [
                 template: "\n    <div class=\"at-breadcrumb\">\n      <ng-content></ng-content>\n    </div>\n  ",
             },] },
 ];
+// @ContentChildren(AtBreadItemDirective)
+// set setThs(value: QueryList<AtBreadItemDirective>) {
+//   let items = value.toArray()
+//   items.forEach((item) => {
+//     item.separator = this.separator
+//   })
+// }
 /** @nocollapse */
 BreadcrumbComponent.ctorParameters = function () { return []; };
 BreadcrumbComponent.propDecorators = {
     "separator": [{ type: Input },],
     "breadItem": [{ type: ContentChild, args: ['breadItem',] },],
-    "setThs": [{ type: ContentChildren, args: [AtBreadItemDirective,] },],
 };
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+var AtBreadItemDirective = (function () {
+    /**
+     * @param {?} el
+     * @param {?} breadCrumb
+     */
+    function AtBreadItemDirective(el, breadCrumb) {
+        this.el = el;
+        this.breadCrumb = breadCrumb;
+        this.inited = false;
+    }
+    return AtBreadItemDirective;
+}());
+AtBreadItemDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[atBreadItem]'
+            },] },
+];
+// @HostBinding('class.at-breadcrumb__item') item = true
+//
+//
+// @Input() separator = '/'
+//
+// ngAfterContentInit() {
+//   if (!this.inited) {
+//     let html = ''
+//     Array.from(this._inner).forEach(_el => {
+//       html += _el.outerHTML
+//     })
+//
+//     html ? html : html += this.el.nativeElement.innerText
+//     this.el.nativeElement.innerHTML =
+//       `<span class="at_breadcrumb__text">${html}</span>
+//   <span class="at-breadcrumb__separator">${this.separator}</span>`
+//
+//     this.inited = true
+//   }
+// }
+/** @nocollapse */
+AtBreadItemDirective.ctorParameters = function () { return [
+    { type: ElementRef, },
+    { type: BreadcrumbComponent, },
+]; };
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
@@ -6992,6 +7001,32 @@ StepComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+var AtBreadItemComponent = (function () {
+    function AtBreadItemComponent() {
+        this.separator = '/';
+    }
+    /**
+     * @return {?}
+     */
+    AtBreadItemComponent.prototype.ngOnInit = function () {
+    };
+    return AtBreadItemComponent;
+}());
+AtBreadItemComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'at-bread-item',
+                template: "\n    <span class=\"at_breadcrumb__text\">\n      <ng-content></ng-content>\n    </span>\n    <span class=\"at-breadcrumb__separator\">{{this.separator}}</span>\n  ",
+            },] },
+];
+/** @nocollapse */
+AtBreadItemComponent.ctorParameters = function () { return []; };
+AtBreadItemComponent.propDecorators = {
+    "separator": [{ type: Input },],
+};
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 var AtModule = (function () {
     function AtModule() {
     }
@@ -7087,6 +7122,7 @@ AtModule.decorators = [
                     ModalBodyDirective,
                     StepsComponent,
                     StepComponent,
+                    AtBreadItemComponent,
                 ],
                 exports: [
                     ButtonComponent,
@@ -7131,6 +7167,7 @@ AtModule.decorators = [
                     AtTdDirective,
                     BreadcrumbComponent,
                     AtBreadItemDirective,
+                    AtBreadItemComponent,
                     MessageContainerComponent,
                     MessageComponent,
                     PopoverComponent,
@@ -7180,5 +7217,5 @@ var AT_ROOT_CONFIG = new InjectionToken('AtRootConfig');
 /**
  * Generated bundle index. Do not edit.
  */
-export { TabComponent, ButtonComponent, HollowDirective, ButtonGroupComponent, MenuComponent, MenuItemComponent, SubMenuComponent, MenuItemGroupComponent, MenuListComponent, RadioGroupComponent, RadioComponent, InlineMenuComponent, RowComponent, ColComponent, TagComponent, IconComponent, CheckboxComponent, CheckboxGroupComponent, InputComponent, SelectComponent, RadioButtonComponent, SwitchComponent, OptionComponent, SliderComponent, TextareaComponent, DropdownComponent, DropdownMenuItemComponent, DropMenuListComponent, NotificationComponent, ComponentCreatorBase, NotificationContainerComponent, NotificationBaseService, AtNotificationService, AlertComponent, BadgeComponent, ModalComponent, AtGlobalMonitorService, AtModalService, ModalBaseService, TableComponent, AtTbodyDirective, AtTdDirective, AtThDirective, AtTbodyTrDirective, AtTheadDirective, PagenationComponent, BreadcrumbComponent, AtBreadItemDirective, MessageContainerComponent, MessageComponent, AtMessageService, AtMessageContainerService, PopoverComponent, ProgressComponent, TooltipComponent, FormComponent, AtFormDirective, AtFormItemDirective, AtFormLabelDirective, AtFormContentDirective, AtFormErrorDirective, AtFormFeedbackDirective, DatetimepickerComponent, CalendarComponent, TimeComponent, CardComponent, AtModule, AT_ROOT_CONFIG, DropDownAnimation as ɵb, FadeAnimation as ɵc, TagAnimation as ɵa, ComponentCreator as ɵq, AtFormatPipe as ɵg, DropdownDirective as ɵd, ModalBodyDirective as ɵe, PopTriggerDirective as ɵf, StepComponent as ɵp, StepsComponent as ɵo, AtTabInkDirective as ɵl, TabBodyComponent as ɵj, TabContentComponent as ɵi, TabHeaderComponent as ɵk, TabLabelDirective as ɵn, TabNavsComponent as ɵm, TabSetComponent as ɵh };
+export { TabComponent, ButtonComponent, HollowDirective, ButtonGroupComponent, MenuComponent, MenuItemComponent, SubMenuComponent, MenuItemGroupComponent, MenuListComponent, RadioGroupComponent, RadioComponent, InlineMenuComponent, RowComponent, ColComponent, TagComponent, IconComponent, CheckboxComponent, CheckboxGroupComponent, InputComponent, SelectComponent, RadioButtonComponent, SwitchComponent, OptionComponent, SliderComponent, TextareaComponent, DropdownComponent, DropdownMenuItemComponent, DropMenuListComponent, NotificationComponent, ComponentCreatorBase, NotificationContainerComponent, NotificationBaseService, AtNotificationService, AlertComponent, BadgeComponent, ModalComponent, AtGlobalMonitorService, AtModalService, ModalBaseService, TableComponent, AtTbodyDirective, AtTdDirective, AtThDirective, AtTbodyTrDirective, AtTheadDirective, PagenationComponent, BreadcrumbComponent, AtBreadItemDirective, MessageContainerComponent, MessageComponent, AtMessageService, AtMessageContainerService, PopoverComponent, ProgressComponent, TooltipComponent, FormComponent, AtFormDirective, AtFormItemDirective, AtFormLabelDirective, AtFormContentDirective, AtFormErrorDirective, AtFormFeedbackDirective, DatetimepickerComponent, CalendarComponent, TimeComponent, CardComponent, AtBreadItemComponent, AtModule, AT_ROOT_CONFIG, DropDownAnimation as ɵb, FadeAnimation as ɵc, TagAnimation as ɵa, ComponentCreator as ɵq, AtFormatPipe as ɵg, DropdownDirective as ɵd, ModalBodyDirective as ɵe, PopTriggerDirective as ɵf, StepComponent as ɵp, StepsComponent as ɵo, AtTabInkDirective as ɵl, TabBodyComponent as ɵj, TabContentComponent as ɵi, TabHeaderComponent as ɵk, TabLabelDirective as ɵn, TabNavsComponent as ɵm, TabSetComponent as ɵh };
 export { CommonModule } from '@angular/common';

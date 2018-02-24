@@ -13,6 +13,7 @@ export class DemoSelectMultipleComponent implements OnInit {
   ngOnInit() {
   }
 
-  selected = ['first']
+  selected = ['first','second']
 
+  items = ['a','first','second','third']
 }

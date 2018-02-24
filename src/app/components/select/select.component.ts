@@ -15,7 +15,7 @@ import {TagAnimation} from "../animations/tag-animation";
          class="at-select at-select--{{disabled ? 'disabled' : 'visiable' }} at-select--{{multiple ? 'multiple' : 'single' }} at-select--{{atSize}}">
 
       <div *ngIf="multiple" #selection class="at-select__selection">
-    <span *ngFor="let item of _selectedOptions" class="at-tag" [@tagAnimation]>
+    <span *ngFor="let item of ArraySelectOptions" class="at-tag" [@tagAnimation]>
       <span class="at-tag__text">{{item.atLabel}}</span>
       <i (click)="rejectData($event,item)" class="icon icon-x at-tag__close"></i>
     </span>
@@ -203,7 +203,10 @@ export class SelectComponent implements OnInit {
 
   addOption(option: OptionComponent) {
     this.options.push(option)
-    this.forceUpdateSelectedOption(this._value)
+    setTimeout(_=>{
+      this.forceUpdateSelectedOption(this._value)
+    })
+
   }
 
   constructor() {
@@ -225,7 +228,6 @@ export class SelectComponent implements OnInit {
   }
 
   ngAfterContentInit() {
-
   }
 
   handleDrop(e) {
@@ -334,7 +336,11 @@ export class SelectComponent implements OnInit {
 
 
   isInSet(set, option) {
-    return ((Array.from(set) as Array<OptionComponent>).find((data: OptionComponent) => data.atValue === option.atValue))
+    let ined = ((Array.from(set) as Array<OptionComponent>)).find((data: OptionComponent) => {
+      return data.atValue === option.atValue
+    })
+    // console.log(ined)
+    return ined
   }
 
   updateValue(value, emitChange = true) {
@@ -369,15 +375,19 @@ export class SelectComponent implements OnInit {
   _selectedOption: OptionComponent;
   _selectedOptions: Set<OptionComponent> = new Set();
 
+  get ArraySelectOptions() {
+    return Array.from(this._selectedOptions)
+  }
+
   updateSelectedOption(currentModelValue, triggerByNgModel = false) {
     if (currentModelValue == null) {
       return;
     }
     if (this.multiple) {
       const selectedOptions = this.options.filter((item) => {
-        return (item != null) && (currentModelValue.indexOf(item.atValue) !== -1);
+        return (item != null) && (currentModelValue.indexOf(item._atValue) != -1);
       });
-      if ((!triggerByNgModel)) {
+      if (!triggerByNgModel) {
         selectedOptions.forEach(option => {
           if (!this._selectedOptions.has(option)) {
             this._selectedOptions.add(option);

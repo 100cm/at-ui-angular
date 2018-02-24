@@ -66,6 +66,7 @@ export { DatetimepickerComponent } from './datetimepicker/datetimepicker.compone
 export { CalendarComponent } from './datetimepicker/calendar/calendar.component';
 export { TimeComponent } from './datetimepicker/time/time.component';
 export { CardComponent } from './card/card.component';
+export { AtBreadItemComponent } from './breadcrumb/breadcrumb-item/at-bread-item.component';
 export declare class AtModule {
     static forRoot(options?: AtRootConfig): ModuleWithProviders;
 }

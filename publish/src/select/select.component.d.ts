@@ -52,6 +52,7 @@ export declare class SelectComponent implements OnInit {
     updateValue(value: any, emitChange?: boolean): void;
     _selectedOption: OptionComponent;
     _selectedOptions: Set<OptionComponent>;
+    readonly ArraySelectOptions: OptionComponent[];
     updateSelectedOption(currentModelValue: any, triggerByNgModel?: boolean): void;
     clearAllSelectedOption(): void;
     clearData(e: any): void;
