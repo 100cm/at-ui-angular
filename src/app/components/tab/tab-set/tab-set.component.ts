@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TabComponent} from "../tab.component";
 
 @Component({
@@ -43,6 +43,8 @@ export class TabSetComponent implements OnInit {
 
   }
 
+  @Output() change: EventEmitter<any> = new EventEmitter()
+
   @Input() position: 'vertical' | 'horizontal' = 'horizontal'
 
   @Input()
@@ -52,6 +54,7 @@ export class TabSetComponent implements OnInit {
 
   selectTab(i) {
     this.selected_index = i
+    this.change.emit(i)
   }
 
 }
