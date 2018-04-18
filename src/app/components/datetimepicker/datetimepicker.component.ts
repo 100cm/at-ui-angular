@@ -38,7 +38,7 @@ import {InputComponent} from "../input/input.component";
             </div>
           </div>
           <div class="at-datepicker--panel--body">
-            <atCalendar (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
+            <atCalendar [ngStyle]="{display: mode =='date' ? 'block' : 'none' }" (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
                         (_clickMonth)="clickMonth($event)"
                         [format]="format"
                         [disableDate]="disableDate"
@@ -47,7 +47,20 @@ import {InputComponent} from "../input/input.component";
                         [showValue]="showValue"
                         [atValue]="atValue"></atCalendar>
 
+            <atTime
+              [ngStyle]="{display: mode =='time' ? 'block' : 'none' }"
+              (selectHour)="selectHour($event)"
+              (selectMinute)="selectMinutes($event)"
+              (selectSecond)="selectSecond($event)"
+              [selected_hour]="selected_hour"
+              [selected_minutes]="selected_minutes"
+              [selected_second]="selected_second"></atTime>
+
           </div>
+        </div>
+        <div class="at-datepicker--button">
+          <a (click)="setMode('time')">选择时间</a>
+          <a (click)="setMode('date')">选择日期</a>
         </div>
       </div>
     </div>
@@ -73,6 +86,7 @@ export class DatetimepickerComponent implements OnInit {
 
   private cssTop
 
+  mode = 'date'
 
   get atType(): string {
     return this._atType;
@@ -116,7 +130,37 @@ export class DatetimepickerComponent implements OnInit {
   selectedYear = moment(this.atValue).year();
   selectedMonth = moment(this.atValue).month();
 
-  // ngModel Access
+
+  private _selected_second
+  private _selected_minutes
+  private _selected_hour
+
+
+  get selected_second(): number {
+    return moment(this.atValue).second();
+  }
+
+  set selected_second(value: number) {
+    this._selected_second = value;
+  }
+
+  get selected_minutes(): number {
+    return moment(this.atValue).minutes();
+  }
+
+  set selected_minutes(value: number) {
+    this._selected_minutes = value;
+  }
+
+  get selected_hour(): number {
+    return moment(this.atValue).hour();
+  }
+
+  set selected_hour(value: number) {
+    this._selected_hour = value;
+  }
+
+// ngModel Access
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
@@ -227,5 +271,47 @@ export class DatetimepickerComponent implements OnInit {
 
   choosePicker() {
     this.show = true
+  }
+
+  selectHour(hour) {
+    let time = moment(this.atValue)
+    time.set('h', hour)
+    this.atValue = time
+
+    let change_date = this.atValue
+    if (this.format) {
+      change_date = change_date.format(this.format)
+    }
+    this.onChange(change_date)
+
+
+  }
+
+  selectMinutes(minute) {
+    let time = moment(this.atValue)
+    time.set('m', minute)
+    this.atValue = time
+
+    let change_date = this.atValue
+    if (this.format) {
+      change_date = change_date.format(this.format)
+    }
+    this.onChange(change_date)
+  }
+
+  selectSecond(second) {
+    let time = moment(this.atValue)
+    time.set('s', second)
+    this.atValue = time
+
+    let change_date = this.atValue
+    if (this.format) {
+      change_date = change_date.format(this.format)
+    }
+    this.onChange(change_date)
+  }
+
+  setMode(mode) {
+    this.mode = mode
   }
 }

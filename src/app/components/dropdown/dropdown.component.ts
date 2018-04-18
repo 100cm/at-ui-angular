@@ -190,6 +190,8 @@ export class DropdownComponent implements OnInit {
     }
   }
 
+
+
   ngAfterViewInit(): void {
     let mouse$: Observable<boolean>;
     if (this.trigger === 'hover') {

@@ -8,9 +8,9 @@
   <div class="at-component__sample">
     <ng-content select="[sample]"></ng-content>
   </div>
-  <div *ngIf="showCode" class="at-component__code"  [@fadeAnimation]
+  <div *ngIf="showCode" class="at-component__code" [@fadeAnimation]
        [@expandAnimation]="expandState">
-    <div  app-high-light [atLanguage]="language" [atCode]="code">
+    <div app-high-light [atLanguage]="language" [atCode]="code">
 
     </div>
     <span class="btn-copy"><i class="icon icon-clipboard"></i></span></div>

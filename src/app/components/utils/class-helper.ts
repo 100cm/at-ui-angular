@@ -5,3 +5,7 @@ export interface ClassHelper {
   nativeElement: any
   _setClassMap(): void
 }
+
+export function isNotNil(value: any): boolean {
+  return (typeof(value) !== 'undefined') && value !== null;
+}

@@ -84,9 +84,7 @@
     color: $input-placeholder-color;
   }
   &__dropdown {
-    position: absolute;
     width: 100%;
-    max-height: $select-dropdown-height;
     font-size: $select-dropdown-font-size-base;
     border-radius: $border-radius-base;
     background-color: $select-dropdown-bg-color;

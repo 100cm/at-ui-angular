@@ -84,6 +84,9 @@ import {ModalBodyDirective} from './modal/modal-body.directive';
 import {StepsComponent} from './steps/steps.component';
 import {StepComponent} from './steps/step/step.component';
 import {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component';
+import { SelectInputComponent } from './select/select-input/select-input.component';
+import { OptionContainerComponent } from './select/option-container/option-container.component';
+import { OptionPipe } from './select/option-container/option.pipe';
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -229,6 +232,9 @@ export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.c
     StepsComponent,
     StepComponent,
     AtBreadItemComponent,
+    SelectInputComponent,
+    OptionContainerComponent,
+    OptionPipe,
   ],
   exports: [
     ButtonComponent,

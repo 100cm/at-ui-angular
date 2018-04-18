@@ -9,6 +9,7 @@ import * as moment from 'moment'
       <div #hour_panel atCol [span]="8" class="at-time-panel">
         <ul>
           <li *ngFor="let s of hours"
+              (click)="_select_hour(s.index)"
               [ngClass]="{'time-selected':s.index == selected_hour}">
             {{s.name}}
           </li>
@@ -17,6 +18,7 @@ import * as moment from 'moment'
       <div #minute_panel atCol [span]="8" class="at-time-panel">
         <ul>
           <li *ngFor="let s of minutes"
+              (click)="_select_minutes(s.index)"
               [ngClass]="{'time-selected':s.index == selected_minutes}"
           >
             {{s.name}}
@@ -27,6 +29,7 @@ import * as moment from 'moment'
 
         <ul>
           <li *ngFor="let s of seconds"
+              (click)="_select_second(s.index)"
               [ngClass]="{'time-selected':s.index == selected_second}"
           >
             {{s.name}}
@@ -48,15 +51,18 @@ export class TimeComponent implements OnInit {
     this._buildSeconds()
   }
 
+  @Input() date = moment()
+
   seconds: Array<any>
 
   minutes: Array<any>
 
   hours: Array<any>
 
-  private _selected_second = moment().hour()
-  private _selected_minutes = moment().minute()
-  private _selected_hour = moment().hour()
+
+  private _selected_second
+  private _selected_minutes
+  private _selected_hour
 
 
   @Output() selectHour: EventEmitter<any> = new EventEmitter()
@@ -72,7 +78,6 @@ export class TimeComponent implements OnInit {
   set selected_second(value) {
     this._selected_second = value;
   }
-
 
   get selected_minutes() {
     return this._selected_minutes;
@@ -161,16 +166,32 @@ export class TimeComponent implements OnInit {
   }
 
   _select_minutes(index) {
-    this.selected_second
+    this.selected_minutes = index
+    this.selectMinute.emit(index)
   }
 
   _select_hour(index) {
-
+    this.selected_hour = index
+    this.selectHour.emit(index)
   }
 
   _select_second(index) {
-
+    this.selected_second = index
+    this.selectSecond.emit(index)
   }
 
+  confirmTime() {
+    let second = this.seconds.find((s) => {
+      return s.index == this.selected_second
+    })
+
+    let minute = this.minutes.find((s) => {
+      return s.index == this.selected_minutes
+    })
+
+    let hour = this.hours.find((s) => {
+      return s.index == this.selected_hour
+    })
+  }
 
 }

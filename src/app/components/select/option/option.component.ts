@@ -10,12 +10,12 @@ import {SelectComponent} from "../select.component";
 export class OptionComponent implements OnInit {
 
 
-  constructor(public _selectComponent: SelectComponent) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    this._selectComponent.addOption(this)
+
   }
 
   _atLabel: string
