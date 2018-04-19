@@ -85,6 +85,7 @@ export class OptionContainerComponent implements OnInit {
         const targetValue = listOfSelectedValue.find(o => this.compareWith(o, option.atValue));
         if (isNotNil(targetValue)) {
           if (!isPressEnter) {
+            console.log('press')
             /** should not toggle option when press enter **/
             listOfSelectedValue.splice(listOfSelectedValue.indexOf(targetValue), 1);
             changed = true;

@@ -24,18 +24,19 @@ import {Subject} from "rxjs/Subject";
   template: `
     <div
       cdkOverlayOrigin
+      class="at-select"
       [class.at-select--single]="isSingleMode"
       [class.at-select--multiple]="isMultipleOrTags"
       [class.at-select--open]="atVisible"
-      (keydown)="onKeyDownCdkOverlayOrigin($event)"
       tabindex="0">
       <div
         at-select-input
+        class="at-select at-select--visiable at-select--{{atMode}} at-select--{{atSize}}"
         [compareWith]="compareWith"
         [atPlaceHolder]="atPlaceHolder"
         [atShowSearch]="searchable"
         (OnSearch)="OnSearch($event)"
-        [atOpen]="_atVisible"
+        [atOpen]="atVisible"
         [atMode]="atMode"
         [tagAble]="tagAble"
         [atSize]="atSize"
@@ -143,7 +144,7 @@ export class SelectComponent implements OnInit {
   listOfSelectedValue: any[] = [];
   listOfSelectedOption: OptionComponent[] = []
 
-  @Input() allowClear = true
+  @Input() allowClear = false
   @Input() disabled = false
   @Input() tagAble = false
   @Output() change: EventEmitter<any> = new EventEmitter()
@@ -288,7 +289,7 @@ export class SelectComponent implements OnInit {
     mouse$ = fromEvent(this.cdkOverlayOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
     this.renderer.listen(this.cdkOverlayOrigin.elementRef.nativeElement, 'click', (e) => {
       e.preventDefault()
-
+      e.stopPropagation()
     });
     const observable$ = mouse$.pipe(merge(this._visibleChange));
     this._startSubscribe(observable$);

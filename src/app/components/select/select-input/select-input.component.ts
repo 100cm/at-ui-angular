@@ -7,18 +7,18 @@ import {TagAnimation} from "../../animations/tag-animation";
   selector: '[at-select-input]',
   template: `
     <ng-container *ngIf="isSingleMode">
-      <div class="at-select at-select--visiable at-select--{{atMode}} at-select--{{atSize}}">
-        <div class="at-select__selection">
-      <span class="at-select__selected" *ngIf="!atShowSearch || ( atShowSearch && !atOpen)">
+      <div class="at-select__selection">
+      <span class="at-select__selected" (click)="setInputFocus()" *ngIf="!atShowSearch || ( atShowSearch && !atOpen)">
         {{singleValueLabel || '请选择'}}</span>
-          <input *ngIf="atShowSearch && atOpen" placeholder="{{singleValueLabel}}" #search_input type="text"
-                 [(ngModel)]="_searchText"
-                 (ngModelChange)="updateFilterOption()" class="at-select__input">
-          <i *ngIf="allowClear" (click)="clearData($event)" style="background: white;z-index: 2"
-             class="icon icon-x at-select__clear">
-          </i>
-          <i class="icon icon-chevron-down at-select__arrow"></i>
-        </div>
+        <input [ngStyle]="{'display': atShowSearch && atOpen ? 'block' :'none'}" placeholder="{{singleValueLabel}}"
+               autocomplete="off"
+               #search_input type="text"
+               [ngModel]="_searchText"
+               (ngModelChange)="setInputValue($event)" class="at-select__input">
+        <i *ngIf="allowClear" (click)="clearData($event)" style="background: white;z-index: 2"
+           class="icon icon-x at-select__clear">
+        </i>
+        <i class="icon icon-chevron-down at-select__arrow"></i>
       </div>
     </ng-container>
 
@@ -84,12 +84,14 @@ export class SelectInputComponent implements OnInit {
   @Input()
   set atOpen(value: boolean) {
     this._atOpen = value;
+  }
 
+  setInputFocus() {
     setTimeout(_ => {
-      if (this.search_inputs && this.atShowSearch && value == true) {
+      if (this.search_inputs && this.atShowSearch) {
         this.search_inputs.nativeElement.focus()
       }
-    })
+    }, 100)
   }
 
   @Input()
@@ -147,7 +149,7 @@ export class SelectInputComponent implements OnInit {
   rejectData(event, option) {
     event.preventDefault()
     this.updateSelectedOption(option, false)
-    this.addOptionTag.emit({option:option,handle:'remove'})
+    this.addOptionTag.emit({option: option, handle: 'remove'})
   }
 
   updateSelectedOption(option: OptionComponent, isPressEnter: boolean): void {
@@ -155,7 +157,6 @@ export class SelectInputComponent implements OnInit {
     if (option && !option.disabled) {
       let changed = false;
       let listOfSelectedValue = [...this.atListOfSelectedValue];
-      console.log(this.isMultipleOrTags)
       if (this.isMultipleOrTags) {
         const targetValue = listOfSelectedValue.find(o => this.compareWith(o, option.atValue));
         if (isNotNil(targetValue)) {
@@ -166,7 +167,6 @@ export class SelectInputComponent implements OnInit {
           }
         } else {
           listOfSelectedValue.push(option.atValue);
-          console.log('push')
           changed = true;
         }
       } else if (!this.compareWith(listOfSelectedValue[0], option.atValue)) {
@@ -186,6 +186,11 @@ export class SelectInputComponent implements OnInit {
     this.OnSearch.emit(this._searchText)
   }
 
+  setInputValue(value) {
+    this._searchText = value
+    this.updateFilterOption()
+  }
+
   onKey(key) {
     if (key.code == 'Enter') {
       let value = key.target.value
@@ -197,10 +202,10 @@ export class SelectInputComponent implements OnInit {
         _selected: false,
         isTag: true,
       }
-      this.addOptionTag.emit({option:option,handle:'add'})
+      this.addOptionTag.emit({option: option, handle: 'add'})
       this._searchText = ''
       this.updateFilterOption()
-      this.updateSelectedOption(option,false)
+      this.updateSelectedOption(option, false)
     }
   }
 

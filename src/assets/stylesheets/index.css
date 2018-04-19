@@ -6393,21 +6393,22 @@ $info-color               : #78A4FA;
   background-color: #FFF;
   transition: all .3s;
   cursor: pointer;
+  min-height: 26px;
   overflow: hidden;
 }
-/* line 55, ../sass/components/select.scss */
+/* line 56, ../sass/components/select.scss */
 .at-select__selection:hover {
   border-color: #79A1EB;
 }
-/* line 58, ../sass/components/select.scss */
+/* line 59, ../sass/components/select.scss */
 .at-select__selection:hover .at-select__arrow {
   display: inline-block;
 }
-/* line 61, ../sass/components/select.scss */
+/* line 62, ../sass/components/select.scss */
 .at-select__selection:hover .at-select__clear {
   display: inline-block;
 }
-/* line 66, ../sass/components/select.scss */
+/* line 67, ../sass/components/select.scss */
 .at-select__selected {
   display: inline-block;
   max-width: 100%;
@@ -6417,7 +6418,7 @@ $info-color               : #78A4FA;
   word-wrap: normal;
   display: block;
 }
-/* line 70, ../sass/components/select.scss */
+/* line 71, ../sass/components/select.scss */
 .at-select__arrow {
   display: inline-block;
   position: absolute;
@@ -6428,7 +6429,7 @@ $info-color               : #78A4FA;
   cursor: pointer;
   transition: transform .3s;
 }
-/* line 80, ../sass/components/select.scss */
+/* line 81, ../sass/components/select.scss */
 .at-select__clear {
   display: none;
   position: absolute;
@@ -6438,11 +6439,11 @@ $info-color               : #78A4FA;
   font-size: 10px;
   cursor: pointer;
 }
-/* line 89, ../sass/components/select.scss */
+/* line 90, ../sass/components/select.scss */
 .at-select__placeholder {
   color: #C9C9C9;
 }
-/* line 92, ../sass/components/select.scss */
+/* line 93, ../sass/components/select.scss */
 .at-select__dropdown {
   width: 100%;
   position: absolute;
@@ -6453,17 +6454,17 @@ $info-color               : #78A4FA;
   overflow-y: auto;
   z-index: 1050;
 }
-/* line 102, ../sass/components/select.scss */
+/* line 103, ../sass/components/select.scss */
 .at-select__dropdown .at-select__list {
   list-style: none;
   padding: 0;
   font-size: 0;
 }
-/* line 107, ../sass/components/select.scss */
+/* line 108, ../sass/components/select.scss */
 .at-select__dropdown .at-select__not-found {
   padding: 6px 12px;
 }
-/* line 110, ../sass/components/select.scss */
+/* line 111, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option {
   display: inline-block;
   max-width: 100%;
@@ -6480,97 +6481,97 @@ $info-color               : #78A4FA;
   overflow: hidden;
   cursor: pointer;
 }
-/* line 121, ../sass/components/select.scss */
+/* line 122, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option--selected {
   font-weight: bold;
   background-color: #F7F7F7;
 }
-/* line 125, ../sass/components/select.scss */
+/* line 126, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option:hover, .at-select__dropdown .at-select__option--focus {
   background-color: #ECF2FC;
 }
-/* line 129, ../sass/components/select.scss */
+/* line 130, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option--disabled {
   color: #C9C9C9;
 }
-/* line 133, ../sass/components/select.scss */
+/* line 134, ../sass/components/select.scss */
 .at-select__dropdown--bottom {
   margin-top: 2px;
 }
-/* line 136, ../sass/components/select.scss */
+/* line 137, ../sass/components/select.scss */
 .at-select__dropdown--top {
   margin-bottom: 2px;
 }
-/* line 139, ../sass/components/select.scss */
+/* line 140, ../sass/components/select.scss */
 .at-select__dropdown--left {
   margin-right: 2px;
 }
-/* line 142, ../sass/components/select.scss */
+/* line 143, ../sass/components/select.scss */
 .at-select__dropdown--right {
   margin-left: 2px;
 }
-/* line 149, ../sass/components/select.scss */
+/* line 150, ../sass/components/select.scss */
 .at-select--visible .at-select__arrow {
   transform: rotate(180deg);
 }
-/* line 155, ../sass/components/select.scss */
+/* line 156, ../sass/components/select.scss */
 .at-select--show-clear .at-select__selection:hover .at-select__arrow {
   opacity: 0;
 }
-/* line 161, ../sass/components/select.scss */
+/* line 162, ../sass/components/select.scss */
 .at-select--disabled .at-select__selection {
   cursor: not-allowed;
   background-color: #eef4f8;
 }
-/* line 165, ../sass/components/select.scss */
+/* line 166, ../sass/components/select.scss */
 .at-select--disabled .at-select__selection:hover {
   border-color: #ECECEC;
 }
-/* line 169, ../sass/components/select.scss */
+/* line 170, ../sass/components/select.scss */
 .at-select--disabled .at-select__placeholder,
 .at-select--disabled .at-select__selected {
   color: #C9C9C9;
 }
-/* line 175, ../sass/components/select.scss */
+/* line 176, ../sass/components/select.scss */
 .at-select--multiple .at-tag {
   margin: 4px 4px 0 0;
 }
-/* line 178, ../sass/components/select.scss */
+/* line 179, ../sass/components/select.scss */
 .at-select--multiple .at-tag__text {
   font-size: 10px;
 }
-/* line 183, ../sass/components/select.scss */
+/* line 184, ../sass/components/select.scss */
 .at-select--normal .at-select__selection {
   height: 26px;
   line-height: 26px;
 }
-/* line 187, ../sass/components/select.scss */
+/* line 188, ../sass/components/select.scss */
 .at-select--normal .at-select__dropdown .at-select__option {
   font-size: 12px;
 }
-/* line 191, ../sass/components/select.scss */
+/* line 192, ../sass/components/select.scss */
 .at-select--small {
   font-size: 11px;
 }
-/* line 194, ../sass/components/select.scss */
+/* line 195, ../sass/components/select.scss */
 .at-select--small .at-select__selection {
   height: 24px;
   line-height: 24px;
 }
-/* line 198, ../sass/components/select.scss */
+/* line 199, ../sass/components/select.scss */
 .at-select--small .at-select__dropdown .at-select__option {
   font-size: 11px;
 }
-/* line 202, ../sass/components/select.scss */
+/* line 203, ../sass/components/select.scss */
 .at-select--large {
   font-size: 14px;
 }
-/* line 205, ../sass/components/select.scss */
+/* line 206, ../sass/components/select.scss */
 .at-select--large .at-select__selection {
   height: 30px;
   line-height: 28px;
 }
-/* line 209, ../sass/components/select.scss */
+/* line 210, ../sass/components/select.scss */
 .at-select--large .at-select__dropdown .at-select__option {
   font-size: 13px;
 }
@@ -6578,11 +6579,11 @@ $info-color               : #78A4FA;
 /**
  * AtOptionGroup
  */
-/* line 218, ../sass/components/select.scss */
+/* line 219, ../sass/components/select.scss */
 .at-option-group {
   padding: 0;
 }
-/* line 221, ../sass/components/select.scss */
+/* line 222, ../sass/components/select.scss */
 .at-option-group__label {
   display: inline-block;
   max-width: 100%;
@@ -6600,7 +6601,7 @@ $info-color               : #78A4FA;
   transition: all .3s;
   cursor: initial;
 }
-/* line 233, ../sass/components/select.scss */
+/* line 234, ../sass/components/select.scss */
 .at-option-group__list {
   padding: 0;
 }

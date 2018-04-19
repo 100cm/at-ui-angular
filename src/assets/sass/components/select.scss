@@ -50,6 +50,7 @@
     background-color: $color-white;
     transition: all .3s;
     cursor: pointer;
+    min-height: $select-selection-height-base;
     overflow: hidden;
 
     &:hover {
