@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, QueryList} from '@angular/core';
 import {OptionComponent} from "../option/option.component";
 import {isNotNil} from "../../utils/class-helper";
+import {defaultFilterOption} from "./option.pipe";
 
 @Component({
   selector: '[at-option-container]',
@@ -8,7 +9,9 @@ import {isNotNil} from "../../utils/class-helper";
     <div class="at-select__dropdown at-select__dropdown--bottom">
       <ul class="at-select__list">
         <li (click)="selectOption(option)"
-            class="at-select__option" *ngFor="let option of listOfatOptionComponent | atOptionFilter">
+            [ngClass]="{'at-select__option--selected': isSelect(option) }"
+            class="at-select__option"
+            *ngFor="let option of listOfatOptionComponent | atOptionFilter :searchText : searchOption">
           {{option.atLabel}}
         </li>
       </ul>
@@ -25,9 +28,11 @@ export class OptionContainerComponent implements OnInit {
 
   private _listOfSelectedValue: any[];
 
-  @Input() atListOfSelectedValue: any
   @Input() atMode = 'common'
   @Input() MaxMultipleCount
+  @Input() searchAble = false
+  @Input() searchText = ''
+  @Input() searchOption = defaultFilterOption
   @Input() compareWith = (a: any, v: any) => a == v
   @Output() selectValueChange: EventEmitter<any> = new EventEmitter()
 
@@ -44,7 +49,7 @@ export class OptionContainerComponent implements OnInit {
 
   @Input()
   // tslint:disable-next-line:no-any
-  set nzListOfSelectedValue(value: any[]) {
+  set atListOfSelectedValue(value: any[]) {
     if (this._listOfSelectedValue !== value) {
       this._listOfSelectedValue = value;
       /** should clear activedOption when listOfSelectedValue change **/
@@ -53,7 +58,7 @@ export class OptionContainerComponent implements OnInit {
   }
 
   // tslint:disable-next-line:no-any
-  get nzListOfSelectedValue(): any[] {
+  get atListOfSelectedValue(): any[] {
     return this._listOfSelectedValue;
   }
 
@@ -76,7 +81,6 @@ export class OptionContainerComponent implements OnInit {
       let changed = false;
       // this.setActiveOption(option);
       let listOfSelectedValue = [...this.atListOfSelectedValue];
-      console.log(this.isMultipleOrTags)
       if (this.isMultipleOrTags) {
         const targetValue = listOfSelectedValue.find(o => this.compareWith(o, option.atValue));
         if (isNotNil(targetValue)) {
@@ -110,9 +114,11 @@ export class OptionContainerComponent implements OnInit {
 
 
   refreshAllOptionStatus(isTemplateOptionChange: boolean): void {
-    /** update nzListOfSelectedValue | update option list -> update listOfAllTemplateOption -> update listOfSelectedOption -> update activatedOption **/
 
   }
 
+  isSelect(option) {
+    return this.atListOfSelectedValue.includes(option.atValue)
+  }
 
 }

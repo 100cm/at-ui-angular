@@ -84,9 +84,14 @@ import {ModalBodyDirective} from './modal/modal-body.directive';
 import {StepsComponent} from './steps/steps.component';
 import {StepComponent} from './steps/step/step.component';
 import {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component';
-import { SelectInputComponent } from './select/select-input/select-input.component';
-import { OptionContainerComponent } from './select/option-container/option-container.component';
-import { OptionPipe } from './select/option-container/option.pipe';
+import {SelectInputComponent} from './select/select-input/select-input.component';
+import {OptionContainerComponent} from './select/option-container/option-container.component';
+import {OptionPipe} from './select/option-container/option.pipe';
+import {TooltipTriggerDirective} from './tooltip/tooltip-trigger.directive';
+import {TimelineComponent} from './timeline/timeline.component';
+import { TimelineItemComponent } from './timeline/timeline-item/timeline-item.component';
+import { TimelineSelectorDirective } from './timeline/timeline-selector.directive';
+import { TimelineDotDirective } from './timeline/timeline-dot.directive';
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -156,6 +161,7 @@ export {CalendarComponent} from './datetimepicker/calendar/calendar.component';
 export {TimeComponent} from './datetimepicker/time/time.component';
 export {CardComponent} from './card/card.component';
 export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component'
+export {TimelineComponent} from './timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -235,8 +241,17 @@ export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.c
     SelectInputComponent,
     OptionContainerComponent,
     OptionPipe,
+    TooltipTriggerDirective,
+    TimelineComponent,
+    TimelineItemComponent,
+    TimelineSelectorDirective,
+    TimelineDotDirective,
   ],
   exports: [
+    TimelineSelectorDirective,
+    TimelineComponent,
+    TimelineDotDirective,
+    TimelineItemComponent,
     ButtonComponent,
     HollowDirective,
     ButtonGroupComponent,

@@ -1,7 +1,7 @@
 import {Directive, ElementRef} from '@angular/core';
 
 @Directive({
-  selector: '[pop-trigger]'
+  selector: '[pop-trigger],[tooltip-trigger]'
 })
 export class PopTriggerDirective {
 

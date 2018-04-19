@@ -12,7 +12,7 @@
     position: relative;
   }
   &__popper {
-    position: absolute;
+    //position: absolute;
     z-index: $zindex-popover;
   }
   &__content {
@@ -70,7 +70,7 @@
   &--bottom,
   &--bottom-left,
   &--bottom-right {
-    padding: $tooltip-arrow-size 0;
+    padding: 2px 0;
     margin-top: 2px;
 
     .at-tooltip__arrow {
@@ -130,7 +130,7 @@
   &--right,
   &--right-top,
   &--right-bottom {
-    padding: 0 $tooltip-arrow-size;
+    padding: 0 2px;
     margin-left: 2px;
 
     .at-tooltip__arrow {

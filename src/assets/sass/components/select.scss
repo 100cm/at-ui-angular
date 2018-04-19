@@ -32,6 +32,12 @@
     }
   }
 
+  &--open{
+    .at-select__arrow{
+      transform: rotate(180deg);
+    }
+  }
+
   /* element */
   &__selection {
     position: relative;
@@ -85,6 +91,7 @@
   }
   &__dropdown {
     width: 100%;
+    position: absolute;
     font-size: $select-dropdown-font-size-base;
     border-radius: $border-radius-base;
     background-color: $select-dropdown-bg-color;

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {OptionComponent} from "./option/option.component";
 import {DropDownAnimation} from "../animations/drop-down-animation";
-import {FadeAnimation} from "../animations/fade-animation";
+import {fadeAnimation as FadeAnimation} from "../animations/fade-animation";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {TagAnimation} from "../animations/tag-animation";
 import {isNotNil} from "../utils/class-helper";
@@ -26,14 +26,22 @@ import {Subject} from "rxjs/Subject";
       cdkOverlayOrigin
       [class.at-select--single]="isSingleMode"
       [class.at-select--multiple]="isMultipleOrTags"
+      [class.at-select--open]="atVisible"
       (keydown)="onKeyDownCdkOverlayOrigin($event)"
       tabindex="0">
       <div
         at-select-input
         [compareWith]="compareWith"
         [atPlaceHolder]="atPlaceHolder"
-        [atShowSearch]="atShowSearch"
+        [atShowSearch]="searchable"
+        (OnSearch)="OnSearch($event)"
+        [atOpen]="_atVisible"
         [atMode]="atMode"
+        [tagAble]="tagAble"
+        [atSize]="atSize"
+        [allowClear]="allowClear"
+        (clearNgModel)="clearNgModel()"
+        (addOptionTag)="addOptionTag($event)"
         (selectValueChange)="selectValue($event)"
         [listSelectedOption]="listOfSelectedOption"
         [atListOfSelectedValue]="listOfSelectedValue">
@@ -54,6 +62,8 @@ import {Subject} from "rxjs/Subject";
           style="overflow: auto"
           at-option-container
           [atMode]="atMode"
+          [searchAble]="searchable"
+          [searchText]="searchText"
           (selectValueChange)="selectValue($event)"
           [listOfatOptionComponent]="listOfOptionComponent"
           [atListOfSelectedValue]="listOfSelectedValue">
@@ -91,17 +101,28 @@ export class SelectComponent implements OnInit {
   }
 
   value: any | any[];
-  isDestroy = true;
-  isInit = false;
-  overlayWidth = ''
-  overlayMinWidth = ''
+
+  overlayWidth: any = ''
+  overlayMinWidth: any = ''
   _atVisible = false
+  _multiple = false
+
+  private _searchText = ''
+
+
+  get searchText(): string {
+    return this._searchText;
+  }
+
+  set searchText(value: string) {
+    this._searchText = value;
+  }
 
   @Input() atMode = 'default'
   @Input() atSize = 'common'
   @Input() searchable = false
   @Input() compareWith = (a, b) => a === b
-  _multiple = false
+
 
   get multiple(): boolean {
     return this._multiple;
@@ -109,7 +130,7 @@ export class SelectComponent implements OnInit {
 
   @Input() atDisabled: boolean = false
   @Input() atPlaceHolder = ''
-  @Input() atShowSearch = false
+
 
   @Input()
   set multiple(value: boolean) {
@@ -122,7 +143,7 @@ export class SelectComponent implements OnInit {
   listOfSelectedValue: any[] = [];
   listOfSelectedOption: OptionComponent[] = []
 
-  @Input() allowClear = false
+  @Input() allowClear = true
   @Input() disabled = false
   @Input() tagAble = false
   @Output() change: EventEmitter<any> = new EventEmitter()
@@ -135,7 +156,7 @@ export class SelectComponent implements OnInit {
   @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
 
   ngOnInit(): void {
-    this.isDestroy = false;
+
   }
 
 
@@ -193,11 +214,19 @@ export class SelectComponent implements OnInit {
 
 
   ngOnDestroy(): void {
-    this.isDestroy = true;
+
   }
 
   onPositionChange(position: ConnectedOverlayPositionChange): void {
 
+  }
+
+  clearNgModel(): void {
+    if (this.isSingleMode) {
+      this.updateNgModel([], null);
+    } else {
+      this.updateNgModel([], []);
+    }
   }
 
   selectValue(value) {
@@ -210,6 +239,7 @@ export class SelectComponent implements OnInit {
     } else {
       modelValue = value;
     }
+
     this.updateNgModel(value, modelValue);
   }
 
@@ -254,7 +284,6 @@ export class SelectComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.isInit = true;
     let mouse$: Observable<boolean>;
     mouse$ = fromEvent(this.cdkOverlayOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
     this.renderer.listen(this.cdkOverlayOrigin.elementRef.nativeElement, 'click', (e) => {
@@ -263,5 +292,29 @@ export class SelectComponent implements OnInit {
     });
     const observable$ = mouse$.pipe(merge(this._visibleChange));
     this._startSubscribe(observable$);
+  }
+
+  OnSearch(text) {
+    this.searchText = text
+  }
+
+  optionExist(option) {
+    let list = this.listOfOptionComponent.toArray()
+    return list.find(optionComponent => optionComponent.atValue == option.atValue)
+  }
+
+  addOptionTag(params) {
+    if (params.handle == 'add') {
+      if (!this.optionExist(params.option)) {
+        this.listOfOptionComponent.reset([...this.listOfOptionComponent.toArray(), params.option])
+      }
+    } else if (params.handle == 'remove') {
+      let list = this.listOfOptionComponent.toArray()
+      list = list.filter(optionComponent => {
+        return (optionComponent.isTag == false || optionComponent.atValue != params.option.atValue)
+      })
+      this.listOfOptionComponent.reset(list)
+    }
+
   }
 }

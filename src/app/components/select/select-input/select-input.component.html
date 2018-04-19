@@ -13,11 +13,14 @@
 </ng-template>
 <ng-container *ngIf="isSingleMode">
   <!--selected label-->
-  <div class="at-select at-select--visiable at-select--single at-select--normal">
+  <div class="at-select at-select--visiable at-select--{{atMode}} at-select--{{atSize}}">
     <div class="at-select__selection ng-tns-c13-22 ng-star-inserted">
       <span class="at-select__selected ng-tns-c13-22 ng-star-inserted">
         {{singleValueLabel}}</span>
       <i class="icon icon-chevron-down at-select__arrow"></i>
+      <i *ngIf="allowClear" (click)="clearData($event)" style="background: white"
+         class="icon icon-x at-select__clear">
+      </i>
     </div>
   </div>
 </ng-container>

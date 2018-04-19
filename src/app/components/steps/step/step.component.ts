@@ -21,7 +21,7 @@ export class StepComponent implements OnInit {
 
   @Input() icon
 
-  status: 'finish' | 'process' | 'wait' | 'success' | 'error' = 'wait'
+  @Input() status: 'finish' | 'process' | 'wait' | 'success' | 'error' = 'wait'
 
   @Input() title: string = ''
 
@@ -29,6 +29,10 @@ export class StepComponent implements OnInit {
 
   get finnalStatus() {
     return ''
+  }
+
+  get finished() {
+    return this.status === 'finish'
   }
 
 

@@ -73,6 +73,11 @@ export class AtDemoComponentsComponent implements OnInit {
       url: '/components/steps',
       name_en: 'Setps'
     },
+    {
+      name: '时间轴',
+      url: '/components/time-line',
+      name_en: 'timeline'
+    },
 
     {name: 'tab', url: '/components/tab', name_en: 'tab'}
   ]

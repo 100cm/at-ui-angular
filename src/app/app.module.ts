@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {ButtonComponent} from './components/button/button.component';
-import {HollowDirective} from './components/button//hollow/hollow.directive';
+import {HollowDirective} from './components/button/hollow/hollow.directive';
 import {ButtonGroupComponent} from './components/button/button-group/button-group.component';
 import {MenuComponent} from './components/menu/menu.component';
 import {MenuItemComponent} from './components/menu/menu-item/menu-item.component';
@@ -137,6 +137,12 @@ import { AtDemoTabsComponent } from './showcase/at-demo-tabs/at-demo-tabs.compon
 import { DemoBasicTabComponent } from './showcase/at-demo-tabs/demo-basic-tab/demo-basic-tab.component';
 import { AtDemoStepsComponent } from './showcase/at-demo-steps/at-demo-steps.component';
 import { DemoBasicStepsComponent } from './showcase/at-demo-steps/demo-basic-steps/demo-basic-steps.component';
+import { AtDemoTimelineComponent } from './showcase/at-demo-timeline/at-demo-timeline.component';
+import { AtDemoTimelineBasicComponent } from './showcase/at-demo-timeline/at-demo-timeline-basic/at-demo-timeline-basic.component';
+import { AtDemoTimelineDotComponent } from './showcase/at-demo-timeline/at-demo-timeline-dot/at-demo-timeline-dot.component';
+import { AtDemoPendingTimelineComponent } from './showcase/at-demo-timeline/at-demo-pending-timeline/at-demo-pending-timeline.component';
+import { DemoHorizonalStepsComponent } from './showcase/at-demo-steps/demo-horizonal-steps/demo-horizonal-steps.component';
+import { DemoSizeStepsComponent } from './showcase/at-demo-steps/demo-size-steps/demo-size-steps.component';
 
 
 @NgModule({
@@ -245,6 +251,12 @@ import { DemoBasicStepsComponent } from './showcase/at-demo-steps/demo-basic-ste
     DemoBasicTabComponent,
     AtDemoStepsComponent,
     DemoBasicStepsComponent,
+    AtDemoTimelineComponent,
+    AtDemoTimelineBasicComponent,
+    AtDemoTimelineDotComponent,
+    AtDemoPendingTimelineComponent,
+    DemoHorizonalStepsComponent,
+    DemoSizeStepsComponent,
 
 
   ],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-steps',
@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtDemoStepsComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  basic_code = require('./demo-basic-steps/demo-basic-steps.component.html')
+  horizontal_code = require('./demo-horizonal-steps/demo-horizonal-steps.component.html')
+  demo_size = require('./demo-size-steps/demo-size-steps.component.html')
 
   ngOnInit() {
   }

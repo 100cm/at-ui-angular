@@ -25,6 +25,7 @@ import {DropDownAnimation} from "../animations/drop-down-animation";
 import {DEFAULT_DROPDOWN_POSITIONS, POSITION_MAP} from "../core/overlay/overlay-position-map";
 import {DropdownMenuItemComponent} from "../menu/dropdown-menu-item/dropdown-menu-item.component";
 import {PopTriggerDirective} from "./pop-trigger.directive";
+import {toCamelCase, underscoreToCamelCase} from "../utils/class-helper";
 
 @Component({
   selector: 'atPopover',
@@ -112,7 +113,7 @@ export class PopoverComponent implements OnInit {
   set placement(value: any) {
     this._placement = value;
     this._dropDownPosition = (this.atPlacement.indexOf('top') !== -1) ? 'top' : 'bottom';
-    this._positions.unshift(POSITION_MAP[this._placement] as ConnectionPositionPair);
+    this._positions.unshift(POSITION_MAP[underscoreToCamelCase(this._placement)] as ConnectionPositionPair);
   }
 
   get atPlacement(): any {
@@ -213,6 +214,6 @@ export class PopoverComponent implements OnInit {
     return this.trigger === 'click';
   }
 
-  constructor(private _renderer: Renderer2, protected _changeDetector: ChangeDetectorRef) {
+  constructor(public _renderer: Renderer2, protected _changeDetector: ChangeDetectorRef) {
   }
 }

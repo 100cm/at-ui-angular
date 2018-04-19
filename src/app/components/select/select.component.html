@@ -22,7 +22,7 @@
     margin: 0 24px 0 8px;
     background-color: transparent;">
     <i class="icon icon-chevron-down at-select__arrow"></i>
-    <i *ngIf="allowClear" (click)="clearData($event)" style="background: white"
+    <i *ngIf="allowClear" (click)="clearData($event)" style="background: white;z-index: 2"
        class="icon icon-x at-select__clear">
     </i>
   </div>
@@ -36,7 +36,7 @@
            (focus)="resetOption()"
            (ngModelChange)="updateFilterOption()" class="at-select__input">
     <i class="icon icon-chevron-down at-select__arrow"></i>
-    <i *ngIf="allowClear" (click)="clearData($event)" style="background: white"
+    <i *ngIf="allowClear" (click)="clearData($event)" style="background: white;z-index: 2"
        class="icon icon-x at-select__clear">
     </i>
   </div>

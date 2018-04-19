@@ -1,6 +1,7 @@
 <div class="at-select__dropdown at-select__dropdown--bottom">
   <ul class="at-select__list">
     <li (click)="selectOption(option)"
+        [ngClass]="{'at-select__option--selected': isSelect(option) }"
         class="at-select__option" *ngFor="let option of listOfatOptionComponent | atOptionFilter">
       {{option.atLabel}}
     </li>

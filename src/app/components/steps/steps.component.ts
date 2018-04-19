@@ -3,18 +3,18 @@ import {StepComponent} from "./step/step.component";
 
 @Component({
   selector: 'at-steps',
-  template:`
-    <div class="at-steps at-steps--{{direction}}">
+  template: `
+    <div class="at-steps at-steps--{{direction}} at-steps--{{atSize}}">
       <div #steps *ngFor="let step of steps;let i = index"
            class="at-step at-step--{{step.status}}"
            [ngStyle]="{width: stepWidth(i) , 'margin-right':marginPx}">
         <div *ngIf="isLast(i)" class="at-step__line"></div>
         <div class="at-step__head">
-          <div class="at-step__label" [ngClass]="{'at-step__icon': step.icon}">
-            <div *ngIf="step.status !='finish' && !step.icon" class="at-step__order">
-              {{ i+1}}
+          <div class="at-step__label" [ngClass]="{'at-step__icon': step.icon && !step.finished}">
+            <div *ngIf="step.status !='finish' && step.status!= 'error' && !step.icon" class="at-step__order">
+              {{ i + 1}}
             </div>
-            <div *ngIf="step.icon">
+            <div *ngIf="step.icon && step.status != 'finish'">
               <i class="icon {{step.icon}}"></i>
             </div>
             <div *ngIf="step.status === 'finish'">
@@ -44,13 +44,15 @@ export class StepsComponent implements OnInit {
 
   _current = 0
 
+  @Input() atSize = 'primary'
+
 
   @Input()
   set current(value) {
-    if (value < 0) {
+    if (value < 0 || value > this.steps.length - 1) {
       return
     }
-    console.log(this._current)
+
     this._current = value
     this.steps[value].status = 'process'
 

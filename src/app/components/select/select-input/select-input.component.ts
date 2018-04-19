@@ -1,29 +1,22 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {OptionComponent} from "../option/option.component";
 import {isNotNil} from "../../utils/class-helper";
+import {TagAnimation} from "../../animations/tag-animation";
 
 @Component({
   selector: '[at-select-input]',
-  template:`
-    <ng-template #inputTemplate>
-      <input
-        #inputElement
-        autocomplete="off"
-        class="ant-select-search__field"
-        (compositionstart)="isComposing = true"
-        (compositionend)="isComposing = false"
-        (input)="updateWidth()"
-        (keydown)="onKeyDownInput($event)"
-        [ngModel]="inputValue"
-        (ngModelChange)="setInputValue($event,true)"
-        [disabled]="atDisabled">
-    </ng-template>
+  template: `
     <ng-container *ngIf="isSingleMode">
-      <!--selected label-->
-      <div class="at-select at-select--visiable at-select--single at-select--normal">
-        <div class="at-select__selection ng-tns-c13-22 ng-star-inserted">
-      <span class="at-select__selected ng-tns-c13-22 ng-star-inserted">
-        {{singleValueLabel}}</span>
+      <div class="at-select at-select--visiable at-select--{{atMode}} at-select--{{atSize}}">
+        <div class="at-select__selection">
+      <span class="at-select__selected" *ngIf="!atShowSearch || ( atShowSearch && !atOpen)">
+        {{singleValueLabel || '请选择'}}</span>
+          <input *ngIf="atShowSearch && atOpen" placeholder="{{singleValueLabel}}" #search_input type="text"
+                 [(ngModel)]="_searchText"
+                 (ngModelChange)="updateFilterOption()" class="at-select__input">
+          <i *ngIf="allowClear" (click)="clearData($event)" style="background: white;z-index: 2"
+             class="icon icon-x at-select__clear">
+          </i>
           <i class="icon icon-chevron-down at-select__arrow"></i>
         </div>
       </div>
@@ -31,7 +24,7 @@ import {isNotNil} from "../../utils/class-helper";
 
     <ng-container *ngIf="isMultiple">
       <div #selection class="at-select__selection">
-    <span *ngFor="let item of listSelectedOption" class="at-tag">
+    <span *ngFor="let item of listSelectedOption" class="at-tag" [@tagAnimation]>
       <span class="at-tag__text">{{item.atLabel}}</span>
       <i (click)="rejectData($event,item)" class="icon icon-x at-tag__close"></i>
     </span>
@@ -40,7 +33,6 @@ import {isNotNil} from "../../utils/class-helper";
     </span>
         <input *ngIf="tagAble" #tag_input type="text"
                [(ngModel)]="_searchText"
-               (focus)="resetOption()"
                (ngModelChange)="updateFilterOption()"
                placeholder="" (keyup)="onKey($event)" style="
     border: none;
@@ -51,33 +43,54 @@ import {isNotNil} from "../../utils/class-helper";
     margin: 0 24px 0 8px;
     background-color: transparent;">
         <i class="icon icon-chevron-down at-select__arrow"></i>
-        <i *ngIf="allowClear" (click)="clearData($event)" style="background: white"
+        <i *ngIf="allowClear" (click)="clearData($event)" style="background: white;z-index: 2"
            class="icon icon-x at-select__clear">
         </i>
       </div>
 
     </ng-container>
   `,
+  animations: [TagAnimation]
 })
 export class SelectInputComponent implements OnInit {
 
   private _listOfSelectedValue: any[];
   private _listSelectedOption: OptionComponent[] = [];
-  listOfCachedSelectedOption: OptionComponent[] = [];
+
   isComposing = false;
   inputValue: string
   @ViewChild('inputElement') inputElement: ElementRef;
-
-  @Output() atOnSearch = new EventEmitter<{ value: string, emit: boolean }>();
+  @Output() clearNgModel: EventEmitter<any> = new EventEmitter()
+  @Output() OnSearch = new EventEmitter<any>();
   @Output() selectValueChange: EventEmitter<any> = new EventEmitter()
+  @Output() addOptionTag: EventEmitter<any> = new EventEmitter()
   @Input() atMode = 'default';
   @Input() atShowSearch = false;
   @Input() atDisabled = false;
-
+  @Input() atSize = 'normal'
   @Input() atPlaceHolder: string;
-  @Input() atOpen = false;
-
+  @Input() tagAble = false
+  private _atOpen = false;
+  @Input() allowClear = true
   @Input() compareWith: (o1: any, o2: any) => boolean;
+  @ViewChild('search_input') search_inputs: ElementRef
+  private _searchText: string = ''
+
+
+  get atOpen(): boolean {
+    return this._atOpen;
+  }
+
+  @Input()
+  set atOpen(value: boolean) {
+    this._atOpen = value;
+
+    setTimeout(_ => {
+      if (this.search_inputs && this.atShowSearch && value == true) {
+        this.search_inputs.nativeElement.focus()
+      }
+    })
+  }
 
   @Input()
   get listSelectedOption(): OptionComponent[] {
@@ -91,6 +104,8 @@ export class SelectInputComponent implements OnInit {
   @Input()
   set atListOfSelectedValue(value: any[]) {
     this._listOfSelectedValue = value;
+    this._searchText = ''
+    this.updateFilterOption()
   }
 
   // tslint:disable-next-line:no-any
@@ -105,6 +120,12 @@ export class SelectInputComponent implements OnInit {
 
   get isMultipleOrTags(): boolean {
     return this.atMode === 'tags' || this.atMode === 'multiple';
+  }
+
+  clearData(e): void {
+    e.preventDefault();
+    e.stopPropagation();
+    this.clearNgModel.emit()
   }
 
   get isMultiple(): boolean {
@@ -126,13 +147,13 @@ export class SelectInputComponent implements OnInit {
   rejectData(event, option) {
     event.preventDefault()
     this.updateSelectedOption(option, false)
+    this.addOptionTag.emit({option:option,handle:'remove'})
   }
 
   updateSelectedOption(option: OptionComponent, isPressEnter: boolean): void {
     /** update listOfSelectedOption -> update nzListOfSelectedValue -> emit nzListOfSelectedValueChange **/
     if (option && !option.disabled) {
       let changed = false;
-      // this.setActiveOption(option);
       let listOfSelectedValue = [...this.atListOfSelectedValue];
       console.log(this.isMultipleOrTags)
       if (this.isMultipleOrTags) {
@@ -156,11 +177,32 @@ export class SelectInputComponent implements OnInit {
       if (changed) {
         this._listOfSelectedValue = listOfSelectedValue;
         this.selectValueChange.emit(this._listOfSelectedValue)
-
-
       }
     }
 
   }
+
+  updateFilterOption() {
+    this.OnSearch.emit(this._searchText)
+  }
+
+  onKey(key) {
+    if (key.code == 'Enter') {
+      let value = key.target.value
+      let option = <any>{
+        _atLabel: value,
+        atLabel: value,
+        _atValue: value,
+        atValue: value,
+        _selected: false,
+        isTag: true,
+      }
+      this.addOptionTag.emit({option:option,handle:'add'})
+      this._searchText = ''
+      this.updateFilterOption()
+      this.updateSelectedOption(option,false)
+    }
+  }
+
 
 }

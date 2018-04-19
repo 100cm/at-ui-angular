@@ -394,6 +394,27 @@ $badge-bg-color-info        : $blue-500;
 
 $badge-dot-size             : 10px;
 
+/* Card */
+$card-bg-color              : $color-white;
+$card-border-color          : $grey-100;
+$card-border-color-hover    : $grey-50;
+$card-border-radius         : $border-radius-base;
+$card-head-height           : 48px;
+
+/* Collapse */
+$collapse-border-color               : $grey-200;
+$collapse-border-radius              : $border-radius-base;
+
+$collapse-header-bg-color            : $grey-50;
+$collapse-header-text-color          : $title-color;
+$collapse-header-text-color-disabled : $grey-400;
+
+$collapse-icon-size                  : $font-size-smer;
+$collapse-icon-color                 : tint($title-color, 50%);
+
+$collapse-body-text-color            : $text-color;
+$collapse-body-bg-color              : $color-white;
+
 /* Loading Bar */
 $loading-bar-bg-color-success   : $color-primary;
 $loading-bar-bg-color-error     : $color-error;
@@ -441,6 +462,12 @@ $radio-border-c-checked     : $brand-blue-400;
 $radio-border-c-disabled    : $grey-100;
 $radio-bg-c-disabled        : $grey-50;
 $radio-dot-c-disabled       : $grey-300;
+
+/* Rate */
+$rate-icon-font-size        : 20px;
+$rate-icon-color            : $grey-100;
+$rate-icon-color-on         : $yellow-500;
+$rate-text-font-size        : $font-size-smer;
 
 /* Select */
 $select-font-size-sm        : $font-size-smest;
@@ -533,6 +560,22 @@ $progress-bar-bg-color         : $brand-color-light;
 $progress-bar-bg-color-success : $color-success;
 $progress-bar-bg-color-error   : $color-error;
 
+/* Timeline */
+$timeline-dot-color            : $blue-500;
+$timeline-dot-color-success    : $green-500;
+$timeline-dot-color-error      : $red-500;
+$timeline-dot-color-warning    : $yellow-500;
+
+$timeline-dot-bg-color         : $color-white;
+
+$timeline-dot-size             : 12px;
+$timeline-custom-dot-size      : 20px;
+$timeline-custom-dot-font-size : $font-size-normal;
+
+$timeline-line-color           : $grey-100;
+$timeline-item-last-min-height : 48px;
+$timeline-text-font-size       : $font-size-smer;
+
 /* Tooltip */
 $tooltip-padding            : 4px 8px;
 $tooltip-arrow-size         : 4px;
@@ -541,39 +584,6 @@ $tooltip-font-color         : $color-white;
 $tooltip-font-size          : $font-size-smer;
 $tooltip-bg-color           : rgba(0, 0, 0, .75);
 $tooltip-border-color       : rgba(0, 0, 0, .75);
-
-/* Steps */
-$step-font-size                      : $font-size-base;
-$step-font-size-sm                   : $font-size-smer;
-$step-description-font-size          : $font-size-smer;
-$step-description-font-size-sm       : $font-size-smest;
-
-$step-color                          : $grey-600;
-$step-color-active                   : $color-white;
-$step-color-process                  : $text-color;
-$step-color-error                    : $red-500;
-$step-text-color                     : $black-200;
-
-$step-bg-color                       : $color-white;
-$step-bg-color-active                : $brand-blue-500;
-$step-bg-color-error                 : $red-500;
-
-$step-border-color                   : $grey-600;
-$step-border-color-active            : $brand-blue-500;
-$step-border-color-error             : $red-500;
-
-$step-icon-color                     : $grey-600;
-$step-icon-color-active              : $brand-blue-500;
-$step-icon-color-error               : $red-500;
-
-$step-label-size                     : 30px;
-$step-label-size-sm                  : 18px;
-
-$step-line-color                     : $grey-600;
-$step-line-color-active              : $brand-blue-500;
-
-$step-main-height-vertical           : 64px;
-$step-main-height-vertical-sm        : 48px;
 
 /* Table */
 $table-font-size-small      : $font-size-smest;
@@ -632,7 +642,9 @@ $menu-item-bg-color-active           : $brand-blue-50;
 $menu-item-bg-color-active-inline    : rgba(236, 242, 252, 0.2);
 
 $menu-submenu-padding                : 12px 16px;
+$menu-item-padding                   : 12px 16px;
 $menu-item-padding-inline            : 12px 16px;
+$menu-item-padding-base              : 0 16px;
 
 $menu-group-title-padding            : 12px;
 $menu-group-title-text-color         : $grey-500;
@@ -667,6 +679,57 @@ $pagination-item-bg-color-active     : $brand-blue-400;
 $pagination-item-border-color        : $border-color-base;
 $pagination-item-border-color-hover  : $brand-blue-400;
 $pagination-item-border-color-active : $brand-blue-400;
+
+/* Tabs */
+$tabs-border-color                   : $grey-100;
+$tabs-nav-height                     : 36px;
+$tabs-nav-height-sm                  : 32px;
+$tabs-nav-font-size                  : $font-size-base;
+$tabs-nav-font-size-sm               : $font-size-smer;
+$tabs-navigation-btn-width           : 32px;
+$tabs-navigation-color               : $text-color;
+$tabs-navigation-color-hover         : $brand-blue-500;
+$tabs-navigation-color-disabled      : $grey-400;
+
+$tabs-nav-item-padding               : 0 20px;
+$tabs-nav-item-padding-sm            : 0 16px;
+$tabs-nav-item-bg-color              : $color-white;
+$tabs-nav-item-bg-color-card         : $grey-50;
+$tabs-nav-item-icon-color            : tint($text-color, 30%);
+$tabs-nav-item-icon-color-hover      : $text-color;
+
+/* Steps */
+$step-font-size                      : $font-size-base;
+$step-font-size-sm                   : $font-size-smer;
+$step-description-font-size          : $font-size-smer;
+$step-description-font-size-sm       : $font-size-smest;
+
+$step-color                          : $grey-600;
+$step-color-active                   : $color-white;
+$step-color-process                  : $text-color;
+$step-color-error                    : $red-500;
+$step-text-color                     : $black-200;
+
+$step-bg-color                       : $color-white;
+$step-bg-color-active                : $brand-blue-500;
+$step-bg-color-error                 : $red-500;
+
+$step-border-color                   : $grey-600;
+$step-border-color-active            : $brand-blue-500;
+$step-border-color-error             : $red-500;
+
+$step-icon-color                     : $grey-600;
+$step-icon-color-active              : $brand-blue-500;
+$step-icon-color-error               : $red-500;
+
+$step-label-size                     : 30px;
+$step-label-size-sm                  : 18px;
+
+$step-line-color                     : $grey-600;
+$step-line-color-active              : $brand-blue-500;
+
+$step-main-height-vertical           : 64px;
+$step-main-height-vertical-sm        : 48px;
 
 /**
  * Media queries
