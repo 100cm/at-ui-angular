@@ -45,6 +45,7 @@ import {Subject} from "rxjs/Subject";
         (addOptionTag)="addOptionTag($event)"
         (selectValueChange)="selectValue($event)"
         [listSelectedOption]="listOfSelectedOption"
+        [listOfatOptionComponent]="listOfOptionComponent"
         [atListOfSelectedValue]="listOfSelectedValue">
       </div>
     </div>
@@ -197,8 +198,10 @@ export class SelectComponent implements OnInit {
   }
 
   updateSelectedOption(value) {
-    this.listOfSelectedOption = this.listOfOptionComponent.toArray().filter(optionComponent => {
-      return value.includes(optionComponent.atValue)
+    setTimeout(_=>{
+      this.listOfSelectedOption = this.listOfOptionComponent.toArray().filter(optionComponent => {
+        return value.includes(optionComponent.atValue)
+      })
     })
   }
 
@@ -250,6 +253,11 @@ export class SelectComponent implements OnInit {
     if (value !== this.value) {
       this.value = value;
       this.onChange(this.value);
+    }
+    if (this.isSingleMode) {
+      this.change.emit(value)
+    } else {
+      this.change.emit(value)
     }
 
   }
@@ -315,6 +323,8 @@ export class SelectComponent implements OnInit {
         return (optionComponent.isTag == false || optionComponent.atValue != params.option.atValue)
       })
       this.listOfOptionComponent.reset(list)
+    } else {
+      this.updateSelectedOption(this.listOfSelectedValue)
     }
 
   }

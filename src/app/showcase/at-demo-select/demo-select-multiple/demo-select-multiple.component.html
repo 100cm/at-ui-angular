@@ -3,6 +3,11 @@
   </atOption>
 </atSelect>
 
+<atSelect [(ngModel)]="selected2" [multiple]="true">
+  <atOption *ngFor="let item of items" [atLabel]="item" [atValue]="item">
+  </atOption>
+</atSelect>
+
 <div *ngFor="let item of selected" >
   {{item}}
 </div>

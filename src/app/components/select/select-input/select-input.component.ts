@@ -60,6 +60,7 @@ export class SelectInputComponent implements OnInit {
   isComposing = false;
   inputValue: string
   @ViewChild('inputElement') inputElement: ElementRef;
+  private _listOfatOptionComponent: any = []
   @Output() clearNgModel: EventEmitter<any> = new EventEmitter()
   @Output() OnSearch = new EventEmitter<any>();
   @Output() selectValueChange: EventEmitter<any> = new EventEmitter()
@@ -76,6 +77,16 @@ export class SelectInputComponent implements OnInit {
   @ViewChild('search_input') search_inputs: ElementRef
   private _searchText: string = ''
 
+
+  get listOfatOptionComponent() {
+    return this._listOfatOptionComponent;
+  }
+
+  @Input()
+  set listOfatOptionComponent(value) {
+    this._listOfatOptionComponent = value;
+    this.addOptionTag.emit({handle: 'change'})
+  }
 
   get atOpen(): boolean {
     return this._atOpen;
@@ -108,6 +119,7 @@ export class SelectInputComponent implements OnInit {
     this._listOfSelectedValue = value;
     this._searchText = ''
     this.updateFilterOption()
+    this.addOptionTag.emit({handle:"change"})
   }
 
   // tslint:disable-next-line:no-any

@@ -11,9 +11,17 @@ export class DemoSelectMultipleComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(_ => {
+      this.selected = ['first', 'second']
+    },300)
+
+    setTimeout(_ => {
+      this.selected2 = ['first', 'second']
+    },300)
   }
+  selected = ['']
 
-  selected = ['first','second']
+  selected2 = ['second']
 
-  items = ['a','first','second','third']
+  items = ['a', 'first', 'second', 'third']
 }

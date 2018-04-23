@@ -1,7 +1,5 @@
-<atSelect [(ngModel)]="single" [atSize]="'large'" [searchable]="true">
-  <atOption [atLabel]="'first'" [atValue]="1"></atOption>
-  <atOption [atLabel]="'second'" [atValue]="2"></atOption>
-  <atOption [atLabel]="'next'" [atValue]="3"></atOption>
+<atSelect (change)="change($event)" [(ngModel)]="single" [atSize]="'large'" [searchable]="true">
+  <atOption *ngFor="let item of selects;let i= index" [atLabel]="'first'" [atValue]="i"></atOption>
 </atSelect>
 
 {{single}}

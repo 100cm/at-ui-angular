@@ -17,4 +17,10 @@ export class DemoSelectBasicComponent implements OnInit {
 
   single = 13
 
+  change(va) {
+    console.log(va)
+  }
+
+  selects = [1,2,3,4,5,6]
+
 }
