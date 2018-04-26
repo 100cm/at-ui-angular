@@ -204,7 +204,7 @@
     font-size: $select-font-size-lg;
 
     .at-select__selection {
-      height: $select-selection-height-lg;
+      min-height: $select-selection-height-lg;
       line-height: $select-selection-height-lg - 2;
     }
     .at-select__dropdown .at-select__option {

@@ -11,7 +11,7 @@ import {defaultFilterOption} from "./option.pipe";
         <li (click)="selectOption(option)"
             [ngClass]="{'at-select__option--selected': isSelect(option) }"
             class="at-select__option"
-            *ngFor="let option of listOfatOptionComponent | atOptionFilter :searchText : searchOption">
+            *ngFor="let option of listOfatOptionComponent | atOptionFilter :searchText : searchOption :remoteSearch">
           {{option.atLabel}}
         </li>
       </ul>
@@ -32,6 +32,7 @@ export class OptionContainerComponent implements OnInit {
   @Input() MaxMultipleCount
   @Input() searchAble = false
   @Input() searchText = ''
+  @Input() remoteSearch = false
   @Input() searchOption = defaultFilterOption
   @Input() compareWith = (a: any, v: any) => a == v
   @Output() selectValueChange: EventEmitter<any> = new EventEmitter()

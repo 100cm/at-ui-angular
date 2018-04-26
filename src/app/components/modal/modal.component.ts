@@ -35,13 +35,13 @@ import {ModalBodyDirective} from "./modal-body.directive";
         [cdkConnectedOverlayOpen]="show"
       >
         <div [ngStyle]="{'display': show ? '' : 'none'}"
-        class="at-modal__mask"></div>
+             class="at-modal__mask"></div>
         <div
           role="dialog"
           (click)="cancelFromMask($event)"
           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
         >
-          <div  class="at-modal" [@enterLeave]="state"
+          <div class="at-modal" [@enterLeave]="state"
                [ngStyle]="positionStyle"
                [style.width]="width +'px'">
             <div [ngClass]="{'at-modal__header': headerContains()}">
@@ -104,11 +104,16 @@ export class ModalComponent implements OnInit {
   @Output() onOk: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('modal_content') modal_content: ElementRef
   @ViewChild('overlays') _overlay: CdkOverlayOrigin
-  @ContentChild(ModalBodyDirective) body:ModalBodyDirective
+  @ContentChild(ModalBodyDirective) body: ModalBodyDirective
+
   get overlay() {
     return {elementRef: this._overlay}
   }
 
+  OnOkFallBack = () => {
+  }
+  OnCancleFallBack = () => {
+  }
 
   get closeable(): boolean {
     return this._closeable;
@@ -172,6 +177,7 @@ export class ModalComponent implements OnInit {
     setTimeout(_ => {
       this._show = false
       this.onCancel.emit(this._show)
+      this.OnCancleFallBack()
     }, 20)
 
   }
@@ -199,6 +205,7 @@ export class ModalComponent implements OnInit {
     setTimeout(_ => {
       this._show = false
       this.onOk.emit(this._show)
+      this.OnOkFallBack();
     }, 20)
 
   }

@@ -25,7 +25,7 @@ export class DemoServiceModalComponent implements OnInit {
       atType: 'confirm',
       title: type,
       status: type,
-      message: '这是消息体'
+      message: '这是消息体',
     })
   }
 

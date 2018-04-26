@@ -66,6 +66,7 @@ import {Subject} from "rxjs/Subject";
           [atMode]="atMode"
           [searchAble]="searchable"
           [searchText]="searchText"
+          [remoteSearch]="remoteSearch"
           (selectValueChange)="selectValue($event)"
           [listOfatOptionComponent]="listOfOptionComponent"
           [atListOfSelectedValue]="listOfSelectedValue">
@@ -130,9 +131,11 @@ export class SelectComponent implements OnInit {
     return this._multiple;
   }
 
+  @Output() search: EventEmitter<any> = new EventEmitter()
+
   @Input() atDisabled: boolean = false
   @Input() atPlaceHolder = ''
-
+  @Input() remoteSearch = false
 
   @Input()
   set multiple(value: boolean) {
@@ -198,11 +201,20 @@ export class SelectComponent implements OnInit {
   }
 
   updateSelectedOption(value) {
-    setTimeout(_=>{
+    setTimeout(_ => {
       this.listOfSelectedOption = this.listOfOptionComponent.toArray().filter(optionComponent => {
         return value.includes(optionComponent.atValue)
       })
-    })
+    },)
+  }
+
+  initListOfOption = false
+
+  ngDocheck() {
+    if (this.initListOfOption == false && this.listOfOptionComponent) {
+      this.initListOfOption = true
+      this.updateSelectedOption(this.listOfSelectedValue)
+    }
   }
 
   onKeyDownCdkOverlayOrigin(event) {
@@ -305,6 +317,7 @@ export class SelectComponent implements OnInit {
 
   OnSearch(text) {
     this.searchText = text
+    this.search.emit(this.searchText)
   }
 
   optionExist(option) {

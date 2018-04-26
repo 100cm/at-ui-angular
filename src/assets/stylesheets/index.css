@@ -6568,7 +6568,7 @@ $info-color               : #78A4FA;
 }
 /* line 206, ../sass/components/select.scss */
 .at-select--large .at-select__selection {
-  height: 30px;
+  min-height: 30px;
   line-height: 28px;
 }
 /* line 210, ../sass/components/select.scss */
