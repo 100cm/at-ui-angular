@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
 import {NotificationConfig} from "../notification/notification-config";
-import {setTimeout} from "timers";
+
 
 @Component({
   selector: 'app-notification-container',

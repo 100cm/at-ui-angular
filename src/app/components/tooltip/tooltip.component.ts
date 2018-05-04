@@ -1,8 +1,7 @@
 import {Component, ContentChild, Input, OnInit} from '@angular/core';
 import {PopoverComponent} from "../popover/popover.component";
 import {TooltipTriggerDirective} from "./tooltip-trigger.directive";
-import {Observable} from "rxjs/Observable";
-import {fromEvent} from "rxjs/observable/fromEvent";
+import {Observable, fromEvent} from "rxjs";
 
 import {mapTo, merge} from "rxjs/operators";
 import { fadeAnimation} from "../animations/fade-animation";

@@ -14,13 +14,8 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-import {Subscription} from 'rxjs/Subscription';
-import {fromEvent} from 'rxjs/observable/fromEvent';
-import {debounceTime} from 'rxjs/operators/debounceTime';
-import {mapTo} from 'rxjs/operators/mapTo';
-import {merge} from 'rxjs/operators/merge';
+import {Observable, Subject, Subscription, fromEvent} from 'rxjs';
+import {debounceTime, mapTo, merge} from 'rxjs/operators';
 import {DropDownAnimation} from "../animations/drop-down-animation";
 import {DEFAULT_DROPDOWN_POSITIONS, POSITION_MAP} from "../core/overlay/overlay-position-map";
 import {DropdownMenuItemComponent} from "../menu/dropdown-menu-item/dropdown-menu-item.component";

@@ -11,13 +11,8 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {TagAnimation} from "../animations/tag-animation";
 import {isNotNil} from "../utils/class-helper";
 import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange} from "@angular/cdk/overlay";
-import {Observable} from "rxjs/Observable";
-import {debounceTime} from 'rxjs/operators/debounceTime';
-import {mapTo} from 'rxjs/operators/mapTo';
-import {merge} from 'rxjs/operators/merge';
-import {Subscription} from "rxjs/Subscription";
-import {fromEvent} from "rxjs/observable/fromEvent";
-import {Subject} from "rxjs/Subject";
+import {Observable, Subscription, fromEvent, Subject} from "rxjs";
+import {debounceTime, mapTo, merge} from 'rxjs/operators';
 
 @Component({
   selector: 'atSelect',

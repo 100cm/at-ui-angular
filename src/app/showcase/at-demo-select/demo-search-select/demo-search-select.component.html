@@ -1,4 +1,4 @@
-<atSelect [(ngModel)]="selected" [tagAble]="true" [multiple]="true" [searchable]="true" >
+<atSelect [(ngModel)]="selected" [tagAble]="true" [multiple]="true"  (search)="search($event)" [searchable]="true" >
   <atOption [atLabel]="'first'" [atValue]="'first'">
   </atOption>
   <atOption [atLabel]="'second'" [atValue]="'second'">

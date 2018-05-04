@@ -15,4 +15,7 @@ export class DemoSearchSelectComponent implements OnInit {
 
   single = 'first'
 
+  search(text){
+    console.log(text)
+  }
 }
