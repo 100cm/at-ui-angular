@@ -14,7 +14,7 @@ ng-at is a modular front-end UI framework for developing fast and powerful web i
 
 ## Features
 
-- Based on `Angular 4.x~5.x`
+- Based on `Angular 4.x~6.x`
 - A npm + webpack + babel front-end development workflow
 - Support ES2015
 - CSS Style independent, make consistent user interfaces (See: [AT-UI-Style](https://github.com/at-ui/at-ui-style))
