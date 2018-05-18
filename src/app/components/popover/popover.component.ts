@@ -65,7 +65,7 @@ import {toCamelCase, underscoreToCamelCase} from "../utils/class-helper";
 export class PopoverComponent implements OnInit {
 
   private _clickHide = false;
-  private _visible = false;
+  _visible = false;
   hasFilterButton = false;
   _triggerWidth = 0;
   _placement: any = 'bottom';

@@ -74,6 +74,7 @@ const appRoutes: Routes = [
       {path: 'badge', component: AtDemoBadgeComponent},
       {path: 'loading-bar', component: AtDemoLoadingbarComponent},
       {path: 'modal', component: AtDemoModalComponent},
+      {path: 'slider', component: AtDemoSliderComponent},
       {path: 'message', component: AtDemoMessageComponent},
       {path: 'popover', component: AtDemoPopoverComponent},
       {path: 'progress', component: AtDemoProgressComponent},
@@ -83,7 +84,7 @@ const appRoutes: Routes = [
       {path: 'datepicker', component: AtDemoDatetimepickerComponent},
       {path: 'tab', component: AtDemoTabsComponent},
       {path: 'steps', component: AtDemoStepsComponent},
-      {path:'time-line',component:AtDemoTimelineComponent}
+      {path: 'time-line', component: AtDemoTimelineComponent}
     ]
 
   },

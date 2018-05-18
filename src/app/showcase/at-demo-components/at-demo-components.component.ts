@@ -78,6 +78,11 @@ export class AtDemoComponentsComponent implements OnInit {
       url: '/components/time-line',
       name_en: 'timeline'
     },
+    {
+      name: '滑动选择',
+      url: '/components/slider',
+      name_en: 'slider'
+    },
 
     {name: 'tab', url: '/components/tab', name_en: 'tab'}
   ]

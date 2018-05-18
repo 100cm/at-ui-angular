@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-slider',
@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemoBasicSliderComponent implements OnInit {
 
-  constructor() { }
+  value = 100
 
+  constructor() {
+  }
   ngOnInit() {
   }
 

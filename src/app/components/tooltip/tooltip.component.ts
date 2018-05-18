@@ -4,7 +4,7 @@ import {TooltipTriggerDirective} from "./tooltip-trigger.directive";
 import {Observable, fromEvent} from "rxjs";
 
 import {mapTo, merge} from "rxjs/operators";
-import { fadeAnimation} from "../animations/fade-animation";
+import {fadeAnimation} from "../animations/fade-animation";
 
 
 @Component({
@@ -40,12 +40,23 @@ import { fadeAnimation} from "../animations/fade-animation";
     </ng-template>
 
   `,
-  animations: [ fadeAnimation ],
+  animations: [fadeAnimation],
 
 })
 export class TooltipComponent extends PopoverComponent implements OnInit {
-
+  @Input()
   trigger: any = 'hover'
+  @Input()
+  left: string
+
+  @Input()
+  isSlide = false
+
+  _onMouseLeaveEvent(e: MouseEvent): void {
+    if (this.trigger === 'hover' && !this.isSlide) {
+      this._hide();
+    }
+  }
 
   visible$: Observable<boolean> = this._visibleChange.asObservable();
 }
