@@ -1,5 +1,6 @@
 import {Component, ContentChild, Input, OnInit} from '@angular/core';
 import {TimelineDotDirective} from "../timeline-dot.directive";
+import {TimelineComponent} from "../timeline.component";
 
 @Component({
   selector: 'at-timeline-item',
@@ -20,10 +21,12 @@ export class TimelineItemComponent implements OnInit {
 
   @ContentChild(TimelineDotDirective) timeline_dot
 
-  constructor() {
+  constructor(private timeline_component: TimelineComponent) {
+    this.timeline_component.pushTimeline(this)
   }
 
   ngOnInit() {
+
   }
 
   isLast = false

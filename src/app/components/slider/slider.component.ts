@@ -1,6 +1,6 @@
 import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
-import {from, fromEvent, Observable, Subject} from "rxjs/index";
-import {concatAll, map, takeUntil} from "rxjs/internal/operators";
+import {from, fromEvent, Observable, Subject} from "rxjs";
+import {concatAll, map, takeUntil} from "rxjs/operators";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {SelectComponent} from "../select/select.component";
 import {fadeAnimation} from "../animations/fade-animation";
@@ -20,7 +20,6 @@ import {fadeAnimation} from "../animations/fade-animation";
         <div class="at-slider__bar" [ngStyle]="{width: sliderPercentage+ '%'}"></div>
         <div #sliderDot class="at-slider__dot-wrapper at-slider__dot-wrapper--hover at-slider__dot-wrapper--drag"
              [ngStyle]="{left: sliderPercentage+ '%'}">
-
           <div class="at-tooltip"><span class="at-tooltip__trigger"><div
             class="at-slider__dot at-slider__dot--hover"></div> </span>
             <div *ngIf="visible$ | async" [@fadeAnimation]="''+(visible$ | async)"
@@ -116,13 +115,16 @@ export class SliderComponent implements OnInit {
     let $mouseMove = fromEvent(document.body, 'mousemove')
     let $mouseUp = fromEvent(document.body, 'mouseup')
     $touchStart.pipe(map(event =>
+
         $mouseMove.pipe(
-          takeUntil($mouseUp))),
+          takeUntil($mouseUp))
+      ),
       concatAll(),
       map((event: any) => ({
         x: event.clientX,
         y: event.clientY
       }))).subscribe(rect => {
+        console.log(rect)
       this.sliderPercentage = this.findClosestValue(rect)
       // this.toolTipLeft = this.sliderEle.nativeElement.clientWidth * (this.sliderValue / 100) + 'px'
       this.isSliding.next(true)

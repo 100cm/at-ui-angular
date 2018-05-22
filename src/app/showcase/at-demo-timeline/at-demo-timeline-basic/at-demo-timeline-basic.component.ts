@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-timeline-basic',
@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtDemoTimelineBasicComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  timeline = []
 
   ngOnInit() {
+    setTimeout(_ => {
+      this.timeline = [1, 2, 3, 45]
+    }, 2000)
   }
 
 }
