@@ -47,6 +47,8 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'ToolTip'
     },
 
+    {name: '固钉', url: '/components/affix', name_en: 'affix'},
+
     {
       name: '表格',
       url: '/components/table',

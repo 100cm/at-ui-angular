@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {fromEvent,Observable} from "rxjs";
+
 
 export interface Position {
   x: number;
@@ -22,5 +24,8 @@ export class AtGlobalMonitorService {
       }
     })
   }
+
+  $windowScrollEvent: Observable<any> = fromEvent(window, 'scroll')
+
 
 }

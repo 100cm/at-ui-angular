@@ -39,6 +39,7 @@ import {AtDemoCardComponent} from "../app/showcase/at-demo-card/at-demo-card.com
 import {AtDemoTabsComponent} from "../app/showcase/at-demo-tabs/at-demo-tabs.component";
 import {AtDemoStepsComponent} from "../app/showcase/at-demo-steps/at-demo-steps.component";
 import {AtDemoTimelineComponent} from "../app/showcase/at-demo-timeline/at-demo-timeline.component";
+import {AtDemoAffixComponent} from "../app/showcase/at-demo-affix/at-demo-affix.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
       {path: 'datepicker', component: AtDemoDatetimepickerComponent},
       {path: 'tab', component: AtDemoTabsComponent},
       {path: 'steps', component: AtDemoStepsComponent},
-      {path: 'time-line', component: AtDemoTimelineComponent}
+      {path: 'time-line', component: AtDemoTimelineComponent},
+      {path: 'affix', component: AtDemoAffixComponent}
     ]
 
   },

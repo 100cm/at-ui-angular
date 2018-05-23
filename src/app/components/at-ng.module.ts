@@ -89,9 +89,12 @@ import {OptionContainerComponent} from './select/option-container/option-contain
 import {OptionPipe} from './select/option-container/option.pipe';
 import {TooltipTriggerDirective} from './tooltip/tooltip-trigger.directive';
 import {TimelineComponent} from './timeline/timeline.component';
-import { TimelineItemComponent } from './timeline/timeline-item/timeline-item.component';
-import { TimelineSelectorDirective } from './timeline/timeline-selector.directive';
-import { TimelineDotDirective } from './timeline/timeline-dot.directive';
+import {TimelineItemComponent} from './timeline/timeline-item/timeline-item.component';
+import {TimelineSelectorDirective} from './timeline/timeline-selector.directive';
+import {TimelineDotDirective} from './timeline/timeline-dot.directive';
+import {AtAffixModule} from "./affix/at-affix.module";
+import {AtUploadModule} from "./upload/upload.module";
+
 
 export {TabComponent} from './tab/tab.component';
 export {CommonModule} from '@angular/common';
@@ -162,6 +165,8 @@ export {TimeComponent} from './datetimepicker/time/time.component';
 export {CardComponent} from './card/card.component';
 export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component'
 export {TimelineComponent} from './timeline/timeline.component';
+export * from './affix'
+export * from './upload'
 
 @NgModule({
   declarations: [
@@ -322,6 +327,9 @@ export {TimelineComponent} from './timeline/timeline.component';
     TabSetComponent,
     StepsComponent,
     StepComponent,
+
+    AtAffixModule,
+    AtUploadModule,
 
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent,
