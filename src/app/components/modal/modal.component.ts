@@ -43,8 +43,9 @@ import {ModalBodyDirective} from "./modal-body.directive";
         >
           <div class="at-modal" [@enterLeave]="state"
                [ngStyle]="positionStyle"
-               [style.width]="width +'px'">
-            <div [ngClass]="{'at-modal__header': headerContains()}">
+               [style.width]="width +'px'"
+          >
+            <div *ngIf="showHeader" [ngClass]="{'at-modal__header': headerContains()}">
               <div class="at-modal__title" #custom_title>
                 <ng-content select="[header]">
                 </ng-content>
@@ -55,7 +56,7 @@ import {ModalBodyDirective} from "./modal-body.directive";
               <ng-content select="[body]"></ng-content>
               {{message ? message : ''}}
             </div>
-            <div class="at-modal__footer">
+            <div *ngIf="showFooter" class="at-modal__footer">
               <div #custom_footer>
                 <ng-content select="[footer]"></ng-content>
               </div>
@@ -100,6 +101,8 @@ export class ModalComponent implements OnInit {
   @Input() width: number = 520
   @Input() top: number = 100
   @Input() maskClose: boolean = true
+  @Input() showHeader: boolean = true
+  @Input() showFooter: boolean = true
   @Output() onCancel: EventEmitter<boolean> = new EventEmitter()
   @Output() onOk: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('modal_content') modal_content: ElementRef
