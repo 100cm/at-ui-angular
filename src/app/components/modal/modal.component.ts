@@ -61,7 +61,9 @@ import {ModalBodyDirective} from "./modal-body.directive";
                 <ng-content select="[footer]"></ng-content>
               </div>
               <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
-                <button atButton (click)="cancel()">取消</button>
+                <button class="at-btn" (click)="cancel()">
+                  <span class="at-btn__text">取消</span>
+                </button>
                 <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
           <span class="at-btn__text">确认
           </span>

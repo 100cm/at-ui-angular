@@ -69,6 +69,11 @@ export class AtDemoComponentsComponent implements OnInit {
       url: '/components/datepicker',
       name_en: 'DatePicker'
     },
+    {
+      name: '上传',
+      url: '/components/upload',
+      name_en: 'Uploader'
+    },
 
     {
       name: '步骤条',

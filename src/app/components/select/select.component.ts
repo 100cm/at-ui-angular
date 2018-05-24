@@ -15,7 +15,7 @@ import {Observable, Subscription, fromEvent, Subject} from "rxjs";
 import {debounceTime, mapTo, merge} from 'rxjs/operators';
 
 @Component({
-  selector: 'atSelect',
+  selector: '[atSelect,at-select]',
   template: `
     <div
       cdkOverlayOrigin

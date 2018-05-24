@@ -40,6 +40,7 @@ import {AtDemoTabsComponent} from "../app/showcase/at-demo-tabs/at-demo-tabs.com
 import {AtDemoStepsComponent} from "../app/showcase/at-demo-steps/at-demo-steps.component";
 import {AtDemoTimelineComponent} from "../app/showcase/at-demo-timeline/at-demo-timeline.component";
 import {AtDemoAffixComponent} from "../app/showcase/at-demo-affix/at-demo-affix.component";
+import {AtDemoUploadComponent} from "../app/showcase/at-demo-upload/at-demo-upload.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -86,6 +87,7 @@ const appRoutes: Routes = [
       {path: 'tab', component: AtDemoTabsComponent},
       {path: 'steps', component: AtDemoStepsComponent},
       {path: 'time-line', component: AtDemoTimelineComponent},
+      {path: 'upload', component: AtDemoUploadComponent},
       {path: 'affix', component: AtDemoAffixComponent}
     ]
 

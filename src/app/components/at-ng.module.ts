@@ -94,6 +94,7 @@ import {TimelineSelectorDirective} from './timeline/timeline-selector.directive'
 import {TimelineDotDirective} from './timeline/timeline-dot.directive';
 import {AtAffixModule} from "./affix/at-affix.module";
 import {AtUploadModule} from "./upload/upload.module";
+import {AtModalModule} from "./modal";
 
 
 export {TabComponent} from './tab/tab.component';
@@ -132,10 +133,7 @@ export {NotificationBaseService} from "./notification/notification-base.service"
 export {AtNotificationService} from "./notification/notification.service";
 export {AlertComponent} from './alert/alert.component';
 export {BadgeComponent} from './badge/badge.component';
-export {ModalComponent} from './modal/modal.component';
 export {AtGlobalMonitorService} from "./at-global-monitor.service";
-export {AtModalService} from "./modal/at-modal.service";
-export {ModalBaseService} from "./modal/modal-base.service";
 export {TableComponent} from './table/table.component';
 export {AtTbodyDirective} from './table/at-tbody.directive';
 export {AtTdDirective} from './table/at-td.directive';
@@ -167,6 +165,7 @@ export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.c
 export {TimelineComponent} from './timeline/timeline.component';
 export * from './affix'
 export * from './upload'
+export * from './modal'
 
 @NgModule({
   declarations: [
@@ -201,7 +200,6 @@ export * from './upload'
     NotificationContainerComponent,
     AlertComponent,
     BadgeComponent,
-    ModalComponent,
     TableComponent,
     AtTbodyDirective,
     AtTdDirective,
@@ -223,7 +221,6 @@ export * from './upload'
     AtFormContentDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
-    ModalBodyDirective,
     DatetimepickerComponent,
     CalendarComponent,
     TimeComponent,
@@ -239,7 +236,6 @@ export * from './upload'
     TabLabelDirective,
     DropdownDirective,
     PopTriggerDirective,
-    ModalBodyDirective,
     StepsComponent,
     StepComponent,
     AtBreadItemComponent,
@@ -288,13 +284,12 @@ export * from './upload'
     NotificationContainerComponent,
     AlertComponent,
     BadgeComponent,
-    ModalComponent,
     TableComponent,
     PagenationComponent,
     AtThDirective,
     AtTbodyDirective,
     AtTbodyTrDirective,
-    ModalBodyDirective,
+
     AtTheadDirective,
     AtTdDirective,
     BreadcrumbComponent,
@@ -330,11 +325,12 @@ export * from './upload'
 
     AtAffixModule,
     AtUploadModule,
+    AtModalModule,
 
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent,
     MessageContainerComponent, MessageComponent,
-    ModalComponent],
+  ],
   imports:
     [
       CommonModule,

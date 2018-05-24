@@ -9783,3 +9783,144 @@ $info-color               : #78A4FA;
   display: inline-block;
   border-left-style: dotted;
 }
+
+/* line 3, ../sass/components/upload.scss */
+.at-upload--picture {
+  border: 1px dashed #BFBFBF;
+  background: #F7F7F7;
+  width: 104px;
+  height: 104px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  display: table;
+}
+/* line 14, ../sass/components/upload.scss */
+.at-upload--picture .at-upload-container {
+  width: 100%;
+  height: 100%;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+}
+
+/* line 28, ../sass/components/upload.scss */
+.at-upload-preview-modal {
+  padding: 12px;
+}
+/* line 32, ../sass/components/upload.scss */
+.at-upload-files-item {
+  margin-top: 8px;
+  font-size: 14px;
+  position: relative;
+  height: 22px;
+}
+/* line 38, ../sass/components/upload.scss */
+.at-upload-files-item-hover {
+  background: #EFF4FE;
+}
+/* line 40, ../sass/components/upload.scss */
+.at-upload-files-item-hover .icon-right {
+  opacity: 1 !important;
+}
+/* line 44, ../sass/components/upload.scss */
+.at-upload-files-item-info {
+  height: 100%;
+  padding: 0 12px 0 4px;
+  -webkit-transition: background-color .3s;
+  transition: background-color .3s;
+}
+/* line 51, ../sass/components/upload.scss */
+.at-upload-files-item-file-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 22px;
+  width: 100%;
+  display: inline-block;
+}
+/* line 61, ../sass/components/upload.scss */
+.at-upload-files .icon-left {
+  position: absolute;
+  display: inline-block;
+  line-height: 22px;
+}
+/* line 67, ../sass/components/upload.scss */
+.at-upload-files .icon-right {
+  display: inline-block;
+  font-size: 12px;
+  -webkit-transform: scale(0.83333) rotate(0);
+  transform: scale(0.83333) rotate(0);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  right: 4px;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 22px;
+}
+
+/* line 87, ../sass/components/upload.scss */
+.at-upload-files-item-hover .at-upload-files-avatar-actions {
+  opacity: 1 !important;
+}
+/* line 92, ../sass/components/upload.scss */
+.at-upload-files-item-hover .at-upload-files-avatar-item-info:before {
+  opacity: 1 !important;
+}
+
+/* line 102, ../sass/components/upload.scss */
+.at-upload-files-avatar-actions {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  white-space: nowrap;
+  opacity: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+/* line 113, ../sass/components/upload.scss */
+.at-upload-files-avatar-actions a {
+  color: white;
+  padding: 4px;
+}
+/* line 119, ../sass/components/upload.scss */
+.at-upload-files-avatar-item {
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  float: left;
+  width: 104px;
+  height: 104px;
+  margin: 0 8px 8px 0;
+  padding: 8px;
+  position: relative;
+}
+/* line 129, ../sass/components/upload.scss */
+.at-upload-files-avatar-item-info {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+/* line 130, ../sass/components/upload.scss */
+.at-upload-files-avatar-item-info:before {
+  content: ' ';
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+/* line 145, ../sass/components/upload.scss */
+.at-upload-files-avatar-preview {
+  width: 100%;
+  height: 100%;
+}
