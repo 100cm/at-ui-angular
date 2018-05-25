@@ -4,6 +4,7 @@ import {ModalComponent} from "./modal.component";
 import {ModalBodyDirective} from "./modal-body.directive";
 import {ModalBaseService} from "./modal-base.service";
 import {OverlayModule} from "@angular/cdk/overlay";
+import {AtModalService} from "./at-modal.service";
 
 @NgModule({
   imports: [
@@ -11,7 +12,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
     OverlayModule
   ],
   exports: [ModalComponent, ModalBodyDirective],
-  providers: [ModalBaseService],
+  providers: [ModalBaseService,AtModalService],
   entryComponents: [ModalComponent],
   declarations: [ModalComponent, ModalBodyDirective]
 })

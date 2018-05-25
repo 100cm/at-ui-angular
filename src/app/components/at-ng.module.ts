@@ -28,8 +28,6 @@ import {DropdownComponent} from "./dropdown/dropdown.component";
 import {DropdownMenuItemComponent} from "./menu/dropdown-menu-item/dropdown-menu-item.component";
 import {DropMenuListComponent} from "./menu/drop-menu-list/drop-menu-list.component";
 import {ControlContainer, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {BrowserModule} from "@angular/platform-browser";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NotificationComponent} from './notification/notification/notification.component';
 import {ComponentCreatorBase} from "./core/component-creator-base";
 import {NotificationContainerComponent} from './notification/notification-container/notification-container.component';
@@ -37,9 +35,7 @@ import {NotificationBaseService} from "./notification/notification-base.service"
 import {AtNotificationService} from "./notification/notification.service";
 import {AlertComponent} from './alert/alert.component';
 import {BadgeComponent} from './badge/badge.component';
-import {ModalComponent} from './modal/modal.component';
 import {AtGlobalMonitorService} from "./at-global-monitor.service";
-import {AtModalService} from "./modal/at-modal.service";
 import {ModalBaseService} from "./modal/modal-base.service";
 import {TableComponent} from './table/table.component';
 import {AtTbodyDirective} from './table/at-tbody.directive';
@@ -80,7 +76,6 @@ import {TabLabelDirective} from './tab/tab-label.directive';
 import {DropdownDirective} from './dropdown/dropdown.directive';
 import {PopTriggerDirective} from './popover/pop-trigger.directive';
 import {OverlayModule} from "@angular/cdk/overlay";
-import {ModalBodyDirective} from './modal/modal-body.directive';
 import {StepsComponent} from './steps/steps.component';
 import {StepComponent} from './steps/step/step.component';
 import {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component';
@@ -94,7 +89,8 @@ import {TimelineSelectorDirective} from './timeline/timeline-selector.directive'
 import {TimelineDotDirective} from './timeline/timeline-dot.directive';
 import {AtAffixModule} from "./affix/at-affix.module";
 import {AtUploadModule} from "./upload/upload.module";
-import {AtModalModule} from "./modal";
+import {AtModalService} from "./modal/at-modal.service";
+import {AtModalModule} from "./modal/at-modal.module";
 
 
 export {TabComponent} from './tab/tab.component';
@@ -131,6 +127,7 @@ export {ComponentCreatorBase} from "./core/component-creator-base";
 export {NotificationContainerComponent} from './notification/notification-container/notification-container.component';
 export {NotificationBaseService} from "./notification/notification-base.service";
 export {AtNotificationService} from "./notification/notification.service";
+export {AtModalService} from './modal/at-modal.service'
 export {AlertComponent} from './alert/alert.component';
 export {BadgeComponent} from './badge/badge.component';
 export {AtGlobalMonitorService} from "./at-global-monitor.service";
@@ -164,8 +161,8 @@ export {CardComponent} from './card/card.component';
 export {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component'
 export {TimelineComponent} from './timeline/timeline.component';
 export * from './affix'
-export * from './upload'
 export * from './modal'
+export * from './upload'
 
 @NgModule({
   declarations: [

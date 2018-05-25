@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-upload',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtDemoUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
+
+  basic = require('./at-demo-upload-basic/at-demo-upload-basic.component.html')
 
   ngOnInit() {
   }

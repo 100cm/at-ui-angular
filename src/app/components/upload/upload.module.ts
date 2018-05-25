@@ -4,8 +4,7 @@ import {AtUploadComponent} from './at-upload/at-upload.component';
 import {AtUploadListDirective} from './at-upload-list.directive';
 import {AtImagePreviewDirective} from './image-preview.directive';
 import {AtDragUploadDirective} from './at-drag-upload.directive';
-import {AtModalModule} from "../modal";
-import {OverlayModule} from "@angular/cdk/overlay";
+import {AtModalModule} from "../modal/at-modal.module";
 
 @NgModule({
   imports: [
