@@ -18,10 +18,10 @@ import {IconComponent} from "./icon/icon.component";
 import {CheckboxComponent} from "./checkbox/checkbox.component";
 import {CheckboxGroupComponent} from "./checkbox/checkbox-group/checkbox-group.component";
 import {InputComponent} from "./input/input.component";
-import {SelectComponent} from "./select/select.component";
+import {AtSelectComponent} from "./select/at-select.component";
 import {RadioButtonComponent} from "./radio/radio-button/radio-button.component";
 import {SwitchComponent} from "./switch/switch.component";
-import {OptionComponent} from "./select/option/option.component";
+import {AtOptionComponent} from "./select/at-option.component";
 import {SliderComponent} from "./slider/slider.component";
 import {TextareaComponent} from "./textarea/textarea.component";
 import {DropdownComponent} from "./dropdown/dropdown.component";
@@ -79,9 +79,9 @@ import {OverlayModule} from "@angular/cdk/overlay";
 import {StepsComponent} from './steps/steps.component';
 import {StepComponent} from './steps/step/step.component';
 import {AtBreadItemComponent} from './breadcrumb/breadcrumb-item/at-bread-item.component';
-import {SelectInputComponent} from './select/select-input/select-input.component';
-import {OptionContainerComponent} from './select/option-container/option-container.component';
-import {OptionPipe} from './select/option-container/option.pipe';
+import {AtSelectTopControlComponent} from './select/at-select-top-control.component';
+import {AtOptionContainerComponent} from './select/at-option-container.component';
+import {AtOptionPipe} from './select/at-option.pipe';
 import {TooltipTriggerDirective} from './tooltip/tooltip-trigger.directive';
 import {TimelineComponent} from './timeline/timeline.component';
 import {TimelineItemComponent} from './timeline/timeline-item/timeline-item.component';
@@ -91,6 +91,7 @@ import {AtAffixModule} from "./affix/at-affix.module";
 import {AtUploadModule} from "./upload/upload.module";
 import {AtModalService} from "./modal/at-modal.service";
 import {AtModalModule} from "./modal/at-modal.module";
+import {AtSelectModule} from "./select/at-select.module";
 
 
 export {TabComponent} from './tab/tab.component';
@@ -113,10 +114,10 @@ export {IconComponent} from "./icon/icon.component";
 export {CheckboxComponent} from "./checkbox/checkbox.component";
 export {CheckboxGroupComponent} from "./checkbox/checkbox-group/checkbox-group.component";
 export {InputComponent} from "./input/input.component";
-export {SelectComponent} from "./select/select.component";
+export {AtSelectComponent} from "./select/at-select.component";
 export {RadioButtonComponent} from "./radio/radio-button/radio-button.component";
 export {SwitchComponent} from "./switch/switch.component";
-export {OptionComponent} from "./select/option/option.component";
+export {AtOptionComponent} from "./select/at-option.component";
 export {SliderComponent} from "./slider/slider.component";
 export {TextareaComponent} from "./textarea/textarea.component";
 export {DropdownComponent} from "./dropdown/dropdown.component";
@@ -185,8 +186,6 @@ export * from './upload'
     CheckboxGroupComponent,
     InputComponent,
     RadioButtonComponent,
-    SelectComponent,
-    OptionComponent,
     SwitchComponent,
     SliderComponent,
     TextareaComponent,
@@ -236,9 +235,6 @@ export * from './upload'
     StepsComponent,
     StepComponent,
     AtBreadItemComponent,
-    SelectInputComponent,
-    OptionContainerComponent,
-    OptionPipe,
     TooltipTriggerDirective,
     TimelineComponent,
     TimelineItemComponent,
@@ -269,8 +265,6 @@ export * from './upload'
     CheckboxGroupComponent,
     InputComponent,
     RadioButtonComponent,
-    SelectComponent,
-    OptionComponent,
     SwitchComponent,
     SliderComponent,
     TextareaComponent,
@@ -323,6 +317,7 @@ export * from './upload'
     AtAffixModule,
     AtUploadModule,
     AtModalModule,
+    AtSelectModule,
 
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent,
@@ -334,6 +329,7 @@ export * from './upload'
       FormsModule,
       OverlayModule,
       // BrowserModule,
+      AtSelectModule
 
     ],
   providers: [AtGlobalMonitorService]

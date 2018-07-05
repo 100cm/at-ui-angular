@@ -1,8 +1,7 @@
-import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {from, fromEvent, Observable, Subject} from "rxjs";
 import {concatAll, map, takeUntil} from "rxjs/operators";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
-import {SelectComponent} from "../select/select.component";
 import {fadeAnimation} from "../animations/fade-animation";
 
 @Component({
@@ -79,11 +78,13 @@ export class SliderComponent implements OnInit {
   @Input() range = 100
   @Input() private _step = 1
 
+  @Output() sliding: EventEmitter<any> = new EventEmitter<any>()
+
   private _sliderValue = 0
 
 
   get sliderValue(): number {
-    return Math.floor((this.sliderPercentage / 100 ) * this.range);
+    return Math.floor((this.sliderPercentage / 100) * this.range);
   }
 
   set sliderValue(value: number) {
@@ -124,8 +125,9 @@ export class SliderComponent implements OnInit {
         x: event.clientX,
         y: event.clientY
       }))).subscribe(rect => {
-        console.log(rect)
+
       this.sliderPercentage = this.findClosestValue(rect)
+      this.sliding.emit(this.sliderValue)
       // this.toolTipLeft = this.sliderEle.nativeElement.clientWidth * (this.sliderValue / 100) + 'px'
       this.isSliding.next(true)
     })
@@ -147,7 +149,7 @@ export class SliderComponent implements OnInit {
 
     let sliderOffset = this.getElementOffset(slider)
     let range = sliderLength + sliderOffset.left
-    let percentage = Math.floor(((rect.x - sliderOffset.left) / sliderLength ) * 100)
+    let percentage = Math.floor(((rect.x - sliderOffset.left) / sliderLength) * 100)
     percentage > 100 ? percentage = 100 : 0
     percentage < 0 ? percentage = 0 : 0
 

@@ -12,11 +12,14 @@
   <div atCol [span]="6">
     <atDropdown [placement]="'bottom'" [trigger]="'click'">
       <button atButton at-dropdown>不同的位置菜单 bottom</button>
-      <li atDropMenuItem>菜单1</li>
-      <li atDropMenuItem [disabled]="true">菜单1</li>
-      <li atDropMenuItem [divided]="true">菜单1</li>
-      <li atDropMenuItem>菜单1</li>
-      <li atDropMenuItem>菜单1</li>
+      <div atDropMenuCustomItem style="height: 200px;background: #0e77ca">
+        <atSelect>
+          <atOption [atLabel]="'first3'" [atValue]="1"></atOption>
+          <atOption [atLabel]="'first3'" [atValue]="2"></atOption>
+          <atOption [atLabel]="'first3'" [atValue]="3"></atOption>
+          <atOption [atLabel]="'first3'" [atValue]="4"></atOption>
+        </atSelect>
+      </div>
     </atDropdown>
   </div>
   <div atCol [span]="6">
@@ -32,11 +35,14 @@
   <div atCol [span]="6">
     <atDropdown [placement]="'right'" [trigger]="'click'">
       <button atButton at-dropdown>不同的位置菜单 right</button>
-      <li atDropMenuItem>菜单1</li>
-      <li atDropMenuItem [disabled]="true">菜单1</li>
-      <li atDropMenuItem [divided]="true">菜单1</li>
-      <li atDropMenuItem>菜单1</li>
-      <li atDropMenuItem>菜单1</li>
+      <div atDropMenuCustomItem>
+        <atSelect>
+          <atOption [atLabel]="'first3'" [atValue]="1"></atOption>
+          <atOption [atLabel]="'first3'" [atValue]="2"></atOption>
+          <atOption [atLabel]="'first3'" [atValue]="3"></atOption>
+          <atOption [atLabel]="'first3'" [atValue]="4"></atOption>
+        </atSelect>
+      </div>
     </atDropdown>
   </div>
 </div>

@@ -14,12 +14,15 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {Observable, Subject, Subscription, fromEvent} from 'rxjs';
-import {debounceTime, mapTo, merge} from 'rxjs/operators';
+import {combineLatest, merge, BehaviorSubject, Subscription, Observable, Subject, fromEvent} from 'rxjs';
+import {debounceTime, distinctUntilChanged, map, mapTo, takeUntil} from 'rxjs/operators';
 import {DropDownAnimation} from "../animations/drop-down-animation";
 import {DEFAULT_DROPDOWN_POSITIONS, POSITION_MAP} from "../core/overlay/overlay-position-map";
-import {DropdownMenuItemComponent} from "../menu/dropdown-menu-item/dropdown-menu-item.component";
+import {
+  DropdownMenuItemComponent
+} from "../menu/dropdown-menu-item/dropdown-menu-item.component";
 import {DropdownDirective} from "./dropdown.directive";
+
 
 @Component({
   selector: 'atDropdown',
@@ -30,6 +33,7 @@ import {DropdownDirective} from "./dropdown.directive";
     </div>
     <ng-template
       cdkConnectedOverlay
+      [cdkConnectedOverlayBackdropClass]="'select-back-drop'"
       [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
       [cdkConnectedOverlayPositions]="_positions"
       [cdkConnectedOverlayOrigin]="_atOrigin"
@@ -62,6 +66,9 @@ import {DropdownDirective} from "./dropdown.directive";
 export class DropdownComponent implements OnInit {
 
   @Input() custom_content = false
+
+  private unsubscribe$ = new Subject<void>();
+  $subOpen = new BehaviorSubject<boolean>(false);
 
   private _clickHide = false;
   private _visible = false;
@@ -154,7 +161,7 @@ export class DropdownComponent implements OnInit {
     /** should remove after https://github.com/angular/material2/pull/8765 merged **/
     if (this._cdkOverlay && this._cdkOverlay.overlayRef) {
       this._cdkOverlay.overlayRef.updateSize({
-        minWidth: this._triggerWidth
+        minWidth: this._triggerWidth,
       });
     }
   }
@@ -171,8 +178,9 @@ export class DropdownComponent implements OnInit {
   }
 
   _startSubscribe(observable$: Observable<boolean>): void {
-    this._subscription = observable$.pipe(debounceTime(50))
-      .subscribe(this._onVisibleChange);
+    let $pre = observable$;
+    const final$ = combineLatest($pre, this.$subOpen).pipe(map(value => value[0] || value[1]), debounceTime(50), distinctUntilChanged());
+    final$.pipe(takeUntil(this.unsubscribe$)).subscribe(this._onVisibleChange)
   }
 
   ngOnInit(): void {
@@ -180,11 +188,9 @@ export class DropdownComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    if (this._subscription) {
-      this._subscription.unsubscribe();
-    }
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
-
 
 
   ngAfterViewInit(): void {
@@ -192,7 +198,7 @@ export class DropdownComponent implements OnInit {
     if (this.trigger === 'hover') {
       const mouseEnterOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseenter').pipe(mapTo(true));
       const mouseLeaveOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseleave').pipe(mapTo(false));
-      mouse$ = mouseEnterOrigin$.pipe(merge(mouseLeaveOrigin$));
+      mouse$ = merge(mouseEnterOrigin$, mouseLeaveOrigin$,);
     }
     if (this.trigger === 'click') {
       mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
@@ -200,7 +206,7 @@ export class DropdownComponent implements OnInit {
         e.preventDefault();
       });
     }
-    const observable$ = mouse$.pipe(merge(this._visibleChange));
+    const observable$ = merge(mouse$, this._visibleChange);
     this._startSubscribe(observable$);
   }
 

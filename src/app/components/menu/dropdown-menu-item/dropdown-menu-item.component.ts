@@ -2,8 +2,9 @@ import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Rendere
 
 @Component({
   selector: '[atDropMenuItem]',
-  template:`<ng-content>
-  </ng-content>
+  template: `
+    <ng-content>
+    </ng-content>
   `
 })
 export class DropdownMenuItemComponent implements OnInit {

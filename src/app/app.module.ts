@@ -55,10 +55,8 @@ import {DemoButtonRadioComponent} from './showcase/at-demo-radio/demo-button-rad
 import {DemoDisableRadioComponent} from './showcase/at-demo-radio/demo-disable-radio/demo-disable-radio.component';
 import {DemoSizeRadioComponent} from './showcase/at-demo-radio/demo-size-radio/demo-size-radio.component';
 import {DemoColorRadioComponent} from './showcase/at-demo-radio/demo-color-radio/demo-color-radio.component';
-import {SelectComponent} from './components/select/select.component';
 import {AtDemoSelectComponent} from './showcase/at-demo-select/at-demo-select.component';
 import {DemoSelectBasicComponent} from './showcase/at-demo-select/demo-select-basic/demo-select-basic.component';
-import {OptionComponent} from './components/select/option/option.component';
 import {DemoSelectMultipleComponent} from './showcase/at-demo-select/demo-select-multiple/demo-select-multiple.component';
 import {DemoSelectSizeComponent} from './showcase/at-demo-select/demo-select-size/demo-select-size.component';
 import {DemoSelectClearComponent} from './showcase/at-demo-select/demo-select-clear/demo-select-clear.component';

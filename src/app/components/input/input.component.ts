@@ -9,7 +9,7 @@ export type atInputSize = 'small' | 'normal' | 'large'
 @Component({
   selector: 'atInput',
   template: `
-    <div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}}"
+    <div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}} at-input-number--{{disabled ? 'disabled' : ''}} "
          [ngClass]="_BindClass">
       <div #prepend [hidden]="!showPrepend" [ngClass]="{'at-input-group__prepend': showPrepend}">
         <ng-content select="[atPrepend]"></ng-content>
@@ -23,7 +23,7 @@ export type atInputSize = 'small' | 'normal' | 'large'
 
       <ng-template [ngIf]="atType == 'number'">
         <div class="at-input-number__input">
-          <input [(ngModel)]="value" placeholder="{{placeholder}}" type="number" [disabled]="disabled"
+          <input [(ngModel)]="value" placeholder="{{placeholder}}" type="number" [attr.disabled]="disabled ? '' : null"
                  class="{{_prefixCls}}__original">
 
           <div class="at-input-number__handler">
@@ -168,6 +168,7 @@ export class InputComponent implements OnInit {
   }
 
   get disabled(): boolean {
+
     return this._disabled;
   }
 

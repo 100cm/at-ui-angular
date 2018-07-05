@@ -1,3 +1,5 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+
 export interface ClassHelper {
   _prefixCls: string
   _classList: Array<any>
@@ -27,4 +29,8 @@ export function underscoreToCamelCase(str) {
     return w.toUpperCase();
   })
   return re
+}
+
+export function toBoolean(value: boolean | string): boolean {
+  return coerceBooleanProperty(value);
 }

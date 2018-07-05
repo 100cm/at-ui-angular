@@ -32,8 +32,8 @@
     }
   }
 
-  &--open{
-    .at-select__arrow{
+  &--open {
+    .at-select__arrow {
       transform: rotate(180deg);
     }
   }
@@ -143,6 +143,16 @@
     &--right {
       margin-left: 2px;
     }
+  }
+
+  &-search-inline {
+    border: none !important;
+    outline: none !important;
+    left: 0 !important;
+    top: 0 !important;
+    display: inline-block !important;
+    margin: 0 24px 0 8px !important;
+    background-color: transparent !important;
   }
 
   /* modifier */

@@ -1,4 +1,4 @@
-<atSelect [(ngModel)]="selected" [tagAble]="true" [multiple]="true"  (search)="search($event)" [searchable]="true" >
+<atSelect [(ngModel)]="selected" [tagAble]="true" [multiple]="true" (search)="search($event)" [searchable]="true">
   <atOption [atLabel]="'first'" [atValue]="'first'">
   </atOption>
   <atOption [atLabel]="'second'" [atValue]="'second'">
@@ -7,7 +7,7 @@
   </atOption>
 </atSelect>
 
-<div *ngFor="let item of selected" >
+<div *ngFor="let item of selected">
   {{item}}
 </div>
 
@@ -18,3 +18,13 @@
   <atOption [atLabel]="'second'" [atValue]="'second'"></atOption>
   <atOption [atLabel]="'next'" [atValue]="'next'"></atOption>
 </atSelect>
+
+
+<atSelect [(ngModel)]="single"  [atMode]="'multiple'" [searchable]="true">
+  <atOption [atLabel]="'first'" [atValue]="1"></atOption>
+  <atOption [atLabel]="'section'" [atValue]="2"></atOption>
+  <atOption [atLabel]="'next'" [atValue]="3"></atOption>
+  <atOption [atLabel]="'last'" [atValue]="4"></atOption>
+</atSelect>
+
+{{single}}
