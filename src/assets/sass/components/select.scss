@@ -180,6 +180,7 @@
     .at-select__placeholder,
     .at-select__selected {
       color: $input-placeholder-color-disabled;
+      line-height: 30px;
     }
   }
   &--multiple {

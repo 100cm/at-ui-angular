@@ -92,6 +92,7 @@ import {AtUploadModule} from "./upload/upload.module";
 import {AtModalService} from "./modal/at-modal.service";
 import {AtModalModule} from "./modal/at-modal.module";
 import {AtSelectModule} from "./select/at-select.module";
+import { AtInputDirective } from './input/at-input.directive';
 
 
 export {TabComponent} from './tab/tab.component';
@@ -240,6 +241,7 @@ export * from './upload'
     TimelineItemComponent,
     TimelineSelectorDirective,
     TimelineDotDirective,
+    AtInputDirective,
   ],
   exports: [
     TimelineSelectorDirective,
@@ -313,6 +315,7 @@ export * from './upload'
     TabSetComponent,
     StepsComponent,
     StepComponent,
+    AtInputDirective,
 
     AtAffixModule,
     AtUploadModule,

@@ -1,14 +1,15 @@
 import {Component, ElementRef, Input, OnInit, Renderer2} from '@angular/core';
-import {ClassHelper} from "../../utils/class-helper";
+import {ClassHelper}                                     from "../../utils/class-helper";
 
 export  type RowFlexType = 'center' | 'end' | 'start' | 'around' | 'between'
 export type RowFlexAlign = 'top' | 'middle' | 'bottom'
 
 @Component({
-  selector: '[atRow]',
-  template: `<ng-content></ng-content>
-`,
-})
+             selector: '[atRow]',
+             template: `
+               <ng-content></ng-content>
+             `,
+           })
 export class RowComponent implements OnInit, ClassHelper {
 
   _prefixCls: string;
@@ -21,8 +22,21 @@ export class RowComponent implements OnInit, ClassHelper {
   private _alignType: RowFlexAlign
 
   private _noGutter: boolean = false
-  private _reverse: boolean = false
+  private _reverse: boolean  = false
 
+
+  private _atGutter = 8
+
+
+  get atGutter() {
+    return this._atGutter / 2;
+  }
+
+
+  @Input()
+  set atGutter(value) {
+    this._atGutter = value;
+  }
 
   get reverse(): boolean {
     return this._reverse;

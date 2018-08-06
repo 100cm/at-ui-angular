@@ -470,9 +470,9 @@ $rate-icon-color-on         : $yellow-500;
 $rate-text-font-size        : $font-size-smer;
 
 /* Select */
-$select-font-size-sm        : $font-size-smest;
-$select-font-size-base      : $font-size-smer;
-$select-font-size-lg        : $font-size-base;
+$select-font-size-sm        : $font-size-sm;
+$select-font-size-base      : $font-size-base;
+$select-font-size-lg        : $font-size-lg;
 
 $select-bg-color            : $color-white;
 $select-font-color          : $text-color;
@@ -489,14 +489,14 @@ $select-padding-sm            : 0 24px 0 8px;
 $select-padding-base          : 0 24px 0 8px;
 $select-padding-lg            : 0 24px 0 8px;
 
-$select-selection-height-sm     : 24px;
-$select-selection-height-base   : 26px;
-$select-selection-height-lg     : 30px;
+$select-selection-height-sm     : 28px;
+$select-selection-height-base   : 32px;
+$select-selection-height-lg     : 34x;
 
 /* Select Dropdown */
-$select-dropdown-font-size-sm   : $font-size-smest;
-$select-dropdown-font-size-base : $font-size-smer;
-$select-dropdown-font-size-lg   : $font-size-sm;
+$select-dropdown-font-size-sm   : $font-size-sm;
+$select-dropdown-font-size-base : $font-size-base;
+$select-dropdown-font-size-lg   : $font-size-lg;
 
 $select-dropdown-bg-color       : $color-white;
 $select-dropdown-height         : 200px;

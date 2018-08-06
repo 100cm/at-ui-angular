@@ -157,6 +157,35 @@
     </div>
   </doc-section>
 
+  <doc-section [title]="'响应式'" [code]="alignTypeRow">
+    <p desc><code>row</code>&nbsp;中的子元素&nbsp;<code>col</code>&nbsp;的对齐方式，支持三种对齐方式：<code>flex-top</code>，<code>flex-middle</code>，<code>flex-bottom</code>
+    </p>
+    <div sample>
+      <div *ngFor="let item of align_type">
+        <div class="demo-desc">
+          flex-{{item}}
+        </div>
+        <div atRow [alignType]="item">
+          <div atCol [atLg]="6" [atSm]="24">
+            <div class="bg-c-brand-light at-box-row"></div>
+          </div>
+          <div atCol [atLg]="6" [atSm]="24">
+            <div class="bg-c-brand-dark at-box-row" style="height: 100px">
+            </div>
+          </div>
+          <div atCol [atLg]="6" [atSm]="24">
+            <div class="bg-c-brand-dark at-box-row">
+            </div>
+          </div>
+          <div atCol [atLg]="6" [atSm]="24">
+            <div class="bg-c-brand-dark at-box-row">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </doc-section>
+
   <doc-section [title]="'类名说明'" [sample]="false">
     <table desc class="table">
       <thead>
@@ -173,6 +202,43 @@
       <tr>
         <td>.container-fluid</td>
         <td>容器左右两边预留&nbsp;<code>24px</code>&nbsp;的间隙</td>
+      </tr>
+      <tr>
+        <td>.no-gutter</td>
+        <td>默认&nbsp;<code>col</code>&nbsp;之间会设置&nbsp;<code>8px</code>&nbsp;的间隔，添加此类名可去除默认的间隔</td>
+      </tr>
+      <tr>
+        <td>.row</td>
+        <td>包裹&nbsp;<code>col</code>&nbsp;的容器</td>
+      </tr>
+      <tr>
+        <td>.row.reverse</td>
+        <td>反向排列子元素</td>
+      </tr>
+      <tr>
+        <td>.flex</td>
+        <td>使用&nbsp;<code>flexbox</code>&nbsp;布局</td>
+      </tr>
+      </tbody>
+    </table>
+  </doc-section>
+
+  <doc-section [title]="'参数说明'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>atCol参数</th>
+        <th>说明</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>span</td>
+        <td>元素占据栅栏数目</td>
+      </tr>
+      <tr>
+        <td>atXs,atSm,atMd,atLg</td>
+        <td>屏幕小于480，768，992，1200的栅栏树木</td>
       </tr>
       <tr>
         <td>.no-gutter</td>
