@@ -159,6 +159,13 @@
     cursor: pointer;
     @include button-size($btn-padding-base, $btn-font-size-base);
   }
+
+  &:first-child {
+    .at-radio-button__inner {
+      border-right: 0px;
+    }
+  }
+
   &__original {
     position: absolute;
     top: 0;

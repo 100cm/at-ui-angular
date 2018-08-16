@@ -14,31 +14,31 @@ export class AtDemoLayoutComponent implements OnInit {
   }
 
   rows = new Array(12)
-  basicRow = '  <div atRow *ngFor="let row of rows;let i= index" >\n' +
-    '        <div atCol [span]="i+1">\n' +
+  basicRow = '  <div at-row *ngFor="let row of rows;let i= index" >\n' +
+    '        <div at-col [span]="i+1">\n' +
     '          <div class="bg-c-brand-light at-box-row" ></div>\n' +
     '        </div>\n' +
-    '        <div  atCol [span]="23-i">\n' +
+    '        <div  at-col [span]="23-i">\n' +
     '          <div class="bg-c-brand-dark at-box-row">\n' +
     '          </div>\n' +
     '        </div>\n' +
     '      </div>';
 
-  noGutterRow = '  <div atRow *ngFor="let row of rows;let i= index" [noGutter]="true" >\n' +
-    '        <div atCol [span]="i+1">\n' +
+  noGutterRow = '  <div at-row *ngFor="let row of rows;let i= index" [noGutter]="true" >\n' +
+    '        <div at-col [span]="i+1">\n' +
     '          <div class="bg-c-brand-light at-box-row" ></div>\n' +
     '        </div>\n' +
-    '        <div  atCol [span]="23-i">\n' +
+    '        <div  at-col [span]="23-i">\n' +
     '          <div class="bg-c-brand-dark at-box-row">\n' +
     '          </div>\n' +
     '        </div>\n' +
     '      </div>'
 
-  offsetRow = '      <div atRow [noGutter]="true">\n' +
-    '        <div atCol [span]="3" [offset]="3">\n' +
+  offsetRow = '      <div at-row [noGutter]="true">\n' +
+    '        <div at-col [span]="3" [offset]="3">\n' +
     '          <div class="bg-c-brand-light at-box-row"></div>\n' +
     '        </div>\n' +
-    '        <div atCol [span]="3">\n' +
+    '        <div at-col [span]="3">\n' +
     '          <div class="bg-c-brand-dark at-box-row">\n' +
     '          </div>\n' +
     '        </div>\n' +
@@ -49,19 +49,19 @@ export class AtDemoLayoutComponent implements OnInit {
     '        <div class="demo-desc">\n' +
     '          flex-{{item}}\n' +
     '        </div>\n' +
-    '        <div atRow [noGutter]="true" [flexType]="item">\n' +
-    '          <div atCol [span]="3">\n' +
+    '        <div at-row [noGutter]="true" [flexType]="item">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-light at-box-row"></div>\n' +
     '          </div>\n' +
-    '          <div atCol [span]="3">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-dark at-box-row">\n' +
     '            </div>\n' +
     '          </div>\n' +
-    '          <div atCol [span]="3">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-dark at-box-row">\n' +
     '            </div>\n' +
     '          </div>\n' +
-    '          <div atCol [span]="3">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-dark at-box-row">\n' +
     '            </div>\n' +
     '          </div>\n' +
@@ -76,19 +76,19 @@ export class AtDemoLayoutComponent implements OnInit {
     '        <div class="demo-desc">\n' +
     '          flex-{{item}}\n' +
     '        </div>\n' +
-    '        <div atRow [alignType]="item">\n' +
-    '          <div atCol [span]="3">\n' +
+    '        <div at-row [alignType]="item">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-light at-box-row"></div>\n' +
     '          </div>\n' +
-    '          <div atCol [span]="3">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-dark at-box-row" style="height: 100px">\n' +
     '            </div>\n' +
     '          </div>\n' +
-    '          <div atCol [span]="3">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-dark at-box-row">\n' +
     '            </div>\n' +
     '          </div>\n' +
-    '          <div atCol [span]="3">\n' +
+    '          <div at-col [span]="3">\n' +
     '            <div class="bg-c-brand-dark at-box-row">\n' +
     '            </div>\n' +
     '          </div>\n' +

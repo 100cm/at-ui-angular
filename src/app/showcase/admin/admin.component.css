@@ -1,0 +1,62 @@
+.at-admin-body {
+  display: flex;
+  flex: auto;
+  height: 100%;
+}
+
+.logo {
+  height: 64px;
+  background: #333;
+  text-align: center;
+}
+
+.at-layout-content {
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex: auto;
+  flex: auto;
+  background: #f0f2f5;
+}
+
+.at-layout-breadcrumb {
+  margin: 16px 0px;
+}
+
+.at-layout-body {
+  margin: 0px 16px;
+}
+
+.at-layout-header {
+  background: white;
+  padding: 0 50px;
+  height: 64px;
+  line-height: 64px;
+}
+
+.logo-link {
+  position: relative;
+  width: 100%;
+  padding-top: 18px;
+  display: block;
+  line-height: 30px;
+  color: white;
+}
+
+.logo-img {
+  max-height: 100%;
+  max-width: 100%;
+  width: 30px;
+  height: 30px;
+  margin: 0px auto;
+  position: absolute;
+  left: 45px;
+}
+
+.at-layout-sider {
+  flex: 0 0 256px;
+  max-width: 256px;
+  min-width: 256px;
+  width: 256px;
+  background: #404040;
+}

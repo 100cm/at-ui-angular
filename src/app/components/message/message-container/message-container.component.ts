@@ -6,7 +6,7 @@ import {NotificationContainerComponent} from "../../notification/notification-co
   template: `
     <div class="at-message__wrapper">
 
-      <atMessage [message]="message" *ngFor="let message of notifications"></atMessage>
+      <at-message [message]="message" *ngFor="let message of notifications"></at-message>
 
     </div>
   `,

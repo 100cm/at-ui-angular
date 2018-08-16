@@ -1,30 +1,43 @@
-import {Component, EventEmitter, forwardRef, HostListener, Input, OnInit, Output} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import {Component, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {NG_VALUE_ACCESSOR}                                                                     from "@angular/forms";
 
 @Component({
-  selector: 'atSwitch',
-  template:`<span class="at-switch at-switch--{{atSize}}" [ngClass]="{'at-switch--checked':_value,'at-switch--disabled':disabled}">
+             selector: 'at-switch',
+             template: `<span class="at-switch at-switch--{{atSize}}"
+                              [ngClass]="{'at-switch--checked':_value,'at-switch--disabled':disabled}">
   <span class="at-switch__text">
-    {{_value ? checkText : unCheckText}}
+    <ng-container *ngIf="CheckIsString; else checkChildren">
+      {{_value ? checkText : ''}}
+    </ng-container>
+    <ng-template #checkChildren>
+       <ng-template *ngIf="_value" [ngTemplateOutlet]="checkText"></ng-template>
+    </ng-template>
+       <ng-container *ngIf="UncheckIsString; else UncheckChildren">
+      {{_value ? '' : unCheckText}}
+    </ng-container>
+    <ng-template #UncheckChildren>
+       <ng-template *ngIf="!_value" [ngTemplateOutlet]="unCheckText"></ng-template>
+    </ng-template>
+    
   </span>
 </span>
-  `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SwitchComponent),
-      multi: true
-    }
-  ],
-})
+             `,
+             providers: [
+               {
+                 provide: NG_VALUE_ACCESSOR,
+                 useExisting: forwardRef(() => SwitchComponent),
+                 multi: true
+               }
+             ],
+           })
 export class SwitchComponent implements OnInit {
 
   _value: boolean = false
 
   @Input()
-  checkText: string
+  checkText: string | TemplateRef<any>
   @Input()
-  unCheckText: string
+  unCheckText: string | TemplateRef<any>
   @Input()
   disabled: boolean = false
 
@@ -41,6 +54,14 @@ export class SwitchComponent implements OnInit {
     this._atSize = value;
   }
 
+  get CheckIsString() {
+    return !(this.checkText instanceof TemplateRef)
+  }
+
+  get UncheckIsString() {
+    return !(this.unCheckText instanceof TemplateRef)
+  }
+
   constructor() {
   }
 
@@ -48,7 +69,7 @@ export class SwitchComponent implements OnInit {
   }
 
   // ngModel Access
-  onChange: any = Function.prototype;
+  onChange: any  = Function.prototype;
   onTouched: any = Function.prototype;
 
 

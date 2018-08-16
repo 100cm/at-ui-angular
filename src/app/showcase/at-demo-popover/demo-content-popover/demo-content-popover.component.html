@@ -1,18 +1,18 @@
-<atPopover [placement]="'top'">
-  <button atButton pop-trigger>
+<at-popover [placement]="'top'">
+  <button at-button pop-trigger>
     hello
   </button>
-  <div popContent>
+  <div >
     你好吗？
   </div>
-</atPopover>
+</at-popover>
 
 
-<atPopover [placement]="'top'" [trigger]="'hover'">
-  <button atButton pop-trigger>
+<at-popover [placement]="'top'" [trigger]="'click'">
+  <button at-button pop-trigger>
     hello
   </button>
-  <div popContent>
+  <div >
     <div class="at-popover__content"><p >这是一段内容，确定删除吗？</p>
       <div  style="text-align: right; margin-top: 8px;">
         <button  type="default" class="at-btn at-btn--default at-btn--smaller">
@@ -24,4 +24,4 @@
       </div>
     </div>
   </div>
-</atPopover>
+</at-popover>

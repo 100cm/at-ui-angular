@@ -1,7 +1,7 @@
 import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2} from '@angular/core';
 
 @Component({
-  selector: '[atDropMenuItem]',
+  selector: '[at-drop-menu-item]',
   template: `
     <ng-content>
     </ng-content>

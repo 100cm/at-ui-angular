@@ -1,62 +1,50 @@
 import {Component, ContentChild, Input, OnInit} from '@angular/core';
-import {PopoverComponent} from "../popover/popover.component";
-import {TooltipTriggerDirective} from "./tooltip-trigger.directive";
-import {Observable, fromEvent} from "rxjs";
+import {PopoverComponent}                       from "../popover/popover.component";
+import {TooltipTriggerDirective}                from "./tooltip-trigger.directive";
+import {Observable, fromEvent}                  from "rxjs";
 
-import {mapTo, merge} from "rxjs/operators";
+import {mapTo, merge}  from "rxjs/operators";
 import {fadeAnimation} from "../animations/fade-animation";
 
 
 @Component({
-  selector: 'atTooltip',
-  template: `
-    <div class="at-tooltip">
-      <span class="at-tooltip__trigger">
-      <ng-content></ng-content>
-    </span>
-    </div>
-    <ng-template
-      cdkConnectedOverlay
-      [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
-      [cdkConnectedOverlayPositions]="_positions"
-      [cdkConnectedOverlayOrigin]="_atOrigin"
-      (backdropClick)="_hide()"
-      [cdkConnectedOverlayMinWidth]="_triggerWidth"
-      (positionChange)="_onPositionChange($event)"
-      [cdkConnectedOverlayOpen]="atVisible"
-    >
-      <div
-        (mouseenter)="_onMouseEnterEvent($event)"
-        (mouseleave)="_onMouseLeaveEvent($event)"
-        [style.minWidth.px]="_triggerWidth"
-        (click)="_clickDropDown($event)"
-        [@fadeAnimation]="''+(visible$ | async)"
-        class="at-tooltip__popper at-tooltip--{{atPlacement}}">
-        <div class="at-tooltip__arrow"></div>
-        <div class="at-tooltip__content">
-          <ng-content select="[tooltipContent]"></ng-content>
-        </div>
-      </div>
-    </ng-template>
+             selector: 'at-tooltip',
+             template: `
+               <div class="at-tooltip">
+                 <ng-content select="[pop-trigger]"></ng-content>
+               </div>
+               <ng-template
+                 #overlay="cdkConnectedOverlay"
+                 cdkConnectedOverlay
+                 [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+                 [cdkConnectedOverlayPositions]="_positions"
+                 [cdkConnectedOverlayOrigin]="_atOrigin"
+                 (backdropClick)="_hide()"
+                 (detach)="_hide()"
+                 [cdkConnectedOverlayMinWidth]="_triggerWidth"
+                 (positionChange)="_onPositionChange($event)"
+                 [cdkConnectedOverlayOpen]="atVisible"
+               >
+                 <div
+                   [@fadeAnimation]="''+($visible | async)"
+                   (mouseenter)="_onMouseEnterEvent($event)"
+                   (mouseleave)="_onMouseLeaveEvent($event)"
+                   [style.minWidth.px]="_triggerWidth"
+                   (click)="_clickDropDown($event)">
+                   <div class="at-tooltip__popper " [ngClass]="placeClass">
+                     <div class="at-tooltip__arrow"></div>
+                     <div class="at-tooltip__content">
+                       <ng-content></ng-content>
+                     </div>
+                   </div>
+                   <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
+                 </div>
+               </ng-template>
 
-  `,
-  animations: [fadeAnimation],
+             `,
+             animations: [fadeAnimation],
 
-})
+           })
 export class TooltipComponent extends PopoverComponent implements OnInit {
-  @Input()
-  trigger: any = 'hover'
-  @Input()
-  left: string
-
-  @Input()
-  isSlide = false
-
-  _onMouseLeaveEvent(e: MouseEvent): void {
-    if (this.trigger === 'hover' && !this.isSlide) {
-      this._hide();
-    }
-  }
-
-  visible$: Observable<boolean> = this._visibleChange.asObservable();
+  _prefix = "at-tooltip--"
 }

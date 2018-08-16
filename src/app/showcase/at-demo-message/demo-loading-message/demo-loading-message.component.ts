@@ -4,7 +4,7 @@ import {AtMessageService} from "../../../components/message/at-message.service";
 @Component({
   selector: 'app-demo-loading-message',
   template: `
-    <button atButton (click)="showMessage('loading')">Info</button>`
+    <button at-button (click)="showMessage('loading')">Info</button>`
 })
 export class DemoLoadingMessageComponent implements OnInit {
 

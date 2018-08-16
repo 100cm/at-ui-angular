@@ -1,16 +1,15 @@
 import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
-import {MenuComponent} from "../menu.component";
+import {MenuComponent}                                 from "../menu.component";
 
 @Component({
-  selector: '[itemGroup]',
-  template:`<ul class="at-menu__item-group">
-    <li *ngIf="label" class="at-menu__item-group-title">{{label}}</li>
-    <ul class="at-menu__item-group-list">
-      <ng-content></ng-content>
-    </ul>
-  </ul>
-  `,
-})
+             selector: '[at-menu-group]',
+             template: `
+               <li *ngIf="label" class="at-menu__item-group-title">{{label}}</li>
+               <ul class="at-menu__item-group-list">
+                 <ng-content></ng-content>
+               </ul>
+             `,
+           })
 export class MenuItemGroupComponent implements OnInit {
 
   @Input()
@@ -25,7 +24,7 @@ export class MenuItemGroupComponent implements OnInit {
   ngOnInit() {
   }
 
-  @HostBinding('class.at-dropdown-menu')
+  @HostBinding('class.at-menu__item-group')
   get drop_down() {
     return this.parent.atType != 'inline'
   }

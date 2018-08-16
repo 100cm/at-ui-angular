@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {StatusIconType} from "../icon/icon-status-type";
 
 @Component({
-  selector: 'atProgress',
+  selector: 'at-progress',
   template: `
     <div class="at-progress at-progress--bar at-progress--{{status}}">
       <div class="at-progress-bar">

@@ -342,6 +342,7 @@ $slider-dot-color             : $brand-blue-400;
 $slider-dot-color-hover       : $brand-blue-600;
 $slider-dot-color-disabled    : $grey-300;
 $slider-dot-size              : 12px;
+$slider-mark-size             : 10px;
 $slider-dot-wrapper-size      : $slider-dot-size;
 $slider-dot-wrapper-offset    : -6px;
 
@@ -540,9 +541,10 @@ $popover-popper-max-width   : 400px;
 $popover-bg-color           : $color-white;
 $popover-title-bg-color     : $grey-50;
 $popover-border-color       : $grey-100;
+$popover-arrow-shadow       :rgba(0, 0, 0, .07);
 $popover-title-border-color : $brand-blue-50;
 
-$popover-arrow-size         : 10px;
+$popover-arrow-size         : 6px;
 $popover-arrow-bg-color     : $popover-bg-color;
 
 $popover-padding            : 4px 8px;
@@ -646,7 +648,7 @@ $menu-item-padding                   : 12px 16px;
 $menu-item-padding-inline            : 12px 16px;
 $menu-item-padding-base              : 0 16px;
 
-$menu-group-title-padding            : 12px;
+$menu-group-title-padding            : 8px 16px;
 $menu-group-title-text-color         : $grey-500;
 $menu-group-title-font-size          : $font-size-smer;
 $menu-group-item-padding             : 12px 16px;

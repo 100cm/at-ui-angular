@@ -35,12 +35,13 @@ import {AtDemoBreadcrumbComponent} from "../app/showcase/at-demo-breadcrumb/at-d
 import {AtDemoFormComponent} from "../app/showcase/at-demo-form/at-demo-form.component";
 import {AtDemoIconComponent} from "../app/showcase/at-demo-icon/at-demo-icon.component";
 import {AtDemoDatetimepickerComponent} from "../app/showcase/at-demo-datetimepicker/at-demo-datetimepicker.component";
-import {AtDemoCardComponent} from "../app/showcase/at-demo-card/at-demo-card.component";
-import {AtDemoTabsComponent} from "../app/showcase/at-demo-tabs/at-demo-tabs.component";
-import {AtDemoStepsComponent} from "../app/showcase/at-demo-steps/at-demo-steps.component";
+import {AtDemoCardComponent}     from "../app/showcase/at-demo-card/at-demo-card.component";
+import {AtDemoTabsComponent}     from "../app/showcase/at-demo-tabs/at-demo-tabs.component";
+import {AtDemoStepsComponent}    from "../app/showcase/at-demo-steps/at-demo-steps.component";
 import {AtDemoTimelineComponent} from "../app/showcase/at-demo-timeline/at-demo-timeline.component";
-import {AtDemoAffixComponent} from "../app/showcase/at-demo-affix/at-demo-affix.component";
-import {AtDemoUploadComponent} from "../app/showcase/at-demo-upload/at-demo-upload.component";
+import {AtDemoAffixComponent}    from "../app/showcase/at-demo-affix/at-demo-affix.component";
+import {AtDemoUploadComponent}   from "../app/showcase/at-demo-upload/at-demo-upload.component";
+import {AdminComponent}          from "../app/showcase/admin/admin.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -92,6 +93,8 @@ const appRoutes: Routes = [
     ]
 
   },
+
+  {path:'admin',component:AdminComponent},
   {path: 'connect', component: ConnectComponent}
 
 ]

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TabComponent} from "../tab.component";
 
 @Component({
-  selector: 'atTabSet',
+  selector: 'at-tab-set',
   template: `
     <div class="at-tab at-tab-{{position}}">
       <div class="at-tabs-bar ">

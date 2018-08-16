@@ -5,7 +5,7 @@ export  type RowFlexType = 'center' | 'end' | 'start' | 'around' | 'between'
 export type RowFlexAlign = 'top' | 'middle' | 'bottom'
 
 @Component({
-             selector: '[atRow]',
+             selector: '[at-row]',
              template: `
                <ng-content></ng-content>
              `,

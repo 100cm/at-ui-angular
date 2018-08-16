@@ -6,7 +6,7 @@ import {MessageContainerComponent} from "../message-container/message-container.
 import {StatusIconType} from "../../icon/icon-status-type";
 
 @Component({
-  selector: 'atMessage',
+  selector: 'at-message',
   template: `
     <div class="at-message--wrapper" [@enterLeave]="message.state">
       <div class="at-message at-message--{{message.type}}">

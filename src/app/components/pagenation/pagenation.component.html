@@ -51,11 +51,11 @@
     </li>
 
     <div *ngIf="atPageSizer" class="at-pagination__sizer">
-      <atSelect [(ngModel)]="pageSize" >
-        <atOption *ngFor="let item of _options" [atValue]="item" [atLabel]="item+' 条/页'">
+      <at-select [(ngModel)]="pageSize" >
+        <at-option *ngFor="let item of _options" [atValue]="item" [atLabel]="item+' 条/页'">
 
-        </atOption>
-      </atSelect>
+        </at-option>
+      </at-select>
     </div>
 
     <div *ngIf="atQuickJump" class="at-pagination__quickjump">

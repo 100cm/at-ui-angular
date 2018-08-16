@@ -3,9 +3,9 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'app-demo-basic-progress',
   template: `
-    <atProgress [width]="width"></atProgress>
-    <button atButton (click)="add()">+</button>
-    <button atButton (click)="minus()">-</button>`,
+    <at-progress [width]="width"></at-progress>
+    <button at-button (click)="add()">+</button>
+    <button at-button (click)="minus()">-</button>`,
   styleUrls: ['./demo-basic-progress.component.css']
 })
 export class DemoBasicProgressComponent implements OnInit {

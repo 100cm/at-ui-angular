@@ -1,24 +1,43 @@
-<ul atMenu [atType]="'inline'" style="width: 240px">
-  <li atMenuItem>
-    <div title><i class="icon icon-settings"></i>内置菜单1</div>
-  </li>
-  <li atMenuItem>
-    <div title><i class="icon icon-settings"></i>内置菜单1</div>
-  </li>
-  <li atSubMenu>
-    <div title><i class="icon icon-settings"></i>内置菜单3<i class="icon icon-chevron-down at-menu__submenu-icon"></i></div>
-    <ul inlineMenu>
-    <ul itemGroup>
-      <li atMenuItem>
-        <div title>内置菜单1</div>
-      </li>
-      <li atMenuItem>
-        <div title>内置菜单1</div>
-      </li>
-      <li atMenuItem>
-        <div title>内置菜单1</div>
-      </li>
-    </ul>
-    </ul>
-  </li>
-</ul>
+<div style="width: 100%;border: 1px solid #e2ecf4">
+  <ul at-menu [theme]="'dracula'" [atType]="'inline'" style="width: 240px">
+    <li at-submenu>
+      <span title><i class="icon icon-mail"></i> 介绍组</span>
+      <ul>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+      </ul>
+      <ul at-menu-group [label]="'item group'">
+        <li [active]="true" at-menu-item>Option Item 1</li>
+        <li at-menu-item>Option Item 2</li>
+        <li at-menu-item>Option Item 3</li>
+        <li at-menu-item>Option Item 4</li>
+      </ul>
+    </li>
+    <li at-submenu>
+      <div title>介绍组</div>
+      <ul>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-menu-item>Option Item</li>
+        <li at-submenu>
+          <div title>介绍组2</div>
+          <ul>
+            <li at-menu-item>Option Item</li>
+            <li at-menu-item>Option Item</li>
+            <li at-menu-item>Option Item</li>
+            <li at-menu-item>Option Item</li>
+            <li at-menu-item>Option Item</li>
+            <li at-menu-item>Option Item</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

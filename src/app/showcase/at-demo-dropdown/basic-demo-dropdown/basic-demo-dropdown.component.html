@@ -1,37 +1,91 @@
 <p style="margin-bottom: 10px">点击下拉</p>
-<atDropdown [placement]="'top'" [trigger]="'click'">
+<at-dropdown [placement]="'top'" [trigger]="'click'">
   <span at-dropdown>下拉菜单<i class="icon icon-chevron-down"></i></span>
-  <li atDropMenuItem>菜单1</li>
-  <li atDropMenuItem [disabled]="true">菜单1</li>
-  <li atDropMenuItem [divided]="true">菜单1</li>
-  <li atDropMenuItem>菜单1</li>
-  <li atDropMenuItem>菜单1</li>
-</atDropdown>
+  <ul at-drop-menu-list>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-menu-item [disabled]="true">菜单1</li>
+    <li at-drop-menu-item [divided]="true">菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+
+    <li at-drop-submenu>
+      <span title>菜单</span>
+      <ul>
+        <li at-drop-menu-item>123</li>
+        <li at-drop-menu-item>123</li>
+        <li at-drop-menu-item>123</li>
+        <li at-drop-menu-item>213</li>
+      </ul>
+    </li>
+    <li at-drop-menu-item>123</li>
+  </ul>
+
+</at-dropdown>
 
 <hr>
 <p style="margin-bottom: 10px">hover下拉</p>
-<atDropdown>
+<at-dropdown>
   <span at-dropdown>下拉菜单<i class="icon icon-chevron-down"></i></span>
-  <li atDropMenuItem [divided]="true">菜单1</li>
-  <li atDropMenuItem>菜单1</li>
-  <li atDropMenuItem>菜单1</li>
-</atDropdown>
+  <ul at-drop-menu-list>
+    <li at-drop-menu-item [divided]="true">菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-submenu>
+      <span title>菜单2</span>
+    </li>
+  </ul>
+</at-dropdown>
 
 <hr>
 <p style="margin-bottom: 10px">通过divided 和 disabled 参数进行可选不可选样式 </p>
-<atDropdown>
-  <button atButton at-dropdown>下拉菜单</button>
-  <li atDropMenuItem>菜单1</li>
-  <li atDropMenuItem [disabled]="true">菜单1</li>
-  <li atDropMenuItem [divided]="true">菜单1</li>
-</atDropdown>
+<at-dropdown>
+  <button at-button at-dropdown>下拉菜单</button>
+  <ul at-drop-menu-list>
+    <li at-drop-menu-item [divided]="true">菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-submenu>
+      <span title>菜单2</span>
+    </li>
+  </ul>
+</at-dropdown>
 
 
 <hr>
 <p style="margin-bottom: 10px">自定义下拉内容 </p>
-<atDropdown>
-  <button atButton at-dropdown>下拉菜单</button>
-  <div atDropMenuCustomItem style="width: 120px; background: white; height:200px;border: 1px solid #cccccc">
-    自定义内容
+<at-dropdown>
+  <button at-button at-dropdown>下拉菜单</button>
+
+  <ul at-drop-menu-list>
+    <li at-drop-menu-item [divided]="true">菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-submenu>
+      <span title>菜单2</span>
+    </li>
+  </ul>
+
+</at-dropdown>
+
+<hr>
+<p style="margin-bottom: 10px">使用context menu </p>
+<at-dropdown  [trigger]="'contextmenu'">
+  <div at-dropdown style="width: 200px ;height: 200px;border: 1px dashed #e2ecf4 ;text-align: center;padding-top: 90px">
+    context menu
   </div>
-</atDropdown>
+  <ul at-drop-menu-list>
+    <li at-drop-menu-item [divided]="true">菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-menu-item>菜单1</li>
+    <li at-drop-submenu>
+      <span title>菜单2</span>
+      <ul>
+        <li at-drop-menu-item>菜单2</li>
+        <li at-drop-menu-item>菜单2</li>
+        <li at-drop-menu-item>菜单2</li>
+        <li at-drop-menu-item>菜单2</li>
+      </ul>
+    </li>
+  </ul>
+
+</at-dropdown>

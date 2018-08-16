@@ -1,17 +1,20 @@
-<atSwitch [(ngModel)]="check" ></atSwitch>
+<at-switch [(ngModel)]="check"></at-switch>
 {{check}}
 <hr>
 <p>多个大小 [atSize]</p>
-<atSwitch [(ngModel)]="check" [atSize]="'small'"></atSwitch>
-<atSwitch [(ngModel)]="check" [atSize]="'normal'"></atSwitch>
-<atSwitch [(ngModel)]="check" [atSize]="'large'"></atSwitch>
+<at-switch [(ngModel)]="check" [atSize]="'small'"></at-switch>
+<at-switch [(ngModel)]="check" [atSize]="'normal'"></at-switch>
+<at-switch [(ngModel)]="check" [atSize]="'large'"></at-switch>
 <hr>
 
 <p>不可选中</p>
-<atSwitch [(ngModel)]="check" [disabled]="true"></atSwitch>
+<at-switch [(ngModel)]="check" [disabled]="true"></at-switch>
 
 <hr>
 
 <p>携带文字</p>
-<atSwitch [(ngModel)]="check" [checkText]="'ok'" [unCheckText]="'error'"></atSwitch>
+<at-switch [(ngModel)]="check" [checkText]="icon_check" [unCheckText]="icon"></at-switch>
+<ng-template #icon><i class="icon icon-mail"></i></ng-template>
+
+<ng-template #icon_check><i class="icon icon-check"></i></ng-template>
 

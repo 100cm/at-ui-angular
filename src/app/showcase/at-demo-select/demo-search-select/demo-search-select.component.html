@@ -1,30 +1,22 @@
-<atSelect [(ngModel)]="selected" [tagAble]="true" [multiple]="true" (search)="search($event)" [searchable]="true">
-  <atOption [atLabel]="'first'" [atValue]="'first'">
-  </atOption>
-  <atOption [atLabel]="'second'" [atValue]="'second'">
-  </atOption>
-  <atOption [atLabel]="'next'" [atValue]="'next'">
-  </atOption>
-</atSelect>
+<at-select [(ngModel)]="selected" [tagAble]="true" [multiple]="true" (search)="search($event)" [searchable]="true">
+  <at-option [atLabel]="'first'" [atValue]="'first'">
+  </at-option>
+  <at-option [atLabel]="'second'" [atValue]="'second'">
+  </at-option>
+  <at-option [atLabel]="'next'" [atValue]="'next'">
+  </at-option>
+</at-select>
 
 <div *ngFor="let item of selected">
   {{item}}
 </div>
 
 <hr>
-
-<atSelect [(ngModel)]="single" [atSize]="'large'" [searchable]="true">
-  <atOption [atLabel]="'first'" [atValue]="'first'"></atOption>
-  <atOption [atLabel]="'second'" [atValue]="'second'"></atOption>
-  <atOption [atLabel]="'next'" [atValue]="'next'"></atOption>
-</atSelect>
-
-
-<atSelect [(ngModel)]="single"  [atMode]="'multiple'" [searchable]="true">
-  <atOption [atLabel]="'first'" [atValue]="1"></atOption>
-  <atOption [atLabel]="'section'" [atValue]="2"></atOption>
-  <atOption [atLabel]="'next'" [atValue]="3"></atOption>
-  <atOption [atLabel]="'last'" [atValue]="4"></atOption>
-</atSelect>
+<at-select [(ngModel)]="single"  [atMode]="'multiple'" [searchable]="true">
+  <at-option [atLabel]="'first'" [atValue]="1"></at-option>
+  <at-option [atLabel]="'section'" [atValue]="2"></at-option>
+  <at-option [atLabel]="'next'" [atValue]="3"></at-option>
+  <at-option [atLabel]="'last'" [atValue]="4"></at-option>
+</at-select>
 
 {{single}}

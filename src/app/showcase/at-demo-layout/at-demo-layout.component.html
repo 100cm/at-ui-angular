@@ -56,11 +56,11 @@
   <doc-section [title]="'基础栅格'" [code]="basicRow">
     <p desc>使用单一的&nbsp;<code>row</code>&nbsp;和多个&nbsp;<code>col</code>&nbsp;组合，创建基础的栅格布局</p>
     <div sample>
-      <div atRow *ngFor="let row of rows;let i= index">
-        <div atCol [span]="i+1">
+      <div at-row *ngFor="let row of rows;let i= index">
+        <div at-col [span]="i+1">
           <div class="bg-c-brand-light at-box-row"></div>
         </div>
-        <div atCol [span]="23-i">
+        <div at-col [span]="23-i">
           <div class="bg-c-brand-dark at-box-row">
           </div>
         </div>
@@ -71,11 +71,11 @@
   <doc-section [title]="'分割布局'" [code]="noGutterRow">
     <p desc><code>col</code>&nbsp;块之间增加间隔，默认添加间隔，如不需要间隔，可添加&nbsp;<code>class=&quot;noGutter&quot;</code></p>
     <div sample>
-      <div atRow *ngFor="let row of rows;let i= index" [noGutter]="true">
-        <div atCol [span]="i+1">
+      <div at-row *ngFor="let row of rows;let i= index" [noGutter]="true">
+        <div at-col [span]="i+1">
           <div class="bg-c-brand-light at-box-row"></div>
         </div>
-        <div atCol [span]="23-i">
+        <div at-col [span]="23-i">
           <div class="bg-c-brand-dark at-box-row">
           </div>
         </div>
@@ -86,11 +86,11 @@
   <doc-section [title]="'左右偏移'" [code]="offsetRow">
     <p desc> 列与列之间可以通过设置&nbsp;<code>offset</code>&nbsp;来设定偏移值，例如：<code>offset</code>，意思是向左偏移 3 个单元格</p>
     <div sample>
-      <div atRow [noGutter]="true">
-        <div atCol [span]="3" [offset]="3">
+      <div at-row [noGutter]="true">
+        <div at-col [span]="3" [offset]="3">
           <div class="bg-c-brand-light at-box-row"></div>
         </div>
-        <div atCol [span]="3">
+        <div at-col [span]="3">
           <div class="bg-c-brand-dark at-box-row">
           </div>
         </div>
@@ -108,19 +108,19 @@
         <div class="demo-desc">
           flex-{{item}}
         </div>
-        <div atRow [noGutter]="true" [flexType]="item">
-          <div atCol [span]="3">
+        <div at-row [noGutter]="true" [flexType]="item">
+          <div at-col [span]="3">
             <div class="bg-c-brand-light at-box-row"></div>
           </div>
-          <div atCol [span]="3">
+          <div at-col [span]="3">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
-          <div atCol [span]="3">
+          <div at-col [span]="3">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
-          <div atCol [span]="3">
+          <div at-col [span]="3">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
@@ -136,19 +136,19 @@
         <div class="demo-desc">
           flex-{{item}}
         </div>
-        <div atRow [alignType]="item">
-          <div atCol [span]="3">
+        <div at-row [alignType]="item">
+          <div at-col [span]="3">
             <div class="bg-c-brand-light at-box-row"></div>
           </div>
-          <div atCol [span]="3">
+          <div at-col [span]="3">
             <div class="bg-c-brand-dark at-box-row" style="height: 100px">
             </div>
           </div>
-          <div atCol [span]="3">
+          <div at-col [span]="3">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
-          <div atCol [span]="3">
+          <div at-col [span]="3">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
@@ -165,19 +165,19 @@
         <div class="demo-desc">
           flex-{{item}}
         </div>
-        <div atRow [alignType]="item">
-          <div atCol [atLg]="6" [atSm]="24">
+        <div at-row [alignType]="item">
+          <div at-col [atLg]="6" [atSm]="24">
             <div class="bg-c-brand-light at-box-row"></div>
           </div>
-          <div atCol [atLg]="6" [atSm]="24">
+          <div at-col [atLg]="6" [atSm]="24">
             <div class="bg-c-brand-dark at-box-row" style="height: 100px">
             </div>
           </div>
-          <div atCol [atLg]="6" [atSm]="24">
+          <div at-col [atLg]="6" [atSm]="24">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
-          <div atCol [atLg]="6" [atSm]="24">
+          <div at-col [atLg]="6" [atSm]="24">
             <div class="bg-c-brand-dark at-box-row">
             </div>
           </div>
@@ -227,7 +227,7 @@
     <table desc class="table">
       <thead>
       <tr>
-        <th>atCol参数</th>
+        <th>at-col参数</th>
         <th>说明</th>
       </tr>
       </thead>

@@ -1,27 +1,34 @@
 import {Component, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@angular/core';
+import {SubMenuComponent}                                             from "./sub-menu/sub-menu.component";
+import {AtDropSubmenuComponent}                                       from "../dropdown/at-drop-submenu/at-drop-submenu.component";
 
 export type atMenuType = 'vertical' | 'horizontal' | 'inline'
-export type atMenuTheme = 'light' | 'dark'
+export type atMenuTheme = 'light' | 'dark' | 'dracula'
 
 @Component({
-  selector: '[atMenu]',
-  template:`<div selector></div>
-  <ng-content ></ng-content>
-  `,
-})
+             selector: '[at-menu]',
+             template: `
+               <ng-content></ng-content>
+             `,
+           })
 export class MenuComponent implements OnInit {
 
 
   ngOnInit() {
+    this._renderer.addClass(this._el, this._prefixCls);
   }
 
-  _atType: atMenuType = 'vertical'
+  _atType: atMenuType         = 'vertical'
   _el: any
   nativeElement: any
-  _classList = []
-  _prefixCls = 'at-menu'
+  _classList                  = []
+  _prefixCls                  = 'at-menu'
   private _theme: atMenuTheme = 'light'
 
+  sub_menus: Array<SubMenuComponent | AtDropSubmenuComponent> = []
+
+  @Input()
+  single = false
 
   get theme(): atMenuTheme {
     return this._theme;
@@ -41,10 +48,9 @@ export class MenuComponent implements OnInit {
     this._atType = value;
   }
 
-  constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
-    this._el = this._elementRef.nativeElement;
+  constructor(public _elementRef: ElementRef, public _renderer: Renderer2) {
+    this._el           = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
-    this._renderer.addClass(this._el, this._prefixCls);
   }
 
 
@@ -68,9 +74,20 @@ export class MenuComponent implements OnInit {
     return this.theme == 'dark'
   }
 
+  @HostBinding('class.at-menu--dracula')
+  get draculaTheme() {
+    return this.theme == 'dracula'
+  }
+
   @HostBinding('class.at-menu--light')
   get lightTheme() {
     return this.theme == 'light'
+  }
+
+  clearAllOpen(sub_menu_ref) {
+    this.sub_menus.forEach(sub_menu => {
+      (sub_menu.isOpen && sub_menu_ref != sub_menu) ? sub_menu.isOpen = false : null
+    })
   }
 
 

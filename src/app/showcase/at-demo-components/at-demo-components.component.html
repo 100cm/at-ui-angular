@@ -16,10 +16,10 @@
       </div>
     </div>
   </header>
-  <div atRow class="at-container" style="margin: 40px auto">
+  <div at-row class="at-container" style="margin: 40px auto">
     <div class="col-sm-24 col-md-6 col-lg-4 at-sidebar">
-      <ul atMenu [atType]="'inline'">
-        <!--<li atMenuItem>-->
+      <ul at-menu [atType]="'inline'">
+        <!--<li at-menu-item>-->
         <h2 class="at-nav__title">综述</h2>
         <ul class="at-nav__items">
           <li class="at-nav__item"><a [routerLink]="'/components/introduction'" class="at-nav__page">介绍</a></li>
@@ -30,85 +30,83 @@
         </ul>
         <!--</li>-->
         <h2 class="at-nav__title">组件</h2>
-        <li atSubMenu [isOpen]="true">
+        <li at-submenu [open]="true">
           <div title>
-            <atIcon [type]="'chevron-down'"></atIcon>
             基础组件
           </div>
-          <ul inlineMenu>
-            <!--<ul itemGroup>-->
-            <li (click)="goRoute($event)" [active]="active('/components/button')" atMenuItem><a
+          <ul inline-menu>
+            <!--<ul at-menu-group>-->
+            <li (click)="goRoute($event)" [active]="active('/components/button')" at-menu-item><a
               [routerLink]="'/components/button'">Button<span
               class="component_item_span">按钮</span></a></li>
-            <li (click)="goRoute($event)" [active]="active('/components/layout')" atMenuItem><a
+            <li (click)="goRoute($event)" [active]="active('/components/layout')" at-menu-item><a
               [routerLink]="['/components/layout']">Layout<span
               class="component_item_span">布局</span></a></li>
-            <li (click)="goRoute($event)" [active]="active('/components/tag')" atMenuItem><a
+            <li (click)="goRoute($event)" [active]="active('/components/tag')" at-menu-item><a
               [routerLink]="['/components/tag']">Tag<span
               class="component_item_span">标签</span></a></li>
-            <li (click)="goRoute($event)" [active]="active('/components/icon')" atMenuItem><a
+            <li (click)="goRoute($event)" [active]="active('/components/icon')" at-menu-item><a
               [routerLink]="['/components/icon']"> Icon<span
               class="component_item_span">图标</span></a></li>
             <!--</ul>-->
           </ul>
         </li>
-        <li atSubMenu [isOpen]="true">
+        <li at-submenu [open]="true">
           <div title>
-            <atIcon [type]="'chevron-down'"></atIcon>
             表单组件
           </div>
-          <ul inlineMenu>
-            <ul itemGroup>
-              <li (click)="goRoute($event)" [active]="active('/components/checkbox')" atMenuItem><a
+          <ul inline-menu>
+            <ul at-menu-group>
+              <li (click)="goRoute($event)" [active]="active('/components/checkbox')" at-menu-item><a
                 [routerLink]="'/components/checkbox'">Checkbox<span
                 class="component_item_span">多选框</span></a></li>
-              <li (click)="goRoute($event)" [active]="active('/components/input')" atMenuItem><a
+              <li (click)="goRoute($event)" [active]="active('/components/input')" at-menu-item><a
                 [routerLink]="'/components/input'">Input<span
                 class="component_item_span">输入框</span></a></li>
-              <li (click)="goRoute($event)" [active]="active('/components/input-number')" atMenuItem><a
+              <li (click)="goRoute($event)" [active]="active('/components/input-number')" at-menu-item><a
                 [routerLink]="'/components/input-number'">Input<span
                 class="component_item_span">数字输入框</span></a></li>
-              <li (click)="goRoute($event)" [active]="active('/components/radio')" atMenuItem><a
+              <li (click)="goRoute($event)" [active]="active('/components/radio')" at-menu-item><a
                 [routerLink]="'/components/radio'">Radio<span
                 class="component_item_span">单选按钮</span></a></li>
-              <li (click)="goRoute($event)" [active]="active('/components/select')" atMenuItem><a
+              <li (click)="goRoute($event)" [active]="active('/components/select')" at-menu-item><a
                 [routerLink]="'/components/select'">Select<span
                 class="component_item_span">选择器</span></a></li>
-              <li (click)="goRoute($event)" [active]="active('/components/switch')" atMenuItem><a
+              <li (click)="goRoute($event)" [active]="active('/components/switch')" at-menu-item><a
                 [routerLink]="'/components/switch'">Switch<span
                 class="component_item_span">开关</span></a></li>
-              <!--<li  atMenuItem><a [routerLink]="'/components/slider'"-->
+              <!--<li  at-menu-item><a [routerLink]="'/components/slider'"-->
               <!--&gt;Slider<span class="component_item_span">滑动输入条</span></a></li>-->
-              <li (click)="goRoute($event)" [active]="active('/components/textarea')" atMenuItem><a
+              <li (click)="goRoute($event)" [active]="active('/components/textarea')" at-menu-item><a
                 [routerLink]="'/components/textarea'">Textarea<span
                 class="component_item_span">文本域</span></a></li>
             </ul>
           </ul>
         </li>
 
-        <li atSubMenu [isOpen]="true">
+        <li at-submenu [open]="true">
           <div title>
-            <atIcon [type]="'chevron-down'"></atIcon>
+
             视图组件
           </div>
-          <ul inlineMenu>
-            <ul itemGroup>
-              <li (click)="goRoute($event)" atMenuItem [active]="active('/components/notificatio')"><a
+          <ul inline-menu>
+            <ul at-menu-group>
+              <li (click)="goRoute($event)" at-menu-item [active]="active('/components/notificatio')"><a
                 [routerLink]="['/components/notification']"> 提示<span
                 class="component_item_span">notification</span></a></li>
-              <li (click)="goRoute($event)" atMenuItem [active]="active('/components/alert')"><a
+              <li (click)="goRoute($event)" at-menu-item [active]="active('/components/alert')"><a
                 [routerLink]="['/components/alert']">Alert<span
                 class="component_item_span">弹出框</span></a>
               </li>
-              <li (click)="goRoute($event)" atMenuItem [active]="active('/components/badge')"><a
+              <li (click)="goRoute($event)" at-menu-item [active]="active('/components/badge')"><a
                 [routerLink]="['/components/badge']">徽标<span
                 class="component_item_span">Badge</span></a>
               </li>
-              <!--<li atMenuItem [active]="active('/components/loading-bar')"><a [routerLink]="['/components/loading-bar']">LoadingBar<span-->
+              <!--<li at-menu-item [active]="active('/components/loading-bar')"><a [routerLink]="['/components/loading-bar']">LoadingBar<span-->
               <!--class="component_item_span">加载条</span>-->
               <!--</a></li>-->
 
-              <li (click)="goRoute($event)" atMenuItem *ngFor="let route of routes" [active]="active(route.url)"><a
+              <li (click)="goRoute($event)" at-menu-item *ngFor="let route of routes" [active]="active(route.url)"><a
                 [routerLink]="[route.url]">{{route.name_en}}<span
                 class="component_item_span">{{route.name}}</span>
               </a></li>
@@ -116,23 +114,23 @@
           </ul>
         </li>
 
-        <li atSubMenu [isOpen]="true">
+        <li at-submenu [open]="true">
           <div title>
-            <atIcon [type]="'chevron-down'"></atIcon>
+
             导航组件
           </div>
-          <ul inlineMenu>
-            <ul itemGroup>
-              <li (click)="goRoute($event)" atMenuItem [active]="active('/components/menu')"><a
+          <ul inline-menu>
+            <ul at-menu-group>
+              <li (click)="goRoute($event)" at-menu-item [active]="active('/components/menu')"><a
                 [routerLink]="['/components/menu']"> Menu<span
                 class="component_item_span">导航菜单</span></a></li>
-              <li (click)="goRoute($event)" atMenuItem [active]="active('/components/dropdown')"><a
+              <li (click)="goRoute($event)" at-menu-item [active]="active('/components/dropdown')"><a
                 [routerLink]="['/components/dropdown']">Dropdown<span
                 class="component_item_span">下拉菜单</span></a></li>
-              <li (click)="goRoute($event)" atMenuItem><a [routerLink]="['/components/breadcrumb']">Breadcrumb<span
+              <li (click)="goRoute($event)" at-menu-item><a [routerLink]="['/components/breadcrumb']">Breadcrumb<span
                 class="component_item_span">面包屑</span></a>
               </li>
-              <li (click)="goRoute($event)" atMenuItem [active]="active('/components/pagenation')"><a
+              <li (click)="goRoute($event)" at-menu-item [active]="active('/components/pagenation')"><a
                 [routerLink]="['/components/pagenation']">Pagination<span
                 class="component_item_span">分页</span>
               </a></li>

@@ -3,7 +3,7 @@ import {isNotNil}                                                               
 import {RowComponent}                                                                           from "../row/row.component";
 
 @Component({
-             selector: '[atCol]',
+             selector: '[at-col]',
              template: `
                <ng-content></ng-content>
              `,

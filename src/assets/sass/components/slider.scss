@@ -30,6 +30,28 @@
     background-color: $slider-bar-bg-color;
     border-radius: $slider-bar-border-radius;
   }
+  &__mark {
+    position: absolute;
+    width: $slider-mark-size;
+    height: $slider-mark-size;
+    transform: translateY(-25%);
+    background: white;
+    border-radius: 50%;
+    border: solid 2px $brand-color-light;
+
+    &__not {
+      border: solid 2px $grey-800 !important;
+    }
+    &__text {
+      top: 14px;
+      position: absolute;
+      display: inline-block;
+      vertical-align: center;
+      transform: translateX(-48%);
+      width: 30%;
+      text-align: center;
+    }
+  }
   &__dot-wrapper {
     position: absolute;
     top: $slider-dot-wrapper-offset;
@@ -37,7 +59,6 @@
     height: $slider-dot-wrapper-size;
     text-align: center;
     background-color: transparent;
-    transform: translateX(-50%);
     user-select: none;
 
     &:hover,

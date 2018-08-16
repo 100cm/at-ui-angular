@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
-  selector: '[atMenuList]',
+  selector: '[at-menu-list]',
   template: `<ng-content></ng-content>
 `,
 

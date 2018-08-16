@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 
 @Component({
-  selector: '[inlineMenu]',
+  selector: '[inline-menu]',
   template:`<ng-content></ng-content>
   `,
 })

@@ -19,14 +19,13 @@
   padding: 0;
   width: inherit;
   max-height: $dropdown-max-height;
-  font-size: 0;
   border-radius: $border-radius-base;
   background-color: $dropdown-bg-color;
   box-shadow: $dropdown-box-shadow;
   list-style: none;
   // overflow-y: auto;
   z-index: $zindex-dropdown;
-
+  .at-dropdown-menu__submenu-title,
   &__item {
     @include ellipsis();
     display: block;
@@ -90,7 +89,6 @@
   pointer-events: auto;
   z-index: 1000; // Give an opportunity to the content own to manage their z-index such as Modal
 }
-
 
 .select-host-overlay {
   .cdk-overlay-pane {
