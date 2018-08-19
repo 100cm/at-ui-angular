@@ -118,7 +118,7 @@ function arrayMap<T, S>(array: T[], iteratee: (item: T, index: number, arr: T[])
 }
 
 function baseValues<T>(object: { [key: string]: T } | T[], props: string[]): T[] {
-  return arrayMap(props,  (key) => {
+  return arrayMap(props,  function(key) {
     return object[ key ];
   });
 }
