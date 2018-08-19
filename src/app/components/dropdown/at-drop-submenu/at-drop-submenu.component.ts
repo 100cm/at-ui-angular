@@ -25,7 +25,7 @@ import {DropMenuListComponent} from "../../menu/drop-menu-list/drop-menu-list.co
              template: `
                <div class="at-dropdown-menu__submenu-title"
                     #trigger
-                    (click)="setActive($event)"
+                    (click)="setActive()"
                     (mouseenter)="onMouseEnterEvent($event)"
                     (mouseleave)="onMouseLeaveEvent($event)"
                     [style.paddingLeft.px]="levelPaddingLeft"

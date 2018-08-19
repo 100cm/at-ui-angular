@@ -77,7 +77,7 @@ export class DropdownComponent implements OnInit {
           _placement: any                                = 'bottom';
           _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
           _positions: ConnectionPositionPair[]           = [...DEFAULT_DROPDOWN_POSITIONS];
-          mousePosition                                  = {}
+          mousePosition: any                             = {}
           _subscription: Subscription;
   @ContentChild(DropdownDirective) _atOrigin;
   @ContentChild(DropdownMenuItemComponent) _atMenu;

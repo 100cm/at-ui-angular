@@ -29,7 +29,7 @@ import {AtDropSubmenuComponent}                                                 
              template: `
                <div class="at-menu__submenu-title"
                     #trigger
-                    (click)="setActive($event)"
+                    (click)="setActive()"
                     (mouseenter)="onMouseEnterEvent($event)"
                     (mouseleave)="onMouseLeaveEvent($event)"
                     [style.paddingLeft.px]="levelPaddingLeft"
