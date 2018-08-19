@@ -1,0 +1,5 @@
+<i *ngIf="atIcon" class="at-btn__icon icon {{atIcon}}"></i>
+<span #text  [hidden]="!showText"   class="at-btn__text">
+  <ng-content></ng-content>
+</span>
+
