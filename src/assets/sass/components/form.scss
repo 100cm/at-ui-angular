@@ -62,7 +62,7 @@
     text-align: right;
     vertical-align: middle;
     float: left;
-    font-size: $font-size-smer;
+    font-size: $font-size-base;
     color: $black-500;
     line-height: 1;
     overflow: hidden;
@@ -82,7 +82,7 @@
     content: "*";
     font-family: SimSun;
     line-height: 1;
-    font-size: 12px;
+    font-size: $font-size-base;
     color: #f04134;
   }
 
@@ -91,6 +91,10 @@
     font-size: $font-size-base;
     line-height: 36px;
     @include clearfix;
+    &:before {
+      display: table;
+      content: ''
+    }
 
   }
   .feedback {

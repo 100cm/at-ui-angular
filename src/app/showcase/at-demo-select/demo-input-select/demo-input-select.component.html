@@ -1,11 +1,11 @@
-<atSelect [(ngModel)]="selected" [tagAble]="true" [multiple]="true" [searchable]="true">
-  <atOption [atLabel]="'first'" [atValue]="'first'">
-  </atOption>
-  <atOption [atLabel]="'second'" [atValue]="'second'">
-  </atOption>
-  <atOption [atLabel]="'next'" [atValue]="'next'">
-  </atOption>
-</atSelect>
+<at-select [(ngModel)]="selected" [tagAble]="true" [multiple]="true" [searchable]="true">
+  <at-option [atLabel]="'first'" [atValue]="'first'">
+  </at-option>
+  <at-option [atLabel]="'second'" [atValue]="'second'">
+  </at-option>
+  <at-option [atLabel]="'next'" [atValue]="'next'">
+  </at-option>
+</at-select>
 <div *ngFor="let item of selected" >
   {{item}}
 </div>

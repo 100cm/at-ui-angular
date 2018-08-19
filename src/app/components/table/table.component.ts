@@ -5,7 +5,7 @@ import {
 import {AtThDirective} from "./at-th.directive";
 
 @Component({
-  selector: 'atTable',
+  selector: 'at-table',
   template: `
     <div class="at-table at-table--{{size}}"
          [ngStyle]="{height:height ? height+'px' :''}"

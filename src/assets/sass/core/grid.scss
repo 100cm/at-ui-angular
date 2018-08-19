@@ -126,16 +126,12 @@ $baseWidth: 4.166667%;
 
 .col, .col-offset-0 {
   flex: 0 0 auto;
-  padding-left: $half-gutter-width;
-  padding-right: $half-gutter-width;
+
 }
 
 @for $i from 1 through 24 {
   .col-#{$i}, .col-offset-#{$i} {
     flex: 0 0 auto;
-    padding-left: $half-gutter-width;
-    padding-right: $half-gutter-width;
-
     .no-gutter & {
       padding-left: 0;
       padding-right: 0;
@@ -167,16 +163,11 @@ $baseWidth: 4.166667%;
 @media screen and (max-width: $screen-sm-max) {
   .col-xs, .col-xs-offset-0 {
     flex: 0 0 auto;
-    padding-left: $half-gutter-width;
-    padding-right: $half-gutter-width;
   }
 
   @for $i from 1 through 24 {
     .col-xs-#{$i}, .col-xs-offset-#{$i} {
       flex: 0 0 auto;
-      padding-left: $half-gutter-width;
-      padding-right: $half-gutter-width;
-
       .no-gutter & {
         padding-left: 0;
         padding-right: 0;
@@ -213,15 +204,11 @@ $baseWidth: 4.166667%;
 
   .col-sm, .col-sm-offset-0 {
     flex: 0 0 auto;
-    padding-left: $half-gutter-width;
-    padding-right: $half-gutter-width;
   }
 
   @for $i from 1 through 24 {
     .col-sm-#{$i}, .col-sm-offset-#{$i} {
       flex: 0 0 auto;
-      padding-left: $half-gutter-width;
-      padding-right: $half-gutter-width;
 
       .no-gutter & {
         padding-left: 0;
@@ -258,16 +245,11 @@ $baseWidth: 4.166667%;
 
   .col-md, .col-md-offset-0 {
     flex: 0 0 auto;
-    padding-left: $half-gutter-width;
-    padding-right: $half-gutter-width;
   }
 
   @for $i from 1 through 24 {
     .col-md-#{$i}, .col-md-offset-#{$i} {
       flex: 0 0 auto;
-      padding-left: $half-gutter-width;
-      padding-right: $half-gutter-width;
-
       .no-gutter & {
         padding-left: 0;
         padding-right: 0;
@@ -304,16 +286,12 @@ $baseWidth: 4.166667%;
 
   .col-lg, .col-lg-offset-0 {
     flex: 0 0 auto;
-    padding-left: $half-gutter-width;
-    padding-right: $half-gutter-width;
+
   }
 
   @for $i from 1 through 24 {
     .col-lg-#{$i}, .col-lg-offset-#{$i} {
       flex: 0 0 auto;
-      padding-left: $half-gutter-width;
-      padding-right: $half-gutter-width;
-
       .no-gutter & {
         padding-left: 0;
         padding-right: 0;

@@ -1,7 +1,37 @@
-<!--<atSlider>-->
-<!--</atSlider>-->
+<!--<at-slider>-->
+<!--</at-slider>-->
+
+<p>单进度选择</p>
+
 <div style="width: 100%">
-  <atSlider [range]="300" [(ngModel)]="value">
-  </atSlider>
+  <at-slider [range]="100" [(ngModel)]="single_value">
+  </at-slider>
+
+</div>
+
+<hr>
+
+<p>设置步长</p>
+<div style="width: 100%">
+  <at-slider [range]="100" [step]="33" [(ngModel)]="single_value">
+  </at-slider>
+</div>
+
+<hr>
+
+<p>设置标记点</p>
+<div style="width: 100%">
+  <at-slider [range]="100" [step]="33" [marks]="marks" [(ngModel)]="single_value">
+  </at-slider>
+</div>
+
+
+<hr>
+
+<p>范围型选择</p>
+<div style="width: 100%">
+  <at-slider [atMode]="'range'" [step]="10" [marks]="marks" [range]="100" [(ngModel)]="value">
+  </at-slider>
   {{value}}
 </div>
+

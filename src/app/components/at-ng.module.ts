@@ -56,7 +56,6 @@ import {TooltipComponent} from './tooltip/tooltip.component';
 import {FormComponent} from './form/form.component';
 import {AtFormDirective} from './form/at-form.directive';
 import {AtFormItemDirective} from './form/at-form-item.directive';
-import {AtFormLabelDirective} from './form/at-form-label.directive';
 import {AtFormContentDirective} from './form/at-form-content.directive';
 import {AtFormErrorDirective} from './form/at-form-error.directive';
 import {AtFormFeedbackDirective} from './form/at-form-feedback.directive';
@@ -92,6 +91,12 @@ import {AtUploadModule} from "./upload/upload.module";
 import {AtModalService} from "./modal/at-modal.service";
 import {AtModalModule} from "./modal/at-modal.module";
 import {AtSelectModule} from "./select/at-select.module";
+import { AtInputDirective } from './input/at-input.directive';
+import { MenuLinkDirective } from './menu/menu-link/menu-link.directive';
+import { AtFormItemComponent } from './form/at-form-item/at-form-item.component';
+import { AtFormLabelComponent } from './form/at-form-label/at-form-label.component';
+import { AtFormControlComponent } from './form/at-form-control/at-form-control.component';
+import { AtDropSubmenuComponent } from './dropdown/at-drop-submenu/at-drop-submenu.component';
 
 
 export {TabComponent} from './tab/tab.component';
@@ -151,7 +156,6 @@ export {TooltipComponent} from './tooltip/tooltip.component';
 export {FormComponent} from './form/form.component';
 export {AtFormDirective} from './form/at-form.directive';
 export {AtFormItemDirective} from './form/at-form-item.directive';
-export {AtFormLabelDirective} from './form/at-form-label.directive';
 export {AtFormContentDirective} from './form/at-form-content.directive';
 export {AtFormErrorDirective} from './form/at-form-error.directive';
 export {AtFormFeedbackDirective} from './form/at-form-feedback.directive';
@@ -213,10 +217,13 @@ export * from './upload'
     FormComponent,
     AtFormDirective,
     AtFormItemDirective,
-    AtFormLabelDirective,
     AtFormContentDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
+    AtFormItemComponent,
+    AtFormLabelComponent,
+    AtFormControlComponent,
+
     DatetimepickerComponent,
     CalendarComponent,
     TimeComponent,
@@ -240,6 +247,9 @@ export * from './upload'
     TimelineItemComponent,
     TimelineSelectorDirective,
     TimelineDotDirective,
+    AtInputDirective,
+    MenuLinkDirective,
+    AtDropSubmenuComponent,
   ],
   exports: [
     TimelineSelectorDirective,
@@ -271,6 +281,8 @@ export * from './upload'
     DropdownComponent,
     DropdownMenuItemComponent,
     DropMenuListComponent,
+    AtDropSubmenuComponent,
+
     NotificationComponent,
     NotificationContainerComponent,
     AlertComponent,
@@ -297,9 +309,12 @@ export * from './upload'
     AtFormContentDirective,
     AtFormDirective,
     AtFormItemDirective,
-    AtFormLabelDirective,
     AtFormErrorDirective,
     AtFormFeedbackDirective,
+    AtFormItemComponent,
+    AtFormLabelComponent,
+    AtFormControlComponent,
+
     DropdownDirective,
     PopTriggerDirective,
 
@@ -313,11 +328,14 @@ export * from './upload'
     TabSetComponent,
     StepsComponent,
     StepComponent,
+    AtInputDirective,
+    MenuLinkDirective,
 
     AtAffixModule,
     AtUploadModule,
     AtModalModule,
     AtSelectModule,
+
 
   ],
   entryComponents: [NotificationComponent, NotificationContainerComponent,

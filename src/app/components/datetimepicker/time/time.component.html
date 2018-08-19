@@ -1,5 +1,5 @@
-<div atRow>
-  <div #hour_panel atCol [span]="8" class="at-time-panel">
+<div at-row>
+  <div #hour_panel at-col [span]="8" class="at-time-panel">
     <ul>
       <li *ngFor="let s of hours"
           [ngClass]="{'time-selected':s.index == selected_hour}">
@@ -7,7 +7,7 @@
       </li>
     </ul>
   </div>
-  <div #minute_panel atCol [span]="8" class="at-time-panel">
+  <div #minute_panel at-col [span]="8" class="at-time-panel">
     <ul>
       <li *ngFor="let s of minutes"
           [ngClass]="{'time-selected':s.index == selected_minutes}"
@@ -16,7 +16,7 @@
       </li>
     </ul>
   </div>
-  <div #second_panel atCol [span]="8" class="at-time-panel">
+  <div #second_panel at-col [span]="8" class="at-time-panel">
 
     <ul>
       <li *ngFor="let s of seconds"

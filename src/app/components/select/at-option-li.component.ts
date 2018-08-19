@@ -15,8 +15,6 @@ import { AtOptionComponent } from './at-option.component';
   host    : {
     '[class.at-select__option]'         : 'true',
     '[class.at-select__option--selected]': 'selected && !atOption.atDisabled',
-    // '[class.ant-select-dropdown-menu-item-disabled]': 'atOption.atDisabled',
-    '[class.ant-select-dropdown-menu-item-active]'  : 'active && !atOption.atDisabled && atShowActive && !selected',
     '[attr.unselectable]'                           : '"unselectable"',
     '[style.user-select]'                           : '"none"'
   }

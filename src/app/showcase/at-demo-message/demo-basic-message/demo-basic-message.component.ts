@@ -4,10 +4,10 @@ import {AtMessageService} from "../../../components/message/at-message.service";
 @Component({
   selector: 'app-demo-basic-message',
   template: `
-    <button atButton (click)="showMessage('info')">Info</button>
-    <button atButton (click)="showMessage('error')">Error</button>
-    <button atButton (click)="showMessage('warning')">Warning</button>
-    <button atButton (click)="showMessage('success')">Success</button>
+    <button at-button (click)="showMessage('info')">Info</button>
+    <button at-button (click)="showMessage('error')">Error</button>
+    <button at-button (click)="showMessage('warning')">Warning</button>
+    <button at-button (click)="showMessage('success')">Success</button>
 
   `,
 })

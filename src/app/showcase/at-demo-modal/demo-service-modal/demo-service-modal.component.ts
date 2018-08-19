@@ -5,10 +5,10 @@ import {AtModalService} from "../../../components/modal/at-modal.service";
   selector: 'app-demo-service-modal',
   template: `
     <div>
-      <button atButton [atType]="'error'" (click)="show('error')">error</button>
-      <button atButton [atType]="'warning'" (click)="show('warning')">warning</button>
-      <button atButton [atType]="'success'" (click)="show('success')">success</button>
-      <button atButton [atType]="'info'" (click)="show('info')">info</button>
+      <button at-button [atType]="'error'" (click)="show('error')">error</button>
+      <button at-button [atType]="'warning'" (click)="show('warning')">warning</button>
+      <button at-button [atType]="'success'" (click)="show('success')">success</button>
+      <button at-button [atType]="'info'" (click)="show('info')">info</button>
     </div>`,
   styleUrls: ['./demo-service-modal.component.css']
 })

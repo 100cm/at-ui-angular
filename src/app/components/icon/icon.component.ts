@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'atIcon',
+  selector: 'at-icon',
   template: `<i [ngStyle]="{'font-size':size+'px'}" class="icon icon-{{type}}"></i>
   `,
 })

@@ -1,34 +1,19 @@
-<ul atMenu [atType]="'vertical'" style="width: 240px">
-  <li atMenuItem [active]="true">
-    <div title>导航1</div>
+<ul at-menu [atType]="'vertical'" [theme]="'dark'" style="width: 180px">
+  <li at-menu-item>
+    <div at-menu-link><i class="icon icon-home"></i>导航菜单1</div>
   </li>
-  <li atMenuItem>
-    <div title>导航1</div>
-  </li>
-  <li atMenuItem>
-    <div title>111</div>
-  </li>
-  <li atSubMenu>
-    <div title>导航3</div>
-    <ul itemGroup>
-      <li atMenuItem>
-        <div title>2层导航</div>
+  <li at-submenu>
+    <div title><i class="icon icon-home"></i>导航菜单2</div>
+    <ul at-menu-group [label]="'小分组'">
+      <li at-menu-item>
+        <div class="at-menu__item-link">
+          分组1
+        </div>
       </li>
-      <li atSubMenu>
-        <div title>导航3</div>
-        <ul itemGroup>
-          <li atMenuItem>
-            <div title>
-              <atPopover>
-                <span popTrigger>asd</span>
-                <div popContent>
-                  fuck u
-                </div>
-              </atPopover>
-            </div>
-          </li>
-        </ul>
+      <li at-menu-item>
+        分组1
       </li>
     </ul>
   </li>
+
 </ul>

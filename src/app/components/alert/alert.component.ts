@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
-  selector: 'atAlert',
+  selector: 'at-alert',
   template: `
     <div [@visibilityChanged]="state" *ngIf="!this.closed"
          class="at-alert at-alert--{{atType}}"

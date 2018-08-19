@@ -1,17 +1,17 @@
 import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild} from '@angular/core';
-import {RadioComponent} from "../radio.component";
-import {RadioGroupComponent} from "../radio-group/radio-group.component";
+import {RadioComponent}                                                             from "../radio.component";
+import {RadioGroupComponent}                                                        from "../radio-group/radio-group.component";
 
 @Component({
-  selector: '[atRadioButton]',
-  template: `<input type="radio" [disabled]="disabled" class="at-radio-button__original" [(ngModel)]="checked">
-  <span #content_span class="at-radio-button__inner">
+             selector: '[at-radio-button]',
+             template: `<input type="radio" [disabled]="disabled" class="at-radio-button__original"
+                               [(ngModel)]="checked">
+             <span #content_span class="at-radio-button__inner">
   <ng-content>
-
-</ng-content>
+  </ng-content>
 </span>
-  `,
-})
+             `,
+           })
 export class RadioButtonComponent extends RadioComponent implements OnInit {
 
 
@@ -24,6 +24,11 @@ export class RadioButtonComponent extends RadioComponent implements OnInit {
   @HostBinding('class.at-radio--checked')
   get buttonChecked() {
     return this._checked
+  }
+
+  @HostBinding('class.at-radio-button')
+  get buttonClass() {
+    return true
   }
 
   @ViewChild('content_span') content_span: any

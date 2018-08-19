@@ -141,11 +141,12 @@ import { AtDemoTimelineDotComponent } from './showcase/at-demo-timeline/at-demo-
 import { AtDemoPendingTimelineComponent } from './showcase/at-demo-timeline/at-demo-pending-timeline/at-demo-pending-timeline.component';
 import { DemoHorizonalStepsComponent } from './showcase/at-demo-steps/demo-horizonal-steps/demo-horizonal-steps.component';
 import { DemoSizeStepsComponent } from './showcase/at-demo-steps/demo-size-steps/demo-size-steps.component';
-import { AtDemoAffixComponent } from './showcase/at-demo-affix/at-demo-affix.component';
+import { AtDemoAffixComponent }         from './showcase/at-demo-affix/at-demo-affix.component';
 import { AtDemoAutocompeleteComponent } from './showcase/at-demo-autocompelete/at-demo-autocompelete.component';
-import { DemoAffixBasicComponent } from './showcase/at-demo-affix/demo-affix-basic/demo-affix-basic.component';
-import { AtDemoUploadComponent } from './showcase/at-demo-upload/at-demo-upload.component';
-import { AtDemoUploadBasicComponent } from './showcase/at-demo-upload/at-demo-upload-basic/at-demo-upload-basic.component';
+import { DemoAffixBasicComponent }      from './showcase/at-demo-affix/demo-affix-basic/demo-affix-basic.component';
+import { AtDemoUploadComponent }        from './showcase/at-demo-upload/at-demo-upload.component';
+import { AtDemoUploadBasicComponent }   from './showcase/at-demo-upload/at-demo-upload-basic/at-demo-upload-basic.component';
+import {AdminComponent}                 from "./showcase/admin/admin.component";
 
 
 @NgModule({
@@ -265,6 +266,8 @@ import { AtDemoUploadBasicComponent } from './showcase/at-demo-upload/at-demo-up
     DemoAffixBasicComponent,
     AtDemoUploadComponent,
     AtDemoUploadBasicComponent,
+
+    AdminComponent
 
 
   ],

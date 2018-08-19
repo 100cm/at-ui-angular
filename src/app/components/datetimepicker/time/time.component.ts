@@ -5,8 +5,8 @@ import * as moment from 'moment'
 @Component({
   selector: 'atTime',
   template: `
-    <div atRow>
-      <div #hour_panel atCol [span]="8" class="at-time-panel">
+    <div at-row>
+      <div #hour_panel at-col [span]="8" class="at-time-panel">
         <ul>
           <li *ngFor="let s of hours"
               (click)="_select_hour(s.index)"
@@ -15,7 +15,7 @@ import * as moment from 'moment'
           </li>
         </ul>
       </div>
-      <div #minute_panel atCol [span]="8" class="at-time-panel">
+      <div #minute_panel at-col [span]="8" class="at-time-panel">
         <ul>
           <li *ngFor="let s of minutes"
               (click)="_select_minutes(s.index)"
@@ -25,7 +25,7 @@ import * as moment from 'moment'
           </li>
         </ul>
       </div>
-      <div #second_panel atCol [span]="8" class="at-time-panel">
+      <div #second_panel at-col [span]="8" class="at-time-panel">
 
         <ul>
           <li *ngFor="let s of seconds"

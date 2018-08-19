@@ -3,7 +3,7 @@ import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 import {toBoolean} from '../utils/class-helper';
 
 @Component({
-  selector: 'atOption',
+  selector: 'at-option',
   template: `
     <ng-template>
       <ng-content></ng-content>

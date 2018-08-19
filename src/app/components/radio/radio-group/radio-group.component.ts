@@ -3,7 +3,7 @@ import {RadioComponent} from "../radio.component";
 import {NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
-  selector: 'atRadioGroup',
+  selector: 'at-radio-group',
   template:`<div class="at-radio-group">
     <ng-content>
 

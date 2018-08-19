@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'atCard',
+  selector: 'at-card',
   template: `
     <div class="at-card" [ngClass]="{'at-card-bordered':border}">
       <ng-content select="[card-content]">

@@ -2,7 +2,7 @@ import {Component, ContentChild, ContentChildren, Input, OnInit, QueryList, Temp
 import {AtBreadItemDirective} from "./breadcrumb-item/at-bread-item.directive";
 
 @Component({
-  selector: 'atBreadcrumb',
+  selector: 'at-breadcrumb',
   template: `
     <div class="at-breadcrumb">
       <ng-content></ng-content>

@@ -11,6 +11,7 @@
   &:before, &:after {
     box-sizing: border-box;
   }
+  outline: none;
 }
 
 /* HTML & Body reset */
@@ -28,7 +29,7 @@ body {
 }
 
 /* Unify the margin and padding */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   margin: 0;
   padding: 0;
 }
@@ -115,18 +116,23 @@ code, kbd, pre, samp {
 h1, h2, h3, h4, h5, h6 {
   color: $title-color;
 }
+
 h1 {
   font-size: $font-size-lger;
 }
+
 h2 {
   font-size: $font-size-lg;
 }
+
 h3 {
   font-size: $font-size-normal;
 }
+
 h4, h5, h6 {
   font-size: $font-size-base;
 }
+
 hr {
   margin: 1.2em 0 1.5em;
 }
@@ -136,24 +142,31 @@ p {
   color: $text-color;
   font-size: $font-size-base;
 }
+
 .text-smallest {
   font-size: $font-size-smest;
 }
+
 .text-smaller {
   font-size: $font-size-smer;
 }
+
 .text-small {
   font-size: $font-size-sm;
 }
+
 .text-base {
   font-size: $font-size-base;
 }
+
 .text-normal {
   font-size: $font-size-normal;
 }
+
 .text-large {
   font-size: $font-size-lg;
 }
+
 .text-larger {
   font-size: $font-size-lger;
 }
@@ -173,18 +186,23 @@ $info-color               : #78A4FA;
 .typo-pingfang {
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', Arial, sans-serif;
 }
+
 .typo-dongqing {
   font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', Arial, sans-serif;
 }
+
 .typo-yahei {
   font-family: 'Helvetica Neue', Helvetica, 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
+
 .typo-helvetica-neue {
   font-family: 'Helvetica Neue', "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
 }
+
 .typo-helvetica {
   font-family: Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
 }
+
 .typo-arial {
   font-family: Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", sans-serif;
 }

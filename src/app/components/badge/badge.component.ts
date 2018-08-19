@@ -1,7 +1,7 @@
 import {Component, ContentChild, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'atBadge',
+  selector: 'at-badge',
   template: `<span class="at-badge at-badge--{{atType}}">
   <span #content>
   <ng-content>

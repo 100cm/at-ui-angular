@@ -12,6 +12,15 @@
   line-height: 1.5;
   outline: 0;
 
+  &--lg {
+    padding: $input-padding-lg;
+    font-size: $input-font-size-lg;
+  }
+
+  &--sm {
+    padding: $input-padding-sm;
+    font-size: $input-font-size-sm;
+  }
   /* element */
   &__original {
     display: block;

@@ -36,12 +36,12 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       </div>
     </div>
 
-    <atModal [showFooter]="false" [showHeader]="false" [show]="preview" (onOk)="preview = false"
+    <at-modal [showFooter]="false" [showHeader]="false" [show]="preview" (onOk)="preview = false"
              (onCancel)="preview=false">
       <div body class="at-upload-preview-modal">
         <img style="max-width: 100%;max-height: 100%" image-preview [image]="preview_image"/>
       </div>
-    </atModal>
+    </at-modal>
   `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,

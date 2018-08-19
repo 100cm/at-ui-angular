@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-  selector: 'atPagenation',
+  selector: 'at-pagination',
   template: `
     <div>
       <ul *ngIf="!simple" class="at-pagination at-pagination--{{size}}">
@@ -56,11 +56,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
         </li>
 
         <div *ngIf="atPageSizer" class="at-pagination__sizer">
-          <atSelect [(ngModel)]="pageSize" (ngModelChange)="_atPageSizeChange($event)">
-            <atOption *ngFor="let item of _options" [atValue]="item" [atLabel]="item+' 条/页'">
+          <at-select [(ngModel)]="pageSize" (ngModelChange)="_atPageSizeChange($event)">
+            <at-option *ngFor="let item of _options" [atValue]="item" [atLabel]="item+' 条/页'">
 
-            </atOption>
-          </atSelect>
+            </at-option>
+          </at-select>
         </div>
 
         <div *ngIf="atQuickJump" class="at-pagination__quickjump">

@@ -1,10 +1,13 @@
-import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2} from '@angular/core';
+import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Optional, Renderer2} from '@angular/core';
+import {SubMenuComponent}                                                                     from "../sub-menu/sub-menu.component";
+import {MenuComponent}                                                                        from "../menu.component";
 
 @Component({
-  selector: '[atMenuItem]',
-  template:`<ng-content></ng-content>
-`,
-})
+             selector: '[at-menu-item]',
+             template: `
+               <ng-content></ng-content>
+             `,
+           })
 export class MenuItemComponent implements OnInit {
 
 
@@ -16,8 +19,9 @@ export class MenuItemComponent implements OnInit {
   private _active = false
 
 
-  constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
-    this._el = this._elementRef.nativeElement;
+  constructor(private _elementRef: ElementRef, private _renderer: Renderer2, @Optional() private sub_menu: SubMenuComponent,
+              private menu_component: MenuComponent) {
+    this._el           = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
   }
 
@@ -43,5 +47,20 @@ export class MenuItemComponent implements OnInit {
 
   get active(): boolean {
     return this._active;
+  }
+
+  @HostBinding('style.padding-left.px')
+  get setPaddingLeft(): number {
+    if (this.menu_component.atType === 'inline') {
+      if (this.sub_menu) {
+        return (this.sub_menu.level + 1) * 23;
+      }
+      else {
+        return null;
+      }
+    }
+    else {
+      return null;
+    }
   }
 }

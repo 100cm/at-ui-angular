@@ -1,12 +1,12 @@
-<atSelect [(ngModel)]="selected" [multiple]="true">
-  <atOption *ngFor="let item of items" [atLabel]="item" [atValue]="item">
-  </atOption>
-</atSelect>
+<at-select [(ngModel)]="selected" [multiple]="true">
+  <at-option *ngFor="let item of items" [atLabel]="item" [atValue]="item">
+  </at-option>
+</at-select>
 
-<atSelect [(ngModel)]="selected2" [multiple]="true">
-  <atOption *ngFor="let item of items" [atLabel]="item" [atValue]="item">
-  </atOption>
-</atSelect>
+<at-select [(ngModel)]="selected2" [multiple]="true">
+  <at-option *ngFor="let item of items" [atLabel]="item" [atValue]="item">
+  </at-option>
+</at-select>
 
 <div *ngFor="let item of selected" >
   {{item}}

@@ -1,19 +1,19 @@
 import {
   Component, ContentChild, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef,
   ViewEncapsulation
-} from '@angular/core';
+}                            from '@angular/core';
 import {TabContentComponent} from "./tab-content/tab-content.component";
-import {TabSetComponent} from "./tab-set/tab-set.component";
+import {TabSetComponent}     from "./tab-set/tab-set.component";
 
 @Component({
-  selector: 'atTab, [atTab]',
-  encapsulation: ViewEncapsulation.None,
-  template: `
-    <ng-template>
-      <ng-content></ng-content>
-    </ng-template>
-  `,
-})
+             selector: 'at-tab, [at-tab]',
+             encapsulation: ViewEncapsulation.None,
+             template: `
+               <ng-template>
+                 <ng-content></ng-content>
+               </ng-template>
+             `,
+           })
 export class TabComponent implements OnInit {
 
   ngOnInit() {

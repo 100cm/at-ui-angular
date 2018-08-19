@@ -3,6 +3,12 @@
  */
 @import '../variables/index.scss';
 
+.at-checkbox-group {
+  atcheckbox + atcheckbox {
+    margin-left: 16px;
+  }
+}
+
 .at-checkbox {
   position: relative;
   display: inline-block;
@@ -15,7 +21,6 @@
   & + .at-checkbox {
     margin-left: 16px;
   }
-
   /* modifier */
   &--checked {
     .at-checkbox__inner {
