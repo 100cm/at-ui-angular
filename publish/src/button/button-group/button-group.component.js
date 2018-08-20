@@ -3,25 +3,28 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component } from '@angular/core';
-export class ButtonGroupComponent {
-    constructor() { }
+var ButtonGroupComponent = (function () {
+    function ButtonGroupComponent() {
+    }
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
-}
-ButtonGroupComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'at-button-group',
-                template: `<div class="at-btn-group">
-    <ng-content></ng-content>
-  </div>
-  `,
-            },] },
-];
-/** @nocollapse */
-ButtonGroupComponent.ctorParameters = () => [];
+    ButtonGroupComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
+    ButtonGroupComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'at-button-group',
+                    template: "<div class=\"at-btn-group\">\n    <ng-content></ng-content>\n  </div>\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    ButtonGroupComponent.ctorParameters = function () { return []; };
+    return ButtonGroupComponent;
+}());
+export { ButtonGroupComponent };
 function ButtonGroupComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     ButtonGroupComponent.decorators;

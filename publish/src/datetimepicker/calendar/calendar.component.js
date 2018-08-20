@@ -5,8 +5,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import * as moment from 'moment';
 import 'moment/locale/zh-cn';
-export class CalendarComponent {
-    constructor() {
+var CalendarComponent = (function () {
+    function CalendarComponent() {
         this._clickMonth = new EventEmitter();
         this._clickYear = new EventEmitter();
         this._clickDate = new EventEmitter();
@@ -18,164 +18,211 @@ export class CalendarComponent {
         this._atYear = moment(new Date()).year();
         this._atMonth = moment(new Date()).month();
     }
+    Object.defineProperty(CalendarComponent.prototype, "disableDate", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._disabledDate;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._disabledDate = value;
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "showValue", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._show_value || new Date();
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._show_value = value;
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "atType", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atType;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atType = value;
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "years", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._years;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._years = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "months", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._months;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._months = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "atValue", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atValue || new Date();
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atValue = value;
+            var /** @type {?} */ day = value || new Date();
+            this.atMonth = moment(day).month();
+            this.atYear = moment(day).year();
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "weeks", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._weeks;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._weeks = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "atYear", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atYear;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atYear = value;
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "atMonth", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atMonth;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atMonth = value;
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CalendarComponent.prototype, "atDay", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atDay;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atDay = value;
+            this.buildCalendar();
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
-     * @param {?} value
      * @return {?}
      */
-    set disableDate(value) {
-        this._disabledDate = value;
-        this.buildCalendar();
-    }
-    /**
+    CalendarComponent.prototype.ngOnInit = /**
      * @return {?}
      */
-    get disableDate() {
-        return this._disabledDate;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set showValue(value) {
-        this._show_value = value;
-        this.buildCalendar();
-    }
-    /**
-     * @return {?}
-     */
-    get showValue() {
-        return this._show_value || new Date();
-    }
-    /**
-     * @return {?}
-     */
-    get atType() {
-        return this._atType;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atType(value) {
-        this._atType = value;
-        this.buildCalendar();
-    }
-    /**
-     * @return {?}
-     */
-    get years() {
-        return this._years;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set years(value) {
-        this._years = value;
-    }
-    /**
-     * @return {?}
-     */
-    get months() {
-        return this._months;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set months(value) {
-        this._months = value;
-    }
-    /**
-     * @return {?}
-     */
-    get atValue() {
-        return this._atValue || new Date();
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atValue(value) {
-        this._atValue = value;
-        let /** @type {?} */ day = value || new Date();
-        this.atMonth = moment(day).month();
-        this.atYear = moment(day).year();
-        this.buildCalendar();
-    }
-    /**
-     * @return {?}
-     */
-    get weeks() {
-        return this._weeks;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set weeks(value) {
-        this._weeks = value;
-    }
-    /**
-     * @return {?}
-     */
-    get atYear() {
-        return this._atYear;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atYear(value) {
-        this._atYear = value;
-        this.buildCalendar();
-    }
-    /**
-     * @return {?}
-     */
-    get atMonth() {
-        return this._atMonth;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atMonth(value) {
-        this._atMonth = value;
-        this.buildCalendar();
-    }
-    /**
-     * @return {?}
-     */
-    get atDay() {
-        return this._atDay;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atDay(value) {
-        this._atDay = value;
-        this.buildCalendar();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
+    function () {
         this.monthName = moment.months();
-    }
+    };
     /**
      * @param {?} d
      * @return {?}
      */
-    buildMonth(d) {
-        const /** @type {?} */ weeks = [];
-        const /** @type {?} */ start = d.clone().date(1).day(0);
-        const /** @type {?} */ month = d.clone();
-        let /** @type {?} */ done = false;
-        const /** @type {?} */ date = start.clone();
-        let /** @type {?} */ monthIndex = date.month();
-        let /** @type {?} */ count = 0;
+    CalendarComponent.prototype.buildMonth = /**
+     * @param {?} d
+     * @return {?}
+     */
+    function (d) {
+        var /** @type {?} */ weeks = [];
+        var /** @type {?} */ start = d.clone().date(1).day(0);
+        var /** @type {?} */ month = d.clone();
+        var /** @type {?} */ done = false;
+        var /** @type {?} */ date = start.clone();
+        var /** @type {?} */ monthIndex = date.month();
+        var /** @type {?} */ count = 0;
         while (!done) {
             weeks.push({ days: this.buildWeek(date.clone(), month) });
             date.add(1, 'w');
@@ -183,16 +230,21 @@ export class CalendarComponent {
             monthIndex = date.month();
         }
         return weeks;
-    }
+    };
     ;
     /**
      * @param {?} date
      * @param {?} month
      * @return {?}
      */
-    buildWeek(date, month) {
-        const /** @type {?} */ days = [];
-        for (let /** @type {?} */ i = 0; i < 7; i++) {
+    CalendarComponent.prototype.buildWeek = /**
+     * @param {?} date
+     * @param {?} month
+     * @return {?}
+     */
+    function (date, month) {
+        var /** @type {?} */ days = [];
+        for (var /** @type {?} */ i = 0; i < 7; i++) {
             days.push({
                 number: date.date(),
                 isLastMonth: date.month() < month.month(),
@@ -209,33 +261,42 @@ export class CalendarComponent {
             date.add(1, 'd');
         }
         return days;
-    }
+    };
     ;
     /**
      * @param {?} year
      * @return {?}
      */
-    buildCentury(year) {
-        let /** @type {?} */ century = [];
-        let /** @type {?} */ temparray = [];
-        for (const /** @type {?} */ i of Array.from(Array(20).keys())) {
+    CalendarComponent.prototype.buildCentury = /**
+     * @param {?} year
+     * @return {?}
+     */
+    function (year) {
+        var /** @type {?} */ century = [];
+        var /** @type {?} */ temparray = [];
+        for (var _i = 0, _a = Array.from(Array(20).keys()); _i < _a.length; _i++) {
+            var i = _a[_i];
             century.push(i - 10 + year);
         }
-        for (let /** @type {?} */ i = 0, /** @type {?} */ j = century.length; i < j; i += 5) {
+        for (var /** @type {?} */ i = 0, /** @type {?} */ j = century.length; i < j; i += 5) {
             temparray.push(century.slice(i, i + 5));
             // do whatever
         }
         century = temparray;
         return century;
-    }
+    };
     /**
      * @param {?} date
      * @return {?}
      */
-    buildYears(date) {
-        let /** @type {?} */ formatMonths = [];
-        let /** @type {?} */ months = [];
-        for (let /** @type {?} */ i = 0; i < 12; i++) {
+    CalendarComponent.prototype.buildYears = /**
+     * @param {?} date
+     * @return {?}
+     */
+    function (date) {
+        var /** @type {?} */ formatMonths = [];
+        var /** @type {?} */ months = [];
+        for (var /** @type {?} */ i = 0; i < 12; i++) {
             months.push({
                 index: i,
                 name: this.monthName[i],
@@ -248,126 +309,82 @@ export class CalendarComponent {
             }
         }
         return formatMonths;
-    }
+    };
     ;
     /**
      * @return {?}
      */
-    buildCalendar() {
+    CalendarComponent.prototype.buildCalendar = /**
+     * @return {?}
+     */
+    function () {
         moment.locale('zh-cn');
-        let /** @type {?} */ time = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue;
-        let /** @type {?} */ date = moment(time).year(this.atYear).month(this.atMonth);
+        var /** @type {?} */ time = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue;
+        var /** @type {?} */ date = moment(time).year(this.atYear).month(this.atMonth);
         this.weeks = this.buildMonth(date);
         this.months = this.buildYears(date);
         this._years = this.buildCentury(this.atYear);
-    }
+    };
     /**
      * @param {?} day
      * @return {?}
      */
-    clickDay(day) {
+    CalendarComponent.prototype.clickDay = /**
+     * @param {?} day
+     * @return {?}
+     */
+    function (day) {
         if (!day.disabled) {
             this._clickDate.emit(day);
         }
-    }
+    };
     /**
      * @param {?} single
      * @return {?}
      */
-    clickMonth(single) {
+    CalendarComponent.prototype.clickMonth = /**
+     * @param {?} single
+     * @return {?}
+     */
+    function (single) {
         this._clickMonth.emit(single);
-    }
+    };
     /**
      * @param {?} year
      * @return {?}
      */
-    clickYear(year) {
+    CalendarComponent.prototype.clickYear = /**
+     * @param {?} year
+     * @return {?}
+     */
+    function (year) {
         this._clickYear.emit(year);
-    }
-}
-CalendarComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'atCalendar',
-                template: `
-    <table *ngIf="atType =='full'" class="at-calendar-table">
-      <thead>
-      <th class="column-header"><span class="column-header-inner">日</span></th>
-      <th class="column-header"><span class="column-header-inner">一</span></th>
-      <th class="column-header"><span class="column-header-inner">二</span></th>
-      <th class="column-header"><span class="column-header-inner">三</span></th>
-      <th class="column-header"><span class="column-header-inner">四</span></th>
-      <th class="column-header"><span class="column-header-inner">五</span></th>
-      <th class="column-header"><span class="column-header-inner">六</span></th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let week of weeks">
-        <td
-          *ngFor="let day of week.days" class="at-date-cell"
-          (click)="clickDay(day)"
-          [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
-'at-date-cell--selected':day.isSelectedDay ,
-'at-date-cell--today':day.isCurrentDay,
-'at-date-cell--next-month':day.isNextMonth,
-'at-date-cell--disabled':day.disabled}">
-          <div class="at-date">{{day.number}}</div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-
-    <table *ngIf="atType=='month'" class="at-calendar-table">
-      <tbody>
-      <tr *ngFor="let month of months">
-        <td
-          *ngFor="let single of month" class="at-month-cell"
-          (click)="clickMonth(single)"
-          [ngClass]="{
-              'at-date-cell--selected':single.isSelectedMonth ,
-              'at-date-cell--today':single.isCurrentMonth}">
-          <div class="at-date">{{single.name}}</div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-
-    <table *ngIf="atType=='year'" class="at-calendar-table">
-      <tbody>
-      <tr *ngFor="let section of years">
-        <td
-          *ngFor="let year of section" class="at-month-cell"
-          (click)="clickYear(year)"
-          [ngClass]="{
-              'at-date-cell--selected':year.isSelectedMonth ,
-              'at-date-cell--today':year.isCurrentMonth}">
-          <div class="at-date">{{year}}</div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-
-
-
-
-
-  `,
-            },] },
-];
-/** @nocollapse */
-CalendarComponent.ctorParameters = () => [];
-CalendarComponent.propDecorators = {
-    "_clickMonth": [{ type: Output },],
-    "_clickYear": [{ type: Output },],
-    "_clickDate": [{ type: Output },],
-    "disableDate": [{ type: Input },],
-    "showValue": [{ type: Input },],
-    "private": [{ type: Input },],
-    "atType": [{ type: Input },],
-    "atValue": [{ type: Input },],
-    "atYear": [{ type: Input },],
-    "format": [{ type: Input },],
-    "atMonth": [{ type: Input },],
-    "atDay": [{ type: Input },],
-};
+    };
+    CalendarComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'atCalendar',
+                    template: "\n    <table *ngIf=\"atType =='full'\" class=\"at-calendar-table\">\n      <thead>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u65E5</span></th>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u4E00</span></th>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u4E8C</span></th>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u4E09</span></th>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u56DB</span></th>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u4E94</span></th>\n      <th class=\"column-header\"><span class=\"column-header-inner\">\u516D</span></th>\n      </thead>\n      <tbody>\n      <tr *ngFor=\"let week of weeks\">\n        <td\n          *ngFor=\"let day of week.days\" class=\"at-date-cell\"\n          (click)=\"clickDay(day)\"\n          [ngClass]=\"{'at-date-cell--last-month':day.isLastMonth,\n'at-date-cell--selected':day.isSelectedDay ,\n'at-date-cell--today':day.isCurrentDay,\n'at-date-cell--next-month':day.isNextMonth,\n'at-date-cell--disabled':day.disabled}\">\n          <div class=\"at-date\">{{day.number}}</div>\n        </td>\n      </tr>\n      </tbody>\n    </table>\n\n    <table *ngIf=\"atType=='month'\" class=\"at-calendar-table\">\n      <tbody>\n      <tr *ngFor=\"let month of months\">\n        <td\n          *ngFor=\"let single of month\" class=\"at-month-cell\"\n          (click)=\"clickMonth(single)\"\n          [ngClass]=\"{\n              'at-date-cell--selected':single.isSelectedMonth ,\n              'at-date-cell--today':single.isCurrentMonth}\">\n          <div class=\"at-date\">{{single.name}}</div>\n        </td>\n      </tr>\n      </tbody>\n    </table>\n\n    <table *ngIf=\"atType=='year'\" class=\"at-calendar-table\">\n      <tbody>\n      <tr *ngFor=\"let section of years\">\n        <td\n          *ngFor=\"let year of section\" class=\"at-month-cell\"\n          (click)=\"clickYear(year)\"\n          [ngClass]=\"{\n              'at-date-cell--selected':year.isSelectedMonth ,\n              'at-date-cell--today':year.isCurrentMonth}\">\n          <div class=\"at-date\">{{year}}</div>\n        </td>\n      </tr>\n      </tbody>\n    </table>\n\n\n\n\n\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    CalendarComponent.ctorParameters = function () { return []; };
+    CalendarComponent.propDecorators = {
+        "_clickMonth": [{ type: Output },],
+        "_clickYear": [{ type: Output },],
+        "_clickDate": [{ type: Output },],
+        "disableDate": [{ type: Input },],
+        "showValue": [{ type: Input },],
+        "private": [{ type: Input },],
+        "atType": [{ type: Input },],
+        "atValue": [{ type: Input },],
+        "atYear": [{ type: Input },],
+        "format": [{ type: Input },],
+        "atMonth": [{ type: Input },],
+        "atDay": [{ type: Input },],
+    };
+    return CalendarComponent;
+}());
+export { CalendarComponent };
 function CalendarComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     CalendarComponent.decorators;

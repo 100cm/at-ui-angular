@@ -3,12 +3,8 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
-export class MenuItemComponent {
-    /**
-     * @param {?} _elementRef
-     * @param {?} _renderer
-     */
-    constructor(_elementRef, _renderer) {
+var MenuItemComponent = (function () {
+    function MenuItemComponent(_elementRef, _renderer) {
         this._elementRef = _elementRef;
         this._renderer = _renderer;
         this._active = false;
@@ -19,51 +15,66 @@ export class MenuItemComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
+    MenuItemComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
     /**
      * @return {?}
      */
-    setActive() {
-    }
-    /**
+    MenuItemComponent.prototype.setActive = /**
      * @return {?}
      */
-    get activeCls() {
-        return this._active;
-    }
-    /**
-     * @param {?} active
-     * @return {?}
-     */
-    set active(active) {
-        this._active = active;
-    }
-    /**
-     * @return {?}
-     */
-    get active() {
-        return this._active;
-    }
-}
-MenuItemComponent.decorators = [
-    { type: Component, args: [{
-                selector: '[atMenuItem]',
-                template: `<ng-content></ng-content>
-`,
-            },] },
-];
-/** @nocollapse */
-MenuItemComponent.ctorParameters = () => [
-    { type: ElementRef, },
-    { type: Renderer2, },
-];
-MenuItemComponent.propDecorators = {
-    "item_class": [{ type: HostBinding, args: [`class.at-menu__item`,] },],
-    "setActive": [{ type: HostListener, args: ['click',] },],
-    "activeCls": [{ type: HostBinding, args: ['class.at-menu__item--active',] },],
-    "active": [{ type: Input, args: ['active',] },],
-};
+    function () {
+    };
+    Object.defineProperty(MenuItemComponent.prototype, "activeCls", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._active;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItemComponent.prototype, "active", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._active;
+        },
+        set: /**
+         * @param {?} active
+         * @return {?}
+         */
+        function (active) {
+            this._active = active;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MenuItemComponent.decorators = [
+        { type: Component, args: [{
+                    selector: '[atMenuItem]',
+                    template: "<ng-content></ng-content>\n",
+                },] },
+    ];
+    /** @nocollapse */
+    MenuItemComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: Renderer2, },
+    ]; };
+    MenuItemComponent.propDecorators = {
+        "item_class": [{ type: HostBinding, args: ["class.at-menu__item",] },],
+        "setActive": [{ type: HostListener, args: ['click',] },],
+        "activeCls": [{ type: HostBinding, args: ['class.at-menu__item--active',] },],
+        "active": [{ type: Input, args: ['active',] },],
+    };
+    return MenuItemComponent;
+}());
+export { MenuItemComponent };
 function MenuItemComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     MenuItemComponent.decorators;

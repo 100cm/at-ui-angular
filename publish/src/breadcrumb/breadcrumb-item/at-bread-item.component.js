@@ -3,32 +3,32 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component, Input } from '@angular/core';
-export class AtBreadItemComponent {
-    constructor() {
+var AtBreadItemComponent = (function () {
+    function AtBreadItemComponent() {
         this.separator = '/';
     }
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
-}
-AtBreadItemComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'at-bread-item',
-                template: `
-    <span class="at_breadcrumb__text">
-      <ng-content></ng-content>
-    </span>
-    <span class="at-breadcrumb__separator">{{this.separator}}</span>
-  `,
-            },] },
-];
-/** @nocollapse */
-AtBreadItemComponent.ctorParameters = () => [];
-AtBreadItemComponent.propDecorators = {
-    "separator": [{ type: Input },],
-};
+    AtBreadItemComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
+    AtBreadItemComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'at-bread-item',
+                    template: "\n    <span class=\"at_breadcrumb__text\">\n      <ng-content></ng-content>\n    </span>\n    <span class=\"at-breadcrumb__separator\">{{this.separator}}</span>\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    AtBreadItemComponent.ctorParameters = function () { return []; };
+    AtBreadItemComponent.propDecorators = {
+        "separator": [{ type: Input },],
+    };
+    return AtBreadItemComponent;
+}());
+export { AtBreadItemComponent };
 function AtBreadItemComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     AtBreadItemComponent.decorators;

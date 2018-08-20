@@ -4,8 +4,8 @@
  */
 import { Component, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-export class RadioGroupComponent {
-    constructor() {
+var RadioGroupComponent = (function () {
+    function RadioGroupComponent() {
         this._size = 'common';
         this.radios = [];
         // ngModel Access
@@ -15,104 +15,137 @@ export class RadioGroupComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
-    /**
+    RadioGroupComponent.prototype.ngOnInit = /**
      * @return {?}
      */
-    get size() {
-        return this._size;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set size(value) {
-        this._size = value;
-    }
+    function () {
+    };
+    Object.defineProperty(RadioGroupComponent.prototype, "size", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._size;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._size = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @param {?} radio
      * @return {?}
      */
-    addRadio(radio) {
+    RadioGroupComponent.prototype.addRadio = /**
+     * @param {?} radio
+     * @return {?}
+     */
+    function (radio) {
         this.radios.push(radio);
-    }
+    };
     /**
      * @param {?} radioComponent
      * @return {?}
      */
-    selectRadio(radioComponent) {
+    RadioGroupComponent.prototype.selectRadio = /**
+     * @param {?} radioComponent
+     * @return {?}
+     */
+    function (radioComponent) {
         this.updateValue(radioComponent.atValue);
         this.onChange(radioComponent.atValue);
-    }
+    };
     /**
      * @param {?} value
      * @return {?}
      */
-    writeValue(value) {
+    RadioGroupComponent.prototype.writeValue = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
         this.updateValue(value);
-    }
+    };
     /**
      * @param {?} fn
      * @return {?}
      */
-    registerOnChange(fn) {
+    RadioGroupComponent.prototype.registerOnChange = /**
+     * @param {?} fn
+     * @return {?}
+     */
+    function (fn) {
         this.onChange = fn;
-    }
+    };
     /**
      * @param {?} fn
      * @return {?}
      */
-    registerOnTouched(fn) {
+    RadioGroupComponent.prototype.registerOnTouched = /**
+     * @param {?} fn
+     * @return {?}
+     */
+    function (fn) {
         this.onTouched = fn;
-    }
+    };
     /**
      * @param {?} value
      * @return {?}
      */
-    updateValue(value) {
+    RadioGroupComponent.prototype.updateValue = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        var _this = this;
         if (this._value === value) {
             return;
         }
         this._value = value;
-        this.radios.forEach((item) => {
-            item.checked = item.atValue === this._value;
+        this.radios.forEach(function (item) {
+            item.checked = item.atValue === _this._value;
         });
-    }
+    };
     /**
      * @return {?}
      */
-    ngAfterContentInit() {
-        this.radios.forEach(radio => {
-            if (this.size) {
-                radio._renderer.addClass(radio._el, `${radio._prefixCls}--${this.size}`);
+    RadioGroupComponent.prototype.ngAfterContentInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.radios.forEach(function (radio) {
+            if (_this.size) {
+                radio._renderer.addClass(radio._el, radio._prefixCls + "--" + _this.size);
             }
         });
-    }
-}
-RadioGroupComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'atRadioGroup',
-                template: `<div class="at-radio-group">
-    <ng-content>
-
-    </ng-content>
-  </div>
-  `,
-                providers: [
-                    {
-                        provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => RadioGroupComponent),
-                        multi: true
-                    }
-                ],
-            },] },
-];
-/** @nocollapse */
-RadioGroupComponent.ctorParameters = () => [];
-RadioGroupComponent.propDecorators = {
-    "size": [{ type: Input },],
-};
+    };
+    RadioGroupComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'atRadioGroup',
+                    template: "<div class=\"at-radio-group\">\n    <ng-content>\n\n    </ng-content>\n  </div>\n  ",
+                    providers: [
+                        {
+                            provide: NG_VALUE_ACCESSOR,
+                            useExisting: forwardRef(function () { return RadioGroupComponent; }),
+                            multi: true
+                        }
+                    ],
+                },] },
+    ];
+    /** @nocollapse */
+    RadioGroupComponent.ctorParameters = function () { return []; };
+    RadioGroupComponent.propDecorators = {
+        "size": [{ type: Input },],
+    };
+    return RadioGroupComponent;
+}());
+export { RadioGroupComponent };
 function RadioGroupComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     RadioGroupComponent.decorators;

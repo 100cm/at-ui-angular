@@ -3,28 +3,32 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component, HostBinding } from '@angular/core';
-export class InlineMenuComponent {
-    constructor() {
+var InlineMenuComponent = (function () {
+    function InlineMenuComponent() {
         this.at_menu = true;
     }
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
-}
-InlineMenuComponent.decorators = [
-    { type: Component, args: [{
-                selector: '[inlineMenu]',
-                template: `<ng-content></ng-content>
-  `,
-            },] },
-];
-/** @nocollapse */
-InlineMenuComponent.ctorParameters = () => [];
-InlineMenuComponent.propDecorators = {
-    "at_menu": [{ type: HostBinding, args: ['class.at-menu',] },],
-};
+    InlineMenuComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
+    InlineMenuComponent.decorators = [
+        { type: Component, args: [{
+                    selector: '[inlineMenu]',
+                    template: "<ng-content></ng-content>\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    InlineMenuComponent.ctorParameters = function () { return []; };
+    InlineMenuComponent.propDecorators = {
+        "at_menu": [{ type: HostBinding, args: ['class.at-menu',] },],
+    };
+    return InlineMenuComponent;
+}());
+export { InlineMenuComponent };
 function InlineMenuComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     InlineMenuComponent.decorators;

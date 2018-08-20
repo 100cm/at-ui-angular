@@ -5,8 +5,8 @@
 import { Component, ContentChildren, forwardRef, QueryList } from '@angular/core';
 import { CheckboxComponent } from "../checkbox.component";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-export class CheckboxGroupComponent {
-    constructor() {
+var CheckboxGroupComponent = (function () {
+    function CheckboxGroupComponent() {
         this._checkList = [];
         // ngModel Access
         this.onChange = Function.prototype;
@@ -15,66 +15,82 @@ export class CheckboxGroupComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
+    CheckboxGroupComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
     /**
      * @return {?}
      */
-    changeList() {
+    CheckboxGroupComponent.prototype.changeList = /**
+     * @return {?}
+     */
+    function () {
         this.onChange(this._checkList);
-    }
+    };
     /**
      * @param {?} value
      * @return {?}
      */
-    writeValue(value) {
+    CheckboxGroupComponent.prototype.writeValue = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
         this._checkList = value;
-    }
+    };
     /**
      * @param {?} fn
      * @return {?}
      */
-    registerOnChange(fn) {
+    CheckboxGroupComponent.prototype.registerOnChange = /**
+     * @param {?} fn
+     * @return {?}
+     */
+    function (fn) {
         this.onChange = fn;
-    }
+    };
     /**
      * @param {?} fn
      * @return {?}
      */
-    registerOnTouched(fn) {
+    CheckboxGroupComponent.prototype.registerOnTouched = /**
+     * @param {?} fn
+     * @return {?}
+     */
+    function (fn) {
         this.onTouched = fn;
-    }
+    };
     /**
      * @return {?}
      */
-    ngAfterContentInit() {
-    }
-}
-CheckboxGroupComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'atCheckboxGroup',
-                template: `<div class="at-checkbox-group">
-  <atCheckbox *ngFor="let option of _checkList" [label]="option.label"
-              [(ngModel)]="option.checked"
-              (changeCheck)="changeList()">
-
-  </atCheckbox>
-</div>
-`,
-                providers: [
-                    {
-                        provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => CheckboxGroupComponent),
-                        multi: true
-                    }
-                ],
-            },] },
-];
-/** @nocollapse */
-CheckboxGroupComponent.ctorParameters = () => [];
-CheckboxGroupComponent.propDecorators = {
-    "checkbox": [{ type: ContentChildren, args: [CheckboxComponent,] },],
-};
+    CheckboxGroupComponent.prototype.ngAfterContentInit = /**
+     * @return {?}
+     */
+    function () {
+    };
+    CheckboxGroupComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'atCheckboxGroup',
+                    template: "<div class=\"at-checkbox-group\">\n  <atCheckbox *ngFor=\"let option of _checkList\" [label]=\"option.label\"\n              [(ngModel)]=\"option.checked\"\n              (changeCheck)=\"changeList()\">\n\n  </atCheckbox>\n</div>\n",
+                    providers: [
+                        {
+                            provide: NG_VALUE_ACCESSOR,
+                            useExisting: forwardRef(function () { return CheckboxGroupComponent; }),
+                            multi: true
+                        }
+                    ],
+                },] },
+    ];
+    /** @nocollapse */
+    CheckboxGroupComponent.ctorParameters = function () { return []; };
+    CheckboxGroupComponent.propDecorators = {
+        "checkbox": [{ type: ContentChildren, args: [CheckboxComponent,] },],
+    };
+    return CheckboxGroupComponent;
+}());
+export { CheckboxGroupComponent };
 function CheckboxGroupComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     CheckboxGroupComponent.decorators;

@@ -4,11 +4,8 @@
  */
 import { Component, Input } from '@angular/core';
 import { SelectComponent } from "../select.component";
-export class OptionComponent {
-    /**
-     * @param {?} _selectComponent
-     */
-    constructor(_selectComponent) {
+var OptionComponent = (function () {
+    function OptionComponent(_selectComponent) {
         this._selectComponent = _selectComponent;
         this._selected = false;
         this._isTag = false;
@@ -17,79 +14,98 @@ export class OptionComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
+    OptionComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
         this._selectComponent.addOption(this);
-    }
-    /**
-     * @return {?}
-     */
-    get isTag() {
-        return this._isTag;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set isTag(value) {
-        this._isTag = value;
-    }
-    /**
-     * @return {?}
-     */
-    get disabled() {
-        return this._disabled;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set disabled(value) {
-        this._disabled = value;
-    }
-    /**
-     * @return {?}
-     */
-    get atValue() {
-        return this._atValue;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atValue(value) {
-        this._atValue = value;
-    }
-    /**
-     * @return {?}
-     */
-    get atLabel() {
-        return this._atLabel;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set atLabel(value) {
-        this._atLabel = value;
-    }
-}
-OptionComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'atOption',
-                template: `
-    <ng-content></ng-content>
-  `,
-            },] },
-];
-/** @nocollapse */
-OptionComponent.ctorParameters = () => [
-    { type: SelectComponent, },
-];
-OptionComponent.propDecorators = {
-    "disabled": [{ type: Input },],
-    "atValue": [{ type: Input },],
-    "atLabel": [{ type: Input },],
-};
+    };
+    Object.defineProperty(OptionComponent.prototype, "isTag", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._isTag;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._isTag = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OptionComponent.prototype, "disabled", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._disabled;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._disabled = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OptionComponent.prototype, "atValue", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atValue;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atValue = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(OptionComponent.prototype, "atLabel", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._atLabel;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._atLabel = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    OptionComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'atOption',
+                    template: "\n    <ng-content></ng-content>\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    OptionComponent.ctorParameters = function () { return [
+        { type: SelectComponent, },
+    ]; };
+    OptionComponent.propDecorators = {
+        "disabled": [{ type: Input },],
+        "atValue": [{ type: Input },],
+        "atLabel": [{ type: Input },],
+    };
+    return OptionComponent;
+}());
+export { OptionComponent };
 function OptionComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     OptionComponent.decorators;

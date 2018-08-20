@@ -3,24 +3,28 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component } from '@angular/core';
-export class TabHeaderComponent {
-    constructor() { }
+var TabHeaderComponent = (function () {
+    function TabHeaderComponent() {
+    }
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
-}
-TabHeaderComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'app-tab-header',
-                template: `<ng-content>
-    
-  </ng-content>`,
-            },] },
-];
-/** @nocollapse */
-TabHeaderComponent.ctorParameters = () => [];
+    TabHeaderComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
+    TabHeaderComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'app-tab-header',
+                    template: "<ng-content>\n    \n  </ng-content>",
+                },] },
+    ];
+    /** @nocollapse */
+    TabHeaderComponent.ctorParameters = function () { return []; };
+    return TabHeaderComponent;
+}());
+export { TabHeaderComponent };
 function TabHeaderComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     TabHeaderComponent.decorators;

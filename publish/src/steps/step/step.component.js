@@ -4,12 +4,8 @@
  */
 import { Component, ElementRef, Input } from '@angular/core';
 import { StepsComponent } from "../steps.component";
-export class StepComponent {
-    /**
-     * @param {?} parent
-     * @param {?} el
-     */
-    constructor(parent, el) {
+var StepComponent = (function () {
+    function StepComponent(parent, el) {
         this.parent = parent;
         this.el = el;
         this.status = 'wait';
@@ -20,35 +16,40 @@ export class StepComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
-    /**
+    StepComponent.prototype.ngOnInit = /**
      * @return {?}
      */
-    get finnalStatus() {
-        return '';
-    }
-}
-StepComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'at-step',
-                template: `
-    <ng-content>
-
-    </ng-content>
-  `,
-            },] },
-];
-/** @nocollapse */
-StepComponent.ctorParameters = () => [
-    { type: StepsComponent, },
-    { type: ElementRef, },
-];
-StepComponent.propDecorators = {
-    "icon": [{ type: Input },],
-    "title": [{ type: Input },],
-    "description": [{ type: Input },],
-};
+    function () {
+    };
+    Object.defineProperty(StepComponent.prototype, "finnalStatus", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    StepComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'at-step',
+                    template: "\n    <ng-content>\n\n    </ng-content>\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    StepComponent.ctorParameters = function () { return [
+        { type: StepsComponent, },
+        { type: ElementRef, },
+    ]; };
+    StepComponent.propDecorators = {
+        "icon": [{ type: Input },],
+        "title": [{ type: Input },],
+        "description": [{ type: Input },],
+    };
+    return StepComponent;
+}());
+export { StepComponent };
 function StepComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     StepComponent.decorators;

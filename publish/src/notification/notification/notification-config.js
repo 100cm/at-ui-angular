@@ -2,21 +2,8 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-export class NotificationConfig {
-    /**
-     * @return {?}
-     */
-    guid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var /** @type {?} */ r = Math.random() * 16 | 0, /** @type {?} */ v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
-    /**
-     * @param {?} options
-     * @param {?=} type
-     */
-    constructor(options, type) {
+var NotificationConfig = (function () {
+    function NotificationConfig(options, type) {
         this.index = this.guid();
         this.title = options.title || '';
         this.state = 'enter';
@@ -26,7 +13,21 @@ export class NotificationConfig {
         this.showClose = options.showClose || true;
         this.type = type || options.type || 'info';
     }
-}
+    /**
+     * @return {?}
+     */
+    NotificationConfig.prototype.guid = /**
+     * @return {?}
+     */
+    function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var /** @type {?} */ r = Math.random() * 16 | 0, /** @type {?} */ v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+    return NotificationConfig;
+}());
+export { NotificationConfig };
 function NotificationConfig_tsickle_Closure_declarations() {
     /** @type {?} */
     NotificationConfig.prototype.index;

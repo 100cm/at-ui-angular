@@ -2,7 +2,7 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-export const /** @type {?} */ POSITION_MAP = /** @type {?} */ (({
+export var /** @type {?} */ POSITION_MAP = /** @type {?} */ (({
     'top': {
         originX: 'center',
         originY: 'top',
@@ -89,9 +89,9 @@ export const /** @type {?} */ POSITION_MAP = /** @type {?} */ (({
     },
 }));
 // TODO: The whole logic does not make sense here, _objectValues just returns a copy of original array
-export const /** @type {?} */ DEFAULT_4_POSITIONS = _objectValues([POSITION_MAP["top"], POSITION_MAP["right"], POSITION_MAP["bottom"], POSITION_MAP["left"]]);
-export const /** @type {?} */ DEFAULT_DROPDOWN_POSITIONS = _objectValues([POSITION_MAP["bottomLeft"], POSITION_MAP["topLeft"]]);
-export const /** @type {?} */ DEFAULT_DATEPICKER_POSITIONS = /** @type {?} */ ([
+export var /** @type {?} */ DEFAULT_4_POSITIONS = _objectValues([POSITION_MAP["top"], POSITION_MAP["right"], POSITION_MAP["bottom"], POSITION_MAP["left"]]);
+export var /** @type {?} */ DEFAULT_DROPDOWN_POSITIONS = _objectValues([POSITION_MAP["bottomLeft"], POSITION_MAP["topLeft"]]);
+export var /** @type {?} */ DEFAULT_DATEPICKER_POSITIONS = /** @type {?} */ ([
     {
         originX: 'start',
         originY: 'top',
@@ -112,9 +112,9 @@ export const /** @type {?} */ DEFAULT_DATEPICKER_POSITIONS = /** @type {?} */ ([
  * @return {?}
  */
 function arrayMap(array, iteratee) {
-    let /** @type {?} */ index = -1;
-    const /** @type {?} */ length = array == null ? 0 : array.length;
-    const /** @type {?} */ result = Array(length);
+    var /** @type {?} */ index = -1;
+    var /** @type {?} */ length = array == null ? 0 : array.length;
+    var /** @type {?} */ result = Array(length);
     while (++index < length) {
         result[index] = iteratee(array[index], index, array);
     }

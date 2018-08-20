@@ -3,12 +3,8 @@
  * @suppress {checkTypes} checked by tsc
  */
 import { Component, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
-export class DropdownMenuItemComponent {
-    /**
-     * @param {?} _elementRef
-     * @param {?} _renderer
-     */
-    constructor(_elementRef, _renderer) {
+var DropdownMenuItemComponent = (function () {
+    function DropdownMenuItemComponent(_elementRef, _renderer) {
         this._elementRef = _elementRef;
         this._renderer = _renderer;
         this._disabled = false;
@@ -21,94 +17,124 @@ export class DropdownMenuItemComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-    }
+    DropdownMenuItemComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+    };
+    Object.defineProperty(DropdownMenuItemComponent.prototype, "disabled", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._disabled;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._disabled = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DropdownMenuItemComponent.prototype, "divided", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._divided;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._divided = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
-    get disabled() {
-        return this._disabled;
-    }
-    /**
-     * @param {?} value
+    DropdownMenuItemComponent.prototype.setActive = /**
      * @return {?}
      */
-    set disabled(value) {
-        this._disabled = value;
-    }
-    /**
-     * @return {?}
-     */
-    get divided() {
-        return this._divided;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set divided(value) {
-        this._divided = value;
-    }
-    /**
-     * @return {?}
-     */
-    setActive() {
-    }
-    /**
-     * @return {?}
-     */
-    get activeCls() {
-        return this._active;
-    }
-    /**
-     * @return {?}
-     */
-    get getDivide() {
-        return this._divided;
-    }
-    /**
-     * @return {?}
-     */
-    get getDisableCls() {
-        return this.disabled;
-    }
-    /**
-     * @param {?} active
-     * @return {?}
-     */
-    set active(active) {
-        this._active = active;
-    }
-    /**
-     * @return {?}
-     */
-    get active() {
-        return this._active;
-    }
-}
-DropdownMenuItemComponent.decorators = [
-    { type: Component, args: [{
-                selector: '[atDropMenuItem]',
-                template: `<ng-content>
-  </ng-content>
-  `
-            },] },
-];
-/** @nocollapse */
-DropdownMenuItemComponent.ctorParameters = () => [
-    { type: ElementRef, },
-    { type: Renderer2, },
-];
-DropdownMenuItemComponent.propDecorators = {
-    "disabled": [{ type: Input },],
-    "divided": [{ type: Input },],
-    "item_class": [{ type: HostBinding, args: [`class.at-dropdown-menu__item`,] },],
-    "setActive": [{ type: HostListener, args: ['click',] },],
-    "activeCls": [{ type: HostBinding, args: ['class.at-dropdown-menu__item--active',] },],
-    "getDivide": [{ type: HostBinding, args: ['class.at-dropdown-menu__item--divided',] },],
-    "getDisableCls": [{ type: HostBinding, args: ['class.at-dropdown-menu__item--disabled',] },],
-    "active": [{ type: Input, args: ['active',] },],
-};
+    function () {
+    };
+    Object.defineProperty(DropdownMenuItemComponent.prototype, "activeCls", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._active;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DropdownMenuItemComponent.prototype, "getDivide", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._divided;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DropdownMenuItemComponent.prototype, "getDisableCls", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this.disabled;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DropdownMenuItemComponent.prototype, "active", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._active;
+        },
+        set: /**
+         * @param {?} active
+         * @return {?}
+         */
+        function (active) {
+            this._active = active;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    DropdownMenuItemComponent.decorators = [
+        { type: Component, args: [{
+                    selector: '[atDropMenuItem]',
+                    template: "<ng-content>\n  </ng-content>\n  "
+                },] },
+    ];
+    /** @nocollapse */
+    DropdownMenuItemComponent.ctorParameters = function () { return [
+        { type: ElementRef, },
+        { type: Renderer2, },
+    ]; };
+    DropdownMenuItemComponent.propDecorators = {
+        "disabled": [{ type: Input },],
+        "divided": [{ type: Input },],
+        "item_class": [{ type: HostBinding, args: ["class.at-dropdown-menu__item",] },],
+        "setActive": [{ type: HostListener, args: ['click',] },],
+        "activeCls": [{ type: HostBinding, args: ['class.at-dropdown-menu__item--active',] },],
+        "getDivide": [{ type: HostBinding, args: ['class.at-dropdown-menu__item--divided',] },],
+        "getDisableCls": [{ type: HostBinding, args: ['class.at-dropdown-menu__item--disabled',] },],
+        "active": [{ type: Input, args: ['active',] },],
+    };
+    return DropdownMenuItemComponent;
+}());
+export { DropdownMenuItemComponent };
 function DropdownMenuItemComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     DropdownMenuItemComponent.decorators;

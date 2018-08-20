@@ -4,8 +4,8 @@
  */
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import * as moment from 'moment';
-export class TimeComponent {
-    constructor() {
+var TimeComponent = (function () {
+    function TimeComponent() {
         this._selected_second = moment().hour();
         this._selected_minutes = moment().minute();
         this._selected_hour = moment().hour();
@@ -17,186 +17,203 @@ export class TimeComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
+    TimeComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
         this._buildHours();
         this._buildMinutes();
         this._buildSeconds();
-    }
+    };
+    Object.defineProperty(TimeComponent.prototype, "selected_second", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._selected_second;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._selected_second = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TimeComponent.prototype, "selected_minutes", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._selected_minutes;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._selected_minutes = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(TimeComponent.prototype, "selected_hour", {
+        get: /**
+         * @return {?}
+         */
+        function () {
+            return this._selected_hour;
+        },
+        set: /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this._selected_hour = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * @return {?}
      */
-    get selected_second() {
-        return this._selected_second;
-    }
-    /**
-     * @param {?} value
+    TimeComponent.prototype._buildHours = /**
      * @return {?}
      */
-    set selected_second(value) {
-        this._selected_second = value;
-    }
-    /**
-     * @return {?}
-     */
-    get selected_minutes() {
-        return this._selected_minutes;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set selected_minutes(value) {
-        this._selected_minutes = value;
-    }
-    /**
-     * @return {?}
-     */
-    get selected_hour() {
-        return this._selected_hour;
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    set selected_hour(value) {
-        this._selected_hour = value;
-    }
-    /**
-     * @return {?}
-     */
-    _buildHours() {
+    function () {
         this.hours = [];
-        for (let /** @type {?} */ i = 0; i <= 23; i++) {
+        for (var /** @type {?} */ i = 0; i <= 23; i++) {
             this.hours.push({
                 name: i.toString().length === 1 ? ('0' + i) : ('' + i),
                 index: i
             });
         }
-    }
+    };
     /**
      * @return {?}
      */
-    _buildMinutes() {
+    TimeComponent.prototype._buildMinutes = /**
+     * @return {?}
+     */
+    function () {
         this.minutes = [];
-        for (let /** @type {?} */ i = 0; i <= 59; i++) {
+        for (var /** @type {?} */ i = 0; i <= 59; i++) {
             this.minutes.push({
                 name: i.toString().length === 1 ? ('0' + i) : ('' + i),
                 index: i
             });
         }
-    }
+    };
     /**
      * @return {?}
      */
-    _buildSeconds() {
+    TimeComponent.prototype._buildSeconds = /**
+     * @return {?}
+     */
+    function () {
         this.seconds = [];
-        for (let /** @type {?} */ i = 0; i <= 59; i++) {
+        for (var /** @type {?} */ i = 0; i <= 59; i++) {
             this.seconds.push({
                 name: i.toString().length === 1 ? ('0' + i) : ('' + i),
                 index: i
             });
         }
-    }
+    };
     /**
      * @return {?}
      */
-    ngAfterViewChecked() {
+    TimeComponent.prototype.ngAfterViewChecked = /**
+     * @return {?}
+     */
+    function () {
         if (!this.inited) {
             this.inited = true;
             this.setPosition();
         }
-    }
+    };
     /**
      * @return {?}
      */
-    ngAfterContentInited() {
-    }
+    TimeComponent.prototype.ngAfterContentInited = /**
+     * @return {?}
+     */
+    function () {
+    };
     /**
      * @return {?}
      */
-    setPosition() {
-        let /** @type {?} */ m_p = this.selected_minutes / 60;
-        let /** @type {?} */ h_p = this.selected_hour / 24;
-        let /** @type {?} */ s_p = this.selected_second / 60;
-        let /** @type {?} */ h_el = this.hour_panel._elementRef.nativeElement;
-        let /** @type {?} */ m_el = this.minute_panel._elementRef.nativeElement;
-        let /** @type {?} */ s_el = this.second_panel._elementRef.nativeElement;
-        let /** @type {?} */ h_el_height = h_el.scrollHeight;
-        let /** @type {?} */ m_el_height = m_el.scrollHeight;
-        let /** @type {?} */ s_el_height = s_el.scrollHeight;
+    TimeComponent.prototype.setPosition = /**
+     * @return {?}
+     */
+    function () {
+        var /** @type {?} */ m_p = this.selected_minutes / 60;
+        var /** @type {?} */ h_p = this.selected_hour / 24;
+        var /** @type {?} */ s_p = this.selected_second / 60;
+        var /** @type {?} */ h_el = this.hour_panel._elementRef.nativeElement;
+        var /** @type {?} */ m_el = this.minute_panel._elementRef.nativeElement;
+        var /** @type {?} */ s_el = this.second_panel._elementRef.nativeElement;
+        var /** @type {?} */ h_el_height = h_el.scrollHeight;
+        var /** @type {?} */ m_el_height = m_el.scrollHeight;
+        var /** @type {?} */ s_el_height = s_el.scrollHeight;
         h_el.scrollTop = h_el_height * h_p;
         s_el.scrollTop = s_el_height * s_p;
         m_el.scrollTop = m_el_height * m_p;
-    }
+    };
     /**
      * @param {?} index
      * @return {?}
      */
-    _select_minutes(index) {
+    TimeComponent.prototype._select_minutes = /**
+     * @param {?} index
+     * @return {?}
+     */
+    function (index) {
         this.selected_second;
-    }
+    };
     /**
      * @param {?} index
      * @return {?}
      */
-    _select_hour(index) {
-    }
+    TimeComponent.prototype._select_hour = /**
+     * @param {?} index
+     * @return {?}
+     */
+    function (index) {
+    };
     /**
      * @param {?} index
      * @return {?}
      */
-    _select_second(index) {
-    }
-}
-TimeComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'atTime',
-                template: `
-    <div atRow>
-      <div #hour_panel atCol [span]="8" class="at-time-panel">
-        <ul>
-          <li *ngFor="let s of hours"
-              [ngClass]="{'time-selected':s.index == selected_hour}">
-            {{s.name}}
-          </li>
-        </ul>
-      </div>
-      <div #minute_panel atCol [span]="8" class="at-time-panel">
-        <ul>
-          <li *ngFor="let s of minutes"
-              [ngClass]="{'time-selected':s.index == selected_minutes}"
-          >
-            {{s.name}}
-          </li>
-        </ul>
-      </div>
-      <div #second_panel atCol [span]="8" class="at-time-panel">
-
-        <ul>
-          <li *ngFor="let s of seconds"
-              [ngClass]="{'time-selected':s.index == selected_second}"
-          >
-            {{s.name}}
-          </li>
-        </ul>
-      </div>
-    </div>
-  `,
-            },] },
-];
-/** @nocollapse */
-TimeComponent.ctorParameters = () => [];
-TimeComponent.propDecorators = {
-    "selectHour": [{ type: Output },],
-    "selectMinute": [{ type: Output },],
-    "selectSecond": [{ type: Output },],
-    "selected_second": [{ type: Input },],
-    "selected_minutes": [{ type: Input },],
-    "selected_hour": [{ type: Input },],
-    "hour_panel": [{ type: ViewChild, args: ['hour_panel',] },],
-    "minute_panel": [{ type: ViewChild, args: ['minute_panel',] },],
-    "second_panel": [{ type: ViewChild, args: ['second_panel',] },],
-};
+    TimeComponent.prototype._select_second = /**
+     * @param {?} index
+     * @return {?}
+     */
+    function (index) {
+    };
+    TimeComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'atTime',
+                    template: "\n    <div atRow>\n      <div #hour_panel atCol [span]=\"8\" class=\"at-time-panel\">\n        <ul>\n          <li *ngFor=\"let s of hours\"\n              [ngClass]=\"{'time-selected':s.index == selected_hour}\">\n            {{s.name}}\n          </li>\n        </ul>\n      </div>\n      <div #minute_panel atCol [span]=\"8\" class=\"at-time-panel\">\n        <ul>\n          <li *ngFor=\"let s of minutes\"\n              [ngClass]=\"{'time-selected':s.index == selected_minutes}\"\n          >\n            {{s.name}}\n          </li>\n        </ul>\n      </div>\n      <div #second_panel atCol [span]=\"8\" class=\"at-time-panel\">\n\n        <ul>\n          <li *ngFor=\"let s of seconds\"\n              [ngClass]=\"{'time-selected':s.index == selected_second}\"\n          >\n            {{s.name}}\n          </li>\n        </ul>\n      </div>\n    </div>\n  ",
+                },] },
+    ];
+    /** @nocollapse */
+    TimeComponent.ctorParameters = function () { return []; };
+    TimeComponent.propDecorators = {
+        "selectHour": [{ type: Output },],
+        "selectMinute": [{ type: Output },],
+        "selectSecond": [{ type: Output },],
+        "selected_second": [{ type: Input },],
+        "selected_minutes": [{ type: Input },],
+        "selected_hour": [{ type: Input },],
+        "hour_panel": [{ type: ViewChild, args: ['hour_panel',] },],
+        "minute_panel": [{ type: ViewChild, args: ['minute_panel',] },],
+        "second_panel": [{ type: ViewChild, args: ['second_panel',] },],
+    };
+    return TimeComponent;
+}());
+export { TimeComponent };
 function TimeComponent_tsickle_Closure_declarations() {
     /** @type {!Array<{type: !Function, args: (undefined|!Array<?>)}>} */
     TimeComponent.decorators;
