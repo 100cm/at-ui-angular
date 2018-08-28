@@ -25,8 +25,6 @@ export class TabComponent implements OnInit {
   @ViewChild(TemplateRef) _content: TemplateRef<any>;
 
   tab_contents = []
-
-
   constructor(private _tabSetComponent: TabSetComponent) {
 
   }

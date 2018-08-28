@@ -1,7 +1,7 @@
 import {Directive, HostBinding, Input} from '@angular/core';
 
 @Directive({
-  selector: '[atTh]'
+  selector: '[at-th]'
 })
 export class AtThDirective {
 

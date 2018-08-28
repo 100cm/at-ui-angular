@@ -5,7 +5,7 @@ import {NotificationContainerComponent} from "../notification-container/notifica
 import {StatusIconType} from "../../icon/icon-status-type";
 
 @Component({
-  selector: 'atNotification',
+  selector: 'at-notification',
   template: `
     <div (mouseenter)="stopRemove()" (mouseleave)="startRemove()"
          [@enterLeave]="config.state"

@@ -1,7 +1,7 @@
 import {Directive, HostBinding} from '@angular/core';
 
 @Directive({
-  selector: '[atTbody]'
+  selector: '[at-tbody]'
 })
 export class AtTbodyDirective {
 

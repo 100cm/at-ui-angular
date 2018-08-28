@@ -1,7 +1,7 @@
 import {Directive, HostBinding} from '@angular/core';
 
 @Directive({
-  selector: '[atFormItem]'
+  selector: '[at-form-item]'
 })
 export class AtFormItemDirective {
 

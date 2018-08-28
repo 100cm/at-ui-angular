@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-at-demo-layout',
-  templateUrl: './at-demo-layout.component.html',
-  styleUrls: ['./at-demo-layout.component.css']
-})
+             selector: 'app-at-demo-layout',
+             templateUrl: './at-demo-layout.component.html',
+             styleUrls: ['./at-demo-layout.component.css']
+           })
 export class AtDemoLayoutComponent implements OnInit {
 
   constructor() {
@@ -13,7 +13,7 @@ export class AtDemoLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
-  rows = new Array(12)
+  rows     = new Array(12)
   basicRow = '  <div at-row *ngFor="let row of rows;let i= index" >\n' +
     '        <div at-col [span]="i+1">\n' +
     '          <div class="bg-c-brand-light at-box-row" ></div>\n' +
@@ -44,7 +44,7 @@ export class AtDemoLayoutComponent implements OnInit {
     '        </div>\n' +
     '      </div>'
 
-  flexTypeRow= " flex_type = [\'center\', \'end\', \'start\', \'around\', \'between\'];\n " +
+  flexTypeRow = " flex_type = [\'center\', \'end\', \'start\', \'around\', \'between\'];\n " +
     '     <div *ngFor="let item of flex_type">\n' +
     '        <div class="demo-desc">\n' +
     '          flex-{{item}}\n' +
@@ -70,7 +70,7 @@ export class AtDemoLayoutComponent implements OnInit {
 
   flex_type = ['center', 'end', 'start', 'around', 'between'];
 
-  align_type = ['middle', 'top', 'bottom']
+  align_type   = ['middle', 'top', 'bottom']
   alignTypeRow = ' align_type = [\'middle\', \'top\', \'bottom\']\n' +
     '      <div *ngFor="let item of align_type">\n' +
     '        <div class="demo-desc">\n' +
@@ -94,4 +94,7 @@ export class AtDemoLayoutComponent implements OnInit {
     '          </div>\n' +
     '        </div>\n' +
     '      </div>';
+
+  dashboard_one_code = require('../admin/admin.component.html')
+  dashboard_two_code = require('../admin/admin.component_two.html')
 }

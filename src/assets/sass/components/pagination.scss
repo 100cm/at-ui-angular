@@ -7,7 +7,6 @@
 .at-pagination {
   @include clearfix();
   list-style: none;
-  font-size: 0;
 
   /* elements */
   &__item,

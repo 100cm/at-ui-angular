@@ -31,10 +31,7 @@ import {DropdownDirective}                                                      
              selector: 'at-dropdown',
              changeDetection: ChangeDetectionStrategy.OnPush,
              template: `
-               <div>
-                 <ng-content select="[at-dropdown]"></ng-content>
-                 <ng-content select="[at-dropdown-context]"></ng-content>
-               </div>
+               <ng-content select="[at-dropdown]"></ng-content>
                <ng-template
                  cdkConnectedOverlay
                  [cdkConnectedOverlayBackdropClass]="'select-back-drop'"
@@ -145,7 +142,6 @@ export class DropdownComponent implements OnInit {
   }
 
   _hide(): void {
-    console.log('click hide')
     this._visibleChange.next(false);
   }
 

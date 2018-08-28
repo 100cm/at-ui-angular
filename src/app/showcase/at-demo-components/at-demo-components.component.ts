@@ -86,6 +86,11 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'timeline'
     },
     {
+      name: '树',
+      url: '/components/tree',
+      name_en: 'tree'
+    },
+    {
       name: '滑动选择',
       url: '/components/slider',
       name_en: 'slider'

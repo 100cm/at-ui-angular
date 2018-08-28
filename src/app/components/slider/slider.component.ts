@@ -9,11 +9,10 @@ import {
   Renderer2,
   ViewChild
 }                                             from '@angular/core';
-import {from, fromEvent, Observable, Subject} from "rxjs";
+import {from,merge, fromEvent, Observable, Subject} from "rxjs";
 import {concatAll, map, takeUntil}            from "rxjs/operators";
 import {NG_VALUE_ACCESSOR}                    from "@angular/forms";
 import {fadeAnimation}                        from "../animations/fade-animation";
-import {merge}                                from "rxjs/internal/observable/merge";
 
 var _ = require('lodash')
 

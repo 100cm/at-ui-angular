@@ -1,15 +1,17 @@
 import {Component, ContentChildren, Input, OnInit, QueryList, ViewChild} from '@angular/core';
-import {TabLabelDirective} from "../tab-label.directive";
-import {AtTabInkDirective} from "../at-tab-ink.directive";
+import {TabLabelDirective}                                               from "../tab-label.directive";
+import {AtTabInkDirective}                                               from "../at-tab-ink.directive";
 
 @Component({
-  selector: 'at-tab-navs',
-  template: `
-    <div AtTabInk [atPositionMode]="position" class="at-tabs-ink-bar at-tabs-ink-bar-animated"></div>
-    <ng-content></ng-content>
-  `,
+             selector: 'at-tab-navs',
+             template: `
+               <div AtTabInk [atPositionMode]="position"
+                    [ngStyle]="{display: showInk ? '': 'none'}"
+                    class="at-tabs-ink-bar at-tabs-ink-bar-animated"></div>
+               <ng-content></ng-content>
+             `,
 
-})
+           })
 export class TabNavsComponent implements OnInit {
 
 
@@ -20,6 +22,8 @@ export class TabNavsComponent implements OnInit {
   get selected_index() {
     return this._selected_index
   }
+
+  @Input() showInk = true
 
   _selected_index = 0
   _position_modal = 'horizontal'
@@ -50,11 +54,13 @@ export class TabNavsComponent implements OnInit {
   }
 
   ngAfterContentInit() {
-    this._inkBar.alignToElement(this._labelWrappers.toArray()[0].elementRef.nativeElement)
+    if (this.showInk) {
+      this._inkBar.alignToElement(this._labelWrappers.toArray()[0].elementRef.nativeElement)
+    }
   }
 
   alignInk(index) {
-    if (this._labelWrappers) {
+    if (this._labelWrappers && this.showInk) {
       this._inkBar.alignToElement(this._labelWrappers.toArray()[index].elementRef.nativeElement)
     }
   }

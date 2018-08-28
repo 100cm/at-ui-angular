@@ -18,11 +18,11 @@ import {MenuComponent}                                                          
 import {style, animate, state, transition, trigger}                                  from '@angular/animations';
 import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from "@angular/cdk/overlay";
 import {POSITION_MAP}                                                                from "../../core/overlay/overlay-position-map";
-import {BehaviorSubject}                                                             from "rxjs/internal/BehaviorSubject";
-import {Subject}                                                                     from "rxjs/internal/Subject";
-import {combineLatest}                                                               from "rxjs/internal/observable/combineLatest";
-import {auditTime, map, takeUntil}                                                   from "rxjs/operators";
-import {AtDropSubmenuComponent}                                                      from "../../dropdown/at-drop-submenu/at-drop-submenu.component";
+import {combineLatest,BehaviorSubject, Subject}                                                    from "rxjs";
+
+import {auditTime, map, takeUntil} from "rxjs/operators";
+import {AtDropSubmenuComponent}    from "../../dropdown/at-drop-submenu/at-drop-submenu.component";
+import {ExpandAnimation}           from "../../animations/expand-animation";
 
 @Component({
              selector: '[at-submenu]',
@@ -66,6 +66,7 @@ import {AtDropSubmenuComponent}                                                 
                  </div>
                </ng-template>
                <div
+                 *ngIf="subMenuType=='inline'"
                  class="at-sub-dropdown-menu"
                  [@expandAnimation]="expandState">
                  <ng-template [ngTemplateOutlet]="subMenuTemplate"></ng-template>
@@ -76,40 +77,7 @@ import {AtDropSubmenuComponent}                                                 
 
              `,
              animations: [
-               trigger('expandAnimation', [
-                 state('expand', style({height: '*'})),
-                 state('hidden', style({height: 0, overflow: 'hidden'})),
-                 transition('expand => hidden', animate(150)),
-                 transition('hidden => expand', animate(150)),
-                 state('fade', style({opacity: 1})),
-                 transition('fade => void', [
-                   animate(150, style({opacity: 0}))
-                 ]),
-                 transition('void => fade', [
-                   style({opacity: '0'}),
-                   animate(150)
-                 ]),
-                 state('bottom', style({
-                                         opacity: 1,
-                                         transform: 'scaleY(1)',
-                                         transformOrigin: '0% 0%'
-                                       })),
-                 transition('void => bottom', [
-                   style({
-                           opacity: 0,
-                           transform: 'scaleY(0.8)',
-                           transformOrigin: '0% 0%'
-                         }),
-                   animate('150ms cubic-bezier(0.23, 1, 0.32, 1)')
-                 ]),
-                 transition('bottom => void', [
-                   animate('150ms cubic-bezier(0.23, 1, 0.32, 1)', style({
-                                                                           opacity: 0,
-                                                                           transform: 'scaleY(0.8)',
-                                                                           transformOrigin: '0% 0%'
-                                                                         }))
-                 ])
-               ])
+               ExpandAnimation
              ],
            })
 export class SubMenuComponent implements OnInit {

@@ -1,0 +1,232 @@
+<section>
+  <h1>Tree</h1>
+  <hr>
+  <doc-section [title]="'基础使用'" [code]="basic_tree_code">
+    <div sample>
+      <app-at-demo-basic-tree>
+
+      </app-at-demo-basic-tree>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'自定义icon'" [code]="custom_tree_code">
+    <div sample>
+      <app-at-demo-custom-tree>
+
+      </app-at-demo-custom-tree>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'可选的'" [code]="checkable_tree_code">
+    <div sample>
+      <app-at-demo-checkable-tree>
+
+      </app-at-demo-checkable-tree>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'递归树'" [code]="group_tree_code">
+    <div sample>
+      <app-at-demo-tree-group>
+
+      </app-at-demo-tree-group>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'延迟加载测试'" [code]="remote_tree_code">
+    <div sample>
+      <app-at-demo-remote-tree>
+
+      </app-at-demo-remote-tree>
+    </div>
+  </doc-section>
+
+  <doc-section [sample]="false" [title]="'at-tree 属性'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>title</td>
+        <td>树节点标题</td>
+        <td>String</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>closeIcon</td>
+        <td>自定义闭合icon</td>
+        <td>TemplateRef</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>openIcon</td>
+        <td>自定义打开icon</td>
+        <td>TemplateRef</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>key</td>
+        <td>该节点对应的key值</td>
+        <td>any</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>checkedChange</td>
+        <td>checked改变事件回调</td>
+        <td>@Output()</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>checked</td>
+        <td>是否选中</td>
+        <td>boolean</td>
+        <td>支持双向绑定[()]语法糖</td>
+        <td>false</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+
+
+  <doc-section [sample]="false" [title]="'at-tree-node 属性'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>checked</td>
+        <td>是否选中</td>
+        <td>boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+
+      <tr>
+        <td>key</td>
+        <td>该叶子节点对应的key值</td>
+        <td>boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </doc-section>
+
+
+  <doc-section [sample]="false" [title]="'at-tree-root 属性'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型/返回类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>atShowLine</td>
+        <td>是否显示链接线</td>
+        <td>boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+
+      <tr>
+        <td>atIconMode</td>
+        <td>icon模式</td>
+        <td>
+          <code>plus</code>,
+          <code>arrow</code>
+        </td>
+        <td>-</td>
+        <td>arrow</td>
+      </tr>
+
+      <tr>
+        <td>atIconMode</td>
+        <td>icon模式</td>
+        <td>
+          <code>plus</code>,
+          <code>arrow</code>
+        </td>
+        <td>-</td>
+        <td>arrow</td>
+      </tr>
+
+      <tr>
+        <td>getCheckedLeafKeys()</td>
+        <td>root节点引用获取叶子节点选中的key</td>
+        <td>[...keys]</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>getCheckedKeys()</td>
+        <td>root节点引用获取所有节点选中的key</td>
+        <td>[...keys]</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>getCheckedTreeKeys()</td>
+        <td>root节点引用获取tree节点选中的key</td>
+        <td>[...keys]</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>atNodeCheckChange</td>
+        <td>任意节点check变化回调</td>
+        <td>@OutPut() {{ '{key:"",node:"",checked:""}'}}</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>atExpandChange</td>
+        <td>任意节点打开回调</td>
+        <td>@OutPut() {{'{key:"",state:expand | hidden }'}}</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+
+      </tbody>
+    </table>
+
+  </doc-section>
+
+
+</section>
+

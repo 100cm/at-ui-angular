@@ -1,11 +1,11 @@
 <div>
   checkbox 的值为 {{checked}}
 </div>
-<atCheckbox [label]="'check me!'" [(ngModel)]="checked">
+<at-checkbox [label]="'check me!'" [(ngModel)]="checked">
 
-</atCheckbox>
+</at-checkbox>
 <hr>
 <div>不可用的多选框</div>
-<atCheckbox [label]="'check me!'" [atDisabled]="true" [(ngModel)]="checked">
+<at-checkbox [label]="'check me!'" [state]="'indeterminate'" [(ngModel)]="checked">
 
-</atCheckbox>
+</at-checkbox>

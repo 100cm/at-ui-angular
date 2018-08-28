@@ -3,10 +3,10 @@ import {NotificationConfig} from "../notification/notification-config";
 
 
 @Component({
-  selector: 'app-notification-container',
+  selector: 'at-notification-container',
   template: `
     <div class="at-notification-container">
-      <atNotification *ngFor="let item of notifications" [config]="item"></atNotification>
+      <at-notification *ngFor="let item of notifications" [config]="item"></at-notification>
     </div>
   `,
   styles: [

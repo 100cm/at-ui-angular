@@ -7,7 +7,7 @@ cp -r src/app/components src/__gen_components
 
 
 echo 'Generating entry file using Angular compiler'
-$(npm bin)/ngc -p tsconfig-build.json
+$(npm bin)/ngc -p tsconfig-build.json -t es5
 rm -rf src/__gen_components
 
 echo 'Bundling to es module'

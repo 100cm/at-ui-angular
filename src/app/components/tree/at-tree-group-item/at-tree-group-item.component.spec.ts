@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CheckboxComponent } from './checkbox.component';
+import { AtTreeGroupItemComponent } from './at-tree-group-item.component';
 
-describe('CheckboxComponent', () => {
-  let component: CheckboxComponent;
-  let fixture: ComponentFixture<CheckboxComponent>;
+describe('AtTreeGroupItemComponent', () => {
+  let component: AtTreeGroupItemComponent;
+  let fixture: ComponentFixture<AtTreeGroupItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CheckboxComponent ]
+      declarations: [ AtTreeGroupItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CheckboxComponent);
+    fixture = TestBed.createComponent(AtTreeGroupItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

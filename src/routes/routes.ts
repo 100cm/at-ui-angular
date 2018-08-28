@@ -42,6 +42,7 @@ import {AtDemoTimelineComponent} from "../app/showcase/at-demo-timeline/at-demo-
 import {AtDemoAffixComponent}    from "../app/showcase/at-demo-affix/at-demo-affix.component";
 import {AtDemoUploadComponent}   from "../app/showcase/at-demo-upload/at-demo-upload.component";
 import {AdminComponent}          from "../app/showcase/admin/admin.component";
+import {AtDemoTreeComponent}     from "../app/showcase/at-demo-tree/at-demo-tree.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
@@ -89,7 +90,8 @@ const appRoutes: Routes = [
       {path: 'steps', component: AtDemoStepsComponent},
       {path: 'time-line', component: AtDemoTimelineComponent},
       {path: 'upload', component: AtDemoUploadComponent},
-      {path: 'affix', component: AtDemoAffixComponent}
+      {path: 'affix', component: AtDemoAffixComponent},
+      {path:'tree',component:AtDemoTreeComponent}
     ]
 
   },

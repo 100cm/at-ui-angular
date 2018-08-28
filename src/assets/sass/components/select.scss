@@ -44,13 +44,13 @@
     display: block;
     padding: $select-padding-base;
     outline: none;
-    line-height: $select-selection-height-base;
+    line-height: $select-selection-height-sm;
     border: 1px solid $border-color-base;
     border-radius: $border-radius-base;
     background-color: $color-white;
     transition: all .3s;
     cursor: pointer;
-    min-height: $select-selection-height-base;
+    min-height: $select-selection-height-sm;
     overflow: hidden;
 
     &:hover {

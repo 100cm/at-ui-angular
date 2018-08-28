@@ -5,7 +5,7 @@ import {TagAnimation} from "../animations/tag-animation";
 const tagThemes: Array<string> = ['default', 'primary', 'success', 'error', 'warning']
 
 @Component({
-  selector: 'atTag',
+  selector: 'at-tag',
   template:`<span #tag *ngIf="!closed"
                   [@tagAnimation]
   >

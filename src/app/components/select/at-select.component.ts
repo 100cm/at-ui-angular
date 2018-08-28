@@ -32,7 +32,6 @@ import {AtSelectTopControlComponent}                                           f
 
 @Component({
              selector: 'at-select',
-             preserveWhitespaces: false,
              providers: [
                {
                  provide: NG_VALUE_ACCESSOR,
@@ -91,10 +90,11 @@ import {AtSelectTopControlComponent}                                           f
              template: `
                <div
                  cdkOverlayOrigin
-                 class="atSelect atSelect--{{atSize}}"
-                 [class.atSelect--open]="atOpen"
-                 [class.atSelect-Single]="isSingleMode"
-                 [class.atSelect--multiple]="isMultipleOrTags"
+                 class="at-select at-select--{{atSize}}"
+                 [class.at-select--open]="atOpen"
+                 [class.at-select-single]="isSingleMode"
+                 [class.at-select--multiple]="isMultipleOrTags"
+                 [class.at-select--disabled]="atDisabled"
                  (keydown)="onKeyDownCdkOverlayOrigin($event)"
                  tabindex="0">
                  <div
@@ -150,8 +150,7 @@ import {AtSelectTopControlComponent}                                           f
                <ng-template>
                  <ng-content></ng-content>
                </ng-template>
-             `,
-             styles: [``]
+             `
            })
 export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
   private _disabled                                     = false;

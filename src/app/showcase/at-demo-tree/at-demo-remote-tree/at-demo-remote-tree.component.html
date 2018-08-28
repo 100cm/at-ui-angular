@@ -1,0 +1,14 @@
+<at-tree-root [atShowLine]="true">
+  <at-tree *ngFor="let item of tree" [title]="item.title">
+    <at-tree-node *ngIf="!item.children || item.children.length == 0" [atDisabled]="child.disabled"
+                  [(checked)]="item.checked">
+      {{item.title}}
+    </at-tree-node>
+    <at-tree [checked]="item.checked" [title]="item.title"
+             *ngIf="item.children && item.children.length">
+      <at-tree-node *ngFor="let child of item.children" [(checked)]="child.checked" [atDisabled]="child.disabled">
+        {{child.title}}
+      </at-tree-node>
+    </at-tree>
+  </at-tree>
+</at-tree-root>
