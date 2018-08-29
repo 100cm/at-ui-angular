@@ -10,7 +10,5 @@ import {RowComponent}      from "../../grid/row/row.component";
            })
 export class AtFormItemComponent extends RowComponent implements OnInit {
 
-  ngOnInit() {
-  }
 
 }

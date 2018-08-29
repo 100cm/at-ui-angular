@@ -67,6 +67,8 @@
   &__selected {
     @include ellipsis();
     display: block;
+    padding-left: 6px;
+    font-size: 12px;
   }
   &__arrow {
     display: inline-block;
