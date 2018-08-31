@@ -13,7 +13,7 @@
   padding: 0 5px;
   font-size: 16px;
   display: inline-block;
-  line-height: 34px;
+  line-height: 40px;
 }
 
 @mixin date-select() {
@@ -21,16 +21,16 @@
   font-weight: 700;
   display: inline-block;
   color: $black-600;
-  line-height: 34px;
+  line-height: 40px;
 }
 
 .at-datepicker {
   position: relative;
   outline: none;
-  width: 231px;
+  width: 255px;
   border: 1px solid #fff;
   list-style: none;
-  font-size: 12px;
+  font-size: 14px;
   text-align: left;
   background-color: #fff;
   border-radius: 4px;
@@ -42,12 +42,15 @@
       color: $blue-500;
     }
   }
+  &--footer {
+    padding: 8px 12px;
+  }
 
   &--panel {
     position: relative;
     &--header {
-      height: 34px;
-      line-height: 34px;
+      height: 40px;
+      line-height: 40px;
       text-align: center;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -108,7 +111,8 @@
     }
 
     &--body {
-
+      padding: 8px 12px;
+      border-bottom: 1px solid #F7F7F7;
       .at-calendar-table {
         border-collapse: collapse;
         max-width: 100%;
@@ -190,7 +194,7 @@
           .at-month-cell {
             text-align: center;
             .at-date {
-              width: 40px;
+              width: 45px;
               height: 36px;
               line-height: 36px;
             }

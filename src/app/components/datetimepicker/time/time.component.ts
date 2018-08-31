@@ -3,7 +3,7 @@ import {ColComponent} from "../../grid/col/col.component";
 import * as moment from 'moment'
 
 @Component({
-  selector: 'atTime',
+  selector: 'at-time',
   template: `
     <div at-row>
       <div #hour_panel at-col [span]="8" class="at-time-panel">

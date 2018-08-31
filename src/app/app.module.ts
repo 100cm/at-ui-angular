@@ -82,7 +82,6 @@ import {AtDemoPagenationComponent} from './showcase/at-demo-pagenation/at-demo-p
 import {DropdownMenuItemComponent} from './components/menu/dropdown-menu-item/dropdown-menu-item.component';
 import {DropMenuListComponent} from './components/menu/drop-menu-list/drop-menu-list.component';
 import {DemoPlaceDropdownComponent} from './showcase/at-demo-dropdown/demo-place-dropdown/demo-place-dropdown.component';
-import {AtModule} from "./components/at-ng.module";
 import {AtDemoNotificationComponent} from './showcase/at-demo-notification/at-demo-notification.component';
 import {AtDemoAlertComponent} from './showcase/at-demo-alert/at-demo-alert.component';
 import {AtDemoBadgeComponent} from './showcase/at-demo-badge/at-demo-badge.component';
@@ -150,10 +149,11 @@ import { AtDemoTreeComponent } from './showcase/at-demo-tree/at-demo-tree.compon
 import { AtDemoBasicTreeComponent } from './showcase/at-demo-tree/at-demo-basic-tree/at-demo-basic-tree.component';
 import { AtDemoCustomTreeComponent } from './showcase/at-demo-tree/at-demo-custom-tree/at-demo-custom-tree.component';
 import { AtDemoCheckableTreeComponent } from './showcase/at-demo-tree/at-demo-checkable-tree/at-demo-checkable-tree.component';
-import { AtDemoTreeGroupComponent } from './showcase/at-demo-tree/at-demo-tree-group/at-demo-tree-group.component';
-import { AtDemoRemoteTreeComponent } from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
-import { AtDemoCardTabComponent } from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
-import { AtDemoSizeTabsComponent } from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
+import { AtDemoTreeGroupComponent }     from './showcase/at-demo-tree/at-demo-tree-group/at-demo-tree-group.component';
+import { AtDemoRemoteTreeComponent }    from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
+import { AtDemoCardTabComponent }       from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
+import { AtDemoSizeTabsComponent }      from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
+import {AtModule}                       from "./components/at-ng.module";
 
 
 @NgModule({
@@ -298,8 +298,9 @@ import { AtDemoSizeTabsComponent } from './showcase/at-demo-tabs/at-demo-size-ta
     routing,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     AtModule.forRoot(),
+    ReactiveFormsModule,
+
     BrowserModule, BrowserAnimationsModule
   ],
   providers: [],

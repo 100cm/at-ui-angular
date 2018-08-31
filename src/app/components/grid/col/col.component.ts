@@ -1,6 +1,16 @@
-import {Component, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges} from '@angular/core';
-import {isNotNil}                                                                               from "../../utils/class-helper";
-import {RowComponent}                                                                           from "../row/row.component";
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnInit,
+  Optional,
+  Renderer2,
+  SimpleChanges
+}                     from '@angular/core';
+import {isNotNil}     from "../../utils/class-helper";
+import {RowComponent} from "../row/row.component";
 
 @Component({
              selector: '[at-col]',
@@ -15,7 +25,7 @@ export class ColComponent implements OnInit, OnChanges {
   }
 
   constructor(public _elementRef: ElementRef, private _renderer: Renderer2,
-              private atRow: RowComponent) {
+              @Optional() private atRow: RowComponent) {
     this._el = this._elementRef.nativeElement;
   }
 

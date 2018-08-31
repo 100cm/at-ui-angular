@@ -13,7 +13,7 @@
   width: 100%;
   min-width: 80px;
   color: $select-font-color;
-  font-size: $select-font-size-base;
+  font-size: $font-size-base;
   line-height: 1.5;
   vertical-align: middle;
 
@@ -53,6 +53,26 @@
     min-height: $select-selection-height-sm;
     overflow: hidden;
 
+    &__ul {
+      list-style: none;
+      &__tag {
+        color: rgba(0, 0, 0, .65);
+        background-color: #fafafa;
+        border: 1px solid #e8e8e8;
+        border-radius: 2px;
+        cursor: default;
+        float: left;
+        margin-right: 4px;
+        max-width: 99%;
+        position: relative;
+        overflow: hidden;
+        transition: padding .3s cubic-bezier(.645, .045, .355, 1);
+        padding: 0 10px 0 10px;
+        line-height: 26px;
+        margin-top: 1px;
+      }
+    }
+
     &:hover {
       border-color: $select-border-c-hover;
 
@@ -68,7 +88,6 @@
     @include ellipsis();
     display: block;
     padding-left: 6px;
-    font-size: 12px;
   }
   &__arrow {
     display: inline-block;
@@ -190,13 +209,13 @@
       margin: 4px 4px 0 0;
     }
     .at-tag__text {
-      font-size: 10px;
+
     }
   }
   &--normal {
     .at-select__selection {
       height: $select-selection-height-base;
-      line-height: $select-selection-height-base;
+      line-height: $select-selection-height-base - 2;
     }
     .at-select__dropdown .at-select__option {
       font-size: $select-dropdown-font-size-base;
@@ -207,7 +226,13 @@
 
     .at-select__selection {
       height: $select-selection-height-sm;
-      line-height: $select-selection-height-sm;
+      line-height: $select-selection-height-sm - 2;
+      &__ul {
+        &__tag {
+          line-height: $select-selection-height-sm - 6;
+          margin-top: 1px;
+        }
+      }
     }
     .at-select__dropdown .at-select__option {
       font-size: $select-dropdown-font-size-sm;
@@ -219,6 +244,12 @@
     .at-select__selection {
       min-height: $select-selection-height-lg;
       line-height: $select-selection-height-lg - 2;
+      &__ul {
+        &__tag {
+          line-height: $select-selection-height-lg - 8;
+          margin-top: 2px;
+        }
+      }
     }
     .at-select__dropdown .at-select__option {
       font-size: $select-dropdown-font-size-lg;

@@ -135,14 +135,14 @@ $btn-active-shade-percent: 10%;
     &--hollow {
       &:disabled,
       &:disabled:hover,
-      &:disabled:active, {
+      &:disabled:active {
         background: none;
       }
     }
   }
   &--large {
-    font-size: $btn-font-size-md;
-    padding: $btn-padding-md;
+    font-size: $btn-font-size-lg;
+    padding: $btn-padding-lg;
 
     &.at-btn--circle {
       width: $btn-circle-size-lg;

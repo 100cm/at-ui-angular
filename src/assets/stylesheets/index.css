@@ -5253,8 +5253,8 @@ $info-color               : #78A4FA;
 }
 /* line 143, ../sass/components/button.scss */
 .at-btn--large {
-  font-size: 14px;
-  padding: 8px 16px;
+  font-size: 16px;
+  padding: 5px 18px;
 }
 /* line 147, ../sass/components/button.scss */
 .at-btn--large.at-btn--circle {
@@ -5583,47 +5583,48 @@ $info-color               : #78A4FA;
 .at-input {
   position: relative;
   font-size: 0;
-  line-height: 1.5;
+  line-height: normal;
   outline: 0;
   /* element */
   /* Modifier */
 }
 /* line 15, ../sass/components/input.scss */
 .at-input--lg {
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 0px 14px;
+  font-size: 16px;
 }
 /* line 20, ../sass/components/input.scss */
 .at-input--sm {
-  padding: 4px 10px;
-  font-size: 11px;
+  padding: 0px 10px;
+  font-size: 12px;
 }
 /* line 25, ../sass/components/input.scss */
 .at-input__original {
   display: block;
   width: 100%;
-  padding: 6px 12px;
+  padding: 0px 12px;
   color: #3F536E;
-  font-size: 12px;
+  font-size: 14px;
   background-color: #FFF;
   border: 1px solid #C5D9E8;
   border-radius: 4px;
   transition: border .2s;
   outline: none;
+  line-height: 30px;
 }
-/* line 37, ../sass/components/input.scss */
+/* line 38, ../sass/components/input.scss */
 .at-input__original::placeholder {
   color: #C9C9C9;
 }
-/* line 40, ../sass/components/input.scss */
+/* line 41, ../sass/components/input.scss */
 .at-input__original:hover {
   border-color: #79A1EB;
 }
-/* line 43, ../sass/components/input.scss */
+/* line 44, ../sass/components/input.scss */
 .at-input__original:focus {
   border-color: #79A1EB;
 }
-/* line 47, ../sass/components/input.scss */
+/* line 48, ../sass/components/input.scss */
 .at-input__icon {
   position: absolute;
   top: 0;
@@ -5635,7 +5636,7 @@ $info-color               : #78A4FA;
   font-size: 15px;
   text-align: center;
 }
-/* line 58, ../sass/components/input.scss */
+/* line 59, ../sass/components/input.scss */
 .at-input__icon:after {
   content: '';
   display: inline-block;
@@ -5643,100 +5644,113 @@ $info-color               : #78A4FA;
   height: 100%;
   vertical-align: middle;
 }
-/* line 69, ../sass/components/input.scss */
+/* line 70, ../sass/components/input.scss */
 .at-input--disabled .at-input__original {
   color: #B1B1B1;
   background-color: #F7F7F7;
   border-color: #ECECEC;
   cursor: not-allowed;
 }
-/* line 75, ../sass/components/input.scss */
+/* line 76, ../sass/components/input.scss */
 .at-input--disabled .at-input__original::placeholder {
   color: #C9C9C9;
 }
-/* line 80, ../sass/components/input.scss */
+/* line 81, ../sass/components/input.scss */
 .at-input--large {
-  font-size: 14px;
+  font-size: 16px;
 }
-/* line 83, ../sass/components/input.scss */
+/* line 84, ../sass/components/input.scss */
 .at-input--large .at-input__original {
-  padding: 8px 14px;
+  padding: 0px 14px;
+  line-height: 34px;
+  font-size: 16px;
 }
-/* line 86, ../sass/components/input.scss */
+/* line 88, ../sass/components/input.scss */
 .at-input--large .at-input__original::placeholder {
-  font-size: 14px;
+  font-size: 16px;
 }
-/* line 91, ../sass/components/input.scss */
+/* line 92, ../sass/components/input.scss */
+.at-input--large .at-input-group__prepend,
+.at-input--large .at-input-group__append {
+  font-size: 16px;
+}
+/* line 98, ../sass/components/input.scss */
 .at-input--small {
-  font-size: 11px;
+  font-size: 12px;
 }
-/* line 94, ../sass/components/input.scss */
+/* line 101, ../sass/components/input.scss */
 .at-input--small .at-input__original {
-  padding: 4px 10px;
+  line-height: 26px;
+  padding: 0px 10px;
+  font-size: 12px;
 }
-/* line 97, ../sass/components/input.scss */
+/* line 105, ../sass/components/input.scss */
 .at-input--small .at-input__original::placeholder {
-  font-size: 11px;
+  font-size: 12px;
 }
-/* line 103, ../sass/components/input.scss */
+/* line 109, ../sass/components/input.scss */
+.at-input--small .at-input-group__prepend, .at-input--small .at-input-group__append {
+  font-size: 12px;
+}
+/* line 115, ../sass/components/input.scss */
 .at-input--success .at-input__original {
   border-color: #13CE66;
 }
-/* line 105, ../sass/components/input.scss */
+/* line 117, ../sass/components/input.scss */
 .at-input--success .at-input__original:hover {
   box-shadow: 0px 0px 2px #5ADD94;
 }
-/* line 108, ../sass/components/input.scss */
+/* line 120, ../sass/components/input.scss */
 .at-input--success .at-input__original:focus {
   box-shadow: 0px 0px 2px #5ADD94;
 }
-/* line 114, ../sass/components/input.scss */
+/* line 126, ../sass/components/input.scss */
 .at-input--error .at-input__original {
   border-color: #FF4949;
 }
-/* line 116, ../sass/components/input.scss */
+/* line 128, ../sass/components/input.scss */
 .at-input--error .at-input__original:hover {
   box-shadow: 0px 0px 2px #FF8080;
 }
-/* line 119, ../sass/components/input.scss */
+/* line 131, ../sass/components/input.scss */
 .at-input--error .at-input__original:focus {
   box-shadow: 0px 0px 2px #FF8080;
 }
-/* line 125, ../sass/components/input.scss */
+/* line 137, ../sass/components/input.scss */
 .at-input--warning .at-input__original {
   border-color: #FFC82C;
 }
-/* line 127, ../sass/components/input.scss */
+/* line 139, ../sass/components/input.scss */
 .at-input--warning .at-input__original:hover {
   box-shadow: 0px 0px 2px #FFD96B;
 }
-/* line 130, ../sass/components/input.scss */
+/* line 142, ../sass/components/input.scss */
 .at-input--warning .at-input__original:focus {
   box-shadow: 0px 0px 2px #FFD96B;
 }
-/* line 136, ../sass/components/input.scss */
+/* line 148, ../sass/components/input.scss */
 .at-input--info .at-input__original {
   border-color: #78A4FA;
 }
-/* line 138, ../sass/components/input.scss */
+/* line 150, ../sass/components/input.scss */
 .at-input--info .at-input__original:hover {
   box-shadow: 0px 0px 2px #A1BFFC;
 }
-/* line 141, ../sass/components/input.scss */
+/* line 153, ../sass/components/input.scss */
 .at-input--info .at-input__original:focus {
   box-shadow: 0px 0px 2px #A1BFFC;
 }
-/* line 147, ../sass/components/input.scss */
+/* line 159, ../sass/components/input.scss */
 .at-input--prepend .at-input__original {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 153, ../sass/components/input.scss */
+/* line 165, ../sass/components/input.scss */
 .at-input--append .at-input__original {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-/* line 159, ../sass/components/input.scss */
+/* line 171, ../sass/components/input.scss */
 .at-input--icon .at-input__original {
   padding-right: 32px;
 }
@@ -5744,7 +5758,7 @@ $info-color               : #78A4FA;
 /**
  * AtInputGroup
  */
-/* line 168, ../sass/components/input.scss */
+/* line 180, ../sass/components/input.scss */
 .at-input-group {
   display: flex;
   line-height: normal;
@@ -5752,32 +5766,32 @@ $info-color               : #78A4FA;
   /* element */
   /* modifier */
 }
-/* line 174, ../sass/components/input.scss */
+/* line 186, ../sass/components/input.scss */
 .at-input-group__prepend, .at-input-group__append {
   display: flex;
   flex: 1;
   padding: 0 10px;
-  color: #9B9B9B;
   font-size: 12px;
+  color: #9B9B9B;
   border: 1px solid #C5D9E8;
   border-radius: 4px;
   background-color: #F7F7F7;
   align-items: center;
   white-space: nowrap;
 }
-/* line 187, ../sass/components/input.scss */
+/* line 199, ../sass/components/input.scss */
 .at-input-group__prepend {
   border-right: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-/* line 192, ../sass/components/input.scss */
+/* line 204, ../sass/components/input.scss */
 .at-input-group__append {
   border-left: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 199, ../sass/components/input.scss */
+/* line 211, ../sass/components/input.scss */
 .at-input-group--button {
   display: flex;
   align-items: center;
@@ -5785,11 +5799,11 @@ $info-color               : #78A4FA;
   user-select: none;
   cursor: pointer;
 }
-/* line 206, ../sass/components/input.scss */
+/* line 218, ../sass/components/input.scss */
 .at-input-group--button:hover {
   background-color: #ECECEC;
 }
-/* line 209, ../sass/components/input.scss */
+/* line 221, ../sass/components/input.scss */
 .at-input-group--button:active {
   background-color: #DFDFDF;
 }
@@ -6188,18 +6202,39 @@ $info-color               : #78A4FA;
   overflow: hidden;
 }
 /* line 56, ../sass/components/select.scss */
+.at-select__selection__ul {
+  list-style: none;
+}
+/* line 58, ../sass/components/select.scss */
+.at-select__selection__ul__tag {
+  color: rgba(0, 0, 0, 0.65);
+  background-color: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  cursor: default;
+  float: left;
+  margin-right: 4px;
+  max-width: 99%;
+  position: relative;
+  overflow: hidden;
+  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0 10px 0 10px;
+  line-height: 26px;
+  margin-top: 1px;
+}
+/* line 76, ../sass/components/select.scss */
 .at-select__selection:hover {
   border-color: #79A1EB;
 }
-/* line 59, ../sass/components/select.scss */
+/* line 79, ../sass/components/select.scss */
 .at-select__selection:hover .at-select__arrow {
   display: inline-block;
 }
-/* line 62, ../sass/components/select.scss */
+/* line 82, ../sass/components/select.scss */
 .at-select__selection:hover .at-select__clear {
   display: inline-block;
 }
-/* line 67, ../sass/components/select.scss */
+/* line 87, ../sass/components/select.scss */
 .at-select__selected {
   display: inline-block;
   max-width: 100%;
@@ -6209,9 +6244,8 @@ $info-color               : #78A4FA;
   word-wrap: normal;
   display: block;
   padding-left: 6px;
-  font-size: 12px;
 }
-/* line 73, ../sass/components/select.scss */
+/* line 92, ../sass/components/select.scss */
 .at-select__arrow {
   display: inline-block;
   position: absolute;
@@ -6222,7 +6256,7 @@ $info-color               : #78A4FA;
   cursor: pointer;
   transition: transform .3s;
 }
-/* line 83, ../sass/components/select.scss */
+/* line 102, ../sass/components/select.scss */
 .at-select__clear {
   display: none;
   position: absolute;
@@ -6232,11 +6266,11 @@ $info-color               : #78A4FA;
   font-size: 10px;
   cursor: pointer;
 }
-/* line 92, ../sass/components/select.scss */
+/* line 111, ../sass/components/select.scss */
 .at-select__placeholder {
   color: #C9C9C9;
 }
-/* line 95, ../sass/components/select.scss */
+/* line 114, ../sass/components/select.scss */
 .at-select__dropdown {
   width: 100%;
   position: absolute;
@@ -6247,17 +6281,17 @@ $info-color               : #78A4FA;
   overflow-y: auto;
   z-index: 1050;
 }
-/* line 105, ../sass/components/select.scss */
+/* line 124, ../sass/components/select.scss */
 .at-select__dropdown .at-select__list {
   list-style: none;
   padding: 0;
   font-size: 0;
 }
-/* line 110, ../sass/components/select.scss */
+/* line 129, ../sass/components/select.scss */
 .at-select__dropdown .at-select__not-found {
   padding: 6px 12px;
 }
-/* line 113, ../sass/components/select.scss */
+/* line 132, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option {
   display: inline-block;
   max-width: 100%;
@@ -6274,36 +6308,36 @@ $info-color               : #78A4FA;
   overflow: hidden;
   cursor: pointer;
 }
-/* line 124, ../sass/components/select.scss */
+/* line 143, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option--selected {
   font-weight: bold;
   background-color: #F7F7F7;
 }
-/* line 128, ../sass/components/select.scss */
+/* line 147, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option:hover, .at-select__dropdown .at-select__option--focus {
   background-color: #ECF2FC;
 }
-/* line 132, ../sass/components/select.scss */
+/* line 151, ../sass/components/select.scss */
 .at-select__dropdown .at-select__option--disabled {
   color: #C9C9C9;
 }
-/* line 136, ../sass/components/select.scss */
+/* line 155, ../sass/components/select.scss */
 .at-select__dropdown--bottom {
   margin-top: 2px;
 }
-/* line 139, ../sass/components/select.scss */
+/* line 158, ../sass/components/select.scss */
 .at-select__dropdown--top {
   margin-bottom: 2px;
 }
-/* line 142, ../sass/components/select.scss */
+/* line 161, ../sass/components/select.scss */
 .at-select__dropdown--left {
   margin-right: 2px;
 }
-/* line 145, ../sass/components/select.scss */
+/* line 164, ../sass/components/select.scss */
 .at-select__dropdown--right {
   margin-left: 2px;
 }
-/* line 150, ../sass/components/select.scss */
+/* line 169, ../sass/components/select.scss */
 .at-select-search-inline {
   border: none !important;
   outline: none !important;
@@ -6313,69 +6347,75 @@ $info-color               : #78A4FA;
   margin: 0 24px 0 8px !important;
   background-color: transparent !important;
 }
-/* line 162, ../sass/components/select.scss */
+/* line 181, ../sass/components/select.scss */
 .at-select--visible .at-select__arrow {
   transform: rotate(180deg);
 }
-/* line 168, ../sass/components/select.scss */
+/* line 187, ../sass/components/select.scss */
 .at-select--show-clear .at-select__selection:hover .at-select__arrow {
   opacity: 0;
 }
-/* line 174, ../sass/components/select.scss */
+/* line 193, ../sass/components/select.scss */
 .at-select--disabled .at-select__selection {
   cursor: not-allowed;
   background-color: #eef4f8;
 }
-/* line 178, ../sass/components/select.scss */
+/* line 197, ../sass/components/select.scss */
 .at-select--disabled .at-select__selection:hover {
   border-color: #ECECEC;
 }
-/* line 182, ../sass/components/select.scss */
+/* line 201, ../sass/components/select.scss */
 .at-select--disabled .at-select__placeholder,
 .at-select--disabled .at-select__selected {
   color: #C9C9C9;
   line-height: 30px;
 }
-/* line 189, ../sass/components/select.scss */
+/* line 208, ../sass/components/select.scss */
 .at-select--multiple .at-tag {
   margin: 4px 4px 0 0;
 }
-/* line 192, ../sass/components/select.scss */
-.at-select--multiple .at-tag__text {
-  font-size: 10px;
-}
-/* line 197, ../sass/components/select.scss */
+/* line 216, ../sass/components/select.scss */
 .at-select--normal .at-select__selection {
   height: 32px;
-  line-height: 32px;
+  line-height: 30px;
 }
-/* line 201, ../sass/components/select.scss */
+/* line 220, ../sass/components/select.scss */
 .at-select--normal .at-select__dropdown .at-select__option {
   font-size: 14px;
 }
-/* line 205, ../sass/components/select.scss */
+/* line 224, ../sass/components/select.scss */
 .at-select--small {
   font-size: 13px;
 }
-/* line 208, ../sass/components/select.scss */
+/* line 227, ../sass/components/select.scss */
 .at-select--small .at-select__selection {
   height: 28px;
-  line-height: 28px;
+  line-height: 26px;
 }
-/* line 212, ../sass/components/select.scss */
+/* line 231, ../sass/components/select.scss */
+.at-select--small .at-select__selection__ul__tag {
+  line-height: 22px;
+  margin-top: 1px;
+}
+/* line 237, ../sass/components/select.scss */
 .at-select--small .at-select__dropdown .at-select__option {
   font-size: 13px;
 }
-/* line 216, ../sass/components/select.scss */
+/* line 241, ../sass/components/select.scss */
 .at-select--large {
-  font-size: 18px;
+  font-size: 16px;
 }
-/* line 219, ../sass/components/select.scss */
+/* line 244, ../sass/components/select.scss */
 .at-select--large .at-select__selection {
-  min-height: 34x;
-  line-height: 32x;
+  min-height: 36px;
+  line-height: 34px;
 }
-/* line 223, ../sass/components/select.scss */
+/* line 248, ../sass/components/select.scss */
+.at-select--large .at-select__selection__ul__tag {
+  line-height: 28px;
+  margin-top: 2px;
+}
+/* line 254, ../sass/components/select.scss */
 .at-select--large .at-select__dropdown .at-select__option {
   font-size: 18px;
 }
@@ -6383,11 +6423,11 @@ $info-color               : #78A4FA;
 /**
  * AtOptionGroup
  */
-/* line 232, ../sass/components/select.scss */
+/* line 263, ../sass/components/select.scss */
 .at-option-group {
   padding: 0;
 }
-/* line 235, ../sass/components/select.scss */
+/* line 266, ../sass/components/select.scss */
 .at-option-group__label {
   display: inline-block;
   max-width: 100%;
@@ -6405,7 +6445,7 @@ $info-color               : #78A4FA;
   transition: all .3s;
   cursor: initial;
 }
-/* line 247, ../sass/components/select.scss */
+/* line 278, ../sass/components/select.scss */
 .at-option-group__list {
   padding: 0;
 }
@@ -6677,7 +6717,7 @@ $info-color               : #78A4FA;
   width: 100%;
   padding: 6px 8px;
   color: #3F536E;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   border: 1px solid #C5D9E8;
   border-radius: 4px;
@@ -9107,10 +9147,10 @@ $info-color               : #78A4FA;
 .at-datepicker {
   position: relative;
   outline: none;
-  width: 231px;
+  width: 255px;
   border: 1px solid #fff;
   list-style: none;
-  font-size: 12px;
+  font-size: 14px;
   text-align: left;
   background-color: #fff;
   border-radius: 4px;
@@ -9122,14 +9162,18 @@ $info-color               : #78A4FA;
 .at-datepicker a:hover {
   color: #78A4FA;
 }
-/* line 46, ../sass/components/datepicker.scss */
+/* line 45, ../sass/components/datepicker.scss */
+.at-datepicker--footer {
+  padding: 8px 12px;
+}
+/* line 49, ../sass/components/datepicker.scss */
 .at-datepicker--panel {
   position: relative;
 }
-/* line 48, ../sass/components/datepicker.scss */
+/* line 51, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header {
-  height: 34px;
-  line-height: 34px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -9137,7 +9181,7 @@ $info-color               : #78A4FA;
   user-select: none;
   border-bottom: 1px solid #F7F7F7;
 }
-/* line 57, ../sass/components/datepicker.scss */
+/* line 60, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-year-btn {
   left: 7px;
   position: absolute;
@@ -9146,14 +9190,14 @@ $info-color               : #78A4FA;
   padding: 0 5px;
   font-size: 16px;
   display: inline-block;
-  line-height: 34px;
+  line-height: 40px;
 }
-/* line 60, ../sass/components/datepicker.scss */
+/* line 63, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-year-btn:after {
   font-family: feather;
   content: "";
 }
-/* line 65, ../sass/components/datepicker.scss */
+/* line 68, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-month-btn {
   left: 29px;
   position: absolute;
@@ -9162,38 +9206,38 @@ $info-color               : #78A4FA;
   padding: 0 5px;
   font-size: 16px;
   display: inline-block;
-  line-height: 34px;
+  line-height: 40px;
 }
-/* line 68, ../sass/components/datepicker.scss */
+/* line 71, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-month-btn:after {
   font-family: feather;
   content: "\E843";
 }
-/* line 75, ../sass/components/datepicker.scss */
+/* line 78, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .month-select {
   padding: 0 2px;
   font-weight: 700;
   display: inline-block;
   color: #273A52;
-  line-height: 34px;
+  line-height: 40px;
 }
-/* line 77, ../sass/components/datepicker.scss */
+/* line 80, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .month-select:hover {
   color: #78A4FA;
 }
-/* line 81, ../sass/components/datepicker.scss */
+/* line 84, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .year-select {
   padding: 0 2px;
   font-weight: 700;
   display: inline-block;
   color: #273A52;
-  line-height: 34px;
+  line-height: 40px;
 }
-/* line 83, ../sass/components/datepicker.scss */
+/* line 86, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .year-select:hover {
   color: #78A4FA;
 }
-/* line 90, ../sass/components/datepicker.scss */
+/* line 93, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-year-btn {
   position: absolute;
   top: 0;
@@ -9201,15 +9245,15 @@ $info-color               : #78A4FA;
   padding: 0 5px;
   font-size: 16px;
   display: inline-block;
-  line-height: 34px;
+  line-height: 40px;
   right: 7px;
 }
-/* line 93, ../sass/components/datepicker.scss */
+/* line 96, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-year-btn:after {
   font-family: feather;
   content: "\E847";
 }
-/* line 98, ../sass/components/datepicker.scss */
+/* line 101, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-month-btn {
   position: absolute;
   top: 0;
@@ -9217,33 +9261,38 @@ $info-color               : #78A4FA;
   padding: 0 5px;
   font-size: 16px;
   display: inline-block;
-  line-height: 34px;
+  line-height: 40px;
   right: 29px;
 }
-/* line 101, ../sass/components/datepicker.scss */
+/* line 104, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-month-btn:after {
   font-family: feather;
   content: "\E844";
 }
-/* line 112, ../sass/components/datepicker.scss */
+/* line 113, ../sass/components/datepicker.scss */
+.at-datepicker--panel--body {
+  padding: 8px 12px;
+  border-bottom: 1px solid #F7F7F7;
+}
+/* line 116, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table {
   border-collapse: collapse;
   max-width: 100%;
   background-color: transparent;
   width: 100%;
 }
-/* line 118, ../sass/components/datepicker.scss */
+/* line 122, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table thead .column-header {
   line-height: 18px;
   width: 33px;
   padding: 6px 0;
   text-align: center;
 }
-/* line 130, ../sass/components/datepicker.scss */
+/* line 134, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell {
   padding: 4px 0;
 }
-/* line 132, ../sass/components/datepicker.scss */
+/* line 136, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell .at-date {
   display: block;
   margin: 0 auto;
@@ -9259,54 +9308,54 @@ $info-color               : #78A4FA;
   cursor: pointer;
   transition: background .3s ease;
 }
-/* line 146, ../sass/components/datepicker.scss */
+/* line 150, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell .at-date:hover, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell .at-date:hover {
   background: #D7E4FE;
   cursor: pointer;
 }
-/* line 152, ../sass/components/datepicker.scss */
+/* line 156, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--last-month .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--last-month .at-date {
   color: #BFBFBF;
 }
-/* line 157, ../sass/components/datepicker.scss */
+/* line 161, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--next-month .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--next-month .at-date {
   color: #BFBFBF;
 }
-/* line 162, ../sass/components/datepicker.scss */
+/* line 166, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--today .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--today .at-date {
   border: 1px solid #78A4FA;
 }
-/* line 168, ../sass/components/datepicker.scss */
+/* line 172, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--selected .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--selected .at-date {
   background: #78A4FA;
   color: white;
 }
-/* line 171, ../sass/components/datepicker.scss */
+/* line 175, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--selected .at-date:hover, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--selected .at-date:hover {
   background: #78A4FA !important;
 }
-/* line 176, ../sass/components/datepicker.scss */
+/* line 180, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--disabled, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--disabled {
   cursor: not-allowed;
   color: #BFBFBF;
   background: #ECECEC;
 }
-/* line 180, ../sass/components/datepicker.scss */
+/* line 184, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--disabled .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--disabled .at-date {
   cursor: not-allowed;
 }
-/* line 182, ../sass/components/datepicker.scss */
+/* line 186, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--disabled .at-date:hover, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--disabled .at-date:hover {
   cursor: not-allowed;
   background: #ECECEC;
 }
-/* line 190, ../sass/components/datepicker.scss */
+/* line 194, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell {
   text-align: center;
 }
-/* line 192, ../sass/components/datepicker.scss */
+/* line 196, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell .at-date {
-  width: 40px;
+  width: 45px;
   height: 36px;
   line-height: 36px;
 }

@@ -9,7 +9,7 @@
 .at-input {
   position: relative;
   font-size: 0;
-  line-height: 1.5;
+  line-height: normal;
   outline: 0;
 
   &--lg {
@@ -33,6 +33,7 @@
     border-radius: $border-radius-base;
     transition: border .2s;
     outline: none;
+    line-height: $input-line-height-base;
 
     &::placeholder {
       color: $input-placeholder-color;
@@ -82,22 +83,33 @@
 
     .at-input__original {
       padding: $input-padding-lg;
-
+      line-height: $input-line-height-lg;
+      font-size: $input-font-size-lg;
       &::placeholder {
         font-size: $input-font-size-lg;
       }
     }
+    .at-input-group__prepend,
+    .at-input-group__append {
+      font-size: $input-font-size-lg;
+    }
+
   }
   &--small {
     font-size: $input-font-size-sm;
 
     .at-input__original {
+      line-height: $input-line-height-sm;
       padding: $input-padding-sm;
-
+      font-size: $input-font-size-sm;
       &::placeholder {
         font-size: $input-font-size-sm;
       }
     }
+    .at-input-group__prepend, .at-input-group__append {
+      font-size: $input-font-size-sm;
+    }
+
   }
   &--success {
     .at-input__original {
@@ -176,8 +188,8 @@
     display: flex;
     flex: 1;
     padding: 0 10px;
+    font-size: 12px;
     color: $input-group-font-color;
-    font-size: $input-font-size-base;
     border: 1px solid $border-color-base;
     border-radius: $border-radius-base;
     background-color: $input-group-bg-color;

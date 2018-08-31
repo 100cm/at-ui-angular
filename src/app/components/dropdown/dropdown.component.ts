@@ -31,7 +31,9 @@ import {DropdownDirective}                                                      
              selector: 'at-dropdown',
              changeDetection: ChangeDetectionStrategy.OnPush,
              template: `
-               <ng-content select="[at-dropdown]"></ng-content>
+               <div class="trigger-{{atVisible}}">
+                 <ng-content select="[at-dropdown]"></ng-content>
+               </div>
                <ng-template
                  cdkConnectedOverlay
                  [cdkConnectedOverlayBackdropClass]="'select-back-drop'"
