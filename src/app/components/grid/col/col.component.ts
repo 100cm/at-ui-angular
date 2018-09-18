@@ -110,12 +110,11 @@ export class ColComponent implements OnInit, OnChanges {
       item ? listClassMap[item] = true : null
     })
 
-    this.classMap = listClassMap
-    this.updateHostClass(this._el, this.classMap)
+    this.removeClass(this._el, this.classMap, this._renderer);
+    this.updateHostClass(this._el, listClassMap)
   }
 
   updateHostClass(el: HTMLElement, classMap: object): void {
-    this.removeClass(el, this.classMap, this._renderer);
     this.classMap = {...classMap};
     this.addClass(el, this.classMap, this._renderer);
   }

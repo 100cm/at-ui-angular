@@ -1,6 +1,8 @@
 import {ApplicationRef, ComponentFactoryResolver, Injectable, Injector} from "@angular/core";
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+            })
 export class ComponentCreatorBase {
 
   constructor(public componentFactoryResolver: ComponentFactoryResolver,

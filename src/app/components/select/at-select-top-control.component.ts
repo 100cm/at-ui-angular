@@ -46,7 +46,7 @@ import {AtOptionComponent}                                                      
                  at-select-unselectable
                  [style.display]="placeHolderDisplay"
                  (click)="focusOnInput()"
-                 class="ant-select-selection__placeholder">
+                 class="at-select-selection__placeholder">
                  {{ atPlaceHolder }}
                </div>
                <!--single mode-->
@@ -54,7 +54,7 @@ import {AtOptionComponent}                                                      
                  <!--selected label-->
                  <div
                    *ngIf="atListOfSelectedValue.length"
-                   class="ant-select-selection-selected-value"
+                   class="at-select-selection-selected-value"
                    [attr.title]="atListOfSelectedValue[0].atLabel"
                    [ngStyle]="selectedValueDisplay">
                  </div>
@@ -66,9 +66,9 @@ import {AtOptionComponent}                                                      
                    <div
                      *ngIf="atShowSearch"
                      [style.display]="searchDisplay">
-                     <div class="ant-select-search__field__wrap">
+                     <div class="at-select-search__field__wrap">
                        <ng-template [ngTemplateOutlet]="inputTemplate"></ng-template>
-                       <span class="ant-select-search__field__mirror">{{inputValue}}&nbsp;</span>
+                       <span class="at-select-search__field__mirror">{{inputValue}}&nbsp;</span>
                      </div>
                    </div>
                    <i class="icon icon-chevron-down at-select__arrow"></i>
@@ -111,7 +111,7 @@ import {AtOptionComponent}                                                      
                </ul>
              `,
              host: {
-               '[class.ant-select-selection__rendered]': 'true'
+               '[class.at-select-selection__rendered]': 'true'
              }
            })
 export class AtSelectTopControlComponent {

@@ -97,4 +97,10 @@ export class AtDemoLayoutComponent implements OnInit {
 
   dashboard_one_code = require('../admin/admin.component.html')
   dashboard_two_code = require('../admin/admin.component_two.html')
+
+  x = 4
+
+  changeX() {
+    this.x += 1
+  }
 }

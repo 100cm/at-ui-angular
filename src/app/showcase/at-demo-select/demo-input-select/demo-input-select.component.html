@@ -1,4 +1,4 @@
-<at-select [(ngModel)]="selected" [tagAble]="true" [multiple]="true" [searchable]="true">
+<at-select  [(ngModel)]="selected" [tagAble]="true" [multiple]="true" [searchable]="true">
   <at-option [atLabel]="'first'" [atValue]="'first'">
   </at-option>
   <at-option [atLabel]="'second'" [atValue]="'second'">
@@ -9,3 +9,12 @@
 <div *ngFor="let item of selected" >
   {{item}}
 </div>
+
+<at-select  [atPlaceHolder]="'asd'" [tagAble]="true" [multiple]="true" [searchable]="true">
+  <at-option [atLabel]="'first'" [atValue]="'first'">
+  </at-option>
+  <at-option [atLabel]="'second'" [atValue]="'second'">
+  </at-option>
+  <at-option [atLabel]="'next'" [atValue]="'next'">
+  </at-option>
+</at-select>

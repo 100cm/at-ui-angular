@@ -127,7 +127,6 @@ import {AtSelectTopControlComponent}                                           f
                  <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="atOpen ? dropDownPosition : 'hidden' "
                       [ngStyle]="atDropdownStyle">
                    <div
-                     style="overflow: auto"
                      at-option-container
                      [listOfatOptionComponent]="listOfatOptionComponent"
                      [listOfatOptionGroupComponent]="listOfatOptionGroupComponent"

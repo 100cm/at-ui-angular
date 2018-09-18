@@ -3,7 +3,9 @@ import {ComponentCreator} from "../core/component-creator";
 import {MessageContainerComponent} from "./message-container/message-container.component";
 import {ComponentCreatorBase} from "../core/component-creator-base";
 
-@Injectable()
+@Injectable({
+              providedIn:'root'
+            })
 export class AtMessageContainerService extends ComponentCreator<MessageContainerComponent> {
 
   constructor(public component_base: ComponentCreatorBase) {

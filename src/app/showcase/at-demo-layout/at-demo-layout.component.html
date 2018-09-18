@@ -166,7 +166,7 @@
           flex-{{item}}
         </div>
         <div at-row [alignType]="item">
-          <div at-col [atLg]="6" [atSm]="24">
+          <div at-col [atLg]="x" [atSm]="24">
             <div class="bg-c-brand-light at-box-row"></div>
           </div>
           <div at-col [atLg]="6" [atSm]="24">
@@ -183,7 +183,9 @@
           </div>
         </div>
       </div>
+      <button at-button (click)="changeX()">切换x</button>
     </div>
+
   </doc-section>
 
 

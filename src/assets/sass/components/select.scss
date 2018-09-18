@@ -113,7 +113,7 @@
   }
   &__dropdown {
     width: 100%;
-    position: absolute;
+    position: relative;
     font-size: $select-dropdown-font-size-base;
     border-radius: $border-radius-base;
     background-color: $select-dropdown-bg-color;
@@ -278,4 +278,23 @@
   &__list {
     padding: 0;
   }
+}
+
+.at-select-selection__placeholder {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 9px;
+  color: #bfbfbf;
+  line-height: 20px;
+  height: 20px;
+  max-width: 100%;
+  margin-top: -10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  cursor: text;
+  padding-left: 8px;
+  z-index: 1;
 }

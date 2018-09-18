@@ -150,10 +150,14 @@ import { AtDemoBasicTreeComponent } from './showcase/at-demo-tree/at-demo-basic-
 import { AtDemoCustomTreeComponent } from './showcase/at-demo-tree/at-demo-custom-tree/at-demo-custom-tree.component';
 import { AtDemoCheckableTreeComponent } from './showcase/at-demo-tree/at-demo-checkable-tree/at-demo-checkable-tree.component';
 import { AtDemoTreeGroupComponent }     from './showcase/at-demo-tree/at-demo-tree-group/at-demo-tree-group.component';
-import { AtDemoRemoteTreeComponent }    from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
-import { AtDemoCardTabComponent }       from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
-import { AtDemoSizeTabsComponent }      from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
-import {AtModule}                       from "./components/at-ng.module";
+import { AtDemoRemoteTreeComponent }  from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
+import { AtDemoCardTabComponent }     from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
+import { AtDemoSizeTabsComponent }    from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
+import {AtModule}                     from "./components/at-ng.module";
+import { AtDemoCarouselComponent }    from './showcase/at-demo-carousel/at-demo-carousel.component';
+import {AtDemoBasicCarouselComponent} from "./showcase/at-demo-carousel/at-demo-basic-carousel/at-demo-basic-carousel.component";
+import { AtDemoDrawerComponent } from './showcase/at-demo-drawer/at-demo-drawer.component';
+
 
 
 @NgModule({
@@ -290,7 +294,13 @@ import {AtModule}                       from "./components/at-ng.module";
 
     AtDemoCardTabComponent,
 
-    AtDemoSizeTabsComponent
+    AtDemoSizeTabsComponent,
+
+    AtDemoCarouselComponent,
+
+    AtDemoBasicCarouselComponent,
+
+    AtDemoDrawerComponent
 
 
   ],

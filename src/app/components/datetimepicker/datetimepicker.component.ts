@@ -17,7 +17,7 @@ import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
 }                                                                                    from "../core/overlay/overlay-position-map";
-import {fromEvent, Observable, Subject, Subscription}                                from "rxjs/index";
+import {fromEvent, Observable, Subject, Subscription}                                from "rxjs";
 import {debounceTime, mapTo, merge}                                                  from "rxjs/operators";
 import {underscoreToCamelCase}                                                       from "../utils/class-helper";
 import {DropDownAnimation}                                                           from "../animations/drop-down-animation";
@@ -34,7 +34,6 @@ import {DropDownAnimation}                                                      
                  [cdkConnectedOverlayOrigin]="input"
                  (backdropClick)="_hide()"
                  (detach)="_hide()"
-                 [cdkConnectedOverlayMinWidth]="_triggerWidth"
                  (positionChange)="_onPositionChange($event)"
                  [cdkConnectedOverlayOpen]="atVisible"
                >
