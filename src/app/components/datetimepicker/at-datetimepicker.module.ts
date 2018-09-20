@@ -8,10 +8,11 @@ import {TimeComponent}           from "./time/time.component";
 import {CalendarComponent}       from "./calendar/calendar.component";
 import {AtInputModule}           from "../input/at-input.module";
 import {AtGridModule}            from "../grid/at-grid.module";
+import {AtI18nModule}            from "../i18n/at-i18n.module";
 
 
 @NgModule({
-            imports: [CommonModule, FormsModule, OverlayModule, AtInputModule, AtGridModule],
+            imports: [CommonModule, AtI18nModule, FormsModule, OverlayModule, AtInputModule, AtGridModule],
             declarations: [AtFormatPipe, DatetimepickerComponent, TimeComponent, CalendarComponent],
             exports: [AtFormatPipe, DatetimepickerComponent, TimeComponent, CalendarComponent]
           })

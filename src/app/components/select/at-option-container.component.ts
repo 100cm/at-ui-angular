@@ -7,81 +7,80 @@ import {
   Output,
   QueryList,
   ViewChildren
-} from '@angular/core';
-import {isNotNil} from '../utils/class-helper';
+}                               from '@angular/core';
+import {isNotNil}               from '../utils/class-helper';
 import {AtOptionGroupComponent} from './at-option-group.component';
-import {AtOptionComponent} from './at-option.component';
+import {AtOptionComponent}      from './at-option.component';
 
-import {Subject, Subscription, merge} from 'rxjs';
-import {AtOptionLiComponent} from './at-option-li.component';
+import {Subject, Subscription, merge}                     from 'rxjs';
+import {AtOptionLiComponent}                              from './at-option-li.component';
 import {defaultFilterOption, AtOptionPipe, TFilterOption} from './at-option.pipe';
 
 @Component({
-  selector: '[at-option-container]',
-  preserveWhitespaces: false,
-  template: `
-<div class="at-select__dropdown at-select__dropdown--bottom">
-    <ul
-      #dropdownUl
-      class="at-select__list"
-      role="menu"
-      (keydown)="onKeyDownUl($event)"
-      (scroll)="dropDownScroll($event,dropdownUl)"
-      tabindex="0">
-      <!--<li-->
-        <!--*ngIf="isNotFoundDisplay"-->
-        <!--at-select-unselectable-->
-        <!--class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-disabled">-->
-        <!--{{ atNotFoundContent ? atNotFoundContent : ('Select.notFoundContent' | atI18n) }}-->
-      <!--</li>-->
-      <!--<li-->
-        <!--*ngIf="isAddTagOptionDisplay"-->
-        <!--at-select-unselectable-->
-        <!--(click)="addTagOption()"-->
-        <!--class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active">-->
-        <!--{{ atSearchValue }}-->
-      <!--</li>-->
-      <li
-        at-option-li
-        [compareWith]="compareWith"
-        *ngFor="let option of listOfatOptionComponent | atFilterOptionPipe : atSearchValue : atFilterOption : atServerSearch "
-        (click)="clickOption(option,false)"
-        [atActiveOption]="activatedOption"
-        [atOption]="option"
-        [atListOfSelectedValue]="atListOfSelectedValue">
-      </li>
-    </ul>
-</div>`
+             selector: '[at-option-container]',
+             preserveWhitespaces: false,
+             template: `
+               <div class="at-select__dropdown at-select__dropdown--bottom">
+                 <ul *ngIf="isNotFoundDisplay" class="at-select__not-found">
+                   <li>
+                     {{ 'Select.notFoundContent' | atI18n }}
+                   </li>
+                 </ul>
+                 <ul
+                   #dropdownUl
+                   class="at-select__list"
+                   role="menu"
+                   (keydown)="onKeyDownUl($event)"
+                   (scroll)="dropDownScroll($event,dropdownUl)"
+                   tabindex="0">
+                   <!--<li-->
+                   <!--*ngIf="isAddTagOptionDisplay"-->
+                   <!--at-select-unselectable-->
+                   <!--(click)="addTagOption()"-->
+                   <!--class="ant-select-dropdown-menu-item ant-select-dropdown-menu-item-active">-->
+                   <!--{{ atSearchValue }}-->
+                   <!--</li>-->
+                   <li
+                     at-option-li
+                     [compareWith]="compareWith"
+                     *ngFor="let option of listOfatOptionComponent | atFilterOptionPipe : atSearchValue : atFilterOption : atServerSearch "
+                     (click)="clickOption(option,false)"
+                     [atActiveOption]="activatedOption"
+                     [atOption]="option"
+                     [atListOfSelectedValue]="atListOfSelectedValue">
+                   </li>
+                 </ul>
+               </div>`
 
-})
+           })
 export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   // tslint:disable-next-line:no-any
   private _listOfSelectedValue: any[];
   private _searchValue: string;
-  isInit = false;
-  isAddTagOptionDisplay = false;
-  listOfAllTemplateOption: AtOptionComponent[] = [];
-  optionSubscription: Subscription;
-  groupSubscription: Subscription;
-  listOfTagOption: AtOptionComponent[] = [];
-  listOfFilterOption: AtOptionComponent[] = [];
-  activatedOption: AtOptionComponent;
+          isInit                                       = false;
+          isAddTagOptionDisplay                        = false;
+          listOfAllTemplateOption: AtOptionComponent[] = [];
+          optionSubscription: Subscription;
+          groupSubscription: Subscription;
+          listOfTagOption: AtOptionComponent[]         = [];
+          listOfFilterOption: AtOptionComponent[]      = [];
+          activatedOption: AtOptionComponent;
   /** can not use ViewChild since it will match sub options in option group **/
-  @ViewChildren(AtOptionLiComponent) listOfatOptionLiComponent: QueryList<AtOptionLiComponent>;
+          @ViewChildren(AtOptionLiComponent) listOfatOptionLiComponent: QueryList<AtOptionLiComponent>;
   @Input() listOfatOptionComponent: QueryList<AtOptionComponent>;
   @Input() listOfatOptionGroupComponent: QueryList<AtOptionGroupComponent>;
   // tslint:disable-next-line:no-any
-  @Output() atListOfSelectedValueChange = new EventEmitter<any[]>();
-  @Output() atListOfTemplateOptionChange = new EventEmitter<AtOptionComponent[]>();
-  @Output() atClickOption = new EventEmitter<void>();
-  @Output() atScrollToBottom = new EventEmitter<void>();
-  @Input() atMode = 'default';
-  @Input('remoteSearch') atServerSearch = false;
-  @Input() atFilterOption: TFilterOption = defaultFilterOption;
-  @Input() atMaxMultipleCount = Infinity;
+  @Output() atListOfSelectedValueChange                = new EventEmitter<any[]>();
+  @Output() atListOfTemplateOptionChange               = new EventEmitter<AtOptionComponent[]>();
+  @Output() atClickOption                              = new EventEmitter<void>();
+  @Output() atScrollToBottom                           = new EventEmitter<void>();
+  @Input() atMode                                      = 'default';
+  @Input('remoteSearch') atServerSearch                = false;
+  @Input() atFilterOption: TFilterOption               = defaultFilterOption;
+  @Input() atMaxMultipleCount                          = Infinity;
   @Input() atNotFoundContent: string;
   // tslint:disable-next-line:no-any
-  @Input() compareWith = (o1: any, o2: any) => o1 === o2;
+  @Input() compareWith                                 = (o1: any, o2: any) => o1 === o2;
 
   @Input()
   set atSearchValue(value: string) {
@@ -130,20 +129,24 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
         // arrow up
         const preIndex = activeIndex > 0 ? (activeIndex - 1) : (this.listOfFilterOption.length - 1);
         this.setActiveOption(this.listOfFilterOption[preIndex]);
-      } else if (e.keyCode === 40) {
+      }
+      else if (e.keyCode === 40) {
         // arrow down
         const nextIndex = activeIndex < this.listOfFilterOption.length - 1 ? (activeIndex + 1) : 0;
         this.setActiveOption(this.listOfFilterOption[nextIndex]);
-      } else if (e.keyCode === 13) {
+      }
+      else if (e.keyCode === 13) {
         // enter
         if (this.isTagsMode) {
           if (!this.isAddTagOptionDisplay) {
             this.clickOption(this.activatedOption, true);
-          } else {
+          }
+          else {
             this.addTagOption();
             this.atClickOption.emit();
           }
-        } else {
+        }
+        else {
           this.clickOption(this.activatedOption, true);
         }
       }
@@ -191,13 +194,15 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
             listOfSelectedValue.splice(listOfSelectedValue.indexOf(targetValue), 1);
             changed = true;
           }
-        } else if (this.atListOfSelectedValue.length < this.atMaxMultipleCount) {
+        }
+        else if (this.atListOfSelectedValue.length < this.atMaxMultipleCount) {
           listOfSelectedValue.push(option.atValue);
           changed = true;
         }
-      } else if (!this.compareWith(listOfSelectedValue[0], option.atValue)) {
+      }
+      else if (!this.compareWith(listOfSelectedValue[0], option.atValue)) {
         listOfSelectedValue = [option.atValue];
-        changed = true;
+        changed             = true;
       }
       /** update selectedValues when click option **/
       if (changed) {
@@ -217,7 +222,7 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
       this.atListOfSelectedValue.forEach(value => {
         const existedOption = this.listOfAllTemplateOption.find(o => this.compareWith(o.atValue, value));
         if (!existedOption) {
-          const atOptionComponent = new AtOptionComponent();
+          const atOptionComponent   = new AtOptionComponent();
           atOptionComponent.atValue = value;
           atOptionComponent.atLabel = value;
           listOfTagsOption.push(atOptionComponent);
@@ -293,8 +298,8 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   }
 
   updateAddTagOptionDisplay(): void {
-    const listOfAllOption = this.listOfAllTemplateOption.concat(this.listOfTagOption).map(item => item.atLabel);
-    const isMatch = listOfAllOption.indexOf(this.atSearchValue) > -1;
+    const listOfAllOption      = this.listOfAllTemplateOption.concat(this.listOfTagOption).map(item => item.atLabel);
+    const isMatch              = listOfAllOption.indexOf(this.atSearchValue) > -1;
     this.isAddTagOptionDisplay = this.isTagsMode && this.atSearchValue && (!isMatch);
   }
 

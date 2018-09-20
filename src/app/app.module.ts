@@ -149,14 +149,18 @@ import { AtDemoTreeComponent } from './showcase/at-demo-tree/at-demo-tree.compon
 import { AtDemoBasicTreeComponent } from './showcase/at-demo-tree/at-demo-basic-tree/at-demo-basic-tree.component';
 import { AtDemoCustomTreeComponent } from './showcase/at-demo-tree/at-demo-custom-tree/at-demo-custom-tree.component';
 import { AtDemoCheckableTreeComponent } from './showcase/at-demo-tree/at-demo-checkable-tree/at-demo-checkable-tree.component';
-import { AtDemoTreeGroupComponent }     from './showcase/at-demo-tree/at-demo-tree-group/at-demo-tree-group.component';
+import { AtDemoTreeGroupComponent }   from './showcase/at-demo-tree/at-demo-tree-group/at-demo-tree-group.component';
 import { AtDemoRemoteTreeComponent }  from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
 import { AtDemoCardTabComponent }     from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
 import { AtDemoSizeTabsComponent }    from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
-import {AtModule}                     from "./components/at-ng.module";
+import {AT_I18N, AtModule}            from "./components/at-ng.module";
 import { AtDemoCarouselComponent }    from './showcase/at-demo-carousel/at-demo-carousel.component';
 import {AtDemoBasicCarouselComponent} from "./showcase/at-demo-carousel/at-demo-basic-carousel/at-demo-basic-carousel.component";
-import { AtDemoDrawerComponent } from './showcase/at-demo-drawer/at-demo-drawer.component';
+import { AtDemoDrawerComponent }      from './showcase/at-demo-drawer/at-demo-drawer.component';
+import { AtDemoColorPickerComponent } from './showcase/at-demo-color-picker/at-demo-color-picker.component';
+import zh_CN                          from "./components/i18n/languages/zh_CN";
+import en_US                          from "./components/i18n/languages/en_US";
+import { I18NComponent } from './showcase/i18-n/i18-n.component';
 
 
 
@@ -300,7 +304,11 @@ import { AtDemoDrawerComponent } from './showcase/at-demo-drawer/at-demo-drawer.
 
     AtDemoBasicCarouselComponent,
 
-    AtDemoDrawerComponent
+    AtDemoDrawerComponent,
+
+    AtDemoColorPickerComponent,
+
+    I18NComponent
 
 
   ],
@@ -313,7 +321,7 @@ import { AtDemoDrawerComponent } from './showcase/at-demo-drawer/at-demo-drawer.
 
     BrowserModule, BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{provide:AT_I18N,useValue:en_US}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

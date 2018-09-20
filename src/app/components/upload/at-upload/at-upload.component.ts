@@ -72,10 +72,8 @@ export class AtUploadComponent implements OnInit {
     return this._files;
   }
 
-  @Input()
   set files(value: any[]) {
     this._files = value;
-    this.onChange(value)
   }
 
   ngOnInit() {
@@ -93,9 +91,11 @@ export class AtUploadComponent implements OnInit {
   fileChange(event) {
     if (this.multiple) {
       this.files = this.files.concat(Array.prototype.slice.call(event.target.files))
+      this.onChange(this.files)
     }
     else {
       this.files = [].concat(event.target.files[0])
+      this.onChange(this.files[0])
     }
 
   }
@@ -121,7 +121,7 @@ export class AtUploadComponent implements OnInit {
 
   writeValue(value) {
     if (value) {
-      this._files = value
+      this._files = [].concat(value)
     }
   }
 }

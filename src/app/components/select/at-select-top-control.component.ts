@@ -266,7 +266,6 @@ export class AtSelectTopControlComponent {
 
   clear(e) {
     e.preventDefault()
-    console.log('clear ')
     this.OnClear.emit(e)
   }
 

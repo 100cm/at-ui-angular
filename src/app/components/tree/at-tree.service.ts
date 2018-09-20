@@ -74,7 +74,6 @@ export class AtTreeService {
   checkExceptDisableChecked(tree_node) {
     let list       = []
     let check_list = this.checkAllDisableChildren(tree_node, list)
-    console.log(check_list)
     let checkAll        = check_list.filter(checked => checked == true).length == check_list.length
     let isIndeterminate = 0 < check_list.filter(checked => checked == true).length && check_list.filter(checked => checked == true).length < check_list.length
     return {checked: checkAll, indeterminate: isIndeterminate}

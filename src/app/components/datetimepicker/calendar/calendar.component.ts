@@ -1,26 +1,32 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import * as moment from 'moment';
-import {Moment}    from "moment";
-import {AtDate}    from "../at-day";
+import * as moment       from 'moment';
+import {Moment}          from "moment";
+import {AtDate}          from "../at-day";
 import 'moment/locale/zh-cn';
+import {AtI18nService}   from "../../i18n";
+import {AtI18nInterface} from "../../i18n/at-i18n.interface";
 
 @Component({
              selector: 'at-calendar',
              template: `
-               <table *ngIf="atType =='full'" class="at-calendar-table">
+               <table cellspacing="0" role="grid" *ngIf="atType =='full'" class="at-calendar-table">
                  <thead>
-                 <th class="column-header"><span class="column-header-inner">日</span></th>
-                 <th class="column-header"><span class="column-header-inner">一</span></th>
-                 <th class="column-header"><span class="column-header-inner">二</span></th>
-                 <th class="column-header"><span class="column-header-inner">三</span></th>
-                 <th class="column-header"><span class="column-header-inner">四</span></th>
-                 <th class="column-header"><span class="column-header-inner">五</span></th>
-                 <th class="column-header"><span class="column-header-inner">六</span></th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Sunday}}</span></th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Monday}}</span></th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.TuesDay}}</span></th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Wednesday}}</span>
+                 </th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.ThursDay}}</span>
+                 </th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Friday}}</span></th>
+                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Saturday}}</span>
+                 </th>
                  </thead>
                  <tbody>
-                 <tr *ngFor="let week of weeks">
+                 <tr role="row" *ngFor="let week of weeks">
                    <td
+                     role="gridcell"
                      *ngFor="let day of week.days" class="at-date-cell"
                      (click)="clickDay(day)"
                      [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
@@ -34,25 +40,27 @@ import 'moment/locale/zh-cn';
                  </tbody>
                </table>
 
-               <table *ngIf="atType=='month'" class="at-calendar-table">
+               <table cellspacing="0" role="grid" *ngIf="atType=='month'" class="at-calendar-table">
                  <tbody>
-                 <tr *ngFor="let month of months">
+                 <tr role="row" *ngFor="let month of months">
                    <td
+                     role="gridcell"
                      *ngFor="let single of month" class="at-month-cell"
                      (click)="clickMonth(single)"
                      [ngClass]="{
               'at-date-cell--selected':single.isSelectedMonth ,
               'at-date-cell--today':single.isCurrentMonth}">
-                     <div class="at-date">{{single.name}}</div>
+                     <a class="at-date">{{single.name}}</a>
                    </td>
                  </tr>
                  </tbody>
                </table>
 
-               <table *ngIf="atType=='year'" class="at-calendar-table">
+               <table cellspacing="0" role="grid" *ngIf="atType=='year'" class="at-calendar-table">
                  <tbody>
-                 <tr *ngFor="let section of years">
+                 <tr role="row" *ngFor="let section of years">
                    <td
+                     role="gridcell"
                      *ngFor="let year of section" class="at-month-cell"
                      (click)="clickYear(year.year)"
                      [ngClass]="{
@@ -75,7 +83,7 @@ export class CalendarComponent implements OnInit {
   @Output() _clickMonth: EventEmitter<any> = new EventEmitter();
   @Output() _clickYear: EventEmitter<any>  = new EventEmitter();
 
-  constructor() {
+  constructor(private at_i18n_service: AtI18nService) {
   }
 
   @Output() _clickDate: EventEmitter<any> = new EventEmitter()
@@ -204,6 +212,21 @@ export class CalendarComponent implements OnInit {
     this.buildCalendar()
   }
 
+  private _locale: AtI18nInterface
+
+
+  get locale() {
+    return this._locale;
+  }
+
+  @Input()
+  set locale(value) {
+    if (value) {
+      this._locale = value;
+      this.buildCalendar()
+    }
+  }
+
   ngOnInit() {
     this.monthName = moment.months()
   }
@@ -254,7 +277,7 @@ export class CalendarComponent implements OnInit {
       let y = i - 10 + year
       century.push({
                      year: y,
-                     isSelectedYear: moment().get('y'),
+                     isSelectedYear: y == year,
                      isCurrentYear: moment().get('y') == y,
                    });
     }
@@ -263,7 +286,6 @@ export class CalendarComponent implements OnInit {
       // do whatever
     }
     century = temp_array
-
     return century;
   }
 
@@ -287,7 +309,7 @@ export class CalendarComponent implements OnInit {
 
 
   buildCalendar() {
-    moment.locale('zh-cn')
+    moment.locale((this.locale || <any>{}).locale)
     let time    = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue
     let date    = moment(time).year(this.atYear).month(this.atMonth)
     this.weeks  = this.buildWeeks(date)

@@ -97,7 +97,6 @@ export class AtCarouselDirective {
   }
 
   ngOnInit(): void {
-    console.log('init')
     this.renderer.setStyle(this.el, 'transition', 'opacity 500ms ease');
   }
 

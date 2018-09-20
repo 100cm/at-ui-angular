@@ -37,6 +37,8 @@ import {AtTextareaModule}       from "./textarea/at-textarea.module";
 import {AtCardModule}           from "./card/at-card-module";
 import {AtMessageModule}        from "./message/at-message.module";
 import {AtNotificationModule}   from "./notification/at-notification.module";
+import {AtColorPickerModule}    from "./color-picker/at-color-picker.module";
+import {AtI18nModule}           from "./i18n/at-i18n.module";
 
 export *                                  from './tree'
 export *                                  from './checkbox'
@@ -74,7 +76,8 @@ export *                                  from './card'
 export *                                  from './notification'
 export *                                  from './message'
 export *                                  from './badge'
-
+export *                                  from './i18n'
+export *                                  from './color-picker'
 
 @NgModule({
             exports: [
@@ -114,6 +117,8 @@ export *                                  from './badge'
               AtCarouselModule,
               AtButtonModule,
               AtMenuModule,
+              AtColorPickerModule,
+              AtI18nModule
             ],
 
             providers: [AtGlobalMonitorService]

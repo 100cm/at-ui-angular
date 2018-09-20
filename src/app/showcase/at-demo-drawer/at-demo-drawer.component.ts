@@ -19,4 +19,14 @@ export class AtDemoDrawerComponent implements OnInit {
     this.visible = false
   }
 
+  code = `
+    <at-drawer [atClosable]="false" [atVisible]="visible" atPlacement="right" atTitle="Basic Drawer"
+             (atOnClose)="close()">
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+  </at-drawer>
+  <button at-button (click)="visible =true">弹出抽屉</button>
+`
+
 }

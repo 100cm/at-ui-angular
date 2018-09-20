@@ -21,6 +21,19 @@
   </at-form-item>
 
   <at-form-item>
+    <at-form-label [span]="4">success</at-form-label>
+    <at-form-control [span]="20">
+      <at-select>
+        <at-option [atValue]="1" [atLabel]="'test1'"></at-option>
+        <at-option [atValue]="3" [atLabel]="'test2'"></at-option>
+        <at-option [atValue]="4" [atLabel]="'test2'"></at-option>
+        <at-option [atValue]="5" [atLabel]="'test3'"></at-option>
+        <at-option [atValue]="6" [atLabel]="'test4'"></at-option>
+      </at-select>
+    </at-form-control>
+  </at-form-item>
+
+  <at-form-item>
     <at-form-label [span]="4">error</at-form-label>
     <at-form-control [span]="20">
       <at-select [atMode]="'multiple'" formControlName="password">

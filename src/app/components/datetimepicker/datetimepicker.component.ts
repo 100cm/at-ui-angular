@@ -21,6 +21,8 @@ import {fromEvent, Observable, Subject, Subscription}                           
 import {debounceTime, mapTo, merge}                                                  from "rxjs/operators";
 import {underscoreToCamelCase}                                                       from "../utils/class-helper";
 import {DropDownAnimation}                                                           from "../animations/drop-down-animation";
+import {AtI18nService}                                                               from "../i18n";
+import {AtI18nInterface}                                                             from "../i18n/at-i18n.interface";
 
 @Component({
              selector: 'atDatetimePicker',
@@ -51,8 +53,8 @@ import {DropDownAnimation}                                                      
 
 
                          <span class="current-select-label">
-            <a (click)="setCal('month')" class="month-select">{{atMonth + 1}}月</a>
-            <a (click)="setCal('year')" class="year-select">{{atYear}}年</a>
+            <a (click)="setCal('month')" class="month-select">{{atMonth + 1}}{{il8n?.DatePicker?.MonthName}}</a>
+            <a (click)="setCal('year')" class="year-select">{{atYear}}{{il8n?.DatePicker?.YearName}}</a>
           </span>
 
                          <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
@@ -67,6 +69,7 @@ import {DropDownAnimation}                                                      
                      </div>
                      <div class="at-datepicker--panel--body">
                        <at-calendar [ngStyle]="{display: mode =='date' ? 'block' : 'none' }"
+                                    [locale]="il8n"
                                     (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
                                     (_clickMonth)="clickMonth($event)"
                                     [format]="format"
@@ -88,8 +91,8 @@ import {DropDownAnimation}                                                      
                      </div>
                    </div>
                    <div class="at-datepicker--footer">
-                     <a (click)="setMode('time')">选择时间</a>
-                     <a (click)="setMode('date')">选择日期</a>
+                     <a *ngIf="mode == 'date'" (click)="setMode('time')">{{il8n.DatePicker.chooseTime}}</a>
+                     <a *ngIf="mode == 'time'" (click)="setMode('date')">{{il8n.DatePicker.chooseDate}}</a>
                    </div>
                  </div>
                </ng-template>
@@ -106,43 +109,45 @@ import {DropDownAnimation}                                                      
            })
 export class DatetimepickerComponent implements OnInit {
 
-  constructor(private el: ElementRef, private _renderer: Renderer2, private cdr: ChangeDetectorRef) {
+  constructor(private el: ElementRef,
+              private at_i18n_service: AtI18nService,
+              private _renderer: Renderer2, private cdr: ChangeDetectorRef) {
   }
 
-
-  _atType                              = 'full'
-  _positions: ConnectionPositionPair[] = [
-    {
-      originX: 'start',
-      originY: 'top',
-      overlayX: 'start',
-      overlayY: 'top'
-    },
-    {
-      originX: 'start',
-      originY: 'bottom',
-      overlayX: 'start',
-      overlayY: 'bottom'
-    },
-    {
-      originX: 'end',
-      originY: 'top',
-      overlayX: 'end',
-      overlayY: 'top'
-    },
-    {
-      originX: 'end',
-      originY: 'bottom',
-      overlayX: 'end',
-      overlayY: 'bottom'
-    }
-  ] as ConnectionPositionPair[];
-  _subscription: Subscription
-  _visibleChange                       = new Subject<boolean>();
-  $visible                             = this._visibleChange.asObservable()
-  mode                                 = 'date'
-  _visible                             = false
-  dropdownPosition                     = 'bottom'
+  private il8n: AtI18nInterface
+          _atType                              = 'full'
+          _positions: ConnectionPositionPair[] = [
+            {
+              originX: 'start',
+              originY: 'top',
+              overlayX: 'start',
+              overlayY: 'top'
+            },
+            {
+              originX: 'start',
+              originY: 'bottom',
+              overlayX: 'start',
+              overlayY: 'bottom'
+            },
+            {
+              originX: 'end',
+              originY: 'top',
+              overlayX: 'end',
+              overlayY: 'top'
+            },
+            {
+              originX: 'end',
+              originY: 'bottom',
+              overlayX: 'end',
+              overlayY: 'bottom'
+            }
+          ] as ConnectionPositionPair[];
+          _subscription: Subscription
+          _visibleChange                       = new Subject<boolean>();
+          $visible                             = this._visibleChange.asObservable()
+          mode                                 = 'date'
+          _visible                             = false
+          dropdownPosition                     = 'bottom'
 
   @ViewChild(CdkConnectedOverlay) overlay
 
@@ -255,6 +260,9 @@ export class DatetimepickerComponent implements OnInit {
 
 
   ngOnInit() {
+    this.at_i18n_service.localChange.subscribe(il8n => {
+      this.il8n = il8n
+    })
   }
 
 

@@ -6,21 +6,22 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
                <div>
                  <ul *ngIf="!simple" class="at-pagination at-pagination--{{size}}">
     <span class="at-pagination__total">
-      共 {{total}} 条
+      {{'Page.total' | atI18n}} {{total}} {{'Page.result' | atI18n}}
     </span>
-                   <li (click)="_jumpPage(_current-1)" [class.at-pagination--disabled]="_isFirstIndex" title="上一页"
+                   <li (click)="_jumpPage(_current-1)" [class.at-pagination--disabled]="_isFirstIndex"
+                       [attr.title]="'Page.previous' | atI18n"
                        class="at-pagination__prev">
                      <i class="icon icon-chevron-left"></i>
                    </li>
                    <li
-                     title="第一页"
+                     [attr.title]="'Page.first' | atI18n"
                      class="at-pagination__item"
                      [class.at-pagination__item--active]="_isFirstIndex"
                      (click)="_jumpPage(_firstIndex)">
                      {{_firstIndex}}
                    </li>
                    <li
-                     [attr.title]="'向前 '+_roundPageSize+' 页'"
+                     [attr.title]="('Page.back' | atI18n)+ ' ' +_roundPageSize+ ' ' +('Page.page' | atI18n)"
                      class="at-pagination__item at-pagination__item--jump-prev"
                      (click)="_jumpBefore(_pageSize)"
                      *ngIf="(_lastIndex >9)&&(_current-3>_firstIndex)">
@@ -34,7 +35,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
                      [class.at-pagination__item--active]="_current==page.index">
                      {{page.index}}
                    </li>
-                   <li [attr.title]="'向后 '+_roundPageSize+' 页'"
+                   <li [attr.title]="('Page.to' | atI18n) + ' ' +_roundPageSize+ ' ' + ('Page.page' | atI18n)"
                        (click)="_jumpAfter(_pageSize)"
                        class="at-pagination__item at-pagination__item--jump-next"
                        *ngIf="(_lastIndex >9)&&(_current+3<_lastIndex)"
@@ -42,14 +43,14 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
                      <i class="icon icon-chevrons-right"></i>
                    </li>
                    <li
-                     [attr.title]="'最后一页: '+_lastIndex"
+                     [attr.title]="( 'Page.last' | atI18n) +':'+_lastIndex"
                      class="at-pagination__item"
                      [class.at-pagination__item--active]="_isLastIndex"
                      (click)="_jumpPage(_lastIndex)"
                      *ngIf="(_lastIndex>0)&&(_lastIndex!==_firstIndex)">
                      {{_lastIndex}}
                    </li>
-                   <li title="下一页"
+                   <li [attr.title]="'Page.next' | atI18n"
                        [class.at-pagination--disabled]="_isLastIndex "
                        class="at-pagination__next" (click)="_jumpPage(_current+1)">
                      <i class="icon icon-chevron-right"></i>
@@ -58,17 +59,19 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
                    <ng-container *ngIf="atPageSizer">
                      <div class="at-pagination__sizer">
                        <at-select [atSize]="'small'" [(ngModel)]="pageSize" (ngModelChange)="_atPageSizeChange($event)">
-                         <at-option *ngFor="let item of _options" [atValue]="item" [atLabel]="item+' 条/页'">
+                         <at-option *ngFor="let item of _options" [atValue]="item"
+                                    [atLabel]="item +
+                                     ('Page.per' | atI18n) ">
                          </at-option>
                        </at-select>
                      </div>
                    </ng-container>
 
                    <div *ngIf="atQuickJump" class="at-pagination__quickjump">
-                     <span>前往</span>
+                     <span>{{'Page.go' | atI18n}}</span>
                      <input type="text" class="at-input__original" [ngModel]="atPageIndex"
                             (ngModelChange)="_atPageIndexChange($event)">
-                     <span>页</span>
+                     <span>{{'Page.page' | atI18n}}</span>
                    </div>
                  </ul>
 
@@ -84,7 +87,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
                             type="text" class="at-input__original">
                      <span>/</span>
                      <span class="at-pagination__paging-total">{{_lastIndex}}</span></div>
-                   <li title="下一页" class="at-pagination__next"
+                   <li class="at-pagination__next"
                        [class.at-pagination--disabled]="_isLastIndex "
                        class="at-pagination__next" (click)="_jumpPage(_current+1)"
                    ><i class="icon icon-chevron-right"></i></li>

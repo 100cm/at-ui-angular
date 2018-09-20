@@ -5,9 +5,8 @@
 
 <hr>
 
-<at-upload [atType]="'picture'" [(ngModel)]="files">
-
+<at-upload [atType]="'picture'" [(ngModel)]="files" >
   <button at-button><span>点击上传</span></button>
 </at-upload>
 
-{{files.length}}
+{{files}}
