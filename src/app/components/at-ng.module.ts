@@ -39,6 +39,7 @@ import {AtMessageModule}        from "./message/at-message.module";
 import {AtNotificationModule}   from "./notification/at-notification.module";
 import {AtColorPickerModule}    from "./color-picker/at-color-picker.module";
 import {AtI18nModule}           from "./i18n/at-i18n.module";
+import {AtDndModule}            from "./drag-and-drop/at-dnd.module";
 
 export *                                  from './tree'
 export *                                  from './checkbox'
@@ -78,6 +79,7 @@ export *                                  from './message'
 export *                                  from './badge'
 export *                                  from './i18n'
 export *                                  from './color-picker'
+export *                                  from './drag-and-drop'
 
 @NgModule({
             exports: [
@@ -118,7 +120,8 @@ export *                                  from './color-picker'
               AtButtonModule,
               AtMenuModule,
               AtColorPickerModule,
-              AtI18nModule
+              AtI18nModule,
+              AtDndModule,
             ],
 
             providers: [AtGlobalMonitorService]

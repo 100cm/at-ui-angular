@@ -106,7 +106,9 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'slider'
     },
 
-    {name: 'tab', url: '/components/tab', name_en: 'tab'}
+    {name: 'tab', url: '/components/tab', name_en: 'tab'},
+
+    {name: '拖拽释放', url: '/components/dnd', name_en: 'DnD'}
   ]
 
   goRoute(e) {

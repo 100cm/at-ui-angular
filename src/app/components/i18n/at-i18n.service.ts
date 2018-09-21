@@ -1,7 +1,7 @@
 import {AtI18nInterface}                                                  from "./at-i18n.interface";
 import {Inject, Injectable, InjectionToken, Optional, Provider, SkipSelf} from '@angular/core';
 import zh_CN                                                              from "./languages/zh_CN";
-import {BehaviorSubject}                                                  from "rxjs/internal/BehaviorSubject";
+import {BehaviorSubject}                                                  from "rxjs";
 
 export const AT_I18N = new InjectionToken<AtI18nInterface>('nz-i18n')
 

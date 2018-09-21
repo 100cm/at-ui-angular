@@ -10711,3 +10711,8 @@ $info-color               : #78A4FA;
     opacity: 0.3;
   }
 }
+/* line 3, ../sass/components/dnd.scss */
+.on-drag-enter {
+  box-sizing: border-box;
+  box-shadow: 2px 2px 20px #A9A9A9;
+}

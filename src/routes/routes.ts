@@ -41,19 +41,20 @@ import {AtDemoStepsComponent}          from "../app/showcase/at-demo-steps/at-de
 import {AtDemoTimelineComponent}       from "../app/showcase/at-demo-timeline/at-demo-timeline.component";
 import {AtDemoAffixComponent}          from "../app/showcase/at-demo-affix/at-demo-affix.component";
 import {AtDemoUploadComponent}         from "../app/showcase/at-demo-upload/at-demo-upload.component";
-import {AdminComponent}             from "../app/showcase/admin/admin.component";
-import {AtDemoTreeComponent}        from "../app/showcase/at-demo-tree/at-demo-tree.component";
-import {AtDemoCarouselComponent}    from "../app/showcase/at-demo-carousel/at-demo-carousel.component";
-import {AtDemoDrawerComponent}      from "../app/showcase/at-demo-drawer/at-demo-drawer.component";
-import {AtDemoColorPickerComponent} from "../app/showcase/at-demo-color-picker/at-demo-color-picker.component";
-import {I18NComponent}              from "../app/showcase/i18-n/i18-n.component";
+import {AdminComponent}                from "../app/showcase/admin/admin.component";
+import {AtDemoTreeComponent}           from "../app/showcase/at-demo-tree/at-demo-tree.component";
+import {AtDemoCarouselComponent}       from "../app/showcase/at-demo-carousel/at-demo-carousel.component";
+import {AtDemoDrawerComponent}         from "../app/showcase/at-demo-drawer/at-demo-drawer.component";
+import {AtDemoColorPickerComponent}    from "../app/showcase/at-demo-color-picker/at-demo-color-picker.component";
+import {I18NComponent}                 from "../app/showcase/i18-n/i18-n.component";
+import {AtDemoDndComponent}            from "../app/showcase/at-demo-dnd/at-demo-dnd.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'components/introduction', pathMatch: 'full'},
   {
     path: 'components', component: AtDemoComponentsComponent,
     children: [
-      {path: 'i18n',component:I18NComponent},
+      {path: 'i18n', component: I18NComponent},
       {path: 'button', component: AtDemoButtonComponent},
       {path: 'layout', component: AtDemoLayoutComponent},
       {path: 'icon', component: AtDemoIconComponent},
@@ -99,7 +100,8 @@ const appRoutes: Routes = [
       {path: 'tree', component: AtDemoTreeComponent},
       {path: 'carousel', component: AtDemoCarouselComponent},
       {path: 'drawer', component: AtDemoDrawerComponent},
-      {path: 'color-picker', component: AtDemoColorPickerComponent}
+      {path: 'color-picker', component: AtDemoColorPickerComponent},
+      {path: 'dnd', component: AtDemoDndComponent}
     ]
 
   },

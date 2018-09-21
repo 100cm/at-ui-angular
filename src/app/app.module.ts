@@ -161,6 +161,8 @@ import { AtDemoColorPickerComponent } from './showcase/at-demo-color-picker/at-d
 import zh_CN                          from "./components/i18n/languages/zh_CN";
 import en_US                          from "./components/i18n/languages/en_US";
 import { I18NComponent } from './showcase/i18-n/i18-n.component';
+import { AtDemoDndComponent } from './showcase/at-demo-dnd/at-demo-dnd.component';
+import { AtDemoDndBasicComponent } from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
 
 
 
@@ -308,7 +310,11 @@ import { I18NComponent } from './showcase/i18-n/i18-n.component';
 
     AtDemoColorPickerComponent,
 
-    I18NComponent
+    I18NComponent,
+
+    AtDemoDndComponent,
+
+    AtDemoDndBasicComponent
 
 
   ],
