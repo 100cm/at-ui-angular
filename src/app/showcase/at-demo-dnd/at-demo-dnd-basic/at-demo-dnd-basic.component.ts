@@ -35,4 +35,8 @@ export class AtDemoDndBasicComponent implements OnInit {
     ]
   }
 
+  get jsonDATA() {
+    return JSON.stringify(this.bindData, null,2)
+  }
+
 }

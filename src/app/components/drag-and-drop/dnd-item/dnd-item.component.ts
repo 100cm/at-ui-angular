@@ -37,7 +37,7 @@ import {DragTriggerDirective}                                  from "../drag-tri
              }],
              host: {"[class.on-drag-enter]": 'drag_enter'},
              styles: [
-               `:host {
+                 `:host {
                  display: block;
                  transition: all 0.3s;
                }
@@ -220,6 +220,8 @@ export class DndItemComponent implements OnInit {
       })
       $drop.subscribe((event: DragEvent) => {
         event.preventDefault()
+        event.stopPropagation()
+        console.log(this.content.key)
         this.dragEndHook()
         if (event.dataTransfer.getData('target') != 'trigger') {
           return false

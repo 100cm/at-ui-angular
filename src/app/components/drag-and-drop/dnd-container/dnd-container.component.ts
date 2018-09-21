@@ -69,7 +69,7 @@ export class DndContainerComponent implements OnInit {
 
     if (found[0] != dragging_found[0]) {
       this.removeIndex(dragging_found[0].children, dragging_found[2])
-      this.array_insert(found[0], found[2], dragging_found[1])
+      this.array_insert(found[0].children, found[2], dragging_found[1])
     }
   }
 
