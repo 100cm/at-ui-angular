@@ -1,7 +1,8 @@
-import {NgModule}                          from '@angular/core';
-import {AT_I18N, AT_I18N_SERVICE_PROVIDER} from "./at-i18n.service";
-import zh_CN                               from "./languages/zh_CN";
-import {AtI18nPipe}                        from './at-i18n.pipe';
+import {NgModule}                 from '@angular/core';
+import {AT_I18N_SERVICE_PROVIDER} from "./at-i18n.service";
+import zh_CN                      from "./languages/zh_CN";
+import {AtI18nPipe}               from './at-i18n.pipe';
+import {AT_I18N}                  from "./i18n-token";
 
 @NgModule({
             imports: [],

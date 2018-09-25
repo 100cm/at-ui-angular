@@ -1,5 +1,6 @@
 import {Component, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {NG_VALUE_ACCESSOR}                                                                     from "@angular/forms";
+import {atInputSize}                                                                           from "../input";
 
 @Component({
              selector: 'at-switch',
@@ -41,7 +42,7 @@ export class SwitchComponent implements OnInit {
   @Input()
   disabled: boolean = false
 
-  private _atSize: 'normal' | 'small' | 'large' = 'normal'
+  private _atSize: atInputSize = 'normal'
 
   @Output() change: EventEmitter<boolean> = new EventEmitter()
 

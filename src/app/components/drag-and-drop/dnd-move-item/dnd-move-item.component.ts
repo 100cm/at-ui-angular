@@ -2,7 +2,7 @@ import {Component, forwardRef, OnInit} from '@angular/core';
 import {DndItemComponent}              from "../dnd-item/dnd-item.component";
 import {NG_VALUE_ACCESSOR}             from "@angular/forms";
 import {concatAll, map, takeUntil}     from "rxjs/operators";
-import {fromEvent}                     from "rxjs/index";
+import {fromEvent}                     from "rxjs";
 
 @Component({
              selector: 'at-dnd-move-item',
@@ -54,8 +54,8 @@ export class DndMoveItemComponent extends DndItemComponent implements OnInit {
       this.drag_init       = true
       let dom: HTMLElement = this.elementRef.nativeElement
       let dragStart        = fromEvent(this._triggerElement, 'mousedown')
-      let dragMoving       = this.$MOUSE_MOVE
-      let dragEnd          = this.$MOUSE_UP
+      let dragMoving       = fromEvent(document, 'mousemove')
+      let dragEnd          = fromEvent(document, 'mouseup')
 
       dragStart.pipe(map((event: any) => {
                            let DomRect: any     = dom.getBoundingClientRect()

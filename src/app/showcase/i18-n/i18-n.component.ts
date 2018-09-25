@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AtI18nService}     from "../../components/i18n";
+import {AtI18nService}     from "../../components/i18n/at-i18n.service";
 import zh_CN               from "../../components/i18n/languages/zh_CN";
 import en_US               from "../../components/i18n/languages/en_US";
 

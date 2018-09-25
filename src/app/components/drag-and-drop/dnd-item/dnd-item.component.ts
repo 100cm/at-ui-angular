@@ -20,7 +20,9 @@ import {DragTriggerDirective}                                  from "../drag-tri
 @Component({
              selector: 'at-dnd-item',
              template: `
-               <div *ngIf="drag_enter == true && show_drag_line == true" class="drag-over-place"></div>
+               <ng-container *ngIf="drag_enter == true && show_drag_line == true">
+                 <div class="drag-over-place"></div>
+               </ng-container>
                <div [class.dz-drag-start]="dragAndDropStart" class="none-drag-event">
                  <ng-content></ng-content>
                </div>
@@ -52,15 +54,6 @@ import {DragTriggerDirective}                                  from "../drag-tri
 export class DndItemComponent implements OnInit {
 
   @Output() OnStopDrag: EventEmitter<any> = new EventEmitter()
-
-  $MOUSE_MOVE = fromEvent(document, 'mousemove')
-
-
-  $MOUSE_UP = fromEvent(document, 'mouseup')
-
-
-  $MOUSE_ENTER = fromEvent(this.elementRef.nativeElement, 'mouseenter')
-
 
   atIndex
 

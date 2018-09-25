@@ -21,7 +21,7 @@ import {fromEvent, Observable, Subject, Subscription}                           
 import {debounceTime, mapTo, merge}                                                  from "rxjs/operators";
 import {underscoreToCamelCase}                                                       from "../utils/class-helper";
 import {DropDownAnimation}                                                           from "../animations/drop-down-animation";
-import {AtI18nService}                                                               from "../i18n";
+import {AtI18nService}                                                               from "../i18n/at-i18n.service";
 import {AtI18nInterface}                                                             from "../i18n/at-i18n.interface";
 
 @Component({

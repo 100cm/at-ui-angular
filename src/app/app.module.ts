@@ -153,16 +153,17 @@ import { AtDemoTreeGroupComponent }   from './showcase/at-demo-tree/at-demo-tree
 import { AtDemoRemoteTreeComponent }  from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
 import { AtDemoCardTabComponent }     from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
 import { AtDemoSizeTabsComponent }    from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
-import {AT_I18N, AtModule}            from "./components/at-ng.module";
+import {AtModule}            from "./components/at-ng.module";
 import { AtDemoCarouselComponent }    from './showcase/at-demo-carousel/at-demo-carousel.component';
 import {AtDemoBasicCarouselComponent} from "./showcase/at-demo-carousel/at-demo-basic-carousel/at-demo-basic-carousel.component";
 import { AtDemoDrawerComponent }      from './showcase/at-demo-drawer/at-demo-drawer.component';
 import { AtDemoColorPickerComponent } from './showcase/at-demo-color-picker/at-demo-color-picker.component';
 import zh_CN                          from "./components/i18n/languages/zh_CN";
 import en_US                          from "./components/i18n/languages/en_US";
-import { I18NComponent } from './showcase/i18-n/i18-n.component';
-import { AtDemoDndComponent } from './showcase/at-demo-dnd/at-demo-dnd.component';
-import { AtDemoDndBasicComponent } from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
+import { I18NComponent }              from './showcase/i18-n/i18-n.component';
+import { AtDemoDndComponent }         from './showcase/at-demo-dnd/at-demo-dnd.component';
+import { AtDemoDndBasicComponent }    from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
+import {AT_I18N}                      from "./components/i18n/i18n-token";
 
 
 

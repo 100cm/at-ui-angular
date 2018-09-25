@@ -4,7 +4,7 @@ import * as moment       from 'moment';
 import {Moment}          from "moment";
 import {AtDate}          from "../at-day";
 import 'moment/locale/zh-cn';
-import {AtI18nService}   from "../../i18n";
+import {AtI18nService}   from "../../i18n/at-i18n.service";
 import {AtI18nInterface} from "../../i18n/at-i18n.interface";
 
 @Component({

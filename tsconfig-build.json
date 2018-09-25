@@ -13,7 +13,7 @@
     ]
   },
   "files": [
-    "./src/__gen_components/at-ng.module.ts"
+    "./__gen_components/at-ng.module.ts"
   ],
   "angularCompilerOptions": {
     "annotateForClosureCompiler": true,
