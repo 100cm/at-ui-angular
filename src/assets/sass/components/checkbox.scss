@@ -29,6 +29,10 @@
 
       &::after {
         transform: rotate(45deg) scale(1);
+        display: table;
+        left: 5px;
+        top: 3px;
+        position: absolute;
       }
     }
   }
@@ -51,6 +55,23 @@
       cursor: $cursor-disabled;
     }
   }
+
+  &--indeterminate {
+    .at-checkbox__inner {
+      border-color: $checkbox-border-c-checked;
+      background-color: $checkbox-border-c-checked;
+      &::after {
+        -webkit-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
+        height: 1.12px;
+        width: 8px;
+        display: table;
+        left: 3px;
+        top: 6px;
+        position: absolute;
+      }
+    }
+  }
   &--focus {
     border-color: $brand-color-light;
   }
@@ -66,13 +87,13 @@
   }
   &__inner {
     position: relative;
-    display: inline-flex;
+    display: block;
     justify-content: center;
     align-items: center;
     width: $checkbox-size;
     height: $checkbox-size;
     border: 1px solid $checkbox-border-c;
-    border-radius: $border-radius-base;
+    border-radius: $border-radius-ssm;
     background-color: $color-white;
     transition: all .2s;
     cursor: pointer;
@@ -90,6 +111,7 @@
       border-top: 0;
       transform: rotate(45deg) scale(0);
       transition: transform .2s;
+      position: absolute;
     }
   }
   &__original {

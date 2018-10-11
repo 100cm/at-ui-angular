@@ -44,6 +44,8 @@ export class ProgressComponent implements OnInit {
     this._width = value;
     if (this._width == 100) {
       this.status = 'success'
+    }else{
+      this.status = 'process'
     }
   }
 

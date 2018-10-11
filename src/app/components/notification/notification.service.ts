@@ -1,12 +1,14 @@
-import {Injectable} from '@angular/core';
-import {ComponentCreator} from "../core/component-creator";
-import {NotificationComponent} from "./notification/notification.component";
-import {ComponentCreatorBase} from "../core/component-creator-base";
+import {Injectable}                     from '@angular/core';
+import {ComponentCreator}               from "../core/component-creator";
+import {NotificationComponent}          from "./notification/notification.component";
+import {ComponentCreatorBase}           from "../core/component-creator-base";
 import {NotificationContainerComponent} from "./notification-container/notification-container.component";
-import {NotificationBaseService} from "./notification-base.service";
-import {NotificationConfig} from "./notification/notification-config";
+import {NotificationBaseService}        from "./notification-base.service";
+import {NotificationConfig}             from "./notification/notification-config";
 
-@Injectable()
+@Injectable({
+              providedIn: 'root'
+            })
 export class AtNotificationService extends ComponentCreator<NotificationContainerComponent> {
 
   constructor(public containerbase: NotificationBaseService, public component_base: ComponentCreatorBase) {

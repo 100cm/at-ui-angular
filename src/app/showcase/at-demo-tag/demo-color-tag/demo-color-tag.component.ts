@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-demo-color-tag',
-  template: '<atTag *ngFor="let item of colors" [color]="item">{{item}}</atTag>',
+  template: '<at-tag *ngFor="let item of colors" [color]="item">{{item}}</at-tag>',
   styleUrls: ['./demo-color-tag.component.css']
 })
 export class DemoColorTagComponent implements OnInit {

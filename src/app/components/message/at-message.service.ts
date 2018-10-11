@@ -3,7 +3,9 @@ import {AtMessageContainerService} from "./at-message-container.service";
 import {AtNotificationService} from "../notification/notification.service";
 import {NotificationConfig} from "../notification/notification/notification-config";
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+            })
 export class AtMessageService {
 
   constructor(private message_container_service: AtMessageContainerService) {

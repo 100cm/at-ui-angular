@@ -1,0 +1,107 @@
+<section>
+  <h1>Color Picker</h1>
+  <doc-section [code]="code">
+    <div sample>
+      <at-color-picker [(ngModel)]="color"></at-color-picker>
+      {{color}}
+    </div>
+  </doc-section>
+</section>
+
+
+<section>
+  <doc-section [title]="'参数设置'" [sample]="false">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>atDisableAlpha</td>
+        <td>是否禁用alpha（透明度）</td>
+        <td>boolean</td>
+        <td>true/false</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>[(ngModel)]</td>
+        <td>双向绑定</td>
+        <td>Hex(色值)</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>atWidth</td>
+        <td>容器宽度</td>
+        <td>string</td>
+        <td>100%</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>atClassName</td>
+        <td>容器class</td>
+        <td>string</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>(hexChange)</td>
+        <td>色值变化的回调事件</td>
+        <td>Hex</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td>(onSwatchHover)</td>
+        <td>鼠标放置在可选颜色的回调事件</td>
+        <td>Color</td>
+        <td>-</td>
+        <td>
+          hex: string;
+          rgb: RGBA;
+          hsl: HSLA;
+          hsv: HSVA;
+          oldHue: number;
+          source: string;
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>atPresetColors</td>
+        <td>默认的可选颜色</td>
+        <td>Array</td>
+        <td>-</td>
+        <td> '#D0021B',
+          '#F5A623',
+          '#F8E71C',
+          '#8B572A',
+          '#7ED321',
+          '#417505',
+          '#BD10E0',
+          '#9013FE',
+          '#4A90E2',
+          '#50E3C2',
+          '#B8E986',
+          '#000000',
+          '#4A4A4A',
+          '#9B9B9B',
+          '#FFFFFF'
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  </doc-section>
+</section>

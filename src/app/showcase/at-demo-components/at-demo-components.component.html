@@ -25,7 +25,7 @@
           <li class="at-nav__item"><a [routerLink]="'/components/introduction'" class="at-nav__page">介绍</a></li>
           <li class="at-nav__item"><a [routerLink]="'/components/installation'" class="at-nav__page">安装</a></li>
           <li class="at-nav__item"><a [routerLink]="'/components/quickstart'" class="at-nav__page">快速上手</a></li>
-          <!--<li class="at-nav__item"><a [routerLink]="'/components/i18n'" class="at-nav__page">国际化</a></li>-->
+          <li class="at-nav__item"><a [routerLink]="'/components/i18n'" class="at-nav__page">国际化</a></li>
           <li class="at-nav__item"><a [routerLink]="'/components/changelog'" class="at-nav__page">更新日志</a></li>
         </ul>
         <!--</li>-->
@@ -80,6 +80,9 @@
               <li (click)="goRoute($event)" [active]="active('/components/textarea')" at-menu-item><a
                 [routerLink]="'/components/textarea'">Textarea<span
                 class="component_item_span">文本域</span></a></li>
+              <li (click)="goRoute($event)" [active]="active('/components/color-picker')" at-menu-item><a
+                [routerLink]="'/components/color-picker'">ColorPicker<span
+                class="component_item_span">颜色选择</span></a></li>
             </ul>
           </ul>
         </li>

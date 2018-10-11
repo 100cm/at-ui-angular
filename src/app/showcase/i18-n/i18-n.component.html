@@ -1,0 +1,43 @@
+<doc-section [title]="'全局配置'">
+  <div sample>
+    <div app-high-light [atLanguage]="'js'" [atCode]="code"></div>
+  </div>
+</doc-section>
+
+<doc-section [title]="'切换实验'">
+  <div sample>
+    <button at-button (click)="clickSwitch()">切换</button>
+    <app-at-demo-datetimepicker></app-at-demo-datetimepicker>
+  </div>
+</doc-section>
+
+<label>全局服务切换配置</label>
+<doc-section>
+  <div sample>
+    <div app-high-light [atLanguage]="'js'" [atCode]="code2"></div>
+  </div>
+</doc-section>
+
+<doc-section [title]="'语言'" [sample]="false">
+  <table class="table" desc>
+    <thead>
+    <tr>
+      <th>语言</th>
+      <th>名称</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>中文</td>
+      <td>zh_CN</td>
+    </tr>
+    <tr>
+      <td>英文</td>
+      <td>en_US</td>
+    </tr>
+    </tbody>
+  </table>
+
+</doc-section>
+
+

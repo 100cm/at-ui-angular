@@ -9,7 +9,6 @@ import {ColComponent}                          from "../../grid/col/col.componen
                  <ng-content></ng-content>
                </label>
              `,
-             styleUrls: ['./at-form-label.component.css']
            })
 export class AtFormLabelComponent extends ColComponent implements OnInit {
 

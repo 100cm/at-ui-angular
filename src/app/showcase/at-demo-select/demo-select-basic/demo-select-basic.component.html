@@ -1,4 +1,4 @@
-<at-select (change)="change($event)" [(ngModel)]="single" [atSize]="'large'" [searchable]="true">
+<at-select (change)="change($event)"  [atPlaceHolder]="'asdsd'" [atSize]="'large'" [searchable]="true">
   <at-option *ngFor="let item of selects;let i= index" [atLabel]="'first'" [atValue]="i"></at-option>
 </at-select>
 

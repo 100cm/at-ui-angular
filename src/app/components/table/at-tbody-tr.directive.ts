@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 
 @Directive({
-  selector: '[atTbodyTr]'
+  selector: '[at-tbody-tr]'
 })
 export class AtTbodyTrDirective {
 

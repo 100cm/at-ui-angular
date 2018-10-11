@@ -11,7 +11,11 @@ export class DemoBasicSliderComponent implements OnInit {
 
   single_value = 50
 
-  marks = {10: '10分10分10分', 20: '20分',40:'我是40点'}
+  single_value2 = 50
+
+  single_value3 = 50
+
+  marks = {10: '10分10分10分', 20: '20分', 40: '我是40点'}
 
   constructor() {
   }

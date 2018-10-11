@@ -14,9 +14,32 @@
 
 <hr>
 
-<at-select [(ngModel)]="single" [atSize]="'small'" [disabled]="true">
+<at-select [(ngModel)]="single" [atSize]="'small'">
   <at-option [atLabel]="'first'" [atValue]="'first'"></at-option>
   <at-option [atLabel]="'second'" [atValue]="'second'"></at-option>
   <at-option [atLabel]="'next'" [atValue]="'next'"></at-option>
 </at-select>
+<hr>
+
+<at-select [(ngModel)]="multiple" [atMode]="'multiple'" [atSize]="'small'">
+  <at-option [atLabel]="'first'" [atValue]="'first'"></at-option>
+  <at-option [atLabel]="'second'" [atValue]="'second'"></at-option>
+  <at-option [atLabel]="'next'" [atValue]="'next'"></at-option>
+</at-select>
+
+<hr>
+<at-select [(ngModel)]="multiple" [atMode]="'multiple'">
+  <at-option [atLabel]="'first'" [atValue]="'first'"></at-option>
+  <at-option [atLabel]="'second'" [atValue]="'second'"></at-option>
+  <at-option [atLabel]="'next'" [atValue]="'next'"></at-option>
+</at-select>
+
+<hr>
+
+<at-select [(ngModel)]="multiple" [atMode]="'multiple'" [atSize]="'large'">
+  <at-option [atLabel]="'first'" [atValue]="'first'"></at-option>
+  <at-option [atLabel]="'second'" [atValue]="'second'"></at-option>
+  <at-option [atLabel]="'next'" [atValue]="'next'"></at-option>
+</at-select>
+
 

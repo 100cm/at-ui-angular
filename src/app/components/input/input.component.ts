@@ -54,7 +54,7 @@ export type atInputSize = 'small' | 'normal' | 'large'
 export class InputComponent implements OnInit {
 
 
-  constructor(public el: ElementRef) {
+  constructor(public elementRef: ElementRef) {
   }
 
   ngOnInit() {

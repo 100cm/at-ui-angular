@@ -166,7 +166,7 @@
           flex-{{item}}
         </div>
         <div at-row [alignType]="item">
-          <div at-col [atLg]="6" [atSm]="24">
+          <div at-col [atLg]="x" [atSm]="24">
             <div class="bg-c-brand-light at-box-row"></div>
           </div>
           <div at-col [atLg]="6" [atSm]="24">
@@ -183,8 +183,30 @@
           </div>
         </div>
       </div>
+      <button at-button (click)="changeX()">切换x</button>
+    </div>
+
+  </doc-section>
+
+
+  <doc-section [title]="'后台dashboard layout'" [code]="dashboard_one_code">
+    <p desc>
+      后台采用左边下拉菜单，右侧具体内容布局
+    </p>
+    <div sample>
+      <app-admin></app-admin>
     </div>
   </doc-section>
+
+  <doc-section [title]="'后台dashboard layout2'" [code]="dashboard_two_code">
+    <p desc>
+      后台采用左边下拉菜单，右侧具体内容布局
+    </p>
+    <div sample>
+      <app-admin [layout]="'layout2'"></app-admin>
+    </div>
+  </doc-section>
+
 
   <doc-section [title]="'类名说明'" [sample]="false">
     <table desc class="table">

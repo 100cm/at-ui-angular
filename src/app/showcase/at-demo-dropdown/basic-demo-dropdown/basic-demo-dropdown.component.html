@@ -1,26 +1,28 @@
 <p style="margin-bottom: 10px">点击下拉</p>
-<at-dropdown [placement]="'top'" [trigger]="'click'">
-  <span at-dropdown>下拉菜单<i class="icon icon-chevron-down"></i></span>
-  <ul at-drop-menu-list>
-    <li at-drop-menu-item>菜单1</li>
-    <li at-drop-menu-item [disabled]="true">菜单1</li>
-    <li at-drop-menu-item [divided]="true">菜单1</li>
-    <li at-drop-menu-item>菜单1</li>
-    <li at-drop-menu-item>菜单1</li>
+<ng-container *ngFor="let item of arrays">
+  <at-dropdown  [placement]="'top'" [trigger]="'click'">
+    <span at-dropdown>下拉菜单<i class="icon icon-chevron-down"></i></span>
+    <ul at-drop-menu-list>
+      <li at-drop-menu-item>菜单1</li>
+      <li at-drop-menu-item [disabled]="true">菜单1</li>
+      <li at-drop-menu-item [divided]="true">菜单1</li>
+      <li at-drop-menu-item>菜单1</li>
+      <li at-drop-menu-item>菜单1</li>
 
-    <li at-drop-submenu>
-      <span title>菜单</span>
-      <ul>
-        <li at-drop-menu-item>123</li>
-        <li at-drop-menu-item>123</li>
-        <li at-drop-menu-item>123</li>
-        <li at-drop-menu-item>213</li>
-      </ul>
-    </li>
-    <li at-drop-menu-item>123</li>
-  </ul>
+      <li at-drop-submenu>
+        <span title>菜单</span>
+        <ul>
+          <li at-drop-menu-item>123</li>
+          <li at-drop-menu-item>123</li>
+          <li at-drop-menu-item>123</li>
+          <li at-drop-menu-item>213</li>
+        </ul>
+      </li>
+      <li at-drop-menu-item>123</li>
+    </ul>
 
-</at-dropdown>
+  </at-dropdown>
+</ng-container>
 
 <hr>
 <p style="margin-bottom: 10px">hover下拉</p>

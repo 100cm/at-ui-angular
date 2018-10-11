@@ -3,13 +3,46 @@
   <hr>
   <doc-section [sample]="false">
     <div desc>
-      <h2>v1.0.0&nbsp;- 2017-10-23</h2>
+      <at-timeline>
+        <at-timeline-item>
+          <div timeline-content>
+            <p style="color: #0e77ca;font-size: 16px">
+              v1.0.0&nbsp;- 2017-10-23
+            </p>
+            <pre> 发布了23个组件</pre>
+          </div>
+        </at-timeline-item>
 
-      <ul>
-        <li>发布&nbsp;<code>at-ng</code>&nbsp;v1.0.0</li>
-        <li>发布第一个版本，包含了 24 个组件</li>
-      </ul>
+        <at-timeline-item>
+          <div timeline-content>
+            <p style="color: #0e77ca;font-size: 16px">
+              2018-08-23
+            </p>
+            <pre>
+            1.checkbox group 的样式修复，正确的间隔
+            2.栅栏系统争取的响应式参数 【sm,xs,md,lg】
+            3.select，input 正确的small, normal,large 对应
+            4.menu 菜单添加dracula主题 ，更加友好的api 指令
+            5.switch text支持 TemplaterRef 了
+            6.修改了at-select at-option at-switch at-card 等的命名
+            7.修复了模态框中select 层级的问题，由于select采用了预设层级，所有modal也要做相应的改动
+            8.修复了dropdown中select层级的问题，重新设置了select overlay的排列顺序
+            9.修复了dropdown的下拉样式，新增了dropdown的层级选择，修改了之前的指令的命名和结构（通过extend menu实现 非同一组件实现，采用范型和类型擦除）
+            10.dropdown 使用visible 做对外参数名 ，由原先的atVisible改变
+            11.popover popContent 不再作为content选择器
+            12.修复了popover 在overlay position change的时候 无法自动修改箭头指向的问题
 
+            13.重写了 popover 箭头，解决了无法转换成黑色背景的bug
+            14.解决了slider cursor 不在中间，以及tooltip无法自适应的问题
+            15.新增了slider的range select。通过两个游标选择
+
+            16 新增了 tree components
+
+            17 修复了select 大小的问题，修复了pagenation select 无法正常选择的错误
+          </pre>
+          </div>
+        </at-timeline-item>
+      </at-timeline>
     </div>
   </doc-section>
 </section>

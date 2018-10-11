@@ -1,0 +1,96 @@
+<at-layout-body style="background: #F8FAFF">
+  <at-layout-header class="blue-header" style="background: #6190E8;color: white ;height: 62px;border-bottom: 1px solid #F8FAFF">
+    <ul at-row [reverse]="true">
+      <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+        <li at-dropdown>
+          <span><at-icon [type]="'settings'"></at-icon></span>
+        </li>
+        <ul at-drop-menu-list class="my-message">
+          <li at-drop-menu-item>Full Screen</li>
+          <li at-drop-menu-item>Change Password</li>
+          <li at-drop-menu-item>Reset Your Email</li>
+        </ul>
+      </at-dropdown>
+
+      <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+        <li at-dropdown>
+          <span><at-icon [type]="'user'"></at-icon>Guest</span>
+        </li>
+        <ul at-drop-menu-list class="my-message">
+          <li at-drop-menu-item>Sign Out</li>
+        </ul>
+      </at-dropdown>
+
+      <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+        <li at-dropdown>
+          <div>
+            <at-badge [dot]="true">
+              <at-icon [type]="'mail'"></at-icon>
+            </at-badge>
+          </div>
+        </li>
+        <ul at-drop-menu-list class="my-message">
+          <li at-drop-menu-item> You got a new wechat message</li>
+          <li at-drop-menu-item> You got a new wechat message</li>
+          <li at-drop-menu-item> You got a new wechat message</li>
+          <li at-drop-menu-item> You got a new wechat message</li>
+          <li at-drop-menu-item> You got a new wechat message</li>
+          <li at-drop-menu-item> You got a new wechat message</li>
+        </ul>
+      </at-dropdown>
+    </ul>
+  </at-layout-header>
+  <at-layout-body>
+    <at-layout-sidebar style="">
+      <ul style="height:100%;padding: 16px 0px" [theme]="'light'" [atType]="'inline'" at-menu>
+        <li at-submenu>
+          <span title><i class="icon icon-mail"></i>Dashboard</span>
+          <ul>
+            <li [active]="true" at-menu-item>Button</li>
+            <li at-menu-item>List</li>
+            <li at-menu-item>Card</li>
+            <li at-menu-item>Map</li>
+            <li at-submenu>
+              <span title>SubMenu</span>
+              <ul>
+                <li at-menu-item>List</li>
+                <li at-menu-item>Card</li>
+                <li at-menu-item>Map</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li at-submenu>
+          <span title><i class="icon icon-mail"></i>Dashboard</span>
+          <ul>
+            <li at-menu-item>Button</li>
+            <li at-menu-item>List</li>
+            <li at-menu-item>Card</li>
+            <li at-menu-item>Map</li>
+          </ul>
+        </li>
+
+        <li at-submenu>
+          <span title><i class="icon icon-mail"></i>Dashboard</span>
+          <ul>
+            <li at-menu-item>Button</li>
+            <li at-menu-item>List</li>
+            <li at-menu-item>Card</li>
+            <li at-menu-item>Map</li>
+          </ul>
+        </li>
+
+      </ul>
+    </at-layout-sidebar>
+    <at-layout-content>
+      <div class="at-layout-breadcrumb">
+        <at-breadcrumb>
+          <at-bread-item><span>Dashboard</span></at-bread-item>
+          <at-bread-item><span>Button</span></at-bread-item>
+        </at-breadcrumb>
+      </div>
+      <div style="background: white;padding: 16px;width: 100%;min-height: 300px">
+      </div>
+    </at-layout-content>
+  </at-layout-body>
+</at-layout-body>

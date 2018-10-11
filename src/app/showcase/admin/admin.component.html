@@ -1,68 +1,205 @@
-<div class="at-admin-body">
+<ng-container *ngIf="layout == 'layout1'">
+  <at-layout-body style="background: #F8FAFF">
+    <at-layout-sidebar style="background: #404040;">
+      <div class="logo">
+        <a class="logo-link" [routerLink]="'/components'">
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR0IArs4c6QAAB7VJREFUaAXlWwlslEUUfvNv78MFSi8VVEARRdQYbDkqbVBSiEhiYjgSRGIiRo2JqWKs0KwcakSShgQTQhSJYsVAE0+KGs6mR0gVNYQCGjEi3bZAW7bndnfH9/7ubnf/zu7+/+xfdqsv2fz/zD/z5n1zvHnz5i2DUaKlNp52Fdrmcxd/iAOfzoFNZwzyOOeZwCBTbZaDgzHm4BzsDPg5BuwcS2BNWZBT+7WN9Y6GaMxMpnNt9hzuhlUe4E8i3wLgkCTFn4ET6zUqwKqZBT6rs+W1SfERVDIF8Fxb2yMet+c15F+KI5ggaEc6C2eACyvXKBZlW50t54Q0I2/FqADPq2gpcXtgEweYH60geuqjsLWQABsbbPnH9JQXlZECXLS1Pd/Z594OwFeKmI5+HqtKSrWUnXwzu8VoW4YBF1a0LeYeTxWCtRptzNzyrIspysqGTTmHjPBVjBQu2NBaxrnnm9iDJam5lWQhmYxg0DXCi3fw5I42+y5cq2uMML9RZRHE3vE5eesOvcwGIrUZEXDR245sZ1/Pl8D5nEjMYvqdsfqk1PRlJ8sz28PJEXZK08iOCbCEEAeEZCWZpQHTNI77kQ1Eh6BVmQPzNO8hR1hVUHG6ZjUYgpKkZ8IpMuEaVrce0sach+yQoFbiLcGYhzHlcdGWNQKw16g4Gx9bTzQ9ybrQOJmhNU5G2L1eC8o0oyI7U4Hie1LgvsmJcGdeIkzIUCA9mUH/IIfOXg+0drrh9F+D8NOfTvj5ohM8OCd9tO+lLJiam+hL+p87v3fAJyd7/GnxC7cOYYFVgd+DRrjQ1lLMXXA0sIDs+wO3JcLa4gx4eGoS4AFAFxs7gq8+1QsHG3uhZ4BDdICHmmQJUBJoewePsAs265IsTKHUJAZvLLsJFs1KDVNK/ClvnAVeeCwTlhemwfZvHeJCRnOHMBX5qvm7fs7G9gUe7jrm+yDzvD3bAu+sGA935AT3owwvqoNHTeHs0Delh1tVWEJx/ebs45Tj18Ic3K8OFzH+Nm96Mny0Lss0sCSB3qUQSdpAbCpg8lRgpdJIFUN9nzzRApufskJasr//QhWNVX6pFyMep5HILSPrqUhGJfruinERwbZdd0Nt8wD8bh+Eaz0eoLWeZ7VAwbRkVYNbFP/qMr1TCBt3M9LWlSpgrw9KqqHXl1phimDr8DFrQc2760cHHP61H9ekL3f4ued4D+SjsnpuYQaU3p9i2jQebmHozYuxUiHvImYVaAvoSd97ayIseTC0Nq47PwCrd16Bml/EYH1tUKe8dbALyvd3Qr9T0Cu+gtE9CwirQq5UWe/isyUZIUWobe6Hsk87oLtfP4CjZwbUOi63/johBdB+QA8qYVXIb6z9piedhRZT4TSxF/ZyhwsqDnQJp3Ak3k1ocX3wg0l7sKYxwqqQk1yTrytJ5qISQtHsPtINvWgpydL++l745xp5Z80lwoqAmRTgWWgbi6gTNfBhXLPRELp+4YsG8y8eCKtC1x8ywt2VLwZcf2Eg6AAgw5vqnDgb0T1lmDVhVXCPGrrnMVidTj0i+qPVnKlImrtnAIfaRCKseH3jvdgyyJiOeCLqwCltFl11mMdLlQmxiodJh8ROl1gppYhnug6OI4sMjsL2pOAeLLUHOELsrzloLsYtIVZUWkwK8MV28VqdPSWslzSmfUFYUWmBXUaK5suDwmozbkmASVnxOcqEFU0Hfk4oeYRMOvmIiM6wzz8qpfhF7EzNI6wImEkB/u3vQaCtQ0QLZ6agiydF9CmmeYQVvR+sSVaKfbWhPYfly6wwe4rY1pZtL9p6hFWhABLciymmwjB91dQLdFAQUQoe8CvXjIe1C9IhMR6WNGIkrIo3WqZRJHSkPCdiLf+8E0LtyeTFWIfr+cAr2bC6KF31d+n02EZqWuZ7I2FVPR4ULYMeAb8r0wi35ssuqPzuOqx/IrTvPhf35hcXZao/N3ra6YAxKF7+QU1PlLeLgvhQgjDSUwVMoUHMzbbJ+rWqT/XBzElJYb0f1BgRjXpW5o2d47hzuAgjta+alt44qBrKkKVN1V2w+4gDPIF3JbLMzK9X44v18tvSFAcVbTsfHu1RXTTX+0w2+qMULBCbHzAFfeH5pzZK3lB/wQlPo+Pu0Om+uBhtwhQY0OYHTEAtClREC5jq27s8qhdy+Y4rsPd4N1waBXeNbjkxkC2w7IhDbcEGOy5u8wPOyGFw980JeF1qAWuaAqi7pImuVs9cEtvywUxZVeOWvKDrUlVLBxaiCDe8V11i9oX4tW4P1J2Xsm8CxTPwrl6Il2krBE1p+kg35hThhlcA8aV5tJKHS1PIA2LQ3v5TlRGAKVONjeBsPb2PSULZRfEdhCXsSirc0PIxOnLWjCXQCGhvw5b8Z0LJLBxhX2EK58OpXe9Lx/0TZVVlDiNoWMAUu0jhfGMCtDf0MFK8ZVjA1FEUuzghO7eEpkqYjovpJ5KNZIwUZ0lCYln9pEa4Mf5e3ASs0U6CCqpxSy4Gq+sjQ4CJ5f8qQJwAk7qnCDecHFWUjg2pfwGYEWrrCSeT4REOZEaBbIBxULh1zQ/MH613FDY2f/LQAqIYL29o0Kj9jYeB5X1frJW2fSPpqEZY21DB1tZcpZ+v9AaQ/Hf/qKUFTul4/SvevyLy2yevqLD7AAAAAElFTkSuQmCC"
+            preload="" class="logo-img">
+          <span>AT UIKIT</span>
+        </a>
+      </div>
+      <ul style=" height:calc(100% - 64px);padding: 16px 0px" [theme]="'dracula'" [atType]="'inline'" at-menu>
+        <li at-submenu>
+          <span title><i class="icon icon-mail"></i>Dashboard</span>
+          <ul>
+            <li [active]="true" at-menu-item>Button</li>
+            <li at-menu-item>List</li>
+            <li at-menu-item>Card</li>
+            <li at-menu-item>Map</li>
+            <li at-submenu>
+              <span title>SubMenu</span>
+              <ul>
+                <li at-menu-item>List</li>
+                <li at-menu-item>Card</li>
+                <li at-menu-item>Map</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li at-submenu>
+          <span title><i class="icon icon-mail"></i>Dashboard</span>
+          <ul>
+            <li at-menu-item>Button</li>
+            <li at-menu-item>List</li>
+            <li at-menu-item>Card</li>
+            <li at-menu-item>Map</li>
+          </ul>
+        </li>
 
-  <div class="at-layout-sider">
-    <div class="logo">
-      <a class="logo-link">
-        <img
-          src="data:image/png;base64,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"
-          preload="" class="logo-img">
-        <span>AT UIKIT</span>
-      </a>
-    </div>
-    <ul style="height: 100%;padding: 16px 0px" [theme]="'dracula'" [atType]="'inline'" at-menu>
-      <li at-submenu>
-        <span title><i class="icon icon-mail"></i>Dashboard</span>
-        <ul>
-          <li [active]="true" at-menu-item>Button</li>
-          <li at-menu-item>List</li>
-          <li at-menu-item>Card</li>
-          <li at-menu-item>Map</li>
+        <li at-submenu>
+          <span title><i class="icon icon-mail"></i>Dashboard</span>
+          <ul>
+            <li at-menu-item>Button</li>
+            <li at-menu-item>List</li>
+            <li at-menu-item>Card</li>
+            <li at-menu-item>Map</li>
+          </ul>
+        </li>
+
+      </ul>
+    </at-layout-sidebar>
+    <at-layout-body>
+      <at-layout-header style="background: white">
+        <ul at-row [reverse]="true">
+          <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+            <li at-dropdown>
+              <span><at-icon [type]="'settings'"></at-icon></span>
+            </li>
+            <ul at-drop-menu-list class="my-message">
+              <li at-drop-menu-item>Full Screen</li>
+              <li at-drop-menu-item>Change Password</li>
+              <li at-drop-menu-item>Reset Your Email</li>
+            </ul>
+          </at-dropdown>
+
+          <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+            <li at-dropdown>
+              <span><at-icon [type]="'user'"></at-icon>Guest</span>
+            </li>
+            <ul at-drop-menu-list class="my-message">
+              <li at-drop-menu-item>Sign Out</li>
+            </ul>
+          </at-dropdown>
+
+          <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+            <li at-dropdown>
+              <div>
+                <at-badge [dot]="true">
+                  <at-icon [type]="'mail'"></at-icon>
+                </at-badge>
+              </div>
+            </li>
+            <ul at-drop-menu-list class="my-message">
+              <li at-drop-menu-item> You got a new wechat message</li>
+              <li at-drop-menu-item> You got a new wechat message</li>
+              <li at-drop-menu-item> You got a new wechat message</li>
+              <li at-drop-menu-item> You got a new wechat message</li>
+              <li at-drop-menu-item> You got a new wechat message</li>
+              <li at-drop-menu-item> You got a new wechat message</li>
+            </ul>
+          </at-dropdown>
+        </ul>
+      </at-layout-header>
+      <at-layout-content>
+        <div class="at-layout-breadcrumb">
+          <at-breadcrumb>
+            <at-bread-item><span>Dashboard</span></at-bread-item>
+            <at-bread-item><span>Button</span></at-bread-item>
+          </at-breadcrumb>
+        </div>
+        <div style="background: white;padding: 16px;width: 100%;min-height: 300px">
+        </div>
+      </at-layout-content>
+    </at-layout-body>
+  </at-layout-body>
+</ng-container>
+<ng-container *ngIf="layout == 'layout2'">
+  <at-layout-body style="background: #F8FAFF">
+    <at-layout-header class="blue-header" style="background: #6190E8;color: white ;height: 62px;border-bottom: 1px solid #F8FAFF">
+      <ul at-row [reverse]="true">
+        <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+          <li at-dropdown>
+            <span><at-icon [type]="'settings'"></at-icon></span>
+          </li>
+          <ul at-drop-menu-list class="my-message">
+            <li at-drop-menu-item>Full Screen</li>
+            <li at-drop-menu-item>Change Password</li>
+            <li at-drop-menu-item>Reset Your Email</li>
+          </ul>
+        </at-dropdown>
+
+        <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+          <li at-dropdown>
+            <span><at-icon [type]="'user'"></at-icon>Guest</span>
+          </li>
+          <ul at-drop-menu-list class="my-message">
+            <li at-drop-menu-item>Sign Out</li>
+          </ul>
+        </at-dropdown>
+
+        <at-dropdown [trigger]="'click'" [placement]="'bottomRight'">
+          <li at-dropdown>
+            <div>
+              <at-badge [dot]="true">
+                <at-icon [type]="'mail'"></at-icon>
+              </at-badge>
+            </div>
+          </li>
+          <ul at-drop-menu-list class="my-message">
+            <li at-drop-menu-item> You got a new wechat message</li>
+            <li at-drop-menu-item> You got a new wechat message</li>
+            <li at-drop-menu-item> You got a new wechat message</li>
+            <li at-drop-menu-item> You got a new wechat message</li>
+            <li at-drop-menu-item> You got a new wechat message</li>
+            <li at-drop-menu-item> You got a new wechat message</li>
+          </ul>
+        </at-dropdown>
+      </ul>
+    </at-layout-header>
+    <at-layout-body>
+      <at-layout-sidebar style="">
+        <ul style="height:100%;padding: 16px 0px" [theme]="'light'" [atType]="'inline'" at-menu>
           <li at-submenu>
-            <span title>SubMenu</span>
+            <span title><i class="icon icon-mail"></i>Dashboard</span>
             <ul>
+              <li [active]="true" at-menu-item>Button</li>
+              <li at-menu-item>List</li>
+              <li at-menu-item>Card</li>
+              <li at-menu-item>Map</li>
+              <li at-submenu>
+                <span title>SubMenu</span>
+                <ul>
+                  <li at-menu-item>List</li>
+                  <li at-menu-item>Card</li>
+                  <li at-menu-item>Map</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li at-submenu>
+            <span title><i class="icon icon-mail"></i>Dashboard</span>
+            <ul>
+              <li at-menu-item>Button</li>
               <li at-menu-item>List</li>
               <li at-menu-item>Card</li>
               <li at-menu-item>Map</li>
             </ul>
           </li>
-        </ul>
-      </li>
-      <li at-submenu>
-        <span title><i class="icon icon-mail"></i>Dashboard</span>
-        <ul>
-          <li at-menu-item>Button</li>
-          <li at-menu-item>List</li>
-          <li at-menu-item>Card</li>
-          <li at-menu-item>Map</li>
-        </ul>
-      </li>
 
-      <li at-submenu>
-        <span title><i class="icon icon-mail"></i>Dashboard</span>
-        <ul>
-          <li at-menu-item>Button</li>
-          <li at-menu-item>List</li>
-          <li at-menu-item>Card</li>
-          <li at-menu-item>Map</li>
+          <li at-submenu>
+            <span title><i class="icon icon-mail"></i>Dashboard</span>
+            <ul>
+              <li at-menu-item>Button</li>
+              <li at-menu-item>List</li>
+              <li at-menu-item>Card</li>
+              <li at-menu-item>Map</li>
+            </ul>
+          </li>
+
         </ul>
-      </li>
+      </at-layout-sidebar>
+      <at-layout-content>
+        <div class="at-layout-breadcrumb">
+          <at-breadcrumb>
+            <at-bread-item><span>Dashboard</span></at-bread-item>
+            <at-bread-item><span>Button</span></at-bread-item>
+          </at-breadcrumb>
+        </div>
+        <div style="background: white;padding: 16px;width: 100%;min-height: 300px">
+        </div>
+      </at-layout-content>
+    </at-layout-body>
+  </at-layout-body>
+</ng-container>
 
-    </ul>
-  </div>
-
-  <div class="at-layout-content">
-    <div class="at-layout-header">
-    </div>
-    <div class="at-layout-body">
-      <div class="at-layout-breadcrumb">
-        <at-breadcrumb>
-          <at-bread-item><span>Dashboard</span></at-bread-item>
-          <at-bread-item><span>Button</span></at-bread-item>
-        </at-breadcrumb>
-      </div>
-      <div style="background: white;height: 100%;padding: 16px;width: 100%;min-height: 600px">
-        AT-UI ADMIN
-      </div>
-    </div>
-  </div>
-</div>

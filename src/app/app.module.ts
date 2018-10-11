@@ -25,21 +25,20 @@ import {AtDemoLayoutComponent} from './showcase/at-demo-layout/at-demo-layout.co
 import {AtDemoTagComponent} from './showcase/at-demo-tag/at-demo-tag.component';
 import {DemoBasicTagComponent} from './showcase/at-demo-tag/demo-basic-tag/demo-basic-tag.component';
 import {DemoColorTagComponent} from './showcase/at-demo-tag/demo-color-tag/demo-color-tag.component';
-import {AtDemoMenuComponent} from './showcase/at-demo-menu/at-demo-menu.component';
-import {DemoTopMenuComponent} from './showcase/at-demo-menu/demo-top-menu/demo-top-menu.component';
-import {DemoVerticalMenuComponent} from './showcase/at-demo-menu/demo-vertical-menu/demo-vertical-menu.component';
-import {DemoInlineMenuComponent} from './showcase/at-demo-menu/demo-inline-menu/demo-inline-menu.component';
-import {AtDemoCheckboxComponent} from './showcase/at-demo-checkbox/at-demo-checkbox.component';
-import {CheckboxComponent} from './components/checkbox/checkbox.component';
+import {AtDemoMenuComponent}              from './showcase/at-demo-menu/at-demo-menu.component';
+import {DemoTopMenuComponent}             from './showcase/at-demo-menu/demo-top-menu/demo-top-menu.component';
+import {DemoVerticalMenuComponent}        from './showcase/at-demo-menu/demo-vertical-menu/demo-vertical-menu.component';
+import {DemoInlineMenuComponent}          from './showcase/at-demo-menu/demo-inline-menu/demo-inline-menu.component';
+import {AtDemoCheckboxComponent}          from './showcase/at-demo-checkbox/at-demo-checkbox.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {DemoBasicCheckboxComponent} from './showcase/at-demo-checkbox/demo-basic-checkbox/demo-basic-checkbox.component';
-import {DemoGroupCheckboxComponent} from './showcase/at-demo-checkbox/demo-group-checkbox/demo-group-checkbox.component';
-import {CheckboxGroupComponent} from './components/checkbox/checkbox-group/checkbox-group.component';
-import {InputComponent} from './components/input/input.component';
-import {AtDemoInputComponent} from './showcase/at-demo-input/at-demo-input.component';
-import {DemoBasicInputComponent} from "./showcase/at-demo-input/demo-basic-input/demo-basic-input.component";
-import {DemoPendInputComponent} from './showcase/at-demo-input/demo-pend-input/demo-pend-input.component';
-import {DemoIconInputComponent} from './showcase/at-demo-input/demo-icon-input/demo-icon-input.component';
+import {DemoBasicCheckboxComponent}       from './showcase/at-demo-checkbox/demo-basic-checkbox/demo-basic-checkbox.component';
+import {DemoGroupCheckboxComponent}       from './showcase/at-demo-checkbox/demo-group-checkbox/demo-group-checkbox.component';
+import {AtCheckboxGroupComponent}         from './components/checkbox/checkbox-group/at-checkbox-group.component';
+import {InputComponent}                   from './components/input/input.component';
+import {AtDemoInputComponent}             from './showcase/at-demo-input/at-demo-input.component';
+import {DemoBasicInputComponent}          from "./showcase/at-demo-input/demo-basic-input/demo-basic-input.component";
+import {DemoPendInputComponent}           from './showcase/at-demo-input/demo-pend-input/demo-pend-input.component';
+import {DemoIconInputComponent}           from './showcase/at-demo-input/demo-icon-input/demo-icon-input.component';
 import {DemoStatusInputComponent} from './showcase/at-demo-input/demo-status-input/demo-status-input.component';
 import {DemoSizeInputComponent} from './showcase/at-demo-input/demo-size-input/demo-size-input.component';
 import {AtDemoNumberInputComponent} from './showcase/at-demo-number-input/at-demo-number-input.component';
@@ -83,7 +82,6 @@ import {AtDemoPagenationComponent} from './showcase/at-demo-pagenation/at-demo-p
 import {DropdownMenuItemComponent} from './components/menu/dropdown-menu-item/dropdown-menu-item.component';
 import {DropMenuListComponent} from './components/menu/drop-menu-list/drop-menu-list.component';
 import {DemoPlaceDropdownComponent} from './showcase/at-demo-dropdown/demo-place-dropdown/demo-place-dropdown.component';
-import {AtModule} from "./components/at-ng.module";
 import {AtDemoNotificationComponent} from './showcase/at-demo-notification/at-demo-notification.component';
 import {AtDemoAlertComponent} from './showcase/at-demo-alert/at-demo-alert.component';
 import {AtDemoBadgeComponent} from './showcase/at-demo-badge/at-demo-badge.component';
@@ -147,6 +145,26 @@ import { DemoAffixBasicComponent }      from './showcase/at-demo-affix/demo-affi
 import { AtDemoUploadComponent }        from './showcase/at-demo-upload/at-demo-upload.component';
 import { AtDemoUploadBasicComponent }   from './showcase/at-demo-upload/at-demo-upload-basic/at-demo-upload-basic.component';
 import {AdminComponent}                 from "./showcase/admin/admin.component";
+import { AtDemoTreeComponent } from './showcase/at-demo-tree/at-demo-tree.component';
+import { AtDemoBasicTreeComponent } from './showcase/at-demo-tree/at-demo-basic-tree/at-demo-basic-tree.component';
+import { AtDemoCustomTreeComponent } from './showcase/at-demo-tree/at-demo-custom-tree/at-demo-custom-tree.component';
+import { AtDemoCheckableTreeComponent } from './showcase/at-demo-tree/at-demo-checkable-tree/at-demo-checkable-tree.component';
+import { AtDemoTreeGroupComponent }   from './showcase/at-demo-tree/at-demo-tree-group/at-demo-tree-group.component';
+import { AtDemoRemoteTreeComponent }  from './showcase/at-demo-tree/at-demo-remote-tree/at-demo-remote-tree.component';
+import { AtDemoCardTabComponent }     from './showcase/at-demo-tabs/at-demo-card-tab/at-demo-card-tab.component';
+import { AtDemoSizeTabsComponent }    from './showcase/at-demo-tabs/at-demo-size-tabs/at-demo-size-tabs.component';
+import {AtModule}            from "./components/at-ng.module";
+import { AtDemoCarouselComponent }    from './showcase/at-demo-carousel/at-demo-carousel.component';
+import {AtDemoBasicCarouselComponent} from "./showcase/at-demo-carousel/at-demo-basic-carousel/at-demo-basic-carousel.component";
+import { AtDemoDrawerComponent }      from './showcase/at-demo-drawer/at-demo-drawer.component';
+import { AtDemoColorPickerComponent } from './showcase/at-demo-color-picker/at-demo-color-picker.component';
+import zh_CN                          from "./components/i18n/languages/zh_CN";
+import en_US                          from "./components/i18n/languages/en_US";
+import { I18NComponent }              from './showcase/i18-n/i18-n.component';
+import { AtDemoDndComponent }         from './showcase/at-demo-dnd/at-demo-dnd.component';
+import { AtDemoDndBasicComponent }    from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
+import {AT_I18N}                      from "./components/i18n/i18n-token";
+
 
 
 @NgModule({
@@ -267,7 +285,37 @@ import {AdminComponent}                 from "./showcase/admin/admin.component";
     AtDemoUploadComponent,
     AtDemoUploadBasicComponent,
 
-    AdminComponent
+    AdminComponent,
+
+    AtDemoTreeComponent,
+
+    AtDemoBasicTreeComponent,
+
+    AtDemoCustomTreeComponent,
+
+    AtDemoCheckableTreeComponent,
+
+    AtDemoTreeGroupComponent,
+
+    AtDemoRemoteTreeComponent,
+
+    AtDemoCardTabComponent,
+
+    AtDemoSizeTabsComponent,
+
+    AtDemoCarouselComponent,
+
+    AtDemoBasicCarouselComponent,
+
+    AtDemoDrawerComponent,
+
+    AtDemoColorPickerComponent,
+
+    I18NComponent,
+
+    AtDemoDndComponent,
+
+    AtDemoDndBasicComponent
 
 
   ],
@@ -275,11 +323,12 @@ import {AdminComponent}                 from "./showcase/admin/admin.component";
     routing,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     AtModule.forRoot(),
+    ReactiveFormsModule,
+
     BrowserModule, BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{provide:AT_I18N,useValue:en_US}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
