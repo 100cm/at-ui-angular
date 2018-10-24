@@ -164,6 +164,8 @@ import { I18NComponent }              from './showcase/i18-n/i18-n.component';
 import { AtDemoDndComponent }         from './showcase/at-demo-dnd/at-demo-dnd.component';
 import { AtDemoDndBasicComponent }    from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
 import {AT_I18N}                      from "./components/i18n/i18n-token";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -326,7 +328,7 @@ import {AT_I18N}                      from "./components/i18n/i18n-token";
     AtModule.forRoot(),
     ReactiveFormsModule,
 
-    BrowserModule, BrowserAnimationsModule
+    BrowserModule, BrowserAnimationsModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{provide:AT_I18N,useValue:en_US}],
   bootstrap: [AppComponent]
