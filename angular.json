@@ -118,7 +118,23 @@
           }
         }
       }
+    },
+
+    "at-ng-lib": {
+      "root": "src/app/components",
+      "projectType": "library",
+      "prefix": "at",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "src/app/components/tsconfig.lib.json",
+            "project": "src/app/components/ng-package.json"
+          }
+        }
+      }
     }
+
   },
   "defaultProject": "ng-ice-at",
   "schematics": {

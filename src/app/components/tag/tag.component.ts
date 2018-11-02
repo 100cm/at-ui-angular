@@ -84,7 +84,7 @@ export class TagComponent implements OnInit, ClassHelper {
       })
 
       this._classList = [
-        tagThemes.includes(this.color) && `${this._prefixCls}--${this.color}`,
+        tagThemes.filter(_ => _ == this.color).length> 0 && `${this._prefixCls}--${this.color}`,
       ].filter((item) => {
         return !!item;
       });
@@ -93,7 +93,7 @@ export class TagComponent implements OnInit, ClassHelper {
       })
 
       //set other colors
-      if (!tagThemes.includes(this.color)) {
+      if (tagThemes.filter(_ => _ == this.color).length <= 0) {
         this._renderer.setStyle(this.tagSpan.nativeElement, 'background-color', this.color)
         this._renderer.setStyle(this.tagSpan.nativeElement, 'border-color', this.color)
       }

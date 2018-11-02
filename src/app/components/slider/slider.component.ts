@@ -296,7 +296,6 @@ export class SliderComponent implements OnInit {
 
   /**
    * return {x:,y:}
-   * @param data
    */
   findClosestValue(rect) {
     let slider               = this.sliderEle.nativeElement
@@ -320,8 +319,6 @@ export class SliderComponent implements OnInit {
 
   /**
    * jquery offset
-   * @param {HTMLElement} elem
-   * @returns {{top: number; left: number}}
    */
   getElementOffset(elem: HTMLElement): { top: number, left: number } {
     // Return zeros for disconnected and hidden (display: none) elements (gh-2310)

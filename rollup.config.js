@@ -2,6 +2,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import {uglify} from 'rollup-plugin-uglify';
 import { terser } from "rollup-plugin-terser";
+import compiler from '@ampproject/rollup-plugin-closure-compiler';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 const target = process.env.ROLLUP_TARGET || 'esm';

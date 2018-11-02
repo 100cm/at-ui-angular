@@ -26,6 +26,7 @@
     "frontend"
   ],
   "dependencies": {
+    "@ampproject/rollup-plugin-closure-compiler": "^0.8.2",
     "@angular-devkit/schematics": "^7.0.1",
     "@angular/cdk": "^7.0.0",
     "@angular/pwa": "^0.10.2",
@@ -35,6 +36,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.10.1",
+    "@angular-devkit/build-ng-packagr": "^0.10.3",
+    "ng-packagr": "^4.4.0",
     "@angular/animations": "^7.0.0",
     "@angular/cli": "^7.0.1",
     "@angular/common": "^7.0.0",

@@ -9,7 +9,7 @@ import {
   Renderer2,
   ViewChild
 }                                                                                    from '@angular/core';
-import * as moment                                                                   from 'moment'
+import * as momentI                                                                 from 'moment'
 import {NG_VALUE_ACCESSOR}                                                           from "@angular/forms";
 import {InputComponent}                                                              from "../input/input.component";
 import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from "@angular/cdk/overlay";
@@ -24,6 +24,7 @@ import {DropDownAnimation}                                                      
 import {AtI18nService}                                                               from "../i18n/at-i18n.service";
 import {AtI18nInterface}                                                             from "../i18n/at-i18n.interface";
 
+const moment = momentI
 @Component({
              selector: 'atDatetimePicker',
              template: `
