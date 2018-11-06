@@ -1,6 +1,6 @@
 {
   "name": "at-ng",
-  "version": "7.0.0",
+  "version": "7.0.2-rc7",
   "license": "MIT",
   "author": "zhou351711778",
   "scripts": {
@@ -14,6 +14,7 @@
     "generate": "bash ./build.sh",
     "release": "npm run generate"
   },
+  "schematics": "./schematics/collection.json",
   "keywords": [
     "at-ui",
     "angular",

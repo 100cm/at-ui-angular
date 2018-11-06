@@ -222,6 +222,8 @@ export class PopoverComponent implements OnInit {
       const observable$ = mouse$.pipe(merge(this._visibleChange));
       this._startSubscribe(observable$);
     }
+    console.log(this)
+    console.log(this.cdr)
   }
 
   get _hasBackdrop(): boolean {
