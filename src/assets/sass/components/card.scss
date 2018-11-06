@@ -2,19 +2,24 @@
 
 .at-card {
   background: #fff;
-  border-radius: 2px;
-  font-size: 12px;
-  position: relative;
-  transition: all .3s;
-  .at-card-body {
-    padding: 0;
+  padding: 16px;
+  display: block;
+  border-radius: 4px;
+  transition: box-shadow .28s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 1px 4px 0 rgba(10, 16, 20, .37);
+  &-header {
+    display: flex;
+    flex-direction: row
   }
+  &-content {
 
-  &:hover {
-    box-shadow: 0 1px 6px $grey-50;
+    &-full {
+      width: calc(100% + 32px);
+      margin: 0 -16px 16px -16px;
+    }
   }
-}
-
-.at-card-bordered {
-  border: 1px solid $grey-100;
+  &-footer {
+    margin-bottom: -8px;
+    padding-bottom: 0;
+  }
 }

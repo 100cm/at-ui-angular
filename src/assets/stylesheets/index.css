@@ -9438,23 +9438,26 @@ $info-color               : #78A4FA;
 /* line 3, ../sass/components/card.scss */
 .at-card {
   background: #fff;
-  border-radius: 2px;
-  font-size: 12px;
-  position: relative;
-  transition: all .3s;
+  padding: 16px;
+  display: block;
+  border-radius: 4px;
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 4px 0 rgba(10, 16, 20, 0.37);
 }
-/* line 9, ../sass/components/card.scss */
-.at-card .at-card-body {
-  padding: 0;
+/* line 10, ../sass/components/card.scss */
+.at-card-header {
+  display: flex;
+  flex-direction: row;
 }
-/* line 13, ../sass/components/card.scss */
-.at-card:hover {
-  box-shadow: 0 1px 6px #F7F7F7;
+/* line 16, ../sass/components/card.scss */
+.at-card-content-full {
+  width: calc(100% + 32px);
+  margin: 0 -16px 16px -16px;
 }
-
-/* line 18, ../sass/components/card.scss */
-.at-card-bordered {
-  border: 1px solid #ECECEC;
+/* line 21, ../sass/components/card.scss */
+.at-card-footer {
+  margin-bottom: -8px;
+  padding-bottom: 0;
 }
 
 /* line 3, ../sass/components/tab.scss */

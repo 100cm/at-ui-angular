@@ -40,6 +40,9 @@ import {AtNotificationModule}   from "./notification/at-notification.module";
 import {AtColorPickerModule}    from "./color-picker/at-color-picker.module";
 import {AtI18nModule}           from "./i18n/at-i18n.module";
 import {AtDndModule}            from "./drag-and-drop/at-dnd.module";
+import { AtCardHeaderComponent } from './card/at-card-header/at-card-header.component';
+import { AtCardContentComponent } from './card/at-card-content/at-card-content.component';
+import { AtCardFooterComponent } from './card/at-card-footer/at-card-footer.component';
 
 export *                                  from './tree'
 export *                                  from './checkbox'
@@ -124,7 +127,7 @@ export *                                  from './drag-and-drop'
               AtDndModule,
             ],
 
-            providers: [AtGlobalMonitorService]
+            providers: [AtGlobalMonitorService],
           })
 
 export class AtModule {
