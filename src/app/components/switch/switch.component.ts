@@ -1,11 +1,11 @@
 import {Component, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {NG_VALUE_ACCESSOR}                                                                     from "@angular/forms";
-import {atInputSize}                                                                           from "../input";
+import {NG_VALUE_ACCESSOR}                                                                     from '@angular/forms';
+import {atInputSize}                                                                           from '../input';
 
 @Component({
-             selector: 'at-switch',
-             template: `<span class="at-switch at-switch--{{atSize}}"
-                              [ngClass]="{'at-switch--checked':_value,'at-switch--disabled':disabled}">
+  selector: 'at-switch',
+  template: `<span class="at-switch at-switch--{{atSize}}"
+                   [ngClass]="{'at-switch--checked':_value,'at-switch--disabled':disabled}">
   <span class="at-switch__text">
     <ng-container *ngIf="CheckIsString; else checkChildren">
       {{_value ? checkText : ''}}
@@ -22,15 +22,15 @@ import {atInputSize}                                                            
     
   </span>
 </span>
-             `,
-             providers: [
-               {
-                 provide: NG_VALUE_ACCESSOR,
-                 useExisting: forwardRef(() => SwitchComponent),
-                 multi: true
-               }
-             ],
-           })
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SwitchComponent),
+      multi: true
+    }
+  ],
+})
 export class SwitchComponent implements OnInit {
 
   _value: boolean = false
@@ -70,7 +70,7 @@ export class SwitchComponent implements OnInit {
   }
 
   // ngModel Access
-  onChange: any  = Function.prototype;
+  onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
 

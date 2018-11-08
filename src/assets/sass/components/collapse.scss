@@ -1,0 +1,75 @@
+@import '../variables/index.scss';
+
+.at-collapse {
+  border: 1px solid $collapse-border-color;
+  border-radius: $collapse-border-radius;
+  overflow: hidden;
+
+  /* element */
+  &__item {
+    border-bottom: 1px solid $collapse-border-color;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &--active {
+      > .at-collapse__header {
+        border-bottom: 1px solid $collapse-border-color;
+        transition: none;
+        .at-collapse__icon {
+          transform: rotate(90deg)
+        }
+      }
+    }
+    &--disabled {
+      .at-collapse__header {
+        color: $collapse-header-text-color-disabled;
+        cursor: not-allowed;
+      }
+      .at-collapse__icon {
+        color: $collapse-header-text-color-disabled;
+      }
+    }
+  }
+  &__header {
+    position: relative;
+    padding: 8px 32px;
+    color: $collapse-header-text-color;
+    background-color: $collapse-header-bg-color;
+    transition: all .3s;
+    cursor: pointer;
+  }
+  &__icon {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    color: $collapse-icon-color;
+    font-size: $collapse-icon-size;
+    font-weight: bold;
+    transition: all .3s;
+  }
+  &__body {
+    will-change: height;
+  }
+  &__content {
+    padding: 16px;
+    color: $collapse-body-text-color;
+    border-radius: 0 0 $collapse-border-radius $collapse-border-radius;
+    background-color: $collapse-body-bg-color;
+    overflow: hidden;
+  }
+
+  /* modifier */
+  &--simple {
+    border: none;
+
+    .at-collapse__item {
+      border-bottom: none;
+    }
+    .at-collapse__header {
+      border-bottom: 1px solid $collapse-border-color;
+      background-color: transparent;
+    }
+  }
+}

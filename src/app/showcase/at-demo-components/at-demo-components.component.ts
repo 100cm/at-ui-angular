@@ -101,6 +101,11 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'tree'
     },
     {
+      name: '折叠面板',
+      url: '/components/collapse',
+      name_en: 'collapse'
+    },
+    {
       name: '滑动选择',
       url: '/components/slider',
       name_en: 'slider'

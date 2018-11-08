@@ -166,6 +166,11 @@ import { AtDemoDndBasicComponent }    from './showcase/at-demo-dnd/at-demo-dnd-b
 import {AT_I18N}                      from "./components/i18n/i18n-token";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AtDemoCollapseComponent } from './showcase/at-demo-collapse/at-demo-collapse.component';
+import { DemoBasicCollapseComponent } from './showcase/at-demo-collapse/demo-basic-collapse/demo-basic-collapse.component';
+import { DemoAccordingCollapseComponent } from './showcase/at-demo-collapse/demo-according-collapse/demo-according-collapse.component';
+import { DemoSimpleCollapseComponent } from './showcase/at-demo-collapse/demo-simple-collapse/demo-simple-collapse.component';
+import { DemoNestedCollapseComponent } from './showcase/at-demo-collapse/demo-nested-collapse/demo-nested-collapse.component';
 
 
 
@@ -317,7 +322,21 @@ import { environment } from '../environments/environment';
 
     AtDemoDndComponent,
 
-    AtDemoDndBasicComponent
+    AtDemoDndBasicComponent,
+
+    AtDemoCollapseComponent,
+
+
+    DemoBasicCollapseComponent,
+
+
+    DemoAccordingCollapseComponent,
+
+
+    DemoSimpleCollapseComponent,
+
+
+    DemoNestedCollapseComponent
 
 
   ],

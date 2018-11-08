@@ -1,0 +1,21 @@
+<at-collapse atAccordion>
+  <at-collapse-item [atTitle]="a">
+    <ng-template #a>A</ng-template>
+    <at-collapse>
+      <at-collapse-item [atTitle]="'Nested Panel'">
+        <div> Nested Content</div>
+      </at-collapse-item>
+    </at-collapse>
+  </at-collapse-item>
+
+  <at-collapse-item [atTitle]="b">
+    <ng-template #b>B</ng-template>
+    <div>Only one</div>
+  </at-collapse-item>
+
+  <at-collapse-item [atTitle]="c">
+    <ng-template #c>C</ng-template>
+    <div>Only one</div>
+  </at-collapse-item>
+
+</at-collapse>
