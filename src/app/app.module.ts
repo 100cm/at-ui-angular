@@ -164,6 +164,13 @@ import { I18NComponent }              from './showcase/i18-n/i18-n.component';
 import { AtDemoDndComponent }         from './showcase/at-demo-dnd/at-demo-dnd.component';
 import { AtDemoDndBasicComponent }    from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
 import {AT_I18N}                      from "./components/i18n/i18n-token";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { AtDemoCollapseComponent } from './showcase/at-demo-collapse/at-demo-collapse.component';
+import { DemoBasicCollapseComponent } from './showcase/at-demo-collapse/demo-basic-collapse/demo-basic-collapse.component';
+import { DemoAccordingCollapseComponent } from './showcase/at-demo-collapse/demo-according-collapse/demo-according-collapse.component';
+import { DemoSimpleCollapseComponent } from './showcase/at-demo-collapse/demo-simple-collapse/demo-simple-collapse.component';
+import { DemoNestedCollapseComponent } from './showcase/at-demo-collapse/demo-nested-collapse/demo-nested-collapse.component';
 
 
 
@@ -315,7 +322,21 @@ import {AT_I18N}                      from "./components/i18n/i18n-token";
 
     AtDemoDndComponent,
 
-    AtDemoDndBasicComponent
+    AtDemoDndBasicComponent,
+
+    AtDemoCollapseComponent,
+
+
+    DemoBasicCollapseComponent,
+
+
+    DemoAccordingCollapseComponent,
+
+
+    DemoSimpleCollapseComponent,
+
+
+    DemoNestedCollapseComponent
 
 
   ],
@@ -326,7 +347,7 @@ import {AT_I18N}                      from "./components/i18n/i18n-token";
     AtModule.forRoot(),
     ReactiveFormsModule,
 
-    BrowserModule, BrowserAnimationsModule
+    BrowserModule, BrowserAnimationsModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{provide:AT_I18N,useValue:en_US}],
   bootstrap: [AppComponent]

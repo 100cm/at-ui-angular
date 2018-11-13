@@ -9438,23 +9438,26 @@ $info-color               : #78A4FA;
 /* line 3, ../sass/components/card.scss */
 .at-card {
   background: #fff;
-  border-radius: 2px;
-  font-size: 12px;
-  position: relative;
-  transition: all .3s;
+  padding: 16px;
+  display: block;
+  border-radius: 4px;
+  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 4px 0 rgba(10, 16, 20, 0.37);
 }
-/* line 9, ../sass/components/card.scss */
-.at-card .at-card-body {
-  padding: 0;
+/* line 10, ../sass/components/card.scss */
+.at-card-header {
+  display: flex;
+  flex-direction: row;
 }
-/* line 13, ../sass/components/card.scss */
-.at-card:hover {
-  box-shadow: 0 1px 6px #F7F7F7;
+/* line 16, ../sass/components/card.scss */
+.at-card-content-full {
+  width: calc(100% + 32px);
+  margin: 0 -16px 16px -16px;
 }
-
-/* line 18, ../sass/components/card.scss */
-.at-card-bordered {
-  border: 1px solid #ECECEC;
+/* line 21, ../sass/components/card.scss */
+.at-card-footer {
+  margin-bottom: -8px;
+  padding-bottom: 0;
 }
 
 /* line 3, ../sass/components/tab.scss */
@@ -10715,4 +10718,83 @@ $info-color               : #78A4FA;
 .on-drag-enter {
   box-sizing: border-box;
   box-shadow: 2px 2px 20px #A9A9A9;
+}
+
+/* line 3, ../sass/components/collapse.scss */
+.at-collapse {
+  border: 1px solid #DFDFDF;
+  border-radius: 4px;
+  overflow: hidden;
+  /* element */
+  /* modifier */
+}
+/* line 9, ../sass/components/collapse.scss */
+.at-collapse__item {
+  border-bottom: 1px solid #DFDFDF;
+}
+/* line 12, ../sass/components/collapse.scss */
+.at-collapse__item:last-of-type {
+  border-bottom: none;
+}
+/* line 17, ../sass/components/collapse.scss */
+.at-collapse__item--active > .at-collapse__header {
+  border-bottom: 1px solid #DFDFDF;
+  transition: none;
+}
+/* line 20, ../sass/components/collapse.scss */
+.at-collapse__item--active > .at-collapse__header .at-collapse__icon {
+  transform: rotate(90deg);
+}
+/* line 26, ../sass/components/collapse.scss */
+.at-collapse__item--disabled .at-collapse__header {
+  color: #C9C9C9;
+  cursor: not-allowed;
+}
+/* line 30, ../sass/components/collapse.scss */
+.at-collapse__item--disabled .at-collapse__icon {
+  color: #C9C9C9;
+}
+/* line 35, ../sass/components/collapse.scss */
+.at-collapse__header {
+  position: relative;
+  padding: 8px 32px;
+  color: #2C405A;
+  background-color: #F7F7F7;
+  transition: all .3s;
+  cursor: pointer;
+}
+/* line 43, ../sass/components/collapse.scss */
+.at-collapse__icon {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  color: #96a0ad;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all .3s;
+}
+/* line 52, ../sass/components/collapse.scss */
+.at-collapse__body {
+  will-change: height;
+}
+/* line 55, ../sass/components/collapse.scss */
+.at-collapse__content {
+  padding: 16px;
+  color: #3F536E;
+  border-radius: 0 0 4px 4px;
+  background-color: #FFF;
+  overflow: hidden;
+}
+/* line 64, ../sass/components/collapse.scss */
+.at-collapse--simple {
+  border: none;
+}
+/* line 67, ../sass/components/collapse.scss */
+.at-collapse--simple .at-collapse__item {
+  border-bottom: none;
+}
+/* line 70, ../sass/components/collapse.scss */
+.at-collapse--simple .at-collapse__header {
+  border-bottom: 1px solid #DFDFDF;
+  background-color: transparent;
 }

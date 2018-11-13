@@ -8,13 +8,17 @@
 
 [![NPM][npm-version-image]][npm-version-url] [![david-dm][david-dm-image]][david-dm-url] [![travis][travis-image]][travis-url]
 
-ng-at is a modular front-end UI framework for developing fast and powerful web interfaces based on Angular 6+.
+ng-at is a modular front-end UI framework for developing fast and powerful web interfaces based on Angular 7+.
 
+
+#Last version
+
+[7.0.2.rc2 ](http://ng-at.thunderjava.com/)
 
 
 ## Features
 
-- Based on `Angular 4.x~6.x`
+- Based on `Angular 7 +`
 - A npm + webpack + babel front-end development workflow
 - Support ES2015
 - CSS Style independent, make consistent user interfaces (See: [AT-UI-Style](https://github.com/at-ui/at-ui-style))

@@ -1,6 +1,6 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import * as moment from 'moment';
-
+import * as momentI from 'moment';
+const  moment = momentI
 @Pipe({
   name: 'atFormat'
 })

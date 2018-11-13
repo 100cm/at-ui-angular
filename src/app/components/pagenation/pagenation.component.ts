@@ -177,7 +177,6 @@ export class PagenationComponent implements OnInit {
 
   /**
    * 生成中间页数段落
-   * @private
    */
   _buildIndexes() {
     this._lastIndex = Math.ceil(this._total / this._pageSize);
@@ -239,8 +238,6 @@ export class PagenationComponent implements OnInit {
 
   /**
    * 向前向后跳*页
-   * @param pageSize
-   * @private
    */
   _jumpBefore(pageSize) {
     this._jumpPage(this._current - Math.round(pageSize / 2));

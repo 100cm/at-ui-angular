@@ -1,12 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import * as moment       from 'moment';
-import {Moment}          from "moment";
+import * as momentI       from 'moment';
 import {AtDate}          from "../at-day";
 import 'moment/locale/zh-cn';
 import {AtI18nService}   from "../../i18n/at-i18n.service";
 import {AtI18nInterface} from "../../i18n/at-i18n.interface";
-
+const moment = momentI
 @Component({
              selector: 'at-calendar',
              template: `
@@ -231,7 +230,7 @@ export class CalendarComponent implements OnInit {
     this.monthName = moment.months()
   }
 
-  buildWeeks(d: Moment): Array<AtDate> {
+  buildWeeks(d: any): Array<AtDate> {
     const weeks: Array<any> = [];
     const start             = d.clone().date(1).day(0);
     const month             = d.clone();
@@ -249,7 +248,7 @@ export class CalendarComponent implements OnInit {
   };
 
 
-  buildWeek(date: Moment, month: Moment): Array<AtDate> {
+  buildWeek(date: any, month: any): Array<AtDate> {
     const days: Array<AtDate> = [];
     for (let i = 0; i < 7; i++) {
       days.push({
@@ -289,7 +288,7 @@ export class CalendarComponent implements OnInit {
     return century;
   }
 
-  buildMonths(date: Moment) {
+  buildMonths(date: any) {
     let formatMonths       = [];
     let months: Array<any> = [];
     for (let i = 0; i < 12; i++) {

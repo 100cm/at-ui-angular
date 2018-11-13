@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ColComponent} from "../../grid/col/col.component";
-import * as moment from 'moment'
-
+import * as momentI from 'moment'
+const moment = momentI
 @Component({
   selector: 'at-time',
   template: `

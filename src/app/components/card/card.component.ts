@@ -3,11 +3,12 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'at-card',
   template: `
-    <div class="at-card" [ngClass]="{'at-card-bordered':border}">
-      <ng-content select="[card-content]">
+    <div [ngClass]="{'at-card-bordered':border}">
+      <ng-content >
 
       </ng-content>
     </div>`,
+  host: {'[class.at-card]': 'true'}
 })
 export class CardComponent implements OnInit {
 

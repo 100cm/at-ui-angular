@@ -1,4 +1,6 @@
-import {Moment} from "moment";
+import * as MomentI from "moment";
+
+const Moment = MomentI
 
 export interface AtDate {
   number: number;
@@ -7,7 +9,7 @@ export interface AtDate {
   isCurrentDay: boolean;
   isSelectedDay: boolean;
   title: string;
-  date: Moment;
+  date: any;
   disabled: boolean;
   firstDisabled: boolean;
   lastDisabled: boolean;

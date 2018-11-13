@@ -1,0 +1,47 @@
+{
+  "name": "at-ng",
+  "version": "7.0.2-rc7",
+  "license": "MIT",
+  "author": "zhou351711778",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod --deploy-url=https://1999.leizihao.cn/",
+    "build-map-status": "node --max_old_space_size=5048 ./node_modules/@angular/cli/bin/ng build --prod --source-map",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "generate": "bash ./build.sh",
+    "release": "npm run generate"
+  },
+  "schematics": "./schematics/collection.json",
+  "keywords": [
+    "at-ui",
+    "angular",
+    "ui",
+    "framework",
+    "frontend"
+  ],
+  "dependencies": {
+    "tslib": "^1.7.1"
+  },
+  "peerDependencies": {
+    "@angular/animations": "^7.0.0",
+    "@angular/cdk": "^7.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
+    "tinycolor2": "1.4.1",
+    "moment": "^2.18.1"
+  },
+  "main": "bundles/at-ng.js.umd.js",
+  "module": "fesm5/at-ng.js.js",
+  "es2015": "fesm2015/at-ng.js.js",
+  "esm5": "esm5/at-ng.js.js",
+  "esm2015": "esm2015/at-ng.js.js",
+  "fesm5": "fesm5/at-ng.js.js",
+  "fesm2015": "fesm2015/at-ng.js.js",
+  "typings": "at-ng.d.ts",
+  "metadata": "at-ng.metadata.json",
+  "sideEffects": false
+}
