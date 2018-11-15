@@ -1,102 +1,102 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
-             selector: 'at-pagination',
-             template: `
-               <div>
-                 <ul *ngIf="!simple" class="at-pagination at-pagination--{{size}}">
+  selector: 'at-pagination',
+  template: `
+    <div>
+      <ul *ngIf="!simple" class="at-pagination at-pagination--{{size}}">
     <span class="at-pagination__total">
       {{'Page.total' | atI18n}} {{total}} {{'Page.result' | atI18n}}
     </span>
-                   <li (click)="_jumpPage(_current-1)" [class.at-pagination--disabled]="_isFirstIndex"
-                       [attr.title]="'Page.previous' | atI18n"
-                       class="at-pagination__prev">
-                     <i class="icon icon-chevron-left"></i>
-                   </li>
-                   <li
-                     [attr.title]="'Page.first' | atI18n"
-                     class="at-pagination__item"
-                     [class.at-pagination__item--active]="_isFirstIndex"
-                     (click)="_jumpPage(_firstIndex)">
-                     {{_firstIndex}}
-                   </li>
-                   <li
-                     [attr.title]="('Page.back' | atI18n)+ ' ' +_roundPageSize+ ' ' +('Page.page' | atI18n)"
-                     class="at-pagination__item at-pagination__item--jump-prev"
-                     (click)="_jumpBefore(_pageSize)"
-                     *ngIf="(_lastIndex >9)&&(_current-3>_firstIndex)">
-                     <i class="icon icon-chevrons-left"></i>
-                   </li>
-                   <li
-                     *ngFor="let page of _pages"
-                     [attr.title]="page.index"
-                     (click)="_jumpPage(page.index)"
-                     class="at-pagination__item"
-                     [class.at-pagination__item--active]="_current==page.index">
-                     {{page.index}}
-                   </li>
-                   <li [attr.title]="('Page.to' | atI18n) + ' ' +_roundPageSize+ ' ' + ('Page.page' | atI18n)"
-                       (click)="_jumpAfter(_pageSize)"
-                       class="at-pagination__item at-pagination__item--jump-next"
-                       *ngIf="(_lastIndex >9)&&(_current+3<_lastIndex)"
-                   >
-                     <i class="icon icon-chevrons-right"></i>
-                   </li>
-                   <li
-                     [attr.title]="( 'Page.last' | atI18n) +':'+_lastIndex"
-                     class="at-pagination__item"
-                     [class.at-pagination__item--active]="_isLastIndex"
-                     (click)="_jumpPage(_lastIndex)"
-                     *ngIf="(_lastIndex>0)&&(_lastIndex!==_firstIndex)">
-                     {{_lastIndex}}
-                   </li>
-                   <li [attr.title]="'Page.next' | atI18n"
-                       [class.at-pagination--disabled]="_isLastIndex "
-                       class="at-pagination__next" (click)="_jumpPage(_current+1)">
-                     <i class="icon icon-chevron-right"></i>
-                   </li>
+        <li (click)="_jumpPage(_current-1)" [class.at-pagination--disabled]="_isFirstIndex"
+            [attr.title]="'Page.previous' | atI18n"
+            class="at-pagination__prev">
+          <i class="icon icon-chevron-left"></i>
+        </li>
+        <li
+          [attr.title]="'Page.first' | atI18n"
+          class="at-pagination__item"
+          [class.at-pagination__item--active]="_isFirstIndex"
+          (click)="_jumpPage(_firstIndex)">
+          {{_firstIndex}}
+        </li>
+        <li
+          [attr.title]="('Page.back' | atI18n)+ ' ' +_roundPageSize+ ' ' +('Page.page' | atI18n)"
+          class="at-pagination__item at-pagination__item--jump-prev"
+          (click)="_jumpBefore(_pageSize)"
+          *ngIf="(_lastIndex >9)&&(_current-3>_firstIndex)">
+          <i class="icon icon-chevrons-left"></i>
+        </li>
+        <li
+          *ngFor="let page of _pages"
+          [attr.title]="page.index"
+          (click)="_jumpPage(page.index)"
+          class="at-pagination__item"
+          [class.at-pagination__item--active]="_current==page.index">
+          {{page.index}}
+        </li>
+        <li [attr.title]="('Page.to' | atI18n) + ' ' +_roundPageSize+ ' ' + ('Page.page' | atI18n)"
+            (click)="_jumpAfter(_pageSize)"
+            class="at-pagination__item at-pagination__item--jump-next"
+            *ngIf="(_lastIndex >9)&&(_current+3<_lastIndex)"
+        >
+          <i class="icon icon-chevrons-right"></i>
+        </li>
+        <li
+          [attr.title]="( 'Page.last' | atI18n) +':'+_lastIndex"
+          class="at-pagination__item"
+          [class.at-pagination__item--active]="_isLastIndex"
+          (click)="_jumpPage(_lastIndex)"
+          *ngIf="(_lastIndex>0)&&(_lastIndex!==_firstIndex)">
+          {{_lastIndex}}
+        </li>
+        <li [attr.title]="'Page.next' | atI18n"
+            [class.at-pagination--disabled]="_isLastIndex "
+            class="at-pagination__next" (click)="_jumpPage(_current+1)">
+          <i class="icon icon-chevron-right"></i>
+        </li>
 
-                   <ng-container *ngIf="atPageSizer">
-                     <div class="at-pagination__sizer">
-                       <at-select [atSize]="'small'" [(ngModel)]="pageSize" (ngModelChange)="_atPageSizeChange($event)">
-                         <at-option *ngFor="let item of _options" [atValue]="item"
-                                    [atLabel]="item +
+        <ng-container *ngIf="atPageSizer">
+          <div class="at-pagination__sizer">
+            <at-select [atSize]="'small'" [(ngModel)]="pageSize" (ngModelChange)="_atPageSizeChange($event)">
+              <at-option *ngFor="let item of _options" [atValue]="item"
+                         [atLabel]="item +
                                      ('Page.per' | atI18n) ">
-                         </at-option>
-                       </at-select>
-                     </div>
-                   </ng-container>
+              </at-option>
+            </at-select>
+          </div>
+        </ng-container>
 
-                   <div *ngIf="atQuickJump" class="at-pagination__quickjump">
-                     <span>{{'Page.go' | atI18n}}</span>
-                     <input type="text" class="at-input__original" [ngModel]="atPageIndex"
-                            (ngModelChange)="_atPageIndexChange($event)">
-                     <span>{{'Page.page' | atI18n}}</span>
-                   </div>
-                 </ul>
+        <div *ngIf="atQuickJump" class="at-pagination__quickjump">
+          <span>{{'Page.go' | atI18n}}</span>
+          <input type="text" class="at-input__original" [ngModel]="atPageIndex"
+                 (ngModelChange)="_atPageIndexChange($event)">
+          <span>{{'Page.page' | atI18n}}</span>
+        </div>
+      </ul>
 
-                 <ul *ngIf="simple" class="at-pagination at-pagination--simple" data-v-a01f69b8="">
-                   <li title="上一页"
-                       (click)="_jumpPage(_current-1)" [class.at-pagination--disabled]="_isFirstIndex"
-                       class="at-pagination__prev">
-                     <i class="icon icon-chevron-left"></i>
-                   </li>
-                   <div class="at-pagination__simple-paging">
-                     <input [ngModel]="atPageIndex"
-                            (ngModelChange)="_atPageIndexChange($event)"
-                            type="text" class="at-input__original">
-                     <span>/</span>
-                     <span class="at-pagination__paging-total">{{_lastIndex}}</span></div>
-                   <li class="at-pagination__next"
-                       [class.at-pagination--disabled]="_isLastIndex "
-                       class="at-pagination__next" (click)="_jumpPage(_current+1)"
-                   ><i class="icon icon-chevron-right"></i></li>
-                 </ul>
-               </div>
+      <ul *ngIf="simple" class="at-pagination at-pagination--simple" data-v-a01f69b8="">
+        <li title="上一页"
+            (click)="_jumpPage(_current-1)" [class.at-pagination--disabled]="_isFirstIndex"
+            class="at-pagination__prev">
+          <i class="icon icon-chevron-left"></i>
+        </li>
+        <div class="at-pagination__simple-paging">
+          <input [ngModel]="atPageIndex"
+                 (ngModelChange)="_atPageIndexChange($event)"
+                 type="text" class="at-input__original">
+          <span>/</span>
+          <span class="at-pagination__paging-total">{{_lastIndex}}</span></div>
+        <li class="at-pagination__next"
+            [class.at-pagination--disabled]="_isLastIndex "
+            class="at-pagination__next" (click)="_jumpPage(_current+1)"
+        ><i class="icon icon-chevron-right"></i></li>
+      </ul>
+    </div>
 
 
-             `,
-           })
+  `,
+})
 export class PagenationComponent implements OnInit {
 
   constructor() {
@@ -106,22 +106,32 @@ export class PagenationComponent implements OnInit {
 
   }
 
-  _current    = 1;
+  _current = 1;
   _total: number;
-  _pageSize   = 10;
+  _pageSize = 10;
   _firstIndex = 1;
-  _pages      = [];
-  _options    = [10, 20, 30, 40, 50];
-  _lastIndex  = Infinity;
+  _pages = [];
+  _options = [10, 20, 30, 40, 50];
+  _lastIndex = Infinity;
 
   @Input()
   size: 'small' | 'normal' = 'normal'
+
+
+  get options(): number[] {
+    return this._options;
+  }
+
+  @Input()
+  set atOptions(value: number[]) {
+    this._options = value;
+  }
 
   @Input()
   simple: boolean = false
 
   @Output() pageIndexChange: EventEmitter<any> = new EventEmitter()
-  @Output() pageSizeChange: EventEmitter<any>  = new EventEmitter()
+  @Output() pageSizeChange: EventEmitter<any> = new EventEmitter()
 
 
   private _atPageIndex
@@ -192,8 +202,8 @@ export class PagenationComponent implements OnInit {
     }
     else {
       const current = +this._current;
-      let left      = Math.max(2, current - 2);
-      let right     = Math.min(current + 2, this._lastIndex - 1);
+      let left = Math.max(2, current - 2);
+      let right = Math.min(current + 2, this._lastIndex - 1);
 
       if (current - 1 <= 2) {
         right = 5;
