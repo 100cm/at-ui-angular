@@ -171,6 +171,7 @@ import { DemoBasicCollapseComponent } from './showcase/at-demo-collapse/demo-bas
 import { DemoAccordingCollapseComponent } from './showcase/at-demo-collapse/demo-according-collapse/demo-according-collapse.component';
 import { DemoSimpleCollapseComponent } from './showcase/at-demo-collapse/demo-simple-collapse/demo-simple-collapse.component';
 import { DemoNestedCollapseComponent } from './showcase/at-demo-collapse/demo-nested-collapse/demo-nested-collapse.component';
+import { AtDemoEditorComponent } from './showcase/at-demo-editor/at-demo-editor.component';
 
 
 
@@ -336,7 +337,10 @@ import { DemoNestedCollapseComponent } from './showcase/at-demo-collapse/demo-ne
     DemoSimpleCollapseComponent,
 
 
-    DemoNestedCollapseComponent
+    DemoNestedCollapseComponent,
+
+
+    AtDemoEditorComponent
 
 
   ],

@@ -1,0 +1,11 @@
+<div class="at-editor">
+  <div class="at-editor-menu">
+    <div class="at-editor-menu-item" *ngFor="let item of menus">
+      <at-editor-menu-bold *ngIf="item == 'bold'"></at-editor-menu-bold>
+      <at-editor-menu-italic *ngIf="item == 'italic'"></at-editor-menu-italic>
+      <at-editor-menu-underline *ngIf="item == 'underline'"></at-editor-menu-underline>
+      <at-editor-menu-font-size *ngIf="item=='font-size'"></at-editor-menu-font-size>
+    </div>
+  </div>
+  <div #ele_text contenteditable="true" class="at-editor-content-area"></div>
+</div>

@@ -10798,3 +10798,30 @@ $info-color               : #78A4FA;
   border-bottom: 1px solid #DFDFDF;
   background-color: transparent;
 }
+
+/* line 4, ../sass/components/editor.scss */
+.at-editor-menu {
+  display: flex;
+}
+/* line 6, ../sass/components/editor.scss */
+.at-editor-menu-item {
+  flex-basis: 30px;
+  height: 30px;
+  flex-wrap: wrap;
+}
+/* line 12, ../sass/components/editor.scss */
+.at-editor-content-area {
+  position: relative;
+  line-height: normal;
+  outline: 0;
+  width: 100%;
+  padding: 12px;
+  color: #3F536E;
+  font-size: 14px;
+  background-color: #FFF;
+  border: 1px solid #C5D9E8;
+  border-radius: 4px;
+  transition: border .2s;
+  outline: none;
+  min-height: 500px;
+}

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Router}            from "@angular/router";
+import {Router}            from '@angular/router';
 
 @Component({
-             selector: 'app-at-demo-components',
-             templateUrl: './at-demo-components.component.html',
-             styleUrls: ['./at-demo-components.component.css']
-           })
+  selector: 'app-at-demo-components',
+  templateUrl: './at-demo-components.component.html',
+  styleUrls: ['./at-demo-components.component.css']
+})
 export class AtDemoComponentsComponent implements OnInit {
 
   constructor(private route: Router) {
@@ -16,8 +16,8 @@ export class AtDemoComponentsComponent implements OnInit {
 
   active(href) {
     let location = window.location.hash
-    location     = location.replace("#", '')
-    let bol      = location.indexOf(href) != -1
+    location = location.replace('#', '')
+    let bol = location.indexOf(href) != -1
     return bol
   }
 
@@ -113,7 +113,8 @@ export class AtDemoComponentsComponent implements OnInit {
 
     {name: 'tab', url: '/components/tab', name_en: 'tab'},
 
-    {name: '拖拽释放', url: '/components/dnd', name_en: 'DnD'}
+    {name: '拖拽释放', url: '/components/dnd', name_en: 'DnD'},
+    {name: '富文本', url: '/components/editor', name_en: 'Editor'}
   ]
 
   goRoute(e) {
@@ -121,7 +122,7 @@ export class AtDemoComponentsComponent implements OnInit {
     let a = e.target.children[0]
     if (a && a.attributes.getNamedItem('href')) {
       let link = a.attributes.getNamedItem('href').value
-      link     = link.split("#")[1]
+      link = link.split('#')[1]
       this.route.navigate([link])
     }
 

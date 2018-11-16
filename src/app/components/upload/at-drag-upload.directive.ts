@@ -11,7 +11,7 @@ export class AtDragUploadDirective {
 
   @HostListener('drop', ['$event'])
   @HostListener('dragover', ['$event'])
-  onFileDrop(e: DragEvent): void {
+  onFileDrop(e: any): void {
     if (e.type === 'dragover') {
       e.preventDefault();
       return;

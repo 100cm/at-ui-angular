@@ -1,0 +1,27 @@
+@import '../variables/index.scss';
+
+.at-editor {
+  &-menu {
+    display: flex;
+    &-item {
+      flex-basis: 30px;
+      height: 30px;
+      flex-wrap: wrap;
+    }
+  }
+  &-content-area {
+    position: relative;
+    line-height: normal;
+    outline: 0;
+    width: 100%;
+    padding: 12px;
+    color: $input-font-color;
+    font-size: $input-font-size-base;
+    background-color: $input-bg-color;
+    border: 1px solid $border-color-base;
+    border-radius: $border-radius-base;
+    transition: border .2s;
+    outline: none;
+    min-height: 500px;
+  }
+}
