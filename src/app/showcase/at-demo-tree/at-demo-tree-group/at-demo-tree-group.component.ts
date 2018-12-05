@@ -50,11 +50,11 @@ export class AtDemoTreeGroupComponent implements OnInit {
   }
 
   changeExpand(e) {
-    console.log(e)
+
   }
 
   changeCheck(e) {
-    console.log(e)
+
   }
 
   group: AtTreeNode[] =

@@ -226,7 +226,6 @@ export class DropdownComponent implements OnInit {
         this._renderer.listen(this._atOrigin.elementRef.nativeElement, 'contextmenu', (e) => {
           e.preventDefault();
           e.stopPropagation()
-          console.log('context menu active')
           let width       = this._atOrigin.elementRef.nativeElement.offsetWidth
           let height      = this._atOrigin.elementRef.nativeElement.offsetHeight
           let clientWidth = e.clientX

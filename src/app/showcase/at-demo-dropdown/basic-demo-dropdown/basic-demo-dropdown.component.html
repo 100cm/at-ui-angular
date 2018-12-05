@@ -1,5 +1,4 @@
 <p style="margin-bottom: 10px">点击下拉</p>
-<ng-container *ngFor="let item of arrays">
   <at-dropdown  [placement]="'top'" [trigger]="'click'">
     <span at-dropdown>下拉菜单<i class="icon icon-chevron-down"></i></span>
     <ul at-drop-menu-list>
@@ -10,7 +9,7 @@
       <li at-drop-menu-item>菜单1</li>
 
       <li at-drop-submenu>
-        <span title>菜单</span>
+        <span title>菜单3</span>
         <ul>
           <li at-drop-menu-item>123</li>
           <li at-drop-menu-item>123</li>
@@ -22,7 +21,6 @@
     </ul>
 
   </at-dropdown>
-</ng-container>
 
 <hr>
 <p style="margin-bottom: 10px">hover下拉</p>
@@ -32,6 +30,24 @@
     <li at-drop-menu-item [divided]="true">菜单1</li>
     <li at-drop-menu-item>菜单1</li>
     <li at-drop-menu-item>菜单1</li>
+    <li at-drop-submenu>
+      <span title>菜单3</span>
+      <ul>
+        <li at-drop-menu-item>123</li>
+        <li at-drop-menu-item>123</li>
+        <li at-drop-menu-item>123</li>
+        <li at-drop-menu-item>213</li>
+        <li at-drop-submenu>
+          <span title>菜单4sd</span>
+          <ul>
+            <li at-drop-menu-item>123</li>
+            <li at-drop-menu-item>123</li>
+            <li at-drop-menu-item>123</li>
+            <li at-drop-menu-item>213</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
     <li at-drop-submenu>
       <span title>菜单2</span>
     </li>
@@ -64,6 +80,12 @@
     <li at-drop-menu-item>菜单1</li>
     <li at-drop-submenu>
       <span title>菜单2</span>
+      <ul>
+        <li at-drop-menu-item>菜单2</li>
+        <li at-drop-menu-item>菜单2</li>
+        <li at-drop-menu-item>菜单2</li>
+        <li at-drop-menu-item>菜单2</li>
+      </ul>
     </li>
   </ul>
 
