@@ -12,4 +12,6 @@ export class DemoSizeTableComponent implements OnInit {
   ngOnInit() {
   }
 
+  nestExpand = false
+
 }

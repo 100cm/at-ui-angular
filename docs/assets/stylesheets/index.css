@@ -8842,30 +8842,51 @@ $info-color               : #78A4FA;
   text-align: center;
 }
 /* line 31, ../sass/components/table.scss */
+.at-table__td__expand {
+  width: 50px;
+}
+/* line 35, ../sass/components/table.scss */
 .at-table__cell {
   padding: 0 16px;
   border-bottom: 1px solid #ECECEC;
 }
-/* line 35, ../sass/components/table.scss */
+/* line 41, ../sass/components/table.scss */
+.at-table__tr__expand {
+  transition: all 0.3s;
+}
+/* line 46, ../sass/components/table.scss */
+.at-table__td__icon {
+  text-align: center;
+  cursor: pointer;
+}
+/* line 50, ../sass/components/table.scss */
+.at-table__td__expand__icon {
+  display: inline-block;
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+/* line 58, ../sass/components/table.scss */
 .at-table__content {
   border: 1px solid #ECECEC;
   border-bottom-width: 0;
 }
-/* line 40, ../sass/components/table.scss */
+/* line 63, ../sass/components/table.scss */
 .at-table__thead > tr > th {
   font-weight: bold;
   text-align: left;
   background-color: #F7F7F7;
   white-space: nowrap;
 }
-/* line 47, ../sass/components/table.scss */
+/* line 70, ../sass/components/table.scss */
 .at-table__thead .at-table__column-sorter {
   display: inline-block;
   vertical-align: middle;
   height: 18px;
   width: 9px;
 }
-/* line 53, ../sass/components/table.scss */
+/* line 76, ../sass/components/table.scss */
 .at-table__thead .at-table__column-sorter-up, .at-table__thead .at-table__column-sorter-down {
   display: block;
   color: #C9C9C9;
@@ -8873,107 +8894,105 @@ $info-color               : #78A4FA;
   line-height: 1;
   transition: color .3s;
 }
-/* line 61, ../sass/components/table.scss */
+/* line 84, ../sass/components/table.scss */
 .at-table__thead .at-table__column-sorter-up:hover, .at-table__thead .at-table__column-sorter-down:hover {
   color: #3F536E;
 }
-/* line 66, ../sass/components/table.scss */
+/* line 89, ../sass/components/table.scss */
 .at-table__thead .at-table__column-sorter.sort-desc .at-table__column-sorter-down {
   color: #3F536E;
 }
-/* line 71, ../sass/components/table.scss */
+/* line 94, ../sass/components/table.scss */
 .at-table__thead .at-table__column-sorter.sort-asc .at-table__column-sorter-up {
   color: #3F536E;
 }
-/* line 78, ../sass/components/table.scss */
+/* line 101, ../sass/components/table.scss */
 .at-table__tbody > tr {
   transition: all .3s;
 }
-/* line 81, ../sass/components/table.scss */
+/* line 104, ../sass/components/table.scss */
 .at-table__tbody > tr:hover {
   background-color: #f6fafe;
 }
-/* line 86, ../sass/components/table.scss */
+/* line 109, ../sass/components/table.scss */
 .at-table__footer {
   position: relative;
   margin: 16px 0;
   height: 28px;
 }
-/* line 91, ../sass/components/table.scss */
+/* line 114, ../sass/components/table.scss */
 .at-table__footer .at-pagination {
   float: right;
 }
-/* line 94, ../sass/components/table.scss */
+/* line 117, ../sass/components/table.scss */
 .at-table__footer .at-pagination__total {
   position: absolute;
   left: 0;
   top: 0;
   margin-left: 16px;
 }
-/* line 105, ../sass/components/table.scss */
+/* line 128, ../sass/components/table.scss */
 .at-table--fixHeight .at-table__content {
   border-bottom-width: 1px;
 }
-/* line 108, ../sass/components/table.scss */
+/* line 131, ../sass/components/table.scss */
 .at-table--fixHeight .at-table__header {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
-/* line 114, ../sass/components/table.scss */
+/* line 137, ../sass/components/table.scss */
 .at-table--fixHeight .at-table__header table {
   border: 1px solid #ECECEC;
   border-bottom: none;
 }
-/* line 119, ../sass/components/table.scss */
+/* line 142, ../sass/components/table.scss */
 .at-table--fixHeight .at-table__body {
   overflow: scroll;
 }
-/* line 123, ../sass/components/table.scss */
+/* line 146, ../sass/components/table.scss */
 .at-table--fixHeight .at-table__tbody > tr:last-child td {
   border-bottom: none;
 }
-/* line 131, ../sass/components/table.scss */
+/* line 154, ../sass/components/table.scss */
 .at-table--stripe .at-table__tbody > tr:nth-child(2n) {
   background-color: #fbfbfb;
 }
-/* line 134, ../sass/components/table.scss */
+/* line 157, ../sass/components/table.scss */
 .at-table--stripe .at-table__tbody > tr:hover {
   background-color: #f6fafe;
 }
-/* line 141, ../sass/components/table.scss */
+/* line 164, ../sass/components/table.scss */
 .at-table--border .at-table__content {
   border-right: none;
 }
-/* line 146, ../sass/components/table.scss */
-.at-table--border .at-table__thead th, .at-table--border .at-table__thead td,
-.at-table--border .at-table__tbody th,
-.at-table--border .at-table__tbody td {
+/* line 167, ../sass/components/table.scss */
+.at-table--border > .at-table__thead > th > td, .at-table--border > .at-table__tbody > tr > td {
   border-right: 1px solid #ECECEC;
 }
-/* line 151, ../sass/components/table.scss */
+/* line 172, ../sass/components/table.scss */
 .at-table--large {
   font-size: 13px;
 }
-/* line 155, ../sass/components/table.scss */
+/* line 176, ../sass/components/table.scss */
 .at-table--large table th, .at-table--large table td {
   height: 56px;
 }
-/* line 160, ../sass/components/table.scss */
+/* line 181, ../sass/components/table.scss */
 .at-table--small {
   font-size: 11px;
 }
-/* line 164, ../sass/components/table.scss */
+/* line 185, ../sass/components/table.scss */
 .at-table--small table th, .at-table--small table td {
   height: 32px;
 }
-/* line 169, ../sass/components/table.scss */
+/* line 190, ../sass/components/table.scss */
 .at-table--small .at-table__thead .at-table__column-sorter {
   width: 7px;
   height: 14px;
 }
-/* line 173, ../sass/components/table.scss */
+/* line 194, ../sass/components/table.scss */
 .at-table--small .at-table__thead .at-table__column-sorter-up, .at-table--small .at-table__thead .at-table__column-sorter-down {
   font-size: 7px;
 }

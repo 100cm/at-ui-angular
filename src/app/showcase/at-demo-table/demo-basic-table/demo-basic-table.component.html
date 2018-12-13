@@ -9,15 +9,17 @@
   </thead>
 
   <tbody at-tbody>
-  <tr at-tbody-tr>
-    <td at-td>库里</td>
-    <td at-td>库里</td>
-    <td at-td>库里</td>
-  </tr>
+
   <tr at-tbody-tr><!---->
-    <td at-td>库里</td>
+    <td at-td [atShowExpand]="true" [(atExpand)]="expand">库里</td>
     <td at-td>库里</td>
     <td at-td> 库里</td>
+  </tr>
+
+  <tr at-tbody-tr [atExpand]="expand">
+    <td at-td [atIndentSize]="30" [atShowExpand]="true">库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
   </tr>
   </tbody>
 </at-table>
