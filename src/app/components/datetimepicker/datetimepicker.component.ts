@@ -92,8 +92,8 @@ const moment = momentI
                      </div>
                    </div>
                    <div class="at-datepicker--footer">
-                     <a *ngIf="mode == 'date'" (click)="setMode('time')">{{il8n.DatePicker.chooseTime}}</a>
-                     <a *ngIf="mode == 'time'" (click)="setMode('date')">{{il8n.DatePicker.chooseDate}}</a>
+                     <a *ngIf="mode == 'date' && choice_modal.indexOf('time') != -1"  (click)="setMode('time')">{{il8n.DatePicker.chooseTime}}</a>
+                     <a *ngIf="mode == 'time' && choice_modal.indexOf('date') != -1" (click)="setMode('date')">{{il8n.DatePicker.chooseDate}}</a>
                    </div>
                  </div>
                </ng-template>
@@ -239,6 +239,10 @@ export class DatetimepickerComponent implements OnInit {
 
   @Input() format = "YYYY-MM-DD"
   @Input() disableDate
+  /**
+   * 日期选择模式 只选择日期 或者 时间
+   */
+  @Input() choice_modal = ['date', 'time']
 
   writeValue(value: any): void {
     if (value) {
@@ -264,6 +268,9 @@ export class DatetimepickerComponent implements OnInit {
     this.at_i18n_service.localChange.subscribe(il8n => {
       this.il8n = il8n
     })
+    if (this.choice_modal.length === 1 && this.choice_modal.indexOf('time') !== -1){
+      this.mode = 'time'
+    }
   }
 
 
@@ -304,6 +311,9 @@ export class DatetimepickerComponent implements OnInit {
       change_date = change_date.format(this.format)
     }
     this.onChange(change_date)
+    if (this.choice_modal.indexOf('time') === -1){
+      this.atVisible = false
+    }
   }
 
   updateDate(value) {
@@ -413,6 +423,7 @@ export class DatetimepickerComponent implements OnInit {
       change_date = change_date.format(this.format)
     }
     this.onChange(change_date)
+    this.atVisible = false
   }
 
   setMode(mode) {
