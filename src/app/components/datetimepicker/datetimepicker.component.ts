@@ -247,6 +247,8 @@ export class DatetimepickerComponent implements OnInit {
   writeValue(value: any): void {
     if (value) {
       this.updateDate(value);
+    } else {
+      this.clearDate()
     }
   }
 
@@ -327,6 +329,10 @@ export class DatetimepickerComponent implements OnInit {
     this.atYear        = moment(this.atValue).year();
     this.atMonth       = moment(this.atValue).month();
 
+  }
+
+  clearDate() {
+    this._atValue = ''
   }
 
   _hide(): void {
