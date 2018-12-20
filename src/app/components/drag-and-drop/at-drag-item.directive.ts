@@ -28,7 +28,6 @@ export class AtDragItemDirective implements OnInit {
       if (originalTarget.isContentEditable) {
         return;
       }
-      console.log('mouse down on me')
       this.render2.setStyle(this.el, 'will-change', 'all')
       this.ref.nativeElement.draggable = true
       let cloneEl                      = this.el.cloneNode(true)

@@ -1,40 +1,57 @@
 <p>small</p>
 <hr>
-<at-table [size]="'small'">
+<at-table [size]="'small'" [border]="true">
   <thead at-thead>
   <tr><!---->
     <th at-th style="cursor: text;" [atWidth]="219">姓名</th>
     <th at-th style="cursor: text;">年龄</th>
     <th at-th style="cursor: text;">地址</th>
+    <th at-th style="cursor: text;">其他</th>
+    <th at-th style="cursor: text;">操作</th>
   </tr>
   </thead>
   <tbody at-tbody>
   <tr at-tbody-tr>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
     <td at-td>库里</td>
     <td at-td>库里</td>
     <td at-td>库里</td>
   </tr>
   <tr at-tbody-tr><!---->
     <td at-td>库里</td>
+    <td at-td colspan="2">库里</td>
     <td at-td>库里</td>
-    <td at-td> 库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
   </tr>
   </tbody>
 </at-table>
 <hr>
 <p>normal</p>
 <hr>
-<at-table [size]="'normal'">
+<at-table [size]="'normal'" [border]="true">
   <thead at-thead>
   <tr><!---->
     <th at-th style="cursor: text;" [atWidth]="219">姓名</th>
     <th at-th style="cursor: text;">年龄</th>
     <th at-th style="cursor: text;">地址</th>
+
   </tr>
   </thead>
   <tbody at-tbody>
   <tr at-tbody-tr>
     <td at-td>库里</td>
+    <td at-td rowspan="2">库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr>
     <td at-td>库里</td>
     <td at-td>库里</td>
   </tr>
@@ -108,59 +125,139 @@
 <hr>
 <p>带高度并且固定</p>
 
-<at-table [stripe]="true" [border]="true" [height]="200">
-  <ng-template #fixedHead>
-    <thead at-thead>
-    <tr><!---->
-      <th at-th style="cursor: text;" [atWidth]="219">姓名</th>
-      <th at-th style="cursor: text;">年龄</th>
-      <th at-th style="cursor: text;">地址</th>
-    </tr>
-    </thead>
-  </ng-template>
-  <ng-template #fixedBody>
-    <tbody at-tbody>
-    <tr at-tbody-tr>
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
-    <tr at-tbody-tr><!---->
-      <td at-td>库里</td>
-      <td at-td>库里</td>
-      <td at-td> 库里</td>
-    </tr>
+<at-table [atFixed]="true" [stripe]="true" [border]="true" [height]="200">
+  <thead at-thead>
+  <tr><!---->
+    <th at-th style="cursor: text;" [atWidth]="219">姓名</th>
+    <th at-th style="cursor: text;">年龄</th>
+    <th at-th style="cursor: text;">地址</th>
+  </tr>
+  </thead>
+  <tbody at-tbody>
+  <tr at-tbody-tr>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
 
-    </tbody>
-  </ng-template>
+  </tbody>
+
+</at-table>
+
+<hr>
+嵌套表格
+
+<at-table [size]="'normal'" [border]="true">
+  <thead at-thead>
+  <tr><!---->
+    <th at-th at-expand-th></th>
+    <th at-th style="cursor: text;" [atWidth]="219">姓名</th>
+    <th at-th style="cursor: text;">年龄</th>
+    <th at-th style="cursor: text;">地址</th>
+
+  </tr>
+  </thead>
+  <tbody at-tbody>
+  <tr at-tbody-tr>
+    <td></td>
+    <td at-td>库里</td>
+    <td at-td rowspan="2">库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr>
+    <td></td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-expand [(atExpand)]="nestExpand"></td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+  </tr>
+
+  <tr at-tbody-tr [atExpand]="nestExpand">
+    <td>
+    </td>
+    <td colspan="3">
+      <at-table [size]="'normal'">
+  <thead at-thead>
+  <tr><!---->
+    <th at-th style="cursor: text;" [atWidth]="219">姓名</th>
+    <th at-th style="cursor: text;">年龄</th>
+    <th at-th style="cursor: text;">地址</th>
+    <th at-th style="cursor: text;">其他</th>
+    <th at-th style="cursor: text;">操作</th>
+  </tr>
+  </thead>
+  <tbody at-tbody>
+  <tr at-tbody-tr>
+    <td at-td>库里</td>
+    <td at-td >库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+  </tr>
+  <tr at-tbody-tr><!---->
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+    <td at-td> 库里</td>
+    <td at-td>库里</td>
+    <td at-td>库里</td>
+  </tr>
+
+  </tbody>
+</at-table>
+</td>
+</tr>
+<tr at-tbody-tr><!---->
+  <td at-td></td>
+  <td at-td>库里</td>
+  <td at-td>库里</td>
+  <td at-td> 库里</td>
+</tr>
+
+</tbody>
 </at-table>
