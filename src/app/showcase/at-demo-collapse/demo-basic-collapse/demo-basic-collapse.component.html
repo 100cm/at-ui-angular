@@ -1,7 +1,7 @@
 <at-collapse>
-  <at-collapse-item [atTitle]="a">
+  <at-collapse-item [atTitle]="a" [(atOpen)]="isOpen">
     <ng-template #a>adsad</ng-template>
-    <div>asdasdasd</div>
+    <div>asdasdasd {{isOpen}}</div>
   </at-collapse-item>
 
   <at-collapse-item [atTitle]="b">

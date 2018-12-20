@@ -55,6 +55,7 @@ export class AtCollapseComponent implements OnInit {
     if (this.atAccordion) {
       this.at_collapse_items.forEach(item => {
         item.atOpen = false
+        item.atOpenChange.emit(false)
       })
     }
   }
