@@ -1,5 +1,5 @@
-<at-tab-set [position]="'vertical'">
-  <at-tab>
+<at-tab-set [position]="'vertical'" [atIndex]="index">
+  <at-tab *ngIf="a > 3">
     <ng-template #atTabHeading>
       基本设置
     </ng-template>
@@ -7,30 +7,31 @@
       <div>基础设置</div>
     </div>
   </at-tab>
-  <at-tab>
+  <at-tab *ngIf="a >3">
     <ng-template #atTabHeading>
       基本设置2
     </ng-template>
     <div>基础设置2</div>
   </at-tab>
 
-  <at-tab>
+  <at-tab *ngIf="a < 3">
     <ng-template #atTabHeading>
       基本设置3
     </ng-template>
     <div>基础设置3</div>
   </at-tab>
 
-  <at-tab>
+  <at-tab *ngIf=" a < 3">
     <ng-template #atTabHeading>
       基本设置4
     </ng-template>
     <div>基础设置4</div>
   </at-tab>
 </at-tab-set>
-
 <hr>
 
+
+<button (click)="changeA()">chaneg A</button>
 
 <at-tab-set [position]="'horizontal'">
   <at-tab>

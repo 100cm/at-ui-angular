@@ -1,23 +1,29 @@
 import {
-  Component, ContentChild, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef,
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  ContentChild,
+  OnInit,
+  TemplateRef,
+  ViewChild,
   ViewEncapsulation
-}                            from '@angular/core';
-import {TabContentComponent} from "./tab-content/tab-content.component";
-import {TabSetComponent}     from "./tab-set/tab-set.component";
+}                        from '@angular/core';
+import {TabSetComponent} from './tab-set/tab-set.component';
 
 @Component({
-             selector: 'at-tab, [at-tab]',
-             encapsulation: ViewEncapsulation.None,
-             template: `
-               <ng-template>
-                 <ng-content></ng-content>
-               </ng-template>
-             `,
-           })
+  selector: 'at-tab, [at-tab]',
+  encapsulation: ViewEncapsulation.None,
+  template: `
+    <ng-template>
+      <ng-content></ng-content>
+    </ng-template>
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class TabComponent implements OnInit {
 
+
   ngOnInit() {
-    this._tabSetComponent.tabs.push(this)
+    this._tabSetComponent.addTab(this)
   }
 
   @ContentChild('atTabHeading') _tabHeading: TemplateRef<any>;
@@ -25,9 +31,13 @@ export class TabComponent implements OnInit {
   @ViewChild(TemplateRef) _content: TemplateRef<any>;
 
   tab_contents = []
+
   constructor(private _tabSetComponent: TabSetComponent) {
 
   }
 
+  ngOnDestroy() {
+    this._tabSetComponent.tabs.splice(this._tabSetComponent.tabs.indexOf(this), 1);
+  }
 
 }
