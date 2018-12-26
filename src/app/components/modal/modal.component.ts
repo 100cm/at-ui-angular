@@ -56,7 +56,7 @@ import {Subject}                                    from 'rxjs';
         <div
           role="dialog"
           [ngStyle]="{'display': _show ? '' : 'none'}"
-          (click)="clickHide()"
+          (click)="clickHide($event)"
           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
         >
           <div class="at-modal" [@enterLeave]="state"
@@ -113,7 +113,7 @@ export class ModalComponent implements OnInit {
 
   private $showChange = new Subject()
 
-  clickHide() {
+  clickHide(event: Event) {
     this.setShow(false)
   }
 
