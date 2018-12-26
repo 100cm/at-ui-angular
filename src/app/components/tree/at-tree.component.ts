@@ -13,7 +13,7 @@ import {
 }                                                   from '@angular/core';
 import {NG_VALUE_ACCESSOR}                          from '@angular/forms';
 import {Observable, ReplaySubject, Subscription}    from 'rxjs';
-import {AtFormatBeforeDropEvent, AtFormatEmitEvent} from '../tree/interface';
+import {AtFormatBeforeDropEvent, AtFormatEmitEvent} from './interface';
 import {AtTreeNode}                                 from './at-tree-node';
 import {AtTreeService}                              from './at-tree.service';
 import {InputBoolean, isNotNil}                     from '../utils/class-helper';
