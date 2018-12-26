@@ -1,9 +1,7 @@
-export *  from './at-tab.module'
-export {TabBodyComponent}    from "./tab-body/tab-body.component";
-export {TabComponent}        from "./tab.component";
-export {TabContentComponent} from "./tab-content/tab-content.component";
-export {TabNavsComponent}    from "./tab-navs/tab-navs.component";
-export {TabSetComponent}     from "./tab-set/tab-set.component";
-export {AtTabInkDirective}   from "./at-tab-ink.directive";
-export {TabLabelDirective}   from "./tab-label.directive";
-
+export * from './at-tab-body.component';
+export * from './at-tab-label.directive';
+export * from './at-tab.component';
+export * from './at-tabs-ink-bar.directive';
+export * from './at-tabs.module';
+export * from './at-tabs-nav.component';
+export * from './at-tabset.component';

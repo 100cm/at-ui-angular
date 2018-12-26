@@ -1,17 +1,24 @@
-import {CommonModule}             from '@angular/common';
-import {NgModule}                 from '@angular/core';
-import {FormsModule}              from '@angular/forms';
-import {AtTreeComponent}          from "./at-tree.component";
-import {AtTreeNodeComponent}      from "./at-tree-node/at-tree-node.component";
-import {AtTreeRootComponent}      from './at-tree-root/at-tree-root.component';
-import {AtTreeGroupComponent}     from './at-tree-group/at-tree-group.component';
-import {AtTreeGroupItemComponent} from './at-tree-group-item/at-tree-group-item.component';
-
+import { CommonModule }        from '@angular/common';
+import { NgModule }            from '@angular/core';
+import { AtTreeNodeComponent } from './at-tree-node.component';
+import { AtTreeComponent }     from './at-tree.component';
+import {AtIconModule}          from '../icon';
 
 @NgModule({
-            imports: [CommonModule, FormsModule],
-            declarations: [AtTreeComponent, AtTreeNodeComponent, AtTreeRootComponent, AtTreeGroupComponent, AtTreeGroupItemComponent],
-            exports: [AtTreeComponent, AtTreeNodeComponent, AtTreeRootComponent, AtTreeGroupComponent, AtTreeGroupItemComponent]
-          })
+  imports     : [
+    CommonModule,
+    AtIconModule,
+  ],
+  declarations: [
+    AtTreeComponent,
+    AtTreeNodeComponent
+  ],
+  exports     : [
+    AtTreeComponent,
+    AtTreeNodeComponent
+  ]
+})
+
 export class AtTreeModule {
+
 }

@@ -1,0 +1,23 @@
+<label>普通单选</label>
+<at-tree-select
+  [(ngModel)]="model"
+  [atNodes]="nodes"
+></at-tree-select>
+<hr>
+<label>checkbox 的多选</label>
+<at-tree-select
+  [(ngModel)]="model2"
+  [atShowSearch]="true"
+  [atMultiple]="true"
+  [atCheckable]="true"
+  [atNodes]="nodes"
+></at-tree-select>
+<hr>
+
+<label>普通多选</label>
+<at-tree-select
+  [(ngModel)]="model3"
+  [atShowSearch]="true"
+  [atMultiple]="true"
+  [atNodes]="nodes"
+></at-tree-select>

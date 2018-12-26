@@ -9479,211 +9479,569 @@ $info-color               : #78A4FA;
   padding-bottom: 0;
 }
 
-/* line 3, ../sass/components/tab.scss */
-.at-tab {
+/* line 24, ../sass/components/tab.scss */
+.at-tabs {
   box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-  zoom: 1;
-  color: #1B2A3F;
-}
-/* line 9, ../sass/components/tab.scss */
-.at-tab .at-tabs-bar {
-  border-bottom: 1px solid #d9d9d9;
-  margin-bottom: 16px;
-  outline: none;
-  transition: padding .45s;
-}
-/* line 17, ../sass/components/tab.scss */
-.at-tab-ink .at-tabs-nav-container .at-tabs-nav-wrap {
-  margin-bottom: -1px;
-}
-/* line 23, ../sass/components/tab.scss */
-.at-tab .at-tabs-nav-container {
-  overflow: hidden;
-  font-size: 14px;
-  line-height: 1.5;
-  box-sizing: border-box;
-  position: relative;
-  white-space: nowrap;
-  transition: padding .45s;
-  zoom: 1;
-  margin-bottom: -1px;
-}
-/* line 33, ../sass/components/tab.scss */
-.at-tab .at-tabs-nav-container .at-tabs-nav-wrap {
-  overflow: hidden;
-}
-/* line 38, ../sass/components/tab.scss */
-.at-tab--navs {
-  box-sizing: border-box;
-  padding-left: 0;
-  transition: -webkit-transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
-  position: relative;
   margin: 0;
+  padding: 0;
   list-style: none;
-  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  zoom: 1;
 }
-/* line 49, ../sass/components/tab.scss */
-.at-tab--navs .at-tabs-ink-bar {
+/* line 32, ../sass/components/tab.scss */
+.at-tabs:before, .at-tabs:after {
+  content: "";
+  display: table;
+}
+/* line 37, ../sass/components/tab.scss */
+.at-tabs:after {
+  clear: both;
+}
+/* line 40, ../sass/components/tab.scss */
+.at-tabs-ink-bar {
   z-index: 1;
   position: absolute;
   left: 0;
   bottom: 1px;
   box-sizing: border-box;
   height: 2px;
-  background-color: #78A4FA;
-  -webkit-transform-origin: 0 0;
+  background-color: #6190E8;
   transform-origin: 0 0;
 }
-/* line 61, ../sass/components/tab.scss */
-.at-tab--navs .at-tabs-ink-bar-animated {
-  transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+/* line 51, ../sass/components/tab.scss */
+.at-tabs-bar {
+  border-bottom: 1px solid #DFDFDF;
+  margin: 0 0 16px 0;
+  outline: none;
+  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-/* line 67, ../sass/components/tab.scss */
-.at-tab--navs .at-tab-nav {
-  display: inline-block;
-  height: 100%;
-  margin-right: 24px;
+/* line 58, ../sass/components/tab.scss */
+.at-tabs-nav-container {
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
   box-sizing: border-box;
   position: relative;
-  padding: 4.5px 20px;
+  white-space: nowrap;
+  margin-bottom: -1px;
+  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+/* line 67, ../sass/components/tab.scss */
+.at-tabs-nav-container:before, .at-tabs-nav-container:after {
+  content: "";
+  display: table;
+}
+/* line 72, ../sass/components/tab.scss */
+.at-tabs-nav-container:after {
+  clear: both;
+}
+/* line 75, ../sass/components/tab.scss */
+.at-tabs-nav-container-scrolling {
+  padding-left: 32px;
+  padding-right: 32px;
+}
+/* line 82, ../sass/components/tab.scss */
+.at-tabs-bottom .at-tabs-bar {
+  border-bottom: none;
+  border-top: 1px solid #DFDFDF;
+}
+/* line 87, ../sass/components/tab.scss */
+.at-tabs-bottom .at-tabs-ink-bar {
+  bottom: auto;
+  top: 1px;
+}
+/* line 92, ../sass/components/tab.scss */
+.at-tabs-bottom .at-tabs-nav-container {
+  margin-bottom: 0;
+  margin-top: -1px;
+}
+/* line 97, ../sass/components/tab.scss */
+.at-tabs-tab-prev, .at-tabs-tab-next {
+  user-select: none;
+  z-index: 2;
+  width: 0;
+  height: 100%;
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  text-align: center;
+  color: #3F536E;
+  transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+/* line 113, ../sass/components/tab.scss */
+.at-tabs-tab-prev.at-tabs-tab-arrow-show, .at-tabs-tab-next.at-tabs-tab-arrow-show {
+  opacity: 1;
+  width: 32px;
+  height: 100%;
+  pointer-events: auto;
+}
+/* line 120, ../sass/components/tab.scss */
+.at-tabs-tab-prev:hover, .at-tabs-tab-next:hover {
+  color: #3F536E;
+}
+/* line 124, ../sass/components/tab.scss */
+.at-tabs-tab-prev-icon, .at-tabs-tab-next-icon {
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  line-height: inherit;
+  vertical-align: baseline;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-transform: none;
+}
+/* line 137, ../sass/components/tab.scss */
+.at-tabs-tab-prev-icon-target, .at-tabs-tab-next-icon-target {
+  display: block;
+}
+/* line 144, ../sass/components/tab.scss */
+.at-tabs-tab-btn-disabled {
+  cursor: not-allowed;
+}
+/* line 146, ../sass/components/tab.scss */
+.at-tabs-tab-btn-disabled, .at-tabs-tab-btn-disabled:hover {
+  color: black;
+}
+/* line 152, ../sass/components/tab.scss */
+.at-tabs-tab-next {
+  right: 2px;
+}
+/* line 156, ../sass/components/tab.scss */
+.at-tabs-tab-prev {
+  left: 0;
+}
+/* line 158, ../sass/components/tab.scss */
+:root .at-tabs-tab-prev {
+  filter: none;
+}
+/* line 163, ../sass/components/tab.scss */
+.at-tabs-nav-wrap {
+  overflow: hidden;
+  margin-bottom: -1px;
+}
+/* line 168, ../sass/components/tab.scss */
+.at-tabs-nav-scroll {
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* line 173, ../sass/components/tab.scss */
+.at-tabs-nav {
+  box-sizing: border-box;
+  padding-left: 0;
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: relative;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+/* line 182, ../sass/components/tab.scss */
+.at-tabs-nav:before, .at-tabs-nav:after {
+  display: table;
+  content: " ";
+}
+/* line 188, ../sass/components/tab.scss */
+.at-tabs-nav:after {
+  clear: both;
+}
+/* line 192, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab-disabled {
+  pointer-events: none;
+  cursor: default;
+  color: fade(#000, 25%);
+}
+/* line 198, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab {
+  display: inline-block;
+  height: 100%;
+  margin: 0 32px 0 0;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  position: relative;
   transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   cursor: pointer;
   text-decoration: none;
 }
-/* line 77, ../sass/components/tab.scss */
-.at-tab--navs .at-tab-nav:after {
-  display: table;
-  content: " ";
-  clear: both;
+/* line 206, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab:last-child {
+  margin-right: 0;
 }
-/* line 83, ../sass/components/tab.scss */
-.at-tab--navs .at-tab-nav-card {
-  margin: 0 2px 0 0;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px 4px 0 0;
-  background-color: #f7f7f7;
-  -webkit-transition: background-color .3s;
-  transition: background-color .3s;
+/* line 214, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab:hover {
+  color: #4573DE;
 }
-/* line 90, ../sass/components/tab.scss */
-.at-tab--navs .at-tab-nav-card:hover {
-  color: #6190e8;
+/* line 218, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab:active {
+  color: #6190E8;
 }
-/* line 93, ../sass/components/tab.scss */
-.at-tab--navs .at-tab-nav-card-active {
-  border-bottom: 1px solid white;
-  background: white;
-  color: #6190e8;
+/* line 222, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab .at-icon {
+  margin-right: 8px;
 }
-/* line 105, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab-normal .at-tab-nav {
-  padding: 5.5px 18px;
-  font-size: 13px;
+/* line 227, ../sass/components/tab.scss */
+.at-tabs-nav .at-tabs-tab-active {
+  color: #6190E8;
+  font-weight: 500;
 }
-/* line 112, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab-small .at-tab-nav {
-  padding: 4px 16px;
-  font-size: 12px;
+/* line 235, ../sass/components/tab.scss */
+.at-tabs-large > .at-tabs-bar .at-tabs-nav-container {
+  font-size: 18px;
 }
-/* line 119, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab-large .at-tab-nav {
-  padding: 6.5px 20px;
+/* line 238, ../sass/components/tab.scss */
+.at-tabs-large > .at-tabs-bar .at-tabs-tab {
+  padding: 16px;
+}
+/* line 246, ../sass/components/tab.scss */
+.at-tabs-small > .at-tabs-bar .at-tabs-nav-container {
   font-size: 14px;
 }
-/* line 126, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab--contents .at-tab-content {
+/* line 249, ../sass/components/tab.scss */
+.at-tabs-small > .at-tabs-bar .at-tabs-tab {
+  padding: 8px 16px;
+}
+/* line 256, ../sass/components/tab.scss */
+.at-tabs:not(.at-tabs-vertical) > .at-tabs-content {
   width: 100%;
 }
-/* line 128, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab--contents .at-tab-content .at-tab-pane {
+/* line 259, ../sass/components/tab.scss */
+.at-tabs:not(.at-tabs-vertical) > .at-tabs-content > .at-tabs-tabpane {
   flex-shrink: 0;
   width: 100%;
   transition: opacity .45s;
   opacity: 1;
 }
-/* line 134, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab--contents .at-tab-content .at-tab-pane-unactive {
+/* line 266, ../sass/components/tab.scss */
+.at-tabs:not(.at-tabs-vertical) > .at-tabs-content > .at-tabs-tabpane-inactive {
   opacity: 0;
   height: 0;
   padding: 0 !important;
   pointer-events: none;
 }
-/* line 142, ../sass/components/tab.scss */
-.at-tab-horizontal .at-tab--contents .at-tab-content-animated {
+/* line 271, ../sass/components/tab.scss */
+.at-tabs:not(.at-tabs-vertical) > .at-tabs-content > .at-tabs-tabpane-inactive input {
+  visibility: hidden;
+}
+/* line 276, ../sass/components/tab.scss */
+.at-tabs:not(.at-tabs-vertical) > .at-tabs-content-animated {
   display: flex;
   flex-direction: row;
   will-change: margin-left;
   transition: margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-/* line 154, ../sass/components/tab.scss */
-.at-tab-vertical .at-tab-normal .at-tab-nav {
-  padding: 8px 24px;
+/* line 285, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar {
+  border-bottom: 0;
+  height: 100%;
 }
-/* line 160, ../sass/components/tab.scss */
-.at-tab-vertical .at-tab-small .at-tab-nav {
-  padding: 8px 24px;
+/* line 288, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar-tab-prev, .at-tabs-vertical > .at-tabs-bar-tab-next {
+  width: 32px;
+  height: 0;
+  transition: height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-/* line 166, ../sass/components/tab.scss */
-.at-tab-vertical .at-tab-large .at-tab-nav {
-  padding: 8px 24px;
+/* line 293, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar-tab-prev.at-tabs-tab-arrow-show, .at-tabs-vertical > .at-tabs-bar-tab-next.at-tabs-tab-arrow-show {
+  width: 100%;
+  height: 32px;
 }
-/* line 171, ../sass/components/tab.scss */
-.at-tab-vertical .at-tabs-bar {
-  border-right: 1px solid #d9d9d9;
-  border-bottom: 0px;
+/* line 299, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-tab {
+  float: none;
+  margin: 0 0 16px 0;
+  padding: 8px 24px;
+  display: block;
+}
+/* line 305, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-tab:last-child {
+  margin-bottom: 0;
+}
+/* line 310, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-extra-content {
+  text-align: center;
+}
+/* line 314, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav-scroll {
+  width: auto;
+}
+/* line 318, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav-container,
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav-wrap {
+  height: 100%;
+}
+/* line 323, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav-container {
+  margin-bottom: 0;
+}
+/* line 326, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav-container.at-tabs-nav-container-scrolling {
+  padding: 32px 0;
+}
+/* line 331, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-bottom: 0;
+}
+/* line 335, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-nav {
+  width: 100%;
+}
+/* line 339, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-ink-bar {
+  width: 2px;
+  top: 0;
+  left: auto;
+  height: auto;
+  bottom: auto;
+  transition: all 0.3s;
+}
+/* line 348, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-tab-next {
+  width: 100%;
+  bottom: 0;
+  height: 32px;
+}
+/* line 354, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-bar .at-tabs-tab-prev {
+  top: 0;
+  width: 100%;
+  height: 32px;
+}
+/* line 361, ../sass/components/tab.scss */
+.at-tabs-vertical > .at-tabs-content {
+  overflow: hidden;
+  width: auto;
+  margin-top: 0 !important;
+}
+/* line 369, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-left > .at-tabs-bar {
   float: left;
-  border-right: 1px solid #e9e9e9;
+  border-right: 1px solid #DFDFDF;
   margin-right: -1px;
   margin-bottom: 0;
 }
-/* line 178, ../sass/components/tab.scss */
-.at-tab-vertical .at-tabs-bar .at-tabs-nav-container {
+/* line 374, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-left > .at-tabs-bar .at-tabs-tab {
+  text-align: right;
+}
+/* line 377, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-left > .at-tabs-bar .at-tabs-nav-container {
   margin-right: -1px;
 }
-/* line 180, ../sass/components/tab.scss */
-.at-tab-vertical .at-tabs-bar .at-tabs-nav-container .at-tabs-nav-wrap {
-  overflow: hidden;
+/* line 380, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-left > .at-tabs-bar .at-tabs-nav-wrap {
   margin-right: -1px;
 }
-/* line 186, ../sass/components/tab.scss */
-.at-tab-vertical .at-tabs-bar .at-tab--navs .at-tab-nav {
-  display: block;
-  padding: 8px 24px;
-}
-/* line 190, ../sass/components/tab.scss */
-.at-tab-vertical .at-tabs-bar .at-tab--navs .at-tabs-ink-bar {
-  width: 2px;
-  left: auto;
-  top: 0;
+/* line 383, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-left > .at-tabs-bar .at-tabs-ink-bar {
   right: 1px;
 }
-/* line 195, ../sass/components/tab.scss */
-.at-tab-vertical .at-tabs-bar .at-tab--navs .at-tabs-ink-bar .at-tabs-ink-bar-animated {
-  transition: height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-/* line 205, ../sass/components/tab.scss */
-.at-tab-vertical .at-tab--contents {
-  width: auto;
+/* line 387, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-left > .at-tabs-content {
   padding-left: 24px;
-  border-left: 1px solid #e9e9e9;
-  overflow: hidden;
-  margin-top: 0 !important;
+  border-left: 1px solid #DFDFDF;
 }
-/* line 211, ../sass/components/tab.scss */
-.at-tab-vertical .at-tab--contents .at-tab-content {
-  margin-left: 0px !important;
+/* line 394, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-right > .at-tabs-bar {
+  float: right;
+  border-left: 1px solid #DFDFDF;
+  margin-left: -1px;
+  margin-bottom: 0;
 }
-/* line 214, ../sass/components/tab.scss */
-.at-tab-vertical .at-tab--contents .at-tab-pane-unactive {
+/* line 399, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-right > .at-tabs-bar .at-tabs-nav-container {
+  margin-left: -1px;
+}
+/* line 402, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-right > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-left: -1px;
+}
+/* line 405, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-right > .at-tabs-bar .at-tabs-ink-bar {
+  left: 1px;
+}
+/* line 409, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-right > .at-tabs-content {
+  padding-right: 24px;
+  border-right: 1px solid #DFDFDF;
+}
+/* line 415, ../sass/components/tab.scss */
+.at-tabs-bottom > .at-tabs-bar {
+  margin-bottom: 0;
+  margin-top: 16px;
+}
+
+/* line 421, ../sass/components/tab.scss */
+.at-tabs-top .at-tabs-ink-bar-animated,
+.at-tabs-bottom .at-tabs-ink-bar-animated {
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* line 426, ../sass/components/tab.scss */
+.at-tabs-left .at-tabs-ink-bar-animated,
+.at-tabs-right .at-tabs-ink-bar-animated {
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* line 435, ../sass/components/tab.scss */
+.no-flex > .at-tabs-content-animated,
+.at-tabs-no-animation > .at-tabs-content-animated,
+.at-tabs-vertical > .at-tabs-content-animated {
+  transform: none !important;
+  margin-left: 0 !important;
+}
+/* line 439, ../sass/components/tab.scss */
+.no-flex > .at-tabs-content > .at-tabs-tabpane-inactive,
+.at-tabs-no-animation > .at-tabs-content > .at-tabs-tabpane-inactive,
+.at-tabs-vertical > .at-tabs-content > .at-tabs-tabpane-inactive {
   display: none;
+}
+
+/* line 447, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-nav-container {
+  height: 40px;
+}
+/* line 450, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-nav-container {
+  height: 40px;
+}
+/* line 453, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-ink-bar {
+  visibility: hidden;
+}
+/* line 456, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-tab {
+  margin: 0 2px 0 0;
+  border: 1px solid #e8e8e8;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  background: #fafafa;
+  padding: 0 16px;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  line-height: 38px;
+}
+/* line 466, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-tab-active {
+  background: #fff;
+  border-color: #e8e8e8;
+  color: #6190E8;
+  padding-bottom: 1px;
+}
+/* line 472, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-tab-inactive {
+  padding: 0;
+}
+/* line 475, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-bottom: 0;
+}
+/* line 479, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-tab .at-tabs-close-x {
+  color: rgba(0, 0, 0, 0.45);
+  transition: all .3s;
+  font-size: 12px;
+  margin-left: 3px;
+  margin-right: -5px;
+  overflow: hidden;
+  vertical-align: middle;
+  width: 16px;
+  height: 14px;
+}
+/* line 490, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-tab .at-tabs-close-x:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+/* line 493, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card > .at-tabs-bar .at-tabs-tab:hover .aticon-close {
+  opacity: 1;
+}
+/* line 497, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card .at-tabs-content > .at-tabs-tabpane, .at-tabs.at-tabs-card .at-tabs-content .at-tabs.at-tabs-editable-card .at-tabs-content > .at-tabs-tabpane {
+  transition: none !important;
+}
+/* line 500, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card .at-tabs-content > .at-tabs-tabpane-inactive, .at-tabs.at-tabs-card .at-tabs-content .at-tabs.at-tabs-editable-card .at-tabs-content > .at-tabs-tabpane-inactive {
+  overflow: hidden;
+}
+
+/* line 506, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-nav-container {
+  height: auto;
+}
+
+/* line 510, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-tab {
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 8px;
+}
+
+/* line 515, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-tab-active {
+  padding-bottom: 4px;
+}
+
+/* line 519, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-tab:last-child {
+  margin-bottom: 8px;
+}
+
+/* line 523, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-new-tab {
+  width: 90%;
+}
+
+/* line 527, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card.at-tabs-left > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-right: 0;
+}
+
+/* line 531, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card.at-tabs-left > .at-tabs-bar .at-tabs-tab {
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  margin-right: 1px;
+}
+
+/* line 537, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card.at-tabs-left > .at-tabs-bar .at-tabs-tab-active {
+  margin-right: -1px;
+  padding-right: 18px;
+}
+
+/* line 542, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card.at-tabs-right > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-left: 0;
+}
+
+/* line 546, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card.at-tabs-right > .at-tabs-bar .at-tabs-tab {
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  margin-left: 1px;
+}
+
+/* line 552, ../sass/components/tab.scss */
+.at-tabs-vertical.at-tabs-card.at-tabs-right > .at-tabs-bar .at-tabs-tab-active {
+  margin-left: -1px;
+  padding-left: 18px;
+}
+
+/* line 557, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card.at-tabs-bottom > .at-tabs-bar .at-tabs-tab {
+  border-bottom: 1px solid #e8e8e8;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+}
+
+/* line 563, ../sass/components/tab.scss */
+.at-tabs.at-tabs-card.at-tabs-bottom > .at-tabs-bar .at-tabs-tab-active {
+  color: #6190E8;
+  padding-bottom: 0;
+  padding-top: 1px;
 }
 
 /**
@@ -10694,7 +11052,7 @@ $info-color               : #78A4FA;
   border-radius: 4px 4px 0 0;
   background: #fff;
   color: #3F536E;
-  border-bottom: 1px solid #d1e1ed;
+  border-bottom: 1px solid #DFDFDF;
 }
 /* line 167, ../sass/components/drawer.scss */
 .at-drawer-body {

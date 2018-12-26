@@ -12,4 +12,17 @@ export class AtDemoCustomTreeComponent implements OnInit {
   ngOnInit() {
   }
 
+  nodes = [
+    {
+      title   : 'parent 1',
+      key     : '100',
+      expanded: true,
+      icon    : 'bar-chart',
+      children: [
+        { title: 'leaf', key: '1001', icon: 'alert-triangle', isLeaf: true },
+        { title: 'leaf', key: '1002', icon: 'bar-chart', isLeaf: true }
+      ]
+    }
+  ];
+
 }

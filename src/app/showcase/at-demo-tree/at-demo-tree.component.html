@@ -48,185 +48,603 @@
         <th>参数</th>
         <th>说明</th>
         <th>类型</th>
-        <th>可选值</th>
         <th>默认值</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td>title</td>
-        <td>树节点标题</td>
-        <td>String</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-
-      <tr>
-        <td>closeIcon</td>
-        <td>自定义闭合icon</td>
-        <td>TemplateRef</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-
-      <tr>
-        <td>openIcon</td>
-        <td>自定义打开icon</td>
-        <td>TemplateRef</td>
-        <td>-</td>
-        <td>-</td>
+        <td><code>[ngModel]</code></td>
+        <td>元数据(建议使用atData)</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
       </tr>
       <tr>
-        <td>key</td>
-        <td>该节点对应的key值</td>
-        <td>any</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-
-      <tr>
-        <td>checkedChange</td>
-        <td>checked改变事件回调</td>
-        <td>@Output()</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-
-      <tr>
-        <td>checked</td>
-        <td>是否选中</td>
+        <td><code>[atDefaultExpandAll]</code></td>
+        <td>默认展开所有节点 <font color="red"><code>Deprecated</code></font></td>
         <td>boolean</td>
-        <td>支持双向绑定[()]语法糖</td>
         <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atDefaultExpandedKeys]</code></td>
+        <td>展开指定的节点 <font color="red"><code>Deprecated</code></font></td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atDefaultCheckedKeys]</code></td>
+        <td>指定选中复选框的节点 <font color="red"><code>Deprecated</code></font></td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atDefaultSelectedKeys]</code></td>
+        <td>指定选中的节点 <font color="red"><code>Deprecated</code></font></td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atData]</code></td>
+        <td>元数据</td>
+        <td>AtTreeNodeOptions[] / AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atCheckable]</code></td>
+        <td>节点前添加 Checkbox 复选框</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atShowExpand]</code></td>
+        <td>节点前添加展开图标</td>
+        <td>boolean</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td><code>[atShowLine]</code></td>
+        <td>是否展示连接线</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atShowIcon]</code></td>
+        <td>是否展示 TreeNode title 前的图标，没有默认样式</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atAsyncData]</code></td>
+        <td>是否异步加载(显示加载状态)</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atDraggable]</code></td>
+        <td>设置节点可拖拽（IE&gt;8）</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atMultiple]</code></td>
+        <td>支持点选多个节点（节点本身）</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atCheckStrictly]</code></td>
+        <td>checkable状态下节点选择完全受控（父子节点选中状态不再关联）</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atExpandAll]</code></td>
+        <td>默认展开所有树节点</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atExpandedKeys]</code></td>
+        <td>展开指定的树节点,双向绑定</td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atCheckedKeys]</code></td>
+        <td>指定选中复选框的树节点,双向绑定</td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atSelectedKeys]</code></td>
+        <td>指定选中的树节点,双向绑定</td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td><code>[atSearchValue]</code></td>
+        <td>按需筛选树高亮节点(参考可搜索的树),双向绑定</td>
+        <td>string</td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td><code>[atBeforeDrop]</code></td>
+        <td>drop前二次校验,允许用户自行决定是否允许放置</td>
+        <td><code>(confirm: AtFormatBeforeDropEvent) =&gt; Observable&lt;boolean&gt;</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atClick)</code></td>
+        <td>点击树节点触发</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atDblClick)</code></td>
+        <td>双击树节点触发</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atContextMenu)</code></td>
+        <td>右键树节点触发</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atCheckBoxChange)</code></td>
+        <td>点击树节点 Checkbox 触发</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atExpandChange)</code></td>
+        <td>点击展开树节点图标触发</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atSearchValueChange)</code></td>
+        <td>搜索节点时调用(与atSearchValue配合使用)</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnSearchNode)</code></td>
+        <td>搜索节点时调用(与atSearchValue配合使用) <font color="red"><code>Deprecated</code></font></td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnDragStart)</code></td>
+        <td>开始拖拽时调用</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnDragEnter)</code></td>
+        <td>dragenter 触发时调用</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnDragOver)</code></td>
+        <td>dragover 触发时调用</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnDragLeave)</code></td>
+        <td>dragleave 触发时调用</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnDrop)</code></td>
+        <td>drop 触发时调用</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atOnDragEnd)</code></td>
+        <td>dragend 触发时调用</td>
+        <td>EventEmitter&lt;AtFormatEmitEvent&gt;</td>
+        <td>-</td>
       </tr>
       </tbody>
     </table>
-
   </doc-section>
 
 
-  <doc-section [sample]="false" [title]="'at-tree-node 属性'">
+  <doc-section [sample]="false" [title]="'方法'">
     <table desc class="table">
       <thead>
       <tr>
         <th>参数</th>
         <th>说明</th>
         <th>类型</th>
-        <th>可选值</th>
         <th>默认值</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td>checked</td>
-        <td>是否选中</td>
-        <td>boolean</td>
-        <td>-</td>
-        <td>false</td>
+        <td>getTreeNodes</td>
+        <td>获取组件AtTreeNode节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
       </tr>
-
       <tr>
-        <td>key</td>
-        <td>该叶子节点对应的key值</td>
-        <td>boolean</td>
-        <td>-</td>
-        <td>false</td>
+        <td>getCheckedNodeList</td>
+        <td>获取组件 checkBox 被点击选中的节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
       </tr>
-
+      <tr>
+        <td>getSelectedNodeList</td>
+        <td>获取组件被选中的节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>getHalfCheckedNodeList</td>
+        <td>获取组件半选状态节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>getExpandedNodeList</td>
+        <td>获取组件展开状态节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>getMatchedNodeList</td>
+        <td>获取组搜索匹配到的节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
       </tbody>
     </table>
-
   </doc-section>
 
 
-  <doc-section [sample]="false" [title]="'at-tree-root 属性'">
+  <doc-section [sample]="false" [title]="'AtTreeNodeOptions props'">
     <table desc class="table">
       <thead>
       <tr>
         <th>参数</th>
         <th>说明</th>
-        <th>类型/返回类型</th>
-        <th>可选值</th>
+        <th>类型</th>
         <th>默认值</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td>atShowLine</td>
-        <td>是否显示链接线</td>
+        <td>title</td>
+        <td>标题</td>
+        <td>string</td>
+        <td>'---'</td>
+      </tr>
+      <tr>
+        <td>key</td>
+        <td>整个树范围内的所有节点的 key 值不能重复且不为空！</td>
+        <td>string</td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td>children</td>
+        <td>子节点</td>
+        <td>array&lt;AtTreeNodeOptions&gt;</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>isLeaf</td>
+        <td>设置为叶子节点(叶子节点不可被拖拽模式放置)</td>
         <td>boolean</td>
-        <td>-</td>
         <td>false</td>
       </tr>
-
       <tr>
-        <td>atIconMode</td>
-        <td>icon模式</td>
-        <td>
-          <code>plus</code>,
-          <code>arrow</code>
-        </td>
-        <td>-</td>
-        <td>arrow</td>
+        <td>checked</td>
+        <td>设置节点 Checkbox 是否选中</td>
+        <td>boolean</td>
+        <td>false</td>
       </tr>
-
       <tr>
-        <td>atIconMode</td>
-        <td>icon模式</td>
-        <td>
-          <code>plus</code>,
-          <code>arrow</code>
-        </td>
-        <td>-</td>
-        <td>arrow</td>
+        <td>selected</td>
+        <td>设置节点本身是否选中</td>
+        <td>boolean</td>
+        <td>false</td>
       </tr>
-
       <tr>
-        <td>getCheckedLeafKeys()</td>
-        <td>root节点引用获取叶子节点选中的key</td>
-        <td>[...keys]</td>
-        <td>-</td>
-        <td>-</td>
+        <td>expanded</td>
+        <td>设置节点是否展开(叶子节点无效)</td>
+        <td>boolean</td>
+        <td>false</td>
       </tr>
-
       <tr>
-        <td>getCheckedKeys()</td>
-        <td>root节点引用获取所有节点选中的key</td>
-        <td>[...keys]</td>
-        <td>-</td>
-        <td>-</td>
+        <td>selectable</td>
+        <td>设置节点是否可被选中</td>
+        <td>boolean</td>
+        <td>true</td>
       </tr>
-
       <tr>
-        <td>getCheckedTreeKeys()</td>
-        <td>root节点引用获取tree节点选中的key</td>
-        <td>[...keys]</td>
-        <td>-</td>
+        <td>disabled</td>
+        <td>设置是否禁用节点(不可进行任何操作)</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>disableCheckbox</td>
+        <td>设置节点禁用 Checkbox</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td>[key: string]</td>
+        <td>自定义数据,可通过 AtTreeNode 的 origin 字段获取</td>
+        <td>any</td>
         <td>-</td>
       </tr>
-
-      <tr>
-        <td>atNodeCheckChange</td>
-        <td>任意节点check变化回调</td>
-        <td>@OutPut() {{ '{key:"",node:"",checked:""}'}}</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-
-      <tr>
-        <td>atExpandChange</td>
-        <td>任意节点打开回调</td>
-        <td>@OutPut() {{'{key:"",state:expand | hidden }'}}</td>
-        <td>-</td>
-        <td>-</td>
-      </tr>
-
-
       </tbody>
     </table>
+  </doc-section>
 
+  <doc-section [sample]="false" [title]="'AtFormatEmitEvent props'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>eventName</td>
+        <td>事件名</td>
+        <td>enum:
+          <code>click</code><code>dblclick</code><code>contextmenu</code><code>check</code><code>expand</code><code>search</code>
+          &amp; <code>dragstart</code><code>dragenter</code><code>dragover</code><code>dragleave</code><code>drop</code><code>dragend</code>
+        </td>
+        <td>''</td>
+      </tr>
+      <tr>
+        <td>node</td>
+        <td>当前操作节点(拖拽时表示目标节点)</td>
+        <td>AtTreeNode</td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td>event</td>
+        <td>原生事件</td>
+        <td>enum: <code>MouseEvent</code><code>DragEvent</code></td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td>dragNode?</td>
+        <td>当前拖拽节点(拖拽时存在)</td>
+        <td>AtTreeNode</td>
+        <td>null</td>
+      </tr>
+      <tr>
+        <td>selectedKeys?</td>
+        <td>已选中的节点key(单击时存在)</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>checkedKeys?</td>
+        <td>checkBox 已选中的节点key(点击 checkBox 存在)</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>matchedKeys?</td>
+        <td>搜索时匹配到的节点key</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>keys?</td>
+        <td>非拖拽事件相关的全部节点的key数组</td>
+        <td>string[]</td>
+        <td>[]</td>
+      </tr>
+      <tr>
+        <td>nodes?</td>
+        <td>非拖拽事件相关的全部节点</td>
+        <td>AtTreeNode[]</td>
+        <td>[]</td>
+      </tr>
+      </tbody>
+    </table>
+  </doc-section>
+
+  <doc-section [sample]="false" [title]="'AtFormatBeforeDropEvent props'">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>dragNode</td>
+        <td>当前拖拽节点(拖拽时存在)</td>
+        <td>AtTreeNode</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>node</td>
+        <td>当前操作节点(拖拽时表示目标节点)</td>
+        <td>AtTreeNode</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>pos</td>
+        <td>放置位置(-1:目标节点前面, 0: 目标节点内部, 1: 目标节点后面)</td>
+        <td>number</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
   </doc-section>
 
 
+  <doc-section [sample]="false" [title]="'AtTreeNode props'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>方法</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>返回值类型</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>title</td>
+        <td>标题</td>
+        <td>string</td>
+        <td>AtTreeNodeOptions.title</td>
+      </tr>
+      <tr>
+        <td>key</td>
+        <td>key值</td>
+        <td>string</td>
+        <td>AtTreeNodeOptions.key</td>
+      </tr>
+      <tr>
+        <td>level</td>
+        <td>层级(最顶层为0,子节点逐层加1)</td>
+        <td>number</td>
+        <td>number</td>
+      </tr>
+      <tr>
+        <td>children</td>
+        <td>子节点</td>
+        <td>array</td>
+        <td>AtTreeNode[]</td>
+      </tr>
+      <tr>
+        <td>origin</td>
+        <td>原始节点树结构(用户提供,用于展示额外信息)</td>
+        <td>AtTreeNodeOptions</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>getParentNode</td>
+        <td>获取父节点</td>
+        <td>function</td>
+        <td><code>AtTreeNode</code> 或 <code>null</code></td>
+      </tr>
+      <tr>
+        <td>isLeaf</td>
+        <td>是否为叶子节点</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isExpanded</td>
+        <td>是否已展开</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isDisabled</td>
+        <td>是否禁用</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isDisableCheckbox</td>
+        <td>是否禁用 checkBox</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isSelectable</td>
+        <td>是否可选中</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isChecked</td>
+        <td>是否选中 checkBox</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isAllChecked</td>
+        <td>子节点是否全选</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isHalfChecked</td>
+        <td>子节点有选中但未全选</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isSelected</td>
+        <td>是否已选中</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isLoading</td>
+        <td>是否异步加载状态(影响展开图标展示)</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>isMatched</td>
+        <td>title是否包含atSearchValue(搜索使用)</td>
+        <td>boolean</td>
+        <td><code>true</code> 或 <code>false</code></td>
+      </tr>
+      <tr>
+        <td>getChildren</td>
+        <td>获取子节点,返回AtTreeNode数组</td>
+        <td>function</td>
+        <td>AtTreeNode[]</td>
+      </tr>
+      <tr>
+        <td>addChildren</td>
+        <td>添加子节点,接收AtTreeNode或AtTreeNodeOptions数组,第二个参数为插入的索引位置,默认插入末尾</td>
+        <td>(children: array, index?: number )=&gt;</td>
+        <td>void</td>
+      </tr>
+      <tr>
+        <td>clearChildren</td>
+        <td>清除子节点</td>
+        <td>function</td>
+        <td>void</td>
+      </tr>
+      <tr>
+        <td>setChecked</td>
+        <td>设置checked状态，参数为checked和halfChecked</td>
+        <td>(checked: boolean, halfChecked: boolean=false)=&gt;</td>
+        <td>void</td>
+      </tr>
+      <tr>
+        <td>setExpanded</td>
+        <td>设置expanded状态</td>
+        <td>(value: boolean)=&gt;</td>
+        <td>void</td>
+      </tr>
+      <tr>
+        <td>setSelected</td>
+        <td>设置selected状态</td>
+        <td>(value: boolean)=&gt;</td>
+        <td>void</td>
+      </tr>
+      </tbody>
+    </table>
+  </doc-section>
 </section>
 
