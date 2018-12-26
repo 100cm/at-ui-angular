@@ -1,7 +1,7 @@
 import {
   ComponentRef, EmbeddedViewRef, Inject, Injectable, Injector, Optional, Type
-} from "@angular/core";
-import {ComponentCreatorBase} from "./component-creator-base";
+}                             from '@angular/core';
+import {ComponentCreatorBase} from './component-creator-base';
 
 export class ComponentCreator<T> {
 
@@ -15,19 +15,21 @@ export class ComponentCreator<T> {
 
   create() {
     // setTimeout(() => {
-      this.componentRef = <any>this.base.componentFactoryResolver
-        .resolveComponentFactory(this.component)
-        .create(this.base.injector);
-      this.base.appRef.attachView(this.componentRef.hostView);
-      this.domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
-        .rootNodes[0] as HTMLElement;
-      document.body.appendChild(this.domElem);
+    let componentRef = <any>this.base.componentFactoryResolver
+      .resolveComponentFactory(this.component)
+      .create(this.base.injector);
+    this.base.appRef.attachView(componentRef.hostView);
+    this.domElem = (componentRef.hostView as EmbeddedViewRef<any>)
+      .rootNodes[0] as HTMLElement;
+    document.body.appendChild(this.domElem);
     // })
+    return componentRef
   }
 
-  remove() {
-    this.base.appRef.detachView(this.componentRef.hostView);
-    this.componentRef.destroy();
+  remove(ref) {
+    this.base.appRef.detachView(ref.hostView);
+    console.log('remove', ref)
+    ref.destroy();
   }
 
   getElem<T>() {

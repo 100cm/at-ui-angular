@@ -1,44 +1,32 @@
-import {EventEmitter, Injectable} from '@angular/core';
-import {ModalBaseService} from "./modal-base.service";
+import {EventEmitter, Injectable, NgZone} from '@angular/core';
+import {ModalBaseService}                 from './modal-base.service';
 
 @Injectable()
 export class AtModalService {
 
-  constructor(private base_modal_service: ModalBaseService) {
+  constructor(private base_modal_service: ModalBaseService, private ngZone: NgZone) {
 
   }
 
   modal(config?) {
-    // this.base_modal_service.create()
-    // let instance = this.base_modal_service.getElem().instance
-    // let propConfig = Object.assign(config)
-    // //删掉ok 和cancel 回掉
-    // if (config) {
-    //   delete propConfig['cancel']
-    //   delete propConfig['ok']
-    // }
-    // for (let key in propConfig) {
-    //   instance[key] = propConfig[key]
-    // }
-    // instance.show = true
-    // let cancel = instance.cancel.bind(instance)
-    // let ok = instance.ok.bind(instance)
-    //
-    // instance.cancel = () => {
-    //   cancel()
-    //   config && config.cancel && config.cancel()
-    //   setTimeout(_ => {
-    //     this.base_modal_service.remove()
-    //   }, 180)
-    //
-    // }
-    // instance.ok = () => {
-    //   ok()
-    //   config && config.ok && config.ok()
-    //   setTimeout(_ => {
-    //     this.base_modal_service.remove()
-    //   }, 180)
-    // }
+    let ref = this.base_modal_service.create()
+    let instance = ref.instance
+    let propConfig = Object.assign(config)
+    //删掉ok 和cancel 回掉
+    if (config) {
+      delete propConfig['cancel']
+      delete propConfig['ok']
+    }
+    for (let key in propConfig) {
+      instance[key] = propConfig[key]
+    }
+    instance.subscribeStatus()
+    instance.setShow(true)
+    instance.showChange.subscribe(open => {
+      if (open === false) {
+        this.base_modal_service.remove(ref)
+      }
+    })
   }
 
   success(config) {

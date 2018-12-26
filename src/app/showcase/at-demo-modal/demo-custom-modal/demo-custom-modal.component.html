@@ -1,73 +1,73 @@
-<!--<button at-button (click)="header = !header">-->
-  <!--没有头部-->
-<!--</button>-->
+<button at-button (click)="header = !header">
+  没有头部
+</button>
 
-<!--<button at-button (click)="footer = !footer">-->
-  <!--自定义尾部-->
-<!--</button>-->
+<button at-button (click)="footer = !footer">
+  自定义尾部
+</button>
 
-<!--<button at-button (click)="closer = !closer">-->
-  <!--缺少关闭-->
-<!--</button>-->
+<button at-button (click)="closer = !closer">
+  缺少关闭
+</button>
 
-<!--<button at-button (click)="confirmer = !confirmer">-->
-  <!--设置为confirm-->
-<!--</button>-->
+<button at-button (click)="confirmer = !confirmer">
+  设置为confirm
+</button>
 
-<!--<at-modal [show]="header" (onCancel)="header=false" (onOk)="header = false">-->
-  <!--<div cdkOverlayOrigin at-dropdown></div>-->
-  <!--<div body>-->
-    <!--我只有身体-->
-  <!--</div>-->
-<!--</at-modal>-->
+<at-modal [show]="header" (onCancel)="header=false" (onOk)="header = false">
+  <div cdkOverlayOrigin at-dropdown></div>
+  <div body>
+    我只有身体
+  </div>
+</at-modal>
 
-<!--<at-modal [show]="footer" (onCancel)="footer=false" (onOk)="footer = false">-->
-  <!--<div cdkOverlayOrigin at-dropdown></div>-->
-  <!--<div header>-->
-    <!--其实我有-->
-  <!--</div>-->
-  <!--<div body>-->
-    <!--我也没有头部 还有自定义脚-->
-  <!--</div>-->
-  <!--<div footer>-->
-    <!--<button at-button>自定义尾部</button>-->
-  <!--</div>-->
-<!--</at-modal>-->
+<at-modal [show]="footer" (onCancel)="footer=false" (onOk)="footer = false">
+  <div cdkOverlayOrigin at-dropdown></div>
+  <div header>
+    其实我有
+  </div>
+  <div body>
+    我也没有头部 还有自定义脚
+  </div>
+  <div footer>
+    <button at-button>自定义尾部</button>
+  </div>
+</at-modal>
 
-<!--<at-modal [show]="closer" (onCancel)="closer=false" (onOk)="closer = false" [closeable]="false">-->
-  <!--<div cdkOverlayOrigin at-dropdown></div>-->
-  <!--<div header>-->
-    <!--其实我有-->
-  <!--</div>-->
-  <!--<div body>-->
-    <!--<at-select>-->
-      <!--<at-option [atValue]="1" [atLabel]="2">-->
-      <!--</at-option>-->
-      <!--<at-option [atValue]="1" [atLabel]="2">-->
-      <!--</at-option>-->
-      <!--<at-option [atValue]="1" [atLabel]="2">-->
-      <!--</at-option>-->
-      <!--<at-option [atValue]="1" [atLabel]="2">-->
-      <!--</at-option>-->
+<at-modal [show]="closer" (onCancel)="closer=false" (onOk)="closer = false" [closeable]="false">
+  <div cdkOverlayOrigin at-dropdown></div>
+  <div header>
+    其实我有
+  </div>
+  <div body>
+    <at-select>
+      <at-option [atValue]="1" [atLabel]="2">
+      </at-option>
+      <at-option [atValue]="1" [atLabel]="2">
+      </at-option>
+      <at-option [atValue]="1" [atLabel]="2">
+      </at-option>
+      <at-option [atValue]="1" [atLabel]="2">
+      </at-option>
 
-    <!--</at-select>-->
-  <!--</div>-->
-  <!--<div footer>-->
-    <!--<button at-button>自定义尾部</button>-->
-  <!--</div>-->
-<!--</at-modal>-->
+    </at-select>
+  </div>
+  <div footer>
+    <button at-button>自定义尾部</button>
+  </div>
+</at-modal>
 
-<!--<at-modal [show]="confirmer" [atType]="'confirm'" (onCancel)="confirmer=false" (onOk)="confirmer = false"-->
-         <!--[closeable]="false">-->
-  <!--<div cdkOverlayOrigin at-dropdown></div>-->
-  <!--<div header>-->
-    <!--我来组成头部-->
-  <!--</div>-->
-  <!--<div body>-->
-    <!--我也没有右上角的关闭-->
-  <!--</div>-->
-  <!--<div footer>-->
-    <!--<button at-button>自定义尾部</button>-->
-  <!--</div>-->
-<!--</at-modal>-->
+<at-modal [show]="confirmer" [atType]="'confirm'" (onCancel)="confirmer=false" (onOk)="confirmer = false"
+         [closeable]="false">
+  <div cdkOverlayOrigin at-dropdown></div>
+  <div header>
+    我来组成头部
+  </div>
+  <div body>
+    我也没有右上角的关闭
+  </div>
+  <div footer>
+    <button at-button>自定义尾部</button>
+  </div>
+</at-modal>
 
