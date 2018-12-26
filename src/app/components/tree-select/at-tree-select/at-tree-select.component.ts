@@ -1,15 +1,15 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AtSelectComponent}                                                     from '../../select/at-select.component';
 import {NG_VALUE_ACCESSOR}                                                     from '@angular/forms';
-import {animate, state, style, transition, trigger}                            from '@angular/animations';
-import {AtFormatEmitEvent, AtTreeComponent, AtTreeNode}                        from '../../tree';
-import {InputBoolean}                                                          from '../../utils/class-helper';
-import {CdkConnectedOverlay, CdkOverlayOrigin}                                 from '@angular/cdk/overlay';
-import {AtSelectTopControlComponent}                                           from '../../select/at-select-top-control.component';
-import {AtOptionContainerComponent}                                            from '../../select';
-import {merge, of, Subscription}                                               from 'rxjs';
-import {filter, tap}                                                           from 'rxjs/operators';
-import {AtTreeSelectTopControlComponent}                                       from '../at-tree-select-top-control/at-tree-select-top-control.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {InputBoolean}                               from '../../utils/class-helper';
+import {CdkConnectedOverlay, CdkOverlayOrigin} from '@angular/cdk/overlay';
+import {merge, of, Subscription}               from 'rxjs';
+import {filter, tap}                           from 'rxjs/operators';
+import {AtTreeSelectTopControlComponent}       from '../at-tree-select-top-control/at-tree-select-top-control.component';
+import {AtTreeNode}                            from '../../tree/at-tree-node';
+import {AtFormatEmitEvent}                     from '../../tree/interface';
+import {AtTreeComponent}                       from '../../tree/at-tree.component';
 
 @Component({
   selector: 'at-tree-select',
