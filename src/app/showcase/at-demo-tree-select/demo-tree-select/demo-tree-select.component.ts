@@ -3,7 +3,30 @@ import {AtFormatEmitEvent} from '../../../components/tree';
 
 @Component({
   selector: 'app-demo-tree-select-basic',
-  templateUrl: './demo-tree-select.component.html',
+  template: `<label>普通单选</label>
+  <at-tree-select
+    [(ngModel)]="model"
+    [atNodes]="nodes"
+  ></at-tree-select>
+  <hr>
+  <label>checkbox 的多选</label>
+  <at-tree-select
+    [(ngModel)]="model2"
+    [atShowSearch]="true"
+    [atMultiple]="true"
+    [atCheckable]="true"
+    [atNodes]="nodes"
+  ></at-tree-select>
+  <hr>
+
+  <label>普通多选</label>
+  <at-tree-select
+    [(ngModel)]="model3"
+    [atShowSearch]="true"
+    [atMultiple]="true"
+    [atNodes]="nodes"
+  ></at-tree-select>
+  `,
   styleUrls: ['./demo-tree-select.component.css']
 })
 export class DemoTreeSelectComponent implements OnInit {

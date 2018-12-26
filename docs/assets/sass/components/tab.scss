@@ -1,0 +1,568 @@
+@import '../variables/index.scss';
+// Border color
+$border-color-base: $progress-track-bg-color; // base border outline a component
+$border-color-split: $progress-track-bg-color; // split border inside a component
+$border-width-base: 1px; // width of the border for a component
+$border-style-base: solid; // style of a components border
+$tabs-card-head-background: $brand-blue-200;
+$tabs-card-height: 40px;
+$tabs-card-active-color: $brand-color;
+$tabs-title-font-size: $font-size-base;
+$tabs-title-font-size-lg: $font-size-lg;
+$tabs-title-font-size-sm: $font-size-base;
+$tabs-ink-bar-color: $brand-color;
+$tabs-bar-margin: 0 0 16px 0;
+$tabs-horizontal-margin: 0 32px 0 0;
+$tabs-horizontal-padding: 12px 16px;
+$tabs-vertical-padding: 8px 24px;
+$tabs-vertical-margin: 0 0 16px 0;
+$tabs-scrolling-size: 32px;
+$tabs-highlight-color: $brand-color;
+$tabs-hover-color: $brand-blue-800;
+$tabs-active-color: $brand-color;
+$heading-color: fade(#000, 85%);
+.at-tabs {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  overflow: hidden;
+  zoom: 1;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+  &-ink-bar {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    box-sizing: border-box;
+    height: 2px;
+    background-color: $tabs-ink-bar-color;
+    transform-origin: 0 0;
+  }
+
+  &-bar {
+    border-bottom: 1px $border-style-base $border-color-split;
+    margin: $tabs-bar-margin;
+    outline: none;
+    transition: padding .3s $ease-in-out;
+  }
+
+  &-nav-container {
+    overflow: hidden;
+    font-size: $tabs-title-font-size;
+    line-height: $line-height-base;
+    box-sizing: border-box;
+    position: relative;
+    white-space: nowrap;
+    margin-bottom: -1px;
+    transition: padding .3s $ease-in-out;
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+    &-scrolling {
+      padding-left: $tabs-scrolling-size;
+      padding-right: $tabs-scrolling-size;
+    }
+  }
+
+  // https://github.com/ant-design/ant-design/issues/9104
+  &-bottom &-bar {
+    border-bottom: none;
+    border-top: $border-width-base $border-style-base $border-color-split;
+  }
+
+  &-bottom &-ink-bar {
+    bottom: auto;
+    top: 1px;
+  }
+
+  &-bottom &-nav-container {
+    margin-bottom: 0;
+    margin-top: -1px;
+  }
+
+  &-tab-prev,
+  &-tab-next {
+    user-select: none;
+    z-index: 2;
+    width: 0;
+    height: 100%;
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    position: absolute;
+    text-align: center;
+    color: $text-color;
+    transition: width .3s $ease-in-out, opacity .3s $ease-in-out, color .3s $ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+
+    &.at-tabs-tab-arrow-show {
+      opacity: 1;
+      width: $tabs-scrolling-size;
+      height: 100%;
+      pointer-events: auto;
+    }
+
+    &:hover {
+      color: $text-color;
+    }
+
+    &-icon {
+      font-style: normal;
+      font-weight: bold;
+      font-variant: normal;
+      line-height: inherit;
+      vertical-align: baseline;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      text-transform: none;
+
+      &-target {
+        display: block;
+
+      }
+    }
+  }
+
+  &-tab-btn-disabled {
+    cursor: not-allowed;
+    &,
+    &:hover {
+      color: black;
+    }
+  }
+
+  &-tab-next {
+    right: 2px;
+  }
+
+  &-tab-prev {
+    left: 0;
+    :root & {
+      filter: none;
+    }
+  }
+
+  &-nav-wrap {
+    overflow: hidden;
+    margin-bottom: -1px;
+  }
+
+  &-nav-scroll {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &-nav {
+    box-sizing: border-box;
+    padding-left: 0;
+    transition: transform 0.3s $ease-in-out;
+    position: relative;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+
+    &:before,
+    &:after {
+      display: table;
+      content: " ";
+    }
+
+    &:after {
+      clear: both;
+    }
+
+    .at-tabs-tab-disabled {
+      pointer-events: none;
+      cursor: default;
+      color: $disabled-color;
+    }
+
+    .at-tabs-tab {
+      display: inline-block;
+      height: 100%;
+      margin: $tabs-horizontal-margin;
+      padding: $tabs-horizontal-padding;
+      box-sizing: border-box;
+      position: relative;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      transition: color 0.3s $ease-in-out;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: $tabs-hover-color;
+      }
+
+      &:active {
+        color: $tabs-active-color;
+      }
+
+      .at-icon {
+        margin-right: 8px;
+      }
+    }
+
+    .at-tabs-tab-active {
+      color: $tabs-highlight-color;
+      font-weight: 500;
+    }
+  }
+
+  &-large {
+    > .at-tabs-bar {
+      .at-tabs-nav-container {
+        font-size: $tabs-title-font-size-lg;
+      }
+      .at-tabs-tab {
+        padding: 16px;
+      }
+    }
+  }
+
+  &-small {
+    > .at-tabs-bar {
+      .at-tabs-nav-container {
+        font-size: $tabs-title-font-size-sm;
+      }
+      .at-tabs-tab {
+        padding: 8px 16px;
+      }
+    }
+  }
+
+  &:not(&-vertical) {
+    > .at-tabs-content {
+      width: 100%;
+
+      > .at-tabs-tabpane {
+        flex-shrink: 0;
+        width: 100%;
+        transition: opacity .45s;
+        opacity: 1;
+      }
+
+      > .at-tabs-tabpane-inactive {
+        opacity: 0;
+        height: 0;
+        padding: 0 !important;
+        pointer-events: none;
+        input {
+          visibility: hidden;
+        }
+      }
+    }
+    > .at-tabs-content-animated {
+      display: flex;
+      flex-direction: row;
+      will-change: margin-left;
+      transition: margin-left 0.3s $ease-in-out;
+    }
+  }
+
+  &-vertical {
+    > .at-tabs-bar {
+      border-bottom: 0;
+      height: 100%;
+      &-tab-prev, &-tab-next {
+        width: $tabs-scrolling-size;
+        height: 0;
+        transition: height .3s $ease-in-out, opacity .3s $ease-in-out, color .3s $ease-in-out;
+      }
+      &-tab-prev.at-tabs-tab-arrow-show,
+      &-tab-next.at-tabs-tab-arrow-show {
+        width: 100%;
+        height: $tabs-scrolling-size;
+      }
+
+      .at-tabs-tab {
+        float: none;
+        margin: $tabs-vertical-margin;
+        padding: $tabs-vertical-padding;
+        display: block;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .at-tabs-extra-content {
+        text-align: center;
+      }
+
+      .at-tabs-nav-scroll {
+        width: auto;
+      }
+
+      .at-tabs-nav-container,
+      .at-tabs-nav-wrap {
+        height: 100%;
+      }
+
+      .at-tabs-nav-container {
+        margin-bottom: 0;
+
+        &.at-tabs-nav-container-scrolling {
+          padding: $tabs-scrolling-size 0;
+        }
+      }
+
+      .at-tabs-nav-wrap {
+        margin-bottom: 0;
+      }
+
+      .at-tabs-nav {
+        width: 100%;
+      }
+
+      .at-tabs-ink-bar {
+        width: 2px;
+        top: 0;
+        left: auto;
+        height: auto;
+        bottom: auto;
+        transition: all 0.3s;
+      }
+
+      .at-tabs-tab-next {
+        width: 100%;
+        bottom: 0;
+        height: $tabs-scrolling-size;
+      }
+
+      .at-tabs-tab-prev {
+        top: 0;
+        width: 100%;
+        height: $tabs-scrolling-size;
+      }
+    }
+
+    > .at-tabs-content {
+      overflow: hidden;
+      width: auto;
+      margin-top: 0 !important;
+    }
+  }
+
+  &-vertical.at-tabs-left {
+    > .at-tabs-bar {
+      float: left;
+      border-right: $border-width-base $border-style-base $border-color-split;
+      margin-right: -1px;
+      margin-bottom: 0;
+      .at-tabs-tab {
+        text-align: right;
+      }
+      .at-tabs-nav-container {
+        margin-right: -1px;
+      }
+      .at-tabs-nav-wrap {
+        margin-right: -1px;
+      }
+      .at-tabs-ink-bar {
+        right: 1px;
+      }
+    }
+    > .at-tabs-content {
+      padding-left: 24px;
+      border-left: $border-width-base $border-style-base $border-color-split;
+    }
+  }
+
+  &-vertical.at-tabs-right {
+    > .at-tabs-bar {
+      float: right;
+      border-left: $border-width-base $border-style-base $border-color-split;
+      margin-left: -1px;
+      margin-bottom: 0;
+      .at-tabs-nav-container {
+        margin-left: -1px;
+      }
+      .at-tabs-nav-wrap {
+        margin-left: -1px;
+      }
+      .at-tabs-ink-bar {
+        left: 1px;
+      }
+    }
+    > .at-tabs-content {
+      padding-right: 24px;
+      border-right: $border-width-base $border-style-base $border-color-split;
+    }
+  }
+
+  &-bottom > &-bar {
+    margin-bottom: 0;
+    margin-top: 16px;
+  }
+}
+
+.at-tabs-top .at-tabs-ink-bar-animated,
+.at-tabs-bottom .at-tabs-ink-bar-animated {
+  transition: transform .3s $ease-in-out, width .3s $ease-in-out, left .3s $ease-in-out;
+}
+
+.at-tabs-left .at-tabs-ink-bar-animated,
+.at-tabs-right .at-tabs-ink-bar-animated {
+  transition: transform .3s $ease-in-out, height .3s $ease-in-out, top .3s $ease-in-out;
+}
+
+.no-flex,
+.at-tabs-no-animation,
+.at-tabs-vertical {
+  > .at-tabs-content {
+    &-animated {
+      transform: none !important;
+      margin-left: 0 !important;
+    }
+    > .at-tabs-tabpane-inactive {
+      display: none;
+    }
+  }
+
+}
+
+.at-tabs.at-tabs-card {
+  & > .at-tabs-bar .at-tabs-nav-container {
+    height: 40px
+  }
+  & > .at-tabs-bar .at-tabs-nav-container {
+    height: 40px
+  }
+  & > .at-tabs-bar .at-tabs-ink-bar {
+    visibility: hidden
+  }
+  & > .at-tabs-bar .at-tabs-tab {
+    margin: 0 2px 0 0;
+    border: 1px solid #e8e8e8;
+    border-bottom: 0;
+    border-radius: 4px 4px 0 0;
+    background: #fafafa;
+    padding: 0 16px;
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    line-height: 38px
+  }
+  & > .at-tabs-bar .at-tabs-tab-active {
+    background: #fff;
+    border-color: #e8e8e8;
+    color: $brand-color;
+    padding-bottom: 1px
+  }
+  & > .at-tabs-bar .at-tabs-tab-inactive {
+    padding: 0
+  }
+  & > .at-tabs-bar .at-tabs-nav-wrap {
+    margin-bottom: 0
+  }
+
+  & > .at-tabs-bar .at-tabs-tab .at-tabs-close-x {
+    color: rgba(0, 0, 0, .45);
+    transition: all .3s;
+    font-size: 12px;
+    margin-left: 3px;
+    margin-right: -5px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 16px;
+    height: 14px
+  }
+  & > .at-tabs-bar .at-tabs-tab .at-tabs-close-x:hover {
+    color: rgba(0, 0, 0, .85)
+  }
+  & > .at-tabs-bar .at-tabs-tab:hover .aticon-close {
+    opacity: 1
+  }
+  .at-tabs-content {
+    & > .at-tabs-tabpane, .at-tabs.at-tabs-editable-card .at-tabs-content > .at-tabs-tabpane {
+      transition: none !important
+    }
+    & > .at-tabs-tabpane-inactive, .at-tabs.at-tabs-editable-card .at-tabs-content > .at-tabs-tabpane-inactive {
+      overflow: hidden
+    }
+  }
+}
+
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-nav-container {
+  height: auto
+}
+
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-tab {
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 8px
+}
+
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-tab-active {
+  padding-bottom: 4px
+}
+
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-tab:last-child {
+  margin-bottom: 8px
+}
+
+.at-tabs-vertical.at-tabs-card > .at-tabs-bar .at-tabs-new-tab {
+  width: 90%
+}
+
+.at-tabs-vertical.at-tabs-card.at-tabs-left > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-right: 0
+}
+
+.at-tabs-vertical.at-tabs-card.at-tabs-left > .at-tabs-bar .at-tabs-tab {
+  border-right: 0;
+  border-radius: 4px 0 0 4px;
+  margin-right: 1px
+}
+
+.at-tabs-vertical.at-tabs-card.at-tabs-left > .at-tabs-bar .at-tabs-tab-active {
+  margin-right: -1px;
+  padding-right: 18px
+}
+
+.at-tabs-vertical.at-tabs-card.at-tabs-right > .at-tabs-bar .at-tabs-nav-wrap {
+  margin-left: 0
+}
+
+.at-tabs-vertical.at-tabs-card.at-tabs-right > .at-tabs-bar .at-tabs-tab {
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  margin-left: 1px
+}
+
+.at-tabs-vertical.at-tabs-card.at-tabs-right > .at-tabs-bar .at-tabs-tab-active {
+  margin-left: -1px;
+  padding-left: 18px
+}
+
+.at-tabs.at-tabs-card.at-tabs-bottom > .at-tabs-bar .at-tabs-tab {
+  border-bottom: 1px solid #e8e8e8;
+  border-top: 0;
+  border-radius: 0 0 4px 4px
+}
+
+.at-tabs.at-tabs-card.at-tabs-bottom > .at-tabs-bar .at-tabs-tab-active {
+  color: $brand-color;
+  padding-bottom: 0;
+  padding-top: 1px
+}
+
