@@ -1,4 +1,15 @@
 <p>从按钮处伸展出来</p>
+
+<at-modal [show]="show2" [showFooter]="false" (onCancel)="close2()" (onOk)="show2 = false">
+  <div header>
+    我来组成头部
+  </div>
+  <div body>
+    <p>
+      我来组成身体2
+    </p>
+  </div>
+</at-modal>
 <at-modal [show]="show" [showFooter]="false" (onCancel)="close()" (onOk)="show = false">
   <div header>
     我来组成头部
@@ -7,8 +18,10 @@
     <p>
       我来组成身体
     </p>
+    <button at-button (click)="setShow2()"> 显示/隐藏</button>
   </div>
 </at-modal>
+
 
 <button at-button (click)="setShow()"> 显示/隐藏</button>
 

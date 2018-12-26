@@ -30,7 +30,7 @@ import {AtProgressModule}       from './progress/at-progress.module';
 import {AtSliderModule}         from './slider/at-slider.module';
 import {AtStepModule}           from './steps/at-step.module';
 import {AtSwitchModule}         from './switch/at-switch.module';
-import {AtTabModule}            from './tab/at-tab.module';
+import {AtTabModule}            from './tab/at-tabs.module';
 import {AtTableModule}          from './table/at-table.module';
 import {AtTagModule}            from './tag/at-tag.module';
 import {AtTextareaModule}       from './textarea/at-textarea.module';
@@ -41,6 +41,7 @@ import {AtColorPickerModule}    from './color-picker/at-color-picker.module';
 import {AtI18nModule}           from './i18n/at-i18n.module';
 import {AtDndModule}            from './drag-and-drop/at-dnd.module';
 import {AtCollapseModule}       from './collapse/collapse.module';
+import {AtTreeSelectModule}     from './tree-select/at-tree-select.module';
 
 export *                                  from './tree'
 export *                                  from './checkbox'
@@ -82,6 +83,7 @@ export *                                  from './i18n'
 export *                                  from './color-picker'
 export *                                  from './drag-and-drop'
 export *                                  from './collapse'
+export *                                  from './tree-select'
 
 @NgModule({
   exports: [
@@ -124,7 +126,8 @@ export *                                  from './collapse'
     AtColorPickerModule,
     AtI18nModule,
     AtDndModule,
-    AtCollapseModule
+    AtCollapseModule,
+    AtTreeSelectModule,
   ],
 
   providers: [AtGlobalMonitorService],

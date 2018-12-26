@@ -171,6 +171,8 @@ import { DemoBasicCollapseComponent } from './showcase/at-demo-collapse/demo-bas
 import { DemoAccordingCollapseComponent } from './showcase/at-demo-collapse/demo-according-collapse/demo-according-collapse.component';
 import { DemoSimpleCollapseComponent } from './showcase/at-demo-collapse/demo-simple-collapse/demo-simple-collapse.component';
 import { DemoNestedCollapseComponent } from './showcase/at-demo-collapse/demo-nested-collapse/demo-nested-collapse.component';
+import { AtDemoTreeSelectComponent } from './showcase/at-demo-tree-select/at-demo-tree-select.component';
+import { DemoTreeSelectComponent } from './showcase/at-demo-tree-select/demo-tree-select/demo-tree-select.component';
 
 
 
@@ -336,7 +338,13 @@ import { DemoNestedCollapseComponent } from './showcase/at-demo-collapse/demo-ne
     DemoSimpleCollapseComponent,
 
 
-    DemoNestedCollapseComponent
+    DemoNestedCollapseComponent,
+
+
+    AtDemoTreeSelectComponent,
+
+
+    DemoTreeSelectComponent
 
 
   ],

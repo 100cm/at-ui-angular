@@ -20,7 +20,7 @@ import {
   QueryList,
   Renderer2,
   SimpleChange,
-  ViewChild
+  ViewChild, ChangeDetectorRef
 }                                                                              from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR}                               from '@angular/forms';
 import {isNotNil, toBoolean}                                                   from '../utils/class-helper';
@@ -31,172 +31,172 @@ import {defaultFilterOption, TFilterOption}                                    f
 import {AtSelectTopControlComponent}                                           from './at-select-top-control.component';
 
 @Component({
-             selector: 'at-select',
-             providers: [
-               {
-                 provide: NG_VALUE_ACCESSOR,
-                 useExisting: forwardRef(() => AtSelectComponent),
-                 multi: true
-               }
-             ],
-             animations: [
-               trigger('dropDownAnimation', [
-                 state('hidden', style({
-                                         opacity: 0,
-                                         display: 'none'
-                                       })),
-                 state('bottom', style({
-                                         opacity: 1,
-                                         transform: 'scaleY(1)',
-                                         transformOrigin: '0% 0%'
-                                       })),
-                 state('top', style({
-                                      opacity: 1,
-                                      transform: 'scaleY(1)',
-                                      transformOrigin: '0% 100%'
-                                    })),
-                 transition('hidden => bottom', [
-                   style({
-                           opacity: 0,
-                           transform: 'scaleY(0.8)',
-                           transformOrigin: '0% 0%'
-                         }),
-                   animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-                 ]),
-                 transition('bottom => hidden', [
-                   animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-                                                                                   opacity: 0,
-                                                                                   transform: 'scaleY(0.8)',
-                                                                                   transformOrigin: '0% 0%'
-                                                                                 }))
-                 ]),
-                 transition('hidden => top', [
-                   style({
-                           opacity: 0,
-                           transform: 'scaleY(0.8)',
-                           transformOrigin: '0% 100%'
-                         }),
-                   animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-                 ]),
-                 transition('top => hidden', [
-                   animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-                                                                                   opacity: 0,
-                                                                                   transform: 'scaleY(0.8)',
-                                                                                   transformOrigin: '0% 100%'
-                                                                                 }))
-                 ])
-               ])
-             ],
-             template: `
-               <div
-                 cdkOverlayOrigin
-                 class="at-select at-select--{{atSize}}"
-                 [class.at-select--open]="atOpen"
-                 [class.at-select-single]="isSingleMode"
-                 [class.at-select--multiple]="isMultipleOrTags"
-                 [class.at-select--disabled]="atDisabled"
-                 (keydown)="onKeyDownCdkOverlayOrigin($event)"
-                 tabindex="0">
-                 <div
-                   at-select-top-control
-                   [atOpen]="atOpen"
-                   (OnClear)="onClearSelection($event)"
-                   [allowClear]="atAllowClear"
-                   [compareWith]="compareWith"
-                   [atPlaceHolder]="atPlaceHolder"
-                   [atShowSearch]="atShowSearch"
-                   [atDisabled]="atDisabled"
-                   [atMode]="atMode"
-                   [atListTemplateOfOption]="listOfTemplateOption"
-                   [atListOfSelectedValue]="listOfSelectedValue"
-                   (atOnSearch)="onSearch($event.value,$event.emit)"
-                   (atListOfSelectedValueChange)="updateListOfSelectedValueFromTopControl($event)">
-                 </div>
-               </div>
-               <ng-template
-                 cdkConnectedOverlay
-                 [cdkConnectedOverlayHasBackdrop]="true"
-                 [cdkConnectedOverlayOrigin]="cdkOverlayOrigin"
-                 (backdropClick)="closeDropDown()"
-                 (detach)="closeDropDown();"
-                 (attach)="attachSelect()"
-                 (positionChange)="onPositionChange($event)"
-                 [cdkConnectedOverlayWidth]="overlayWidth"
-                 [cdkConnectedOverlayMinWidth]="overlayMinWidth"
-                 [cdkConnectedOverlayOpen]="!isDestroy">
-                 <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="atOpen ? dropDownPosition : 'hidden' "
-                      [ngStyle]="atDropdownStyle">
-                   <div
-                     at-option-container
-                     [listOfatOptionComponent]="listOfatOptionComponent"
-                     [listOfatOptionGroupComponent]="listOfatOptionGroupComponent"
-                     [atSearchValue]="searchValue"
-                     [atFilterOption]="atFilterOption"
-                     [remoteSearch]="atServerSearch"
-                     [compareWith]="compareWith"
-                     [atNotFoundContent]="atNotFoundContent"
-                     [atMaxMultipleCount]="atMaxMultipleCount"
-                     [atMode]="atMode"
-                     (atScrollToBottom)="atScrollToBottom.emit()"
-                     (atClickOption)="onClickOptionFromOptionContainer()"
-                     (atListOfTemplateOptionChange)="listOfTemplateOptionChange($event)"
-                     (atListOfSelectedValueChange)="updateListOfSelectedValueFromOptionContainer($event)"
-                     [atListOfSelectedValue]="listOfSelectedValue">
-                   </div>
-                 </div>
-               </ng-template>
-               <!--can not use ViewChild since it will match sub options in option group -->
-               <ng-template>
-                 <ng-content></ng-content>
-               </ng-template>
-             `
-           })
+  selector: 'at-select',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AtSelectComponent),
+      multi: true
+    }
+  ],
+  animations: [
+    trigger('dropDownAnimation', [
+      state('hidden', style({
+        opacity: 0,
+        display: 'none'
+      })),
+      state('bottom', style({
+        opacity: 1,
+        transform: 'scaleY(1)',
+        transformOrigin: '0% 0%'
+      })),
+      state('top', style({
+        opacity: 1,
+        transform: 'scaleY(1)',
+        transformOrigin: '0% 100%'
+      })),
+      transition('hidden => bottom', [
+        style({
+          opacity: 0,
+          transform: 'scaleY(0.8)',
+          transformOrigin: '0% 0%'
+        }),
+        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
+      ]),
+      transition('bottom => hidden', [
+        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
+          opacity: 0,
+          transform: 'scaleY(0.8)',
+          transformOrigin: '0% 0%'
+        }))
+      ]),
+      transition('hidden => top', [
+        style({
+          opacity: 0,
+          transform: 'scaleY(0.8)',
+          transformOrigin: '0% 100%'
+        }),
+        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
+      ]),
+      transition('top => hidden', [
+        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
+          opacity: 0,
+          transform: 'scaleY(0.8)',
+          transformOrigin: '0% 100%'
+        }))
+      ])
+    ])
+  ],
+  template: `
+    <div
+      cdkOverlayOrigin
+      class="at-select at-select--{{atSize}}"
+      [class.at-select--open]="atOpen"
+      [class.at-select-single]="isSingleMode"
+      [class.at-select--multiple]="isMultipleOrTags"
+      [class.at-select--disabled]="atDisabled"
+      (keydown)="onKeyDownCdkOverlayOrigin($event)"
+      tabindex="0">
+      <div
+        at-select-top-control
+        [atOpen]="atOpen"
+        (OnClear)="onClearSelection($event)"
+        [allowClear]="atAllowClear"
+        [compareWith]="compareWith"
+        [atPlaceHolder]="atPlaceHolder"
+        [atShowSearch]="atShowSearch"
+        [atDisabled]="atDisabled"
+        [atMode]="atMode"
+        [atListTemplateOfOption]="listOfTemplateOption"
+        [atListOfSelectedValue]="listOfSelectedValue"
+        (atOnSearch)="onSearch($event.value,$event.emit)"
+        (atListOfSelectedValueChange)="updateListOfSelectedValueFromTopControl($event)">
+      </div>
+    </div>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="true"
+      [cdkConnectedOverlayOrigin]="cdkOverlayOrigin"
+      (backdropClick)="closeDropDown()"
+      (detach)="closeDropDown();"
+      (attach)="attachSelect()"
+      (positionChange)="onPositionChange($event)"
+      [cdkConnectedOverlayWidth]="overlayWidth"
+      [cdkConnectedOverlayMinWidth]="overlayMinWidth"
+      [cdkConnectedOverlayOpen]="!isDestroy">
+      <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="atOpen ? dropDownPosition : 'hidden' "
+           [ngStyle]="atDropdownStyle">
+        <div
+          at-option-container
+          [listOfatOptionComponent]="listOfatOptionComponent"
+          [listOfatOptionGroupComponent]="listOfatOptionGroupComponent"
+          [atSearchValue]="searchValue"
+          [atFilterOption]="atFilterOption"
+          [remoteSearch]="atServerSearch"
+          [compareWith]="compareWith"
+          [atNotFoundContent]="atNotFoundContent"
+          [atMaxMultipleCount]="atMaxMultipleCount"
+          [atMode]="atMode"
+          (atScrollToBottom)="atScrollToBottom.emit()"
+          (atClickOption)="onClickOptionFromOptionContainer()"
+          (atListOfTemplateOptionChange)="listOfTemplateOptionChange($event)"
+          (atListOfSelectedValueChange)="updateListOfSelectedValueFromOptionContainer($event)"
+          [atListOfSelectedValue]="listOfSelectedValue">
+        </div>
+      </div>
+    </ng-template>
+    <!--can not use ViewChild since it will match sub options in option group -->
+    <ng-template>
+      <ng-content></ng-content>
+    </ng-template>
+  `
+})
 export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
-  private _disabled                                     = false;
-  private _allowClear                                   = false;
-  private _showSearch                                   = false;
-  private _open                                         = false;
+  private _disabled = false;
+  private _allowClear = false;
+  private _showSearch = false;
+  private _open = false;
   private _placeholder: string;
-  private _autoFocus                                    = false;
+  private _autoFocus = false;
   private _dropdownClassName: string;
-          onChange: (value: string | string[]) => void  = () => null;
-          onTouched: () => void                         = () => null;
-          dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
+  onChange: (value: string | string[]) => void = () => null;
+  onTouched: () => void = () => null;
+  dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
   // tslint:disable-next-line:no-any
-          listOfSelectedValue: any[]                    = [];
-          listOfTemplateOption: AtOptionComponent[]     = [];
+  listOfSelectedValue: any[] = [];
+  listOfTemplateOption: AtOptionComponent[] = [];
   // tslint:disable-next-line:no-any
-          value: any | any[];
-          overlayWidth: number;
-          overlayMinWidth: number;
-          searchValue: string                           = '';
-          isDestroy                                     = true;
-          isInit                                        = false;
-          dropDownClassMap;
+  value: any | any[];
+  overlayWidth: number;
+  overlayMinWidth: number;
+  searchValue: string = '';
+  isDestroy = true;
+  isInit = false;
+  dropDownClassMap;
   @ViewChild(CdkOverlayOrigin) cdkOverlayOrigin: CdkOverlayOrigin;
   @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
   @ViewChild(AtSelectTopControlComponent) atSelectTopControlComponent: AtSelectTopControlComponent;
   @ViewChild(AtOptionContainerComponent) atOptionContainerComponent: AtOptionContainerComponent;
   /** should move to at-option-container when https://github.com/angular/angular/issues/20810 resolved **/
-          @ContentChildren(AtOptionComponent) listOfatOptionComponent: QueryList<AtOptionComponent>;
+  @ContentChildren(AtOptionComponent) listOfatOptionComponent: QueryList<AtOptionComponent>;
   @ContentChildren(AtOptionGroupComponent) listOfatOptionGroupComponent: QueryList<AtOptionGroupComponent>;
-  @Output() search                                      = new EventEmitter<string>();
-  @Output() atScrollToBottom                            = new EventEmitter<void>();
-  @Output() atOpenChange                                = new EventEmitter<boolean>();
-  @Input() atSize                                       = 'normal';
-  @Input('remoteSearch') atServerSearch                 = false;
-  @Input() atMode: 'default' | 'multiple' | 'tags'      = 'default';
-  @Input() atDropdownMatchSelectWidth                   = true;
-  @Input() atFilterOption: TFilterOption                = defaultFilterOption;
-  @Input() atMaxMultipleCount                           = Infinity;
+  @Output() search = new EventEmitter<string>();
+  @Output() atScrollToBottom = new EventEmitter<void>();
+  @Output() atOpenChange = new EventEmitter<boolean>();
+  @Input() atSize = 'normal';
+  @Input('remoteSearch') atServerSearch = false;
+  @Input() atMode: 'default' | 'multiple' | 'tags' = 'default';
+  @Input() atDropdownMatchSelectWidth = true;
+  @Input() atFilterOption: TFilterOption = defaultFilterOption;
+  @Input() atMaxMultipleCount = Infinity;
   @Input() atDropdownStyle: { [key: string]: string; };
   @Input() atNotFoundContent: string;
   /** https://github.com/angular/angular/pull/13349/files **/
-          // tslint:disable-next-line:no-any
-          @Input() compareWith                          = (o1: any, o2: any) => o1 === o2;
+    // tslint:disable-next-line:no-any
+  @Input() compareWith = (o1: any, o2: any) => o1 === o2;
 
   private _multiple = false
-  private _tagAble  = false
+  private _tagAble = false
 
 
   get tagAble(): boolean {
@@ -206,7 +206,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @Input()
   set tagAble(value: boolean) {
     this._tagAble = value;
-    this.atMode   = 'tags'
+    this.atMode = 'tags'
   }
 
   get multiple(): boolean {
@@ -263,8 +263,8 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
       if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef) {
         this.cdkConnectedOverlay.overlayRef.updatePosition();
         const backdropElement = this.cdkConnectedOverlay.overlayRef.backdropElement;
-        const parentNode      = this.renderer.parentNode(backdropElement);
-        const hostElement     = this.cdkConnectedOverlay.overlayRef.hostElement;
+        const parentNode = this.renderer.parentNode(backdropElement);
+        const hostElement = this.cdkConnectedOverlay.overlayRef.hostElement;
         this.renderer.appendChild(parentNode, backdropElement);
         this.renderer.appendChild(parentNode, hostElement);
       }
@@ -513,7 +513,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
     }
   }
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, public cdr: ChangeDetectorRef) {
   }
 
   /** update ngModel -> update listOfSelectedValue **/

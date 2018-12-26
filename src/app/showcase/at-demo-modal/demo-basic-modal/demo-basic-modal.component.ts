@@ -24,6 +24,16 @@ export class DemoBasicModalComponent implements OnInit {
     this.show = false
   }
 
+  show2 = false
+
+  setShow2() {
+    this.show2 = true
+  }
+
+  close2() {
+    this.show2 = false
+  }
+
   open() {
     this.atModalService.modal({
       status: 'error',

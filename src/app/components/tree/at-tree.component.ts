@@ -1,214 +1,284 @@
 import {
-  ChangeDetectorRef,
-  Component, EventEmitter,
+  forwardRef,
+  Component,
+  ContentChild,
+  EventEmitter,
   Input,
+  OnChanges,
+  OnDestroy,
   OnInit,
-  Optional, Output,
-  SkipSelf,
+  Output,
+  SimpleChange,
   TemplateRef
-}                            from '@angular/core';
-import {AtTreeNodeComponent} from "./at-tree-node/at-tree-node.component";
-import {ExpandAnimation}     from "../animations/expand-animation";
-import {AtTreeRootComponent} from "./at-tree-root/at-tree-root.component";
-import {AtTreeService}       from "./at-tree.service";
+}                                                   from '@angular/core';
+import {NG_VALUE_ACCESSOR}                          from '@angular/forms';
+import {Observable, ReplaySubject, Subscription}    from 'rxjs';
+import {AtFormatBeforeDropEvent, AtFormatEmitEvent} from '../tree/interface';
+import {AtTreeNode}                                 from './at-tree-node';
+import {AtTreeService}                              from './at-tree.service';
+import {InputBoolean, isNotNil}                     from '../utils/class-helper';
 
 @Component({
-             selector: 'at-tree',
-             template: `
-               <div class="at-tree">
-                 <span *ngIf="expandState == 'hidden'" (click)="expand()" class="at-tree-icon-mode">
-                 <ng-container *ngIf="!openIcon; else openIconTemplate">
-                     <span class="at-tree-{{iconMode}}"
-                           [class.at-tree-arrow--open]="(expandState == 'expand' && iconMode =='arrow' )"
-                           [class.at-tree-plus--open]="(expandState == 'expand' && iconMode =='plus' )"
-                     ></span>
-                 </ng-container>
-                   <ng-template #openIconTemplate [ngTemplateOutlet]="openIcon"></ng-template>
-                 </span>
-
-                 <span *ngIf="expandState == 'expand'" (click)="expand()" class="at-tree-icon-mode">
-                 <ng-container *ngIf="!closeIcon; else closeIconTemplate">
-                     <span class="at-tree-{{iconMode}}"
-                           [class.at-tree-arrow--open]="(expandState == 'expand' && iconMode =='arrow' )"
-                           [class.at-tree-plus--open]="(expandState == 'expand' && iconMode =='plus' )"
-                     ></span>
-                 </ng-container>
-                   <ng-template #closeIconTemplate [ngTemplateOutlet]="closeIcon"></ng-template>
-                 </span>
-
-                 <span *ngIf="expandState == 'loading'" class="at-tree-icon-mode">
-                    <span class="at-tree-loading"></span>
-                 </span>
-
-
-                 <span *ngIf="atCheckable" (click)="checkAll()" class="at-tree-checkbox"
-                       [ngClass]="{'at-checkbox--checked':checked,'at-checkbox--indeterminate':indeterminate}">
-                    <span class="at-checkbox__inner"></span>
-                 </span>
-                 <div class="at-tree-content-wrapper">
-                   {{title}}
-                 </div>
-                 <li class="at-tree-child" [@expandAnimation]="expandState"
-                     [ngClass]="{'at-tree-child--line':at_root_tree?.atShowLine}">
-                   <ul>
-                     <ng-content></ng-content>
-                   </ul>
-                 </li>
-               </div>
-             `,
-             animations: [
-               ExpandAnimation
-             ]
-
-           })
-export class AtTreeComponent implements OnInit {
-
-  constructor(@Optional() public at_root_tree: AtTreeRootComponent,
-              @Optional() @SkipSelf() public at_tree: AtTreeComponent,
-              private at_tree_service: AtTreeService,
-              private cdr: ChangeDetectorRef) {
-  }
-
-  ngOnInit() {
-    this.at_root_tree.pushTree(this)
-    if (this.at_tree) {
-      this.at_tree.pushTree(this)
-      this.checkParent()
-      this.checkRoot()
+  selector: 'at-tree',
+  template: `
+    <ul
+      role="tree"
+      unselectable="on"
+      [ngClass]="atTreeClass">
+      <at-tree-node
+        *ngFor="let node of atNodes"
+        [atTreeNode]="node"
+        [atShowLine]="atShowLine"
+        [atDraggable]="atDraggable"
+        [atCheckable]="atCheckable"
+        [atShowExpand]="atShowExpand"
+        [atAsyncData]="atAsyncData"
+        [atMultiple]="atMultiple"
+        [atSearchValue]="atSearchValue"
+        [atHideUnMatched]="atHideUnMatched"
+        [atBeforeDrop]="atBeforeDrop"
+        [atCheckStrictly]="atCheckStrictly"
+        [atExpandAll]="atExpandAll"
+        [atTreeTemplate]="atTreeTemplate"
+        (clickNode)="atClick.emit($event)"
+        (dblClick)="atDblClick.emit($event)"
+        (contextMenu)="atContextMenu.emit($event)"
+        (clickExpand)="atExpandChange.emit($event)"
+        (clickCheckBox)="atCheckBoxChange.emit($event)"
+        (atDragStart)="atOnDragStart.emit($event)"
+        (atDragEnter)="atOnDragEnter.emit($event)"
+        (atDragOver)="atOnDragOver.emit($event)"
+        (atDragLeave)="atOnDragLeave.emit($event)"
+        (atDrop)="atOnDrop.emit($event)"
+        (atDragEnd)="atOnDragEnd.emit($event)">
+      </at-tree-node>
+    </ul>
+  `,
+  providers: [
+    AtTreeService,
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AtTreeComponent),
+      multi: true
     }
-  }
+  ]
+})
 
-  pushTree(tree) {
-    this.tree_list.push(tree)
-  }
-
-  pushNode(node) {
-    this.tree_node_list.push(node)
-  }
-
-  _checked = false
-
-  @Input() title = ''
-
-  @Input() openIcon: string | TemplateRef<any>
-
-  @Input() closeIcon: string | TemplateRef<any>
-
-  @Input() key = ''
-
-  @Output() atExpandChange = new EventEmitter()
-
-  @Output() checkedChange = new EventEmitter()
-
-  tree_node_list = []
-
-  tree_list = []
-
-
-  private _atCheckable: boolean = true
-
-
-  get atCheckable(): boolean {
-    return this._atCheckable;
-  }
-
-  set atCheckable(value: boolean) {
-    this._atCheckable = value;
-    this.cdr.detectChanges()
-  }
-
-
-  ngAfterViewInit() {
-    this.at_tree_service.atCheckable.subscribe(data => {
-      this.atCheckable = data
-      this.tree_node_list.forEach(tree_node => {
-        tree_node.checkable = data
-      })
-    })
-  }
-
-  get checked() {
-    return this._checked
-  }
-
+export class AtTreeComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() @InputBoolean() atShowIcon = false;
+  @Input() @InputBoolean() atShowLine = false;
+  @Input() @InputBoolean() atCheckStrictly = false;
+  @Input() @InputBoolean() atCheckable = false;
+  @Input() @InputBoolean() atShowExpand = true;
+  @Input() @InputBoolean() atAsyncData = false;
+  @Input() @InputBoolean() atDraggable = false;
+  @Input() @InputBoolean() atMultiple = false;
+  @Input() @InputBoolean() atExpandAll: boolean = false;
+  @Input() @InputBoolean() atHideUnMatched = false;
+  @Input() atBeforeDrop: (confirm: AtFormatBeforeDropEvent) => Observable<boolean>;
 
   @Input()
-  set checked(value) {
-    this._checked = value;
-    this.setChildTree(value);
-    if (this.at_tree) {
-      this.checkRoot()
-      this.checkParent()
+  // tslint:disable-next-line:no-any
+  set atData(value: any[]) {
+    if (Array.isArray(value)) {
+      if (!this.atTreeService.isArrayOfAtTreeNode(value)) {
+        // has not been new AtTreeNode
+        this.atNodes = value.map(item => (new AtTreeNode(item)));
+      } else {
+        this.atNodes = value;
+      }
+      this.atTreeService.conductOption.isCheckStrictly = this.atCheckStrictly;
+      this.atTreeService.initTree(this.atNodes);
+    } else {
+      if (value !== null) {
+        console.warn('ngModel only accepts an array and must be not empty');
+      }
     }
-    this.indeterminate = this.at_tree_service.checkTreeNodeIndeterminate(this).indeterminate
   }
 
-  setChildTree(value) {
-    (this.tree_node_list || []).forEach((tree: AtTreeNodeComponent) => {
-      if (!tree.atDisabled) {
-        tree._checked = value
+  /**
+   * @deprecated use
+   * atExpandedKeys instead
+   */
+  @Input()
+  set atDefaultExpandedKeys(value: string[]) {
+    this.atDefaultSubject.next({type: 'atExpandedKeys', keys: value});
+  }
+
+  /**
+   * @deprecated use
+   * atSelectedKeys instead
+   */
+  @Input()
+  set atDefaultSelectedKeys(value: string[]) {
+    this.atDefaultSubject.next({type: 'atSelectedKeys', keys: value});
+  }
+
+  /**
+   * @deprecated use
+   * atCheckedKeys instead
+   */
+  @Input()
+  set atDefaultCheckedKeys(value: string[]) {
+    this.atDefaultSubject.next({type: 'atCheckedKeys', keys: value});
+  }
+
+  @Input()
+  set atExpandedKeys(value: string[]) {
+    this.atDefaultSubject.next({type: 'atExpandedKeys', keys: value});
+  }
+
+  @Input()
+  set atSelectedKeys(value: string[]) {
+    this.atDefaultSubject.next({type: 'atSelectedKeys', keys: value});
+  }
+
+  @Input()
+  set atCheckedKeys(value: string[]) {
+    this.atDefaultSubject.next({type: 'atCheckedKeys', keys: value});
+  }
+
+  @Input()
+  set atSearchValue(value: string) {
+    this._searchValue = value;
+    this.atTreeService.searchExpand(value);
+    if (isNotNil(value)) {
+      this.atSearchValueChange.emit(this.atTreeService.formatEvent('search', null, null));
+    }
+  }
+
+  get atSearchValue(): string {
+    return this._searchValue;
+  }
+
+  // model bind
+  @Output() readonly atExpandedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() readonly atSelectedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() readonly atCheckedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+
+  @Output() readonly atSearchValueChange: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  /**
+   * @deprecated use
+   * atSearchValueChange instead
+   */
+  @Output() readonly atOnSearchNode: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+
+  @Output() readonly atClick: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atDblClick: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atContextMenu: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atCheckBoxChange: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atExpandChange: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+
+  @Output() readonly atOnDragStart: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atOnDragEnter: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atOnDragOver: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atOnDragLeave: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atOnDrop: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  @Output() readonly atOnDragEnd: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
+  // tslint:disable-next-line:no-any
+  @ContentChild('atTreeTemplate') atTreeTemplate: TemplateRef<any>;
+  _searchValue = null;
+  atDefaultSubject = new ReplaySubject<{ type: string, keys: string[] }>(6);
+  atDefaultSubscription: Subscription;
+  atNodes: AtTreeNode[] = [];
+  prefixCls = 'at-tree';
+  atTreeClass = {};
+
+  onChange: (value: AtTreeNode[]) => void = () => null;
+  onTouched: () => void = () => null;
+
+  getTreeNodes(): AtTreeNode[] {
+    return this.atNodes;
+  }
+
+  /**
+   * public function
+   */
+  getCheckedNodeList(): AtTreeNode[] {
+    return this.atTreeService.getCheckedNodeList();
+  }
+
+  getSelectedNodeList(): AtTreeNode[] {
+    return this.atTreeService.getSelectedNodeList();
+  }
+
+  getHalfCheckedNodeList(): AtTreeNode[] {
+    return this.atTreeService.getHalfCheckedNodeList();
+  }
+
+  getExpandedNodeList(): AtTreeNode[] {
+    return this.atTreeService.getExpandedNodeList();
+  }
+
+  getMatchedNodeList(): AtTreeNode[] {
+    return this.atTreeService.getMatchedNodeList();
+  }
+
+  setClassMap(): void {
+    this.atTreeClass = {
+      [this.prefixCls]: true,
+      [this.prefixCls + '-show-line']: this.atShowLine,
+      [`${this.prefixCls}-icon-hide`]: !this.atShowIcon,
+      ['draggable-tree']: this.atDraggable
+    };
+  }
+
+  writeValue(value: AtTreeNode[]): void {
+    if (Array.isArray(value)) {
+      this.atNodes = value;
+      this.atTreeService.conductOption.isCheckStrictly = this.atCheckStrictly;
+      this.atTreeService.initTree(this.atNodes);
+    } else {
+      if (value !== null) {
+        console.warn('ngModel only accepts an array and should be not empty');
+      }
+    }
+  }
+
+  registerOnChange(fn: (_: AtTreeNode[]) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  constructor(public atTreeService: AtTreeService) {
+  }
+
+  ngOnInit(): void {
+    this.setClassMap();
+    this.atDefaultSubscription = this.atDefaultSubject.subscribe((data: { type: string, keys: string[] }) => {
+      if (!data || !data.keys) {
+        return;
+      }
+      switch (data.type) {
+        case 'atExpandedKeys':
+          this.atTreeService.calcExpandedKeys(data.keys, this.atNodes);
+          this.atExpandedKeysChange.emit(data.keys);
+          break;
+        case 'atSelectedKeys':
+          this.atTreeService.calcSelectedKeys(data.keys, this.atNodes, this.atMultiple);
+          this.atSelectedKeysChange.emit(data.keys);
+          break;
+        case 'atCheckedKeys':
+          this.atTreeService.calcCheckedKeys(data.keys, this.atNodes, this.atCheckStrictly);
+          this.atCheckedKeysChange.emit(data.keys);
+          break;
       }
     });
-
-    (this.tree_list || []).forEach(tree => {
-      tree.setChildTree(value)
-      tree._checked       = value
-      tree._indeterminate = this.at_tree_service.checkTreeNodeIndeterminate(tree).indeterminate
-    })
   }
 
-  checkRoot() {
-    let root_tree: AtTreeComponent = this.at_tree_service.getTopTree(this)
-    root_tree._checked             = this.at_tree_service.checkTreeNodeIndeterminate(root_tree).checked
-    root_tree.indeterminate        = this.at_tree_service.checkTreeNodeIndeterminate(root_tree).indeterminate
+  ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
+    if (changes.atCheckStrictly) {
+      this.atTreeService.conductOption.isCheckStrictly = changes.atCheckStrictly.currentValue;
+    }
   }
 
-  checkParent() {
-    this.at_tree._checked      = this.at_tree_service.checkTreeNodeIndeterminate(this.at_tree).checked
-    this.at_tree.indeterminate = this.at_tree_service.checkTreeNodeIndeterminate(this.at_tree).indeterminate
+  ngOnDestroy(): void {
+    if (this.atDefaultSubscription) {
+      this.atDefaultSubscription.unsubscribe();
+      this.atDefaultSubscription = null;
+    }
   }
-
-  private _indeterminate = false
-
-
-  @Input()
-  get indeterminate(): boolean {
-    return this._indeterminate;
-  }
-
-  set indeterminate(value: boolean) {
-    this._indeterminate = value;
-  }
-
-  checkAll() {
-    let checked_status = this.at_tree_service.checkExceptDisableChecked(this).checked
-    this.checked       = !checked_status
-    this.checkedChange.emit(this.checked)
-    this.at_tree_service.nodeCheckChange = {key: this.key, node: this, checked: this.checked}
-  }
-
-  expandState = 'hidden'
-
-
-  @Input()
-  set atExpand(value) {
-    this.expandState = value
-  }
-
-  expand() {
-    this.expandState == 'expand' ? this.expandState = 'hidden' : this.expandState = 'expand'
-    this.atExpandChange.emit({state: this.expandState, key: this.key})
-    this.at_tree_service.treeExpandStatusChange = {state: this.expandState, key: this.key}
-  }
-
-
-  get iconMode() {
-    return this.at_root_tree.atIconMode || 'arrow'
-  }
-
-  ngOnDestroy() {
-
-  }
-
-
 }

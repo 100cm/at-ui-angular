@@ -1,31 +1,4 @@
-<p>带有自定义图标的</p>
-<at-tree-root>
-  <at-tree [title]="'跟树'" [openIcon]="openIcon" [closeIcon]="closeIcon">
-    <ng-template #openIcon>
-      <at-icon [type]="'more-horizontal'"></at-icon>
-    </ng-template>
-    <ng-template #closeIcon>
-      <at-icon [type]="'x'"></at-icon>
-    </ng-template>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree [title]="'子树'" [openIcon]="openIcon" [closeIcon]="closeIcon">
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-    <at-tree [title]="'子树'" [openIcon]="openIcon" [closeIcon]="closeIcon">
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-    <at-tree [title]="'子树'" [openIcon]="openIcon" [closeIcon]="closeIcon">
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-  </at-tree>
-</at-tree-root>
-
+<at-tree
+  [atData]="nodes"
+  atShowIcon="true">
+</at-tree>

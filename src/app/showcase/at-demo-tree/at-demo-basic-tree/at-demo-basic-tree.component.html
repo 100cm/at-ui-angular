@@ -1,51 +1,29 @@
-<p>基础使用</p>
-<at-tree-root>
-  <at-tree [title]="'跟树'">
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree [title]="'子树'">
-      <at-tree-node [checked]="true">456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-    <at-tree [title]="'子树'" [checked]="true">
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-    <at-tree [title]="'子树'">
-      <at-tree-node [atDisabled]="true">456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-  </at-tree>
-</at-tree-root>
+<at-tree
+  [atData]="nodes"
+  atShowLine="true"
+  (atClick)="atEvent($event)">
+</at-tree>
 
-<hr>
-<p>带有分割线的</p>
-<at-tree-root [atShowLine]="true" [atIconMode]="'plus'">
-  <at-tree [title]="'跟树'">
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree [title]="'子树'">
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-  </at-tree>
-  <at-tree [title]="'跟树'">
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree-node>123</at-tree-node>
-    <at-tree [title]="'子树'">
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-      <at-tree-node>456</at-tree-node>
-    </at-tree>
-  </at-tree>
-</at-tree-root>
+<at-tree-select
+  [(ngModel)]="model"
+  [atNodes]="nodes"
+></at-tree-select>
+
+<at-tree-select
+  [(ngModel)]="model2"
+  [atShowSearch]="true"
+  [atMultiple]="true"
+  [atCheckable]="true"
+  [atNodes]="nodes"
+></at-tree-select>
+
+------
+<at-tree-select
+  [(ngModel)]="model3"
+  [atShowSearch]="true"
+  [atMultiple]="true"
+  [atNodes]="nodes"
+></at-tree-select>
+
+
+{{model}}

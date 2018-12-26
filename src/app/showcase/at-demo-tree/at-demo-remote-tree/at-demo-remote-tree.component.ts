@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AtFormatEmitEvent} from '../../../components/tree';
 
 @Component({
              selector: 'app-at-demo-remote-tree',
@@ -11,81 +12,27 @@ export class AtDemoRemoteTreeComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(_ => {
-      this.tree = [{
-        title: '根结点',
-        key: 1,
-        remote: true,
-        children: [
-          {
-            title: '子节点1',
-            checked: true,
-            key: 2,
-            disabled: true,
-            children: []
-          },
-          {
-            title: '子节点2',
-            checked: false,
-            key: 3
-          },
-          {
-            title: '子节点3',
-            checked: false,
-            key: 4,
-            children: [
-              {
-                title: '子节点5',
-                checked: false,
-                key: 5
-              },
-              {
-                title: '子节点6',
-                checked: false,
-                key: 6
-              },
-            ]
-          }
 
-        ],
-      }, {
-        title: '根结点',
-        key: 1,
-        remote: true,
-        children: [
-          {
-            title: '子节点1',
-            checked: true,
-            key: 2,
-            disabled: true,
-            children: []
-          },
-          {
-            title: '子节点2',
-            checked: false,
-            key: 3
-          },
-          {
-            title: '子节点3',
-            checked: false,
-            key: 4,
-            children: [
-              {
-                title: '子节点5',
-                checked: false,
-                key: 5
-              },
-              {
-                title: '子节点6',
-                checked: false,
-                key: 6
-              },
-            ]
-          }
+  }
+  nodes = [
+    { title: 'Expand to load', key: '0' },
+    { title: 'Expand to load', key: '1' },
+    { title: 'Tree Node', key: '2', isLeaf: true }
+  ];
 
-        ],
-      }]
-    }, 3000)
+
+  atEvent(event: AtFormatEmitEvent): void {
+    console.log(event);
+    // load child async
+    if (event.eventName === 'expand') {
+      setTimeout(_ => {
+        if (event.node.getChildren().length === 0 && event.node.isExpanded) {
+          event.node.addChildren([
+            { title: 'Child Node', key: `${event.node.key}-0` },
+            { title: 'Child Node', key: `${event.node.key}-1` } ]);
+        }
+      }, 1000);
+    }
   }
 
   tree = []

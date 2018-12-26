@@ -14,4 +14,13 @@ export class DemoBasicTabComponent implements OnInit {
   }
 
   project = {}
+
+  index = 0
+  a = 1
+
+
+  changeA() {
+    this.a == 1 ? this.a = 4 : this.a = 1
+    this.index == 1 ? this.index = 0 : this.index = 1
+  }
 }

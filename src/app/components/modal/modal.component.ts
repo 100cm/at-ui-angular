@@ -1,120 +1,130 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, ContentChild} from '@angular/core';
-import {animate, state, style, transition, trigger}                                          from "@angular/animations";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  ContentChild,
+  Renderer2
+}                                                   from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {
   AtGlobalMonitorService,
   Position
-}                                                                                            from "../at-global-monitor.service";
-import {StatusIconType}                                                                      from "../icon/icon-status-type";
+}                                                   from '../at-global-monitor.service';
+import {StatusIconType}                             from '../icon/icon-status-type';
 import {
+  CdkConnectedOverlay,
   CdkOverlayOrigin,
   ConnectionPositionPair
-}                                                                                            from "@angular/cdk/overlay";
-import {DEFAULT_DROPDOWN_POSITIONS}                                                          from "../core/overlay/overlay-position-map";
-import {DropdownDirective}                                                                   from "../dropdown/dropdown.directive";
-import {ModalBodyDirective}                                                                  from "./modal-body.directive";
+}                                                   from '@angular/cdk/overlay';
+import {DEFAULT_DROPDOWN_POSITIONS}                 from '../core/overlay/overlay-position-map';
+import {DropdownDirective}                          from '../dropdown/dropdown.directive';
+import {ModalBodyDirective}                         from './modal-body.directive';
 
 @Component({
-             selector: 'at-modal',
-             animations: [trigger('enterLeave', [
-               state('enter', style({opacity: 1, transform: 'scale(1)'})),
-               transition('* => enter', [
-                 style({opacity: 0, transform: 'scale(0.1)'}),
-                 animate('100ms linear')
-               ]),
-               state('leave', style({opacity: 0, transform: 'scale(0)'})),
-               transition('* => leave', [
-                 style({opacity: 1, transform: 'scale(1)'}),
-                 animate('100ms linear')
-               ]),
-             ])],
-             template: `
-               <div>
-                 <ng-content></ng-content>
-                 <div #overlays></div>
-
-                 <ng-template
-                   cdkConnectedOverlay
-                   [cdkConnectedOverlayHasBackdrop]="false"
-                   [cdkConnectedOverlayPositions]="_positions"
-                   [cdkConnectedOverlayOrigin]="overlay"
-                   [cdkConnectedOverlayMinWidth]="width"
-                   [cdkConnectedOverlayOpen]="!isDestroy"
-                 >
-                   <div [ngStyle]="{'display': show ? '' : 'none'}"
-                        class="at-modal__mask"></div>
-                   <div
-                     role="dialog"
-                     [ngStyle]="{'display': show ? '' : 'none'}"
-                     (click)="cancelFromMask($event)"
-                     class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
-                   >
-                     <div class="at-modal" [@enterLeave]="state"
-                          [ngStyle]="positionStyle"
-                          [style.width]="width +'px'"
-                     >
-                       <div *ngIf="showHeader" [ngClass]="{'at-modal__header': headerContains()}">
-                         <div class="at-modal__title" #custom_title>
-                           <ng-content select="[header]">
-                           </ng-content>
-                           {{title ? title : ''}}
-                         </div>
-                       </div>
-                       <div class="at-modal__body" #modal_body>
-                         <ng-content select="[body]"></ng-content>
-                         {{message ? message : ''}}
-                       </div>
-                       <div *ngIf="showFooter" class="at-modal__footer">
-                         <div #custom_footer>
-                           <ng-content select="[footer]"></ng-content>
-                         </div>
-                         <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
-                           <button class="at-btn" (click)="cancel()">
-                             <span class="at-btn__text">取消</span>
-                           </button>
-                           <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
+  selector: 'at-modal',
+  animations: [trigger('enterLeave', [
+    state('enter', style({opacity: 1, transform: 'scale(1)'})),
+    transition('* => enter', [
+      style({opacity: 0, transform: 'scale(0.1)'}),
+      animate('100ms linear')
+    ]),
+    state('leave', style({opacity: 0, transform: 'scale(0)'})),
+    transition('* => leave', [
+      style({opacity: 1, transform: 'scale(1)'}),
+      animate('100ms linear')
+    ]),
+  ])],
+  template: `
+    <div>
+      <ng-content></ng-content>
+      <div #overlays></div>
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayHasBackdrop]="true"
+        [cdkConnectedOverlayPositions]="_positions"
+        [cdkConnectedOverlayOrigin]="overlay"
+        [cdkConnectedOverlayMinWidth]="width"
+        [cdkConnectedOverlayOpen]="!isDestroy"
+      >
+        <div [ngStyle]="{'display': show ? '' : 'none'}"
+             class="at-modal__mask"></div>
+        <div
+          role="dialog"
+          [ngStyle]="{'display': show ? '' : 'none'}"
+          (click)="cancelFromMask($event)"
+          class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
+        >
+          <div class="at-modal" [@enterLeave]="state"
+               [ngStyle]="positionStyle"
+               [style.width]="width +'px'"
+          >
+            <div *ngIf="showHeader" [ngClass]="{'at-modal__header': headerContains()}">
+              <div class="at-modal__title" #custom_title>
+                <ng-content select="[header]">
+                </ng-content>
+                {{title ? title : ''}}
+              </div>
+            </div>
+            <div class="at-modal__body" #modal_body>
+              <ng-content select="[body]"></ng-content>
+              {{message ? message : ''}}
+            </div>
+            <div *ngIf="showFooter" class="at-modal__footer">
+              <div #custom_footer>
+                <ng-content select="[footer]"></ng-content>
+              </div>
+              <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
+                <button class="at-btn" (click)="cancel()">
+                  <span class="at-btn__text">取消</span>
+                </button>
+                <button (click)="ok()" type="primary" class="at-btn at-btn--primary">
           <span class="at-btn__text">确认
           </span>
-                           </button>
-                         </div>
-                       </div>
-                       <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
-                       <span *ngIf="closeable" (click)="cancel()" class="at-modal__close"><i
-                         class="icon icon-x"></i></span>
-                     </div>
-                   </div>
-                 </ng-template>
+                </button>
+              </div>
+            </div>
+            <i *ngIf="atType == 'confirm'" class="icon at-modal__icon {{ icon_status[status]}}"></i>
+            <span *ngIf="closeable" (click)="cancel()" class="at-modal__close"><i
+              class="icon icon-x"></i></span>
+          </div>
+        </div>
+      </ng-template>
 
-               </div>
+    </div>
 
-             `,
-           })
+  `,
+})
 export class ModalComponent implements OnInit {
 
-  constructor(private global_service: AtGlobalMonitorService) {
+  constructor(private global_service: AtGlobalMonitorService, private renderer: Renderer2) {
   }
 
   ngOnInit() {
     this.isDestroy = false;
   }
 
-  state       = 'enter'
+  state = 'enter'
   position: Position
   icon_status = StatusIconType
+  @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
 
-
-  private _closeable: boolean                               = true
-  private _atType: 'confirm' | 'normal'                     = 'normal'
+  private _closeable: boolean = true
+  private _atType: 'confirm' | 'normal' = 'normal'
   private _status: 'error' | 'success' | 'warning' | 'info' = 'info'
-  private _show: boolean                                    = false
+  private _show: boolean = false
   private _message: string
-          _positions: ConnectionPositionPair[]              = [...DEFAULT_DROPDOWN_POSITIONS];
-  @Input() width: number                                    = 520
-  @Input() top: number                                      = 100
-  @Input() maskClose: boolean                               = true
-  @Input() showHeader: boolean                              = true
-  @Input() showFooter: boolean                              = true
-  @Output() onCancel: EventEmitter<boolean>                 = new EventEmitter()
-  @Output() onOk: EventEmitter<boolean>                     = new EventEmitter()
+  _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
+  @Input() width: number = 520
+  @Input() top: number = 100
+  @Input() maskClose: boolean = true
+  @Input() showHeader: boolean = true
+  @Input() showFooter: boolean = true
+  @Output() onCancel: EventEmitter<boolean> = new EventEmitter()
+  @Output() onOk: EventEmitter<boolean> = new EventEmitter()
   @ViewChild('modal_content') modal_content: ElementRef
   @ViewChild('overlays') _overlay: CdkOverlayOrigin
   @ContentChild(ModalBodyDirective) body: ModalBodyDirective
@@ -125,7 +135,7 @@ export class ModalComponent implements OnInit {
     return {elementRef: this._overlay}
   }
 
-  OnOkFallBack     = () => {
+  OnOkFallBack = () => {
   }
   OnCancleFallBack = () => {
   }
@@ -176,15 +186,28 @@ export class ModalComponent implements OnInit {
   @Input()
   set show(value: boolean) {
     value == true ? this.state = 'enter' : this.state = 'leave'
-    setTimeout(_ => {
-      setTimeout(_ => {
-        this.setStyle()
+    this._show = value;
+    this.updateOverlayIndex()
+  }
 
-      })
-      this._show = value;
-    })
-
-
+  updateOverlayIndex() {
+    if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef && this.cdkConnectedOverlay.overlayRef.backdropElement) {
+      if (this._show) {
+        this.renderer.removeStyle(this.cdkConnectedOverlay.overlayRef.backdropElement, 'display');
+      }
+      else {
+        this.renderer.setStyle(this.cdkConnectedOverlay.overlayRef.backdropElement, 'display', 'none');
+      }
+    }
+    //handle the select overlay position to fix the z-index bug
+    if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef) {
+      this.cdkConnectedOverlay.overlayRef.updatePosition();
+      const backdropElement = this.cdkConnectedOverlay.overlayRef.backdropElement;
+      const parentNode = this.renderer.parentNode(backdropElement);
+      const hostElement = this.cdkConnectedOverlay.overlayRef.hostElement;
+      this.renderer.appendChild(parentNode, backdropElement);
+      this.renderer.appendChild(parentNode, hostElement);
+    }
   }
 
   cancel() {
@@ -193,6 +216,7 @@ export class ModalComponent implements OnInit {
       this._show = false
       this.onCancel.emit(this._show)
       this.OnCancleFallBack()
+
     }, 20)
 
   }
@@ -201,6 +225,7 @@ export class ModalComponent implements OnInit {
     this.state = 'enter'
     setTimeout(_ => {
       this._show = true
+      this.updateOverlayIndex()
     }, 20)
   }
 
@@ -241,7 +266,7 @@ export class ModalComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-
+    this.updateOverlayIndex()
   }
 
   ngOnDestroy(): void {
