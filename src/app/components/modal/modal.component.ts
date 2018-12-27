@@ -43,7 +43,7 @@ import {Subject, Subscription}                      from 'rxjs';
         [cdkConnectedOverlayPanelClass]="'fix_model_panel'"
         [cdkConnectedOverlayHasBackdrop]="true"
         [cdkConnectedOverlayOrigin]="overlay"
-        [cdkConnectedOverlayOpen]="_show"
+        [cdkConnectedOverlayOpen]="show"
       >
         <div class="at-modal__mask"></div>
         <div
