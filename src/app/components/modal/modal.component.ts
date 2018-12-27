@@ -7,7 +7,7 @@ import {
   ViewChild,
   ElementRef,
   ContentChild,
-  Renderer2
+  Renderer2, ChangeDetectorRef
 }                                                   from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {
@@ -16,13 +16,9 @@ import {
 }                                                   from '../at-global-monitor.service';
 import {StatusIconType}                             from '../icon/icon-status-type';
 import {
-  CdkConnectedOverlay,
   CdkOverlayOrigin,
-  ConnectionPositionPair
 }                                                   from '@angular/cdk/overlay';
-import {DEFAULT_DROPDOWN_POSITIONS}                 from '../core/overlay/overlay-position-map';
-import {DropdownDirective}                          from '../dropdown/dropdown.directive';
-import {ModalBodyDirective}                         from './modal-body.directive';
+import {Subject, Subscription}                      from 'rxjs';
 
 @Component({
   selector: 'at-modal',
@@ -41,28 +37,25 @@ import {ModalBodyDirective}                         from './modal-body.directive
   template: `
     <div>
       <ng-content></ng-content>
-      <div #overlays></div>
+      <div overlay-origin></div>
       <ng-template
         cdkConnectedOverlay
+        (backdropClick)="clickHide()"
+        [cdkConnectedOverlayPanelClass]="'fix_model_panel'"
         [cdkConnectedOverlayHasBackdrop]="true"
-        [cdkConnectedOverlayPositions]="_positions"
         [cdkConnectedOverlayOrigin]="overlay"
-        [cdkConnectedOverlayMinWidth]="width"
-        [cdkConnectedOverlayOpen]="!isDestroy"
+        [cdkConnectedOverlayOpen]="_show"
       >
-        <div [ngStyle]="{'display': show ? '' : 'none'}"
-             class="at-modal__mask"></div>
+        <div class="at-modal__mask"></div>
         <div
           role="dialog"
-          [ngStyle]="{'display': show ? '' : 'none'}"
-          (click)="cancelFromMask($event)"
+          (click)="clickHide($event)"
           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
         >
           <div class="at-modal" [@enterLeave]="state"
-               [ngStyle]="positionStyle"
                [style.width]="width +'px'"
           >
-            <div *ngIf="showHeader" [ngClass]="{'at-modal__header': headerContains()}">
+            <div *ngIf="showHeader" [ngClass]="{'at-modal__header': true}">
               <div class="at-modal__title" #custom_title>
                 <ng-content select="[header]">
                 </ng-content>
@@ -100,176 +93,87 @@ import {ModalBodyDirective}                         from './modal-body.directive
 })
 export class ModalComponent implements OnInit {
 
-  constructor(private global_service: AtGlobalMonitorService, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.isDestroy = false;
+  ngOnInit(): void {
   }
 
   state = 'enter'
-  position: Position
   icon_status = StatusIconType
-  @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
+  @Output() onOk = new EventEmitter()
+  @Output() onCancel = new EventEmitter()
 
-  private _closeable: boolean = true
-  private _atType: 'confirm' | 'normal' = 'normal'
-  private _status: 'error' | 'success' | 'warning' | 'info' = 'info'
-  private _show: boolean = false
-  private _message: string
-  _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
+  @Input() showFooter = true
   @Input() width: number = 520
   @Input() top: number = 100
   @Input() maskClose: boolean = true
   @Input() showHeader: boolean = true
-  @Input() showFooter: boolean = true
-  @Output() onCancel: EventEmitter<boolean> = new EventEmitter()
-  @Output() onOk: EventEmitter<boolean> = new EventEmitter()
-  @ViewChild('modal_content') modal_content: ElementRef
-  @ViewChild('overlays') _overlay: CdkOverlayOrigin
-  @ContentChild(ModalBodyDirective) body: ModalBodyDirective
+  @Input() status: 'error' | 'success' | 'warning' | 'info' = 'info'
+  @Input() title
+  @Input() closeable = true
+  @Input() message
+  @Input() atType: 'confirm' | 'normal' = 'normal'
 
-  isDestroy = true;
-
-  get overlay() {
-    return {elementRef: this._overlay}
-  }
 
   OnOkFallBack = () => {
   }
+
+  $showSubscription = Subscription.EMPTY
+
   OnCancleFallBack = () => {
   }
 
-  get closeable(): boolean {
-    return this._closeable;
+  ok() {
+    this.onOk.emit()
+    this.setShow(false)
+    this.OnOkFallBack()
   }
 
-  @Input()
-  set closeable(value: boolean) {
-    this._closeable = value;
+  cancel() {
+    this.onCancel.emit()
+    this.setShow(false)
+    this.OnCancleFallBack()
   }
 
-  get message(): string {
-    return this._message;
-  }
 
-  @Input() title: string
+  @ViewChild(CdkOverlayOrigin) overlay: CdkOverlayOrigin
 
-  @Input()
-  set message(value: string) {
-    this._message = value;
-  }
+  @Output() showChange = new EventEmitter<boolean>()
+  private _show = false
 
-  get atType() {
-    return this._atType;
-  }
+  public $showChange = new Subject()
 
-  @Input()
-  set atType(value) {
-    this._atType = value;
-  }
-
-  get status() {
-    return this._status;
-  }
-
-  @Input()
-  set status(value) {
-    this._status = value;
+  clickHide(event) {
+    event.stopPropagation()
+    if (event.target.getAttribute('role') === 'dialog' && this.maskClose) {
+      this.setShow(false)
+    }
   }
 
   get show(): boolean {
     return this._show;
   }
 
-
   @Input()
   set show(value: boolean) {
-    value == true ? this.state = 'enter' : this.state = 'leave'
-    this._show = value;
-    this.updateOverlayIndex()
+    this.setShow(value)
   }
 
-  updateOverlayIndex() {
-    if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef && this.cdkConnectedOverlay.overlayRef.backdropElement) {
-      if (this._show) {
-        this.renderer.removeStyle(this.cdkConnectedOverlay.overlayRef.backdropElement, 'display');
-      }
-      else {
-        this.renderer.setStyle(this.cdkConnectedOverlay.overlayRef.backdropElement, 'display', 'none');
-      }
-    }
-    //handle the select overlay position to fix the z-index bug
-    if (this.cdkConnectedOverlay && this.cdkConnectedOverlay.overlayRef) {
-      this.cdkConnectedOverlay.overlayRef.updatePosition();
-      const backdropElement = this.cdkConnectedOverlay.overlayRef.backdropElement;
-      const parentNode = this.renderer.parentNode(backdropElement);
-      const hostElement = this.cdkConnectedOverlay.overlayRef.hostElement;
-      this.renderer.appendChild(parentNode, backdropElement);
-      this.renderer.appendChild(parentNode, hostElement);
-    }
-  }
-
-  cancel() {
-    this.state = 'leave'
-    setTimeout(_ => {
-      this._show = false
-      this.onCancel.emit(this._show)
-      this.OnCancleFallBack()
-
-    }, 20)
-
-  }
-
-  setShow() {
-    this.state = 'enter'
-    setTimeout(_ => {
-      this._show = true
-      this.updateOverlayIndex()
-    }, 20)
-  }
-
-
-  positionStyle = {}
-
-  setStyle() {
-    // const origin = this.global_service.lastClickPosition
-    // let el = this.modal_content.nativeElement;
-    // let transformOrigin = `${origin.x - el.offsetLeft}px ${origin.y - el.offsetTop }px 0px`;
-    // this.positionStyle = {'transform-origin': transformOrigin, 'top': this.top + 'px'}
-    // return this.positionStyle
-  }
-
-  ok() {
-    this.state = 'leave'
-    setTimeout(_ => {
-      this._show = false
-      this.onOk.emit(this._show)
-      this.OnOkFallBack();
-    }, 20)
-
-  }
-
-
-  cancelFromMask(e) {
-    if (e.target.getAttribute('role') === 'dialog' && this.maskClose) {
-      this.cancel()
-    }
-  }
-
-  @ViewChild('custom_title') customTitle: ElementRef
-
-  headerContains() {
-    // let custom_title = this.customTitle.nativeElement
-    // return ( custom_title.children.length > 0 || custom_title.innerText.length > 0)
-    return true
+  setShow(value) {
+    this.$showChange.next(value)
   }
 
   ngAfterViewInit() {
-    this.updateOverlayIndex()
+    this.subscribeStatus()
   }
 
-  ngOnDestroy(): void {
-    this.isDestroy = true
+  subscribeStatus() {
+    if (this.$showSubscription == Subscription.EMPTY) {
+      this.$showSubscription = this.$showChange.asObservable().subscribe((show: boolean) => {
+        this._show = show
+        this.state = show ? 'enter' : 'leave'
+        this.showChange.emit(show)
+      })
+    }
   }
+
+
 }

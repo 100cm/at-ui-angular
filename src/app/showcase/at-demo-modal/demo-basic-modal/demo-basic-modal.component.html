@@ -1,6 +1,6 @@
 <p>从按钮处伸展出来</p>
 
-<at-modal [show]="show2" [showFooter]="false" (onCancel)="close2()" (onOk)="show2 = false">
+<at-modal [show]="show2">
   <div header>
     我来组成头部
   </div>
@@ -10,7 +10,7 @@
     </p>
   </div>
 </at-modal>
-<at-modal [show]="show" [showFooter]="false" (onCancel)="close()" (onOk)="show = false">
+<at-modal [(show)]="show">
   <div header>
     我来组成头部
   </div>
