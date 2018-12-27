@@ -144,10 +144,6 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
     this.onTouched = fn;
   }
 
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
-
-
   setDisabledState(isDisabled: boolean): void {
   }
 
