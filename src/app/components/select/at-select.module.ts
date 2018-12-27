@@ -10,12 +10,14 @@ import {AtOptionPipe, atSubOptionPipe} from './at-option.pipe';
 import {AtSelectTopControlComponent}   from './at-select-top-control.component';
 import {AtSelectUnselectableDirective} from './at-select-unselectable.directive';
 import {AtSelectComponent}             from './at-select.component';
-import {AtI18nModule}                  from "../i18n/at-i18n.module";
+import {AtI18nModule}                  from '../i18n/at-i18n.module';
+import {AtSelectControlService}        from './at-select-control.service';
 
 @NgModule({
-            imports: [CommonModule, FormsModule, OverlayModule, AtI18nModule],
-            declarations: [AtOptionPipe, atSubOptionPipe, AtOptionComponent, AtSelectComponent, AtOptionContainerComponent, AtOptionGroupComponent, AtOptionLiComponent, AtSelectTopControlComponent, AtSelectUnselectableDirective],
-            exports: [AtOptionComponent, AtSelectComponent, AtOptionContainerComponent, AtOptionGroupComponent, AtSelectTopControlComponent]
-          })
+  imports: [CommonModule, FormsModule, OverlayModule, AtI18nModule],
+  providers: [AtSelectControlService],
+  declarations: [AtOptionPipe, atSubOptionPipe, AtOptionComponent, AtSelectComponent, AtOptionContainerComponent, AtOptionGroupComponent, AtOptionLiComponent, AtSelectTopControlComponent, AtSelectUnselectableDirective],
+  exports: [AtOptionComponent, AtSelectComponent, AtOptionContainerComponent, AtOptionGroupComponent, AtSelectTopControlComponent]
+})
 export class AtSelectModule {
 }
