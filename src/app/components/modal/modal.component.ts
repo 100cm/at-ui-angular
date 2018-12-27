@@ -40,7 +40,6 @@ import {Subject, Subscription}                      from 'rxjs';
       <div overlay-origin></div>
       <ng-template
         cdkConnectedOverlay
-        (backdropClick)="clickHide()"
         [cdkConnectedOverlayPanelClass]="'fix_model_panel'"
         [cdkConnectedOverlayHasBackdrop]="true"
         [cdkConnectedOverlayOrigin]="overlay"
