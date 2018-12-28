@@ -1,0 +1,6 @@
+@import '../variables/index.scss';
+
+.on-drag-enter {
+  box-sizing: border-box;
+  box-shadow: 2px 2px 20px $grey-800;
+}

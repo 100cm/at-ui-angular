@@ -178,7 +178,12 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
 
   subClickSelect() {
     this.at_select_control_service.$selectOptionChange.asObservable().subscribe(data => {
-      this.onChange(data)
+      if (this.multiple) {
+        this.onChange(data || [])
+      } else {
+        this.onChange(data[0] || null)
+      }
+
     })
   }
 

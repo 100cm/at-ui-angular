@@ -1,0 +1,25 @@
+@import "../variables/index";
+
+.at-card {
+  background: #fff;
+  padding: 16px;
+  display: block;
+  border-radius: 4px;
+  transition: box-shadow .28s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 1px 4px 0 rgba(10, 16, 20, .37);
+  &-header {
+    display: flex;
+    flex-direction: row
+  }
+  &-content {
+
+    &-full {
+      width: calc(100% + 32px);
+      margin: 0 -16px 16px -16px;
+    }
+  }
+  &-footer {
+    margin-bottom: -8px;
+    padding-bottom: 0;
+  }
+}
