@@ -8,15 +8,24 @@
 
 .at-date-input-wrapper {
   position: relative;
+  &:hover {
+    .at_date_picker_clear {
+      opacity: 1 !important;
+    }
+  }
 }
 
 .at_date_picker_clear {
+  opacity: 0;
   position: absolute;
   top: 50%;
   right: 8px;
   margin-top: -5px;
   font-size: 10px;
-  cursor: pointer
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 @mixin date-header() {

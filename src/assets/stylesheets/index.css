@@ -9186,9 +9186,14 @@ $info-color               : #78A4FA;
 .at-date-input-wrapper {
   position: relative;
 }
+/* line 12, ../sass/components/datepicker.scss */
+.at-date-input-wrapper:hover .at_date_picker_clear {
+  opacity: 1 !important;
+}
 
-/* line 13, ../sass/components/datepicker.scss */
+/* line 18, ../sass/components/datepicker.scss */
 .at_date_picker_clear {
+  opacity: 0;
   position: absolute;
   top: 50%;
   right: 8px;
@@ -9196,8 +9201,12 @@ $info-color               : #78A4FA;
   font-size: 10px;
   cursor: pointer;
 }
+/* line 26, ../sass/components/datepicker.scss */
+.at_date_picker_clear:hover {
+  opacity: 1;
+}
 
-/* line 40, ../sass/components/datepicker.scss */
+/* line 49, ../sass/components/datepicker.scss */
 .at-datepicker {
   position: relative;
   outline: none;
@@ -9212,19 +9221,19 @@ $info-color               : #78A4FA;
   background-clip: padding-box;
   line-height: 1.5;
 }
-/* line 54, ../sass/components/datepicker.scss */
+/* line 63, ../sass/components/datepicker.scss */
 .at-datepicker a:hover {
   color: #78A4FA;
 }
-/* line 58, ../sass/components/datepicker.scss */
+/* line 67, ../sass/components/datepicker.scss */
 .at-datepicker--footer {
   padding: 8px 12px;
 }
-/* line 62, ../sass/components/datepicker.scss */
+/* line 71, ../sass/components/datepicker.scss */
 .at-datepicker--panel {
   position: relative;
 }
-/* line 64, ../sass/components/datepicker.scss */
+/* line 73, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header {
   height: 40px;
   line-height: 40px;
@@ -9235,7 +9244,7 @@ $info-color               : #78A4FA;
   user-select: none;
   border-bottom: 1px solid #F7F7F7;
 }
-/* line 73, ../sass/components/datepicker.scss */
+/* line 82, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-year-btn {
   left: 7px;
   position: absolute;
@@ -9246,12 +9255,12 @@ $info-color               : #78A4FA;
   display: inline-block;
   line-height: 40px;
 }
-/* line 76, ../sass/components/datepicker.scss */
+/* line 85, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-year-btn:after {
   font-family: feather;
   content: "";
 }
-/* line 81, ../sass/components/datepicker.scss */
+/* line 90, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-month-btn {
   left: 29px;
   position: absolute;
@@ -9262,12 +9271,12 @@ $info-color               : #78A4FA;
   display: inline-block;
   line-height: 40px;
 }
-/* line 84, ../sass/components/datepicker.scss */
+/* line 93, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .pre-month-btn:after {
   font-family: feather;
   content: "\E843";
 }
-/* line 91, ../sass/components/datepicker.scss */
+/* line 100, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .month-select {
   padding: 0 2px;
   font-weight: 700;
@@ -9275,11 +9284,11 @@ $info-color               : #78A4FA;
   color: #273A52;
   line-height: 40px;
 }
-/* line 93, ../sass/components/datepicker.scss */
+/* line 102, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .month-select:hover {
   color: #78A4FA;
 }
-/* line 97, ../sass/components/datepicker.scss */
+/* line 106, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .year-select {
   padding: 0 2px;
   font-weight: 700;
@@ -9287,11 +9296,11 @@ $info-color               : #78A4FA;
   color: #273A52;
   line-height: 40px;
 }
-/* line 99, ../sass/components/datepicker.scss */
+/* line 108, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .current-select-label .year-select:hover {
   color: #78A4FA;
 }
-/* line 106, ../sass/components/datepicker.scss */
+/* line 115, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-year-btn {
   position: absolute;
   top: 0;
@@ -9302,12 +9311,12 @@ $info-color               : #78A4FA;
   line-height: 40px;
   right: 7px;
 }
-/* line 109, ../sass/components/datepicker.scss */
+/* line 118, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-year-btn:after {
   font-family: feather;
   content: "\E847";
 }
-/* line 114, ../sass/components/datepicker.scss */
+/* line 123, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-month-btn {
   position: absolute;
   top: 0;
@@ -9318,17 +9327,17 @@ $info-color               : #78A4FA;
   line-height: 40px;
   right: 29px;
 }
-/* line 117, ../sass/components/datepicker.scss */
+/* line 126, ../sass/components/datepicker.scss */
 .at-datepicker--panel--header .next-month-btn:after {
   font-family: feather;
   content: "\E844";
 }
-/* line 126, ../sass/components/datepicker.scss */
+/* line 135, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body {
   padding: 8px 12px;
   border-bottom: 1px solid #F7F7F7;
 }
-/* line 129, ../sass/components/datepicker.scss */
+/* line 138, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table {
   border-collapse: collapse;
   max-width: 100%;
@@ -9336,27 +9345,27 @@ $info-color               : #78A4FA;
   width: 100%;
   table-layout: fixed;
 }
-/* line 135, ../sass/components/datepicker.scss */
+/* line 144, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table td {
   border: 0;
 }
-/* line 139, ../sass/components/datepicker.scss */
+/* line 148, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table thead .column-header {
   line-height: 18px;
   width: 33px;
   padding: 6px 0;
   text-align: center;
 }
-/* line 151, ../sass/components/datepicker.scss */
+/* line 160, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody tr {
   line-height: 1.5;
 }
-/* line 154, ../sass/components/datepicker.scss */
+/* line 163, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell {
   text-align: center;
   padding: 4px 0;
 }
-/* line 157, ../sass/components/datepicker.scss */
+/* line 166, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell .at-date {
   display: inline-block;
   margin: 0 auto;
@@ -9370,48 +9379,48 @@ $info-color               : #78A4FA;
   cursor: pointer;
   transition: background .3s ease;
 }
-/* line 169, ../sass/components/datepicker.scss */
+/* line 178, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell .at-date:hover, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell .at-date:hover {
   background: #D7E4FE;
   cursor: pointer;
 }
-/* line 175, ../sass/components/datepicker.scss */
+/* line 184, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--last-month .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--last-month .at-date {
   color: #BFBFBF;
 }
-/* line 180, ../sass/components/datepicker.scss */
+/* line 189, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--next-month .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--next-month .at-date {
   color: #BFBFBF;
 }
-/* line 185, ../sass/components/datepicker.scss */
+/* line 194, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--today .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--today .at-date {
   border: 1px solid #78A4FA;
 }
-/* line 191, ../sass/components/datepicker.scss */
+/* line 200, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--selected .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--selected .at-date {
   background: #78A4FA;
   color: white;
 }
-/* line 194, ../sass/components/datepicker.scss */
+/* line 203, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--selected .at-date:hover, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--selected .at-date:hover {
   background: #78A4FA !important;
 }
-/* line 199, ../sass/components/datepicker.scss */
+/* line 208, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--disabled, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--disabled {
   cursor: not-allowed;
   color: #BFBFBF;
   background: #ECECEC;
 }
-/* line 203, ../sass/components/datepicker.scss */
+/* line 212, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--disabled .at-date, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--disabled .at-date {
   cursor: not-allowed;
 }
-/* line 205, ../sass/components/datepicker.scss */
+/* line 214, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-date-cell--disabled .at-date:hover, .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell--disabled .at-date:hover {
   cursor: not-allowed;
   background: #ECECEC;
 }
-/* line 213, ../sass/components/datepicker.scss */
+/* line 222, ../sass/components/datepicker.scss */
 .at-datepicker--panel--body .at-calendar-table tbody .at-month-cell {
   line-height: 50px;
   text-align: center;

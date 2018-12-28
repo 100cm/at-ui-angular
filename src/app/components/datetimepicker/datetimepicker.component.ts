@@ -29,7 +29,7 @@ const moment = momentI
 @Component({
   selector: 'atDatetimePicker',
   template: `
-    <div class="at-date-input-wrapper">
+    <div class="at-date-input-wrapper" >
       <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="_show()"></atInput>
       <i (click)="clear($event)"
          *ngIf="allowClear"
@@ -253,7 +253,7 @@ export class DatetimepickerComponent implements OnInit {
    */
   @Input() choice_modal = ['date', 'time']
 
-  @Input() allowClear = false
+  @Input() allowClear = true
 
   writeValue(value: any): void {
     if (value) {
