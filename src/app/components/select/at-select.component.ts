@@ -30,6 +30,8 @@ import {AtOptionComponent}                                                     f
 import {defaultFilterOption, TFilterOption}                                    from './at-option.pipe';
 import {AtSelectTopControlComponent}                                           from './at-select-top-control.component';
 import {AtSelectControlService}                                                from './at-select-control.service';
+import {debounceTime}                                                          from 'rxjs/operators';
+import {DropDownAnimation}                                                     from '../animations/drop-down-animation';
 
 @Component({
   selector: 'at-select',
@@ -41,65 +43,23 @@ import {AtSelectControlService}                                                f
     }, AtSelectControlService
   ],
   animations: [
-    trigger('dropDownAnimation', [
-      state('hidden', style({
-        opacity: 0,
-        display: 'none'
-      })),
-      state('bottom', style({
-        opacity: 1,
-        transform: 'scaleY(1)',
-        transformOrigin: '0% 0%'
-      })),
-      state('top', style({
-        opacity: 1,
-        transform: 'scaleY(1)',
-        transformOrigin: '0% 100%'
-      })),
-      transition('hidden => bottom', [
-        style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 0%'
-        }),
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-      ]),
-      transition('bottom => hidden', [
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 0%'
-        }))
-      ]),
-      transition('hidden => top', [
-        style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 100%'
-        }),
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-      ]),
-      transition('top => hidden', [
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 100%'
-        }))
-      ])
-    ])
+    DropDownAnimation
   ],
   template: `
     <div
       cdkOverlayOrigin
       class="at-select at-select--{{atSize}}"
       [class.at-select--open]="atOpen"
-      [class.at-select-single]="isSingleMode"
-      [class.at-select--multiple]="isMultipleOrTags"
+      [class.at-select-single]="!multiple"
+      [class.at-select--multiple]="multiple"
       [class.at-select--disabled]="atDisabled"
-      (keydown)="onKeyDownCdkOverlayOrigin($event)"
       tabindex="0">
       <div
         at-select-top-control
+        [multiple]="multiple"
+        [allowClear]="allowClear"
+        [atPlaceHolder]="atPlaceHolder"
+        [atShowSearch]="searchable"
       >
       </div>
     </div>
@@ -107,17 +67,13 @@ import {AtSelectControlService}                                                f
       cdkConnectedOverlay
       [cdkConnectedOverlayHasBackdrop]="true"
       [cdkConnectedOverlayOrigin]="cdkOverlayOrigin"
-      (backdropClick)="closeDropDown()"
-      (detach)="closeDropDown();"
-      (attach)="attachSelect()"
-      (positionChange)="onPositionChange($event)"
+      (backdropClick)="close()"
       [cdkConnectedOverlayWidth]="overlayWidth"
       [cdkConnectedOverlayMinWidth]="overlayMinWidth"
       [cdkConnectedOverlayOpen]="atOpen">
-      <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="atOpen ? dropDownPosition : 'hidden' "
+      <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="dropDownPosition "
            [ngStyle]="atDropdownStyle">
-        <div at-option-container>
-          <ng-content select="at-option"></ng-content>
+        <div at-option-container [multiple]="multiple" [at_select_control_service]="at_select_control_service">
         </div>
       </div>
     </ng-template>
@@ -125,14 +81,10 @@ import {AtSelectControlService}                                                f
 })
 export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
 
-
   atValue = []
 
 
   ngOnDestroy(): void {
-  }
-
-  ngOnInit(): void {
   }
 
 
@@ -148,23 +100,20 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   }
 
   writeValue(obj: string | string[]): void {
-    if (Array.isArray(obj)) {
-      this.atValue = obj
-    } else {
-      this.atValue = [obj]
+    if (obj) {
+      if (Array.isArray(obj)) {
+        this.atValue = obj
+      } else {
+        this.atValue = [obj]
+      }
+      this.at_select_control_service.$selectOptionChange.next(this.atValue)
     }
+
   }
 
-  private _disabled = false;
-  private _allowClear = false;
-  private _showSearch = false;
-  private _open = false;
-  private _placeholder: string;
-  private _autoFocus = false;
-  private _dropdownClassName: string;
   onChange: (value: string | string[]) => void = () => null;
   onTouched: () => void = () => null;
-  dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
+  dropDownPosition: 'top' | 'center' | 'bottom' | 'hidden' = 'bottom';
   // tslint:disable-next-line:no-any
   listOfSelectedValue: any[] = [];
   listOfTemplateOption: AtOptionComponent[] = [];
@@ -179,14 +128,12 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @ViewChild(AtSelectTopControlComponent) atSelectTopControlComponent: AtSelectTopControlComponent;
   @ViewChild(AtOptionContainerComponent) atOptionContainerComponent: AtOptionContainerComponent;
   /** should move to at-option-container when https://github.com/angular/angular/issues/20810 resolved **/
-  @ContentChildren(AtOptionComponent) listOfatOptionComponent: QueryList<AtOptionComponent>;
-  @ContentChildren(AtOptionGroupComponent) listOfatOptionGroupComponent: QueryList<AtOptionGroupComponent>;
   @Output() search = new EventEmitter<string>();
   @Output() atScrollToBottom = new EventEmitter<void>();
   @Output() atOpenChange = new EventEmitter<boolean>();
   @Input() atSize = 'normal';
   @Input('remoteSearch') atServerSearch = false;
-  @Input() atMode: 'default' | 'multiple' | 'tags' = 'default';
+  _atMode: 'default' | 'multiple' | 'tags' = 'default';
   @Input() atDropdownMatchSelectWidth = true;
   @Input() atFilterOption: TFilterOption = defaultFilterOption;
   @Input() atMaxMultipleCount = Infinity;
@@ -198,19 +145,56 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @Input() multiple = false
   @Input() allowClear = false
   @Input() tagAble = false
+  @Input() atDisabled = false
+  atOpen = false
 
 
-  ngAfterViewInit() {
-
+  get atMode(): 'default' | 'multiple' | 'tags' {
+    return this._atMode;
   }
 
+  @Input()
+  set atMode(value: 'default' | 'multiple' | 'tags') {
+    this._atMode = value;
+    if (value == 'multiple' || value == 'tags') {
+      this.multiple = true
+    } else {
+      this.multiple = false
+    }
+  }
+
+  ngOnInit() {
+    this.subOpenStatus()
+    this.subClickSelect()
+  }
 
   subOpenStatus() {
-    this.at_select_control_service.$openStatus.asObservable().subscribe()
+    this.at_select_control_service.$openStatus.asObservable().pipe().subscribe((open: boolean) => {
+      this.atOpen = open
+      this.updateCdkConnectedOverlayStatus()
+      this.atOpenChange.emit(open)
+    })
   }
 
-  constructor(private at_select_control_service: AtSelectControlService) {
+  subClickSelect() {
+    this.at_select_control_service.$selectOptionChange.asObservable().subscribe(data => {
+      this.onChange(data)
+    })
+  }
 
+  ngAfterViewInit() {
+  }
+
+  close() {
+    this.at_select_control_service.$openStatus.next(false)
+  }
+
+  constructor(public at_select_control_service: AtSelectControlService) {
+
+  }
+
+  updateCdkConnectedOverlayStatus() {
+    this.overlayWidth = this.cdkOverlayOrigin.elementRef.nativeElement.getBoundingClientRect().width;
   }
 
 }

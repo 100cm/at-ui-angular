@@ -1,5 +1,8 @@
-<at-select (change)="change($event)"  [atPlaceHolder]="'asdsd'" [atSize]="'large'" [searchable]="true">
-  <at-option *ngFor="let item of selects;let i= index" [atLabel]="'first'" [atValue]="i"></at-option>
+<at-select [(ngModel)]="single" (change)="change($event)" [atPlaceHolder]="'asdsd'" [atSize]="'large'"
+           [searchable]="true">
+  <at-option *ngFor="let item of selects;let i= index" [atLabel]="item" [atValue]="item"></at-option>
 </at-select>
 
 {{single}}
+
+<button at-button (click)="setOntherOption()">添加选项</button>

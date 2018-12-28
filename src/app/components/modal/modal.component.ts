@@ -40,6 +40,7 @@ import {Subject, Subscription}                      from 'rxjs';
       <div overlay-origin></div>
       <ng-template
         cdkConnectedOverlay
+        (backdropClick)="setShow(false)"
         [cdkConnectedOverlayPanelClass]="'fix_model_panel'"
         [cdkConnectedOverlayHasBackdrop]="true"
         [cdkConnectedOverlayOrigin]="overlay"
@@ -141,7 +142,6 @@ export class ModalComponent implements OnInit {
   public $showChange = new Subject()
 
   clickHide(event) {
-    event.stopPropagation()
     if (event.target.getAttribute('role') === 'dialog' && this.maskClose) {
       this.setShow(false)
     }

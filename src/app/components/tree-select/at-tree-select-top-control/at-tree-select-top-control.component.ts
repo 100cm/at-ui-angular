@@ -9,11 +9,10 @@ import {
   Renderer2,
   ViewChild
 }                                                   from '@angular/core';
-import {AtSelectTopControlComponent}                from '../../select/at-select-top-control.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {AtOptionComponent}                          from '../../select';
-import {isNotNil}                                   from '../../utils/class-helper';
 import {AtTreeNode}                                 from '../../tree';
+import {AtSelectControlService}                     from '../../select/at-select-control.service';
+import {delay, map}                                 from 'rxjs/operators';
 
 @Component({
   selector: '[at-tree-select-top-control]',
@@ -38,20 +37,19 @@ import {AtTreeNode}                                 from '../../tree';
         #inputElement
         [ngStyle]="{'display': atShowSearch && atOpen ? 'block' :'none'}" placeholder="{{singleValueLabel}}"
         autocomplete="off"
-        class="at-select__input"
+        class="at-select__input fff"
         (compositionstart)="isComposing = true"
         (compositionend)="isComposing = false"
         (input)="updateWidth()"
-        (keydown)="onKeyDownInput($event)"
         [ngModel]="inputValue"
-        (ngModelChange)="setInputValue($event,true)"
+        (ngModelChange)="setInputValue($event)"
         [disabled]="atDisabled">
     </ng-template>
     <div
+      (click)="focusOnInput($event)"
       *ngIf="atPlaceHolder"
       at-select-unselectable
       [style.display]="placeHolderDisplay"
-      (click)="focusOnInput()"
       class="at-select-selection__placeholder">
       {{ atPlaceHolder }}
     </div>
@@ -59,14 +57,15 @@ import {AtTreeNode}                                 from '../../tree';
     <ng-container *ngIf="isSingleMode">
       <!--selected label-->
       <div
-        *ngIf="atListOfSelectedValue.length"
+        *ngIf="selectedOptions.length"
         class="at-select-selection-selected-value"
-        [attr.title]="atListOfSelectedValue[0].atLabel"
+        [attr.title]="selectedOptions[0].title"
         [ngStyle]="selectedValueDisplay">
       </div>
 
-      <div class="at-select__selection">
-        <span class="at-select__selected" *ngIf="!atShowSearch || ( atShowSearch && !atOpen)">   {{ singleValueLabel
+      <div class="at-select__selection" (click)="focusOnInput($event)">
+        <span class="at-select__selected"
+              *ngIf="!atShowSearch || ( atShowSearch && !atOpen)">   {{ selectedOptions[0]?.title
           }}</span>
         <!--show search-->
         <div
@@ -84,29 +83,28 @@ import {AtTreeNode}                                 from '../../tree';
       </div>
     </ng-container>
     <!--multiple or tags mode-->
-    <ul class="at-select__selection at-select__selection__ul"
+    <ul (click)="focusOnInput($event)" class="at-select__selection at-select__selection__ul"
         *ngIf="isMultipleOrTags">
-      <ng-container *ngFor="let value of atListOfSelectedValue">
+      <ng-container *ngFor="let value of selectedOptions">
         <li
           class="at-select__selection__ul__tag"
+          *ngIf="isOptionDisplay(value)"
           [@tagAnimation]
           [attr.title]="getPropertyFromValue(value,'title')"
-          [class.at-select-selection__choice__disabled]="getPropertyFromValue(value,'atDisabled')"
+          [class.at-select-selection__choice__disabled]="getPropertyFromValue(value,'disabled')"
         >
-          <span>{{ getPropertyFromValue(value, 'title')}}</span>
-          <i (click)="removeValueFormSelected(value)"
+          <span>{{ getPropertyFromValue(value, 'title') || value }}</span>
+          <i *ngIf="!getPropertyFromValue(value,'atDisabled')" (click)="removeValueFormSelected($event,value)"
              class="icon icon-x at-tag__close"></i>
         </li>
       </ng-container>
       <input type="text"
+             #inputElement
              *ngIf="atShowSearch"
              class="at-select-search-inline"
-             (compositionstart)="isComposing = true"
-             (compositionend)="isComposing = false"
              (input)="updateWidth()"
-             (keydown)="onKeyDownInput($event)"
              [ngModel]="inputValue"
-             (ngModelChange)="setInputValue($event,true)"
+             (ngModelChange)="setInputValue($event)"
              [disabled]="atDisabled"
              placeholder=""/>
       <i class="icon icon-chevron-down at-select__arrow"></i>
@@ -121,58 +119,80 @@ import {AtTreeNode}                                 from '../../tree';
 })
 export class AtTreeSelectTopControlComponent {
 
-  // tslint:disable-next-line:no-any
-  private _listOfSelectedValue: AtTreeNode[] = [];
-  listOfCachedSelectedOption: AtOptionComponent[] = [];
+  constructor(private renderer: Renderer2, private select_control_service: AtSelectControlService) {
+
+  }
+
   inputValue: string;
   isComposing = false;
+  atOpen = false
+
   @ViewChild('inputElement') inputElement: ElementRef;
-  // tslint:disable-next-line:no-any
-  @Output() atListOfSelectedValueChange = new EventEmitter<any[]>(true);
-  @Output() atOnSearch = new EventEmitter<{ value: string, emit: boolean }>();
-  @Input() atMode = 'default';
-  @Input() atShowSearch = false;
-  @Input() atDisabled = false;
 
-  @Input() atPlaceHolder: string;
-  @Input() atOpen = false;
-  // tslint:disable-next-line:no-any
-  @Input() compareWith: (o1: any, o2: any) => boolean;
-
+  @Input() multiple
+  @Input() atShowSearch = false
   @Input() allowClear = false
+  @Input() atPlaceHolder
+
+
+  get isSingleMode() {
+    return this.multiple === false
+  }
 
   @Input()
-  // tslint:disable-next-line:no-any
-  set atListOfSelectedValue(value: any[]) {
-    this._listOfSelectedValue = value;
+  atMode = 'common'
+
+  focusOnInput($event) {
+    $event.stopPropagation()
+    $event.preventDefault()
+    this.select_control_service.$openStatus.next(true)
   }
 
-  // tslint:disable-next-line:no-any
-  get atListOfSelectedValue(): any[] {
-    return this._listOfSelectedValue;
+
+  ngOnInit() {
+    this.subPushOption()
+    this.subStatusChange()
+    this.subSearch()
+  }
+
+  getPropertyFromValue(value, key) {
+    return value[key] || ''
   }
 
 
-  setInputValue(value: string, emit: boolean): void {
-    this.inputValue = value;
-    this.updateWidth();
-    this.atOnSearch.emit({value, emit});
+  get selectedOptions() {
+    return this.options
   }
 
-  get isSingleMode(): boolean {
-    return this.atMode === 'default';
-  }
-
-  get isMultipleOrTags(): boolean {
-    return this.atMode === 'tags' || this.atMode === 'multiple';
-  }
-
-  get placeHolderDisplay(): string {
-    return this.inputValue || this.isComposing || this.atListOfSelectedValue.length ? 'none' : 'block';
+  isOptionDisplay(value: any): boolean {
+    return !!this.getPropertyFromValue(value, 'title');
   }
 
   get searchDisplay(): string {
     return this.atOpen ? 'block' : 'none';
+  }
+
+  options = []
+
+  subPushOption() {
+    this.select_control_service.$optionsChange.asObservable().subscribe(options => {
+      this.options = options
+    })
+  }
+
+  subSearch() {
+
+  }
+
+  subStatusChange() {
+    this.select_control_service.$openStatus.asObservable().pipe(map((data) => {
+      this.atOpen = data
+      return data
+    })).subscribe(data => {
+      if (this.inputElement && data === true) {
+        this.inputElement.nativeElement.focus()
+      }
+    })
   }
 
   get selectedValueDisplay(): { [key: string]: string } {
@@ -198,33 +218,27 @@ export class AtTreeSelectTopControlComponent {
     };
   }
 
-  get singleValueLabel(): string {
-    return this.getPropertyFromValue(this.atListOfSelectedValue[0], 'title');
+  get isMultipleOrTags(): boolean {
+    return this.multiple;
   }
 
-  focusOnInput(): void {
-    if (this.inputElement) {
-      this.inputElement.nativeElement.focus();
-    }
+  clear() {
+    this.select_control_service.$selectOptionChange.next([])
   }
 
-  // tslint:disable-next-line:no-any
-  getPropertyFromValue(value: any, prop: string): string {
-    return value ? value[prop] : '';
+  removeValueFormSelected($event, value: AtTreeNode) {
+    $event.preventDefault()
+    this.select_control_service.removeValue(value.key)
   }
 
-  // tslint:disable-next-line:no-any
-  isOptionDisplay(value: any): boolean {
-    return (this.atMode === 'tags') || !!this.getPropertyFromValue(value, 'atLabel');
+  get placeHolderDisplay(): string {
+    return this.inputValue || this.isComposing || this.selectedOptions.length ? 'none' : 'block';
   }
 
-  // tslint:disable-next-line:no-any
-  removeValueFormSelected(value: any): void {
-    if (this.atDisabled || this.getPropertyFromValue(value, 'atDisabled')) {
-      return;
-    }
-    this._listOfSelectedValue = this.atListOfSelectedValue.filter(item => item !== value);
-    this.atListOfSelectedValueChange.emit(this.atListOfSelectedValue);
+  setInputValue(value: string): void {
+    this.inputValue = value;
+    this.updateWidth();
+    this.select_control_service.$searchValueChange.next(value)
   }
 
   updateWidth(): void {
@@ -237,36 +251,4 @@ export class AtTreeSelectTopControlComponent {
       }
     }
   }
-
-  @Output() OnClear: EventEmitter<any> = new EventEmitter<any>()
-
-  clear(e) {
-    e.preventDefault()
-    this.OnClear.emit(e)
-  }
-
-  onKeyDownInput(e: KeyboardEvent): void {
-    const keyCode = e.keyCode;
-    const eventTarget = e.target as HTMLInputElement;
-    if (
-      this.isMultipleOrTags &&
-      !eventTarget.value &&
-      // BackSpace
-      keyCode === 8
-    ) {
-      e.preventDefault();
-      if (this.atListOfSelectedValue.length) {
-        this.removeValueFormSelected(this.atListOfSelectedValue[this.atListOfSelectedValue.length - 1]);
-      }
-    }
-  }
-
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {
-
-  }
-
-  ngAfterViewInit() {
-
-  }
-
 }

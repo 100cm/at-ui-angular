@@ -1,6 +1,9 @@
 import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 
-import {toBoolean} from '../utils/class-helper';
+import {toBoolean}                  from '../utils/class-helper';
+import {AtOptionContainerComponent} from './at-option-container.component';
+import {AtSelectControlService}     from './at-select-control.service';
+import {AtSelectComponent}          from './at-select.component';
 
 @Component({
   selector: 'at-option',
@@ -10,6 +13,11 @@ import {toBoolean} from '../utils/class-helper';
     </ng-template>`
 })
 export class AtOptionComponent {
+
+  constructor(private at_select_service: AtSelectControlService) {
+
+  }
+
   private _disabled = false;
   private _customContent = false;
   @ViewChild(TemplateRef) template: TemplateRef<void>;
@@ -26,6 +34,11 @@ export class AtOptionComponent {
     return this._disabled;
   }
 
+  ngOnInit(){
+    // console.log('current atValue',this.atValue)
+    this.at_select_service.pushOptions(this)
+  }
+
   @Input()
   set atCustomContent(value: boolean) {
     this._customContent = toBoolean(value);
@@ -34,4 +47,11 @@ export class AtOptionComponent {
   get atCustomContent(): boolean {
     return this._customContent;
   }
+
+  ngOnDestroy() {
+   this.at_select_service.removeOption(this)
+  }
+
+  public selected = false
+
 }

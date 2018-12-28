@@ -4,6 +4,8 @@
   [atNodes]="nodes"
 ></at-tree-select>
 <hr>
+<button (click)="setModal()">更换值</button>
+<hr>
 <label>checkbox 的多选</label>
 <at-tree-select
   [(ngModel)]="model2"
@@ -21,3 +23,5 @@
   [atMultiple]="true"
   [atNodes]="nodes"
 ></at-tree-select>
+
+

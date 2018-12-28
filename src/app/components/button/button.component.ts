@@ -5,14 +5,14 @@ export type AtButtonShape = 'circle' | null ;
 export type AtButtonSize = 'small' | 'large' | 'smaller' ;
 
 @Component({
-             selector: '[at-button]',
-             template: `<i *ngIf="atIcon != null" class="at-btn__icon icon {{atIcon}}"></i>
-             <span #text [hidden]="!showText" class="at-btn__text">
+  selector: '[at-button]',
+  template: `<i *ngIf="atIcon != null" class="at-btn__icon icon {{atIcon}}"></i>
+  <span #text class="at-btn__text">
   <ng-content></ng-content>
 </span>
 
-             `,
-           })
+  `,
+})
 export class ButtonComponent implements OnInit {
 
   @Input()
@@ -69,14 +69,14 @@ export class ButtonComponent implements OnInit {
   _el: HTMLElement;
   _shape: AtButtonShape;
   nativeElement: HTMLElement;
-  _prefixCls          = 'at-btn';
-  _classList          = []
-  _iconLoading        = false
+  _prefixCls = 'at-btn';
+  _classList = []
+  _iconLoading = false
   _icon: string
   _size: AtButtonSize
 
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
-    this._el           = this._elementRef.nativeElement;
+    this._el = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
     this._renderer.addClass(this._el, this._prefixCls);
   }

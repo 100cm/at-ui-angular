@@ -1,15 +1,25 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AtSelectComponent}                                                     from '../../select/at-select.component';
-import {NG_VALUE_ACCESSOR}                                                     from '@angular/forms';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {InputBoolean}                               from '../../utils/class-helper';
-import {CdkConnectedOverlay, CdkOverlayOrigin} from '@angular/cdk/overlay';
-import {merge, of, Subscription}               from 'rxjs';
-import {filter, tap}                           from 'rxjs/operators';
-import {AtTreeSelectTopControlComponent}       from '../at-tree-select-top-control/at-tree-select-top-control.component';
-import {AtTreeNode}                            from '../../tree/at-tree-node';
-import {AtFormatEmitEvent}                     from '../../tree/interface';
-import {AtTreeComponent}                       from '../../tree/at-tree.component';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+}                                        from '@angular/core';
+import {AtSelectComponent}               from '../../select/at-select.component';
+import {NG_VALUE_ACCESSOR}               from '@angular/forms';
+import {InputBoolean}                    from '../../utils/class-helper';
+import {merge, of, Subscription}         from 'rxjs';
+import {filter, tap}                     from 'rxjs/operators';
+import {AtTreeSelectTopControlComponent} from '../at-tree-select-top-control/at-tree-select-top-control.component';
+import {AtTreeNode, AtTreeNodeOptions}   from '../../tree/at-tree-node';
+import {AtFormatEmitEvent}               from '../../tree/interface';
+import {AtTreeComponent}                 from '../../tree/at-tree.component';
+import {DropDownAnimation}               from '../../animations/drop-down-animation';
+import {AtSelectControlService}          from '../../select/at-select-control.service';
+import {AtTreeService,}                  from '../../tree/at-tree.service';
 
 @Component({
   selector: 'at-tree-select',
@@ -18,95 +28,41 @@ import {AtTreeComponent}                       from '../../tree/at-tree.componen
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => AtTreeSelectComponent),
       multi: true
-    }
+    },
+    AtSelectControlService, AtTreeService,
   ],
   animations: [
-    trigger('dropDownAnimation', [
-      state('hidden', style({
-        opacity: 0,
-        display: 'none'
-      })),
-      state('bottom', style({
-        opacity: 1,
-        transform: 'scaleY(1)',
-        transformOrigin: '0% 0%'
-      })),
-      state('top', style({
-        opacity: 1,
-        transform: 'scaleY(1)',
-        transformOrigin: '0% 100%'
-      })),
-      transition('hidden => bottom', [
-        style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 0%'
-        }),
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-      ]),
-      transition('bottom => hidden', [
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 0%'
-        }))
-      ]),
-      transition('hidden => top', [
-        style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 100%'
-        }),
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)')
-      ]),
-      transition('top => hidden', [
-        animate('100ms cubic-bezier(0.755, 0.05, 0.855, 0.06)', style({
-          opacity: 0,
-          transform: 'scaleY(0.8)',
-          transformOrigin: '0% 100%'
-        }))
-      ])
-    ])
+    DropDownAnimation
   ],
   template: `
     <div
       cdkOverlayOrigin
       class="at-select at-select--{{atSize}}"
       [class.at-select--open]="atOpen"
-      [class.at-select-single]="isSingleMode"
-      [class.at-select--multiple]="isMultipleOrTags"
+      [class.at-select-single]="!isMultiple"
+      [class.at-select--multiple]="isMultiple"
       [class.at-select--disabled]="atDisabled"
-      (keydown)="onKeyDownCdkOverlayOrigin($event)"
       tabindex="0">
       <div
         at-tree-select-top-control
-        [atOpen]="atOpen"
-        (OnClear)="onClearSelection($event)"
-        [allowClear]="atAllowClear"
-        [compareWith]="compareWith"
+        [allowClear]="allowClear"
         [atPlaceHolder]="atPlaceHolder"
         [atShowSearch]="atShowSearch"
-        [atDisabled]="atDisabled"
-        [atMode]="mode"
-        [atListOfSelectedValue]="listOfSelectedValue"
-        (atOnSearch)="onSearch($event.value,$event.emit)"
+        [multiple]="isMultiple"
       >
       </div>
     </div>
     <ng-template
       cdkConnectedOverlay
       [cdkConnectedOverlayHasBackdrop]="true"
+      (backdropClick)="close()"
       [cdkConnectedOverlayOrigin]="cdkOverlayOrigin"
-      (backdropClick)="closeDropDown()"
-      (detach)="closeDropDown();"
-      (attach)="attachSelect()"
-      (positionChange)="onPositionChange($event)"
       [cdkConnectedOverlayWidth]="overlayWidth"
       [cdkConnectedOverlayMinWidth]="overlayMinWidth"
-      [cdkConnectedOverlayOpen]="!isDestroy">
+      [cdkConnectedOverlayOpen]="atOpen">
       <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="atOpen ? dropDownPosition : 'hidden' "
            [ngStyle]="atDropdownStyle">
-        <div class="at-select__dropdown at-select__dropdown--bottom">
+        <div *ngIf="showTree" class="at-select__dropdown at-select__dropdown--bottom">
           <at-tree
             #treeRef
             [atData]="atNodes"
@@ -137,39 +93,59 @@ import {AtTreeComponent}                       from '../../tree/at-tree.componen
 })
 export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
 
-
+  isDestroy = false
   @Input() @InputBoolean() atAllowClear = true;
   @Input() @InputBoolean() atShowExpand = true;
-  @Input() @InputBoolean() atDropdownMatchSelectWidth = true;
   @Input() @InputBoolean() atShowSearch = false;
   @Input() @InputBoolean() atDisabled = false;
   @Input() @InputBoolean() atShowLine = false;
   @Input() @InputBoolean() atAsyncData = false;
   @Input() @InputBoolean() atMultiple = false;
   @Input() @InputBoolean() atDefaultExpandAll = false;
-  @Input() atNodes: AtTreeNode[] = [];
+  private _atNodes: AtTreeNodeOptions[] = [];
   @Input() atDefaultExpandedKeys: string[] = [];
   @Input() atDisplayWith: (node: AtTreeNode) => string = (node: AtTreeNode) => node.title;
-
-  @Output() readonly atOpenChange = new EventEmitter<boolean>();
   @Output() readonly atCleared = new EventEmitter<void>();
   @Output() readonly atRemoved = new EventEmitter<AtTreeNode>();
   @Output() readonly atExpandChange = new EventEmitter<AtFormatEmitEvent>();
   @Output() readonly atTreeClick = new EventEmitter<AtFormatEmitEvent>();
   @Output() readonly atTreeCheckBoxChange = new EventEmitter<AtFormatEmitEvent>();
 
+
+  get atNodes(): AtTreeNodeOptions[] {
+    return this._atNodes;
+  }
+
+  treeNodes = []
+
+  @Input()
+  set atNodes(value: AtTreeNodeOptions[]) {
+    if (Array.isArray(value)) {
+      if (!this.atTreeService.isArrayOfAtTreeNode(value)) {
+        // has not been new AtTreeNode
+        this.treeNodes = value.map(item => (new AtTreeNode(item)));
+      } else {
+        this.treeNodes = value;
+      }
+      this.atTreeService.conductOption.isCheckStrictly = false;
+      this.atTreeService.initTree(this.treeNodes);
+    } else {
+      if (value !== null) {
+        console.warn('ngModel only accepts an array and must be not empty');
+      }
+    }
+    this._atNodes = value
+  }
+
+
   @Input() atCheckable = false
 
   @ViewChild('treeRef') treeRef: AtTreeComponent
-  @ViewChild(CdkOverlayOrigin) cdkOverlayOrigin: CdkOverlayOrigin;
-  @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
   @ViewChild(AtTreeSelectTopControlComponent) atTreeSelectTopControlComponent: AtTreeSelectTopControlComponent;
 
-  private _selectedNodes: AtTreeNode[] = []
+  showTree = true
 
-  get mode() {
-    return this.isMultiple ? 'tags' : 'default'
-  }
+  private _selectedNodes: AtTreeNode[] = []
 
 
   get selectedNodes(): AtTreeNode[] {
@@ -178,15 +154,21 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
 
   set selectedNodes(value: AtTreeNode[]) {
     this._selectedNodes = value;
-    Promise.resolve().then(() => {
-      this.listOfSelectedValue = this.selectedNodes
-    })
   }
 
   updateSelectedNodes(): void {
     if (this.treeRef) {
       this.selectedNodes = [...(this.atCheckable ? this.treeRef.getCheckedNodeList() : this.treeRef.getSelectedNodeList())]
+    } else {
+      if (this.atCheckable) {
+        this.atTreeService.calcCheckedKeys(this.value, this.treeNodes, this.multiple)
+      } else {
+        this.atTreeService.calcSelectedKeys(this.value, this.treeNodes, this.multiple)
+      }
+      this.selectedNodes = [...(this.atCheckable ? this.atTreeService.getCheckedNodeList() : this.atTreeService.getSelectedNodeList())]
     }
+    this.at_select_control_service.$optionsChange.next(this.selectedNodes)
+
   }
 
   get isMultiple(): boolean {
@@ -200,7 +182,6 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       } else {
         this.value = [(value as string)];
       }
-      this.updateSelectedNodes();
     } else {
       this.value = [];
       this.selectedNodes.forEach(node => {
@@ -208,6 +189,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       });
       this.selectedNodes = [];
     }
+    this.updateSelectedNodes()
   }
 
 
@@ -228,6 +210,14 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
     if (event && event.stopPropagation) {
       event.stopPropagation();
     }
+  }
+
+  subExpandeChange() {
+    this.atExpandChange.subscribe(e => {
+      if (this.atShowSearch && this.atTreeSelectTopControlComponent.inputElement) {
+        this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus()
+      }
+    })
   }
 
 
@@ -253,36 +243,50 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       this.atCleared,
       this.atRemoved
     ).subscribe(() => {
-      console.log('click node')
       this.updateSelectedNodes();
       const value = this._selectedNodes.map(node => node.key);
       this.value = [...value];
       if (this.atShowSearch) {
-        this.searchValue = '';
+        this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus()
       }
       if (this.isMultiple) {
         this.onChange(value);
-        if (this.atShowSearch) {
-          this.focus()
-        }
       } else {
-        this.closeDropDown();
+        this.close()
         this.onChange(value.length ? value[0] : null);
       }
 
     });
   }
 
-  focus(): void {
-    if (this.atTreeSelectTopControlComponent.inputElement) {
-      this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus();
-    }
+  subOpenStatus() {
+    this.at_select_control_service.$openStatus.asObservable().pipe().subscribe((open: boolean) => {
+      if (open) {
+        this.updateCdkConnectedOverlayStatus()
+      }
+      this.showTree = open
+      setTimeout(_ => this.atOpen = open)
+    })
   }
 
 
   ngOnInit(): void {
     this.isDestroy = false;
     this.subscribeSelectionChange()
+    this.subOpenStatus()
+    this.subSearch()
+    this.subExpandeChange()
+  }
+
+  subSearch() {
+    this.at_select_control_service.$searchValueChange.asObservable().subscribe(value => {
+      this.searchValue = value
+    })
+  }
+
+
+  constructor(public at_select_control_service: AtSelectControlService, public atTreeService: AtTreeService) {
+    super(at_select_control_service);
   }
 
 

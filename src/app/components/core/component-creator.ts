@@ -28,7 +28,6 @@ export class ComponentCreator<T> {
 
   remove(ref) {
     this.base.appRef.detachView(ref.hostView);
-    console.log('remove', ref)
     ref.destroy();
   }
 

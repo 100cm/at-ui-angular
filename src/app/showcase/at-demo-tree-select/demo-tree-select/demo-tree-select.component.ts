@@ -3,29 +3,36 @@ import {AtFormatEmitEvent} from '../../../components/tree';
 
 @Component({
   selector: 'app-demo-tree-select-basic',
-  template: `<label>普通单选</label>
-  <at-tree-select
-    [(ngModel)]="model"
-    [atNodes]="nodes"
-  ></at-tree-select>
-  <hr>
-  <label>checkbox 的多选</label>
-  <at-tree-select
-    [(ngModel)]="model2"
-    [atShowSearch]="true"
-    [atMultiple]="true"
-    [atCheckable]="true"
-    [atNodes]="nodes"
-  ></at-tree-select>
-  <hr>
+  template: `
+    <label>普通单选</label>
+    <at-tree-select
+      [(ngModel)]="model"
+      [atNodes]="nodes"
+    ></at-tree-select>
+    <hr>
+    <button (click)="setModal()">更换值</button>
+    {{model}}
+    <hr>
+    <label>checkbox 的多选</label>
+    <at-tree-select
+      [(ngModel)]="model2"
+      [atShowSearch]="true"
+      [atMultiple]="true"
+      [atCheckable]="true"
+      [atNodes]="nodes"
+    ></at-tree-select>
+    <hr>
 
-  <label>普通多选</label>
-  <at-tree-select
-    [(ngModel)]="model3"
-    [atShowSearch]="true"
-    [atMultiple]="true"
-    [atNodes]="nodes"
-  ></at-tree-select>
+    <label>普通多选</label>
+    <at-tree-select
+      [(ngModel)]="model3"
+      [atShowSearch]="true"
+      [atMultiple]="true"
+      [atNodes]="nodes"
+    ></at-tree-select>
+
+
+
   `,
   styleUrls: ['./demo-tree-select.component.css']
 })
@@ -69,5 +76,9 @@ export class DemoTreeSelectComponent implements OnInit {
   model3 = ['1003']
 
   ngOnInit(): void {
+  }
+
+  setModal(){
+    this.model = "1002"
   }
 }

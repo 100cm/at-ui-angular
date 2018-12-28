@@ -1,6 +1,6 @@
-import { Component, ElementRef, Input } from '@angular/core';
-import { isNotNil } from '../utils/class-helper'
-import { AtOptionComponent } from './at-option.component';
+import {Component, ElementRef, Input} from '@angular/core';
+import {isNotNil}                     from '../utils/class-helper'
+import {AtOptionComponent}            from './at-option.component';
 
 @Component({
   selector: '[at-option-li]',
@@ -12,11 +12,11 @@ import { AtOptionComponent } from './at-option.component';
       {{atOption.atLabel}}
     </ng-container>
   `,
-  host    : {
-    '[class.at-select__option]'         : 'true',
-    '[class.at-select__option--selected]': 'selected && !atOption.atDisabled',
-    '[attr.unselectable]'                           : '"unselectable"',
-    '[style.user-select]'                           : '"none"'
+  host: {
+    '[class.at-select__option]': 'true',
+    '[class.at-select__option--selected]': 'atOption.selected && !atOption.atDisabled',
+    '[attr.unselectable]': '"unselectable"',
+    '[style.user-select]': '"none"'
   }
 })
 export class AtOptionLiComponent {
@@ -26,7 +26,7 @@ export class AtOptionLiComponent {
   @Input() atOption: AtOptionComponent;
   @Input() atShowActive = true;
   // tslint:disable-next-line:no-any
-  @Input() compareWith: (o1: any, o2: any) => boolean;
+  @Input() compareWith: (o1: any, o2: any) => boolean = (o1, o2) => o1 === o2;
 
   @Input()
   set atActiveOption(value: AtOptionComponent) {

@@ -15,4 +15,8 @@ export class DemoInputSelectComponent implements OnInit {
 
   selected = ['first']
 
+  setSelect(){
+    this.selected = ['second']
+  }
+
 }
