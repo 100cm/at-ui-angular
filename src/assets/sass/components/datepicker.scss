@@ -6,6 +6,19 @@
   z-index: 2;
 }
 
+.at-date-input-wrapper {
+  position: relative;
+}
+
+.at_date_picker_clear {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  margin-top: -5px;
+  font-size: 10px;
+  cursor: pointer
+}
+
 @mixin date-header() {
   position: absolute;
   top: 0;

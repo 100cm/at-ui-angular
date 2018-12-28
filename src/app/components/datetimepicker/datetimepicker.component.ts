@@ -9,105 +9,114 @@ import {
   Renderer2,
   ViewChild
 }                                                                                    from '@angular/core';
-import * as momentI                                                                 from 'moment'
-import {NG_VALUE_ACCESSOR}                                                           from "@angular/forms";
-import {InputComponent}                                                              from "../input/input.component";
-import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from "@angular/cdk/overlay";
+import * as momentI                                                                  from 'moment'
+import {NG_VALUE_ACCESSOR}                                                           from '@angular/forms';
+import {InputComponent}                                                              from '../input/input.component';
+import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from '@angular/cdk/overlay';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                    from "../core/overlay/overlay-position-map";
-import {fromEvent, Observable, Subject, Subscription}                                from "rxjs";
-import {debounceTime, mapTo, merge}                                                  from "rxjs/operators";
-import {underscoreToCamelCase}                                                       from "../utils/class-helper";
-import {DropDownAnimation}                                                           from "../animations/drop-down-animation";
-import {AtI18nService}                                                               from "../i18n/at-i18n.service";
-import {AtI18nInterface}                                                             from "../i18n/at-i18n.interface";
+}                                                                                    from '../core/overlay/overlay-position-map';
+import {fromEvent, Observable, Subject, Subscription}                                from 'rxjs';
+import {debounceTime, mapTo, merge}                                                  from 'rxjs/operators';
+import {underscoreToCamelCase}                                                       from '../utils/class-helper';
+import {DropDownAnimation}                                                           from '../animations/drop-down-animation';
+import {AtI18nService}                                                               from '../i18n/at-i18n.service';
+import {AtI18nInterface}                                                             from '../i18n/at-i18n.interface';
 
 const moment = momentI
+
 @Component({
-             selector: 'atDatetimePicker',
-             template: `
-               <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="_show()"></atInput>
-               <ng-template
-                 #overlay="cdkConnectedOverlay"
-                 cdkConnectedOverlay
-                 [cdkConnectedOverlayHasBackdrop]="true"
-                 [cdkConnectedOverlayPositions]="_positions"
-                 [cdkConnectedOverlayOrigin]="input"
-                 (backdropClick)="_hide()"
-                 (detach)="_hide()"
-                 (positionChange)="_onPositionChange($event)"
-                 [cdkConnectedOverlayOpen]="atVisible"
-               >
-                 <div class="at-datepicker" [@dropDownAnimation]="dropdownPosition">
-                   <div class="at-datepicker--panel">
-                     <div class="at-datepicker--panel--header">
-                       <div style="position: relative">
-                         <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
-                         </a>
-                         <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
-                         </a>
+  selector: 'atDatetimePicker',
+  template: `
+    <div class="at-date-input-wrapper">
+      <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="_show()"></atInput>
+      <i (click)="clear($event)"
+         *ngIf="allowClear"
+         class="icon icon-x at_date_picker_clear"
+         style="background: white;z-index: 2"></i>
+    </div>
+    <ng-template
+      #overlay="cdkConnectedOverlay"
+      cdkConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="true"
+      [cdkConnectedOverlayPositions]="_positions"
+      [cdkConnectedOverlayOrigin]="input"
+      (backdropClick)="_hide()"
+      (detach)="_hide()"
+      (positionChange)="_onPositionChange($event)"
+      [cdkConnectedOverlayOpen]="atVisible"
+    >
+      <div class="at-datepicker" [@dropDownAnimation]="dropdownPosition">
+        <div class="at-datepicker--panel">
+          <div class="at-datepicker--panel--header">
+            <div style="position: relative">
+              <a *ngIf="atType == 'full'" (click)="preYear()" class="pre-year-btn">
+              </a>
+              <a *ngIf="atType == 'full'" (click)="preMonth()" class="pre-month-btn">
+              </a>
 
-                         <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
-                         </a>
+              <a *ngIf="atType == 'year'" (click)="preCentury()" class="pre-year-btn">
+              </a>
 
 
-                         <span class="current-select-label">
+              <span class="current-select-label">
             <a (click)="setCal('month')" class="month-select">{{atMonth + 1}}{{il8n?.DatePicker?.MonthName}}</a>
             <a (click)="setCal('year')" class="year-select">{{atYear}}{{il8n?.DatePicker?.YearName}}</a>
           </span>
 
-                         <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
-                         </a>
-                         <a (click)="nextYear()" class="next-year-btn">
-                         </a>
+              <a *ngIf="atType == 'full'" (click)="nextMonth()" class="next-month-btn">
+              </a>
+              <a (click)="nextYear()" class="next-year-btn">
+              </a>
 
-                         <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
-                         </a>
+              <a *ngIf="atType == 'year'" (click)="nextCenury()" class="next-year-btn">
+              </a>
 
-                       </div>
-                     </div>
-                     <div class="at-datepicker--panel--body">
-                       <at-calendar [ngStyle]="{display: mode =='date' ? 'block' : 'none' }"
-                                    [locale]="il8n"
-                                    (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
-                                    (_clickMonth)="clickMonth($event)"
-                                    [format]="format"
-                                    [disableDate]="disableDate"
-                                    [atType]="atType"
-                                    [atYear]="atYear" [atMonth]="atMonth"
-                                    [showValue]="showValue"
-                                    [atValue]="atValue"></at-calendar>
+            </div>
+          </div>
+          <div class="at-datepicker--panel--body">
+            <at-calendar [ngStyle]="{display: mode =='date' ? 'block' : 'none' }"
+                         [locale]="il8n"
+                         (_clickDate)="clickDate($event)" (_clickYear)="clickYear($event)"
+                         (_clickMonth)="clickMonth($event)"
+                         [format]="format"
+                         [disableDate]="disableDate"
+                         [atType]="atType"
+                         [atYear]="atYear" [atMonth]="atMonth"
+                         [showValue]="showValue"
+                         [atValue]="atValue"></at-calendar>
 
-                       <at-time
-                         [ngStyle]="{display: mode =='time' ? 'block' : 'none' }"
-                         (selectHour)="selectHour($event)"
-                         (selectMinute)="selectMinutes($event)"
-                         (selectSecond)="selectSecond($event)"
-                         [selected_hour]="selected_hour"
-                         [selected_minutes]="selected_minutes"
-                         [selected_second]="selected_second"></at-time>
+            <at-time
+              [ngStyle]="{display: mode =='time' ? 'block' : 'none' }"
+              (selectHour)="selectHour($event)"
+              (selectMinute)="selectMinutes($event)"
+              (selectSecond)="selectSecond($event)"
+              [selected_hour]="selected_hour"
+              [selected_minutes]="selected_minutes"
+              [selected_second]="selected_second"></at-time>
 
-                     </div>
-                   </div>
-                   <div class="at-datepicker--footer">
-                     <a *ngIf="mode == 'date' && choice_modal.indexOf('time') != -1"  (click)="setMode('time')">{{il8n.DatePicker.chooseTime}}</a>
-                     <a *ngIf="mode == 'time' && choice_modal.indexOf('date') != -1" (click)="setMode('date')">{{il8n.DatePicker.chooseDate}}</a>
-                   </div>
-                 </div>
-               </ng-template>
-             `,
-             providers: [
-               {
-                 provide: NG_VALUE_ACCESSOR,
-                 useExisting: forwardRef(() => DatetimepickerComponent),
-                 multi: true
-               }
-             ],
-             animations: [DropDownAnimation]
+          </div>
+        </div>
+        <div class="at-datepicker--footer">
+          <a *ngIf="mode == 'date' && choice_modal.indexOf('time') != -1"
+             (click)="setMode('time')">{{il8n.DatePicker.chooseTime}}</a>
+          <a *ngIf="mode == 'time' && choice_modal.indexOf('date') != -1"
+             (click)="setMode('date')">{{il8n.DatePicker.chooseDate}}</a>
+        </div>
+      </div>
+    </ng-template>
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => DatetimepickerComponent),
+      multi: true
+    }
+  ],
+  animations: [DropDownAnimation]
 
-           })
+})
 export class DatetimepickerComponent implements OnInit {
 
   constructor(private el: ElementRef,
@@ -116,39 +125,39 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   private il8n: AtI18nInterface
-          _atType                              = 'full'
-          _positions: ConnectionPositionPair[] = [
-            {
-              originX: 'start',
-              originY: 'top',
-              overlayX: 'start',
-              overlayY: 'top'
-            },
-            {
-              originX: 'start',
-              originY: 'bottom',
-              overlayX: 'start',
-              overlayY: 'bottom'
-            },
-            {
-              originX: 'end',
-              originY: 'top',
-              overlayX: 'end',
-              overlayY: 'top'
-            },
-            {
-              originX: 'end',
-              originY: 'bottom',
-              overlayX: 'end',
-              overlayY: 'bottom'
-            }
-          ] as ConnectionPositionPair[];
-          _subscription: Subscription
-          _visibleChange                       = new Subject<boolean>();
-          $visible                             = this._visibleChange.asObservable()
-          mode                                 = 'date'
-          _visible                             = false
-          dropdownPosition                     = 'bottom'
+  _atType = 'full'
+  _positions: ConnectionPositionPair[] = [
+    {
+      originX: 'start',
+      originY: 'top',
+      overlayX: 'start',
+      overlayY: 'top'
+    },
+    {
+      originX: 'start',
+      originY: 'bottom',
+      overlayX: 'start',
+      overlayY: 'bottom'
+    },
+    {
+      originX: 'end',
+      originY: 'top',
+      overlayX: 'end',
+      overlayY: 'top'
+    },
+    {
+      originX: 'end',
+      originY: 'bottom',
+      overlayX: 'end',
+      overlayY: 'bottom'
+    }
+  ] as ConnectionPositionPair[];
+  _subscription: Subscription
+  _visibleChange = new Subject<boolean>();
+  $visible = this._visibleChange.asObservable()
+  mode = 'date'
+  _visible = false
+  dropdownPosition = 'bottom'
 
   @ViewChild(CdkConnectedOverlay) overlay
 
@@ -190,7 +199,7 @@ export class DatetimepickerComponent implements OnInit {
 
   set atValue(value) {
     if (value) {
-      this._atValue    = value;
+      this._atValue = value;
       this._show_value = value
     }
   }
@@ -199,8 +208,8 @@ export class DatetimepickerComponent implements OnInit {
 
   atMonth = moment(this.atValue || this.showValue).month()
 
-  selectedDate  = moment(this.atValue).date();
-  selectedYear  = moment(this.atValue).year();
+  selectedDate = moment(this.atValue).date();
+  selectedYear = moment(this.atValue).year();
   selectedMonth = moment(this.atValue).month();
 
 
@@ -234,15 +243,17 @@ export class DatetimepickerComponent implements OnInit {
   }
 
 // ngModel Access
-  onChange: any  = Function.prototype;
+  onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  @Input() format = "YYYY-MM-DD"
+  @Input() format = 'YYYY-MM-DD'
   @Input() disableDate
   /**
    * 日期选择模式 只选择日期 或者 时间
    */
   @Input() choice_modal = ['date', 'time']
+
+  @Input() allowClear = false
 
   writeValue(value: any): void {
     if (value) {
@@ -270,7 +281,7 @@ export class DatetimepickerComponent implements OnInit {
     this.at_i18n_service.localChange.subscribe(il8n => {
       this.il8n = il8n
     })
-    if (this.choice_modal.length === 1 && this.choice_modal.indexOf('time') !== -1){
+    if (this.choice_modal.length === 1 && this.choice_modal.indexOf('time') !== -1) {
       this.mode = 'time'
     }
   }
@@ -296,6 +307,10 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
+  clear() {
+    this.clearDate()
+  }
+
   nextMonth() {
     if (this.atMonth + 1 > 11) {
       this.atMonth = 0;
@@ -313,7 +328,7 @@ export class DatetimepickerComponent implements OnInit {
       change_date = change_date.format(this.format)
     }
     this.onChange(change_date)
-    if (this.choice_modal.indexOf('time') === -1){
+    if (this.choice_modal.indexOf('time') === -1) {
       this.atVisible = false
     }
   }
@@ -322,17 +337,18 @@ export class DatetimepickerComponent implements OnInit {
     if (this.atValue === value) {
       return;
     }
-    this.atValue       = value;
+    this.atValue = value;
     this.selectedMonth = moment(this.atValue).month();
-    this.selectedYear  = moment(this.atValue).year();
-    this.selectedDate  = moment(this.atValue).date();
-    this.atYear        = moment(this.atValue).year();
-    this.atMonth       = moment(this.atValue).month();
+    this.selectedYear = moment(this.atValue).year();
+    this.selectedDate = moment(this.atValue).date();
+    this.atYear = moment(this.atValue).year();
+    this.atMonth = moment(this.atValue).month();
 
   }
 
   clearDate() {
     this._atValue = ''
+    this.onChange('')
   }
 
   _hide(): void {
@@ -372,7 +388,7 @@ export class DatetimepickerComponent implements OnInit {
   clickMonth(month) {
     // this.atValue = moment(this.atValue).year(this.atYear).month(month.index).toDate();
     this.atMonth = month.index
-    this.atType  = 'full'
+    this.atType = 'full'
   }
 
   clickYear(year) {
