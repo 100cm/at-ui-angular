@@ -107,6 +107,8 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
         this.atValue = [obj]
       }
       this.at_select_control_service.$selectOptionChange.next(this.atValue)
+    } else {
+      this.at_select_control_service.$selectOptionChange.next([])
     }
 
   }
@@ -181,7 +183,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
       if (this.multiple) {
         this.onChange(data || [])
       } else {
-        this.onChange(data[0] || null)
+        this.onChange((data || [])[0])
       }
 
     })

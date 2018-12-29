@@ -11,14 +11,14 @@ export class DemoSelectBasicComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(_=>{
+    setTimeout(_ => {
       this.selects = [2, 5, 6, 7, 8]
-    },3000)
+    }, 3000)
   }
 
   selected = ['first']
 
-  single = 3
+  single: any = 3
 
   change(va) {
     console.log(va)
@@ -27,6 +27,6 @@ export class DemoSelectBasicComponent implements OnInit {
   selects = [1, 2, 3, 4, 5, 6]
 
   setOntherOption() {
-    // this.selects = [4, 5, 6, 7, 8]
+    this.single = ''
   }
 }

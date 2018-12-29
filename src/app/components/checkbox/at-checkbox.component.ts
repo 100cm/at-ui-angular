@@ -1,31 +1,31 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {NG_VALUE_ACCESSOR}                                          from "@angular/forms";
+import {NG_VALUE_ACCESSOR}                                          from '@angular/forms';
 
 @Component({
-             selector: 'at-checkbox',
-             template: `<label (click)="check($event)"
+  selector: 'at-checkbox',
+  template: `<label (click)="check($event)"
 
-                               class="at-checkbox at-checkbox--{{status}}">
+                    class="at-checkbox at-checkbox--{{status}}">
 
   <span class="at-checkbox__input"><span
     class="at-checkbox__inner"></span>
 
   <input type="checkbox" class="at-checkbox__original"></span>
-               <span class="at-checkbox__label">{{label}}</span>
-             </label>
-             `,
-             providers: [
-               {
-                 provide: NG_VALUE_ACCESSOR,
-                 useExisting: forwardRef(() => AtCheckboxComponent),
-                 multi: true
-               }
-             ],
-           })
+    <span class="at-checkbox__label">{{label}}</span>
+  </label>
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AtCheckboxComponent),
+      multi: true
+    }
+  ],
+})
 export class AtCheckboxComponent implements OnInit {
 
   private _label: string;
-  private _checked    = false
+  private _checked = false
   private _atDisabled = false
 
   _state: 'checked' | 'unchecked' | 'disabled' | 'indeterminate' = 'unchecked'
@@ -97,7 +97,7 @@ export class AtCheckboxComponent implements OnInit {
   }
 
   // ngModel Access
-  onChange: any  = Function.prototype;
+  onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
   writeValue(value: any): void {
