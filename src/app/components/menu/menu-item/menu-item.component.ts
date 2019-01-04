@@ -1,13 +1,13 @@
 import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Optional, Renderer2} from '@angular/core';
-import {SubMenuComponent}                                                                     from "../sub-menu/sub-menu.component";
-import {MenuComponent}                                                                        from "../menu.component";
+import {SubMenuComponent}                                                                     from '../sub-menu/sub-menu.component';
+import {MenuComponent}                                                                        from '../menu.component';
 
 @Component({
-             selector: '[at-menu-item]',
-             template: `
-               <ng-content></ng-content>
-             `,
-           })
+  selector: '[at-menu-item]',
+  template: `
+    <ng-content></ng-content>
+  `,
+})
 export class MenuItemComponent implements OnInit {
 
 
@@ -21,7 +21,7 @@ export class MenuItemComponent implements OnInit {
 
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2, @Optional() private sub_menu: SubMenuComponent,
               private menu_component: MenuComponent) {
-    this._el           = this._elementRef.nativeElement;
+    this._el = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
   }
 

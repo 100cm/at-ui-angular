@@ -100,7 +100,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   }
 
   writeValue(obj: string | string[]): void {
-    if (obj) {
+    if (isNotNil(obj)) {
       if (Array.isArray(obj)) {
         this.atValue = obj
       } else {
@@ -108,7 +108,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
       }
       this.at_select_control_service.$selectOptionChange.next(this.atValue)
     } else {
-      this.at_select_control_service.$selectOptionChange.next([])
+      this.at_select_control_service.$selectOptionChange.next(this.atValue || [])
     }
 
   }
