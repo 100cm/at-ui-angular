@@ -1,3 +1,6 @@
-<p>
-  at-demo-autocompelete works!
-</p>
+<h1>AutoComplete</h1>
+{{model}}
+<atInput [(ngModel)]="model" [atAutoComplete]="auto">
+</atInput>
+<at-auto-complete #auto [atDataSource]="dataSource"></at-auto-complete>
+

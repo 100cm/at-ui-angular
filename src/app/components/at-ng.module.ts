@@ -42,6 +42,7 @@ import {AtI18nModule}           from './i18n/at-i18n.module';
 import {AtDndModule}            from './drag-and-drop/at-dnd.module';
 import {AtCollapseModule}       from './collapse/collapse.module';
 import {AtTreeSelectModule}     from './tree-select/at-tree-select.module';
+import {AutoCompleteModule}     from './autocomplete/autocomplete.module';
 
 export *                                  from './tree'
 export *                                  from './checkbox'
@@ -84,6 +85,7 @@ export *                                  from './color-picker'
 export *                                  from './drag-and-drop'
 export *                                  from './collapse'
 export *                                  from './tree-select'
+export *                                  from './autocomplete'
 
 @NgModule({
   exports: [
@@ -128,6 +130,7 @@ export *                                  from './tree-select'
     AtDndModule,
     AtCollapseModule,
     AtTreeSelectModule,
+    AutoCompleteModule,
   ],
 
   providers: [AtGlobalMonitorService],

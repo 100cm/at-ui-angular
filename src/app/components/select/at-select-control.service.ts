@@ -9,8 +9,10 @@ export class AtSelectControlService {
 
   selected_value = []
 
+  $writeValueChange = new BehaviorSubject([])
+
   constructor() {
-    this.$selectOptionChange.asObservable().pipe().subscribe((value: any[]) => {
+    this.$writeValueChange.asObservable().pipe().subscribe((value: any[]) => {
       this.selected_value = value
       // console.log(this.selected_value)
       this.options.forEach(option => {
@@ -31,7 +33,7 @@ export class AtSelectControlService {
 
   $optionsChange = new BehaviorSubject([])
 
-  $selectOptionChange = new BehaviorSubject([])
+  $selectOptionChange = new BehaviorSubject([null])
 
   $searchValueChange = new BehaviorSubject<string>('')
 

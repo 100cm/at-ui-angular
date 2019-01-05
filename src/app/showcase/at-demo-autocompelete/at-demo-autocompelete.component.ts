@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-autocompelete',
@@ -7,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtDemoAutocompeleteComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit() {
+    setTimeout(_ => {
+      this.changeSource()
+    }, 5000)
+  }
+
+  dataSource = [
+    '123', '123123', '123123', '123123', '123123', '123123123'
+  ]
+
+  model = ''
+
+  changeSource() {
+    this.dataSource = ['123', 'sdad']
+  }
 }

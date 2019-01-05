@@ -1,22 +1,24 @@
 import {
   Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, OnInit, Output,
   ViewChild
-} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
+}                          from '@angular/core';
+import {NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export type atInputSize = 'small' | 'normal' | 'large'
 
 @Component({
   selector: 'atInput',
   template: `
-    <div class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}} at-input-number--{{disabled ? 'disabled' : ''}} "
-         [ngClass]="_BindClass">
+    <div
+      class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}} at-input-number--{{disabled ? 'disabled' : ''}} "
+      [ngClass]="_BindClass">
       <div #prepend [hidden]="!showPrepend" [ngClass]="{'at-input-group__prepend': showPrepend}">
         <ng-content select="[atPrepend]"></ng-content>
       </div>
 
       <ng-template [ngIf]="atType == 'normal'">
         <input #input [(ngModel)]="value" placeholder="{{placeholder}}"
+               (ngModelChange)="changeAutoComplete($event)"
                (focus)="focus($event)" (focusout)="focusOut($event)" type="{{type}}" [disabled]="disabled"
                class="{{_prefixCls}}__original">
       </ng-template>
@@ -61,8 +63,8 @@ export class InputComponent implements OnInit {
   }
 
 
-  private _atStatus = "original"
-  private _atType = "normal"
+  private _atStatus = 'original'
+  private _atType = 'normal'
   private _disabled = false
   private _placeholder = ''
   private _type = 'text'
@@ -74,6 +76,8 @@ export class InputComponent implements OnInit {
   private _min: number
   isMax = false
   isMin = false
+
+  @Input() atAutoComplete: any
 
   get max(): number {
     return this._max;
@@ -138,6 +142,10 @@ export class InputComponent implements OnInit {
     this._value = Ivalue;
     this.setNumberStatus()
     this.onChange(this._value)
+  }
+
+  changeAutoComplete(value) {
+    if (this.atAutoComplete) this.atAutoComplete.changeValue(value, this.inputField, this)
   }
 
   get atSize(): atInputSize {
@@ -217,7 +225,7 @@ export class InputComponent implements OnInit {
   }
 
   trim(str) {
-    return str.replace(/(^\s+)|(\s+$)/g, "")
+    return str.replace(/(^\s+)|(\s+$)/g, '')
   }
 
   // ngModel Access
@@ -284,6 +292,7 @@ export class InputComponent implements OnInit {
 
   focus($event) {
     this.onFocus.emit($event)
+    this.changeAutoComplete(this._value)
   }
 
   focusOut($event) {
