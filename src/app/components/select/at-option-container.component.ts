@@ -8,14 +8,14 @@ import {
   QueryList,
   ViewChildren
 }                               from '@angular/core';
-import {isNotNil}               from '../utils/class-helper';
-import {AtOptionGroupComponent} from './at-option-group.component';
-import {AtOptionComponent}      from './at-option.component';
+import { isNotNil }               from '../utils/class-helper';
+import { AtOptionGroupComponent } from './at-option-group.component';
+import { AtOptionComponent }      from './at-option.component';
 
-import {Subject, Subscription, merge}                     from 'rxjs';
-import {AtOptionLiComponent}                              from './at-option-li.component';
-import {defaultFilterOption, AtOptionPipe, TFilterOption} from './at-option.pipe';
-import {AtSelectControlService}                           from './at-select-control.service';
+import { merge, Subject, Subscription }                     from 'rxjs';
+import { AtOptionLiComponent }                              from './at-option-li.component';
+import { defaultFilterOption, AtOptionPipe, TFilterOption } from './at-option.pipe';
+import { AtSelectControlService }                           from './at-select-control.service';
 
 @Component({
   selector: '[at-option-container]',
@@ -45,15 +45,15 @@ import {AtSelectControlService}                           from './at-select-cont
 })
 export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
 
-  @Input() multiple = false
+  @Input() multiple = false;
 
-  options: AtOptionComponent[] = []
+  options: AtOptionComponent[] = [];
 
-  atSearchValue: string = ''
+  atSearchValue: string = '';
 
   atFilterOption: TFilterOption = defaultFilterOption;
 
-  atServerSearch = false
+  atServerSearch = false;
 
   ngAfterContentInit(): void {
   }
@@ -66,30 +66,29 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
       this.options.forEach((base_option) => {
         if (base_option.atValue == option.atValue) {
           if (this.multiple) {
-            base_option.selected = !base_option.selected
+            base_option.selected = !base_option.selected;
           } else {
-            base_option.selected = true
+            base_option.selected = true;
           }
         } else {
           if (!this.multiple) {
-            base_option.selected = false
+            base_option.selected = false;
           }
         }
-      })
-      this.at_select_control_service.options = this.options
+      });
+      this.at_select_control_service.options = this.options;
       this.at_select_control_service.$selectOptionChange.next(
         this.options.filter(_ => _.selected).map(_ => _.atValue)
-      )
+      );
 
       if (!this.multiple) {
-        this.at_select_control_service.$openStatus.next(false)
+        this.at_select_control_service.$openStatus.next(false);
       }
     }
 
   }
 
-  private _at_select_control_service
-
+  private _at_select_control_service;
 
   get at_select_control_service() {
     return this._at_select_control_service;
@@ -104,21 +103,20 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subOptionChange()
-    this.subSearchValue()
+    this.subOptionChange();
+    this.subSearchValue();
   }
-
 
   subOptionChange() {
     this._at_select_control_service.$optionsChange.asObservable().subscribe(options => {
-      this.options = options
-    })
+      this.options = options;
+    });
   }
 
   subSearchValue() {
     this._at_select_control_service.$searchValueChange.asObservable().subscribe(value => {
-      this.atSearchValue = value
-    })
+      this.atSearchValue = value;
+    });
   }
 
   get listOfFilterOption() {
@@ -126,8 +124,7 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   }
 
   get isNotFoundDisplay() {
-    return !this.listOfFilterOption.length
+    return !this.listOfFilterOption.length;
   }
-
 
 }

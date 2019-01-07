@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-number-input',
@@ -10,9 +10,9 @@ export class AtDemoNumberInputComponent implements OnInit {
   constructor() {
   }
 
-  basic_ni = require('!!raw-loader!./demo-basic-number-input/demo-basic-number-input.component.html')
-  step_ni = require('!!raw-loader!./demo-step-number-input/demo-step-number-input.component.html')
-  size_ni = require('!!raw-loader!./demo-size-number-input/demo-size-number-input.component.html')
+  basic_ni = require('!!raw-loader!./demo-basic-number-input/demo-basic-number-input.component.html');
+  step_ni = require('!!raw-loader!./demo-step-number-input/demo-step-number-input.component.html');
+  size_ni = require('!!raw-loader!./demo-size-number-input/demo-size-number-input.component.html');
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-button',
@@ -13,10 +13,9 @@ export class AtDemoButtonComponent implements OnInit {
   ngOnInit() {
   }
 
-
   baseButton = '<button at-button [atType]="\'primary\'">主要按钮</button>\n' +
     ' <button at-button [atType]="\'default\'">次要按钮</button>\n' +
-    ' <button at-button [atType]="\'text\'">文字按钮</button>'
+    ' <button at-button [atType]="\'text\'">文字按钮</button>';
   disableButton = '<button at-button disabled [atType]="\'primary\'">主要按钮</button>\n' +
     ' <button at-button disabled hollow [atType]="\'default\'">次要按钮</button>\n' +
     ' <button at-button disabled [atType]="\'text\'">文字按钮</button>';

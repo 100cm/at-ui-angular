@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-textarea',
@@ -13,7 +13,6 @@ export class AtDemoTextareaComponent implements OnInit {
   ngOnInit() {
   }
 
-  text = require('!!raw-loader!./demo-basic-textarea/demo-basic-textarea.component.html')
-
+  text = require('!!raw-loader!./demo-basic-textarea/demo-basic-textarea.component.html');
 
 }

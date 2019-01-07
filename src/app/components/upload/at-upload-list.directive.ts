@@ -1,4 +1,4 @@
-import {Directive, HostBinding, HostListener} from '@angular/core';
+import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
   selector: '[at-upload-list]'
@@ -8,22 +8,21 @@ export class AtUploadListDirective {
   constructor() {
   }
 
-  _active = false
+  _active = false;
 
   @HostListener('mouseover')
   ActiveClass() {
-    this._active = true
+    this._active = true;
   }
 
   @HostListener('mouseout')
   setActiveClass() {
-    this._active = false
+    this._active = false;
   }
 
   @HostBinding('class.at-upload-files-item-hover')
   get active_class() {
-    return this._active
+    return this._active;
   }
-
 
 }

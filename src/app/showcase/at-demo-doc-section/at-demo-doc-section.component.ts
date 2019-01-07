@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {SlideAnimation} from "../../components/animations/slide-animation";
+import { Component, Input, OnInit } from '@angular/core';
+import { SlideAnimation } from '../../components/animations/slide-animation';
 
 @Component({
   selector: 'doc-section',
@@ -9,14 +9,13 @@ import {SlideAnimation} from "../../components/animations/slide-animation";
 })
 export class AtDemoDocSectionComponent implements OnInit {
 
+  @Input() title: string = '';
 
-  @Input() title: string = ''
+  @Input() code: string = '';
 
-  @Input() code: string = ''
+  @Input() sample: boolean = true;
 
-  @Input() sample: boolean = true
-
-  @Input() language = 'html'
+  @Input() language = 'html';
 
   showCode: boolean = false;
 
@@ -27,7 +26,7 @@ export class AtDemoDocSectionComponent implements OnInit {
   }
 
   setShow() {
-    this.showCode = !this.showCode
+    this.showCode = !this.showCode;
   }
 
   get expandState() {

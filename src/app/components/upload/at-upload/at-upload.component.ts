@@ -1,5 +1,5 @@
-import {Component, ElementRef, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
-import {NG_VALUE_ACCESSOR}                                           from "@angular/forms";
+import { forwardRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { NG_VALUE_ACCESSOR }                                           from '@angular/forms';
 
 @Component({
              selector: 'at-upload',
@@ -55,18 +55,17 @@ export class AtUploadComponent implements OnInit {
   constructor() {
   }
 
-  @ViewChild('file_input') fileEle: ElementRef
+  @ViewChild('file_input') fileEle: ElementRef;
 
-  @Input() multiple = true
+  @Input() multiple = true;
 
-  @Input() atType = 'text'
+  @Input() atType = 'text';
 
-  preview = false
+  preview = false;
 
-  preview_image
+  preview_image;
 
-  private _files = []
-
+  private _files = [];
 
   get files(): any[] {
     return this._files;
@@ -80,32 +79,31 @@ export class AtUploadComponent implements OnInit {
   }
 
   previewImage(i) {
-    this.preview_image = this.files[i]
-    this.preview       = true
+    this.preview_image = this.files[i];
+    this.preview       = true;
   }
 
   triggerUpload() {
-    this.fileEle.nativeElement.click()
+    this.fileEle.nativeElement.click();
   }
 
   fileChange(event) {
     if (this.multiple) {
-      this.files = this.files.concat(Array.prototype.slice.call(event.target.files))
-      this.onChange(this.files)
-    }
-    else {
-      this.files = [].concat(event.target.files[0])
-      this.onChange(this.files[0])
+      this.files = this.files.concat(Array.prototype.slice.call(event.target.files));
+      this.onChange(this.files);
+    } else {
+      this.files = [].concat(event.target.files[0]);
+      this.onChange(this.files[0]);
     }
 
   }
 
   removeFile(index: number) {
-    this._files.splice(index, 1)
+    this._files.splice(index, 1);
   }
 
   dragFile(files: any) {
-    this.files = this.files.concat(files)
+    this.files = this.files.concat(files);
   }
 
   onChange: (value: any) => void = () => null;
@@ -121,7 +119,7 @@ export class AtUploadComponent implements OnInit {
 
   writeValue(value) {
     if (value) {
-      this._files = [].concat(value)
+      this._files = [].concat(value);
     }
   }
 }

@@ -1,6 +1,6 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {AtFormItemComponent}                   from "../at-form-item/at-form-item.component";
-import {ColComponent}                          from "../../grid/col/col.component";
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { ColComponent }                          from '../../grid/col/col.component';
+import { AtFormItemComponent }                   from '../at-form-item/at-form-item.component';
 
 @Component({
              selector: 'at-form-label',
@@ -8,17 +8,15 @@ import {ColComponent}                          from "../../grid/col/col.componen
                <label [class.at-form-item__label—-required]="required">
                  <ng-content></ng-content>
                </label>
-             `,
+             `
            })
 export class AtFormLabelComponent extends ColComponent implements OnInit {
 
+  @Input('required') required = false;
 
-  @Input('required') required = false
-
-
-  @HostBinding("class.at-form-item__label")
+  @HostBinding('class.at-form-item__label')
   get labelClass() {
-    return true
+    return true;
   }
 
 }

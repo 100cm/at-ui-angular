@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import * as HighLight                                    from 'highlight.js'
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import * as HighLight                                    from 'highlight.js';
 
 @Component({
              selector: '[app-high-light]',
@@ -14,18 +14,17 @@ export class HighLightComponent implements OnInit {
   @ViewChild('code') codeElement: ElementRef;
   @Input() atLanguage: string = 'html';
 
-
   get atCode() {
     return this._code || '';
-  };
+  }
 
   @Input()
   set atCode(value) {
-    this._code = value
+    this._code = value;
   }
 
   ngAfterViewInit() {
-    (<any>HighLight).highlightBlock(this.codeElement.nativeElement);
+    (HighLight as any).highlightBlock(this.codeElement.nativeElement);
   }
 
   constructor() {

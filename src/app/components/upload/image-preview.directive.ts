@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Input, Renderer2} from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[image-preview]'
@@ -9,20 +9,18 @@ export class AtImagePreviewDirective {
 
   }
 
-  @Input('image') image: File
-
+  @Input('image') image: File;
 
   ngOnChanges() {
     if (this.image instanceof Blob) {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = (e: any) => {
         this._el.nativeElement.src = e.target.result;
-      }
+      };
       reader.readAsDataURL(this.image);
     } else {
-      this._el.nativeElement.src = this.image
+      this._el.nativeElement.src = this.image;
     }
-
 
   }
 

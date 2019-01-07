@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit} from '@angular/core';
-import {AtColorWrapComponent}                                         from "../at-color-wrap/at-color-wrap.component";
-import {toState}                                                      from "../../utils/class-helper";
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { toState }                                                      from '../../utils/class-helper';
+import { AtColorWrapComponent }                                         from '../at-color-wrap/at-color-wrap.component';
 
 @Component({
              selector: 'at-color-alpha-picker',
@@ -25,10 +25,10 @@ import {toState}                                                      from "../.
                  .color-alpha {
                    radius: 2px;
                  }
-               `,
+               `
              ],
              changeDetection: ChangeDetectionStrategy.OnPush,
-             preserveWhitespaces: false,
+             preserveWhitespaces: false
            })
 export class AtColorAlphaPickerComponent extends AtColorWrapComponent implements OnChanges {
   /** Pixel value for picker width */
@@ -41,7 +41,7 @@ export class AtColorAlphaPickerComponent extends AtColorWrapComponent implements
     height: '18px',
     borderRadius: '50%',
     transform: 'translate(-9px, -2px)',
-    boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.37)',
+    boxShadow: '0 1px 4px 0 rgba(0, 0, 0, 0.37)'
   };
 
   constructor() {

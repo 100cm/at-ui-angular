@@ -12,6 +12,6 @@ export class DemoBasicInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  value = '测试'
+  value = '测试';
 
 }

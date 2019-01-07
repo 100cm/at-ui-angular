@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'app-demo-position-form',
@@ -13,6 +13,6 @@ export class DemoPositionFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  position = 'horizontal'
+  position = 'horizontal';
 
 }

@@ -4,4 +4,4 @@ export const StatusIconType = {
   'warning': 'icon-alert-circle',
   'success': 'icon-check-circle',
   'loading': 'icon-loader'
-}
+};

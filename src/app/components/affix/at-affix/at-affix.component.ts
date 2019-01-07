@@ -1,6 +1,6 @@
-import {Component, ContentChild, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {AtGlobalMonitorService} from "../../at-global-monitor.service";
-import {fromEvent,Observable,Subscription} from "rxjs";
+import { Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { fromEvent, Observable, Subscription }                           from 'rxjs';
+import { AtGlobalMonitorService }                                        from '../../at-global-monitor.service';
 
 @Component({
   selector: 'at-affix',
@@ -14,108 +14,103 @@ export class AtAffixComponent implements OnInit {
   constructor(private monitor: AtGlobalMonitorService) {
   }
 
-  @ViewChild('child') childElement: ElementRef
+  @ViewChild('child') childElement: ElementRef;
 
-  private _atTarget: HTMLElement | any = window
+  private _atTarget: HTMLElement | Window = window;
 
-  $scrollEvent: Observable<any>
+  $scrollEvent: Observable<any>;
 
-  $scrollSubscribe: Subscription
-  $windowScrollSubscribe: Subscription
+  $scrollSubscribe: Subscription;
+  $windowScrollSubscribe: Subscription;
 
-  style: any = {}
+  style: { [x: string]: string } = {};
 
-  _cache_rect: any
+  _cache_rect;
 
-  fixed = false
+  fixed = false;
 
-  get atTarget() {
+  get atTarget(): HTMLElement | Window {
     return this._atTarget;
   }
 
-
   @Input()
-  set atTarget(value) {
+  set atTarget(value: HTMLElement | Window) {
     this._atTarget = value || window;
     this.clearEvent();
-    this.$scrollEvent = fromEvent(this._atTarget, 'scroll')
-    this.bindEvent()
+    this.$scrollEvent = fromEvent(this._atTarget, 'scroll');
+    this.bindEvent();
   }
 
-
-  ngAfterViewInit() {
-
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.$windowScrollSubscribe = this.monitor.$windowScrollEvent.subscribe(event => {
-      this.calculateWidth()
+      this.calculateWidth();
       if (this._atTarget === window) {
-        this.handleFix()
-      } else {
-        //fix the basis style height
-        this.style.top = this._atTarget.getBoundingClientRect().top + "px"
+        this.handleFix();
+      } else if (this._atTarget instanceof Element) {
+        // fix the basis style height
+        this.style.top = this._atTarget.getBoundingClientRect().top + 'px';
       }
-    })
+    });
 
   }
 
-  handleFix() {
-    let rect = this.getOffset(this.childElement.nativeElement, this._atTarget)
-    this._cache_rect ? rect = this._cache_rect : rect = rect
-    let dom
-    this._atTarget === window ? dom = document.documentElement : dom = this._atTarget
-    let top = dom.scrollTop
-    this.fixed ? top += rect.height : top
+  handleFix(): void {
+    let rect = this.getOffset(this.childElement.nativeElement, this._atTarget);
+    this._cache_rect ? rect = this._cache_rect : rect = rect;
+    let dom;
+    this._atTarget === window ? dom = document.documentElement : dom = this._atTarget;
+    let top = dom.scrollTop;
+    if (this.fixed) {
+      top += rect.height;
+    }
+    ;
     if (top > (rect.top)) {
-      this.setCache(rect)
-      this.setFix(rect, this._atTarget)
+      this.setCache(rect);
+      this.setFix(rect, this._atTarget);
     } else {
-      this.style = {}
-      this.fixed = false
+      this.style = {};
+      this.fixed = false;
     }
   }
 
-  setCache(rect) {
-    this._cache_rect = {...rect}
+  setCache(rect: { [x: string]: number }): void {
+    this._cache_rect = {...rect};
   }
 
-  handleReset() {
-
-  }
-
-  bindEvent() {
+  bindEvent(): void {
     this.$scrollSubscribe = this.$scrollEvent.subscribe(event => {
-      this.handleFix()
-    })
+      this.handleFix();
+    });
   }
 
-  setFix(rect, target) {
+  setFix(rect: { [x: string]: number }, target: HTMLElement | Window): void {
+
     if (target === window) {
-      this.style.position = "fixed"
-      this.style.width = this.calculateWidth() + "px"
-      this.style.top = "0px"
+      this.style.position = 'fixed';
+      this.style.width = this.calculateWidth() + 'px';
+      this.style.top = '0px';
+    } else {
+      this.style.position = 'fixed';
+      this.style.width = this.calculateWidth() + 'px';
+      // noinspection TsLint
+      if (this._atTarget instanceof HTMLElement){
+        this.style.top = this._atTarget.getBoundingClientRect().top + 'px';
+      }
     }
-    else {
-      let parent_rect = this.getOffset(this._atTarget, window)
-      this.style.position = "fixed"
-      this.style.width = this.calculateWidth() + 'px'
-      this.style.top = this._atTarget.getBoundingClientRect().top + "px"
-    }
-    this.fixed = true
+    this.fixed = true;
   }
 
-  clearEvent() {
+  clearEvent(): void {
     if (this.$scrollSubscribe) {
-      this.$scrollSubscribe.unsubscribe()
+      this.$scrollSubscribe.unsubscribe();
     }
   }
 
-  get offsetTop() {
-    return this.childElement.nativeElement.offsetTop
+  get offsetTop(): string {
+    return this.childElement.nativeElement.offsetTop;
   }
 
-  getOffset(element: Element, target: Element | Window | null): {
+  getOffset(element: HTMLElement, target: Element | Window | null): {
     top: number;
     left: number;
     width: number;
@@ -157,16 +152,16 @@ export class AtAffixComponent implements OnInit {
       {top: 0, left: 0, bottom: 0} as ClientRect;
   }
 
-
-  elementInViewport(el) {
-    let top = el.offsetTop;
-    let left = el.offsetLeft;
-    let width = el.offsetWidth;
-    let height = el.offsetHeight;
+  elementInViewport(el: HTMLElement): boolean {
+    let baseEl = el;
+    let top = baseEl.offsetTop;
+    let left = baseEl.offsetLeft;
+    const width = baseEl.offsetWidth;
+    const height = baseEl.offsetHeight;
     while (el.offsetParent) {
-      el = el.offsetParent;
-      top += el.offsetTop;
-      left += el.offsetLeft;
+      baseEl = el.offsetParent as HTMLElement;
+      top += baseEl.offsetTop;
+      left += baseEl.offsetLeft;
     }
     return (
       top < (window.pageYOffset + window.innerHeight) &&
@@ -176,9 +171,8 @@ export class AtAffixComponent implements OnInit {
     );
   }
 
-  calculateWidth() {
-    return this.childElement.nativeElement.offsetWidth
+  calculateWidth(): string {
+    return this.childElement.nativeElement.offsetWidth;
   }
 
 }
-

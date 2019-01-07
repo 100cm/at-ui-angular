@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-table',
@@ -13,10 +13,10 @@ export class AtDemoTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  baisc = require('./demo-basic-table/demo-basic-table.component.html')
+  baisc = require('./demo-basic-table/demo-basic-table.component.html');
 
-  page = require('./demo-page-table/demo-page-table.component.html')
+  page = require('./demo-page-table/demo-page-table.component.html');
 
-  size = require('./demo-size-table/demo-size-table.component.html')
+  size = require('./demo-size-table/demo-size-table.component.html');
 
 }

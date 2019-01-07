@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import * as momentI       from 'moment';
-import {AtDate}          from "../at-day";
 import 'moment/locale/zh-cn';
-import {AtI18nService}   from "../../i18n/at-i18n.service";
-import {AtI18nInterface} from "../../i18n/at-i18n.interface";
-const moment = momentI
+import { AtI18nInterface } from '../../i18n/at-i18n.interface';
+import { AtI18nService }   from '../../i18n/at-i18n.service';
+import { AtDate }          from '../at-day';
+const moment = momentI;
 @Component({
              selector: 'at-calendar',
              template: `
@@ -73,11 +73,10 @@ const moment = momentI
 
 
 
-             `,
+             `
 
            })
 export class CalendarComponent implements OnInit {
-
 
   @Output() _clickMonth: EventEmitter<any> = new EventEmitter();
   @Output() _clickYear: EventEmitter<any>  = new EventEmitter();
@@ -85,37 +84,35 @@ export class CalendarComponent implements OnInit {
   constructor(private at_i18n_service: AtI18nService) {
   }
 
-  @Output() _clickDate: EventEmitter<any> = new EventEmitter()
+  @Output() _clickDate: EventEmitter<any> = new EventEmitter();
 
   @Input()
   set disableDate(value) {
-    this._disabledDate = value
-    this.buildCalendar()
+    this._disabledDate = value;
+    this.buildCalendar();
   }
 
   get disableDate() {
-    return this._disabledDate
+    return this._disabledDate;
   }
 
-  _show_value
+  _show_value;
 
   @Input()
   set showValue(value) {
-    this._show_value = value
-    this.buildCalendar()
+    this._show_value = value;
+    this.buildCalendar();
   }
 
   get showValue() {
-    return this._show_value || new Date()
+    return this._show_value || new Date();
   }
 
+  monthName = [];
+  _disabledDate;
 
-  monthName = []
-  _disabledDate
-
-  @Input() private
-           _atType: 'full' | 'month' | 'year' = 'full'
-
+  @Input() private;
+           _atType: 'full' | 'month' | 'year' = 'full';
 
   get atType() {
     return this._atType;
@@ -124,32 +121,30 @@ export class CalendarComponent implements OnInit {
   @Input()
   set atType(value) {
     this._atType = value;
-    this.buildCalendar()
+    this.buildCalendar();
   }
 
-  private _weeks: Array<any> = []
+  private _weeks: any[] = [];
 
-  private _months: Array<any> = []
+  private _months: any[] = [];
 
-  private _years: Array<any> = []
+  private _years: any[] = [];
 
-
-  get years(): Array<any> {
+  get years(): any[] {
     return this._years;
   }
 
-  set years(value: Array<any>) {
+  set years(value: any[]) {
     this._years = value;
   }
 
-  get months(): Array<any> {
+  get months(): any[] {
     return this._months;
   }
 
-  set months(value: Array<any>) {
+  set months(value: any[]) {
     this._months = value;
   }
-
 
   get atValue() {
     return this._atValue || new Date();
@@ -158,23 +153,22 @@ export class CalendarComponent implements OnInit {
   @Input()
   set atValue(value) {
     this._atValue = value;
-    let day       = value || new Date()
-    this.atMonth  = moment(day).month()
-    this.atYear   = moment(day).year()
-    this.buildCalendar()
+    const day       = value || new Date();
+    this.atMonth  = moment(day).month();
+    this.atYear   = moment(day).year();
+    this.buildCalendar();
   }
 
-  private _atValue
-  private _atYear  = moment(new Date()).year()
-  private _atMonth = moment(new Date()).month()
-  private _atDay
+  private _atValue;
+  private _atYear  = moment(new Date()).year();
+  private _atMonth = moment(new Date()).month();
+  private _atDay;
 
-
-  get weeks(): Array<any> {
+  get weeks(): any[] {
     return this._weeks;
   }
 
-  set weeks(value: Array<any>) {
+  set weeks(value: any[]) {
     this._weeks = value;
   }
 
@@ -185,7 +179,7 @@ export class CalendarComponent implements OnInit {
   @Input()
   set atYear(value: number) {
     this._atYear = value;
-    this.buildCalendar()
+    this.buildCalendar();
   }
 
   get atMonth(): number {
@@ -193,12 +187,12 @@ export class CalendarComponent implements OnInit {
     return this._atMonth;
   }
 
-  @Input() format: string
+  @Input() format: string;
 
   @Input()
   set atMonth(value: number) {
     this._atMonth = value;
-    this.buildCalendar()
+    this.buildCalendar();
   }
 
   get atDay(): number {
@@ -208,11 +202,10 @@ export class CalendarComponent implements OnInit {
   @Input()
   set atDay(value: number) {
     this._atDay = value;
-    this.buildCalendar()
+    this.buildCalendar();
   }
 
-  private _locale: AtI18nInterface
-
+  private _locale: AtI18nInterface;
 
   get locale() {
     return this._locale;
@@ -222,16 +215,16 @@ export class CalendarComponent implements OnInit {
   set locale(value) {
     if (value) {
       this._locale = value;
-      this.buildCalendar()
+      this.buildCalendar();
     }
   }
 
   ngOnInit() {
-    this.monthName = moment.months()
+    this.monthName = moment.months();
   }
 
-  buildWeeks(d: any): Array<AtDate> {
-    const weeks: Array<any> = [];
+  buildWeeks(d: any): AtDate[] {
+    const weeks: any[] = [];
     const start             = d.clone().date(1).day(0);
     const month             = d.clone();
     let done                = false;
@@ -245,11 +238,10 @@ export class CalendarComponent implements OnInit {
       monthIndex = date.month();
     }
     return weeks;
-  };
+  }
 
-
-  buildWeek(date: any, month: any): Array<AtDate> {
-    const days: Array<AtDate> = [];
+  buildWeek(date: any, month: any): AtDate[] {
+    const days: AtDate[] = [];
     for (let i = 0; i < 7; i++) {
       days.push({
                   number: date.date(),
@@ -258,45 +250,45 @@ export class CalendarComponent implements OnInit {
                   isCurrentDay: date.isSame(new Date(), 'day'),
                   isSelectedDay: date.isSame(this.atValue, 'day'),
                   title: date.format(this.format),
-                  date: date,
+                  date,
                   disabled: this.disableDate && date.isBefore(this.disableDate, 'day'),
                   firstDisabled: false,
-                  lastDisabled: false,
+                  lastDisabled: false
                 });
       date = date.clone();
       date.add(1, 'd');
     }
     return days;
-  };
+  }
 
   buildYears(year) {
     let century    = [];
-    let temp_array = []
+    const temp_array = [];
     for (const i of Array.from(Array(20).keys())) {
-      let y = i - 10 + year
+      const y = i - 10 + year;
       century.push({
                      year: y,
                      isSelectedYear: y == year,
-                     isCurrentYear: moment().get('y') == y,
+                     isCurrentYear: moment().get('y') == y
                    });
     }
     for (let i = 0, j = century.length; i < j; i += 5) {
       temp_array.push(century.slice(i, i + 5));
       // do whatever
     }
-    century = temp_array
+    century = temp_array;
     return century;
   }
 
   buildMonths(date: any) {
-    let formatMonths       = [];
-    let months: Array<any> = [];
+    const formatMonths       = [];
+    let months: any[] = [];
     for (let i = 0; i < 12; i++) {
       months.push({
                     index: i,
                     name: this.monthName[i],
                     isCurrentMonth: moment(new Date()).month() === i && date.isSame(new Date(), 'year'),
-                    isSelectedMonth: this.atMonth === i,
+                    isSelectedMonth: this.atMonth === i
                   });
       if ((i + 1) % 3 === 0) {
         formatMonths.push(months);
@@ -304,30 +296,28 @@ export class CalendarComponent implements OnInit {
       }
     }
     return formatMonths;
-  };
-
-
-  buildCalendar() {
-    moment.locale((this.locale || <any>{}).locale)
-    let time    = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue
-    let date    = moment(time).year(this.atYear).month(this.atMonth)
-    this.weeks  = this.buildWeeks(date)
-    this.months = this.buildMonths(date)
-    this._years = this.buildYears(this.atYear)
   }
 
+  buildCalendar() {
+    moment.locale((this.locale || {} as any).locale);
+    const time    = (this.atValue == null || this.atValue == '' || !this.atValue) ? this.showValue : this.atValue;
+    const date    = moment(time).year(this.atYear).month(this.atMonth);
+    this.weeks  = this.buildWeeks(date);
+    this.months = this.buildMonths(date);
+    this._years = this.buildYears(this.atYear);
+  }
 
   clickDay(day) {
     if (!day.disabled) {
-      this._clickDate.emit(day)
+      this._clickDate.emit(day);
     }
   }
 
   clickMonth(single) {
-    this._clickMonth.emit(single)
+    this._clickMonth.emit(single);
   }
 
   clickYear(year) {
-    this._clickYear.emit(year)
+    this._clickYear.emit(year);
   }
 }

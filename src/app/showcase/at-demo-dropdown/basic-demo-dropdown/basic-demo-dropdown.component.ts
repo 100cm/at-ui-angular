@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'app-basic-demo-dropdown',
@@ -13,10 +13,10 @@ export class BasicDemoDropdownComponent implements OnInit {
   ngOnInit() {
 
     for (let i = 0; i < 100; i++) {
-      this.arrays.push(1)
+      this.arrays.push(1);
     }
   }
 
-  arrays = []
+  arrays = [];
 
 }

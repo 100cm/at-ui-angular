@@ -13,7 +13,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "generate": "bash ./build.sh",
-    "release": "rm -rf publish && ng build at-ng-lib &&  npm run schematic:tsc && bash ./build.sh"
+    "release": "rm -rf publish && ng build at-ng-lib &&  npm run schematic:tsc && bash ./build.sh",
+    "lint-fix": "ng lint --fix"
   },
   "main": "./bundles/at-ng.umd.js",
   "module": "./esm5/at-ng.js",

@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -7,13 +7,13 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
-}                     from '@angular/core';
+  Output
+}                       from '@angular/core';
 
-import {Subscription}                       from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {Color, HSLA, HSVA, RGBA}            from "../color.interface";
-import {simpleCheckForValidColor, toState}  from "../../utils/class-helper";
+import { Subscription }                       from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { simpleCheckForValidColor, toState }  from '../../utils/class-helper';
+import { Color, HSLA, HSVA, RGBA }            from '../color.interface';
 
 export interface ColorEvent {
   $event: Event;
@@ -21,19 +21,18 @@ export interface ColorEvent {
 }
 
 @Component({
-             selector: 'at-color-wrap',
-             template: '',
-           })
+  selector: 'at-color-wrap',
+  template: ''
+})
 export class AtColorWrapComponent implements OnInit {
 
-  @Input() atClassName   = '';
+  @Input() atClassName = '';
   private _atColor: HSLA = {
     h: 250,
     s: 0.5,
     l: 0.2,
-    a: 1,
+    a: 1
   };
-
 
   get atColor(): HSLA {
     return this._atColor;
@@ -46,29 +45,27 @@ export class AtColorWrapComponent implements OnInit {
     this.currentColor = this.hex;
   }
 
-  @Output() onChangeComplete = new EventEmitter<ColorEvent>();
-  @Output() onSwatchHover    = new EventEmitter<ColorEvent>();
-            oldHue: number;
-            hsl: HSLA;
-            hsv: HSVA;
-            rgb: RGBA;
-            hex: string;
-            source: string;
-            currentColor: string;
-            changes: Subscription;
+  @Output() readonly onChangeComplete = new EventEmitter<ColorEvent>();
+  @Output() readonly onSwatchHover = new EventEmitter<ColorEvent>();
+  oldHue: number;
+  hsl: HSLA;
+  hsv: HSVA;
+  rgb: RGBA;
+  hex: string;
+  source: string;
+  currentColor: string;
+  changes: Subscription;
 
-
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
 
   }
 
   setState(data) {
     this.oldHue = data.oldHue;
-    this.hsl    = data.hsl;
-    this.hsv    = data.hsv;
-    this.rgb    = data.rgb;
-    this.hex    = data.hex;
+    this.hsl = data.hsl;
+    this.hsv = data.hsv;
+    this.rgb = data.rgb;
+    this.hex = data.hex;
     this.source = data.source;
     this.afterValidChange();
   }

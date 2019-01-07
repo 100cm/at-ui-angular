@@ -3,11 +3,10 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output,
+  Output
 }                   from '@angular/core';
-import {isValidHex} from "../../utils/class-helper";
-import {HSLA, RGBA} from "../color.interface";
-
+import { isValidHex } from '../../utils/class-helper';
+import { HSLA, RGBA } from '../color.interface';
 
 @Component({
              selector: 'at-color-sketch-fields',
@@ -85,15 +84,15 @@ import {HSLA, RGBA} from "../color.interface";
                    flex: 1 1 0%;
                    padding-left: 6px;
                  }
-               `,
+               `
              ],
              changeDetection: ChangeDetectionStrategy.OnPush,
-             preserveWhitespaces: false,
+             preserveWhitespaces: false
            })
 export class AtSketchFieldsComponent {
   @Input() hsl: HSLA;
   @Input() rgb: RGBA;
-  private _hex: string = "";
+  private _hex: string = '';
 
   get hex(): string {
     return this._hex;
@@ -101,7 +100,7 @@ export class AtSketchFieldsComponent {
 
   @Input()
   set hex(value: string) {
-    if(value){
+    if (value) {
       this._hex = value;
     }
   }
@@ -114,7 +113,7 @@ export class AtSketchFieldsComponent {
              border: 'none',
              boxSizing: 'border-box',
              boxShadow: 'inset 0 0 0 1px #ccc',
-             fontSize: '11px',
+             fontSize: '11px'
            };
            label: { [key: string]: string } = {
              display: 'block',
@@ -123,7 +122,7 @@ export class AtSketchFieldsComponent {
              color: '#222',
              paddingTop: '3px',
              paddingBottom: '4px',
-             textTransform: 'capitalize',
+             textTransform: 'capitalize'
            };
 
   round(value) {
@@ -136,28 +135,25 @@ export class AtSketchFieldsComponent {
         this.onChange.emit({
                              data: {
                                hex: data.hex,
-                               source: '_hex',
+                               source: '_hex'
                              },
-                             $event,
+                             $event
                            });
       }
-    }
-    else if (data.r || data.g || data.b) {
+    } else if (data.r || data.g || data.b) {
       this.onChange.emit({
                            data: {
                              r: data.r || this.rgb.r,
                              g: data.g || this.rgb.g,
                              b: data.b || this.rgb.b,
-                             source: 'rgb',
+                             source: 'rgb'
                            },
-                           $event,
+                           $event
                          });
-    }
-    else if (data.a) {
+    } else if (data.a) {
       if (data.a < 0) {
         data.a = 0;
-      }
-      else if (data.a > 100) {
+      } else if (data.a > 100) {
         data.a = 100;
       }
       data.a /= 100;
@@ -168,20 +164,19 @@ export class AtSketchFieldsComponent {
                              s: this.hsl.s,
                              l: this.hsl.l,
                              a: Math.round(data.a * 100) / 100,
-                             source: 'rgb',
+                             source: 'rgb'
                            },
-                           $event,
+                           $event
                          });
-    }
-    else if (data.h || data.s || data.l) {
+    } else if (data.h || data.s || data.l) {
       this.onChange.emit({
                            data: {
                              h: data.h || this.hsl.h,
                              s: Number((data.s && data.s) || this.hsl.s),
                              l: Number((data.l && data.l) || this.hsl.l),
-                             source: 'hsl',
+                             source: 'hsl'
                            },
-                           $event,
+                           $event
                          });
     }
   }

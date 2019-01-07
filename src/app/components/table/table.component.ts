@@ -2,8 +2,8 @@ import {
   Component, ContentChild, ContentChildren, ElementRef, Input, OnInit, QueryList, TemplateRef,
   ViewChild
 }                         from '@angular/core';
-import {AtThDirective}    from './at-th.directive';
-import {AtTheadDirective} from './at-thead.directive';
+import { AtThDirective }    from './at-th.directive';
+import { AtTheadDirective } from './at-thead.directive';
 
 @Component({
   selector: 'at-table',
@@ -66,7 +66,7 @@ import {AtTheadDirective} from './at-thead.directive';
         <ng-content select="[footer]"></ng-content>
       </div>
     </div>
-  `,
+  `
 })
 export class TableComponent implements OnInit {
 
@@ -76,36 +76,35 @@ export class TableComponent implements OnInit {
   ngOnInit() {
   }
 
-  _ths = []
+  _ths = [];
 
   @Input()
-  size: 'normal' | 'large' | 'small' = 'normal'
-  @Input() height
+  size: 'normal' | 'large' | 'small' = 'normal';
+  @Input() height;
   @Input()
   stripe: boolean = false;
 
-  @Input() atFixed = false
+  @Input() atFixed = false;
 
   @Input()
-  border: boolean = false
+  border: boolean = false;
 
-  @Input() showFooter = false
+  @Input() showFooter = false;
 
   @ContentChildren(AtThDirective, {descendants: true})
   set setThs(value: QueryList<AtThDirective>) {
-    this._ths = value.toArray()
+    this._ths = value.toArray();
   }
 
+  @ViewChild(AtTheadDirective, {read: ElementRef}) fixed_head: ElementRef;
 
-  @ViewChild(AtTheadDirective, {read: ElementRef}) fixed_head: ElementRef
-
-  marginTop = 0
+  marginTop = 0;
 
   ngAfterViewInit() {
     if (this.fixed_head) {
       setTimeout(_ => {
-        this.marginTop = this.fixed_head.nativeElement.offsetHeight
-      })
+        this.marginTop = this.fixed_head.nativeElement.offsetHeight;
+      });
     }
   }
 

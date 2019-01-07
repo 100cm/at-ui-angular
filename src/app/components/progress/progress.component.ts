@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {StatusIconType} from "../icon/icon-status-type";
+import { Component, Input, OnInit } from '@angular/core';
+import { StatusIconType } from '../icon/icon-status-type';
 
 @Component({
   selector: 'at-progress',
@@ -25,30 +25,29 @@ export class ProgressComponent implements OnInit {
   ngOnInit() {
   }
 
-  private _width: number = 0
-
+  private _width: number = 0;
 
   get width(): number {
     return this._width;
   }
 
-  statusIcon = StatusIconType
+  statusIcon = StatusIconType;
 
   @Input()
-  stroke: number = 8
+  stroke: number = 8;
 
   @Input()
   set width(value: number) {
-    value > 100 ? value = 100 : value
-    value < 0 ? value = 0 : value
+    value > 100 ? value = 100 : value;
+    value < 0 ? value = 0 : value;
     this._width = value;
     if (this._width == 100) {
-      this.status = 'success'
-    }else{
-      this.status = 'process'
+      this.status = 'success';
+    } else {
+      this.status = 'process';
     }
   }
 
-  @Input() status: string
+  @Input() status: string;
 
 }

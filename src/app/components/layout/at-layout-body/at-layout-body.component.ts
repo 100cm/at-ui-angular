@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'at-layout-body',
@@ -12,7 +12,7 @@ import {Component, OnInit} from '@angular/core';
            })
 export class AtLayoutBodyComponent implements OnInit {
 
-  hasSideBar = false
+  hasSideBar = false;
 
   constructor() {
   }

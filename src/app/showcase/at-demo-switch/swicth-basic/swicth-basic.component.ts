@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-swicth-basic',
@@ -13,6 +13,6 @@ export class SwicthBasicComponent implements OnInit {
   ngOnInit() {
   }
 
-  check = true
+  check = true;
 
 }

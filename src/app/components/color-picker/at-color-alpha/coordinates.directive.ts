@@ -5,7 +5,7 @@ import {
   NgModule,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 
 import { Subject, Subscription } from 'rxjs';
@@ -37,7 +37,7 @@ export class AtCoordinatesDirective implements OnInit, OnDestroy {
     '$event',
     '$event.touches[0].clientX',
     '$event.touches[0].clientY',
-    'true',
+    'true'
   ])
   mousemove($event: Event, x: number, y: number, isTouch = false) {
     if (this.mouseListening) {
@@ -55,7 +55,7 @@ export class AtCoordinatesDirective implements OnInit, OnDestroy {
     '$event',
     '$event.touches[0].clientX',
     '$event.touches[0].clientY',
-    'true',
+    'true'
   ])
   mousedown($event: Event, x: number, y: number, isTouch = false) {
     $event.preventDefault();
@@ -69,7 +69,7 @@ export class AtCoordinatesDirective implements OnInit, OnDestroy {
     this.sub = this.mousechange
       .pipe(
         // limit times it is updated for the same area
-        distinctUntilChanged((p, q) => p.x === q.x && p.y === q.y),
+        distinctUntilChanged((p, q) => p.x === q.x && p.y === q.y)
       )
       .subscribe(n => this.handleChange(n.x, n.y, n.$event, n.isTouch));
   }
@@ -96,7 +96,7 @@ export class AtCoordinatesDirective implements OnInit, OnDestroy {
       left,
       containerWidth,
       containerHeight,
-      $event,
+      $event
     });
   }
 }

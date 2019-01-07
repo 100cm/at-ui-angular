@@ -1,7 +1,7 @@
 /* tslint:disable:no-any */
-import {Pipe, PipeTransform}    from '@angular/core';
-import {AtOptionGroupComponent} from './at-option-group.component';
-import {AtOptionComponent}      from './at-option.component';
+import { Pipe, PipeTransform }    from '@angular/core';
+import { AtOptionGroupComponent } from './at-option-group.component';
+import { AtOptionComponent }      from './at-option.component';
 
 export type TFilterOption = (input?: string, option?: AtOptionComponent) => boolean;
 

@@ -1,24 +1,24 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
+  CdkOverlayOrigin
+}                                                   from '@angular/cdk/overlay';
+import {
+  ChangeDetectorRef,
   Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef,
   ContentChild,
-  Renderer2, ChangeDetectorRef
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2, ViewChild
 }                                                   from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Subject, Subscription }                      from 'rxjs';
 import {
   AtGlobalMonitorService,
   Position
 }                                                   from '../at-global-monitor.service';
-import {StatusIconType}                             from '../icon/icon-status-type';
-import {
-  CdkOverlayOrigin,
-}                                                   from '@angular/cdk/overlay';
-import {Subject, Subscription}                      from 'rxjs';
+import { StatusIconType }                             from '../icon/icon-status-type';
 
 @Component({
   selector: 'at-modal',
@@ -32,7 +32,7 @@ import {Subject, Subscription}                      from 'rxjs';
     transition('* => leave', [
       style({opacity: 1, transform: 'scale(1)'}),
       animate('100ms linear')
-    ]),
+    ])
   ])],
   template: `
     <div>
@@ -89,61 +89,59 @@ import {Subject, Subscription}                      from 'rxjs';
 
     </div>
 
-  `,
+  `
 })
 export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
 
-  state = 'enter'
-  icon_status = StatusIconType
-  @Output() onOk = new EventEmitter()
-  @Output() onCancel = new EventEmitter()
+  state = 'enter';
+  icon_status = StatusIconType;
+  @Output() onOk = new EventEmitter();
+  @Output() onCancel = new EventEmitter();
 
-  @Input() showFooter = true
-  @Input() width: number = 520
-  @Input() top: number = 100
-  @Input() maskClose: boolean = true
-  @Input() showHeader: boolean = true
-  @Input() status: 'error' | 'success' | 'warning' | 'info' = 'info'
-  @Input() title
-  @Input() closeable = true
-  @Input() message
-  @Input() atType: 'confirm' | 'normal' = 'normal'
-
+  @Input() showFooter = true;
+  @Input() width: number = 520;
+  @Input() top: number = 100;
+  @Input() maskClose: boolean = true;
+  @Input() showHeader: boolean = true;
+  @Input() status: 'error' | 'success' | 'warning' | 'info' = 'info';
+  @Input() title;
+  @Input() closeable = true;
+  @Input() message;
+  @Input() atType: 'confirm' | 'normal' = 'normal';
 
   OnOkFallBack = () => {
   }
 
-  $showSubscription = Subscription.EMPTY
+  $showSubscription = Subscription.EMPTY;
 
   OnCancleFallBack = () => {
   }
 
   ok() {
-    this.onOk.emit()
-    this.setShow(false)
-    this.OnOkFallBack()
+    this.onOk.emit();
+    this.setShow(false);
+    this.OnOkFallBack();
   }
 
   cancel() {
-    this.onCancel.emit()
-    this.setShow(false)
-    this.OnCancleFallBack()
+    this.onCancel.emit();
+    this.setShow(false);
+    this.OnCancleFallBack();
   }
 
+  @ViewChild(CdkOverlayOrigin) overlay: CdkOverlayOrigin;
 
-  @ViewChild(CdkOverlayOrigin) overlay: CdkOverlayOrigin
+  @Output() showChange = new EventEmitter<boolean>();
+  private _show = false;
 
-  @Output() showChange = new EventEmitter<boolean>()
-  private _show = false
-
-  public $showChange = new Subject()
+  public $showChange = new Subject();
 
   clickHide(event) {
     if (event.target.getAttribute('role') === 'dialog' && this.maskClose) {
-      this.setShow(false)
+      this.setShow(false);
     }
   }
 
@@ -153,26 +151,25 @@ export class ModalComponent implements OnInit {
 
   @Input()
   set show(value: boolean) {
-    this.setShow(value)
+    this.setShow(value);
   }
 
   setShow(value) {
-    this.$showChange.next(value)
+    this.$showChange.next(value);
   }
 
   ngAfterViewInit() {
-    this.subscribeStatus()
+    this.subscribeStatus();
   }
 
   subscribeStatus() {
     if (this.$showSubscription == Subscription.EMPTY) {
       this.$showSubscription = this.$showChange.asObservable().subscribe((show: boolean) => {
-        this._show = show
-        this.state = show ? 'enter' : 'leave'
-        this.showChange.emit(show)
-      })
+        this._show = show;
+        this.state = show ? 'enter' : 'leave';
+        this.showChange.emit(show);
+      });
     }
   }
-
 
 }

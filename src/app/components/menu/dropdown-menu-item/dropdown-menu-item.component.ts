@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2} from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: '[at-drop-menu-item]',
@@ -12,22 +12,19 @@ export class DropdownMenuItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  _el: any
-  nativeElement: any
-  private _disabled = false
-  private _divided = false
-
+  _el: any;
+  nativeElement: any;
+  private _disabled = false;
+  private _divided = false;
 
   @Input()
   get disabled(): boolean {
     return this._disabled;
   }
 
-
   set disabled(value: boolean) {
     this._disabled = value;
   }
-
 
   get divided(): boolean {
     return this._divided;
@@ -38,16 +35,14 @@ export class DropdownMenuItemComponent implements OnInit {
     this._divided = value;
   }
 
-  private _active = false
-
+  private _active = false;
 
   constructor(private _elementRef: ElementRef, private _renderer: Renderer2) {
     this._el = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
   }
 
-  @HostBinding(`class.at-dropdown-menu__item`) item_class = true
-
+  @HostBinding(`class.at-dropdown-menu__item`) item_class = true;
 
   @HostListener('click')
   setActive() {
@@ -56,24 +51,23 @@ export class DropdownMenuItemComponent implements OnInit {
 
   @HostBinding('class.at-dropdown-menu__item--active')
   get activeCls() {
-    return this._active
+    return this._active;
   }
 
   @HostBinding('class.at-dropdown-menu__item--divided')
   get getDivide() {
-    return this._divided
+    return this._divided;
   }
 
   @HostBinding('class.at-dropdown-menu__item--disabled')
   get getDisableCls() {
-    return this.disabled
+    return this.disabled;
   }
 
   @Input('active')
   set active(active: boolean) {
-    this._active = active
+    this._active = active;
   }
-
 
   get active(): boolean {
     return this._active;

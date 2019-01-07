@@ -1,25 +1,25 @@
 import {
+  forwardRef,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  forwardRef,
   Input,
   OnInit,
   Output,
   ViewChild
 }                                        from '@angular/core';
-import {AtSelectComponent}               from '../../select/at-select.component';
-import {NG_VALUE_ACCESSOR}               from '@angular/forms';
-import {InputBoolean}                    from '../../utils/class-helper';
-import {merge, of, Subscription}         from 'rxjs';
-import {filter, tap}                     from 'rxjs/operators';
-import {AtTreeSelectTopControlComponent} from '../at-tree-select-top-control/at-tree-select-top-control.component';
-import {AtTreeNode, AtTreeNodeOptions}   from '../../tree/at-tree-node';
-import {AtFormatEmitEvent}               from '../../tree/interface';
-import {AtTreeComponent}                 from '../../tree/at-tree.component';
-import {DropDownAnimation}               from '../../animations/drop-down-animation';
-import {AtSelectControlService}          from '../../select/at-select-control.service';
-import {AtTreeService,}                  from '../../tree/at-tree.service';
+import { NG_VALUE_ACCESSOR }               from '@angular/forms';
+import { merge, of, Subscription }         from 'rxjs';
+import { filter, tap }                     from 'rxjs/operators';
+import { DropDownAnimation }               from '../../animations/drop-down-animation';
+import { AtSelectControlService }          from '../../select/at-select-control.service';
+import { AtSelectComponent }               from '../../select/at-select.component';
+import { AtTreeNode, AtTreeNodeOptions }   from '../../tree/at-tree-node';
+import { AtTreeComponent }                 from '../../tree/at-tree.component';
+import { AtTreeService }                  from '../../tree/at-tree.service';
+import { AtFormatEmitEvent }               from '../../tree/interface';
+import { InputBoolean }                    from '../../utils/class-helper';
+import { AtTreeSelectTopControlComponent } from '../at-tree-select-top-control/at-tree-select-top-control.component';
 
 @Component({
   selector: 'at-tree-select',
@@ -29,7 +29,7 @@ import {AtTreeService,}                  from '../../tree/at-tree.service';
       useExisting: forwardRef(() => AtTreeSelectComponent),
       multi: true
     },
-    AtSelectControlService, AtTreeService,
+    AtSelectControlService, AtTreeService
   ],
   animations: [
     DropDownAnimation
@@ -93,7 +93,7 @@ import {AtTreeService,}                  from '../../tree/at-tree.service';
 })
 export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
 
-  isDestroy = false
+  isDestroy = false;
   @Input() @InputBoolean() atAllowClear = true;
   @Input() @InputBoolean() atShowExpand = true;
   @Input() @InputBoolean() atShowSearch = false;
@@ -111,12 +111,11 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
   @Output() readonly atTreeClick = new EventEmitter<AtFormatEmitEvent>();
   @Output() readonly atTreeCheckBoxChange = new EventEmitter<AtFormatEmitEvent>();
 
-
   get atNodes(): AtTreeNodeOptions[] {
     return this._atNodes;
   }
 
-  treeNodes = []
+  treeNodes = [];
 
   @Input()
   set atNodes(value: AtTreeNodeOptions[]) {
@@ -134,19 +133,17 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
         console.warn('ngModel only accepts an array and must be not empty');
       }
     }
-    this._atNodes = value
+    this._atNodes = value;
   }
 
+  @Input() atCheckable = false;
 
-  @Input() atCheckable = false
-
-  @ViewChild('treeRef') treeRef: AtTreeComponent
+  @ViewChild('treeRef') treeRef: AtTreeComponent;
   @ViewChild(AtTreeSelectTopControlComponent) atTreeSelectTopControlComponent: AtTreeSelectTopControlComponent;
 
-  showTree = true
+  showTree = true;
 
-  private _selectedNodes: AtTreeNode[] = []
-
+  private _selectedNodes: AtTreeNode[] = [];
 
   get selectedNodes(): AtTreeNode[] {
     return this._selectedNodes;
@@ -158,16 +155,16 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
 
   updateSelectedNodes(): void {
     if (this.treeRef) {
-      this.selectedNodes = [...(this.atCheckable ? this.treeRef.getCheckedNodeList() : this.treeRef.getSelectedNodeList())]
+      this.selectedNodes = [...(this.atCheckable ? this.treeRef.getCheckedNodeList() : this.treeRef.getSelectedNodeList())];
     } else {
       if (this.atCheckable) {
-        this.atTreeService.calcCheckedKeys(this.value, this.treeNodes, this.multiple)
+        this.atTreeService.calcCheckedKeys(this.value, this.treeNodes, this.multiple);
       } else {
-        this.atTreeService.calcSelectedKeys(this.value, this.treeNodes, this.multiple)
+        this.atTreeService.calcSelectedKeys(this.value, this.treeNodes, this.multiple);
       }
-      this.selectedNodes = [...(this.atCheckable ? this.atTreeService.getCheckedNodeList() : this.atTreeService.getSelectedNodeList())]
+      this.selectedNodes = [...(this.atCheckable ? this.atTreeService.getCheckedNodeList() : this.atTreeService.getSelectedNodeList())];
     }
-    this.at_select_control_service.$optionsChange.next(this.selectedNodes)
+    this.at_select_control_service.$optionsChange.next(this.selectedNodes);
 
   }
 
@@ -189,9 +186,8 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       });
       this.selectedNodes = [];
     }
-    this.updateSelectedNodes()
+    this.updateSelectedNodes();
   }
-
 
   removeSelected(node: AtTreeNode, emit: boolean = true, event?: MouseEvent): void {
     node.isSelected = false;
@@ -215,11 +211,10 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
   subExpandeChange() {
     this.atExpandChange.subscribe(e => {
       if (this.atShowSearch && this.atTreeSelectTopControlComponent.inputElement) {
-        this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus()
+        this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus();
       }
-    })
+    });
   }
-
 
   subscribeSelectionChange(): Subscription {
     return merge(
@@ -247,12 +242,12 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       const value = this._selectedNodes.map(node => node.key);
       this.value = [...value];
       if (this.atShowSearch) {
-        this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus()
+        this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus();
       }
       if (this.isMultiple) {
         this.onChange(value);
       } else {
-        this.close()
+        this.close();
         this.onChange(value.length ? value[0] : null);
       }
 
@@ -262,32 +257,29 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
   subOpenStatus() {
     this.at_select_control_service.$openStatus.asObservable().pipe().subscribe((open: boolean) => {
       if (open) {
-        this.updateCdkConnectedOverlayStatus()
+        this.updateCdkConnectedOverlayStatus();
       }
-      this.showTree = open
-      setTimeout(_ => this.atOpen = open)
-    })
+      this.showTree = open;
+      setTimeout(_ => this.atOpen = open);
+    });
   }
-
 
   ngOnInit(): void {
     this.isDestroy = false;
-    this.subscribeSelectionChange()
-    this.subOpenStatus()
-    this.subSearch()
-    this.subExpandeChange()
+    this.subscribeSelectionChange();
+    this.subOpenStatus();
+    this.subSearch();
+    this.subExpandeChange();
   }
 
   subSearch() {
     this.at_select_control_service.$searchValueChange.asObservable().subscribe(value => {
-      this.searchValue = value
-    })
+      this.searchValue = value;
+    });
   }
-
 
   constructor(public at_select_control_service: AtSelectControlService, public atTreeService: AtTreeService) {
     super(at_select_control_service);
   }
-
 
 }

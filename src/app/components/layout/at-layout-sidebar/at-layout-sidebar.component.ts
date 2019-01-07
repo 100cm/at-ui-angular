@@ -1,6 +1,5 @@
-import {Component, HostBinding, Input, OnInit, Optional} from '@angular/core';
-import {AtLayoutBodyComponent}                           from "../at-layout-body/at-layout-body.component";
-
+import { Component, HostBinding, Input, OnInit, Optional } from '@angular/core';
+import { AtLayoutBodyComponent }                           from '../at-layout-body/at-layout-body.component';
 
 @Component({
              selector: 'at-layout-sidebar',
@@ -9,14 +8,14 @@ import {AtLayoutBodyComponent}                           from "../at-layout-body
                  <ng-content>
                  </ng-content>
                </div>`,
-             host: {'[class.at-layout-sidebar]': 'true',}
+             host: {'[class.at-layout-sidebar]': 'true'}
            })
 export class AtLayoutSidebarComponent implements OnInit {
 
   constructor(@Optional() private atLayoutBody: AtLayoutBodyComponent) {
   }
 
-  @Input() atWidth = 256
+  @Input() atWidth = 256;
 
   ngOnInit() {
     if (this.atLayoutBody) {
@@ -37,6 +36,5 @@ export class AtLayoutSidebarComponent implements OnInit {
     return this.atWidth;
 
   }
-
 
 }

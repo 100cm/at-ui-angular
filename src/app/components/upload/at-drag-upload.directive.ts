@@ -1,13 +1,11 @@
-import {Directive, EventEmitter, HostListener, Output} from '@angular/core';
+import { Directive, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Directive({
   selector: '[at-drag-upload]'
 })
 export class AtDragUploadDirective {
 
-
-  @Output() uploadFile: EventEmitter<any> = new EventEmitter<any>()
-
+  @Output() uploadFile: EventEmitter<any> = new EventEmitter<any>();
 
   @HostListener('drop', ['$event'])
   @HostListener('dragover', ['$event'])
@@ -16,9 +14,9 @@ export class AtDragUploadDirective {
       e.preventDefault();
       return;
     }
-    const files: File[] = Array.prototype.slice.call(e.dataTransfer.files)
+    const files: File[] = Array.prototype.slice.call(e.dataTransfer.files);
     if (files.length) {
-      this.uploadFile.emit(files)
+      this.uploadFile.emit(files);
     }
     e.preventDefault();
   }

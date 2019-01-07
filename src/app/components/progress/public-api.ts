@@ -1,3 +1,2 @@
-export *  from './at-progress.module'
-export *  from './progress.component'
-
+export *  from './at-progress.module';
+export *  from './progress.component';

@@ -1,6 +1,6 @@
 /** get some code from https://github.com/angular/material2 */
 
-import {DOCUMENT}   from '@angular/common';
+import { DOCUMENT }   from '@angular/common';
 import {
   AfterContentChecked,
   AfterViewInit,
@@ -16,13 +16,13 @@ import {
   TemplateRef,
   ViewChild
 }                   from '@angular/core';
-import {Observable} from 'rxjs';
-import {map}        from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map }        from 'rxjs/operators';
 
-import {AtTabComponent}           from './at-tab.component';
-import {AtTabsNavComponent}       from './at-tabs-nav.component';
-import {AtUpdateHostClassService} from './update-host-class.service';
-import {isNotNil}                 from '../utils/class-helper';
+import { isNotNil }                 from '../utils/class-helper';
+import { AtTabComponent }           from './at-tab.component';
+import { AtTabsNavComponent }       from './at-tabs-nav.component';
+import { AtUpdateHostClassService } from './update-host-class.service';
 
 export interface atAnimatedInterface {
   inkBar: boolean;
@@ -133,7 +133,7 @@ export class AtTabsetComponent implements AfterContentChecked, OnInit, AfterView
 
   @Input('atIndex')
   set atSelectedIndex(value: number | null) {
-    this._indexToSelect = value
+    this._indexToSelect = value;
   }
 
   get atSelectedIndex(): number | null {

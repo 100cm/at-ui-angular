@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-group-checkbox',
@@ -16,7 +16,7 @@ export class DemoGroupCheckboxComponent implements OnInit {
   list = [
     {label: 'Apple', value: 'Apple', checked: true},
     {label: 'Pear', value: 'Pear', checked: false},
-    {label: 'Orange', value: 'Orange'},
+    {label: 'Orange', value: 'Orange'}
   ];
 
 }

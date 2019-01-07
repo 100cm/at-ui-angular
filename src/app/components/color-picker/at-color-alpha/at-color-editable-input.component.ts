@@ -8,7 +8,7 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 
 import { fromEvent, Subscription } from 'rxjs';
@@ -34,9 +34,9 @@ import { fromEvent, Subscription } from 'rxjs';
     .wrap {
       position: relative;
     }
-  `,
+  `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AtColorEditableInputComponent implements OnInit, OnChanges, OnDestroy {
   @Input() style: {
@@ -90,7 +90,7 @@ export class AtColorEditableInputComponent implements OnInit, OnChanges, OnDestr
         if (this.label) {
           this.onChange.emit({
             data: { [this.label]: number + amount },
-            $event,
+            $event
           });
         } else {
           this.onChange.emit({ data: number + amount, $event });
@@ -108,7 +108,7 @@ export class AtColorEditableInputComponent implements OnInit, OnChanges, OnDestr
         if (this.label) {
           this.onChange.emit({
             data: { [this.label]: number - amount },
-            $event,
+            $event
           });
         } else {
           this.onChange.emit({ data: number - amount, $event });
@@ -129,7 +129,7 @@ export class AtColorEditableInputComponent implements OnInit, OnChanges, OnDestr
     if (this.label) {
       this.onChange.emit({
         data: { [this.label]: $event.target.value },
-        $event,
+        $event
       });
     } else {
       this.onChange.emit({ data: $event.target.value, $event });
@@ -148,10 +148,10 @@ export class AtColorEditableInputComponent implements OnInit, OnChanges, OnDestr
   }
   subscribe() {
     this.mousemove = fromEvent(document, 'mousemove').subscribe((ev: Event) =>
-      this.handleDrag(ev),
+      this.handleDrag(ev)
     );
     this.mouseup = fromEvent(document, 'mouseup').subscribe(() =>
-      this.unsubscribe(),
+      this.unsubscribe()
     );
   }
   unsubscribe() {

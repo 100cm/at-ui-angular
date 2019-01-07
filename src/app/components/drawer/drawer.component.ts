@@ -12,9 +12,9 @@ import {
   ViewContainerRef
 } from '@angular/core';
 
-import {CdkOverlayOrigin, Overlay, OverlayConfig, OverlayRef} from '@angular/cdk/overlay';
-import {TemplatePortal}                                       from '@angular/cdk/portal';
-import {InputBoolean}                                         from "../utils/class-helper";
+import { CdkOverlayOrigin, Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import { TemplatePortal }                                       from '@angular/cdk/portal';
+import { InputBoolean }                                         from '../utils/class-helper';
 
 @Component({
              selector: 'at-drawer',
@@ -62,8 +62,7 @@ export class DrawerComponent implements OnInit {
   get transform(): string {
     if (this.atPlacement === 'left') {
       return this.isOpen ? `translateX(${this.atOffsetX}px)` : `translateX(-${this.width})`;
-    }
-    else {
+    } else {
       return this.isOpen ? `translateX(-${this.atOffsetX}px)` : `translateX(${this.width})`;
     }
   }

@@ -12,11 +12,11 @@ export class AtDemoCollapseComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic_code = require('./demo-basic-collapse/demo-basic-collapse.component.html')
+  basic_code = require('./demo-basic-collapse/demo-basic-collapse.component.html');
 
-  accord_code = require('./demo-according-collapse/demo-according-collapse.component.html')
+  accord_code = require('./demo-according-collapse/demo-according-collapse.component.html');
 
-  simple_code = require('./demo-simple-collapse/demo-simple-collapse.component.html')
+  simple_code = require('./demo-simple-collapse/demo-simple-collapse.component.html');
 
-  nest_code = require('./demo-nested-collapse/demo-nested-collapse.component.html')
+  nest_code = require('./demo-nested-collapse/demo-nested-collapse.component.html');
 }

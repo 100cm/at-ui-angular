@@ -11,11 +11,11 @@ export class DemoSearchSelectComponent implements OnInit {
 
   ngOnInit() {
   }
-  selected = ['first']
+  selected = ['first'];
 
-  single = 'first'
+  single = 'first';
 
-  search(text){
-    console.log(text)
+  search(text) {
+    console.log(text);
   }
 }

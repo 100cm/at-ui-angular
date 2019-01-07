@@ -4,10 +4,9 @@ import {
   Component,
   Input,
   NgModule,
-  OnInit,
+  OnInit
 }                        from '@angular/core';
-import {getCheckerboard} from "../../utils/class-helper";
-
+import { getCheckerboard } from '../../utils/class-helper';
 
 @Component({
   selector: 'at-color-checkboard',
@@ -21,10 +20,10 @@ import {getCheckerboard} from "../../utils/class-helper";
     left: 0px;
     position: absolute;
   }
-  `,
+  `
   ],
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AtCheckboardComponent implements OnInit {
   @Input() white = 'transparent';
@@ -39,7 +38,7 @@ export class AtCheckboardComponent implements OnInit {
     this.gridStyles = {
       borderRadius: this.borderRadius,
       boxShadow: this.boxShadow,
-      background: `url(${background}) center left`,
+      background: `url(${background}) center left`
     };
   }
 }

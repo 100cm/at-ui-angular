@@ -2,7 +2,7 @@ import {
   Component, ElementRef, HostBinding, HostListener, Inject, Input, OnInit, Renderer2,
   ViewEncapsulation
 } from '@angular/core';
-import {RadioGroupComponent} from "./radio-group/radio-group.component";
+import { RadioGroupComponent } from './radio-group/radio-group.component';
 
 @Component({
   selector: '[at-radio]',
@@ -16,23 +16,22 @@ import {RadioGroupComponent} from "./radio-group/radio-group.component";
     </ng-content>
   </span>
 
-  `,
+  `
 })
 export class RadioComponent implements OnInit {
 
   private _atValue: any;
 
-  constructor(public _elementRef: ElementRef, public _RadioGroup: RadioGroupComponent, public _renderer: Renderer2,) {
+  constructor(public _elementRef: ElementRef, public _RadioGroup: RadioGroupComponent, public _renderer: Renderer2) {
     this._RadioGroup.addRadio(this);
     this._el = this._elementRef.nativeElement;
   }
 
-  _checked: boolean = false
+  _checked: boolean = false;
 
-  _disabled = false
+  _disabled = false;
 
-  _el: any
-
+  _el: any;
 
   get atValue(): any {
     return this._atValue;
@@ -65,8 +64,7 @@ export class RadioComponent implements OnInit {
     this._renderer.addClass(this._el, `${this._prefixCls}`);
   }
 
-  _prefixCls = 'at-radio'
-
+  _prefixCls = 'at-radio';
 
   @HostListener('click', ['$event'])
   onClick(e) {
@@ -76,6 +74,5 @@ export class RadioComponent implements OnInit {
       this._RadioGroup.selectRadio(this);
     }
   }
-
 
 }

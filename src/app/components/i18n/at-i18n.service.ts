@@ -1,8 +1,8 @@
-import {AtI18nInterface}                                                  from "./at-i18n.interface";
-import {Inject, Injectable, InjectionToken, Optional, Provider, SkipSelf} from '@angular/core';
-import zh_CN                                                              from "./languages/zh_CN";
-import {BehaviorSubject, Observable}                                      from 'rxjs';
-import {AT_I18N}                                                          from "./i18n-token";
+import { Inject, Injectable, InjectionToken, Optional, Provider, SkipSelf } from '@angular/core';
+import { BehaviorSubject, Observable }                                      from 'rxjs';
+import { AtI18nInterface }                                                  from './at-i18n.interface';
+import { AT_I18N }                                                          from './i18n-token';
+import zh_CN                                                              from './languages/zh_CN';
 
 @Injectable()
 export class AtI18nService {
@@ -13,12 +13,11 @@ export class AtI18nService {
 
   private _locale: AtI18nInterface;
 
-  private _change = new BehaviorSubject<AtI18nInterface>(this._locale)
+  private _change = new BehaviorSubject<AtI18nInterface>(this._locale);
 
   get localChange(): Observable<AtI18nInterface> {
     return this._change.asObservable();
   }
-
 
   get locale(): AtI18nInterface {
     return this._locale;
@@ -29,8 +28,8 @@ export class AtI18nService {
   }
 
   setLocale(language: AtI18nInterface) {
-    this._locale = language
-    this._change.next(language)
+    this._locale = language;
+    this._change.next(language);
   }
 
   translate(path, data?) {

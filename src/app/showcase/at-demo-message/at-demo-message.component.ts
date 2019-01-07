@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-message',
@@ -13,8 +13,8 @@ export class AtDemoMessageComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic = require('!!raw-loader!./demo-basic-message/demo-basic-message.component')
+  basic = require('!!raw-loader!./demo-basic-message/demo-basic-message.component');
 
-  load = require('!!raw-loader!./demo-loading-message/demo-loading-message.component')
+  load = require('!!raw-loader!./demo-loading-message/demo-loading-message.component');
 
 }

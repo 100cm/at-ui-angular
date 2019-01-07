@@ -11,12 +11,12 @@ import {
   SimpleChange,
   TemplateRef
 }                                                   from '@angular/core';
-import {NG_VALUE_ACCESSOR}                          from '@angular/forms';
-import {Observable, ReplaySubject, Subscription}    from 'rxjs';
-import {AtFormatBeforeDropEvent, AtFormatEmitEvent} from './interface';
-import {AtTreeNode}                                 from './at-tree-node';
-import {AtTreeService}                              from './at-tree.service';
-import {InputBoolean, isNotNil}                     from '../utils/class-helper';
+import { NG_VALUE_ACCESSOR }                          from '@angular/forms';
+import { Observable, ReplaySubject, Subscription }    from 'rxjs';
+import { isNotNil, InputBoolean }                     from '../utils/class-helper';
+import { AtTreeNode }                                 from './at-tree-node';
+import { AtTreeService }                              from './at-tree.service';
+import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
 
 @Component({
   selector: 'at-tree',

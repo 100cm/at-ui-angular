@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtModalService} from "../../../components/modal/at-modal.service";
+import { Component, OnInit } from '@angular/core';
+import { AtModalService } from '../../../components/modal/at-modal.service';
 
 @Component({
   selector: 'app-demo-basic-modal',
@@ -14,24 +14,24 @@ export class DemoBasicModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  show = false
+  show = false;
 
   setShow() {
-    this.show = true
+    this.show = true;
   }
 
   close() {
-    this.show = false
+    this.show = false;
   }
 
-  show2 = false
+  show2 = false;
 
   setShow2() {
-    this.show2 = true
+    this.show2 = true;
   }
 
   close2() {
-    this.show2 = false
+    this.show2 = false;
   }
 
   open() {
@@ -40,7 +40,7 @@ export class DemoBasicModalComponent implements OnInit {
       atType: 'confirm',
       message: '我是错误',
       title: '我是错误的标题'
-    })
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-steps',
@@ -13,6 +13,6 @@ export class DemoBasicStepsComponent implements OnInit {
   ngOnInit() {
   }
 
-  current = 0
+  current = 0;
 
 }

@@ -12,7 +12,7 @@ export class AtDemoColorPickerComponent implements OnInit {
   ngOnInit() {
   }
 
-  color = "#1890ff"
+  color = '#1890ff';
 
-  code = `<at-color-picker [(ngModel)]="color"></at-color-picker>`
+  code = `<at-color-picker [(ngModel)]="color"></at-color-picker>`;
 }

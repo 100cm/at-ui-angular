@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Host, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {ExpandAnimation}                                                   from '../../animations/expand-animation';
-import {AtCollapseComponent}                                               from '../at-collapse.component';
+import { Component, EventEmitter, Host, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ExpandAnimation }                                                   from '../../animations/expand-animation';
+import { AtCollapseComponent }                                               from '../at-collapse.component';
 
 @Component({
   selector: 'at-collapse-item',
@@ -30,30 +30,27 @@ import {AtCollapseComponent}                                               from 
 })
 export class AtCollapseItemComponent implements OnInit {
 
-
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  private _atOpen = true
+  private _atOpen = true;
 
+  @Input() atTitle: string | TemplateRef<void>;
 
-  @Input() atTitle: string | TemplateRef<any>
+  @Input() atDisabled: boolean = false;
 
-  @Input() atDisabled: boolean = false
+  @Output() readonly atOpenChange = new EventEmitter();
 
-  @Output() atOpenChange = new EventEmitter()
-
-  get titleIsString() {
-    return !(this.atTitle instanceof TemplateRef)
+  get titleIsString(): boolean {
+    return !(this.atTitle instanceof TemplateRef);
   }
 
-  open() {
+  open(): void {
     if (!this.atDisabled) {
-      this.atOpen = !this._atOpen
-      this.atOpenChange.emit(this.atOpen)
+      this.atOpen = !this._atOpen;
+      this.atOpenChange.emit(this.atOpen);
     }
   }
-
 
   @Input()
   get atOpen(): boolean {
@@ -68,12 +65,11 @@ export class AtCollapseItemComponent implements OnInit {
   }
 
   constructor(@Host() private at_collapse: AtCollapseComponent) {
-    this.at_collapse.pushItems(this)
+    this.at_collapse.pushItems(this);
   }
 
-
-  get expandState() {
-    return this._atOpen ? 'expand' : 'hidden'
+  get expandState(): string {
+    return this._atOpen ? 'expand' : 'hidden';
   }
 
 }

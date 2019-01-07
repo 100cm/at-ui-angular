@@ -12,6 +12,6 @@ export class DemoBasicTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  expand = false
+  expand = false;
 
 }

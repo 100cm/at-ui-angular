@@ -1,10 +1,10 @@
 import {
   animate,
-  AnimationTriggerMetadata,
   state,
   style,
   transition,
   trigger,
+  AnimationTriggerMetadata
 } from '@angular/animations';
 
 export const TagAnimation: AnimationTriggerMetadata = trigger('tagAnimation', [
@@ -18,4 +18,4 @@ export const TagAnimation: AnimationTriggerMetadata = trigger('tagAnimation', [
     style({ opacity: 1, transform: 'scale(1)' }),
     animate('150ms linear')
   ])
-])
+]);

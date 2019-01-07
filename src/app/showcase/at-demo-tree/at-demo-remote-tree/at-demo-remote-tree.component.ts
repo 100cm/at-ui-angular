@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtFormatEmitEvent} from '../../../components/tree';
+import { Component, OnInit } from '@angular/core';
+import { AtFormatEmitEvent } from '../../../components/tree';
 
 @Component({
              selector: 'app-at-demo-remote-tree',
@@ -20,7 +20,6 @@ export class AtDemoRemoteTreeComponent implements OnInit {
     { title: 'Tree Node', key: '2', isLeaf: true }
   ];
 
-
   atEvent(event: AtFormatEmitEvent): void {
     console.log(event);
     // load child async
@@ -35,7 +34,6 @@ export class AtDemoRemoteTreeComponent implements OnInit {
     }
   }
 
-  tree = []
-
+  tree = [];
 
 }

@@ -1,3 +1,2 @@
-export *       from './at-pagenation.module'
-export * from './pagenation.component'
-
+export *       from './at-pagenation.module';
+export * from './pagenation.component';

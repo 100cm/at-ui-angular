@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-tab',
@@ -13,14 +13,13 @@ export class DemoBasicTabComponent implements OnInit {
   ngOnInit() {
   }
 
-  project = {}
+  project = {};
 
-  index = 0
-  a = 1
-
+  index = 0;
+  a = 1;
 
   changeA() {
-    this.a == 1 ? this.a = 4 : this.a = 1
-    this.index == 1 ? this.index = 0 : this.index = 1
+    this.a == 1 ? this.a = 4 : this.a = 1;
+    this.index == 1 ? this.index = 0 : this.index = 1;
   }
 }

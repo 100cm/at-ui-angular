@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-dynamic-badge',
@@ -13,6 +13,6 @@ export class DemoDynamicBadgeComponent implements OnInit {
   ngOnInit() {
   }
 
-  show = true
+  show = true;
 
 }

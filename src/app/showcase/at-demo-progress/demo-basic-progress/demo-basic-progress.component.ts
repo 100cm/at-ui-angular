@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-progress',
@@ -16,13 +16,13 @@ export class DemoBasicProgressComponent implements OnInit {
   ngOnInit() {
   }
 
-  width = 0
+  width = 0;
 
   add() {
-    this.width += 10
+    this.width += 10;
   }
 
   minus() {
-    this.width -= 10
+    this.width -= 10;
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DemoBasicStepsComponent} from "../demo-basic-steps/demo-basic-steps.component";
+import { DemoBasicStepsComponent } from '../demo-basic-steps/demo-basic-steps.component';
 
 @Component({
   selector: 'app-demo-horizonal-steps',
@@ -7,6 +7,5 @@ import {DemoBasicStepsComponent} from "../demo-basic-steps/demo-basic-steps.comp
   styleUrls: ['./demo-horizonal-steps.component.css']
 })
 export class DemoHorizonalStepsComponent extends  DemoBasicStepsComponent implements OnInit {
-
 
 }

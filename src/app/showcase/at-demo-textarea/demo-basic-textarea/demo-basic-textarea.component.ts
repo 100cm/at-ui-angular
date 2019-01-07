@@ -12,6 +12,6 @@ export class DemoBasicTextareaComponent implements OnInit {
   ngOnInit() {
   }
 
-  text = '你好'
+  text = '你好';
 
 }

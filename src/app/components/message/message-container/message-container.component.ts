@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NotificationContainerComponent} from "../../notification/notification-container/notification-container.component";
+import { Component, OnInit } from '@angular/core';
+import { NotificationContainerComponent } from '../../notification/notification-container/notification-container.component';
 
 @Component({
   selector: 'app-message-container',
@@ -25,21 +25,20 @@ import {NotificationContainerComponent} from "../../notification/notification-co
 })
 export class MessageContainerComponent extends NotificationContainerComponent implements OnInit {
 
-
   ngOnInit() {
   }
 
   remove(index) {
-    let notification = this.notifications.find((n) => {
-      return n.index == index
-    })
+    const notification = this.notifications.find((n) => {
+      return n.index == index;
+    });
     if (notification) {
-      notification.state = 'leave'
+      notification.state = 'leave';
       setTimeout(_ => {
         this.notifications = this.notifications.filter((no) => {
-          return (no.index != index)
-        })
-      }, 110)
+          return (no.index != index);
+        });
+      }, 110);
     }
   }
 

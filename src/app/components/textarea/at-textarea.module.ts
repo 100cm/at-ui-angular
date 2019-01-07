@@ -1,8 +1,7 @@
-import {CommonModule}      from '@angular/common';
-import {NgModule}          from '@angular/core';
-import {FormsModule}       from "@angular/forms";
-import {TextareaComponent} from "./textarea.component";
-
+import { CommonModule }      from '@angular/common';
+import { NgModule }          from '@angular/core';
+import { FormsModule }       from '@angular/forms';
+import { TextareaComponent } from './textarea.component';
 
 @NgModule({
             imports: [CommonModule, FormsModule],

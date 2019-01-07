@@ -29,62 +29,62 @@ export const POSITION_MAP: { [key: string]: ConnectionPositionPair } = {
     originX : 'end',
     originY : 'center',
     overlayX: 'start',
-    overlayY: 'center',
+    overlayY: 'center'
   },
   'rightTop'    : {
     originX : 'end',
     originY : 'top',
     overlayX: 'start',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   'rightBottom' : {
     originX : 'end',
     originY : 'bottom',
     overlayX: 'start',
-    overlayY: 'bottom',
+    overlayY: 'bottom'
   },
   'bottom'      : {
     originX : 'center',
     originY : 'bottom',
     overlayX: 'center',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   'bottomCenter': {
     originX : 'center',
     originY : 'bottom',
     overlayX: 'center',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   'bottomLeft'  : {
     originX : 'start',
     originY : 'bottom',
     overlayX: 'start',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   'bottomRight' : {
     originX : 'end',
     originY : 'bottom',
     overlayX: 'end',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   'left'        : {
     originX : 'start',
     originY : 'center',
     overlayX: 'end',
-    overlayY: 'center',
+    overlayY: 'center'
   },
   'leftTop'     : {
     originX : 'start',
     originY : 'top',
     overlayX: 'end',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   'leftBottom'  : {
     originX : 'start',
     originY : 'bottom',
     overlayX: 'end',
-    overlayY: 'bottom',
-  },
+    overlayY: 'bottom'
+  }
 } as { } as { [key: string]: ConnectionPositionPair };
 
 // TODO: The whole logic does not make sense here, _objectValues just returns a copy of original array
@@ -96,13 +96,13 @@ export const DEFAULT_DATEPICKER_POSITIONS = [
     originX : 'start',
     originY : 'top',
     overlayX: 'start',
-    overlayY: 'top',
+    overlayY: 'top'
   },
   {
     originX : 'start',
     originY : 'bottom',
     overlayX: 'start',
-    overlayY: 'bottom',
+    overlayY: 'bottom'
   }
 ] as ConnectionPositionPair[];
 

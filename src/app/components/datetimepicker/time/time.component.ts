@@ -1,7 +1,7 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ColComponent} from "../../grid/col/col.component";
-import * as momentI from 'moment'
-const moment = momentI
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import * as momentI from 'moment';
+import { ColComponent } from '../../grid/col/col.component';
+const moment = momentI;
 @Component({
   selector: 'at-time',
   template: `
@@ -37,7 +37,7 @@ const moment = momentI
         </ul>
       </div>
     </div>
-  `,
+  `
 
 })
 export class TimeComponent implements OnInit {
@@ -46,29 +46,26 @@ export class TimeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._buildHours()
-    this._buildMinutes()
-    this._buildSeconds()
+    this._buildHours();
+    this._buildMinutes();
+    this._buildSeconds();
   }
 
-  @Input() date = moment()
+  @Input() date = moment();
 
-  seconds: Array<any>
+  seconds: any[];
 
-  minutes: Array<any>
+  minutes: any[];
 
-  hours: Array<any>
+  hours: any[];
 
+  private _selected_second;
+  private _selected_minutes;
+  private _selected_hour;
 
-  private _selected_second
-  private _selected_minutes
-  private _selected_hour
-
-
-  @Output() selectHour: EventEmitter<any> = new EventEmitter()
-  @Output() selectMinute: EventEmitter<any> = new EventEmitter()
-  @Output() selectSecond: EventEmitter<any> = new EventEmitter()
-
+  @Output() selectHour: EventEmitter<any> = new EventEmitter();
+  @Output() selectMinute: EventEmitter<any> = new EventEmitter();
+  @Output() selectSecond: EventEmitter<any> = new EventEmitter();
 
   get selected_second() {
     return this._selected_second;
@@ -87,7 +84,6 @@ export class TimeComponent implements OnInit {
   set selected_minutes(value) {
     this._selected_minutes = value;
   }
-
 
   get selected_hour(): number {
     return this._selected_hour;
@@ -128,16 +124,16 @@ export class TimeComponent implements OnInit {
     }
   }
 
-  @ViewChild('hour_panel') hour_panel
-  @ViewChild('minute_panel') minute_panel
-  @ViewChild('second_panel') second_panel
+  @ViewChild('hour_panel') hour_panel;
+  @ViewChild('minute_panel') minute_panel;
+  @ViewChild('second_panel') second_panel;
 
-  inited = false
+  inited = false;
 
   ngAfterViewChecked() {
     if (!this.inited) {
-      this.inited = true
-      this.setPosition()
+      this.inited = true;
+      this.setPosition();
     }
   }
 
@@ -146,52 +142,51 @@ export class TimeComponent implements OnInit {
   }
 
   setPosition() {
-    let m_p = this.selected_minutes / 60
-    let h_p = this.selected_hour / 24
-    let s_p = this.selected_second / 60
+    const m_p = this.selected_minutes / 60;
+    const h_p = this.selected_hour / 24;
+    const s_p = this.selected_second / 60;
 
-    let h_el = this.hour_panel._elementRef.nativeElement
-    let m_el = this.minute_panel._elementRef.nativeElement
-    let s_el = this.second_panel._elementRef.nativeElement
+    const h_el = this.hour_panel._elementRef.nativeElement;
+    const m_el = this.minute_panel._elementRef.nativeElement;
+    const s_el = this.second_panel._elementRef.nativeElement;
 
+    const h_el_height = h_el.scrollHeight;
+    const m_el_height = m_el.scrollHeight;
+    const s_el_height = s_el.scrollHeight;
 
-    let h_el_height = h_el.scrollHeight
-    let m_el_height = m_el.scrollHeight
-    let s_el_height = s_el.scrollHeight
-
-    h_el.scrollTop = h_el_height * h_p
-    s_el.scrollTop = s_el_height * s_p
-    m_el.scrollTop = m_el_height * m_p
+    h_el.scrollTop = h_el_height * h_p;
+    s_el.scrollTop = s_el_height * s_p;
+    m_el.scrollTop = m_el_height * m_p;
 
   }
 
   _select_minutes(index) {
-    this.selected_minutes = index
-    this.selectMinute.emit(index)
+    this.selected_minutes = index;
+    this.selectMinute.emit(index);
   }
 
   _select_hour(index) {
-    this.selected_hour = index
-    this.selectHour.emit(index)
+    this.selected_hour = index;
+    this.selectHour.emit(index);
   }
 
   _select_second(index) {
-    this.selected_second = index
-    this.selectSecond.emit(index)
+    this.selected_second = index;
+    this.selectSecond.emit(index);
   }
 
   confirmTime() {
-    let second = this.seconds.find((s) => {
-      return s.index == this.selected_second
-    })
+    const second = this.seconds.find((s) => {
+      return s.index == this.selected_second;
+    });
 
-    let minute = this.minutes.find((s) => {
-      return s.index == this.selected_minutes
-    })
+    const minute = this.minutes.find((s) => {
+      return s.index == this.selected_minutes;
+    });
 
-    let hour = this.hours.find((s) => {
-      return s.index == this.selected_hour
-    })
+    const hour = this.hours.find((s) => {
+      return s.index == this.selected_hour;
+    });
   }
 
 }

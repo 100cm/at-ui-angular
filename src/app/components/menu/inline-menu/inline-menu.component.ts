@@ -1,9 +1,9 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: '[inline-menu]',
-  template:`<ng-content></ng-content>
-  `,
+  template: `<ng-content></ng-content>
+  `
 })
 export class InlineMenuComponent implements OnInit {
 
@@ -13,6 +13,6 @@ export class InlineMenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  @HostBinding('class.at-menu') at_menu = true
+  @HostBinding('class.at-menu') at_menu = true;
 
 }

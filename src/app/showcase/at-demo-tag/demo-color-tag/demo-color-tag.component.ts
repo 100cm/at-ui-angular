@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-color-tag',
@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DemoColorTagComponent implements OnInit {
 
-  colors = ['default', 'primary', 'success', 'error', 'warning', 'info', '#ecefce']
+  colors = ['default', 'primary', 'success', 'error', 'warning', 'info', '#ecefce'];
 
   constructor() {
   }

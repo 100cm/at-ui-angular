@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'app-demo-basic-slider',
@@ -7,15 +7,15 @@ import {Component, OnInit} from '@angular/core';
            })
 export class DemoBasicSliderComponent implements OnInit {
 
-  value = [0, 80]
+  value = [0, 80];
 
-  single_value = 50
+  single_value = 50;
 
-  single_value2 = 50
+  single_value2 = 50;
 
-  single_value3 = 50
+  single_value3 = 50;
 
-  marks = {10: '10分10分10分', 20: '20分', 40: '我是40点'}
+  marks = {10: '10分10分10分', 20: '20分', 40: '我是40点'};
 
   constructor() {
   }

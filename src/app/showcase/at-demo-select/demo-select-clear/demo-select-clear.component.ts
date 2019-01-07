@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-select-clear',
@@ -13,8 +13,8 @@ export class DemoSelectClearComponent implements OnInit {
   ngOnInit() {
   }
 
-  single = 'first'
+  single = 'first';
 
-  multiple = ['first']
+  multiple = ['first'];
 
 }

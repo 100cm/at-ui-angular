@@ -1,4 +1,4 @@
-import {Directive, HostBinding} from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[atFormError]'
@@ -8,5 +8,5 @@ export class AtFormErrorDirective {
   constructor() {
   }
 
-  @HostBinding('class.at-form-item__error-tip') error = true
+  @HostBinding('class.at-form-item__error-tip') error = true;
 }

@@ -1,13 +1,13 @@
-import {coerceBooleanProperty, coerceNumberProperty} from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import * as _tinycolor from 'tinycolor2';
 
 export interface ClassHelper {
-  _prefixCls: string
-  _classList: Array<any>
+  _prefixCls: string;
+  _classList: any[];
   _el: HTMLElement;
-  nativeElement: any
+  nativeElement: any;
 
-  _setClassMap(): void
+  _setClassMap(): void;
 }
 
 export function isNotNil(value: any): boolean {
@@ -26,10 +26,10 @@ export function toCamelCase(str) {
 }
 
 export function underscoreToCamelCase(str) {
-  let re = str.replace(/-([a-z])/g, function (m, w) {
+  const re = str.replace(/-([a-z])/g, function (m, w) {
     return w.toUpperCase();
-  })
-  return re
+  });
+  return re;
 }
 
 export function toBoolean(value: boolean | string): boolean {
@@ -68,7 +68,6 @@ export function InputBoolean(): any { // tslint:disable-line:no-any
     // inputDecorator(target, name);
   };
 }
-
 
 const tinycolor = _tinycolor;
 
@@ -112,7 +111,7 @@ export function toState(data, oldHue?: number) {
     rgb,
     hsv,
     oldHue: data.h || oldHue || hsl.h,
-    source: data.source,
+    source: data.source
   };
 }
 
@@ -154,7 +153,6 @@ export function render(c1: string, c2: string, size: number) {
 
 const checkboardCache: {[key: string]: string} = {};
 
-
 export function getCheckerboard(c1: string, c2: string, size: number) {
   const key = `${c1}-${c2}-${size}`;
   if (checkboardCache[key]) {
@@ -167,4 +165,3 @@ export function getCheckerboard(c1: string, c2: string, size: number) {
   checkboardCache[key] = checkboard;
   return checkboard;
 }
-

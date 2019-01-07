@@ -1,4 +1,4 @@
-import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair}         from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair }         from '@angular/cdk/overlay';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,18 +14,17 @@ import {
   ViewChild,
   ViewEncapsulation
 }                                                                                            from '@angular/core';
-import {combineLatest, merge, BehaviorSubject, Subscription, Observable, Subject, fromEvent} from 'rxjs';
-import {debounceTime, distinctUntilChanged, map, mapTo, takeUntil}                           from 'rxjs/operators';
-import {DropDownAnimation}                                                                   from "../animations/drop-down-animation";
+import { combineLatest, fromEvent, merge, BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, mapTo, takeUntil }                           from 'rxjs/operators';
+import { DropDownAnimation }                                                                   from '../animations/drop-down-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                            from "../core/overlay/overlay-position-map";
+}                                                                                            from '../core/overlay/overlay-position-map';
 import {
   DropdownMenuItemComponent
-}                                                                                            from "../menu/dropdown-menu-item/dropdown-menu-item.component";
-import {DropdownDirective}                                                                   from "./dropdown.directive";
-
+}                                                                                            from '../menu/dropdown-menu-item/dropdown-menu-item.component';
+import { DropdownDirective }                                                                   from './dropdown.directive';
 
 @Component({
              selector: 'at-dropdown',
@@ -59,12 +58,12 @@ import {DropdownDirective}                                                      
                  </div>
                </ng-template>
              `,
-             animations: [DropDownAnimation],
+             animations: [DropDownAnimation]
            })
 
 export class DropdownComponent implements OnInit {
 
-  @Input() custom_content = false
+  @Input() custom_content = false;
 
   private unsubscribe$ = new Subject<void>();
           $subOpen     = new BehaviorSubject<boolean>(false);
@@ -76,7 +75,7 @@ export class DropdownComponent implements OnInit {
           _placement: any                                = 'bottom';
           _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
           _positions: ConnectionPositionPair[]           = [...DEFAULT_DROPDOWN_POSITIONS];
-          mousePosition: any                             = {}
+          mousePosition: any                             = {};
           _subscription: Subscription;
   @ContentChild(DropdownDirective) _atOrigin;
   @ContentChild(DropdownMenuItemComponent) _atMenu;
@@ -88,7 +87,6 @@ export class DropdownComponent implements OnInit {
   toBoolean(value: boolean | string): boolean {
     return value === '' || (value && value !== 'false');
   }
-
 
   @Input()
   set autoClose(value: boolean) {
@@ -110,7 +108,7 @@ export class DropdownComponent implements OnInit {
   @Input()
   set visible(value) {
     this._visible = this.toBoolean(value);
-    this._visibleChange.next(value)
+    this._visibleChange.next(value);
   }
 
   @Input()
@@ -119,7 +117,6 @@ export class DropdownComponent implements OnInit {
     this._dropDownPosition = (this.atPlacement.indexOf('top') !== -1) ? 'top' : 'bottom';
     this._positions.unshift(POSITION_MAP[this._placement] as ConnectionPositionPair);
   }
-
 
   get atPlacement(): any {
     return this._placement;
@@ -167,7 +164,7 @@ export class DropdownComponent implements OnInit {
     /** should remove after https://github.com/angular/material2/pull/8765 merged **/
     if (this._cdkOverlay && this._cdkOverlay.overlayRef) {
       this._cdkOverlay.overlayRef.updateSize({
-                                               minWidth: this._triggerWidth,
+                                               minWidth: this._triggerWidth
                                              });
     }
   }
@@ -184,36 +181,35 @@ export class DropdownComponent implements OnInit {
   }
 
   _startSubscribe(observable$: Observable<boolean>): void {
-    let $pre     = observable$;
+    const $pre     = observable$;
     const final$ = combineLatest($pre, this.$subOpen).pipe(map(value => value[0] || value[1]), debounceTime(50), distinctUntilChanged());
-    final$.pipe(takeUntil(this.unsubscribe$)).subscribe(this._onVisibleChange)
+    final$.pipe(takeUntil(this.unsubscribe$)).subscribe(this._onVisibleChange);
   }
 
   ngOnInit(): void {
-    this.isDestroy = false
+    this.isDestroy = false;
   }
 
-  isDestroy = true
+  isDestroy = true;
 
   ngOnDestroy(): void {
-    this.isDestroy = true
+    this.isDestroy = true;
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
 
   ngAfterViewInit(): void {
     let mouse$: Observable<boolean>;
 
     if (!this._atOrigin) {
       console.error('AtDropDownComponent:  You should set the origin trigger item like ' +
-        ' <div at-dropdown>trigger item</div> ')
+        ' <div at-dropdown>trigger item</div> ');
     }
     if (this._atOrigin) {
       if (this.trigger === 'hover') {
         const mouseEnterOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseenter').pipe(mapTo(true));
         const mouseLeaveOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseleave').pipe(mapTo(false));
-        mouse$                  = merge(mouseEnterOrigin$, mouseLeaveOrigin$,);
+        mouse$                  = merge(mouseEnterOrigin$, mouseLeaveOrigin$);
       }
       if (this.trigger === 'click') {
         mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
@@ -222,18 +218,18 @@ export class DropdownComponent implements OnInit {
         });
       }
       if (this.trigger === 'contextmenu') {
-        mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'contextmenu').pipe(mapTo(true))
+        mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'contextmenu').pipe(mapTo(true));
         this._renderer.listen(this._atOrigin.elementRef.nativeElement, 'contextmenu', (e) => {
           e.preventDefault();
-          e.stopPropagation()
-          let width       = this._atOrigin.elementRef.nativeElement.offsetWidth
-          let height      = this._atOrigin.elementRef.nativeElement.offsetHeight
-          let clientWidth = e.clientX
-          let body        = document.getElementsByTagName('body')[0]
-          let x           = e.offsetX
-          clientWidth + 100 > body.clientWidth ? x = x - 105 : x
-          //if over the client
-          this.mousePosition = {x: x, y: e.offsetY - height}
+          e.stopPropagation();
+          const width       = this._atOrigin.elementRef.nativeElement.offsetWidth;
+          const height      = this._atOrigin.elementRef.nativeElement.offsetHeight;
+          const clientWidth = e.clientX;
+          const body        = document.getElementsByTagName('body')[0];
+          let x           = e.offsetX;
+          clientWidth + 100 > body.clientWidth ? x = x - 105 : x;
+          // if over the client
+          this.mousePosition = {x, y: e.offsetY - height};
         });
       }
     }

@@ -1,4 +1,4 @@
-import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,17 +14,17 @@ import {
   ViewChild,
   ViewEncapsulation
 }                                                                                    from '@angular/core';
-import {Observable, Subject, Subscription, fromEvent}                                from 'rxjs';
-import {debounceTime, mapTo, merge}                                                  from 'rxjs/operators';
-import {DropDownAnimation}                                                           from "../animations/drop-down-animation";
+import { fromEvent, Observable, Subject, Subscription }                                from 'rxjs';
+import { debounceTime, mapTo, merge }                                                  from 'rxjs/operators';
+import { DropDownAnimation }                                                           from '../animations/drop-down-animation';
+import { fadeAnimation }                                                               from '../animations/fade-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                    from "../core/overlay/overlay-position-map";
-import {DropdownMenuItemComponent}                                                   from "../menu/dropdown-menu-item/dropdown-menu-item.component";
-import {PopTriggerDirective}                                                         from "./pop-trigger.directive";
-import {toCamelCase, underscoreToCamelCase}                                          from "../utils/class-helper";
-import {fadeAnimation}                                                               from "../animations/fade-animation";
+}                                                                                    from '../core/overlay/overlay-position-map';
+import { DropdownMenuItemComponent }                                                   from '../menu/dropdown-menu-item/dropdown-menu-item.component';
+import { toCamelCase, underscoreToCamelCase }                                          from '../utils/class-helper';
+import { PopTriggerDirective }                                                         from './pop-trigger.directive';
 
 @Component({
              selector: 'at-popover',
@@ -74,21 +74,20 @@ export class PopoverComponent implements OnInit {
           _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
           _positions: ConnectionPositionPair[]           = [...DEFAULT_DROPDOWN_POSITIONS];
           _subscription: Subscription;
-          _prefix                                        = "at-popover--"
+          _prefix                                        = 'at-popover--';
 
   @ContentChild(DropdownMenuItemComponent) _atMenu;
-  @ContentChild(PopTriggerDirective) _atOrigin
+  @ContentChild(PopTriggerDirective) _atOrigin;
 
   @Input() trigger: 'click' | 'hover'              = 'hover';
   @Output() _visibleChange                         = new Subject<boolean>();
-           $visible                                = this._visibleChange.asObservable()
+           $visible                                = this._visibleChange.asObservable();
   @Output() atVisibleChange: EventEmitter<boolean> = new EventEmitter();
   @ViewChild(CdkConnectedOverlay) _cdkOverlay: CdkConnectedOverlay;
 
   toBoolean(value: boolean | string): boolean {
     return value === '' || (value && value !== 'false');
   }
-
 
   @Input()
   set atClickHide(value: boolean) {
@@ -109,9 +108,9 @@ export class PopoverComponent implements OnInit {
   }
 
   get placeClass() {
-    let classMap                                  = {}
-    classMap[`${this._prefix}${this._placement}`] = true
-    return classMap
+    const classMap                                  = {};
+    classMap[`${this._prefix}${this._placement}`] = true;
+    return classMap;
   }
 
   @Input()

@@ -12,7 +12,7 @@ export class AtDemoDndComponent implements OnInit {
   ngOnInit() {
   }
 
-  code =`
+  code = `
   <div>
   <label>拖拽BETA</label>
 </div>
@@ -62,5 +62,5 @@ export class AtDemoDndComponent implements OnInit {
 
   </div>
 </at-dnd-container>
-`
+`;
 }

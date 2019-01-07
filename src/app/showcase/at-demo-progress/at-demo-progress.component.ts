@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-progress',
@@ -13,8 +13,8 @@ export class AtDemoProgressComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic = require('!!raw-loader!./demo-basic-progress/demo-basic-progress.component')
-  status = require('!!raw-loader!./demo-status-progress/demo-status-progress.component.html')
-  stroke = require('!!raw-loader!./demo-stroke-progress/demo-stroke-progress.component.html')
+  basic = require('!!raw-loader!./demo-basic-progress/demo-basic-progress.component');
+  status = require('!!raw-loader!./demo-status-progress/demo-status-progress.component.html');
+  stroke = require('!!raw-loader!./demo-stroke-progress/demo-stroke-progress.component.html');
 
 }

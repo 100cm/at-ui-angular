@@ -11,5 +11,5 @@ export class DemoDisableRadioComponent implements OnInit {
 
   ngOnInit() {
   }
-  basic = 'basic'
+  basic = 'basic';
 }

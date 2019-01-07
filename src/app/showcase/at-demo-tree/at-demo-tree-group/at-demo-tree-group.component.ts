@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import {AtTreeNode, AtTreeNodeOptions} from '../../../components/tree/at-tree-node';
-import {AtFormatEmitEvent}             from '../../../components/tree';
+import { AtFormatEmitEvent }             from '../../../components/tree';
+import { AtTreeNode, AtTreeNodeOptions } from '../../../components/tree/at-tree-node';
 
 @Component({
   selector: 'app-at-demo-tree-group',
@@ -67,6 +67,5 @@ export class AtDemoTreeGroupComponent implements OnInit {
       console.log(this.treeCom.getTreeNodes(), this.treeCom.getCheckedNodeList(), this.treeCom.getSelectedNodeList());
     }, 500);
   }
-
 
 }

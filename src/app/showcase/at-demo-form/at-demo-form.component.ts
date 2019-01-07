@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-form',
@@ -13,8 +13,8 @@ export class AtDemoFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic = require('!!raw-loader!./demo-form-basic/demo-form-basic.component')
+  basic = require('!!raw-loader!./demo-form-basic/demo-form-basic.component');
 
-  position = require('!!raw-loader!./demo-position-form/demo-position-form.component')
+  position = require('!!raw-loader!./demo-position-form/demo-position-form.component');
 
 }

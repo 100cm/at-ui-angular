@@ -1,30 +1,30 @@
+import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
+  forwardRef,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  forwardRef,
   HostListener,
   Input,
   OnInit,
   Renderer2,
   ViewChild
 }                                                                                    from '@angular/core';
-import * as momentI                                                                  from 'moment'
-import {NG_VALUE_ACCESSOR}                                                           from '@angular/forms';
-import {InputComponent}                                                              from '../input/input.component';
-import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from '@angular/cdk/overlay';
+import { NG_VALUE_ACCESSOR }                                                           from '@angular/forms';
+import * as momentI                                                                  from 'moment';
+import { fromEvent, Observable, Subject, Subscription }                                from 'rxjs';
+import { debounceTime, mapTo, merge }                                                  from 'rxjs/operators';
+import { DropDownAnimation }                                                           from '../animations/drop-down-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
 }                                                                                    from '../core/overlay/overlay-position-map';
-import {fromEvent, Observable, Subject, Subscription}                                from 'rxjs';
-import {debounceTime, mapTo, merge}                                                  from 'rxjs/operators';
-import {underscoreToCamelCase}                                                       from '../utils/class-helper';
-import {DropDownAnimation}                                                           from '../animations/drop-down-animation';
-import {AtI18nService}                                                               from '../i18n/at-i18n.service';
-import {AtI18nInterface}                                                             from '../i18n/at-i18n.interface';
+import { AtI18nInterface }                                                             from '../i18n/at-i18n.interface';
+import { AtI18nService }                                                               from '../i18n/at-i18n.service';
+import { InputComponent }                                                              from '../input/input.component';
+import { underscoreToCamelCase }                                                       from '../utils/class-helper';
 
-const moment = momentI
+const moment = momentI;
 
 @Component({
   selector: 'atDatetimePicker',
@@ -124,8 +124,8 @@ export class DatetimepickerComponent implements OnInit {
               private _renderer: Renderer2, private cdr: ChangeDetectorRef) {
   }
 
-  private il8n: AtI18nInterface
-  _atType = 'full'
+  private il8n: AtI18nInterface;
+  _atType = 'full';
   _positions: ConnectionPositionPair[] = [
     {
       originX: 'start',
@@ -152,18 +152,17 @@ export class DatetimepickerComponent implements OnInit {
       overlayY: 'bottom'
     }
   ] as ConnectionPositionPair[];
-  _subscription: Subscription
+  _subscription: Subscription;
   _visibleChange = new Subject<boolean>();
-  $visible = this._visibleChange.asObservable()
-  mode = 'date'
-  _visible = false
-  dropdownPosition = 'bottom'
+  $visible = this._visibleChange.asObservable();
+  mode = 'date';
+  _visible = false;
+  dropdownPosition = 'bottom';
 
-  @ViewChild(CdkConnectedOverlay) overlay
-
+  @ViewChild(CdkConnectedOverlay) overlay;
 
   set atVisible(value: boolean) {
-    this._visible = value
+    this._visible = value;
   }
 
   get atVisible(): boolean {
@@ -179,44 +178,42 @@ export class DatetimepickerComponent implements OnInit {
     this._atType = value;
   }
 
-  private _atValue = null
+  private _atValue = null;
 
   get atValue() {
-    return this._atValue
+    return this._atValue;
   }
 
-  _show_value
+  _show_value;
 
   set showValue(value) {
     if (value) {
-      this._show_value = value
+      this._show_value = value;
     }
   }
 
   get showValue() {
-    return this._show_value
+    return this._show_value;
   }
 
   set atValue(value) {
     if (value) {
       this._atValue = value;
-      this._show_value = value
+      this._show_value = value;
     }
   }
 
-  atYear = moment(this.atValue || this.showValue).year()
+  atYear = moment(this.atValue || this.showValue).year();
 
-  atMonth = moment(this.atValue || this.showValue).month()
+  atMonth = moment(this.atValue || this.showValue).month();
 
   selectedDate = moment(this.atValue).date();
   selectedYear = moment(this.atValue).year();
   selectedMonth = moment(this.atValue).month();
 
-
-  private _selected_second
-  private _selected_minutes
-  private _selected_hour
-
+  private _selected_second;
+  private _selected_minutes;
+  private _selected_hour;
 
   get selected_second(): number {
     return moment(this.atValue).second();
@@ -246,20 +243,20 @@ export class DatetimepickerComponent implements OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  @Input() format = 'YYYY-MM-DD'
-  @Input() disableDate
+  @Input() format = 'YYYY-MM-DD';
+  @Input() disableDate;
   /**
    * 日期选择模式 只选择日期 或者 时间
    */
-  @Input() choice_modal = ['date', 'time']
+  @Input() choice_modal = ['date', 'time'];
 
-  @Input() allowClear = true
+  @Input() allowClear = true;
 
   writeValue(value: any): void {
     if (value) {
       this.updateDate(value);
     } else {
-      this.clearDate()
+      this.clearDate();
     }
   }
 
@@ -272,22 +269,20 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   _onPositionChange(position: ConnectedOverlayPositionChange): void {
-    this.dropdownPosition = position.connectionPair.originY == 'top' ? 'bottom' : 'top'
+    this.dropdownPosition = position.connectionPair.originY == 'top' ? 'bottom' : 'top';
     this.cdr.detectChanges();
   }
 
-
   ngOnInit() {
     this.at_i18n_service.localChange.subscribe(il8n => {
-      this.il8n = il8n
-    })
+      this.il8n = il8n;
+    });
     if (this.choice_modal.length === 1 && this.choice_modal.indexOf('time') !== -1) {
-      this.mode = 'time'
+      this.mode = 'time';
     }
   }
 
-
-  @ViewChild('timeinput') input: InputComponent
+  @ViewChild('timeinput') input: InputComponent;
 
   preYear() {
     this.atYear = this.atYear - 1;
@@ -301,35 +296,33 @@ export class DatetimepickerComponent implements OnInit {
     if (this.atMonth - 1 < 0) {
       this.atMonth = 11;
       this.preYear();
-    }
-    else {
+    } else {
       this.atMonth = this.atMonth - 1;
     }
   }
 
   clear() {
-    this.clearDate()
+    this.clearDate();
   }
 
   nextMonth() {
     if (this.atMonth + 1 > 11) {
       this.atMonth = 0;
       this.nextYear();
-    }
-    else {
+    } else {
       this.atMonth = this.atMonth + 1;
     }
   }
 
   clickDate(date) {
-    this.updateDate(date.date)
-    let change_date = this.atValue
+    this.updateDate(date.date);
+    let change_date = this.atValue;
     if (this.format) {
-      change_date = change_date.format(this.format)
+      change_date = change_date.format(this.format);
     }
-    this.onChange(change_date)
+    this.onChange(change_date);
     if (this.choice_modal.indexOf('time') === -1) {
-      this.atVisible = false
+      this.atVisible = false;
     }
   }
 
@@ -347,8 +340,8 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   clearDate() {
-    this._atValue = ''
-    this.onChange('')
+    this._atValue = '';
+    this.onChange('');
   }
 
   _hide(): void {
@@ -356,7 +349,7 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   _show() {
-    this._visibleChange.next(true)
+    this._visibleChange.next(true);
   }
 
   _onVisibleChange = (visible: boolean) => {
@@ -387,68 +380,66 @@ export class DatetimepickerComponent implements OnInit {
 
   clickMonth(month) {
     // this.atValue = moment(this.atValue).year(this.atYear).month(month.index).toDate();
-    this.atMonth = month.index
-    this.atType = 'full'
+    this.atMonth = month.index;
+    this.atType = 'full';
   }
 
   clickYear(year) {
-    this.atYear = year
-    this.atType = 'month'
+    this.atYear = year;
+    this.atType = 'month';
   }
 
   setCal(s) {
-    this.atType = s
+    this.atType = s;
   }
 
   preCentury() {
-    this.atYear = this.atYear - 10
+    this.atYear = this.atYear - 10;
   }
 
   nextCenury() {
-    this.atYear = this.atYear + 10
+    this.atYear = this.atYear + 10;
   }
 
-
   selectHour(hour) {
-    let time = moment(this.atValue)
-    time.set('h', hour)
-    this.atValue = time
+    const time = moment(this.atValue);
+    time.set('h', hour);
+    this.atValue = time;
 
-    let change_date = this.atValue
+    let change_date = this.atValue;
     if (this.format) {
-      change_date = change_date.format(this.format)
+      change_date = change_date.format(this.format);
     }
-    this.onChange(change_date)
-
+    this.onChange(change_date);
 
   }
 
   selectMinutes(minute) {
-    let time = moment(this.atValue)
-    time.set('m', minute)
-    this.atValue = time
+    const time = moment(this.atValue);
+    time.set('m', minute);
+    this.atValue = time;
 
-    let change_date = this.atValue
+    let change_date = this.atValue;
     if (this.format) {
-      change_date = change_date.format(this.format)
+      change_date = change_date.format(this.format);
     }
-    this.onChange(change_date)
+    this.onChange(change_date);
   }
 
   selectSecond(second) {
-    let time = moment(this.atValue)
-    time.set('s', second)
-    this.atValue = time
+    const time = moment(this.atValue);
+    time.set('s', second);
+    this.atValue = time;
 
-    let change_date = this.atValue
+    let change_date = this.atValue;
     if (this.format) {
-      change_date = change_date.format(this.format)
+      change_date = change_date.format(this.format);
     }
-    this.onChange(change_date)
-    this.atVisible = false
+    this.onChange(change_date);
+    this.atVisible = false;
   }
 
   setMode(mode) {
-    this.mode = mode
+    this.mode = mode;
   }
 }

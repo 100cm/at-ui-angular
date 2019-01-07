@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-alert',
@@ -13,6 +13,6 @@ export class AtDemoAlertComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic = require('!!raw-loader!./demo-alert-basic/demo-alert-basic.component.html')
+  basic = require('!!raw-loader!./demo-alert-basic/demo-alert-basic.component.html');
 
 }

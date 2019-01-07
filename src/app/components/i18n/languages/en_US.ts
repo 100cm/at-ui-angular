@@ -3,7 +3,7 @@ export default {
   DatePicker: {
     chooseTime: 'Select time',
     chooseDate: 'Select date',
-    Monday: 'Mon', TuesDay: 'Tues', Wednesday: "Wed", ThursDay: "Thur", Friday: "Fri", Saturday: "Sat", Sunday: "Sun",
+    Monday: 'Mon', TuesDay: 'Tues', Wednesday: 'Wed', ThursDay: 'Thur', Friday: 'Fri', Saturday: 'Sat', Sunday: 'Sun',
     MonthName: ' -',
     YearName: ''
   },
@@ -19,8 +19,8 @@ export default {
     next: 'Next Page',
     first: 'First Page',
     last: 'Last Page',
-    previous: "Previous page",
-    back:'Back ward',
-    to:'Forward'
+    previous: 'Previous page',
+    back: 'Back ward',
+    to: 'Forward'
   }
 };

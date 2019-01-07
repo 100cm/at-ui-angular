@@ -1,10 +1,10 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {RadioComponent} from "../radio.component";
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import { forwardRef, Component, Input, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { RadioComponent } from '../radio.component';
 
 @Component({
   selector: 'at-radio-group',
-  template:`<div class="at-radio-group">
+  template: `<div class="at-radio-group">
     <ng-content>
 
     </ng-content>
@@ -16,7 +16,7 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       useExisting: forwardRef(() => RadioGroupComponent),
       multi: true
     }
-  ],
+  ]
 
 })
 export class RadioGroupComponent implements OnInit {
@@ -24,14 +24,12 @@ export class RadioGroupComponent implements OnInit {
   constructor() {
   }
 
-
-  private _size: string = 'common'
-  radios: RadioComponent[] = []
+  private _size: string = 'common';
+  radios: RadioComponent[] = [];
   _value: string;
 
   ngOnInit() {
   }
-
 
   get size(): string {
     return this._size;
@@ -43,13 +41,12 @@ export class RadioGroupComponent implements OnInit {
   }
 
   addRadio(radio) {
-    this.radios.push(radio)
+    this.radios.push(radio);
   }
 
   // ngModel Access
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
-
 
   selectRadio(radioComponent: RadioComponent) {
     this.updateValue(radioComponent.atValue);
@@ -57,7 +54,7 @@ export class RadioGroupComponent implements OnInit {
   }
 
   writeValue(value: any): void {
-    this.updateValue(value)
+    this.updateValue(value);
   }
 
   registerOnChange(fn: (_: any) => {}): void {
@@ -67,7 +64,6 @@ export class RadioGroupComponent implements OnInit {
   registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
-
 
   updateValue(value: any) {
     if (this._value === value) {
@@ -82,8 +78,8 @@ export class RadioGroupComponent implements OnInit {
   ngAfterContentInit() {
     this.radios.forEach(radio => {
       if (this.size) {
-        radio._renderer.addClass(radio._el, `${radio._prefixCls}--${this.size}`)
+        radio._renderer.addClass(radio._el, `${radio._prefixCls}--${this.size}`);
       }
-    })
+    });
   }
 }

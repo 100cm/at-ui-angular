@@ -4,7 +4,7 @@ import {
   OnInit,
   Renderer2
 }                 from '@angular/core';
-import {isNotNil} from "../../utils/class-helper";
+import { isNotNil } from '../../utils/class-helper';
 
 @Directive({
              selector: '[at-carousel-content]',
@@ -32,8 +32,7 @@ export class AtCarouselDirective {
     this._left = value;
     if (isNotNil(this.left)) {
       this.renderer.setStyle(this.el, 'left', `${this.left}px`);
-    }
-    else {
+    } else {
       this.renderer.removeStyle(this.el, 'left');
     }
   }
@@ -46,8 +45,7 @@ export class AtCarouselDirective {
     this._top = value;
     if (isNotNil(this.top)) {
       this.renderer.setStyle(this.el, 'top', `${this.top}px`);
-    }
-    else {
+    } else {
       this.renderer.removeStyle(this.el, 'top');
     }
   }
@@ -61,8 +59,7 @@ export class AtCarouselDirective {
     this.updateOpacity();
     if (this.isActive) {
       this.renderer.addClass(this.el, 'slick-active');
-    }
-    else {
+    } else {
       this.renderer.removeClass(this.el, 'slick-active');
     }
   }
@@ -75,8 +72,7 @@ export class AtCarouselDirective {
     this._fadeMode = value;
     if (this.fadeMode) {
       this.renderer.setStyle(this.el, 'position', 'relative');
-    }
-    else {
+    } else {
       this.renderer.removeStyle(this.el, 'position');
     }
     this.updateOpacity();
@@ -99,6 +95,5 @@ export class AtCarouselDirective {
   ngOnInit(): void {
     this.renderer.setStyle(this.el, 'transition', 'opacity 500ms ease');
   }
-
 
 }

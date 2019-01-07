@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtFormatEmitEvent} from '../../../components/tree';
+import { Component, OnInit } from '@angular/core';
+import { AtFormatEmitEvent } from '../../../components/tree';
 
 @Component({
   selector: 'app-demo-tree-select-basic',
@@ -71,14 +71,14 @@ export class DemoTreeSelectComponent implements OnInit {
     console.log(event);
   }
 
-  model = '1003'
-  model2 = ['1003']
-  model3 = ['1003']
+  model = '1003';
+  model2 = ['1003'];
+  model3 = ['1003'];
 
   ngOnInit(): void {
   }
 
-  setModal(){
-    this.model = "1002"
+  setModal() {
+    this.model = '1002';
   }
 }

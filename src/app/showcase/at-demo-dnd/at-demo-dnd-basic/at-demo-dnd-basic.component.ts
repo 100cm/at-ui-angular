@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'app-at-demo-dnd-basic',
@@ -31,12 +31,12 @@ export class AtDemoDndBasicComponent implements OnInit {
       {key: 10, children: []},
       {key: 11, children: []},
       {key: 12, children: []},
-      {key: 13, children: []},
+      {key: 13, children: []}
     ]
-  }
+  };
 
   get jsonDATA() {
-    return JSON.stringify(this.bindData, null,2)
+    return JSON.stringify(this.bindData, null, 2);
   }
 
 }

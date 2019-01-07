@@ -1,50 +1,58 @@
-import {Component, ContentChild, ContentChildren, forwardRef, Input, OnInit, QueryList, ViewChild} from '@angular/core';
-import {AtCheckboxComponent}                                                                       from "../at-checkbox.component";
-import {NG_VALUE_ACCESSOR}                                                                         from "@angular/forms";
+import {
+  forwardRef,
+  Component,
+  ContentChild,
+  ContentChildren,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild
+}                              from '@angular/core';
+import { NG_VALUE_ACCESSOR }   from '@angular/forms';
+import { AtCheckboxComponent } from '../at-checkbox.component';
 
 @Component({
-             selector: 'at-checkbox-group',
-             template: `
-               <div class="at-checkbox-group">
-                 <at-checkbox *ngFor="let option of _checkList" [label]="option.label"
-                              [(ngModel)]="option.checked"
-                              (changeCheck)="changeList()">
+  selector: 'at-checkbox-group',
+  template: `
+    <div class="at-checkbox-group">
+      <at-checkbox *ngFor="let option of _checkList" [label]="option.label"
+                   [(ngModel)]="option.checked"
+                   (changeCheck)="changeList()">
 
-                 </at-checkbox>
-               </div>
-             `,
-             providers: [
-               {
-                 provide: NG_VALUE_ACCESSOR,
-                 useExisting: forwardRef(() => AtCheckboxGroupComponent),
-                 multi: true
-               }
-             ],
-           })
+      </at-checkbox>
+    </div>
+  `,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AtCheckboxGroupComponent),
+      multi: true
+    }
+  ]
+})
 export class AtCheckboxGroupComponent implements OnInit {
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  _checkList: Array<any> = []
+  _checkList = [];
 
-
-  changeList() {
-    this.onChange(this._checkList)
+  changeList(): void {
+    this.onChange(this._checkList);
   }
 
   // ngModel Access
-  onChange: any  = Function.prototype;
-  onTouched: any = Function.prototype;
+  onChange: (value: string[]) => void;
+  onTouched: () => void;
 
-  writeValue(value: Array<any>): void {
+  writeValue<T>(value: T[]): void {
     this._checkList = value;
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: (value: string[]) => {}): void {
     this.onChange = fn;
   }
 
@@ -52,11 +60,6 @@ export class AtCheckboxGroupComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  @ContentChildren(AtCheckboxComponent) checkbox: QueryList<AtCheckboxComponent>
-
-  ngAfterContentInit() {
-
-  }
-
+  @ContentChildren(AtCheckboxComponent) checkbox: QueryList<AtCheckboxComponent>;
 
 }

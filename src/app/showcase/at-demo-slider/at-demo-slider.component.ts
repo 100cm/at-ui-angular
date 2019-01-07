@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-slider',
@@ -10,7 +10,7 @@ export class AtDemoSliderComponent implements OnInit {
   constructor() {
   }
 
-  slider_basic = require('./demo-basic-slider/demo-basic-slider.component.html')
+  slider_basic = require('./demo-basic-slider/demo-basic-slider.component.html');
 
   ngOnInit() {
   }

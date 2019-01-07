@@ -1,6 +1,5 @@
-import {Component, ElementRef, OnInit, ViewEncapsulation} from '@angular/core';
-import {NotificationConfig} from "../notification/notification-config";
-
+import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { NotificationConfig } from '../notification/notification-config';
 
 @Component({
   selector: 'at-notification-container',
@@ -31,27 +30,26 @@ export class NotificationContainerComponent implements OnInit {
 
   }
 
-  notifications: Array<NotificationConfig> = []
-
+  notifications: NotificationConfig[] = [];
 
   addMessage(notification) {
-    this.notifications.push(notification)
+    this.notifications.push(notification);
   }
 
   remove(index) {
-    let notification = this.notifications.find((n) => {
-      return n.index == index
-    })
-    notification.state = 'leave'
-    this.removeByIndex(index)
+    const notification = this.notifications.find((n) => {
+      return n.index == index;
+    });
+    notification.state = 'leave';
+    this.removeByIndex(index);
   }
 
   removeByIndex(index) {
     setTimeout(_ => {
       this.notifications = this.notifications.filter((no) => {
-        return (no.index != index)
-      })
-    }, 110)
+        return (no.index != index);
+      });
+    }, 110);
 
   }
 

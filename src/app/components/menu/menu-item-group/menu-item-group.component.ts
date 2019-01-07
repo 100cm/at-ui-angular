@@ -1,5 +1,5 @@
-import {Component, HostBinding, Inject, Input, OnInit} from '@angular/core';
-import {MenuComponent}                                 from "../menu.component";
+import { Component, HostBinding, Inject, Input, OnInit } from '@angular/core';
+import { MenuComponent }                                 from '../menu.component';
 
 @Component({
              selector: '[at-menu-group]',
@@ -8,15 +8,15 @@ import {MenuComponent}                                 from "../menu.component";
                <ul class="at-menu__item-group-list">
                  <ng-content></ng-content>
                </ul>
-             `,
+             `
            })
 export class MenuItemGroupComponent implements OnInit {
 
   @Input()
-  label: string
+  label: string;
 
   @Input()
-  inline = true
+  inline = true;
 
   constructor(@Inject(MenuComponent) public parent: MenuComponent) {
   }
@@ -26,7 +26,7 @@ export class MenuItemGroupComponent implements OnInit {
 
   @HostBinding('class.at-menu__item-group')
   get drop_down() {
-    return this.parent.atType != 'inline'
+    return this.parent.atType != 'inline';
   }
 
 }

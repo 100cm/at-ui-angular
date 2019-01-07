@@ -1,14 +1,14 @@
-import {Component, ElementRef, forwardRef, Input, OnInit} from '@angular/core';
-import {DndItemComponent}                                 from "../dnd-item/dnd-item.component";
-import {NG_VALUE_ACCESSOR}                                from "@angular/forms";
+import { forwardRef, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR }                                from '@angular/forms';
+import { DndItemComponent }                                 from '../dnd-item/dnd-item.component';
 
-var _ = require('lodash')
+const _ = require('lodash');
 
 export interface AtDndContent {
-  key: any,
-  children: Array<AtDndContent>
-  data?: any
-  atIndex?: any
+  key: any;
+  children: AtDndContent[];
+  data?: any;
+  atIndex?: any;
 }
 
 @Component({
@@ -26,27 +26,26 @@ export class DndContainerComponent implements OnInit {
   constructor(public el: ElementRef) {
   }
 
-  drag_items: DndItemComponent[] = []
+  drag_items: DndItemComponent[] = [];
 
   ngOnInit() {
 
   }
 
-  content: any = {}
+  content: any = {};
 
-  dragging_item: DndItemComponent
+  dragging_item: DndItemComponent;
 
-  dragging_enter_item: DndItemComponent
+  dragging_enter_item: DndItemComponent;
 
   writeValue(obj: any): void {
     if (obj) {
-      this.content = obj
+      this.content = obj;
     }
   }
 
   onChange: any  = Function.prototype;
   onTouched: any = Function.prototype;
-
 
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
@@ -57,26 +56,25 @@ export class DndContainerComponent implements OnInit {
   }
 
   insertChildElement(target_content) {
-    console.log('insert_content')
-    let found          = this.findNested(this.content, this.content, target_content)
-    let dragging_found = this.findNested(this.content, this.content, this.dragging_item.content)
-    console.log(found)
-    console.log(dragging_found)
+    console.log('insert_content');
+    const found          = this.findNested(this.content, this.content, target_content);
+    const dragging_found = this.findNested(this.content, this.content, this.dragging_item.content);
+    console.log(found);
+    console.log(dragging_found);
     // in same level
     if (found[0] == dragging_found[0]) {
-      this.array_move(found[0].children, dragging_found[2], found[2])
+      this.array_move(found[0].children, dragging_found[2], found[2]);
     }
 
     if (found[0] != dragging_found[0]) {
-      this.removeIndex(dragging_found[0].children, dragging_found[2])
-      this.array_insert(found[0].children, found[2], dragging_found[1])
+      this.removeIndex(dragging_found[0].children, dragging_found[2]);
+      this.array_insert(found[0].children, found[2], dragging_found[1]);
     }
   }
 
   sortItems() {
 
   }
-
 
   switchIndex(base, target_content) {
 
@@ -91,29 +89,27 @@ export class DndContainerComponent implements OnInit {
     }
     arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
     return arr; // for testing
-  };
+  }
 
   array_insert(array, index, item) {
     array.splice(index, 0, item);
   }
 
   removeIndex(array, index) {
-    array.splice(index, 1)
+    array.splice(index, 1);
   }
 
   findNested(parent, content: AtDndContent, target: AtDndContent, index?) {
     if (_.isEqual(content, target)) {
-      return [parent, content, index]
-    }
-    else if (content.children) {
+      return [parent, content, index];
+    } else if (content.children) {
       for (let i = 0; i < content.children.length; i++) {
-        let found = this.findNested(content, content.children[i], target, i)
+        const found = this.findNested(content, content.children[i], target, i);
         if (found) {
-          return found
+          return found;
         }
       }
     }
   }
-
 
 }

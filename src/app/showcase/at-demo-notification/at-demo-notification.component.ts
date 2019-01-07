@@ -1,6 +1,6 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {ComponentCreator} from "../../components/core/component-creator";
-import {NotificationComponent} from "../../components/notification/notification/notification.component";
+import { Component, Injectable, OnInit } from '@angular/core';
+import { ComponentCreator } from '../../components/core/component-creator';
+import { NotificationComponent } from '../../components/notification/notification/notification.component';
 
 @Component({
   selector: 'app-at-demo-notification',
@@ -16,6 +16,6 @@ export class AtDemoNotificationComponent implements OnInit {
 
   }
 
-  code = require('!!raw-loader!./demo-basic-notification/demo-basic-notification.component')
+  code = require('!!raw-loader!./demo-basic-notification/demo-basic-notification.component');
 
 }

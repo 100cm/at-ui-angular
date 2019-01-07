@@ -6,9 +6,8 @@ import {
   Input,
   NgModule,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
-
 
 @Component({
   selector: 'at-color-swatch',
@@ -30,7 +29,7 @@ import {
   </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false,
+  preserveWhitespaces: false
 })
 export class AtSwatchComponent implements OnInit {
   @Input() color;
@@ -51,11 +50,11 @@ export class AtSwatchComponent implements OnInit {
       cursor: 'pointer',
       position: 'relative',
       outline: 'none',
-      ...this.style,
+      ...this.style
     };
     this.focusStyles = {
       ...this.divStyles,
-      ...this.focusStyle,
+      ...this.focusStyle
     };
   }
   activeStyles() {

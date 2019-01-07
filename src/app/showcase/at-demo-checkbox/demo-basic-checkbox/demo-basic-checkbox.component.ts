@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-checkbox',
@@ -13,5 +13,5 @@ export class DemoBasicCheckboxComponent implements OnInit {
   ngOnInit() {
   }
 
-  checked = true
+  checked = true;
 }

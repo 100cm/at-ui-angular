@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'app-at-demo-drawer',
@@ -13,10 +13,10 @@ export class AtDemoDrawerComponent implements OnInit {
   ngOnInit() {
   }
 
-  visible = false
+  visible = false;
 
   close() {
-    this.visible = false
+    this.visible = false;
   }
 
   code = `
@@ -27,6 +27,6 @@ export class AtDemoDrawerComponent implements OnInit {
     <p>Some contents...</p>
   </at-drawer>
   <button at-button (click)="visible =true">弹出抽屉</button>
-`
+`;
 
 }

@@ -1,10 +1,10 @@
-import {Component, OnInit, forwardRef, Input, ViewEncapsulation} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
+import { forwardRef, Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  encapsulation:ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
   selector: 'at-textarea',
-  template:`<div class="at-textarea" data-v-a01f69b8="">
+  template: `<div class="at-textarea" data-v-a01f69b8="">
   <textarea [placeholder]="atPlaceholder" [(ngModel)]="value" rows="2" class="at-textarea__original" style="">
 
   </textarea>
@@ -16,11 +16,11 @@ import {NG_VALUE_ACCESSOR} from "@angular/forms";
       useExisting: forwardRef(() => TextareaComponent),
       multi: true
     }
-  ],
+  ]
 })
 export class TextareaComponent implements OnInit {
 
-  private _value: string = ''
+  private _value: string = '';
 
   constructor() {
   }
@@ -28,14 +28,13 @@ export class TextareaComponent implements OnInit {
   ngOnInit() {
   }
 
-
   get value(): string {
     return this._value;
   }
 
   set value(value: string) {
     this._value = value;
-    this.onChange(this._value)
+    this.onChange(this._value);
   }
 
 // ngModel Access

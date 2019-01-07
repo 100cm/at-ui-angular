@@ -1,15 +1,15 @@
 export interface AtI18nInterface {
-  locale: string,
+  locale: string;
   DatePicker:
     {
       chooseTime: string, chooseDate: string,
       Monday: string, TuesDay: string, Wednesday: string, ThursDay: string, Friday: string, Saturday: string, Sunday: string,
       MonthName: string,
       YearName: string
-    }
+    };
   Select: {
-    notFoundContent: string,
-  },
+    notFoundContent: string
+  };
   Page: {
     go: string,
     per: string,
@@ -20,7 +20,7 @@ export interface AtI18nInterface {
     first: string,
     last: string,
     previous: string,
-    back:string,
-    to:string
-  }
+    back: string,
+    to: string
+  };
 }

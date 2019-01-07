@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ModalComponent} from "./modal.component";
-import {ModalBodyDirective} from "./modal-body.directive";
-import {ModalBaseService} from "./modal-base.service";
-import {OverlayModule} from "@angular/cdk/overlay";
-import {AtModalService} from "./at-modal.service";
+import { OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { AtModalService } from './at-modal.service';
+import { ModalBaseService } from './modal-base.service';
+import { ModalBodyDirective } from './modal-body.directive';
+import { ModalComponent } from './modal.component';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import {AtModalService} from "./at-modal.service";
     OverlayModule
   ],
   exports: [ModalComponent, ModalBodyDirective],
-  providers: [ModalBaseService,AtModalService],
+  providers: [ModalBaseService, AtModalService],
   entryComponents: [ModalComponent],
   declarations: [ModalComponent, ModalBodyDirective]
 })

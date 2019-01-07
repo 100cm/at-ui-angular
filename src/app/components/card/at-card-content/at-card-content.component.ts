@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'at-card-content',
@@ -6,16 +6,16 @@ import {Component, Input, OnInit} from '@angular/core';
     <div class="at-card-content" [ngClass]="{'at-card-content-full':atFull}">
       <ng-content></ng-content>
     </div>
-  `,
+  `
 })
 export class AtCardContentComponent implements OnInit {
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  @Input() atFull = false
+  @Input() atFull: boolean = false;
 
 }

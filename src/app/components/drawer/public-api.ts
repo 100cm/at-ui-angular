@@ -1,2 +1,2 @@
-export * from './at-drawer.module'
-export * from './drawer.component'
+export * from './at-drawer.module';
+export * from './drawer.component';

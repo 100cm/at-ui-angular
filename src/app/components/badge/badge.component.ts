@@ -1,4 +1,4 @@
-import {Component, ContentChild, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'at-badge',
@@ -16,38 +16,33 @@ import {Component, ContentChild, ElementRef, Input, OnInit, ViewChild} from '@an
     <sup *ngIf="dot && show" class="at-badge__content" [ngClass]="{'at-badge--dot':dot,'at-badge--corner':(content.innerText.length > 0 || content.children.length >0),
         'at-badge--alone':(content.innerText.length == 0 && content.children.length == 0 )}">{{dot ? '' : atValue}}</sup>
 </span>
-`
+  `
 })
 export class BadgeComponent implements OnInit {
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  private _atValue: any
+  private _atValue: number | string;
 
-  @Input() atType: 'info' | 'warning' | 'error' | 'success' = 'info'
-  @Input() max
-  @Input() dot: boolean = false
-  @Input() show: boolean = true
+  @Input() atType: 'info' | 'warning' | 'error' | 'success' = 'info';
+  @Input() max;
+  @Input() dot: boolean = false;
+  @Input() show: boolean = true;
 
-
-  get atValue(): any {
+  get atValue(): number | string {
     if (this.max && this._atValue > this.max) {
-      return this.max + '+'
+      return this.max + '+';
     }
     return this._atValue;
   }
 
   @Input()
-  set atValue(value: any) {
+  set atValue(value: number | string) {
     this._atValue = value;
-  }
-
-  ngAfterViewInit() {
-
   }
 
 }

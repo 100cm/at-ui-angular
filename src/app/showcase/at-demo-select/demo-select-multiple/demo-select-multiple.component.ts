@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-select-multiple',
@@ -12,16 +12,16 @@ export class DemoSelectMultipleComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(_ => {
-      this.selected = ['first', 'second']
-    },300)
+      this.selected = ['first', 'second'];
+    }, 300);
 
     setTimeout(_ => {
-      this.selected2 = ['first', 'second']
-    },300)
+      this.selected2 = ['first', 'second'];
+    }, 300);
   }
-  selected = ['']
+  selected = [''];
 
-  selected2 = ['second']
+  selected2 = ['second'];
 
-  items = ['a', 'first', 'second', 'third']
+  items = ['a', 'first', 'second', 'third'];
 }

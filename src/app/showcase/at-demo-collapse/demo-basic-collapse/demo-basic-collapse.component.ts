@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-collapse',
@@ -13,6 +13,6 @@ export class DemoBasicCollapseComponent implements OnInit {
   ngOnInit() {
   }
 
-  isOpen = true
+  isOpen = true;
 
 }

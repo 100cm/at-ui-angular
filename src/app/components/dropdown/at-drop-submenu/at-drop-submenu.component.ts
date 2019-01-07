@@ -1,4 +1,11 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+}                              from '@angular/animations';
+import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -9,17 +16,10 @@ import {
   Renderer2,
   SkipSelf
 }                              from '@angular/core';
-import {SubMenuComponent}      from "../../menu/sub-menu/sub-menu.component";
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-}                              from "@angular/animations";
-import {MenuComponent}         from "../../menu/menu.component";
-import {DropMenuListComponent} from "../../menu/drop-menu-list/drop-menu-list.component";
-import {DropdownComponent}     from '../dropdown.component';
+import { DropMenuListComponent } from '../../menu/drop-menu-list/drop-menu-list.component';
+import { MenuComponent }         from '../../menu/menu.component';
+import { SubMenuComponent }      from '../../menu/sub-menu/sub-menu.component';
+import { DropdownComponent }     from '../dropdown.component';
 
 @Component({
              selector: '[at-drop-submenu]',
@@ -105,29 +105,27 @@ export class AtDropSubmenuComponent extends SubMenuComponent implements OnInit {
 
   constructor(public _elementRef: ElementRef, public cd: ChangeDetectorRef,
               @SkipSelf() @Optional() public subMenuComponent: AtDropSubmenuComponent,
-              public dropdown:DropdownComponent,
+              public dropdown: DropdownComponent,
               public drop_down_menu_list: DropMenuListComponent,
               public _renderer: Renderer2) {
-    super(_elementRef, cd, <any>subMenuComponent, <any>drop_down_menu_list, _renderer)
+    super(_elementRef, cd, subMenuComponent as any, drop_down_menu_list as any, _renderer);
     this._el           = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
   }
 
-  @ContentChildren(AtDropSubmenuComponent, {descendants: true}) subMenus: QueryList<SubMenuComponent> | QueryList<AtDropSubmenuComponent>
-
+  @ContentChildren(AtDropSubmenuComponent, {descendants: true}) subMenus: QueryList<SubMenuComponent> | QueryList<AtDropSubmenuComponent>;
 
   handleOpenEvent = (data: boolean) => {
     if (this.isOpen !== data) {
-      this.isOpen = data
+      this.isOpen = data;
     }
     if (this.subMenuComponent) {
       this.subMenuComponent.$subOpen.next(this.isOpen);
     }
-    if(this.drop_down_menu_list && !this.subMenuComponent){
-      this.dropdown.$subOpen.next(data)
+    if (this.drop_down_menu_list && !this.subMenuComponent) {
+      this.dropdown.$subOpen.next(data);
     }
-    this.hoverOn = this.isOpen
+    this.hoverOn = this.isOpen;
   }
-
 
 }

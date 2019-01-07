@@ -1,8 +1,8 @@
 import { Injectable }                 from '@angular/core';
+import { isNotNil }                     from '../utils/class-helper';
+import { AtTreeNode }                   from './at-tree-node';
 import { isCheckDisabled, isInArray } from './at-tree-util';
-import {AtTreeNode}                   from './at-tree-node';
-import {AtFormatEmitEvent}            from './interface';
-import {isNotNil}                     from '../utils/class-helper';
+import { AtFormatEmitEvent }            from './interface';
 
 @Injectable()
 export class AtTreeService {

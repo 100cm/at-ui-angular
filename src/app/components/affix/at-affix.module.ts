@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {AtAffixComponent} from './at-affix/at-affix.component';
-import {AtGlobalMonitorService} from "../at-global-monitor.service";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { AtGlobalMonitorService } from '../at-global-monitor.service';
+import { AtAffixComponent } from './at-affix/at-affix.component';
 
 @NgModule({
   imports: [

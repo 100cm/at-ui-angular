@@ -1,5 +1,7 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {NG_VALUE_ACCESSOR}                                          from '@angular/forms';
+import { forwardRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NG_VALUE_ACCESSOR }                                          from '@angular/forms';
+
+type CheckState = 'checked' | 'unchecked' | 'disabled' | 'indeterminate';
 
 @Component({
   selector: 'at-checkbox',
@@ -20,25 +22,24 @@ import {NG_VALUE_ACCESSOR}                                          from '@angul
       useExisting: forwardRef(() => AtCheckboxComponent),
       multi: true
     }
-  ],
+  ]
 })
 export class AtCheckboxComponent implements OnInit {
 
   private _label: string;
-  private _checked = false
-  private _atDisabled = false
+  private _checked = false;
+  private _atDisabled = false;
 
-  _state: 'checked' | 'unchecked' | 'disabled' | 'indeterminate' = 'unchecked'
+  _state: CheckState = 'unchecked';
 
   @Input()
-  set state(value) {
-    this._state = value
-    if (value != 'checked') {
-      this._checked = false
+  set state(value: CheckState) {
+    this._state = value;
+    if (value !== 'checked') {
+      this._checked = false;
     }
 
   }
-
 
   get atDisabled(): boolean {
     return this._atDisabled;
@@ -49,28 +50,25 @@ export class AtCheckboxComponent implements OnInit {
     this._atDisabled = value;
   }
 
-  @Output() changeCheck: EventEmitter<any> = new EventEmitter()
+  @Output() readonly changeCheck: EventEmitter<boolean> = new EventEmitter();
 
   get checked(): boolean {
     return this._checked;
   }
 
   get indeterminate(): boolean {
-    return this._state == 'indeterminate'
+    return this._state === 'indeterminate';
   }
 
-  get status() {
+  get status(): string {
     if (this.atDisabled) {
-      return 'disabled'
-    }
-    else if (this.checked) {
-      return 'checked'
-    }
-    else if (this.indeterminate) {
-      return 'indeterminate'
+      return 'disabled';
+    } else if (this.checked) {
+      return 'checked';
+    } else if (this.indeterminate) {
+      return 'indeterminate';
     }
   }
-
 
   get label(): string {
     return this._label;
@@ -84,33 +82,32 @@ export class AtCheckboxComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  check(e) {
-    e.preventDefault()
+  check(e: Event): void {
+    e.preventDefault();
     if (!this.atDisabled) {
-      this._checked = !this._checked
-      this.onChange(this._checked)
-      this.changeCheck.emit(this._checked)
+      this._checked = !this._checked;
+      this.onChange(this._checked);
+      this.changeCheck.emit(this._checked);
     }
   }
 
   // ngModel Access
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
+  onChange: (value: boolean) => void;
+  onTouched: () => void;
 
-  writeValue(value: any): void {
+  writeValue(value: boolean): void {
     this._checked = value;
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: (_: boolean) => {}): void {
     this.onChange = fn;
   }
 
   registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
-
 
 }

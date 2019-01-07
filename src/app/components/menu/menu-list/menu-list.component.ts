@@ -1,9 +1,9 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 @Component({
   selector: '[at-menu-list]',
   template: `<ng-content></ng-content>
-`,
+`
 
 })
 export class MenuListComponent implements OnInit {
@@ -14,6 +14,6 @@ export class MenuListComponent implements OnInit {
   ngOnInit() {
   }
 
-  @HostBinding('class.at-dropdown-menu') menu = true
+  @HostBinding('class.at-dropdown-menu') menu = true;
 
 }

@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
-import {StepsComponent} from "../steps.component";
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { StepsComponent } from '../steps.component';
 
 @Component({
   selector: 'at-step',
@@ -7,33 +7,32 @@ import {StepsComponent} from "../steps.component";
     <ng-content>
 
     </ng-content>
-  `,
+  `
 })
 export class StepComponent implements OnInit {
 
   constructor(private parent: StepsComponent, public el: ElementRef) {
-    this.parent.addStep(this)
+    this.parent.addStep(this);
   }
 
   ngOnInit() {
 
   }
 
-  @Input() icon
+  @Input() icon;
 
-  @Input() status: 'finish' | 'process' | 'wait' | 'success' | 'error' = 'wait'
+  @Input() status: 'finish' | 'process' | 'wait' | 'success' | 'error' = 'wait';
 
-  @Input() title: string = ''
+  @Input() title: string = '';
 
-  @Input() description: string = ''
+  @Input() description: string = '';
 
   get finnalStatus() {
-    return ''
+    return '';
   }
 
   get finished() {
-    return this.status === 'finish'
+    return this.status === 'finish';
   }
-
 
 }

@@ -1,6 +1,6 @@
-import * as MomentI from "moment";
+import * as MomentI from 'moment';
 
-const Moment = MomentI
+const Moment = MomentI;
 
 export interface AtDate {
   number: number;

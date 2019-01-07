@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NotificationConfig} from "../../notification/notification/notification-config";
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {NotificationComponent} from "../../notification/notification/notification.component";
-import {MessageContainerComponent} from "../message-container/message-container.component";
-import {StatusIconType} from "../../icon/icon-status-type";
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
+import { StatusIconType } from '../../icon/icon-status-type';
+import { NotificationConfig } from '../../notification/notification/notification-config';
+import { NotificationComponent } from '../../notification/notification/notification.component';
+import { MessageContainerComponent } from '../message-container/message-container.component';
 
 @Component({
   selector: 'at-message',
@@ -28,27 +28,26 @@ import {StatusIconType} from "../../icon/icon-status-type";
       transition('* => leave', [
         style({opacity: 1, transform: 'translateY(0)'}),
         animate('100ms linear')
-      ]),
+      ])
     ])
   ]
 
 })
 export class MessageComponent implements OnInit {
 
-
   constructor(private message_container: MessageContainerComponent) {
   }
 
-  timer
-  status = StatusIconType
+  timer;
+  status = StatusIconType;
 
   ngOnInit() {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
     this.timer = setTimeout(_ => {
-      this.message_container.remove(this.message.index)
-    }, this.message.duration)
+      this.message_container.remove(this.message.index);
+    }, this.message.duration);
   }
 
-  @Input() message: NotificationConfig
+  @Input() message: NotificationConfig;
 
 }

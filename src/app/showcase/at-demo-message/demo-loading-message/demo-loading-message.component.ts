@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtMessageService} from "../../../components/message/at-message.service";
+import { Component, OnInit } from '@angular/core';
+import { AtMessageService } from '../../../components/message/at-message.service';
 
 @Component({
   selector: 'app-demo-loading-message',
@@ -14,10 +14,9 @@ export class DemoLoadingMessageComponent implements OnInit {
   constructor(private at_message_service: AtMessageService) {
   }
 
-
   showMessage(info) {
     this.at_message_service[info]({
-      message: "这是信息哦"
-    })
+      message: '这是信息哦'
+    });
   }
 }

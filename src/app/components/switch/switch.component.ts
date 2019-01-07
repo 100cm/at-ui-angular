@@ -1,6 +1,6 @@
-import {Component, EventEmitter, forwardRef, HostListener, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {NG_VALUE_ACCESSOR}                                                                     from '@angular/forms';
-import {atInputSize}                                                                           from '../input';
+import { forwardRef, Component, EventEmitter, HostListener, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR }                                                                     from '@angular/forms';
+import { atInputSize }                                                                           from '../input';
 
 @Component({
   selector: 'at-switch',
@@ -19,7 +19,7 @@ import {atInputSize}                                                            
     <ng-template #UncheckChildren>
        <ng-template *ngIf="!_value" [ngTemplateOutlet]="unCheckText"></ng-template>
     </ng-template>
-    
+
   </span>
 </span>
   `,
@@ -29,22 +29,22 @@ import {atInputSize}                                                            
       useExisting: forwardRef(() => SwitchComponent),
       multi: true
     }
-  ],
+  ]
 })
 export class SwitchComponent implements OnInit {
 
-  _value: boolean = false
+  _value: boolean = false;
 
   @Input()
-  checkText: string | TemplateRef<any>
+  checkText: string | TemplateRef<any>;
   @Input()
-  unCheckText: string | TemplateRef<any>
+  unCheckText: string | TemplateRef<any>;
   @Input()
-  disabled: boolean = false
+  disabled: boolean = false;
 
-  private _atSize: atInputSize = 'normal'
+  private _atSize: atInputSize = 'normal';
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter()
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
 
   get atSize() {
     return this._atSize;
@@ -56,11 +56,11 @@ export class SwitchComponent implements OnInit {
   }
 
   get CheckIsString() {
-    return !(this.checkText instanceof TemplateRef)
+    return !(this.checkText instanceof TemplateRef);
   }
 
   get UncheckIsString() {
-    return !(this.unCheckText instanceof TemplateRef)
+    return !(this.unCheckText instanceof TemplateRef);
   }
 
   constructor() {
@@ -73,9 +73,8 @@ export class SwitchComponent implements OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-
   writeValue(value: any): void {
-    this._value = value
+    this._value = value;
   }
 
   registerOnChange(fn: (_: any) => {}): void {
@@ -89,9 +88,9 @@ export class SwitchComponent implements OnInit {
   @HostListener('click', ['$event'])
   switch() {
     if (!this.disabled) {
-      this._value = !this._value
-      this.onChange(this._value)
-      this.change.emit(this._value)
+      this._value = !this._value;
+      this.onChange(this._value);
+      this.change.emit(this._value);
     }
   }
 

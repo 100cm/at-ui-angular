@@ -1,9 +1,9 @@
-import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
+import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 
-import {toBoolean}                  from '../utils/class-helper';
-import {AtOptionContainerComponent} from './at-option-container.component';
-import {AtSelectControlService}     from './at-select-control.service';
-import {AtSelectComponent}          from './at-select.component';
+import { toBoolean }                  from '../utils/class-helper';
+import { AtOptionContainerComponent } from './at-option-container.component';
+import { AtSelectControlService }     from './at-select-control.service';
+import { AtSelectComponent }          from './at-select.component';
 
 @Component({
   selector: 'at-option',
@@ -34,9 +34,9 @@ export class AtOptionComponent {
     return this._disabled;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     // console.log('current atValue',this.atValue)
-    this.at_select_service.pushOptions(this)
+    this.at_select_service.pushOptions(this);
   }
 
   @Input()
@@ -49,9 +49,9 @@ export class AtOptionComponent {
   }
 
   ngOnDestroy() {
-   this.at_select_service.removeOption(this)
+   this.at_select_service.removeOption(this);
   }
 
-  public selected = false
+  public selected = false;
 
 }

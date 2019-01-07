@@ -1,11 +1,10 @@
-import {Component, ContentChild, Input, OnInit} from '@angular/core';
-import {PopoverComponent}                       from "../popover/popover.component";
-import {TooltipTriggerDirective}                from "./tooltip-trigger.directive";
-import {Observable, fromEvent}                  from "rxjs";
+import { Component, ContentChild, Input, OnInit } from '@angular/core';
+import { fromEvent, Observable }                  from 'rxjs';
+import { PopoverComponent }                       from '../popover/popover.component';
+import { TooltipTriggerDirective }                from './tooltip-trigger.directive';
 
-import {mapTo, merge}  from "rxjs/operators";
-import {fadeAnimation} from "../animations/fade-animation";
-
+import { mapTo, merge }  from 'rxjs/operators';
+import { fadeAnimation } from '../animations/fade-animation';
 
 @Component({
              selector: 'at-tooltip',
@@ -42,9 +41,9 @@ import {fadeAnimation} from "../animations/fade-animation";
                </ng-template>
 
              `,
-             animations: [fadeAnimation],
+             animations: [fadeAnimation]
 
            })
 export class TooltipComponent extends PopoverComponent implements OnInit {
-  _prefix = "at-tooltip--"
+  _prefix = 'at-tooltip--';
 }

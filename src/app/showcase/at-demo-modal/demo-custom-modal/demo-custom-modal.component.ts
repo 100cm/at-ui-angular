@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-custom-modal',
@@ -13,8 +13,8 @@ export class DemoCustomModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  header = false
-  footer = false
+  header = false;
+  footer = false;
   closer = false;
   confirmer = false;
 

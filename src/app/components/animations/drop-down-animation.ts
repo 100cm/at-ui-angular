@@ -1,10 +1,10 @@
 import {
   animate,
-  AnimationTriggerMetadata,
   state,
   style,
   transition,
   trigger,
+  AnimationTriggerMetadata
 } from '@angular/animations';
 
 export const DropDownAnimation: AnimationTriggerMetadata = trigger('dropDownAnimation', [

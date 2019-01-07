@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtNotificationService} from "../../../components/notification/notification.service";
+import { Component, OnInit } from '@angular/core';
+import { AtNotificationService } from '../../../components/notification/notification.service';
 
 @Component({
   selector: 'app-demo-basic-notification',
@@ -30,7 +30,7 @@ export class DemoBasicNotificationComponent implements OnInit {
       title: '你好',
       message: '这是消息内容哦～～～',
       ...option
-    })
+    });
   }
 
 }

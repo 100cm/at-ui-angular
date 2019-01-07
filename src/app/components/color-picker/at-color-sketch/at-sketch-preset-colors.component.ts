@@ -3,10 +3,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output,
+  Output
 }              from '@angular/core';
-import {Shape} from "../color.interface";
-
+import { Shape } from '../color.interface';
 
 @Component({
   selector: 'at-color-sketch-preset-colors',
@@ -39,10 +38,10 @@ import {Shape} from "../color.interface";
       height: 16px;
       margin: 0px 10px 10px 0px;
     }
-  `,
+  `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  preserveWhitespaces: false,
+  preserveWhitespaces: false
 })
 export class AtSketchPresetColorsComponent {
   @Input() colors: string[] | Shape[];
@@ -50,7 +49,7 @@ export class AtSketchPresetColorsComponent {
   @Output() onSwatchHover = new EventEmitter<any>();
   swatchStyle = {
     borderRadius: '3px',
-    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15)',
+    boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.15)'
   };
 
   handleClick({ hex, $event }) {
@@ -65,7 +64,7 @@ export class AtSketchPresetColorsComponent {
   focusStyle(val: string | Shape) {
     const c = this.normalizeValue(val);
     return {
-      boxShadow: `inset 0 0 0 1px rgba(0,0,0,.15), 0 0 4px ${c.color}`,
+      boxShadow: `inset 0 0 0 1px rgba(0,0,0,.15), 0 0 4px ${c.color}`
     };
   }
 }

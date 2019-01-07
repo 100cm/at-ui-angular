@@ -1,3 +1,5 @@
+import { animate, state, style, transition, trigger }                                  from '@angular/animations';
+import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   ChangeDetectorRef,
   Component,
@@ -14,15 +16,13 @@ import {
   ViewChild,
   ViewContainerRef
 }                                                                                    from '@angular/core';
-import {MenuComponent}                                                               from "../menu.component";
-import {style, animate, state, transition, trigger}                                  from '@angular/animations';
-import {CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair} from "@angular/cdk/overlay";
-import {POSITION_MAP}                                                                from "../../core/overlay/overlay-position-map";
-import {combineLatest,BehaviorSubject, Subject}                                                    from "rxjs";
+import { combineLatest, BehaviorSubject, Subject }                                                    from 'rxjs';
+import { POSITION_MAP }                                                                from '../../core/overlay/overlay-position-map';
+import { MenuComponent }                                                               from '../menu.component';
 
-import {auditTime, map, takeUntil} from "rxjs/operators";
-import {AtDropSubmenuComponent}    from "../../dropdown/at-drop-submenu/at-drop-submenu.component";
-import {ExpandAnimation}           from "../../animations/expand-animation";
+import { auditTime, map, takeUntil } from 'rxjs/operators';
+import { ExpandAnimation }           from '../../animations/expand-animation';
+import { AtDropSubmenuComponent }    from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
 
 @Component({
              selector: '[at-submenu]',
@@ -78,33 +78,31 @@ import {ExpandAnimation}           from "../../animations/expand-animation";
              `,
              animations: [
                ExpandAnimation
-             ],
+             ]
            })
 export class SubMenuComponent implements OnInit {
 
-
-  _el: any
-  nativeElement: any
-  _active: boolean = false
-  _isOpen          = false
-  _popoverCss      = {left: '0px', right: '0px', top: '0px'}
-  //cdk properties
+  _el: any;
+  nativeElement: any;
+  _active: boolean = false;
+  _isOpen          = false;
+  _popoverCss      = {left: '0px', right: '0px', top: '0px'};
+  // cdk properties
   triggerWidth     = null;
   isInSubMenu      = false;
-  level            = 1
+  level            = 1;
   @ViewChild(CdkConnectedOverlay) cdkOverlay: CdkConnectedOverlay;
-  @ContentChildren(SubMenuComponent, {descendants: true}) subMenus: QueryList<SubMenuComponent> | QueryList<AtDropSubmenuComponent>
+  @ContentChildren(SubMenuComponent, {descendants: true}) subMenus: QueryList<SubMenuComponent> | QueryList<AtDropSubmenuComponent>;
 
   get overlayPositions(): ConnectionPositionPair[] {
     if (this.subMenuType === 'horizontal') {
       return [POSITION_MAP.bottomLeft];
-    }
-    else {
+    } else {
       return [POSITION_MAP.rightTop, POSITION_MAP.leftTop];
     }
   }
 
-  @Input() icon: string | TemplateRef<any> = ""
+  @Input() icon: string | TemplateRef<any> = '';
 
   placement = 'rightTop';
 
@@ -119,30 +117,24 @@ export class SubMenuComponent implements OnInit {
       const keyList   = ['originX', 'originY', 'overlayX', 'overlayY'];
       if (keyList.every(key => originMap[key] === POSITION_MAP.leftTop[key])) {
         this.placement = 'leftTop';
-      }
-      else if (keyList.every(key => originMap[key] === POSITION_MAP.rightTop[key])) {
+      } else if (keyList.every(key => originMap[key] === POSITION_MAP.rightTop[key])) {
         this.placement = 'rightTop';
       }
     }
     this.cd.detectChanges();
   }
 
-
   get expandState() {
     if (this.isOpen && this.parent.atType == 'inline') {
       return 'expand';
-    }
-    else if (this.isOpen && this.subMenuType === 'horizontal') {
+    } else if (this.isOpen && this.subMenuType === 'horizontal') {
       return 'bottom';
-    }
-    else if (this.isOpen && this.subMenuType === 'vertical') {
+    } else if (this.isOpen && this.subMenuType === 'vertical') {
       return 'fade';
-    }
-    else {
+    } else {
       return 'hidden';
     }
   }
-
 
   get isOpen(): boolean {
     return this._isOpen;
@@ -150,13 +142,13 @@ export class SubMenuComponent implements OnInit {
 
   set isOpen(value: boolean) {
     this._isOpen = value;
-    this.setTriggerWidth()
+    this.setTriggerWidth();
   }
 
   @Input()
   set open(value) {
-    this.isOpen = value
-    this.$subOpen.next(value)
+    this.isOpen = value;
+    this.$subOpen.next(value);
   }
 
   constructor(public _elementRef: ElementRef, public cd: ChangeDetectorRef,
@@ -164,61 +156,58 @@ export class SubMenuComponent implements OnInit {
               @Inject(MenuComponent) public parent: MenuComponent, public _renderer: Renderer2) {
     this._el           = this._elementRef.nativeElement;
     this.nativeElement = this._elementRef.nativeElement;
-    this.parent.sub_menus.push(this)
+    this.parent.sub_menus.push(this);
   }
 
   ngOnInit() {
-    let $combineAll = combineLatest(this.$subOpen, this.$mouseSubject.asObservable()).pipe(map(value => value[0] || value[1]), auditTime(150))
+    const $combineAll = combineLatest(this.$subOpen, this.$mouseSubject.asObservable()).pipe(map(value => value[0] || value[1]), auditTime(150));
     $combineAll.pipe(takeUntil(this.unsubscribe$)).subscribe(this.handleOpenEvent);
-    this.cd.detectChanges()
+    this.cd.detectChanges();
   }
 
-  @HostBinding(`class.at-menu__submenu`) item_class = true
-
+  @HostBinding(`class.at-menu__submenu`) item_class = true;
 
   setActive() {
     if (this.parent.single) {
-      this.parent.clearAllOpen(this)
+      this.parent.clearAllOpen(this);
     }
-    this.isOpen = !this.isOpen
+    this.isOpen = !this.isOpen;
   }
 
   @HostBinding('class.at-menu__item--active')
   get activeCls() {
-    return this.active
+    return this.active;
   }
 
   @HostBinding('class.at-menu__submenu--opened')
   get OpenCls() {
-    return this.isOpen
+    return this.isOpen;
   }
-
 
   @Input()
   set active(active: boolean) {
-    this._active = active
+    this._active = active;
   }
-
 
   get active(): boolean {
     return this._active;
   }
 
-  @ViewChild('popover') popover: ViewContainerRef
+  @ViewChild('popover') popover: ViewContainerRef;
 
   get onHoverClass() {
-    let classMap                                          = {}
-    classMap[`menu-item-on-hover-${this.parent._atType}`] = this.hoverOn
-    classMap[`menu-item-on-select`]                       = this.hoverOn && this.isInSubMenu
-    return classMap
+    const classMap                                          = {};
+    classMap[`menu-item-on-hover-${this.parent._atType}`] = this.hoverOn;
+    classMap[`menu-item-on-select`]                       = this.hoverOn && this.isInSubMenu;
+    return classMap;
   }
 
   get levelPaddingLeft() {
-    return this.subMenuType == 'inline' ? 23 * this.level : null
+    return this.subMenuType == 'inline' ? 23 * this.level : null;
   }
 
   show() {
-    this._isOpen = !this._isOpen
+    this._isOpen = !this._isOpen;
   }
 
   $subOpen              = new BehaviorSubject<boolean>(false);
@@ -227,15 +216,15 @@ export class SubMenuComponent implements OnInit {
 
   handleOpenEvent = (data: boolean) => {
     if (this.isOpen !== data) {
-      this.isOpen = data
+      this.isOpen = data;
     }
     if (this.subMenuComponent) {
       this.subMenuComponent.$subOpen.next(this.isOpen);
     }
-    this.hoverOn = this.isOpen
+    this.hoverOn = this.isOpen;
   }
 
-  hoverOn = false
+  hoverOn = false;
 
   ngAfterViewInit() {
     if (this.subMenus && this.subMenus.length) {
@@ -245,7 +234,7 @@ export class SubMenuComponent implements OnInit {
           if (this.subMenuType === 'inline') {
             menu.level = this.level + 1;
           }
-        })
+        });
       });
     }
 
@@ -254,11 +243,9 @@ export class SubMenuComponent implements OnInit {
   get subMenuType(): string {
     if (this.parent._atType === 'inline') {
       return 'inline';
-    }
-    else if ((this.parent._atType === 'vertical') || (this.isInSubMenu)) {
+    } else if ((this.parent._atType === 'vertical') || (this.isInSubMenu)) {
       return 'vertical';
-    }
-    else {
+    } else {
       return 'horizontal';
     }
   }
@@ -290,8 +277,8 @@ export class SubMenuComponent implements OnInit {
   }
 
   get themeClass() {
-    let themeClassMap = {'dark': 'at-menu--dark', 'light': 'at-menu--light', 'dracula': 'at-menu--dracula'}
-    return themeClassMap[this.parent.theme]
+    const themeClassMap = {'dark': 'at-menu--dark', 'light': 'at-menu--light', 'dracula': 'at-menu--dracula'};
+    return themeClassMap[this.parent.theme];
   }
 
 }

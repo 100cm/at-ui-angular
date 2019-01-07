@@ -1,6 +1,6 @@
-import {Component, ElementRef, Input} from '@angular/core';
-import {isNotNil}                     from '../utils/class-helper'
-import {AtOptionComponent}            from './at-option.component';
+import { Component, ElementRef, Input } from '@angular/core';
+import { isNotNil }                     from '../utils/class-helper';
+import { AtOptionComponent }            from './at-option.component';
 
 @Component({
   selector: '[at-option-li]',

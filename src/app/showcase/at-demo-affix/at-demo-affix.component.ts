@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-affix',
@@ -10,7 +10,7 @@ export class AtDemoAffixComponent implements OnInit {
   constructor() {
   }
 
-  basic = require('./demo-affix-basic/demo-affix-basic.component.html')
+  basic = require('./demo-affix-basic/demo-affix-basic.component.html');
 
   ngOnInit() {
   }

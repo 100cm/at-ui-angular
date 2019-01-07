@@ -1,8 +1,8 @@
-import {NgModule}                from "@angular/core";
-import {CommonModule}            from "@angular/common";
-import {TooltipComponent}        from "./tooltip.component";
-import {TooltipTriggerDirective} from "./tooltip-trigger.directive";
-import {OverlayModule}           from "@angular/cdk/overlay";
+import { OverlayModule }           from '@angular/cdk/overlay';
+import { CommonModule }            from '@angular/common';
+import { NgModule }                from '@angular/core';
+import { TooltipTriggerDirective } from './tooltip-trigger.directive';
+import { TooltipComponent }        from './tooltip.component';
 
 @NgModule({
             imports: [CommonModule, OverlayModule],

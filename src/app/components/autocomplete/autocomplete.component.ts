@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CdkOverlayOrigin}         from '@angular/cdk/overlay';
-import {DropDownAnimation}        from '../animations/drop-down-animation';
+import { CdkOverlayOrigin }                     from '@angular/cdk/overlay';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { DropDownAnimation }                    from '../animations/drop-down-animation';
 
 @Component({
   selector: 'at-auto-complete',
@@ -41,63 +41,62 @@ import {DropDownAnimation}        from '../animations/drop-down-animation';
 })
 export class AutoCompleteComponent implements OnInit {
 
-
-  public cdkOverlayOrigin: CdkOverlayOrigin
+  public cdkOverlayOrigin: CdkOverlayOrigin;
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  close() {
-    this.atOpen = false
+  close(): void {
+    this.atOpen = false;
   }
 
-  @Input() atDataSource = []
+  @Input() atDataSource = [];
 
-  overlayMinWidth
-  overlayWidth
+  overlayMinWidth;
+  overlayWidth;
 
   dropDownPosition: 'top' | 'center' | 'bottom' | 'hidden' = 'bottom';
 
-  atOpen = false
+  atOpen = false;
 
-  bindComponent
+  bindComponent;
 
-  searchValue = ''
+  searchValue = '';
 
-
-  changeValue(value, origin, component) {
-    this.bindComponent = component
+  // noinspection TsLint
+  changeValue(value: string, origin: ElementRef, component: any) {
+    this.bindComponent = component;
     if (value) {
-      this.cdkOverlayOrigin = {elementRef: origin}
-      const width = origin.nativeElement.offsetWidth
-      this.overlayMinWidth = width
-      this.overlayWidth = width
-      this.atOpen = true
-      this.searchValue = value
+      this.cdkOverlayOrigin = {elementRef: origin};
+      const width = origin.nativeElement.offsetWidth;
+      this.overlayMinWidth = width;
+      this.overlayWidth = width;
+      this.atOpen = true;
+      this.searchValue = value;
     } else {
-      this.atOpen = false
+      this.atOpen = false;
     }
   }
 
-  highlight(item) {
-    let highlightKeys = []
+  highlight(item: string): string[] {
+    const highlightKeys = [];
     if (this.searchValue && item.includes(this.searchValue)) {
       const index = item.indexOf(this.searchValue);
       highlightKeys.push(item.slice(0, index));
       highlightKeys.push(item.slice(index + this.searchValue.length, item.length));
     }
-    return highlightKeys
+    return highlightKeys;
   }
 
-  changeAuto(value) {
-    this.cdkOverlayOrigin.elementRef.nativeElement.value = value
-    this.bindComponent._value = value
-    this.bindComponent.onChange(value)
-    this.searchValue = value
-    this.atOpen = false
+  changeAuto(value: string): void {
+    this.cdkOverlayOrigin.elementRef.nativeElement.value = value;
+    this.bindComponent._value = value;
+    this.bindComponent.onChange(value);
+    this.searchValue = value;
+    this.atOpen = false;
   }
 
 }

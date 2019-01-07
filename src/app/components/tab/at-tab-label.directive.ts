@@ -1,6 +1,5 @@
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
-import {toBoolean}                                   from '../utils/class-helper';
-
+import { toBoolean }                                   from '../utils/class-helper';
 
 @Directive({
   selector: '[at-tab-label]',

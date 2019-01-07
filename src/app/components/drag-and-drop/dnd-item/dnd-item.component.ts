@@ -1,21 +1,21 @@
-import {NG_VALUE_ACCESSOR} from "@angular/forms";
 import {
+  forwardRef,
   ApplicationRef,
-  ChangeDetectorRef,
-  Component, ComponentFactoryResolver, ContentChild,
-  ElementRef,
-  EventEmitter, forwardRef,
+  ChangeDetectorRef, Component, ComponentFactoryResolver,
+  ContentChild,
+  ElementRef, EventEmitter,
   HostListener, Injector,
   Input, NgZone,
   OnInit,
   Optional,
   Output, Renderer2, ViewChild
 }                          from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import {concatAll, debounce, map, merge, switchMap, takeUntil} from "rxjs/operators";
-import {fromEvent, timer}                                      from "rxjs";
-import {AtDndContent, DndContainerComponent}                   from "../dnd-container/dnd-container.component";
-import {DragTriggerDirective}                                  from "../drag-trigger.directive";
+import { fromEvent, timer }                                      from 'rxjs';
+import { concatAll, debounce, map, merge, switchMap, takeUntil } from 'rxjs/operators';
+import { AtDndContent, DndContainerComponent }                   from '../dnd-container/dnd-container.component';
+import { DragTriggerDirective }                                  from '../drag-trigger.directive';
 
 @Component({
              selector: 'at-dnd-item',
@@ -37,7 +37,7 @@ import {DragTriggerDirective}                                  from "../drag-tri
                useExisting: forwardRef(() => DndItemComponent),
                multi: true
              }],
-             host: {"[class.on-drag-enter]": 'drag_enter'},
+             host: {'[class.on-drag-enter]': 'drag_enter'},
              styles: [
                  `:host {
                  display: block;
@@ -53,73 +53,69 @@ import {DragTriggerDirective}                                  from "../drag-tri
            })
 export class DndItemComponent implements OnInit {
 
-  @Output() OnStopDrag: EventEmitter<any> = new EventEmitter()
+  @Output() OnStopDrag: EventEmitter<any> = new EventEmitter();
 
-  atIndex
+  atIndex;
 
   constructor(private drag_container: DndContainerComponent,
               public elementRef: ElementRef,
               private render2: Renderer2,
-              private ngZone: NgZone,
+              private ngZone: NgZone
   ) {
-    this.atIndex = this.drag_container.drag_items.length
-    this.drag_container.drag_items.push(this)
+    this.atIndex = this.drag_container.drag_items.length;
+    this.drag_container.drag_items.push(this);
   }
-
 
   @ContentChild(DragTriggerDirective)
   set dragTrigger(value: DragTriggerDirective) {
     if (value) {
-      this._triggerElement = value.el.nativeElement
-      this.loadALL()
+      this._triggerElement = value.el.nativeElement;
+      this.loadALL();
     }
   }
 
-  _triggerElement
+  _triggerElement;
 
-  @Input() moveElement: HTMLElement
+  @Input() moveElement: HTMLElement;
 
-  @ViewChild('drag_view') dragView: ElementRef
+  @ViewChild('drag_view') dragView: ElementRef;
 
-  private _dragElement: ElementRef
-
+  private _dragElement: ElementRef;
 
   get dragElement(): ElementRef {
     return this._dragElement;
   }
 
+  init = false;
 
-  init = false
+  initIndex = false;
 
-  initIndex = false
+  drag_init = false;
 
-  drag_init = false
-
-  drag_enter = false
+  drag_enter = false;
 
   @Input()
-  show_drag_line = true
+  show_drag_line = true;
 
-  downeventOffset = {x: 0, y: 0}
+  downeventOffset = {x: 0, y: 0};
 
-  dragAndDropStart = false
+  dragAndDropStart = false;
 
-  content: AtDndContent
+  content: AtDndContent;
 
   writeValue(obj: any): void {
     if (obj) {
-      this.content = obj
+      this.content = obj;
       if (!this.initIndex) {
-        this.content.atIndex = this.atIndex
-        this.initIndex       = true
+        this.content.atIndex = this.atIndex;
+        this.initIndex       = true;
       }
     }
   }
 
-  position       = {x: 0, y: 0}
+  position       = {x: 0, y: 0};
   onChange: any  = Function.prototype;
   onTouched: any = Function.prototype;
-
 
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
@@ -129,23 +125,20 @@ export class DndItemComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  @Output() onDragOver = new EventEmitter<any>()
+  @Output() onDragOver = new EventEmitter<any>();
 
-  @Output() onDrop = new EventEmitter()
+  @Output() onDrop = new EventEmitter();
 
-
-  @Output() onDragging = new EventEmitter<any>()
-
+  @Output() onDragging = new EventEmitter<any>();
 
   loadALL() {
     if (!this.init) {
-      this.loadDragList()
+      this.loadDragList();
     }
   }
 
-  child
-  start_switch = false
-
+  child;
+  start_switch = false;
 
   ngOnInit(): void {
 
@@ -153,35 +146,35 @@ export class DndItemComponent implements OnInit {
 
   loadDragList() {
     if (this._triggerElement) {
-      this.init     = true
-      let $drop     = fromEvent(this.elementRef.nativeElement, 'drop')
-      let dragEnd   = fromEvent(this._triggerElement, 'dragend')
-      let dragStart = fromEvent(this._triggerElement, 'dragstart')
-      let dragEnter = fromEvent(this.elementRef.nativeElement, 'dragenter')
+      this.init     = true;
+      const $drop     = fromEvent(this.elementRef.nativeElement, 'drop');
+      const dragEnd   = fromEvent(this._triggerElement, 'dragend');
+      const dragStart = fromEvent(this._triggerElement, 'dragstart');
+      const dragEnter = fromEvent(this.elementRef.nativeElement, 'dragenter');
       dragStart.pipe().subscribe((event: DragEvent) => {
-        this.dragAndDropStart             = true
-        this.drag_container.dragging_item = this
-        this.child                        = this.moveElement.cloneNode(true)
-        let width                         = this.moveElement.offsetWidth
-        let height                        = this.moveElement.offsetHeight
-        this.render2.setStyle(this.child, 'width', width + 'px')
-        this.render2.setStyle(this.child, 'height', height + 'px')
-        this.render2.setStyle(this.child, 'border', '1px dashed #D2D2D2')
-        this.render2.setStyle(this.child, 'padding', '4px')
-        this.render2.appendChild(this.dragView.nativeElement, this.child)
-        event.dataTransfer.setDragImage(this.child, 0, 0)
-        event.dataTransfer.setData('target', 'trigger')
-      })
+        this.dragAndDropStart             = true;
+        this.drag_container.dragging_item = this;
+        this.child                        = this.moveElement.cloneNode(true);
+        const width                         = this.moveElement.offsetWidth;
+        const height                        = this.moveElement.offsetHeight;
+        this.render2.setStyle(this.child, 'width', width + 'px');
+        this.render2.setStyle(this.child, 'height', height + 'px');
+        this.render2.setStyle(this.child, 'border', '1px dashed #D2D2D2');
+        this.render2.setStyle(this.child, 'padding', '4px');
+        this.render2.appendChild(this.dragView.nativeElement, this.child);
+        event.dataTransfer.setDragImage(this.child, 0, 0);
+        event.dataTransfer.setData('target', 'trigger');
+      });
 
       dragEnd.subscribe(event => {
-        this.render2.removeChild(this.dragView.nativeElement, this.child)
-        this.dragEndHook()
-      })
+        this.render2.removeChild(this.dragView.nativeElement, this.child);
+        this.dragEndHook();
+      });
 
       this.ngZone.runOutsideAngular(() => {
         this.render2.listen(this.elementRef.nativeElement, 'dragover', (event) => {
-          event.preventDefault()
-        })
+          event.preventDefault();
+        });
 
         // this.render2.listen(this.elementRef.nativeElement, 'transitionend', (event) => {
         //   console.log(this.start_switch)
@@ -189,75 +182,73 @@ export class DndItemComponent implements OnInit {
         // })
 
         this.render2.listen(this.elementRef.nativeElement, 'dragleave', (event) => {
-          event.preventDefault()
+          event.preventDefault();
           // Get the location on screen of the element.
-          let rect = this.elementRef.nativeElement.getBoundingClientRect();
+          const rect = this.elementRef.nativeElement.getBoundingClientRect();
           // Check the mouseEvent coordinates are outside of the rectangle
-          let e    = event
+          const e    = event;
           if (e.x >= (rect.left + rect.width) || e.x <= rect.left || e.y >= (rect.top + rect.height) || e.y <= rect.top) {
-            console.log('leave', this.content.key)
-            this.drag_enter = false
+            console.log('leave', this.content.key);
+            this.drag_enter = false;
             // if (this.drag_container.dragging_enter_item == this) {
             //   this.drag_container.dragging_enter_item = null
             // }
           }
-          this.drag_enter = false
-        })
+          this.drag_enter = false;
+        });
 
-      })
+      });
       dragEnter.subscribe((event: DragEvent) => {
-        event.preventDefault()
+        event.preventDefault();
         if (this.drag_container.dragging_item != this) {
-          this.drag_enter = true
+          this.drag_enter = true;
         }
-      })
+      });
       $drop.subscribe((event: DragEvent) => {
-        event.preventDefault()
-        event.stopPropagation()
-        console.log(this.content.key)
-        this.dragEndHook()
+        event.preventDefault();
+        event.stopPropagation();
+        console.log(this.content.key);
+        this.dragEndHook();
         if (event.dataTransfer.getData('target') != 'trigger') {
-          return false
-        }
-        else {
+          return false;
+        } else {
           // return false if on self
           if (this.content.key == this.drag_container.dragging_item.content.key) {
-            return false
-          }
-          else {
-            this.drag_container.insertChildElement(this.content)
+            return false;
+          } else {
+            this.drag_container.insertChildElement(this.content);
 
           }
         }
 
-      })
+      });
     }
   }
 
   sortble() {
     if (this.drag_container.dragging_item.rect) {
-      let base_el                             = this.drag_container.dragging_item.rect
-      let base_cache                          = this.drag_container.dragging_item.cache_rect
-      let target                              = this.rect
-      let target_cache                        = this.cache_rect
-      let target_position                     = {x: base_el.x - target_cache.x, y: base_el.y - target_cache.y}
-      let base_position                       = {x: base_cache.x - target.x, y: base_cache.y - target.y}
+      const base_el                             = this.drag_container.dragging_item.rect;
+      const base_cache                          = this.drag_container.dragging_item.cache_rect;
+      const target                              = this.rect;
+      const target_cache                        = this.cache_rect;
+      let target_position                     = {x: base_el.x - target_cache.x, y: base_el.y - target_cache.y};
+      const base_position                       = {x: base_cache.x - target.x, y: base_cache.y - target.y};
       // console.log('drag enter', this.content.key)
-      this.drag_container.dragging_enter_item = this
+      this.drag_container.dragging_enter_item = this;
       if (base_el.x == this.cache_rect.x && base_el.y == this.cache_rect.y) {
-        target_position = {x: 0, y: 0}
+        target_position = {x: 0, y: 0};
       }
       // Swicth index
-      this.rect                              = {x: base_el.x, y: base_el.y}
-      this.drag_container.dragging_item.rect = {x: target.x, y: target.y}
+      this.rect                              = {x: base_el.x, y: base_el.y};
+      this.drag_container.dragging_item.rect = {x: target.x, y: target.y};
 
-      let tmpIndex = this.content.atIndex
+      const tmpIndex = this.content.atIndex;
 
-      let baseIndex = this.drag_container.dragging_item.content.atIndex
+      const baseIndex = this.drag_container.dragging_item.content.atIndex;
 
-      this.content.atIndex = baseIndex
+      this.content.atIndex = baseIndex;
 
-      this.drag_container.dragging_item.content.atIndex = tmpIndex
+      this.drag_container.dragging_item.content.atIndex = tmpIndex;
 
       //
       // this.render2.setStyle(this.drag_container.dragging_item.elementRef.nativeElement, 'transform',
@@ -271,25 +262,25 @@ export class DndItemComponent implements OnInit {
   }
 
   dragEndHook() {
-    this.drag_enter                         = false
-    this.dragAndDropStart                   = false
-    this.drag_container.dragging_enter_item = null
+    this.drag_enter                         = false;
+    this.dragAndDropStart                   = false;
+    this.drag_container.dragging_enter_item = null;
   }
 
   pauseEvent(e) {
-    if (e.stopPropagation) e.stopPropagation();
-    if (e.preventDefault) e.preventDefault();
+    if (e.stopPropagation) { e.stopPropagation(); }
+    if (e.preventDefault) { e.preventDefault(); }
     e.cancelBubble = true;
     e.returnValue  = false;
     return false;
   }
 
-  rect: any       = {}
-  cache_rect: any = {}
+  rect: any       = {};
+  cache_rect: any = {};
 
   ngAfterViewInit() {
-    this.rect       = this.elementRef.nativeElement.getBoundingClientRect()
-    this.cache_rect = this.elementRef.nativeElement.getBoundingClientRect()
+    this.rect       = this.elementRef.nativeElement.getBoundingClientRect();
+    this.cache_rect = this.elementRef.nativeElement.getBoundingClientRect();
 
   }
 

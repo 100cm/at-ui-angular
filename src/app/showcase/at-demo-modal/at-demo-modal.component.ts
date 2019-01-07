@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-modal',
@@ -13,9 +13,9 @@ export class AtDemoModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic = require('!!raw-loader!./demo-basic-modal/demo-basic-modal.component.html')
-  custom = require('!!raw-loader!./demo-custom-modal/demo-custom-modal.component.html')
-  position = require('!!raw-loader!./demo-position-modal/demo-position-modal.component.html')
-  service = require('!!raw-loader!./demo-service-modal/demo-service-modal.component')
+  basic = require('!!raw-loader!./demo-basic-modal/demo-basic-modal.component.html');
+  custom = require('!!raw-loader!./demo-custom-modal/demo-custom-modal.component.html');
+  position = require('!!raw-loader!./demo-position-modal/demo-position-modal.component.html');
+  service = require('!!raw-loader!./demo-service-modal/demo-service-modal.component');
 
 }

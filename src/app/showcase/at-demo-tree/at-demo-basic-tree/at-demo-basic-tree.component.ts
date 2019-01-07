@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AtFormatEmitEvent}   from '../../../components/tree';
+import { AtFormatEmitEvent }   from '../../../components/tree';
 
 @Component({
   selector: 'app-at-demo-basic-tree',
@@ -43,9 +43,9 @@ export class AtDemoBasicTreeComponent implements OnInit {
     console.log(event);
   }
 
-  model = '1003'
-  model2 = ['1003']
+  model = '1003';
+  model2 = ['1003'];
 
-  model3 = ["1003"]
+  model3 = ['1003'];
 
 }

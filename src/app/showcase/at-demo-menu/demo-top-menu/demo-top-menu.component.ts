@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
              selector: 'app-demo-top-menu',
@@ -76,7 +76,7 @@ import {Component, OnInit} from '@angular/core';
                      adasdasdasdasd
                    </div>
                  </li>
-               </ul>  `,
+               </ul>  `
            })
 
 export class DemoTopMenuComponent implements OnInit {

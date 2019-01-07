@@ -6,9 +6,9 @@ import {
   Input,
   NgModule,
   OnChanges,
-  Output,
+  Output
 }                               from '@angular/core';
-import {HSLA, HSVA, HSVAsource} from "../color.interface";
+import { HSLA, HSVA, HSVAsource } from '../color.interface';
 
 @Component({
   selector: 'at-color-saturation',
@@ -59,10 +59,10 @@ import {HSLA, HSVA, HSVAsource} from "../color.interface";
       cursor: hand;
       transform: translate(-2px, -4px);
     }
-  `,
+  `
   ],
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AtSaturationComponent implements OnChanges {
   @Input() hsl: HSLA;
@@ -76,7 +76,7 @@ export class AtSaturationComponent implements OnChanges {
   pointerLeft: string;
 
   ngOnChanges() {
-    if(this.hsl){
+    if (this.hsl) {
       this.background = `hsl(${this.hsl.h}, 100%, 50%)`;
       this.pointerTop = -(this.hsv.v * 100) + 1 + 100 + '%';
       this.pointerLeft = this.hsv.s * 100 + '%';
@@ -103,7 +103,7 @@ export class AtSaturationComponent implements OnChanges {
       s: saturation,
       v: bright,
       a: this.hsl.a,
-      source: 'hsva',
+      source: 'hsva'
     };
     this.onChange.emit({ data, $event });
   }

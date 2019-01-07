@@ -1,5 +1,5 @@
-import {AfterContentInit, Component, ContentChild, ContentChildren, OnInit, QueryList} from '@angular/core';
-import {TimelineItemComponent} from "./timeline-item/timeline-item.component";
+import { AfterContentInit, Component, ContentChild, ContentChildren, OnInit, QueryList } from '@angular/core';
+import { TimelineItemComponent } from './timeline-item/timeline-item.component';
 
 @Component({
   selector: 'at-timeline',
@@ -7,12 +7,11 @@ import {TimelineItemComponent} from "./timeline-item/timeline-item.component";
     <div class="at-timeline" [ngClass]="{'at-timeline--pending':pending}">
       <ng-content select="at-timeline-item"></ng-content>
     </div>
-  `,
+  `
 })
 export class TimelineComponent implements OnInit {
 
-
-  timeline_items: Array<TimelineItemComponent> = []
+  timeline_items: TimelineItemComponent[] = [];
 
   constructor() {
   }
@@ -21,22 +20,22 @@ export class TimelineComponent implements OnInit {
   }
 
   pushTimeline(item: TimelineItemComponent) {
-    this.timeline_items.push(item)
-    let last = this.timeline_items.length - 1
-    let pending = false
+    this.timeline_items.push(item);
+    const last = this.timeline_items.length - 1;
+    const pending = false;
     setTimeout(_ => {
       this.timeline_items.forEach((item, i) => {
-        this.timeline_items[i].isLast = item.pending
-      })
-      let includes_pending = this.timeline_items.filter(item => item.pending == true).length > 0
-      this.pending = includes_pending
-      this.timeline_items[last].isLast = !includes_pending
+        this.timeline_items[i].isLast = item.pending;
+      });
+      const includes_pending = this.timeline_items.filter(item => item.pending == true).length > 0;
+      this.pending = includes_pending;
+      this.timeline_items[last].isLast = !includes_pending;
 
-    })
+    });
 
   }
 
-  pending = false
+  pending = false;
 
   ngAfterViewInit() {
 

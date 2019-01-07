@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {AtColorWrapComponent}                                                                from "../at-color-wrap/at-color-wrap.component";
-import {isValidHex}                                                                          from "../../utils/class-helper";
-import {NG_VALUE_ACCESSOR}                                                                   from "@angular/forms";
+import { forwardRef, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NG_VALUE_ACCESSOR }                                                                   from '@angular/forms';
+import { isValidHex }                                                                          from '../../utils/class-helper';
+import { AtColorWrapComponent }                                                                from '../at-color-wrap/at-color-wrap.component';
 @Component({
              selector: 'at-color-picker',
              template: `
@@ -104,7 +104,7 @@ import {NG_VALUE_ACCESSOR}                                                      
                    border-radius: 2px;
                    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.25) 0px 0px 4px inset;
                  }
-               `,
+               `
              ],
              changeDetection: ChangeDetectionStrategy.OnPush,
              preserveWhitespaces: false,
@@ -114,7 +114,7 @@ import {NG_VALUE_ACCESSOR}                                                      
                  useExisting: forwardRef(() => AtColorSketchComponent),
                  multi: true
                }
-             ],
+             ]
            })
 export class AtColorSketchComponent extends AtColorWrapComponent {
   @Input() atDisableAlpha   = false;
@@ -133,13 +133,13 @@ export class AtColorSketchComponent extends AtColorWrapComponent {
     '#000000',
     '#4A4A4A',
     '#9B9B9B',
-    '#FFFFFF',
+    '#FFFFFF'
   ];
   /** Width of picker */
            @Input() atWidth = 200;
            activeBackground: string;
 
-  @Output() hexChange = new EventEmitter()
+  @Output() hexChange = new EventEmitter();
 
   constructor() {
     super();
@@ -151,8 +151,8 @@ export class AtColorSketchComponent extends AtColorWrapComponent {
 
   handleValueChange({data, $event}) {
     this.handleChange(data, $event);
-    this.onChange(this.hex)
-    this.hexChange.emit(this.hex)
+    this.onChange(this.hex);
+    this.hexChange.emit(this.hex);
   }
 
   handleBlockChange({hex, $event}) {
@@ -161,15 +161,14 @@ export class AtColorSketchComponent extends AtColorWrapComponent {
       this.handleChange(
         {
           hex,
-          source: 'hex',
+          source: 'hex'
         },
-        $event,
+        $event
       );
     }
-    this.onChange(hex)
-    this.hexChange.emit(hex)
+    this.onChange(hex);
+    this.hexChange.emit(hex);
   }
-
 
   // ngModel Access
   onChange: any  = Function.prototype;
@@ -188,6 +187,5 @@ export class AtColorSketchComponent extends AtColorWrapComponent {
   registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
-
 
 }

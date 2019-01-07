@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'at-card',
   template: `
     <div [ngClass]="{'at-card-bordered':border}">
-      <ng-content >
+      <ng-content>
 
       </ng-content>
     </div>`,
@@ -15,10 +15,10 @@ export class CardComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   @Input()
-  border: boolean = false
+  border: boolean = false;
 
 }

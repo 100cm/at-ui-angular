@@ -1,20 +1,20 @@
 import {
+  forwardRef,
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef,
   Input,
   OnInit,
   Output,
   Renderer2,
   ViewChild
 }                                             from '@angular/core';
-import {from,merge, fromEvent, Observable, Subject} from "rxjs";
-import {concatAll, map, takeUntil}            from "rxjs/operators";
-import {NG_VALUE_ACCESSOR}                    from "@angular/forms";
-import {fadeAnimation}                        from "../animations/fade-animation";
+import { NG_VALUE_ACCESSOR }                    from '@angular/forms';
+import { from, fromEvent, merge, Observable, Subject } from 'rxjs';
+import { concatAll, map, takeUntil }            from 'rxjs/operators';
+import { fadeAnimation }                        from '../animations/fade-animation';
 
-var _ = require('lodash')
+const _ = require('lodash');
 
 @Component({
              selector: 'at-slider',
@@ -46,7 +46,7 @@ var _ = require('lodash')
                         [ngStyle]="{left: sliderPercentage['start']+ '%'}">
                      <div class="at-tooltip">
                        <span class="at-tooltip__trigger">
-                       <div class="at-slider__dot at-slider__dot--hover"></div> 
+                       <div class="at-slider__dot at-slider__dot--hover"></div>
                         </span>
                        <div *ngIf="(visible$ | async) && currentVisible('start') "
                             [@fadeAnimation]="''+(visible$ | async)"
@@ -100,11 +100,9 @@ export class SliderComponent implements OnInit {
   constructor(private renderer: Renderer2) {
   }
 
-
   ngOnInit() {
 
   }
-
 
   onChange: (value: any) => void = () => null;
   onTouched: () => void          = () => null;
@@ -118,28 +116,26 @@ export class SliderComponent implements OnInit {
   }
 
   writeValue(value: any): void {
-    this.sliderValue = value || 0
+    this.sliderValue = value || 0;
   }
 
+  @ViewChild('sliderDot') dot: ElementRef;
 
-  @ViewChild('sliderDot') dot: ElementRef
+  @ViewChild('sliderDotEnd') dotEnd: ElementRef;
 
-  @ViewChild('sliderDotEnd') dotEnd: ElementRef
+  @ViewChild('slider') sliderEle: ElementRef;
 
-  @ViewChild('slider') sliderEle: ElementRef
+  @Input() range = 100;
 
-  @Input() range = 100
+  private _step = 1;
 
-  private _step = 1
+  @Input() atMode = 'common';
 
-  @Input() atMode = 'common'
+  private _marks = [];
 
-  private _marks = []
+  @Output() atValueChange: EventEmitter<any> = new EventEmitter<any>();
 
-  @Output() atValueChange: EventEmitter<any> = new EventEmitter<any>()
-
-  private _sliderValue = 0
-
+  private _sliderValue = 0;
 
   get marks(): any[] {
     return this._marks;
@@ -150,16 +146,16 @@ export class SliderComponent implements OnInit {
       return {
         title: this.marks[number],
         left: Math.floor(number) / Math.floor(this.range) * 100
-      }
-    })
+      };
+    });
   }
 
   get marksArray() {
-    let array = []
-    for (let number in this.marks) {
-      array.push(number)
+    const array = [];
+    for (const number in this.marks) {
+      array.push(number);
     }
-    return array
+    return array;
   }
 
   // [{}]
@@ -170,58 +166,53 @@ export class SliderComponent implements OnInit {
   }
 
   get sliderValue(): number {
-    let array = _.sortBy(this.stepToArray(this.range, this.step).concat(this.marksArray))
+    const array = _.sortBy(this.stepToArray(this.range, this.step).concat(this.marksArray));
     if (this.atMode == 'range') {
       return this.sortPercentage().map(v => {
-        let value = Math.floor((v / 100) * this.range)
-        return value >= this.range ? value : this.closest(array, value)
-      })
-    }
-    else {
-      let v = Math.floor((this.sliderPercentage['start'] / 100) * this.range)
+        const value = Math.floor((v / 100) * this.range);
+        return value >= this.range ? value : this.closest(array, value);
+      });
+    } else {
+      const v = Math.floor((this.sliderPercentage.start / 100) * this.range);
       return v >= this.range ? v : this.closest(array, v);
     }
   }
 
   labelValue(index) {
-    return Math.floor((this.sliderPercentage[index] / 100) * this.range)
+    return Math.floor((this.sliderPercentage[index] / 100) * this.range);
   }
 
   set sliderValue(value: number) {
     if (value) {
       this._sliderValue = value;
       if (this.atMode == 'common') {
-        this.sliderPercentage['start'] = Math.floor((value / this.range) * 100)
-      }
-      else {
-        this.sliderPercentage['start'] = Math.floor((value[0] / this.range) * 100)
-        this.sliderPercentage['end']   = Math.floor((value[1] / this.range) * 100)
+        this.sliderPercentage.start = Math.floor((value / this.range) * 100);
+      } else {
+        this.sliderPercentage.start = Math.floor((value[0] / this.range) * 100);
+        this.sliderPercentage.end   = Math.floor((value[1] / this.range) * 100);
       }
     }
   }
 
   get inkPercentage() {
     if (this.atMode == 'range') {
-      return this.sortPercentage()[1] - this.sortPercentage()[0]
-    }
-    else {
-      return this.sliderPercentage['start']
+      return this.sortPercentage()[1] - this.sortPercentage()[0];
+    } else {
+      return this.sliderPercentage.start;
     }
   }
 
   get inkLeft() {
     if (this.atMode == 'range') {
-      return this.sortPercentage()[0]
-    }
-    else {
-      return 0
+      return this.sortPercentage()[0];
+    } else {
+      return 0;
     }
   }
 
   sortPercentage() {
-    return _.sortBy(this.sliderPercentage)
+    return _.sortBy(this.sliderPercentage);
   }
-
 
   get step(): number {
     return this._step;
@@ -232,41 +223,39 @@ export class SliderComponent implements OnInit {
     this._step = value;
   }
 
-  sliderPercentage = {start: 0, end: 0}
+  sliderPercentage = {start: 0, end: 0};
 
-  isSliding = new Subject<any>()
+  isSliding = new Subject<any>();
 
   visible$: Observable<boolean> = this.isSliding.asObservable();
 
-  activeIndex = 'start'
-
+  activeIndex = 'start';
 
   currentVisible(index) {
-    return this.activeIndex == index
+    return this.activeIndex == index;
   }
 
   ngAfterViewInit() {
-    let $beginStart = fromEvent(this.dot.nativeElement, 'mousedown')
-    let $touchStart
+    const $beginStart = fromEvent(this.dot.nativeElement, 'mousedown');
+    let $touchStart;
     let $endTouchStart;
     if (this.dotEnd) {
-      $endTouchStart = fromEvent(this.dotEnd.nativeElement, 'mousedown')
-      $touchStart    = merge($beginStart, $endTouchStart)
+      $endTouchStart = fromEvent(this.dotEnd.nativeElement, 'mousedown');
+      $touchStart    = merge($beginStart, $endTouchStart);
       this.renderer.listen(this.dotEnd.nativeElement, 'mousedown', (e) => {
         e.preventDefault();
-        this.activeIndex = 'end'
+        this.activeIndex = 'end';
       });
-    }
-    else {
-      $touchStart = $beginStart
+    } else {
+      $touchStart = $beginStart;
     }
     this.renderer.listen(this.dot.nativeElement, 'mousedown', (e) => {
       e.preventDefault();
-      this.activeIndex = 'start'
+      this.activeIndex = 'start';
     });
 
-    let $mouseMove = fromEvent(document.body, 'mousemove')
-    let $mouseUp   = fromEvent(document.body, 'mouseup')
+    const $mouseMove = fromEvent(document.body, 'mousemove');
+    const $mouseUp   = fromEvent(document.body, 'mouseup');
     $touchStart.pipe(map(event =>
                            $mouseMove.pipe(
                              takeUntil($mouseUp))
@@ -276,45 +265,44 @@ export class SliderComponent implements OnInit {
                        x: event.clientX,
                        y: event.clientY
                      }))).subscribe(rect => {
-      this.sliderPercentage[this.activeIndex] = this.findClosestValue(rect)
-      this.atValueChange.emit(this.sliderValue)
+      this.sliderPercentage[this.activeIndex] = this.findClosestValue(rect);
+      this.atValueChange.emit(this.sliderValue);
       // this.toolTipLeft = this.sliderEle.nativeElement.clientWidth * (this.sliderValue / 100) + 'px'
-      this.isSliding.next(true)
-    })
+      this.isSliding.next(true);
+    });
 
     $mouseUp.subscribe(event => {
-      this.isSliding.next(false)
-      this.onChange(this.sliderValue)
-    })
+      this.isSliding.next(false);
+      this.onChange(this.sliderValue);
+    });
 
   }
 
   markInRange(left) {
-    return (left <= this.sortPercentage()[1] && left >= this.sortPercentage()[0])
+    return (left <= this.sortPercentage()[1] && left >= this.sortPercentage()[0]);
   }
-
 
   /**
    * return {x:,y:}
    */
   findClosestValue(rect) {
-    let slider               = this.sliderEle.nativeElement
-    let sliderLength: number = slider.clientWidth
-    let sliderOffset         = this.getElementOffset(slider)
-    let range                = sliderLength + sliderOffset.left
-    let each_range           = (this.range / this.step)
+    const slider               = this.sliderEle.nativeElement;
+    const sliderLength: number = slider.clientWidth;
+    const sliderOffset         = this.getElementOffset(slider);
+    const range                = sliderLength + sliderOffset.left;
+    const each_range           = (this.range / this.step);
 
     // get the percentage
-    let percentage = Math.floor(((rect.x - sliderOffset.left) / sliderLength) * 100)
-    percentage > 100 ? percentage = 100 : 0
-    percentage < 0 ? percentage = 0 : 0
+    let percentage = Math.floor(((rect.x - sliderOffset.left) / sliderLength) * 100);
+    percentage > 100 ? percentage = 100 : 0;
+    percentage < 0 ? percentage = 0 : 0;
 
     // find the closet array
-    let stepPercent = (this.step / this.range) * 100
-    let array       = this.stepToArray(100, stepPercent)
-    let mark_array  = this.marksArray.map(number => Math.floor(number) / Math.floor(this.range) * 100)
-    array           = _.sortBy(array.concat(mark_array))
-    return (percentage == 100 ? 100 : this.closest(array, percentage))
+    const stepPercent = (this.step / this.range) * 100;
+    let array       = this.stepToArray(100, stepPercent);
+    const mark_array  = this.marksArray.map(number => Math.floor(number) / Math.floor(this.range) * 100);
+    array           = _.sortBy(array.concat(mark_array));
+    return (percentage == 100 ? 100 : this.closest(array, percentage));
   }
 
   /**
@@ -338,16 +326,15 @@ export class SliderComponent implements OnInit {
   }
 
   stepToArray(range, step) {
-    let range_length = Math.floor(range / step)
-    let range_array  = []
+    const range_length = Math.floor(range / step);
+    const range_array  = [];
     for (let i = 0; i <= range_length; i++) {
-      let array_item = i * step
-      array_item     = array_item < range ? array_item : range
-      range_array.push(array_item)
+      let array_item = i * step;
+      array_item     = array_item < range ? array_item : range;
+      range_array.push(array_item);
     }
-    return range_array
+    return range_array;
   }
-
 
   closest(arr, num) {
     let mid;
@@ -357,8 +344,7 @@ export class SliderComponent implements OnInit {
       mid = Math.floor((lo + hi) / 2);
       if (arr[mid] < num) {
         lo = mid;
-      }
-      else {
+      } else {
         hi = mid;
       }
     }

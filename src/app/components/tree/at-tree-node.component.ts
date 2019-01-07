@@ -1,4 +1,4 @@
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   ElementRef,
@@ -15,13 +15,13 @@ import {
   TemplateRef,
   ViewChild
 }                                                   from '@angular/core';
-import {fromEvent, Observable, Subject}             from 'rxjs';
-import {takeUntil}                                  from 'rxjs/operators';
-import {isCheckDisabled}                            from './at-tree-util';
-import {AtTreeService}                              from './at-tree.service';
-import {InputBoolean}                               from '../utils/class-helper';
-import {AtTreeNode}                                 from './at-tree-node';
-import {AtFormatBeforeDropEvent, AtFormatEmitEvent} from './interface';
+import { fromEvent, Observable, Subject }             from 'rxjs';
+import { takeUntil }                                  from 'rxjs/operators';
+import { InputBoolean }                               from '../utils/class-helper';
+import { AtTreeNode }                                 from './at-tree-node';
+import { isCheckDisabled }                            from './at-tree-util';
+import { AtTreeService }                              from './at-tree.service';
+import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
 
 @Component({
   selector: 'at-tree-node',
@@ -202,7 +202,6 @@ export class AtTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   get atDraggable(): boolean {
     return this._atDraggable;
   }
-
 
   // default set
   @Input()

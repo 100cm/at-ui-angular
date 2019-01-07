@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'at-pagination',
@@ -95,7 +95,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     </div>
 
 
-  `,
+  `
 })
 export class PagenationComponent implements OnInit {
 
@@ -115,8 +115,7 @@ export class PagenationComponent implements OnInit {
   _lastIndex = Infinity;
 
   @Input()
-  size: 'small' | 'normal' = 'normal'
-
+  size: 'small' | 'normal' = 'normal';
 
   get options(): number[] {
     return this._options;
@@ -128,13 +127,12 @@ export class PagenationComponent implements OnInit {
   }
 
   @Input()
-  simple: boolean = false
+  simple: boolean = false;
 
-  @Output() pageIndexChange: EventEmitter<any> = new EventEmitter()
-  @Output() pageSizeChange: EventEmitter<any> = new EventEmitter()
+  @Output() pageIndexChange: EventEmitter<any> = new EventEmitter();
+  @Output() pageSizeChange: EventEmitter<any> = new EventEmitter();
 
-
-  private _atPageIndex
+  private _atPageIndex;
 
   @Input()
   atQuickJump: boolean = false;
@@ -159,11 +157,10 @@ export class PagenationComponent implements OnInit {
     }
 
     this._current = Number(value);
-    this._buildIndexes()
-    this.pageIndexChange.emit(this._current)
+    this._buildIndexes();
+    this.pageIndexChange.emit(this._current);
 
   }
-
 
   get total(): number {
     return this._total;
@@ -182,7 +179,7 @@ export class PagenationComponent implements OnInit {
   @Input()
   set pageSize(value: number) {
     this._pageSize = value;
-    this._buildIndexes()
+    this._buildIndexes();
   }
 
   /**
@@ -199,8 +196,7 @@ export class PagenationComponent implements OnInit {
       for (let i = 2; i <= this._lastIndex - 1; i++) {
         tmpPages.push({index: i});
       }
-    }
-    else {
+    } else {
       const current = +this._current;
       let left = Math.max(2, current - 2);
       let right = Math.min(current + 2, this._lastIndex - 1);
@@ -227,15 +223,13 @@ export class PagenationComponent implements OnInit {
 
     if (index < this._firstIndex) {
       this._current = this._firstIndex;
-    }
-    else if (index > this._lastIndex) {
+    } else if (index > this._lastIndex) {
       this._current = this._lastIndex;
-    }
-    else {
+    } else {
       this._current = index;
     }
-    this._buildIndexes()
-    this.pageIndexChange.emit(this.atPageIndex)
+    this._buildIndexes();
+    this.pageIndexChange.emit(this.atPageIndex);
   }
 
   get _isLastIndex() {
@@ -259,19 +253,19 @@ export class PagenationComponent implements OnInit {
 
   _atPageIndexChange(value: any) {
     if (value > this._lastIndex) {
-      value = this._lastIndex
+      value = this._lastIndex;
     }
     if (value == this._firstIndex) {
-      value = 1
+      value = 1;
     }
-    this._current = value
-    this._buildIndexes()
-    this.pageIndexChange.emit(this._current)
+    this._current = value;
+    this._buildIndexes();
+    this.pageIndexChange.emit(this._current);
   }
 
   _atPageSizeChange(value: any) {
-    this.pageSize = value
+    this.pageSize = value;
 
-    this.pageSizeChange.emit(this.pageSize)
+    this.pageSizeChange.emit(this.pageSize);
   }
 }

@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectorRef,
   Component,
@@ -9,10 +10,9 @@ import {
   Renderer2,
   ViewChild
 }                                                   from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {AtTreeNode}                                 from '../../tree';
-import {AtSelectControlService}                     from '../../select/at-select-control.service';
-import {delay, map}                                 from 'rxjs/operators';
+import { delay, map }                                 from 'rxjs/operators';
+import { AtSelectControlService }                     from '../../select/at-select-control.service';
+import { AtTreeNode }                                 from '../../tree';
 
 @Component({
   selector: '[at-tree-select-top-control]',
@@ -125,43 +125,40 @@ export class AtTreeSelectTopControlComponent {
 
   inputValue: string;
   isComposing = false;
-  atOpen = false
+  atOpen = false;
 
   @ViewChild('inputElement') inputElement: ElementRef;
 
-  @Input() multiple
-  @Input() atShowSearch = false
-  @Input() allowClear = false
-  @Input() atPlaceHolder
-
+  @Input() multiple;
+  @Input() atShowSearch = false;
+  @Input() allowClear = false;
+  @Input() atPlaceHolder;
 
   get isSingleMode() {
-    return this.multiple === false
+    return this.multiple === false;
   }
 
   @Input()
-  atMode = 'common'
+  atMode = 'common';
 
   focusOnInput($event) {
-    $event.stopPropagation()
-    $event.preventDefault()
-    this.select_control_service.$openStatus.next(true)
+    $event.stopPropagation();
+    $event.preventDefault();
+    this.select_control_service.$openStatus.next(true);
   }
 
-
   ngOnInit() {
-    this.subPushOption()
-    this.subStatusChange()
-    this.subSearch()
+    this.subPushOption();
+    this.subStatusChange();
+    this.subSearch();
   }
 
   getPropertyFromValue(value, key) {
-    return value[key] || ''
+    return value[key] || '';
   }
 
-
   get selectedOptions() {
-    return this.options
+    return this.options;
   }
 
   isOptionDisplay(value: any): boolean {
@@ -172,12 +169,12 @@ export class AtTreeSelectTopControlComponent {
     return this.atOpen ? 'block' : 'none';
   }
 
-  options = []
+  options = [];
 
   subPushOption() {
     this.select_control_service.$optionsChange.asObservable().subscribe(options => {
-      this.options = options
-    })
+      this.options = options;
+    });
   }
 
   subSearch() {
@@ -186,13 +183,13 @@ export class AtTreeSelectTopControlComponent {
 
   subStatusChange() {
     this.select_control_service.$openStatus.asObservable().pipe(map((data) => {
-      this.atOpen = data
-      return data
+      this.atOpen = data;
+      return data;
     })).subscribe(data => {
       if (this.inputElement && data === true) {
-        this.inputElement.nativeElement.focus()
+        this.inputElement.nativeElement.focus();
       }
-    })
+    });
   }
 
   get selectedValueDisplay(): { [key: string]: string } {
@@ -200,15 +197,13 @@ export class AtTreeSelectTopControlComponent {
     let opacity = 1;
     if (!this.atShowSearch) {
       showSelectedValue = true;
-    }
-    else {
+    } else {
       if (this.atOpen) {
         showSelectedValue = !(this.inputValue || this.isComposing);
         if (showSelectedValue) {
           opacity = 0.4;
         }
-      }
-      else {
+      } else {
         showSelectedValue = true;
       }
     }
@@ -223,12 +218,12 @@ export class AtTreeSelectTopControlComponent {
   }
 
   clear() {
-    this.select_control_service.$selectOptionChange.next([])
+    this.select_control_service.$selectOptionChange.next([]);
   }
 
   removeValueFormSelected($event, value: AtTreeNode) {
-    $event.preventDefault()
-    this.select_control_service.removeValue(value.key)
+    $event.preventDefault();
+    this.select_control_service.removeValue(value.key);
   }
 
   get placeHolderDisplay(): string {
@@ -238,15 +233,14 @@ export class AtTreeSelectTopControlComponent {
   setInputValue(value: string): void {
     this.inputValue = value;
     this.updateWidth();
-    this.select_control_service.$searchValueChange.next(value)
+    this.select_control_service.$searchValueChange.next(value);
   }
 
   updateWidth(): void {
     if (this.isMultipleOrTags && this.inputElement) {
       if (this.inputValue || this.isComposing) {
         this.renderer.setStyle(this.inputElement.nativeElement, 'width', `${this.inputElement.nativeElement.scrollWidth}px`);
-      }
-      else {
+      } else {
         this.renderer.removeStyle(this.inputElement.nativeElement, 'width');
       }
     }

@@ -12,6 +12,6 @@ export class DemoBasicRadioComponent implements OnInit {
   ngOnInit() {
   }
 
-  basic = 'basic'
+  basic = 'basic';
 
 }

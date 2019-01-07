@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtMessageService} from "../../../components/message/at-message.service";
+import { Component, OnInit } from '@angular/core';
+import { AtMessageService } from '../../../components/message/at-message.service';
 
 @Component({
   selector: 'app-demo-basic-message',
@@ -9,7 +9,7 @@ import {AtMessageService} from "../../../components/message/at-message.service";
     <button at-button (click)="showMessage('warning')">Warning</button>
     <button at-button (click)="showMessage('success')">Success</button>
 
-  `,
+  `
 })
 export class DemoBasicMessageComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class DemoBasicMessageComponent implements OnInit {
 
   showMessage(info) {
     this.at_message_service[info]({
-      message: "这是信息哦"
-    })
+      message: '这是信息哦'
+    });
   }
 }

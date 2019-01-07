@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-demo-form-basic',
@@ -8,7 +8,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class DemoFormBasicComponent implements OnInit {
 
-  validateForm
+  validateForm;
 
   constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({

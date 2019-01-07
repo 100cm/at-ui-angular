@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AtModalService} from "../../../components/modal/at-modal.service";
+import { Component, OnInit } from '@angular/core';
+import { AtModalService } from '../../../components/modal/at-modal.service';
 
 @Component({
   selector: 'app-demo-service-modal',
@@ -25,8 +25,8 @@ export class DemoServiceModalComponent implements OnInit {
       atType: 'confirm',
       title: type,
       status: type,
-      message: '这是消息体',
-    })
+      message: '这是消息体'
+    });
   }
 
 }

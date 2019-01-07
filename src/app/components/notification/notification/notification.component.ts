@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {NotificationConfig} from "./notification-config";
-import {NotificationContainerComponent} from "../notification-container/notification-container.component";
-import {StatusIconType} from "../../icon/icon-status-type";
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
+import { StatusIconType } from '../../icon/icon-status-type';
+import { NotificationContainerComponent } from '../notification-container/notification-container.component';
+import { NotificationConfig } from './notification-config';
 
 @Component({
   selector: 'at-notification',
@@ -31,7 +31,7 @@ import {StatusIconType} from "../../icon/icon-status-type";
       transition('* => leave', [
         style({opacity: 1, transform: 'translateY(0)'}),
         animate('100ms linear')
-      ]),
+      ])
     ])
   ],
   styles: [`
@@ -63,35 +63,34 @@ export class NotificationComponent implements OnInit {
 
   }
 
-  timer: any
+  timer: any;
 
-  status = StatusIconType
+  status = StatusIconType;
 
   ngOnInit() {
     if (this.config.duration != 0) {
-      this.startRemove()
+      this.startRemove();
     }
   }
 
   @Input()
-  config: NotificationConfig
-
+  config: NotificationConfig;
 
   remove() {
-    this.notificationContainer.remove(this.config.index)
+    this.notificationContainer.remove(this.config.index);
   }
 
   startRemove() {
     if (this.config.duration != 0) {
-      clearTimeout(this.timer)
+      clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.remove()
-      }, this.config.duration)
+        this.remove();
+      }, this.config.duration);
     }
   }
 
   stopRemove() {
-    clearTimeout(this.timer)
+    clearTimeout(this.timer);
   }
 
 }

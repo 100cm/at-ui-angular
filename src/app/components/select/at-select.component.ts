@@ -5,10 +5,11 @@ import {
   transition,
   trigger
 }                                                                              from '@angular/animations';
-import {CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange} from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
   forwardRef,
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ContentChildren,
   EventEmitter,
@@ -19,19 +20,18 @@ import {
   Output,
   QueryList,
   Renderer2,
-  SimpleChange,
-  ViewChild, ChangeDetectorRef
+  SimpleChange, ViewChild
 }                                                                              from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR}                               from '@angular/forms';
-import {isNotNil, toBoolean}                                                   from '../utils/class-helper';
-import {AtOptionContainerComponent}                                            from './at-option-container.component';
-import {AtOptionGroupComponent}                                                from './at-option-group.component';
-import {AtOptionComponent}                                                     from './at-option.component';
-import {defaultFilterOption, TFilterOption}                                    from './at-option.pipe';
-import {AtSelectTopControlComponent}                                           from './at-select-top-control.component';
-import {AtSelectControlService}                                                from './at-select-control.service';
-import {debounceTime}                                                          from 'rxjs/operators';
-import {DropDownAnimation}                                                     from '../animations/drop-down-animation';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR }                               from '@angular/forms';
+import { debounceTime }                                                          from 'rxjs/operators';
+import { DropDownAnimation }                                                     from '../animations/drop-down-animation';
+import { isNotNil, toBoolean }                                                   from '../utils/class-helper';
+import { AtOptionContainerComponent }                                            from './at-option-container.component';
+import { AtOptionGroupComponent }                                                from './at-option-group.component';
+import { AtOptionComponent }                                                     from './at-option.component';
+import { defaultFilterOption, TFilterOption }                                    from './at-option.pipe';
+import { AtSelectControlService }                                                from './at-select-control.service';
+import { AtSelectTopControlComponent }                                           from './at-select-top-control.component';
 
 @Component({
   selector: 'at-select',
@@ -81,12 +81,10 @@ import {DropDownAnimation}                                                     f
 })
 export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnDestroy {
 
-  atValue = []
-
+  atValue = [];
 
   ngOnDestroy(): void {
   }
-
 
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
@@ -102,11 +100,11 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   writeValue(obj: string | string[]): void {
     if (isNotNil(obj)) {
       if (Array.isArray(obj)) {
-        this.atValue = obj
+        this.atValue = obj;
       } else {
-        this.atValue = [obj]
+        this.atValue = [obj];
       }
-      this.at_select_control_service.$writeValueChange.next(this.atValue)
+      this.at_select_control_service.$writeValueChange.next(this.atValue);
     }
 
   }
@@ -140,14 +138,13 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @Input() atDropdownStyle: { [key: string]: string; };
   @Input() atNotFoundContent: string;
   @Input() compareWith = (o1: any, o2: any) => o1 === o2;
-  @Input() atPlaceHolder
-  @Input() searchable = false
-  @Input() multiple = false
-  @Input() allowClear = false
-  @Input() tagAble = false
-  @Input() atDisabled = false
-  atOpen = false
-
+  @Input() atPlaceHolder;
+  @Input() searchable = false;
+  @Input() multiple = false;
+  @Input() allowClear = false;
+  @Input() tagAble = false;
+  @Input() atDisabled = false;
+  atOpen = false;
 
   get atMode(): 'default' | 'multiple' | 'tags' {
     return this._atMode;
@@ -157,42 +154,42 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   set atMode(value: 'default' | 'multiple' | 'tags') {
     this._atMode = value;
     if (value == 'multiple' || value == 'tags') {
-      this.multiple = true
+      this.multiple = true;
     } else {
-      this.multiple = false
+      this.multiple = false;
     }
   }
 
   ngOnInit() {
-    this.subOpenStatus()
-    this.subClickSelect()
+    this.subOpenStatus();
+    this.subClickSelect();
   }
 
   subOpenStatus() {
     this.at_select_control_service.$openStatus.asObservable().pipe().subscribe((open: boolean) => {
-      this.atOpen = open
-      this.updateCdkConnectedOverlayStatus()
-      this.atOpenChange.emit(open)
-    })
+      this.atOpen = open;
+      this.updateCdkConnectedOverlayStatus();
+      this.atOpenChange.emit(open);
+    });
   }
 
   subClickSelect() {
     this.at_select_control_service.$selectOptionChange.asObservable().subscribe(data => {
       if (data[0] != null) {
         if (this.multiple) {
-          this.onChange(data || [])
+          this.onChange(data || []);
         } else {
-          this.onChange((data || [])[0])
+          this.onChange((data || [])[0]);
         }
       }
-    })
+    });
   }
 
   ngAfterViewInit() {
   }
 
   close() {
-    this.at_select_control_service.$openStatus.next(false)
+    this.at_select_control_service.$openStatus.next(false);
   }
 
   constructor(public at_select_control_service: AtSelectControlService) {

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-select-basic',
@@ -12,21 +12,21 @@ export class DemoSelectBasicComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(_ => {
-      this.selects = [2, 5, 6, 7, 8]
-    }, 3000)
+      this.selects = [2, 5, 6, 7, 8];
+    }, 3000);
   }
 
-  selected = ['first']
+  selected = ['first'];
 
-  single: any = 3
+  single: any = 3;
 
   change(va) {
-    console.log(va)
+    console.log(va);
   }
 
-  selects = [1, 2, 3, 4, 5, 6]
+  selects = [1, 2, 3, 4, 5, 6];
 
   setOntherOption() {
-    this.single = ''
+    this.single = '';
   }
 }

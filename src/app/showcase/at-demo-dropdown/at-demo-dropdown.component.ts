@@ -9,8 +9,8 @@ export class AtDemoDropdownComponent implements OnInit {
 
   constructor() { }
 
-  basic = require('!!raw-loader!./basic-demo-dropdown/basic-demo-dropdown.component.html')
-  place = require('!!raw-loader!./demo-place-dropdown/demo-place-dropdown.component.html')
+  basic = require('!!raw-loader!./basic-demo-dropdown/basic-demo-dropdown.component.html');
+  place = require('!!raw-loader!./demo-place-dropdown/demo-place-dropdown.component.html');
 
   ngOnInit() {
   }

@@ -26,6 +26,6 @@ export class StartupComponent implements OnInit {
   bootstrap: [AppComponent]
 })
 export class AppModule {
-}`
+}`;
 
 }

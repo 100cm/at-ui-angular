@@ -1,29 +1,30 @@
-import {Component, ContentChild, ContentChildren, Input, OnInit, QueryList, TemplateRef} from '@angular/core';
-import {AtBreadItemComponent}                                                            from "./breadcrumb-item/at-bread-item.component";
+import { Component, ContentChild, ContentChildren, Input, OnInit, QueryList, TemplateRef } from '@angular/core';
+import {
+  AtBreadItemComponent
+}                                                                                          from './breadcrumb-item/at-bread-item.component';
 
 @Component({
-             selector: 'at-breadcrumb',
-             template: `
-               <div class="at-breadcrumb">
-                 <ng-content></ng-content>
-               </div>
-             `,
-           })
+  selector: 'at-breadcrumb',
+  template: `
+    <div class="at-breadcrumb">
+      <ng-content></ng-content>
+    </div>
+  `
+})
 export class BreadcrumbComponent implements OnInit {
 
   constructor() {
   }
 
-  items: Array<AtBreadItemComponent> = []
+  items: AtBreadItemComponent[] = [];
 
-  pushItem(item) {
-    this.items.push(item)
+  pushItem(item: AtBreadItemComponent): void {
+    this.items.push(item);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  @Input() separator: string | TemplateRef<any> = '/'
-
+  @Input() separator: string | TemplateRef<void> = '/';
 
 }

@@ -1,6 +1,6 @@
-import {Component, ContentChild, Input, OnInit} from '@angular/core';
-import {TimelineDotDirective} from "../timeline-dot.directive";
-import {TimelineComponent} from "../timeline.component";
+import { Component, ContentChild, Input, OnInit } from '@angular/core';
+import { TimelineDotDirective } from '../timeline-dot.directive';
+import { TimelineComponent } from '../timeline.component';
 
 @Component({
   selector: 'at-timeline-item',
@@ -19,24 +19,24 @@ import {TimelineComponent} from "../timeline.component";
 })
 export class TimelineItemComponent implements OnInit {
 
-  @ContentChild(TimelineDotDirective) timeline_dot
+  @ContentChild(TimelineDotDirective) timeline_dot;
 
   constructor(private timeline_component: TimelineComponent) {
-    this.timeline_component.pushTimeline(this)
+    this.timeline_component.pushTimeline(this);
   }
 
   ngOnInit() {
 
   }
 
-  isLast = false
+  isLast = false;
 
-  @Input() pending = false
+  @Input() pending = false;
 
-  @Input() status: 'error' | 'warning' | 'primary' | 'success' = 'primary'
+  @Input() status: 'error' | 'warning' | 'primary' | 'success' = 'primary';
 
   get custom() {
-    return this.timeline_dot
+    return this.timeline_dot;
   }
 
 }

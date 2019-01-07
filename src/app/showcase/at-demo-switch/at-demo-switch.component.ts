@@ -9,7 +9,7 @@ export class AtDemoSwitchComponent implements OnInit {
 
   constructor() { }
 
-  code = require('!!raw-loader!./swicth-basic/swicth-basic.component.html')
+  code = require('!!raw-loader!./swicth-basic/swicth-basic.component.html');
 
   ngOnInit() {
   }

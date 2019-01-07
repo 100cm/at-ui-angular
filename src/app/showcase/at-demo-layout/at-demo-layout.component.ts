@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-             selector: 'app-at-demo-layout',
-             templateUrl: './at-demo-layout.component.html',
-             styleUrls: ['./at-demo-layout.component.css']
-           })
+  selector: 'app-at-demo-layout',
+  templateUrl: './at-demo-layout.component.html',
+  styleUrls: ['./at-demo-layout.component.css']
+})
 export class AtDemoLayoutComponent implements OnInit {
 
   constructor() {
@@ -13,7 +13,8 @@ export class AtDemoLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
-  rows     = new Array(12)
+  rows = new Array(12);
+  // noinspection TsLint
   basicRow = '  <div at-row *ngFor="let row of rows;let i= index" >\n' +
     '        <div at-col [span]="i+1">\n' +
     '          <div class="bg-c-brand-light at-box-row" ></div>\n' +
@@ -23,7 +24,7 @@ export class AtDemoLayoutComponent implements OnInit {
     '          </div>\n' +
     '        </div>\n' +
     '      </div>';
-
+// noinspection TsLint
   noGutterRow = '  <div at-row *ngFor="let row of rows;let i= index" [noGutter]="true" >\n' +
     '        <div at-col [span]="i+1">\n' +
     '          <div class="bg-c-brand-light at-box-row" ></div>\n' +
@@ -32,8 +33,8 @@ export class AtDemoLayoutComponent implements OnInit {
     '          <div class="bg-c-brand-dark at-box-row">\n' +
     '          </div>\n' +
     '        </div>\n' +
-    '      </div>'
-
+    '      </div>';
+// noinspection TsLint
   offsetRow = '      <div at-row [noGutter]="true">\n' +
     '        <div at-col [span]="3" [offset]="3">\n' +
     '          <div class="bg-c-brand-light at-box-row"></div>\n' +
@@ -42,9 +43,9 @@ export class AtDemoLayoutComponent implements OnInit {
     '          <div class="bg-c-brand-dark at-box-row">\n' +
     '          </div>\n' +
     '        </div>\n' +
-    '      </div>'
-
-  flexTypeRow = " flex_type = [\'center\', \'end\', \'start\', \'around\', \'between\'];\n " +
+    '      </div>';
+// noinspection TsLint
+  flexTypeRow = ' flex_type = [\'center\', \'end\', \'start\', \'around\', \'between\'];\n ' +
     '     <div *ngFor="let item of flex_type">\n' +
     '        <div class="demo-desc">\n' +
     '          flex-{{item}}\n' +
@@ -66,11 +67,12 @@ export class AtDemoLayoutComponent implements OnInit {
     '            </div>\n' +
     '          </div>\n' +
     '        </div>\n' +
-    '      </div>'
+    '      </div>';
 
   flex_type = ['center', 'end', 'start', 'around', 'between'];
 
-  align_type   = ['middle', 'top', 'bottom']
+  align_type = ['middle', 'top', 'bottom'];
+  // noinspection TsLint
   alignTypeRow = ' align_type = [\'middle\', \'top\', \'bottom\']\n' +
     '      <div *ngFor="let item of align_type">\n' +
     '        <div class="demo-desc">\n' +
@@ -95,12 +97,12 @@ export class AtDemoLayoutComponent implements OnInit {
     '        </div>\n' +
     '      </div>';
 
-  dashboard_one_code = require('../admin/admin.component.html')
-  dashboard_two_code = require('../admin/admin.component_two.html')
+  dashboard_one_code = require('../admin/admin.component.html');
+  dashboard_two_code = require('../admin/admin.component_two.html');
 
-  x = 4
-
+  x = 4;
+// noinspection TsLint
   changeX() {
-    this.x += 1
+    this.x += 1;
   }
 }

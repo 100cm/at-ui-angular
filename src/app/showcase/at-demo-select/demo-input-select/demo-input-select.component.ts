@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-input-select',
@@ -13,10 +13,10 @@ export class DemoInputSelectComponent implements OnInit {
   ngOnInit() {
   }
 
-  selected = ['first']
+  selected = ['first'];
 
-  setSelect(){
-    this.selected = ['second']
+  setSelect() {
+    this.selected = ['second'];
   }
 
 }

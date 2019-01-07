@@ -9,9 +9,8 @@ import {
   ViewChild
 } from '@angular/core';
 
-
-import {AtTabsetComponent} from './at-tabset.component';
-import {toBoolean}         from '../utils/class-helper';
+import { toBoolean }         from '../utils/class-helper';
+import { AtTabsetComponent } from './at-tabset.component';
 
 @Component({
   selector: 'at-tab',

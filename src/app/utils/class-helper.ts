@@ -1,7 +1,7 @@
 export interface ClassHelper {
-  _prefixCls: string
-  _classList: Array<any>
+  _prefixCls: string;
+  _classList: any[];
   _el: HTMLElement;
-  nativeElement: any
-  _setClassMap(): void
+  nativeElement: any;
+  _setClassMap(): void;
 }

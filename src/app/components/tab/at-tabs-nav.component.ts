@@ -1,5 +1,5 @@
 /** code from https://github.com/angular/material2 */
-import {Direction, Directionality}                          from '@angular/cdk/bidi';
+import { Direction, Directionality }                          from '@angular/cdk/bidi';
 import {
   AfterContentChecked,
   AfterContentInit,
@@ -16,19 +16,19 @@ import {
   TemplateRef,
   ViewChild
 }                                                           from '@angular/core';
-import {fromEvent, merge, of as observableOf, Subscription} from 'rxjs';
-import {auditTime, startWith}                               from 'rxjs/operators';
+import { fromEvent, merge, of as observableOf, Subscription } from 'rxjs';
+import { auditTime, startWith }                               from 'rxjs/operators';
 
-;
 
-import {AtTabLabelDirective}   from './at-tab-label.directive';
-import {AtTabsInkBarDirective} from './at-tabs-ink-bar.directive';
+
+import { AtTabLabelDirective }   from './at-tab-label.directive';
+import { AtTabsInkBarDirective } from './at-tabs-ink-bar.directive';
 
 const EXAGGERATED_OVERSCROLL = 64;
 export type ScrollDirection = 'after' | 'before';
 
-import {atTabPositionMode} from './at-tabset.component';
-import {toBoolean}         from '../utils/class-helper';
+import { toBoolean }         from '../utils/class-helper';
+import { atTabPositionMode } from './at-tabset.component';
 
 @Component({
   selector: '[at-tabs-nav]',

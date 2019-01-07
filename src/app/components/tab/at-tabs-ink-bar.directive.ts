@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, NgZone, Renderer2 } from '@angular/core';
 
+import { toBoolean }           from '../utils/class-helper';
 import { atTabPositionMode } from './at-tabset.component';
-import {toBoolean}           from '../utils/class-helper';
 
 // tslint:disable:no-any typedef no-invalid-this
 const availablePrefixs = [ 'moz', 'ms', 'webkit' ];
@@ -54,7 +54,6 @@ export function cancelRequestAnimationFrame(id: number): any {
 }
 
 export const reqAnimFrame = getRequestAnimationFrame();
-
 
 @Directive({
   selector: '[at-tabs-ink-bar]',

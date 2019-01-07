@@ -13,10 +13,10 @@ export class ConnectComponent implements OnInit {
   }
 
   active(href) {
-    let location = window.location.hash
-    location = location.replace("#", '')
-    let bol = location.indexOf(href) != -1
-    return bol
+    let location = window.location.hash;
+    location = location.replace('#', '');
+    const bol = location.indexOf(href) != -1;
+    return bol;
   }
 
 }

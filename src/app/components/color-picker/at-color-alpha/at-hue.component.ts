@@ -6,11 +6,9 @@ import {
   Input,
   NgModule,
   OnChanges,
-  Output,
+  Output
 }                         from '@angular/core';
-import {HSLA, HSLAsource} from "../color.interface";
-
-
+import { HSLA, HSLAsource } from '../color.interface';
 
 @Component({
   selector: 'at-color-hue',
@@ -57,10 +55,10 @@ import {HSLA, HSLAsource} from "../color.interface";
       background: linear-gradient(to top, #f00 0%, #ff0 17%, #0f0 33%,
         #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
     }
-  `,
+  `
   ],
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AtHueComponent implements OnChanges {
   @Input() hsl: HSLA;
@@ -74,7 +72,7 @@ export class AtHueComponent implements OnChanges {
   top = '';
 
   ngOnChanges() {
-    if(this.hsl){
+    if (this.hsl) {
       if (this.direction === 'horizontal') {
         this.left = `${this.hsl.h * 100 / 360}%`;
       } else {
@@ -101,7 +99,7 @@ export class AtHueComponent implements OnChanges {
           s: this.hsl.s,
           l: this.hsl.l,
           a: this.hsl.a,
-          source: 'rgb',
+          source: 'rgb'
         };
       }
     } else {
@@ -121,7 +119,7 @@ export class AtHueComponent implements OnChanges {
           s: this.hsl.s,
           l: this.hsl.l,
           a: this.hsl.a,
-          source: 'rgb',
+          source: 'rgb'
         };
       }
     }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-at-demo-card',
@@ -25,5 +25,5 @@ export class AtDemoCardComponent implements OnInit {
           <button at-button [size]="'middle'" [atType]="'text'" >Link</button>
           <button at-button [size]="'middle'" [atType]="'text'" >Link</button>
         </at-card-footer>
-      </at-card>`
+      </at-card>`;
 }

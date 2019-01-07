@@ -1,4 +1,4 @@
-import {animate, AnimationTriggerMetadata, state, style, transition, trigger} from "@angular/animations";
+import { animate, state, style, transition, trigger, AnimationTriggerMetadata } from '@angular/animations';
 
 export const SlideAnimation: AnimationTriggerMetadata[] = [trigger('fadeAnimation', [
   state('*', style({opacity: 1})),
@@ -19,4 +19,4 @@ export const SlideAnimation: AnimationTriggerMetadata[] = [trigger('fadeAnimatio
       style({height: 0, overflow: 'hidden'}),
       animate(150, style({height: '*'}))
     ])
-  ])]
+  ])];
