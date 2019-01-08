@@ -5442,7 +5442,7 @@ $info-color               : #78A4FA;
  * Checkbox Style
  */
 /* line 7, ../sass/components/checkbox.scss */
-.at-checkbox-group atcheckbox + atcheckbox {
+.at-checkbox-group at-checkbox + at-checkbox {
   margin-left: 16px;
 }
 
