@@ -21,7 +21,7 @@ export class IconComponent implements OnInit {
   @Input()
   size: number;
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

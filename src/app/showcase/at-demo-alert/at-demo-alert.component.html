@@ -7,7 +7,7 @@
       </app-demo-alert-basic>
     </div>
   </doc-section>
-  <doc-section [title]="'参数设置'" [sample]="false">
+  <doc-section [title]="'<at-alert> 参数设置'" [type]="'c'" [sample]="false">
     <table class="table" desc>
       <thead>
       <tr>
@@ -20,37 +20,37 @@
       </thead>
       <tbody>
       <tr>
-        <td>type</td>
+        <td doc-td>type</td>
         <td>警告提示的类别</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>success</code>,&nbsp;<code>error</code>,&nbsp;<code>warning</code>,&nbsp;<code>info</code></td>
         <td><code>info</code></td>
       </tr>
       <tr>
-        <td>message</td>
+        <td doc-td>message</td>
         <td>必填，警告的主要内容，也可作为标题</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>desc</td>
+        <td doc-td>desc</td>
         <td>警告的辅助内容</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>icon</td>
+        <td doc-td>icon</td>
         <td>是否显示警告类别的 ICON</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>closeText</td>
+        <td doc-td>closeText</td>
         <td>自定义关闭样式</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -72,9 +72,9 @@
       </thead>
       <tbody>
       <tr>
-        <td>onClose</td>
+        <td doc-td [o]="true">onClose</td>
         <td>关闭后的回调函数</td>
-        <td>Function</td>
+        <td doc-type-td>Function</td>
         <td>-</td>
         <td>-</td>
       </tr>

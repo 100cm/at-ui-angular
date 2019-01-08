@@ -44,7 +44,7 @@ export class SwitchComponent implements OnInit {
 
   private _atSize: atInputSize = 'normal';
 
-  @Output() change: EventEmitter<boolean> = new EventEmitter();
+  @Output() readonly change: EventEmitter<boolean> = new EventEmitter();
 
   get atSize() {
     return this._atSize;

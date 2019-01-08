@@ -49,6 +49,8 @@
       ],
       [
         "at",
+        "app",
+        "doc",
         "test"
       ],
       "kebab-case"

@@ -5,32 +5,32 @@ export  type RowFlexType = 'center' | 'end' | 'start' | 'around' | 'between';
 export type RowFlexAlign = 'top' | 'middle' | 'bottom';
 
 @Component({
-             selector: '[at-row]',
-             template: `
-               <ng-content></ng-content>
-             `
-           })
+  selector: '[at-row]',
+  template: `
+    <ng-content></ng-content>
+  `
+})
 export class RowComponent implements OnInit, ClassHelper {
 
   _prefixCls: string;
-  _classList: any[] = [];
+  _classList: string[] = [];
   _el: HTMLElement;
-  nativeElement: any;
+  nativeElement: HTMLElement;
 
   private _flexType: RowFlexType;
   private _alignType: RowFlexAlign;
 
   private _noGutter: boolean = false;
-  private _reverse: boolean  = false;
+  private _reverse: boolean = false;
 
   private _atGutter = 8;
 
-  get atGutter() {
+  get atGutter(): number {
     return this._atGutter / 2;
   }
 
   @Input()
-  set atGutter(value) {
+  set atGutter(value: number) {
     this._atGutter = value;
   }
 
@@ -98,7 +98,7 @@ export class RowComponent implements OnInit, ClassHelper {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

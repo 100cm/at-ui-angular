@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SlideAnimation } from '../../components/animations/slide-animation';
+import { SlideAnimation }           from '../../components/animations/slide-animation';
 
 @Component({
   selector: 'doc-section',
@@ -17,19 +17,25 @@ export class AtDemoDocSectionComponent implements OnInit {
 
   @Input() language = 'html';
 
+  @Input() type = '';
+
+  get tableType(): string {
+    return {c: 'Component', d: 'Directive', s: 'Service'}[this.type];
+  }
+
   showCode: boolean = false;
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  setShow() {
+  setShow(): void {
     this.showCode = !this.showCode;
   }
 
-  get expandState() {
+  get expandState(): null | string {
     if (this.showCode) {
       return 'expand';
     }

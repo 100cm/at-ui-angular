@@ -9,7 +9,9 @@
         <li>在顶部居中显示，并自动消失，是一种不打断用户操作的轻量级提示</li>
       </ul>
 
-      <p>在&nbsp;<code>组件</code>&nbsp;中注入&nbsp;<code>message_service</code>，我们可以直接通过&nbsp;<code>this.message_service</code>&nbsp;操作实例</p>
+      <p>
+        在&nbsp;<code>组件</code>&nbsp;中注入&nbsp;<code>message_service</code>，我们可以直接通过&nbsp;<code>this.message_service</code>&nbsp;操作实例
+      </p>
 
       <ul>
         <li><code>this.message_service(config)</code></li>
@@ -32,7 +34,7 @@
       <app-demo-loading-message></app-demo-loading-message>
     </div>
   </doc-section>
-  <doc-section [sample]="false" [title]="'Message 配置参数'">
+  <doc-section [sample]="false" [type]="'s'" [title]="'Message 配置参数'">
     <table class="table" desc>
       <thead>
       <tr>
@@ -45,24 +47,24 @@
       </thead>
       <tbody>
       <tr>
-        <td>type</td>
+        <td doc-td>type</td>
         <td>通知提醒的类别</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>success</code>,&nbsp;<code>error</code>,&nbsp;<code>warning</code>,&nbsp;<code>info</code></td>
         <td><code>info</code></td>
       </tr>
 
       <tr>
-        <td>message</td>
+        <td doc-td>message</td>
         <td>通知的内容</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>duration</td>
+        <td doc-td>duration</td>
         <td>自动关闭的延时，单位为毫秒</td>
-        <td>Number</td>
+        <td doc-type-td>Number</td>
         <td>-</td>
         <td>4000</td>
       </tr>

@@ -1,7 +1,7 @@
 import {
-  Component, ContentChild, ContentChildren, ElementRef, Input, OnInit, QueryList, TemplateRef,
+  Component, ContentChild, ContentChildren, ElementRef, Host, Input, OnInit, Optional, QueryList, TemplateRef,
   ViewChild
-}                         from '@angular/core';
+}                           from '@angular/core';
 import { AtThDirective }    from './at-th.directive';
 import { AtTheadDirective } from './at-thead.directive';
 
@@ -89,7 +89,7 @@ export class TableComponent implements OnInit {
   @Input()
   border: boolean = false;
 
-  @Input() showFooter = false;
+  @Input() showFooter = true;
 
   @ContentChildren(AtThDirective, {descendants: true})
   set setThs(value: QueryList<AtThDirective>) {

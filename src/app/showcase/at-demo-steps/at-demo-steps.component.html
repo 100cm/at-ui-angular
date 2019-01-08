@@ -20,7 +20,7 @@
     </div>
   </doc-section>
 
-  <doc-section [sample]="false" [title]="'step 属性'">
+  <doc-section [sample]="false" [title]="'step 属性'" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>
@@ -33,33 +33,33 @@
       </thead>
       <tbody>
       <tr>
-        <td>status</td>
+        <td doc-td>status</td>
         <td>状态</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>icon</td>
+        <td doc-td>icon</td>
         <td>自定义icon</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
 
       <tr>
-        <td>description</td>
+        <td doc-td>description</td>
         <td>描述</td>
-        <td>String</td>
-        <td>'error','success','warning'</td>
+        <td doc-type-td>String</td>
+        <td><code>error</code>,<code>success</code><code>warning</code></td>
         <td>-</td>
       </tr>
 
       <tr>
-        <td>title</td>
+        <td doc-td>title</td>
         <td>标题</td>
-        <td>String</td>
-        <td>'error','success','warning'</td>
+        <td doc-type-td>String</td>
+        <td><code>error</code>,<code>success</code><code>warning</code></td>
         <td>-</td>
       </tr>
 
@@ -67,7 +67,7 @@
     </table>
 
   </doc-section>
-  <doc-section [sample]="false" [title]="'at-steps 属性'">
+  <doc-section [sample]="false" [title]="'at-steps 属性'" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>
@@ -80,25 +80,25 @@
       </thead>
       <tbody>
       <tr>
-        <td>atSize</td>
+        <td doc-td>atSize</td>
         <td>大小</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>current</td>
+        <td doc-td>current</td>
         <td>当前current</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
 
       <tr>
-        <td>direction</td>
+        <td doc-td>direction</td>
         <td>方向</td>
-        <td>String</td>
-        <td>'horizontal','vertical'</td>
+        <td doc-type-td>String</td>
+        <td><code>horizontal</code>,<code>vertical</code></td>
         <td>-</td>
       </tr>
 
@@ -106,7 +106,6 @@
     </table>
 
   </doc-section>
-
 
 
 </section>

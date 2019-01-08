@@ -14,7 +14,7 @@ export class AtCardFooterComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

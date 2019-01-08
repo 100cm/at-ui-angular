@@ -4,7 +4,7 @@ import { NG_VALUE_ACCESSOR }                                          from '@ang
 type CheckState = 'checked' | 'unchecked' | 'disabled' | 'indeterminate';
 
 @Component({
-  selector: 'at-checkbox',
+  selector: 'at-checkbox,[at-checkbox]',
   template: `<label (click)="check($event)"
 
                     class="at-checkbox at-checkbox--{{status}}">
@@ -30,17 +30,6 @@ export class AtCheckboxComponent implements OnInit {
   private _checked = false;
   private _atDisabled = false;
 
-  _state: CheckState = 'unchecked';
-
-  @Input()
-  set state(value: CheckState) {
-    this._state = value;
-    if (value !== 'checked') {
-      this._checked = false;
-    }
-
-  }
-
   get atDisabled(): boolean {
     return this._atDisabled;
   }
@@ -56,8 +45,15 @@ export class AtCheckboxComponent implements OnInit {
     return this._checked;
   }
 
+  _indeterminate = false;
+
   get indeterminate(): boolean {
-    return this._state === 'indeterminate';
+    return this._indeterminate;
+  }
+
+  @Input()
+  set indeterminate(value: boolean) {
+    this._indeterminate = value;
   }
 
   get status(): string {

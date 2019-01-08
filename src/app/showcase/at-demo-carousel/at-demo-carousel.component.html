@@ -4,3 +4,72 @@
     <app-at-demo-basic-carousel></app-at-demo-basic-carousel>
   </div>
 </doc-section>
+
+<doc-section [sample]="false" [title]="'<at-carousel>属性'" [type]="'c'">
+  <table desc class="table">
+    <thead>
+    <tr>
+      <th>参数</th>
+      <th>说明</th>
+      <th>类型</th>
+      <th>默认值</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code>[atAutoPlay]</code></td>
+      <td>是否自动切换</td>
+      <td doc-type-td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>[atAutoPlaySpeed]</code></td>
+      <td>切换时间(毫秒)，当设置为0时不切换</td>
+      <td doc-type-td>number</td>
+      <td>3000</td>
+    </tr>
+    <tr>
+      <td><code>[atDots]</code></td>
+      <td>是否显示面板指示点</td>
+      <td doc-type-td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>[atDotRender]</code></td>
+      <td>Dot渲染模板</td>
+      <td doc-type-td><code>TemplateRef&lt;{{' $implicit: number'}}&gt;</code></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code>[atEffect]</code></td>
+      <td>动画效果函数，可取 scrollx, fade</td>
+      <td doc-type-td>string</td>
+      <td>scrollx</td>
+    </tr>
+    <tr>
+      <td><code>[atVertical]</code></td>
+      <td>垂直显示</td>
+      <td doc-type-td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>(atAfterChange)</code></td>
+      <td>切换面板的回调</td>
+      <td doc-type-td><code>EventEmitter&lt;number&gt;</code></td>
+      <td>无</td>
+    </tr>
+    <tr>
+      <td><code>(atBeforeChange)</code></td>
+      <td>切换面板的回调</td>
+      <td doc-type-td><code>EventEmitter&lt;{{ 'from: number; to: number' }}&gt;</code></td>
+      <td>无</td>
+    </tr>
+    <tr>
+      <td><code>[atEnableSwipe]</code></td>
+      <td>是否支持手势划动切换，仅在自行引入 hammer.js 的情形下生效</td>
+      <td doc-type-td><code>boolean</code></td>
+      <td><code>true</code></td>
+    </tr>
+    </tbody>
+  </table>
+</doc-section>

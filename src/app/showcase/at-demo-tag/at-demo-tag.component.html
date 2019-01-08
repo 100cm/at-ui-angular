@@ -15,7 +15,7 @@
     </div>
   </doc-section>
 
-  <doc-section [title]="'参数说明'" [sample]="false">
+  <doc-section [title]="'at-tag 参数说明'" [sample]="false" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>
@@ -28,17 +28,17 @@
       </thead>
       <tbody>
       <tr>
-        <td>color</td>
+        <td doc-td>color</td>
         <td>类型</td>
-        <td>String / Hex</td>
+        <td doc-type-td>String / Hex</td>
         <td>可传入十六进制颜色值，或者&nbsp;<code>default</code>,&nbsp;<code>primary</code>,&nbsp;<code>success</code>,&nbsp;<code>error</code>,&nbsp;<code>warning</code>,&nbsp;<code>info</code>
         </td>
         <td>default</td>
       </tr>
       <tr>
-        <td>closable</td>
+        <td doc-td>closable</td>
         <td>是否可关闭</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>&mdash;</td>
         <td>false</td>
       </tr>
@@ -47,8 +47,8 @@
 
   </doc-section>
 
-  <doc-section [title]="'实践'" [sample]="false">
-    <table sample class="table">
+  <doc-section [title]="'事件'" [sample]="false">
+    <table desc class="table">
       <thead>
       <tr>
         <th>事件名称</th>
@@ -58,7 +58,7 @@
       </thead>
       <tbody>
       <tr>
-        <td>onClose</td>
+        <td doc-td [o]="true">onClose</td>
         <td>点击关闭按钮时触发</td>
       </tr>
       </tbody>

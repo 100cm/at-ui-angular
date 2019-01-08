@@ -7,13 +7,12 @@ export type AtButtonSize = 'small' | 'large' | 'smaller' ;
 @Component({
   selector: '[at-button]',
   template: `<i *ngIf="atIcon != null" class="at-btn__icon icon {{atIcon}}"></i>
-  <span #text class="at-btn__text">
+  <span #text [class.at-btn__text]="showText" [style.display]="showText ? '' : 'none'">
   <ng-content></ng-content>
 </span>
-
   `
 })
-export class ButtonComponent implements OnInit, AfterContentInit {
+export class ButtonComponent implements OnInit {
 
   @Input()
   set atType(type: AtButtonType) {
@@ -60,7 +59,7 @@ export class ButtonComponent implements OnInit, AfterContentInit {
     this._setClassMap();
   }
 
-  @ViewChild('text') text: any;
+  @ViewChild('text') text: ElementRef;
 
   _type: AtButtonType = 'default';
   _el: HTMLElement;
@@ -99,11 +98,11 @@ export class ButtonComponent implements OnInit, AfterContentInit {
     });
   }
 
-  showText: boolean = true;
-
-  ngAfterContentInit(): void {
-    // console.log(this.text)
-    this.showText = ((this.text.nativeElement.innerText || []).length > 0 || (this.text.nativeElement.children || []).length > 0);
+  get showText(): boolean {
+    if (this.text.nativeElement) {
+      return ((this.text.nativeElement.childNodes || []).length > 0 || (this.text.nativeElement.children || []).length > 0);
+    } else {
+      return false;
+    }
   }
-
 }

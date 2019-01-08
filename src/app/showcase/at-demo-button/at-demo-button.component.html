@@ -1,4 +1,4 @@
-<section class=""><h1 >Button 按钮</h1>
+<section class=""><h1>Button 按钮</h1>
   <hr>
   <p>按钮用于传递用户触摸时会触发的操作</p>
   <h2>基础按钮</h2>
@@ -6,23 +6,23 @@
     <code>文字按钮</code></p>
   <div class="at-component__container">
     <div class="at-component__sample">
-      <div data-v-678920b5="" data-v-a01f69b8="">
+      <div>
         <button at-button [atType]="'primary'">主要按钮</button>
         <button at-button [atType]="'default'">次要按钮</button>
         <button at-button [atType]="'text'">文字按钮</button>
       </div>
     </div>
-    <div data-v-a01f69b8="" class="at-component__code">
+    <div class="at-component__code">
       <div app-high-light [atCode]="baseButton">
       </div>
-      <span data-v-a01f69b8="" class="btn-copy"><i data-v-a01f69b8="" class="icon icon-clipboard"></i></span>
+      <span class="btn-copy"><i class="icon icon-clipboard"></i></span>
     </div>
-    <a data-v-a01f69b8="" class="at-component__code-toggle">显示代码</a></div>
-  <h2 data-v-678920b5="">不可用状态按钮</h2>
-  <p data-v-678920b5="">添加属性 <code data-v-678920b5="">disabled</code> 禁用按钮</p>
-  <div data-v-a01f69b8="" data-v-678920b5="" class="at-component__container">
-    <div data-v-a01f69b8="" class="at-component__sample">
-      <div data-v-678920b5="" data-v-a01f69b8="">
+  </div>
+  <h2>不可用状态按钮</h2>
+  <p>添加属性 <code>disabled</code> 禁用按钮</p>
+  <div class="at-component__container">
+    <div class="at-component__sample">
+      <div>
         <button at-button disabled [atType]="'primary'">主要按钮</button>
         <button at-button disabled hollow [atType]="'default'">次要按钮</button>
         <button at-button disabled [atType]="'text'">文字按钮</button>
@@ -33,7 +33,7 @@
 
       </div>
       <span class="btn-copy"><i class="icon icon-clipboard"></i></span></div>
-    <a class="at-component__code-toggle">显示代码</a></div>
+  </div>
   <h2>带颜色倾向的按钮</h2>
   <p>带有色彩倾向的按钮能给用户带来操作提示</p>
   <div class="at-component__container">
@@ -57,9 +57,8 @@
         </div>
       </div>
     </div>
-    <div data-v-a01f69b8="" class="at-component__code">
+    <div class="at-component__code">
       <div app-high-light [atLanguage]="'html'" [atCode]="colorsButton">
-
       </div>
       <span class="btn-copy"><i class="icon icon-clipboard"></i></span></div>
     <a class="at-component__code-toggle">显示代码</a></div>
@@ -82,14 +81,14 @@
         </div>
       </div>
     </div>
-    <div data-v-a01f69b8="" class="at-component__code">
+    <div class="at-component__code">
       <div app-high-light [atLanguage]="'html'" [atCode]="iconsButton">
 
       </div>
-      <span data-v-a01f69b8="" class="btn-copy"><i data-v-a01f69b8="" class="icon icon-clipboard"></i></span></div>
-    <a data-v-a01f69b8="" class="at-component__code-toggle">显示代码</a></div>
+      <span class="btn-copy"><i class="icon icon-clipboard"></i></span></div>
+    <a class="at-component__code-toggle">显示代码</a></div>
   <doc-section [title]="'图标文字按钮'" [code]="loadingButton">
-    <p desc>可通过添加 <code data-v-678920b5="">loading</code> 属性，使按钮处于加载中状态</p>
+    <p desc>可通过添加 <code>loading</code> 属性，使按钮处于加载中状态</p>
     <div sample>
       <button at-button [iconLoading]="true">加载中</button>
       <button at-button [iconLoading]="true" [size]="'small'"></button>
@@ -107,9 +106,9 @@
     </div>
   </doc-section>
   <doc-section [title]="'按钮尺寸'" [code]="sizeButton">
-    <p desc >按钮提供四种尺寸：大、中、小、超小，可通过 <code data-v-678920b5="">size</code> 属性配置；<br data-v-678920b5="">
-      组合按钮提供三种尺寸：大、中、小<br data-v-678920b5="">
-      若不设置 <code data-v-678920b5="">size</code> 属性，则默认为中等大小</p>
+    <p desc>按钮提供四种尺寸：大、中、小、超小，可通过 <code>size</code> 属性配置；<br>
+      组合按钮提供三种尺寸：大、中、小<br>
+      若不设置 <code>size</code> 属性，则默认为中等大小</p>
     <div sample>
       <button at-button [size]="'large'">大</button>
       <button at-button [size]="'default'">中</button>
@@ -117,64 +116,72 @@
       <button at-button [size]="'smaller'">更小</button>
     </div>
   </doc-section>
-  <h2 data-v-678920b5="">Button 参数</h2>
-  <table data-v-678920b5="" class="table">
-    <thead data-v-678920b5="">
-    <tr data-v-678920b5="">
-      <th data-v-678920b5="">参数</th>
-      <th data-v-678920b5="">说明</th>
-      <th data-v-678920b5="">类型</th>
-      <th data-v-678920b5="">可选值</th>
-      <th data-v-678920b5="">默认值</th>
-    </tr>
-    </thead>
-    <tbody data-v-678920b5="">
-    <tr data-v-678920b5="">
-      <td data-v-678920b5="">atType</td>
-      <td data-v-678920b5="">按钮的类型</td>
-      <td data-v-678920b5="">String</td>
-      <td data-v-678920b5=""><code data-v-678920b5="">default</code>, <code data-v-678920b5="">primary</code>, <code
-        data-v-678920b5="">success</code>, <code data-v-678920b5="">error</code>, <code
-        data-v-678920b5="">warning</code>, <code data-v-678920b5="">info</code>, <code data-v-678920b5="">text</code>
-      </td>
-      <td data-v-678920b5="">-</td>
-    </tr>
-    <tr data-v-678920b5="">
-      <td data-v-678920b5="">size</td>
-      <td data-v-678920b5="">按钮的大小</td>
-      <td data-v-678920b5="">String</td>
-      <td data-v-678920b5=""><code data-v-678920b5="">large</code>, <code data-v-678920b5="">small</code>, <code
-        data-v-678920b5="">smaller</code></td>
-      <td data-v-678920b5="">-</td>
-    </tr>
-    <tr data-v-678920b5="">
-      <td data-v-678920b5="">hollow</td>
-      <td data-v-678920b5="">是否为空心按钮</td>
-      <td data-v-678920b5="">Boolean</td>
-      <td data-v-678920b5="">-</td>
-      <td data-v-678920b5="">false</td>
-    </tr>
-    <tr data-v-678920b5="">
-      <td data-v-678920b5="">icon</td>
-      <td data-v-678920b5="">按钮的图标类名，填入图标的 <code data-v-678920b5="">classname</code></td>
-      <td data-v-678920b5="">String</td>
-      <td data-v-678920b5="">见文档 <code data-v-678920b5="">Icon 图标</code></td>
-      <td data-v-678920b5="">-</td>
-    </tr>
-    <tr data-v-678920b5="">
-      <td data-v-678920b5="">iconLoading</td>
-      <td data-v-678920b5="">设置按钮的载入状态</td>
-      <td data-v-678920b5="">Boolean</td>
-      <td data-v-678920b5="">-</td>
-      <td data-v-678920b5="">false</td>
-    </tr>
-    <tr data-v-678920b5="">
-      <td data-v-678920b5="">atShape</td>
-      <td data-v-678920b5="">设置圆形图标按钮</td>
-      <td data-v-678920b5="">string</td>
-      <td data-v-678920b5="">'circle'</td>
-      <td data-v-678920b5="">''</td>
-    </tr>
-    </tbody>
-  </table>
+  <doc-section [sample]="false" [title]="' at-button 按钮参数'" [type]="'c'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td doc-td>atType</td>
+        <td>按钮的类型</td>
+        <td doc-type-td>String</td>
+        <td><code>default</code>, <code>primary</code>, <code
+        >success</code>, <code>error</code>, <code
+        >warning</code>, <code>info</code>, <code>text</code>
+        </td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>size</td>
+        <td>按钮的大小</td>
+        <td doc-type-td>String</td>
+        <td><code>large</code>, <code>small</code>, <code
+        >smaller</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>hollow</td>
+        <td>是否为空心按钮</td>
+        <td doc-type-td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td>icon</td>
+        <td>按钮的图标类名，填入图标的 <code>classname</code></td>
+        <td doc-type-td>String</td>
+        <td>见文档 <code>Icon 图标</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>iconLoading</td>
+        <td>设置按钮的载入状态</td>
+        <td doc-type-td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td>hollow</td>
+        <td>设置按钮是否空心</td>
+        <td doc-type-td>Directive</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td>atShape</td>
+        <td>设置圆形图标按钮</td>
+        <td doc-type-td>string</td>
+        <td>'circle'</td>
+        <td>''</td>
+      </tr>
+      </tbody>
+    </table>
+  </doc-section>
 </section>

@@ -1,4 +1,64 @@
 <section><h1>Icon 图标</h1>
+
+  <doc-section [title]="'at-icon组件'" [code]="icon">
+    <div sample>
+      <at-icon [type]="'airplay'"></at-icon>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'自定义svg'" [code]="svgIcon">
+    <div sample>
+      <at-icon [svg]="svg">
+        <ng-template #svg>
+          <svg viewBox="0 0 1024 1024" fill="currentColor" width="1em" height="1em"
+               class="ng-tns-c12-112" data-icon="caret-down" aria-hidden="true">
+            <path
+              d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path>
+          </svg>
+        </ng-template>
+      </at-icon>
+    </div>
+  </doc-section>
+
+  <doc-section [title]="'at-icon 参数说明'" [sample]="false" [type]="'c'">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td doc-td>size</td>
+        <td>icon大小</td>
+        <td doc-type-td>number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>type</td>
+        <td>类型</td>
+        <td doc-type-td>string</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>svg</td>
+        <td>svg icon</td>
+        <td doc-type-td>string</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </doc-section>
+
   <h3>主要图标</h3>
   <ul data-v-1199828e="" class="at-icon-list row">
     <li class="at-icon-list__item col-sm-6 col-md-4 col-lg-3 flex flex-middle flex-center">

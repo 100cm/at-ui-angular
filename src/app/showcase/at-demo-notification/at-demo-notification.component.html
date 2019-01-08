@@ -1,39 +1,42 @@
 <section>
   <h1>Notification 提醒</h1>
-  <hr>
-  <p>在页面的右上角全局显示通知提醒信息，跟&nbsp;<code>Message</code>&nbsp;有点类似。常用于以下场景：</p>
+  <div class="doc-code">
+    <hr>
+    <p>在页面的右上角全局显示通知提醒信息，跟&nbsp;<code>Message</code>&nbsp;有点类似。常用于以下场景：</p>
+    <br>
+    <h4>
+      <ul>
+        <li>较复杂的通知内容</li>
+        <li>有交互的通知</li>
+        <li>系统的推送</li>
+      </ul>
+    </h4>
+    <br>
 
-  <ul>
-    <li>较复杂的通知内容</li>
-    <li>有交互的通知</li>
-    <li>系统的推送</li>
-  </ul>
-
-  <br>
-
-  <p>
-    注入 <code>AtNotificationService</code>
-  </p>
-  <br>
-  <ul>
-    <li><code>this.notification_service.show(config)</code></li>
-    <li><code>this.notification_service.success(config)</code></li>
-    <li><code>this.notification_service.error(config)</code></li>
-    <li><code>this.notification_service.warning(config)</code></li>
-    <li><code>this.notification_service.info(config)</code></li>
-  </ul>
-  <br>
-  <p>实例config接收如下参数：</p>
-  <br>
-  <ul>
-    <li>type - 通知提醒的状态</li>
-    <li>title - 消息标题</li>
-    <li>message - 消息内容</li>
-    <li>duration - 自动关闭的延时</li>
-    <li>showClose - 是否显示关闭按钮</li>
-    <li>icon - 自定义消息提醒的图标</li>
-    <!--<li>onClose - 关闭的回调函数</li>-->
-  </ul>
+    <h4>
+      注入 <code>AtNotificationService</code>
+    </h4>
+    <br>
+    <ul>
+      <li><code>this.notification_service.show(config)</code></li>
+      <li><code>this.notification_service.success(config)</code></li>
+      <li><code>this.notification_service.error(config)</code></li>
+      <li><code>this.notification_service.warning(config)</code></li>
+      <li><code>this.notification_service.info(config)</code></li>
+    </ul>
+    <br>
+    <h4>实例config接收如下参数：</h4>
+    <br>
+    <ul>
+      <li><code>type</code> 通知提醒的状态</li>
+      <li><code>title</code> 消息标题</li>
+      <li><code>message</code> 消息内容</li>
+      <li><code>duration</code> 自动关闭的延时</li>
+      <li><code>showClose</code> 是否显示关闭按钮</li>
+      <li><code>icon</code> 自定义消息提醒的图标</li>
+      <!--<li>onClose - 关闭的回调函数</li>-->
+    </ul>
+  </div>
 
   <doc-section [title]="'标准用法'" [code]="code">
     <div sample>
@@ -44,7 +47,7 @@
   </doc-section>
 
 
-  <doc-section [sample]="false">
+  <doc-section [title]="'Notification config设置'" [type]="'s'" [sample]="false">
     <table class="table" desc>
       <thead>
       <tr>
@@ -57,52 +60,52 @@
       </thead>
       <tbody>
       <tr>
-        <td>type</td>
+        <td doc-td>type</td>
         <td>通知提醒的类别</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>success</code>,&nbsp;<code>error</code>,&nbsp;<code>warning</code>,&nbsp;<code>info</code></td>
         <td><code>info</code></td>
       </tr>
       <tr>
-        <td>title</td>
+        <td doc-td>title</td>
         <td>必填，通知的标题</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>message</td>
+        <td doc-td>message</td>
         <td>通知的内容</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>duration</td>
+        <td doc-td>duration</td>
         <td>自动关闭的延时，单位为毫秒</td>
-        <td>Number</td>
+        <td doc-type-td>Number</td>
         <td>-</td>
         <td>4000</td>
       </tr>
       <tr>
-        <td>showClose</td>
+        <td doc-td>showClose</td>
         <td>是否显示关闭按钮</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>true</td>
       </tr>
       <tr>
-        <td>icon</td>
+        <td doc-td>icon</td>
         <td>自定义消息提醒的 ICON</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <!--<tr>-->
-        <!--<td>onClose</td>-->
-        <!--<td>关闭通知提醒框时的回调函数</td>-->
-        <!--<td>Function</td>-->
-        <!--<td>-</td>-->
+      <!--<td>onClose</td>-->
+      <!--<td>关闭通知提醒框时的回调函数</td>-->
+      <!--<td>Function</td>-->
+      <!--<td>-</td>-->
       <!--</tr>-->
       </tbody>
     </table>

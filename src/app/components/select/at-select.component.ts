@@ -4,7 +4,7 @@ import {
   style,
   transition,
   trigger
-}                                                                              from '@angular/animations';
+}                                                                                from '@angular/animations';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
   forwardRef,
@@ -21,7 +21,7 @@ import {
   QueryList,
   Renderer2,
   SimpleChange, ViewChild
-}                                                                              from '@angular/core';
+}                                                                                from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR }                               from '@angular/forms';
 import { debounceTime }                                                          from 'rxjs/operators';
 import { DropDownAnimation }                                                     from '../animations/drop-down-animation';
@@ -126,9 +126,9 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @ViewChild(AtSelectTopControlComponent) atSelectTopControlComponent: AtSelectTopControlComponent;
   @ViewChild(AtOptionContainerComponent) atOptionContainerComponent: AtOptionContainerComponent;
   /** should move to at-option-container when https://github.com/angular/angular/issues/20810 resolved **/
-  @Output() search = new EventEmitter<string>();
-  @Output() atScrollToBottom = new EventEmitter<void>();
-  @Output() atOpenChange = new EventEmitter<boolean>();
+  @Output() readonly search = new EventEmitter<string>();
+  @Output() readonly atScrollToBottom = new EventEmitter<void>();
+  @Output() readonly atOpenChange = new EventEmitter<boolean>();
   @Input() atSize = 'normal';
   @Input('remoteSearch') atServerSearch = false;
   _atMode: 'default' | 'multiple' | 'tags' = 'default';
@@ -153,19 +153,19 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @Input()
   set atMode(value: 'default' | 'multiple' | 'tags') {
     this._atMode = value;
-    if (value == 'multiple' || value == 'tags') {
+    if (value === 'multiple' || value === 'tags') {
       this.multiple = true;
     } else {
       this.multiple = false;
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subOpenStatus();
     this.subClickSelect();
   }
 
-  subOpenStatus() {
+  subOpenStatus(): void {
     this.at_select_control_service.$openStatus.asObservable().pipe().subscribe((open: boolean) => {
       this.atOpen = open;
       this.updateCdkConnectedOverlayStatus();
@@ -173,7 +173,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
     });
   }
 
-  subClickSelect() {
+  subClickSelect(): void {
     this.at_select_control_service.$selectOptionChange.asObservable().subscribe(data => {
       if (data[0] != null) {
         if (this.multiple) {
@@ -185,10 +185,10 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
   }
 
-  close() {
+  close(): void {
     this.at_select_control_service.$openStatus.next(false);
   }
 
@@ -196,7 +196,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
 
   }
 
-  updateCdkConnectedOverlayStatus() {
+  updateCdkConnectedOverlayStatus(): void {
     this.overlayWidth = this.cdkOverlayOrigin.elementRef.nativeElement.getBoundingClientRect().width;
   }
 

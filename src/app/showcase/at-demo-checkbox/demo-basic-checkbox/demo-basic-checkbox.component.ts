@@ -2,7 +2,18 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-demo-basic-checkbox',
-  templateUrl: `./demo-basic-checkbox.component.html`,
+  template: `
+    <div>
+      checkbox 的值为 {{checked}}
+    </div>
+    <at-checkbox [label]="'check me!'" [(ngModel)]="checked">
+
+    </at-checkbox>
+    <hr>
+    <div>半选模式</div>
+    <at-checkbox [label]="'check me!'" [indeterminate]="true" [(ngModel)]="checked">
+
+    </at-checkbox>`,
   styleUrls: ['./demo-basic-checkbox.component.css']
 })
 export class DemoBasicCheckboxComponent implements OnInit {
@@ -10,7 +21,7 @@ export class DemoBasicCheckboxComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   checked = true;

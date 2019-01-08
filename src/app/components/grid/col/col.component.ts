@@ -8,16 +8,16 @@ import {
   Optional,
   Renderer2,
   SimpleChanges
-}                     from '@angular/core';
+}                       from '@angular/core';
 import { isNotNil }     from '../../utils/class-helper';
 import { RowComponent } from '../row/row.component';
 
 @Component({
-             selector: '[at-col]',
-             template: `
-               <ng-content></ng-content>
-             `
-           })
+  selector: '[at-col]',
+  template: `
+    <ng-content></ng-content>
+  `
+})
 export class ColComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,9 +41,9 @@ export class ColComponent implements OnInit, OnChanges {
 
   private _span: number;
   private _offset: number;
-          _el: any;
-          _classList: any[]               = [];
-          _col_type: 'md' | 'sm' | 'xs' | 'lg' = 'md';
+  _el: HTMLElement;
+  _classList: string[] = [];
+  _col_type: 'md' | 'sm' | 'xs' | 'lg' = 'md';
 
   @Input() atXs: number;
   @Input() atSm: number;
@@ -51,11 +51,11 @@ export class ColComponent implements OnInit, OnChanges {
   @Input() atLg: number;
 
   @Input()
-  set colType(value) {
+  set colType(value: 'md' | 'sm' | 'xs' | 'lg') {
     this._col_type = value;
   }
 
-  get colType() {
+  get colType(): 'md' | 'sm' | 'xs' | 'lg' {
     return this._col_type;
   }
 
@@ -77,7 +77,7 @@ export class ColComponent implements OnInit, OnChanges {
     this._offset = value;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   classMap = {};
@@ -86,15 +86,15 @@ export class ColComponent implements OnInit, OnChanges {
   setClassMap(): void {
 
     const listOfSizeInputName = ['atXs', 'atSm', 'atMd', 'atLg'];
-    const listClassMap        = {};
+    const listClassMap = {};
     listOfSizeInputName.forEach(name => {
       const sizeName = name.replace('at', '').toLowerCase();
       if (isNotNil(this[name])) {
         if ((typeof(this[name]) === 'number') || (typeof (this[name]) === 'string')) {
-          listClassMap[`col-${sizeName}`]                                     = true;
-          listClassMap[`col-${sizeName}-${this[name]}`]                       = true;
+          listClassMap[`col-${sizeName}`] = true;
+          listClassMap[`col-${sizeName}-${this[name]}`] = true;
           listClassMap[`col-${sizeName}-${this[name]}-offset-${this.offset}`] = this.offset ? true : false;
-          listClassMap[`col-${this[name]}`]                                   = true;
+          listClassMap[`col-${this[name]}`] = true;
         }
       }
     });

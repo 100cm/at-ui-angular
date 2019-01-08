@@ -26,7 +26,7 @@
   </doc-section>
 
 
-  <doc-section [title]="'表格参数'" [sample]="false">
+  <doc-section [title]="'<at-table> 表格参数'" [type]="'c'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
@@ -39,36 +39,118 @@
       </thead>
       <tbody>
       <tr>
-        <td>size</td>
+        <td doc-td>size</td>
         <td>表格的尺寸</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>small</code>,&nbsp;<code>normal</code>,&nbsp;<code>large</code></td>
         <td><code>normal</code></td>
       </tr>
       <tr>
-        <td>stripe</td>
+        <td doc-td>stripe</td>
         <td>是否启用斑马线风格</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>border</td>
+        <td doc-td>atFixed</td>
+        <td>是否固定头部</td>
+        <td doc-type-td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td>border</td>
         <td>是否显示列边框</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
 
       <tr>
-        <td>height</td>
+        <td doc-td>showFooter</td>
+        <td>是否显示底部</td>
+        <td doc-type-td>Boolean</td>
+        <td>-</td>
+        <td>true</td>
+      </tr>
+
+      <tr>
+        <td doc-td>height</td>
         <td>指定表格的高度</td>
-        <td>Number / String</td>
+        <td doc-type-td>Number / String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       </tbody>
     </table>
   </doc-section>
+  <doc-section [title]="'at-th 表格TR 参数'" [type]="'d'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td doc-td>atWidth</td>
+        <td>列宽度</td>
+        <td doc-type-td>number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
 
+      </tbody>
+    </table>
+  </doc-section>
+  <doc-section [title]="'at-td 表格TD 参数'" [type]="'d'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td doc-td>atShowExpand</td>
+        <td>是否显示展开</td>
+        <td doc-type-td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+
+      <tr>
+        <td doc-td>(atExpand)</td>
+        <td>双向绑定 是否展开</td>
+        <td doc-type-td>Boolean</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td [o]="true">atExpandChange</td>
+        <td>展开变化回调</td>
+        <td doc-type-td>Function</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td>atIndentSize</td>
+        <td>Padding距离</td>
+        <td doc-type-td>number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </doc-section>
 </section>

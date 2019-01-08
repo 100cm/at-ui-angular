@@ -3521,6 +3521,8 @@ code, kbd, pre, samp {
 }
 
 .at-markdown table.table th {
+  width: 1%;
+  min-width: 200px;
   text-align: left;
   border-top: 1px solid #f3f7fa;
   background-color: #FAFBFC
@@ -3533,6 +3535,10 @@ code, kbd, pre, samp {
 
 .at-markdown table.table td:first-child, .at-markdown table.table th:first-child {
   padding-left: 10px
+}
+
+.at-markdown table.table td:nth-child(3) {
+  color: #c41d7f;
 }
 
 .at-component__container {
@@ -3772,7 +3778,6 @@ pre {
 
 .hljs {
   overflow-x: auto;
-  padding: 0.5em;
   color: #383a42;
   background: #fafafa;
 }
@@ -3857,6 +3862,9 @@ pre {
   border: 1px solid #ECECEC;
   border-radius: 2px;
   background-color: #F7F7F7;
+  color: #003a8c;
+  font-weight: 500;
+
 }
 
 doc-section h2, .at-markdown > section > h3 {
@@ -3971,6 +3979,40 @@ doc-section table {
     top: 0;
     right: 0
   }
+}
+
+.Component {
+  color: #6190E8;
+  font-weight: 500;
+  margin-left: 10px;
+  font-size: 14px;
+  border: 2px solid #6190E8;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.Directive {
+  color: #FF4242;
+  font-weight: 500;
+  margin-left: 10px;
+  font-size: 14px;
+  border: 1px solid #FF4242;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.Service {
+  color: #FFA710;
+  font-weight: 500;
+  margin-left: 10px;
+  font-size: 14px;
+  border: 1px solid #FFA710;
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+.doc-code li {
+  margin-bottom: 8px;
 }
 
 

@@ -1,8 +1,4 @@
-<at-select [(ngModel)]="single" (change)="change($event)" [atPlaceHolder]="'asdsd'" [atSize]="'large'"
+<at-select [(ngModel)]="single" (change)="change($event)" [atPlaceHolder]="'Select'" [atSize]="'large'"
            [searchable]="true">
   <at-option *ngFor="let item of selects;let i= index" [atLabel]="item" [atValue]="item"></at-option>
 </at-select>
-
-{{single}}
-
-<button at-button (click)="setOntherOption()">设置为空</button>

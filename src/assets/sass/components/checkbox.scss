@@ -4,7 +4,7 @@
 @import '../variables/index.scss';
 
 .at-checkbox-group {
-  atcheckbox + atcheckbox {
+  at-checkbox + at-checkbox {
     margin-left: 16px;
   }
 }

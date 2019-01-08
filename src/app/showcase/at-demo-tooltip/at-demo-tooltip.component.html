@@ -1,17 +1,17 @@
 <section>
   <h1>ToolTip</h1>
   <hr>
-  <doc-section [title]="'基础使用'">
+  <doc-section [title]="'基础使用'" [code]="basic_code">
     <div sample>
       <app-demo-basic-tooltip></app-demo-basic-tooltip>
     </div>
   </doc-section>
-  <doc-section [title]="'不同的位置'">
+  <doc-section [title]="'不同的位置'" [code]="place_code">
     <div sample>
       <app-demo-position-tooltip></app-demo-position-tooltip>
     </div>
   </doc-section>
-  <doc-section [sample]="false" [title]="'tooltip 属性'">
+  <doc-section [sample]="false" [title]="'<at-tooltip> 属性'" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>
@@ -24,23 +24,23 @@
       </thead>
       <tbody>
       <tr>
-        <td></td>
-        <td>自定义提示内容</td>
-        <td>String</td>
+        <td doc-td>pop-trigger</td>
+        <td>触发选择器</td>
+        <td doc-type-td>Directive</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>tooltipTrigger</td>
-        <td>自定义提示选择</td>
-        <td>String</td>
-        <td>-</td>
+        <td doc-td>trigger</td>
+        <td>触发类型</td>
+        <td doc-type-td>String</td>
+        <td><code>click</code>|<code>hover</code></td>
         <td>-</td>
       </tr>
       <tr>
-        <td>placement</td>
+        <td doc-td>placement</td>
         <td>气泡框位置</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>
           <code>top</code>,&nbsp;<code>top-left</code>,&nbsp;<code>top-right</code>,&nbsp;<code>left</code>,&nbsp;<code>left-top</code>,&nbsp;<code>left-bottom</code>,&nbsp;<code>right</code>,&nbsp;<code>right-top</code>,&nbsp;<code>right-bottom</code>,&nbsp;<code>bottom</code>,&nbsp;<code>bottom-left</code>,&nbsp;<code>bottom-right</code>
         </td>

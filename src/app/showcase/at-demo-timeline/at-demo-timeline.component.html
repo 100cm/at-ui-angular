@@ -1,23 +1,23 @@
 <section class=""><h1>时间轴</h1>
 
-  <doc-section [title]="'基本用法'" [code]="basicCode" [language]="'typescript'">
+  <doc-section [title]="'基本用法'" [code]="basicCode" [language]="'html'">
     <div sample>
       <app-at-demo-timeline-basic></app-at-demo-timeline-basic>
     </div>
   </doc-section>
 
-  <doc-section [title]="'颜色和自定义dot'" [code]="dotCode" [language]="'typescript'">
+  <doc-section [title]="'颜色和自定义dot'" [code]="dotCode" [language]="'html'">
     <div sample>
-    <app-at-demo-timeline-dot></app-at-demo-timeline-dot>
+      <app-at-demo-timeline-dot></app-at-demo-timeline-dot>
     </div>
   </doc-section>
 
-  <doc-section [title]="'进行中'" [code]="pendingCode" [language]="'typescript'">
+  <doc-section [title]="'进行中'" [code]="pendingCode" [language]="'html'">
     <div sample>
       <app-at-demo-pending-timeline></app-at-demo-pending-timeline>
     </div>
   </doc-section>
-  <doc-section [sample]="false" [title]="'timeline-item 属性'">
+  <doc-section [sample]="false" [type]="'c'" [title]="'<at-timeline-item> 属性'">
     <table desc class="table">
       <thead>
       <tr>
@@ -30,25 +30,25 @@
       </thead>
       <tbody>
       <tr>
-        <td>timeline-dot</td>
+        <td doc-td>timeline-dot</td>
         <td>自定义dot</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>timeline-content</td>
+        <td doc-td>timeline-content</td>
         <td>内容选择器</td>
-        <td>String</td>
+        <td doc-type-td>Directive</td>
         <td>-</td>
         <td>-</td>
       </tr>
 
       <tr>
-        <td>status</td>
+        <td doc-td>status</td>
         <td>状态</td>
-        <td>String</td>
-        <td>'error','success','warning'</td>
+        <td doc-type-td>String</td>
+        <td><code>error</code>,<code>success</code><code>warning</code></td>
         <td>-</td>
       </tr>
 
@@ -57,7 +57,7 @@
 
   </doc-section>
 
-  <doc-section [sample]="false" [title]="'timeline 属性'">
+  <doc-section [sample]="false" [title]="'timeline 属性'" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>

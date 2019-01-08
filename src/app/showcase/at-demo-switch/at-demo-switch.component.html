@@ -8,7 +8,7 @@
       </app-swicth-basic>
     </div>
   </doc-section>
-  <doc-section [title]="'at-switch 参数'" [sample]="false">
+  <doc-section [title]="'at-switch 参数'" [sample]="false" [type]="'c'">
     <table class="table" desc>
       <thead>
       <tr>
@@ -22,32 +22,32 @@
       <tbody>
 
       <tr>
-        <td>disabled</td>
+        <td doc-td>disabled</td>
         <td>是否禁用</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
 
       <tr>
-        <td>ngModel</td>
+        <td doc-td>(ngModel)</td>
         <td>绑定的值</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>-</td>
       </tr>
 
       <tr>
-        <td>checkText</td>
+        <td doc-td>checkText</td>
         <td>选中的文字</td>
-        <td>string | number | TemplateRef</td>
+        <td doc-type-td>string | number | TemplateRef</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>unCheckText</td>
+        <td doc-td>unCheckText</td>
         <td>未选中的文字</td>
-        <td>string | number | TemplateRef</td>
+        <td doc-type-td>string | number | TemplateRef</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -72,7 +72,7 @@
       <tbody>
 
       <tr>
-        <td>change</td>
+        <td doc-td [o]="true">change</td>
         <td>更新选中值都后进行回调</td>
         <td>-</td>
         <td>-</td>

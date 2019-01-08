@@ -208,44 +208,51 @@
   </doc-section>
 
 
-  <doc-section [title]="'类名说明'" [sample]="false">
+  <doc-section [title]="'at-row 参数说明'" [sample]="false" [type]="'d'">
     <table desc class="table">
       <thead>
       <tr>
-        <th>classname</th>
+        <th>参数</th>
         <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td>.container</td>
-        <td>Grid 容器，相对父容器居中对齐</td>
+        <td doc-td>atGutter</td>
+        <td>左右两边预留的宽度 默认<code>8px</code></td>
+        <td doc-type-td>number</td>
+        <td>-</td>
+        <td>8</td>
       </tr>
       <tr>
-        <td>.container-fluid</td>
-        <td>容器左右两边预留&nbsp;<code>24px</code>&nbsp;的间隙</td>
+        <td doc-td>noGutter</td>
+        <td>是否预留宽度</td>
+        <td doc-type-td>boolean</td>
+        <td>-</td>
+        <td>true</td>
       </tr>
       <tr>
-        <td>.no-gutter</td>
-        <td>默认&nbsp;<code>col</code>&nbsp;之间会设置&nbsp;<code>8px</code>&nbsp;的间隔，添加此类名可去除默认的间隔</td>
+        <td doc-td>alignType</td>
+        <td>排列类型</td>
+        <td doc-type-td>string</td>
+        <td>'top' | 'middle' | 'bottom'</td>
+        <td>-</td>
       </tr>
       <tr>
-        <td>.row</td>
-        <td>包裹&nbsp;<code>col</code>&nbsp;的容器</td>
-      </tr>
-      <tr>
-        <td>.row.reverse</td>
-        <td>反向排列子元素</td>
-      </tr>
-      <tr>
-        <td>.flex</td>
-        <td>使用&nbsp;<code>flexbox</code>&nbsp;布局</td>
+        <td doc-td>flexType</td>
+        <td>flex类型</td>
+        <td doc-type-td>string</td>
+        <td>'center' | 'end' | 'start' | 'around' | 'between'</td>
+        <td>-</td>
       </tr>
       </tbody>
     </table>
   </doc-section>
 
-  <doc-section [title]="'参数说明'" [sample]="false">
+  <doc-section [title]="'at-col 参数说明'" [type]="'d'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
@@ -255,28 +262,12 @@
       </thead>
       <tbody>
       <tr>
-        <td>span</td>
+        <td doc-td>span</td>
         <td>元素占据栅栏数目</td>
       </tr>
       <tr>
-        <td>atXs,atSm,atMd,atLg</td>
-        <td>屏幕小于480，768，992，1200的栅栏树木</td>
-      </tr>
-      <tr>
-        <td>.no-gutter</td>
-        <td>默认&nbsp;<code>col</code>&nbsp;之间会设置&nbsp;<code>8px</code>&nbsp;的间隔，添加此类名可去除默认的间隔</td>
-      </tr>
-      <tr>
-        <td>.row</td>
-        <td>包裹&nbsp;<code>col</code>&nbsp;的容器</td>
-      </tr>
-      <tr>
-        <td>.row.reverse</td>
-        <td>反向排列子元素</td>
-      </tr>
-      <tr>
-        <td>.flex</td>
-        <td>使用&nbsp;<code>flexbox</code>&nbsp;布局</td>
+        <td doc-td>atXs,atSm,atMd,atLg</td>
+        <td>屏幕小于480，768，992，1200的栅栏 <code>span</code> 值</td>
       </tr>
       </tbody>
     </table>

@@ -1,6 +1,6 @@
 <section>
   <h1>
-    select
+    Select 下拉选择框
   </h1>
   <doc-section [title]="'基础使用'" [code]="basic_s">
     <p desc>基本用法，可添加&nbsp;<code>disabled</code>&nbsp;属性禁用选择器</p>
@@ -62,7 +62,7 @@
     </div>
   </doc-section>
 
-  <doc-section [title]="'at-select 参数'" [sample]="false">
+  <doc-section [title]="'at-select 参数'" [sample]="false" [type]="'c'">
     <table class="table" desc>
       <thead>
       <tr>
@@ -75,52 +75,52 @@
       </thead>
       <tbody>
       <tr>
-        <td>ngModel</td>
+        <td doc-td>ngModel</td>
         <td>指定当前组件的 value 值，可通过&nbsp;<code>ngModel双向</code>&nbsp;绑定</td>
-        <td>String / Number / Array</td>
+        <td doc-type-td>String / Number / Array</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>multiple</td>
+        <td doc-td>multiple</td>
         <td>是否支持多选</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>disabled</td>
+        <td doc-td>disabled</td>
         <td>是否禁用选择器</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>allowClear</td>
+        <td doc-td>allowClear</td>
         <td>是否支持清空功能</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>searchable</td>
+        <td doc-td>searchable</td>
         <td>是否支持搜索功能</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>atPlaceholder</td>
+        <td doc-td>atPlaceholder</td>
         <td>选择器的占位文案</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>请选择</td>
       </tr>
 
       <tr>
-        <td>atSize</td>
+        <td doc-td>atSize</td>
         <td>设置选择器的尺寸</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>large</code>,&nbsp;<code>normal</code>,&nbsp;<code>small</code></td>
         <td>normal</td>
       </tr>
@@ -132,7 +132,7 @@
   </doc-section>
 
 
-  <doc-section [title]="'at-option 参数'" [sample]="false">
+  <doc-section [title]="'at-option 参数'" [sample]="false" [type]="'c'">
     <table class="table" desc>
       <thead>
       <tr>
@@ -146,25 +146,25 @@
       <tbody>
 
       <tr>
-        <td>disabled</td>
+        <td doc-td>disabled</td>
         <td>是否禁用选择器</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
 
       <tr>
-        <td>atLabel</td>
+        <td doc-td>atLabel</td>
         <td>标题</td>
-        <td>string | number</td>
+        <td doc-type-td>string | number</td>
         <td>-</td>
         <td>-</td>
       </tr>
 
       <tr>
-        <td>atValue</td>
+        <td doc-td>atValue</td>
         <td>对应的值</td>
-        <td>string | number</td>
+        <td doc-type-td>string | number</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -175,7 +175,7 @@
 
   </doc-section>
 
-  <doc-section [title]="'at-select 事件'" [sample]="false">
+  <doc-section [title]="'at-select 事件'"  [sample]="false">
     <table class="table" desc>
       <thead>
       <tr>
@@ -189,9 +189,18 @@
       <tbody>
 
       <tr>
-        <td>change</td>
+        <td doc-td o="true">ngModelChange</td>
         <td>更新选中值都后进行回调</td>
         <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+
+      <tr>
+        <td doc-td o="true">atOepnChange</td>
+        <td>下拉打开变化回调</td>
+        <td doc-type-td>boolean</td>
         <td>-</td>
         <td>-</td>
       </tr>

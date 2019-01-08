@@ -1,14 +1,14 @@
-import { forwardRef, Component, Input, OnInit } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { RadioComponent } from '../radio.component';
+import { forwardRef, AfterContentInit, AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR }                                                     from '@angular/forms';
+import { RadioComponent }                                                        from '../radio.component';
 
 @Component({
   selector: 'at-radio-group',
-  template: `<div class="at-radio-group">
+  template: `
     <ng-content>
 
     </ng-content>
-  </div>
+
   `,
   providers: [
     {
@@ -16,10 +16,10 @@ import { RadioComponent } from '../radio.component';
       useExisting: forwardRef(() => RadioGroupComponent),
       multi: true
     }
-  ]
-
+  ],
+  host: {'[class.at-radio-group]': 'true'}
 })
-export class RadioGroupComponent implements OnInit {
+export class RadioGroupComponent implements OnInit, AfterContentInit {
 
   constructor() {
   }
@@ -28,7 +28,7 @@ export class RadioGroupComponent implements OnInit {
   radios: RadioComponent[] = [];
   _value: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   get size(): string {
@@ -40,7 +40,7 @@ export class RadioGroupComponent implements OnInit {
     this._size = value;
   }
 
-  addRadio(radio) {
+  addRadio(radio): void {
     this.radios.push(radio);
   }
 
@@ -48,7 +48,7 @@ export class RadioGroupComponent implements OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  selectRadio(radioComponent: RadioComponent) {
+  selectRadio(radioComponent: RadioComponent): void {
     this.updateValue(radioComponent.atValue);
     this.onChange(radioComponent.atValue);
   }
@@ -75,7 +75,7 @@ export class RadioGroupComponent implements OnInit {
     });
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.radios.forEach(radio => {
       if (this.size) {
         radio._renderer.addClass(radio._el, `${radio._prefixCls}--${this.size}`);

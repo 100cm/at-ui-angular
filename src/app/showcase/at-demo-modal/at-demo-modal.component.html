@@ -67,4 +67,166 @@
     </div>
   </doc-section>
 
+  <doc-section [title]="'at-modal 参数'" [type]="'c'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td doc-td>show</td>
+        <td>是否显示</td>
+        <td doc-type-td>boolean</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>showHeader</td>
+        <td>是否显示头部</td>
+        <td doc-type-td>boolean</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>showFooter</td>
+        <td>是否显示底部</td>
+        <td doc-type-td>boolean</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>atType</td>
+        <td>模态框类型</td>
+        <td doc-type-td>string</td>
+        <td><code>normal</code> | <code>confirm</code></td>
+        <td>normal</td>
+      </tr>
+
+      <tr>
+        <td doc-td>top</td>
+        <td>距离顶部的距离</td>
+        <td doc-type-td>Number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>width</td>
+        <td>宽度</td>
+        <td doc-type-td>number</td>
+        <td>-</td>
+        <td>520</td>
+      </tr>
+      <tr>
+        <td doc-td [o]="true">onCancel</td>
+        <td>点击取消/关闭的回调</td>
+        <td doc-type-td>Function</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td [o]="true">onOk</td>
+        <td>点击确认的回调</td>
+        <td doc-type-td>Function</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>footer</td>
+        <td>底部选择器指令</td>
+        <td doc-type-td>Directive</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>header</td>
+        <td>头部选择器指令</td>
+        <td doc-type-td>Directive</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>body</td>
+        <td>内容选择器指令</td>
+        <td doc-type-td>Directive</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+
+      </tbody>
+    </table>
+
+  </doc-section>
+
+  <doc-section [title]="'at-modal-service 参数'" [type]="'s'" [sample]="false">
+    <table desc class="table">
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>可选值</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td doc-td>message</td>
+        <td>消息体</td>
+        <td doc-type-td>string</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>title</td>
+        <td>标题</td>
+        <td doc-type-td>string</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>top</td>
+        <td>距离顶部的距离</td>
+        <td doc-type-td>Number</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>width</td>
+        <td>宽度</td>
+        <td doc-type-td>number</td>
+        <td>-</td>
+        <td>520</td>
+      </tr>
+
+      <tr>
+        <td doc-td [o]="true">onCancel</td>
+        <td>点击取消/关闭的回调</td>
+        <td doc-type-td>Function</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td [o]="true">onOk</td>
+        <td>点击确认的回调</td>
+        <td doc-type-td>Function</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      </tbody>
+    </table>
+  </doc-section>
+
+
 </section>

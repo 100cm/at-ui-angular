@@ -9,3 +9,108 @@
     <button at-button (click)="visible =true">弹出抽屉</button>
   </div>
 </doc-section>
+
+<doc-section [type]="'c'" [sample]="false" [title]="'<at-drawer> 属性'">
+  <table desc class="table">
+    <thead>
+    <tr>
+      <th>参数</th>
+      <th>说明</th>
+      <th>类型</th>
+      <th>默认值</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code>[atClosable]</code></td>
+      <td>是否显示右上角的关闭按钮</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>[atMaskClosable]</code></td>
+      <td>点击蒙层是否允许关闭</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>[atMask]</code></td>
+      <td>是否展示遮罩</td>
+      <td><code>boolean</code></td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>[atMaskStyle]</code></td>
+      <td>遮罩样式</td>
+      <td><code>object</code></td>
+      <td><code>-</code></td>
+    </tr>
+    <tr>
+      <td><code>[atBodyStyle]</code></td>
+      <td>Drawer body 样式</td>
+      <td><code>object</code></td>
+      <td><code>-</code></td>
+    </tr>
+    <tr>
+      <td><code>[atTitle]</code></td>
+      <td>标题</td>
+      <td><code>string</code><code>TemplateRef&lt;-&gt;</code></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code>[atVisible]</code></td>
+      <td>Drawer 是否可见</td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code>[atPlacement]</code></td>
+      <td>抽屉的方向</td>
+      <td><code>'top'</code><code>'right'</code><code>'bottom'</code><code>'left'</code></td>
+      <td><code>'right'</code></td>
+    </tr>
+    <tr>
+      <td><code>[atWidth]</code></td>
+      <td>宽度, 只在方向为 <code>'right'</code>或<code>'left'</code> 时生效</td>
+      <td><code>number</code><code>string</code></td>
+      <td><code>256</code></td>
+    </tr>
+    <tr>
+      <td><code>[atHeight]</code></td>
+      <td>高度, 只在方向为 <code>'top'</code>或<code>'bottom'</code> 时生效</td>
+      <td><code>number</code><code>string</code></td>
+      <td><code>256</code></td>
+    </tr>
+    <tr>
+      <td><code>[atOffsetX]</code></td>
+      <td>x 坐标移量(px), 只在方向为 <code>'right'</code>或<code>'left'</code> 时生效</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+    </tr>
+    <tr>
+      <td><code>[atOffsetY]</code></td>
+      <td>y 坐标移量(px), 高度, 只在方向为 <code>'top'</code>或<code>'bottom'</code> 时生效</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
+    </tr>
+    <tr>
+      <td><code>[atWrapClassName]</code></td>
+      <td>对话框外层容器的类名</td>
+      <td><code>string</code></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code>[atZIndex]</code></td>
+      <td>设置 Drawer 的 <code>z-index</code></td>
+      <td><code>number</code></td>
+      <td><code>1000</code></td>
+    </tr>
+    <tr>
+      <td><code>(atOnClose)</code></td>
+      <td>点击遮罩层或右上角叉或取消按钮的回调</td>
+      <td><code>EventEmitter&lt;MouseEvent&gt;</code></td>
+      <td>-</td>
+    </tr>
+    </tbody>
+  </table>
+</doc-section>

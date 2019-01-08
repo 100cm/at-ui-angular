@@ -17,8 +17,8 @@ import { DropdownComponent }                from './components/dropdown/dropdown
 import { ColComponent }                     from './components/grid/col/col.component';
 import { RowComponent }                     from './components/grid/row/row.component';
 import { AT_I18N }                          from './components/i18n/i18n-token';
-import en_US                              from './components/i18n/languages/en_US';
-import zh_CN                              from './components/i18n/languages/zh_CN';
+import en_US                                from './components/i18n/languages/en_US';
+import zh_CN                                from './components/i18n/languages/zh_CN';
 import { IconComponent }                    from './components/icon/icon.component';
 import { InputComponent }                   from './components/input/input.component';
 import { DropMenuListComponent }            from './components/menu/drop-menu-list/drop-menu-list.component';
@@ -173,6 +173,8 @@ import { InstallComponent }                 from './showcase/install/install.com
 import { IntroComponent }                   from './showcase/intro/intro.component';
 import { StartupComponent }                 from './showcase/startup/startup.component';
 import { UpdateLogComponent }               from './showcase/update-log/update-log.component';
+import { DocTdComponent }                   from './showcase/doc-td/doc-td.component';
+import { DocTypeTdComponent }               from './showcase/doc-type-td/doc-type-td.component';
 
 @NgModule({
   declarations: [
@@ -336,7 +338,11 @@ import { UpdateLogComponent }               from './showcase/update-log/update-l
 
     AtDemoTreeSelectComponent,
 
-    DemoTreeSelectComponent
+    DemoTreeSelectComponent,
+
+    DocTdComponent,
+
+    DocTypeTdComponent
 
   ],
   imports: [

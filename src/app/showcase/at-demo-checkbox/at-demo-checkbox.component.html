@@ -2,7 +2,7 @@
   <h1>Checkbox 多选框</h1>
   <hr>
   <doc-section [title]="'基本多选框'" [code]="basicCheck">
-    <p desc>独立使用时，需要单独绑定 <code>ngModel ，</code>添加&nbsp;<code>atDisabled</code>&nbsp;属性禁用多选框</p>
+    <p desc>独立使用时，需要单独绑定 <code>ngModel</code>,添加<code>atDisabled</code>&nbsp;属性禁用多选框</p>
     <div sample>
       <app-demo-basic-checkbox></app-demo-basic-checkbox>
     </div>
@@ -14,7 +14,7 @@
     </div>
   </doc-section>
 
-  <doc-section [title]="'at-checkbox 属性'" [sample]="false">
+  <doc-section [title]="'at-checkbox 属性'" [sample]="false" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>
@@ -27,23 +27,30 @@
       </thead>
       <tbody>
       <tr>
-        <td>label</td>
+        <td doc-td>label</td>
         <td>标题</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>disabled</td>
+        <td doc-td>atDisabled</td>
         <td>是否禁用按钮</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
       <tr>
-        <td>checked</td>
+        <td doc-td>indeterminate</td>
+        <td>半选模式/全选模式</td>
+        <td doc-type-td>true/false</td>
+        <td>-</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td doc-td>checked</td>
         <td>是否已勾选（双向绑定）</td>
-        <td>Boolean</td>
+        <td doc-type-td>Boolean</td>
         <td>-</td>
         <td>false</td>
       </tr>
@@ -65,9 +72,9 @@
       </thead>
       <tbody>
       <tr>
-        <td>list</td>
-        <td>标题</td>
-        <td>Array any</td>
+        <td doc-td>(ngModel)</td>
+        <td>双向绑定</td>
+        <td doc-type-td>Array<{{"label:string,checked:boolean,value:string"}}></td>
         <td>-</td>
         <td>[]</td>
       </tr>

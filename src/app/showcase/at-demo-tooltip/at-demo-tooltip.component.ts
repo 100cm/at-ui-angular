@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtDemoTooltipComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnInit(): void {
+  }
+
+  basic_code = require('./demo-basic-tooltip/demo-basic-tooltip.component.html');
+  place_code = require('./demo-position-tooltip/demo-position-tooltip.component.html');
 }

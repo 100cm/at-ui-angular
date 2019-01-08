@@ -11,15 +11,15 @@
                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542076060&di=7e0898e61a0c40660a8faed41b227ce3&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01c421572d4edd6ac725b690f148e3.jpg%40900w_1l_2o_100sh.jpg">
         </at-card-content>
         <at-card-footer>
-          <button at-button [size]="'middle'" [atType]="'text'" >Link</button>
-          <button at-button [size]="'middle'" [atType]="'text'" >Link</button>
+          <button at-button [size]="'middle'" [atType]="'text'">Link</button>
+          <button at-button [size]="'middle'" [atType]="'text'">Link</button>
         </at-card-footer>
       </at-card>
     </div>
   </doc-section>
 
 
-  <doc-section [title]="'at-card'" [sample]="false">
+  <doc-section [title]="'at-card'" [type]="'c'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
@@ -31,12 +31,19 @@
       </tr>
       </thead>
       <tbody>
+      <tr>
+        <td doc-td>border</td>
+        <td>是否带边框</td>
+        <td doc-type-td>boolean</td>
+        <td>false/true</td>
+        <td>false</td>
+      </tr>
       </tbody>
     </table>
 
   </doc-section>
 
-  <doc-section [title]="'at-card-content'" [sample]="false">
+  <doc-section [title]="'at-card-content'" [type]="'c'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
@@ -47,9 +54,9 @@
         <th>默认值</th>
       </tr>
       <tr>
-        <td>atFull</td>
-        <td>是否沾满全部</td>
-        <td>boolean</td>
+        <td doc-td>atFull</td>
+        <td>是否占满全部</td>
+        <td doc-type-td>boolean</td>
         <td>false/true</td>
         <td>false</td>
       </tr>
@@ -61,7 +68,7 @@
   </doc-section>
 
 
-  <doc-section [title]="'at-card-footer'" [sample]="false">
+  <doc-section [title]="'at-card-footer'" [type]="'c'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
@@ -78,7 +85,7 @@
 
   </doc-section>
 
-  <doc-section [title]="'at-card-header'" [sample]="false">
+  <doc-section [title]="'at-card-header'" [type]="'c'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
