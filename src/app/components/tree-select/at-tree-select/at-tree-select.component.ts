@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
   ViewChild
-}                                        from '@angular/core';
+}                                          from '@angular/core';
 import { NG_VALUE_ACCESSOR }               from '@angular/forms';
 import { merge, of, Subscription }         from 'rxjs';
 import { filter, tap }                     from 'rxjs/operators';
@@ -16,9 +16,9 @@ import { AtSelectControlService }          from '../../select/at-select-control.
 import { AtSelectComponent }               from '../../select/at-select.component';
 import { AtTreeNode, AtTreeNodeOptions }   from '../../tree/at-tree-node';
 import { AtTreeComponent }                 from '../../tree/at-tree.component';
-import { AtTreeService }                  from '../../tree/at-tree.service';
+import { AtTreeService }                   from '../../tree/at-tree.service';
 import { AtFormatEmitEvent }               from '../../tree/interface';
-import { InputBoolean }                    from '../../utils/class-helper';
+import { InputBoolean, isNotNil }          from '../../utils/class-helper';
 import { AtTreeSelectTopControlComponent } from '../at-tree-select-top-control/at-tree-select-top-control.component';
 
 @Component({
@@ -49,6 +49,8 @@ import { AtTreeSelectTopControlComponent } from '../at-tree-select-top-control/a
         [atPlaceHolder]="atPlaceHolder"
         [atShowSearch]="atShowSearch"
         [multiple]="isMultiple"
+        [atDisabled]="atDisabled"
+        [singleValueLabel]="atPlaceHolder"
       >
       </div>
     </div>
@@ -134,6 +136,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       }
     }
     this._atNodes = value;
+    this.updateSelectedNodes();
   }
 
   @Input() atCheckable = false;
@@ -173,7 +176,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
   }
 
   writeValue(value: string[] | string): void {
-    if (value) {
+    if (isNotNil(value)) {
       if (this.isMultiple && Array.isArray(value)) {
         this.value = value;
       } else {
@@ -208,7 +211,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
     }
   }
 
-  subExpandeChange() {
+  subExpandeChange(): void {
     this.atExpandChange.subscribe(e => {
       if (this.atShowSearch && this.atTreeSelectTopControlComponent.inputElement) {
         this.atTreeSelectTopControlComponent.inputElement.nativeElement.focus();
@@ -272,7 +275,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
     this.subExpandeChange();
   }
 
-  subSearch() {
+  subSearch(): void {
     this.at_select_control_service.$searchValueChange.asObservable().subscribe(value => {
       this.searchValue = value;
     });

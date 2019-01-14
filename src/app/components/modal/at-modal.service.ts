@@ -1,5 +1,40 @@
-import { EventEmitter, Injectable, NgZone } from '@angular/core';
-import { ModalBaseService }                 from './modal-base.service';
+import { ComponentRef, EventEmitter, Injectable, NgZone, TemplateRef } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ModalBaseService } from './modal-base.service';
+import { ModalComponent } from './modal.component';
+
+export interface ModalOption {
+  title?: string;
+  message?: string;
+  status?: 'error' | 'success' | 'warning' | 'info';
+  atType?: 'confirm' | 'normal';
+  atComponent?: TemplateRef<void>;
+  showFooter?: boolean;
+  showHeader?: boolean;
+  width?: number;
+  top?: number;
+  closeable?: boolean;
+
+  cancel?(): void;
+
+  ok?(): void;
+
+  atOnClose?: OnClickCallback<ModalComponent>;
+
+  atOnOk?: OnClickCallback<ModalComponent>;
+
+  atAfterClose?(): void;
+
+  atAfterOk?(): void;
+}
+
+export interface ModalDataFilled {
+  remove(): void;
+
+  modal: ComponentRef<ModalComponent>;
+}
+
+export type OnClickCallback<T> = ((instance: T) => (false | void | {}) | Promise<boolean | void | {}>);
 
 @Injectable()
 export class AtModalService {
@@ -8,7 +43,7 @@ export class AtModalService {
 
   }
 
-  modal(config?) {
+  modal(config?: ModalOption): ModalComponent {
     const ref = this.base_modal_service.create();
     const instance = ref.instance;
     const propConfig = {...config};
@@ -22,44 +57,46 @@ export class AtModalService {
     }
     instance.subscribeStatus();
     instance.setShow(true);
-    instance.showChange.subscribe(open => {
+    const $sub: Subscription = instance.showChange.subscribe(open => {
       if (open === false) {
         this.base_modal_service.remove(ref);
+        $sub.unsubscribe();
       }
     });
+    return instance;
   }
 
-  success(config) {
+  success(config: ModalOption): void {
     this.setConfirm(config);
     config.status = 'success';
     this.modal(config);
   }
 
-  error(config) {
+  error(config: ModalOption): void {
     this.setConfirm(config);
     config.status = 'error';
     this.modal(config);
   }
 
-  warning(config) {
+  warning(config: ModalOption): void {
     this.setConfirm(config);
     config.status = 'warning';
     this.modal(config);
   }
 
-  info(config) {
+  info(config: ModalOption): void {
     this.setConfirm(config);
     config.status = 'info';
     this.modal(config);
   }
 
-  confirm(config) {
+  confirm(config: ModalOption): void {
     this.setConfirm(config);
     config.status = 'info';
     this.modal(config);
   }
 
-  setConfirm(config) {
+  setConfirm(config: ModalOption): void {
     config.atType = 'confirm';
     config.status = 'success';
   }

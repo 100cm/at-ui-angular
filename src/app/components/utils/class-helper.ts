@@ -165,3 +165,7 @@ export function getCheckerboard(c1: string, c2: string, size: number) {
   checkboardCache[key] = checkboard;
   return checkboard;
 }
+
+export function isPromise(obj: {} | void): boolean {
+  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof (obj as Promise<{}>).then === 'function' && typeof (obj as Promise<{}>).catch === 'function';
+}

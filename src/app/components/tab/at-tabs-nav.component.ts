@@ -15,10 +15,9 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild
-}                                                           from '@angular/core';
+}                                                             from '@angular/core';
 import { fromEvent, merge, of as observableOf, Subscription } from 'rxjs';
 import { auditTime, startWith }                               from 'rxjs/operators';
-
 
 
 import { AtTabLabelDirective }   from './at-tab-label.directive';
@@ -43,14 +42,16 @@ import { atTabPositionMode } from './at-tabset.component';
         [class.at-tabs-tab-btn-disabled]="disableScrollBefore"
         [class.at-tabs-tab-arrow-show]="showPaginationControls">
     <span class="at-tabs-tab-prev-icon">
-      <at-icon [type]="atPositionMode === 'horizontal' ? 'left' : 'up'" class="at-tabs-tab-prev-icon-target"></at-icon>
+      <at-icon [type]="atPositionMode === 'horizontal' ? 'chevron-left' : 'chevron-up'"
+               class="at-tabs-tab-prev-icon-target"></at-icon>
     </span>
   </span>
       <span class="at-tabs-tab-next" (click)="scrollHeader('after')"
             [class.at-tabs-tab-btn-disabled]="disableScrollAfter"
             [class.at-tabs-tab-arrow-show]="showPaginationControls">
     <span class="at-tabs-tab-next-icon">
-      <at-icon [type]="atPositionMode === 'horizontal' ? 'right' : 'down'" class="at-tabs-tab-next-icon-target"></at-icon>
+      <at-icon [type]="atPositionMode === 'horizontal' ? 'chevron-right' : 'chevron-down'"
+               class="at-tabs-tab-next-icon-target"></at-icon>
     </span>
   </span>
       <div class="at-tabs-nav-wrap">

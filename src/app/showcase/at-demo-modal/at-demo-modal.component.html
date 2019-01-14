@@ -182,7 +182,30 @@
       <tr>
         <td doc-td>message</td>
         <td>消息体</td>
-        <td doc-type-td>string</td>
+        <td doc-type-td>string | TemplateRef&lt;void&gt;</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>showHeader</td>
+        <td>是否显示头部</td>
+        <td doc-type-td>boolean</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td doc-td>showFooter</td>
+        <td>是否显示底部</td>
+        <td doc-type-td>boolean</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td>atComponent</td>
+        <td>动态模板</td>
+        <td doc-type-td>TemplateRef&lt;void&gt;</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -190,7 +213,7 @@
       <tr>
         <td doc-td>title</td>
         <td>标题</td>
-        <td doc-type-td>string</td>
+        <td doc-type-td>string | TemplateRef&lt;void&gt;</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -210,19 +233,28 @@
       </tr>
 
       <tr>
-        <td doc-td [o]="true">onCancel</td>
-        <td>点击取消/关闭的回调</td>
-        <td doc-type-td>Function</td>
+        <td doc-td [o]="true">atOnClose</td>
+        <td>点击取消/关闭的回调，返回 <code>false</code> 时不关闭</td>
+        <td doc-type-td>(Function () => false | void) | Promise&lt;void | false &gt;</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td doc-td [o]="true">onOk</td>
-        <td>点击确认的回调</td>
-        <td doc-type-td>Function</td>
+        <td doc-td [o]="true">atOnOk</td>
+        <td>点击确认的回调 ,返回 <code>false</code> 时不关闭</td>
+        <td doc-type-td>Function () => true | false</td>
         <td>-</td>
         <td>-</td>
       </tr>
+
+      <tr>
+        <td doc-td [o]="true">atAfterClose</td>
+        <td>关闭后的回调</td>
+        <td doc-type-td>Function () => void</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
 
       </tbody>
     </table>

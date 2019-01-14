@@ -9,7 +9,7 @@ import {
   Output,
   Renderer2,
   ViewChild
-}                                                   from '@angular/core';
+}                                                     from '@angular/core';
 import { delay, map }                                 from 'rxjs/operators';
 import { AtSelectControlService }                     from '../../select/at-select-control.service';
 import { AtTreeNode }                                 from '../../tree';
@@ -140,6 +140,11 @@ export class AtTreeSelectTopControlComponent {
 
   @Input()
   atMode = 'common';
+  @Input()
+  atDisabled = false;
+
+  @Input()
+  singleValueLabel;
 
   focusOnInput($event) {
     $event.stopPropagation();

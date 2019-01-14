@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AtModalService } from '../../../components/modal/at-modal.service';
+import { ModalComponent } from '../../../components/modal';
 
 @Component({
   selector: 'app-demo-service-modal',
@@ -9,6 +10,9 @@ import { AtModalService } from '../../../components/modal/at-modal.service';
       <button at-button [atType]="'warning'" (click)="show('warning')">warning</button>
       <button at-button [atType]="'success'" (click)="show('success')">success</button>
       <button at-button [atType]="'info'" (click)="show('info')">info</button>
+      <ng-template #template>
+        <div>i am custom template</div>
+      </ng-template>
     </div>`,
   styleUrls: ['./demo-service-modal.component.css']
 })
@@ -17,15 +21,23 @@ export class DemoServiceModalComponent implements OnInit {
   constructor(private atModalService: AtModalService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  show(type) {
+  @ViewChild('template') temp: TemplateRef<void>;
+
+  show(type: 'error' | 'success' | 'info' | 'error'): void {
     this.atModalService.modal({
       atType: 'confirm',
       title: type,
       status: type,
-      message: '这是消息体'
+      atOnClose: (ref: ModalComponent) => {
+        console.log(ref);
+      },
+      atAfterClose: () => {
+        console.log('after close');
+      },
+      atComponent: this.temp
     });
   }
 

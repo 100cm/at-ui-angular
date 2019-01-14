@@ -32,7 +32,7 @@
     </div>
   </doc-section>
 
-  <doc-section [title]="'参数说明'" [sample]="false">
+  <doc-section [title]="'<at-menu> 参数说明'" [sample]="false" [type]="'c'">
     <table desc class="table">
       <thead>
       <tr>
@@ -45,16 +45,16 @@
       </thead>
       <tbody>
       <tr>
-        <td>atType</td>
+        <td doc-td>atType</td>
         <td>导航菜单的模式</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>inline</code>,&nbsp;<code>horizontal</code>,&nbsp;<code>vertical</code></td>
         <td><code>inline</code></td>
       </tr>
       <tr>
-        <td>theme</td>
+        <td doc-td>theme</td>
         <td>导航菜单的主题</td>
-        <td>String</td>
+        <td doc-type-td>String</td>
         <td><code>light</code>,&nbsp;<code>dark</code>,<code>dracula</code></td>
         <td><code>light</code></td>
       </tr>
@@ -63,7 +63,7 @@
 
   </doc-section>
 
-  <doc-section [title]="'at-sub-menu参数'" [sample]="false">
+  <doc-section [title]="'at-sub-menu参数'" [type]="'d'" [sample]="false">
     <table desc class="table">
       <thead>
       <tr>
@@ -76,8 +76,8 @@
       </thead>
       <tbody>
       <tr>
-        <td>isOpen</td>
-        <td>是否打开</td>
+        <td doc-td>(open)</td>
+        <td>是否打开(双向绑定)</td>
         <td>Boolean</td>
         <td>-</td>
         <td>false</td>
@@ -87,7 +87,7 @@
   </doc-section>
 
 
-  <doc-section [title]="'指令'" [sample]="false">
+  <doc-section [title]="'相关指令'" [sample]="false" [type]="'d'">
     <table desc class="table">
       <thead>
       <tr>
@@ -100,28 +100,28 @@
       </thead>
       <tbody>
       <tr>
-        <td>at-menu-item</td>
+        <td doc-td>at-menu-item</td>
         <td>菜单元素</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>at-submenu</td>
+        <td doc-td>at-submenu</td>
         <td>嵌套菜单元素</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>at-menu-link</td>
+        <td doc-td>at-menu-link</td>
         <td>单层菜单元素标题</td>
         <td>-</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
-        <td>at-menu-group</td>
+        <td doc-td>at-menu-group</td>
         <td>菜单组</td>
         <td>-</td>
         <td>-</td>

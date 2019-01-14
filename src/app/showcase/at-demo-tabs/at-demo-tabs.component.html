@@ -21,4 +21,156 @@
     </div>
   </doc-section>
 
+  <doc-section [sample]="false" [type]="'c'" [title]="'at-tab-set 属性'">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><code>[atIndex]</code></td>
+        <td>当前激活 tab 面板的 序列号，可双向绑定</td>
+        <td>number</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><code>[atAnimated]</code></td>
+        <td>是否使用动画切换 Tabs，在 atTabPosition=top丨bottom 时有效</td>
+        <td>boolean丨&lt;inkBar:boolean, tabPane:boolean&gt;</td>
+        <td>true, 当 type="card" 时为 false</td>
+      </tr>
+      <tr>
+        <td><code>[atSize]</code></td>
+        <td>大小，提供 <code>large</code><code>default</code> 和 <code>small</code> 三种大小</td>
+        <td>string</td>
+        <td>'default'</td>
+      </tr>
+      <tr>
+        <td><code>[atTabBarExtraContent]</code></td>
+        <td>tab bar 上额外的元素</td>
+        <td><code>TemplateRef&lt;void&gt;</code></td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><code>[atTabBarStyle]</code></td>
+        <td>tab bar 的样式对象</td>
+        <td>object</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>[atTabPosition]</code></td>
+        <td>页签位置，可选值有 <code>top</code><code>right</code><code>bottom</code><code>left</code></td>
+        <td>string</td>
+        <td>'top'</td>
+      </tr>
+      <tr>
+        <td><code>[atType]</code></td>
+        <td>页签的基本样式，可选 <code>line</code>、<code>card</code> 类型</td>
+        <td>string</td>
+        <td>'line'</td>
+      </tr>
+      <tr>
+        <td><code>[atTabBarGutter]</code></td>
+        <td>tabs 之间的间隙</td>
+        <td>number</td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><code>[atHideAll]</code></td>
+        <td>是否隐藏所有tab内容</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atShowPagination]</code></td>
+        <td>是否超出范围时显示pre和next按钮</td>
+        <td>boolean</td>
+        <td>true</td>
+      </tr>
+      <tr>
+        <td><code>(atIndexChange)</code></td>
+        <td>当前激活 tab 面板的 序列号变更回调函数</td>
+        <td><code>EventEmitter&lt;number&gt;</code></td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><code>(atSelectChange)</code></td>
+        <td>当前激活 tab 面板变更回调函数</td>
+        <td><code>EventEmitter&lt;&lt;atIndex: number,tab: NzTabComponent&gt;&gt;</code></td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><code>(atOnNextClick)</code></td>
+        <td>next 按钮被点击的回调</td>
+        <td><code>EventEmitter&lt;void&gt;</code></td>
+        <td>无</td>
+      </tr>
+      <tr>
+        <td><code>(atOnPrevClick)</code></td>
+        <td>prev 按钮被点击的回调</td>
+        <td><code>EventEmitter&lt;void&gt;</code></td>
+        <td>无</td>
+      </tr>
+      </tbody>
+    </table>
+  </doc-section>
+
+  <doc-section [sample]="false" [type]="'c'" [title]="'at-tab 属性'">
+    <table class="table" desc>
+      <thead>
+      <tr>
+        <th>参数</th>
+        <th>说明</th>
+        <th>类型</th>
+        <th>默认值</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><code>[atTitle]</code></td>
+        <td>选项卡头显示文字</td>
+        <td>string ｜ <code>TemplateRef&lt;void&gt;</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>[atForceRender]</code></td>
+        <td>被隐藏时是否渲染 DOM 结构</td>
+        <td>boolean</td>
+        <td>false</td>
+      </tr>
+      <tr>
+        <td><code>[atDisabled]</code></td>
+        <td>是否禁用</td>
+        <td>boolean</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atClick)</code></td>
+        <td>title被点击的回调函数</td>
+        <td><code>EventEmitter&lt;void&gt;</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atSelect)</code></td>
+        <td>tab被选中的回调函数</td>
+        <td><code>EventEmitter&lt;void&gt;</code></td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><code>(atDeselect)</code></td>
+        <td>tab被取消选中的回调函数</td>
+        <td><code>EventEmitter&lt;void&gt;</code></td>
+        <td>-</td>
+      </tr>
+      </tbody>
+    </table>
+  </doc-section>
+
 </section>
+
+

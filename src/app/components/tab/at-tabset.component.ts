@@ -83,6 +83,8 @@ export type atTabType = 'line' | 'card';
            [class.at-tabs-tabpane-active]="(atSelectedIndex == i) && !atHideAll"
            [class.at-tabs-tabpane-inactive]="(atSelectedIndex != i) || atHideAll"
            [content]="tab.content"
+           [active]="(atSelectedIndex == i) && !atHideAll"
+           [forceRender]="tab.atForceRender"
            *ngFor="let tab of listOfatTabComponent; let i = index">
       </div>
     </div>`,

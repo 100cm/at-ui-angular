@@ -11,17 +11,27 @@ export class DemoSelectBasicComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(_ => {
-      this.selects = [2, 5, 6, 7, 8];
-    }, 3000);
   }
+
+  modal = false;
 
   selected = ['first'];
 
   single: any = 3;
 
+  cancel() {
+    // setTimeout(_ => {
+      this.single = undefined;
+    // }, 1000);
+    this.modal = false;
+  }
+
   change(va) {
     console.log(va);
+  }
+
+  setShow(value) {
+    this.modal = true;
   }
 
   selects = [1, 2, 3, 4, 5, 6];

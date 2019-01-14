@@ -105,8 +105,9 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
         this.atValue = [obj];
       }
       this.at_select_control_service.$writeValueChange.next(this.atValue);
+    } else if (typeof(obj) === 'undefined') {
+      this.at_select_control_service.$writeValueChange.next([]);
     }
-
   }
 
   onChange: (value: string | string[]) => void = () => null;
@@ -175,9 +176,13 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
 
   subClickSelect(): void {
     this.at_select_control_service.$selectOptionChange.asObservable().subscribe(data => {
-      if (data[0] != null) {
+      if (data[0] !== null) {
         if (this.multiple) {
-          this.onChange(data || []);
+          if (data.length === 0) {
+            this.onChange([]);
+          } else {
+            this.onChange(data);
+          }
         } else {
           this.onChange((data || [])[0]);
         }

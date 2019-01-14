@@ -10,7 +10,7 @@
   </doc-section>
 </section>
 
-<doc-section [sample]="false" [title]="'at-slider 属性'">
+<doc-section [sample]="false" [title]="'at-slider 属性'" [type]="'c'">
   <table desc class="table">
     <thead>
     <tr>
@@ -23,7 +23,7 @@
     </thead>
     <tbody>
     <tr>
-      <td>ngModel</td>
+      <td doc-td>(ngModel)</td>
       <td>数值绑定</td>
       <td>number | Array(number)</td>
       <td>-</td>
@@ -31,7 +31,7 @@
     </tr>
 
     <tr>
-      <td>step</td>
+      <td doc-td>step</td>
       <td>步长</td>
       <td>number</td>
       <td>-</td>
@@ -39,7 +39,7 @@
     </tr>
 
     <tr>
-      <td>marks</td>
+      <td doc-td>marks</td>
       <td>标记点</td>
       <td>object</td>
       <td>{{ '{' }}10:"10分"{{ '}' }}</td>
@@ -47,20 +47,13 @@
     </tr>
 
     <tr>
-      <td>atMode</td>
+      <td doc-td>atMode</td>
       <td>模式</td>
       <td>String</td>
       <td>common | range</td>
       <td>common</td>
     </tr>
 
-    <tr>
-      <td>atValueChange</td>
-      <td>@Output</td>
-      <td>$event</td>
-      <td>number | Array(number)</td>
-      <td>-</td>
-    </tr>
     </tbody>
   </table>
 

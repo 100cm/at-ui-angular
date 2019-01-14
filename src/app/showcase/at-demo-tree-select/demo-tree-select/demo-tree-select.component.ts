@@ -71,11 +71,14 @@ export class DemoTreeSelectComponent implements OnInit {
     console.log(event);
   }
 
-  model = '1003';
+  model = '';
   model2 = ['1003'];
-  model3 = ['1003'];
+  model3 = [];
 
   ngOnInit(): void {
+    setTimeout(_ => {
+      this.model3 = ['1003'];
+    }, 2000);
   }
 
   setModal() {

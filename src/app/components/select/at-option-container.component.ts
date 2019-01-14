@@ -64,7 +64,7 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   clickOption(option) {
     if (!option.atDisabled) {
       this.options.forEach((base_option) => {
-        if (base_option.atValue == option.atValue) {
+        if (base_option.atValue === option.atValue) {
           if (this.multiple) {
             base_option.selected = !base_option.selected;
           } else {
@@ -126,5 +126,6 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   get isNotFoundDisplay() {
     return !this.listOfFilterOption.length;
   }
+
 
 }

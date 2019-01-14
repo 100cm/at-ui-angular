@@ -255,7 +255,7 @@ export class PagenationComponent implements OnInit {
     if (value > this._lastIndex) {
       value = this._lastIndex;
     }
-    if (value == this._firstIndex) {
+    if (value === this._firstIndex) {
       value = 1;
     }
     this._current = value;
@@ -264,8 +264,9 @@ export class PagenationComponent implements OnInit {
   }
 
   _atPageSizeChange(value: any) {
-    this.pageSize = value;
-
-    this.pageSizeChange.emit(this.pageSize);
+    if (value !== this.pageSize) {
+      this.pageSize = value;
+      this.pageSizeChange.emit(this.pageSize);
+    }
   }
 }

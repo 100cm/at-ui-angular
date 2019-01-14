@@ -4,7 +4,7 @@ import {
   style,
   transition,
   trigger
-}                                                                                 from '@angular/animations';
+}                                                                                   from '@angular/animations';
 import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { delay, map }                                                               from 'rxjs/operators';
 import { isNotNil }                                                                 from '../utils/class-helper';
@@ -136,6 +136,12 @@ export class AtSelectTopControlComponent {
 
   @Input()
   atMode = 'common';
+
+  @Input()
+  atDisabled = false;
+
+  @Input()
+  singleValueLabel;
 
   focusOnInput($event) {
     $event.stopPropagation();

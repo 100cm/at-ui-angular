@@ -86,7 +86,7 @@ export class SwitchComponent implements OnInit {
   }
 
   @HostListener('click', ['$event'])
-  switch() {
+  switch(): void {
     if (!this.disabled) {
       this._value = !this._value;
       this.onChange(this._value);

@@ -1,39 +1,19 @@
-<at-tab-set [position]="'left'" [atIndex]="index">
-  <at-tab [atTitle]="atTabHeading">
+<at-tab-set style="height:220px;" [position]="'left'" [atIndex]="index">
+  <at-tab *ngFor="let item of tabs" [atTitle]="atTabHeading">
     <ng-template #atTabHeading>
-      基本设置
+      设置{{item}}
     </ng-template>
     <div>
-      <div>基础设置</div>
+      <div>基础设置{{item}}</div>
     </div>
-  </at-tab>
-  <at-tab [atTitle]="atTabHeading">
-    <ng-template #atTabHeading>
-      基本设置2
-    </ng-template>
-    <div>基础设置2</div>
-  </at-tab>
-
-  <at-tab [atTitle]="atTabHeading">
-    <ng-template #atTabHeading>
-      基本设置3
-    </ng-template>
-    <div>基础设置3</div>
-  </at-tab>
-
-  <at-tab [atTitle]="atTabHeading">
-    <ng-template #atTabHeading>
-      基本设置4
-    </ng-template>
-    <div>基础设置4</div>
   </at-tab>
 </at-tab-set>
 <hr>
 
 
-<button (click)="changeA()">chaneg A</button>
+<button at-button (click)="changeA()">切换TAB</button>
 
-<at-tab-set [position]="'top'">
+<at-tab-set  [position]="'top'">
   <at-tab [atTitle]="atTabHeading">
     <ng-template #atTabHeading>
       基本设置
@@ -56,11 +36,11 @@
   </at-tab>
 
   <at-tab
-  [atTitle]="atTabHeading">
-  <ng-template #atTabHeading>
-    基本设置4
-  </ng-template>
-  <div>基础设置4</div>
+    [atTitle]="atTabHeading">
+    <ng-template #atTabHeading>
+      基本设置4
+    </ng-template>
+    <div>基础设置4</div>
   </at-tab>
 </at-tab-set>
 

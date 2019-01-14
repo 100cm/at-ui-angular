@@ -13,4 +13,6 @@ export class DemoVerticalMenuComponent implements OnInit {
   ngOnInit() {
   }
 
+  open = true;
+
 }

@@ -9,16 +9,16 @@ import {
   OnInit,
   Renderer2,
   ViewChild
-}                                                                                    from '@angular/core';
+}                                                                                      from '@angular/core';
 import { NG_VALUE_ACCESSOR }                                                           from '@angular/forms';
-import * as momentI                                                                  from 'moment';
+import * as momentI                                                                    from 'moment';
 import { fromEvent, Observable, Subject, Subscription }                                from 'rxjs';
 import { debounceTime, mapTo, merge }                                                  from 'rxjs/operators';
 import { DropDownAnimation }                                                           from '../animations/drop-down-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                    from '../core/overlay/overlay-position-map';
+}                                                                                      from '../core/overlay/overlay-position-map';
 import { AtI18nInterface }                                                             from '../i18n/at-i18n.interface';
 import { AtI18nService }                                                               from '../i18n/at-i18n.service';
 import { InputComponent }                                                              from '../input/input.component';
@@ -29,7 +29,7 @@ const moment = momentI;
 @Component({
   selector: 'atDatetimePicker',
   template: `
-    <div class="at-date-input-wrapper" >
+    <div class="at-date-input-wrapper">
       <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="_show()"></atInput>
       <i (click)="clear($event)"
          *ngIf="allowClear"
@@ -124,7 +124,7 @@ export class DatetimepickerComponent implements OnInit {
               private _renderer: Renderer2, private cdr: ChangeDetectorRef) {
   }
 
-  private il8n: AtI18nInterface;
+  il8n: AtI18nInterface;
   _atType = 'full';
   _positions: ConnectionPositionPair[] = [
     {
@@ -358,7 +358,7 @@ export class DatetimepickerComponent implements OnInit {
       this.atVisible = visible;
     }
     this.cdr.markForCheck();
-  }
+  };
 
   _startSubscribe(observable$: Observable<boolean>): void {
     this._subscription = observable$.pipe(debounceTime(50))
