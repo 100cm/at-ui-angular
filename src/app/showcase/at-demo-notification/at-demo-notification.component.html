@@ -69,14 +69,14 @@
       <tr>
         <td doc-td>title</td>
         <td>必填，通知的标题</td>
-        <td doc-type-td>String</td>
+        <td doc-type-td>String | TemplateRef</td>
         <td>-</td>
         <td>-</td>
       </tr>
       <tr>
         <td doc-td>message</td>
         <td>通知的内容</td>
-        <td doc-type-td>String</td>
+        <td doc-type-td>String | TemplateRef</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -97,16 +97,25 @@
       <tr>
         <td doc-td>icon</td>
         <td>自定义消息提醒的 ICON</td>
-        <td doc-type-td>String</td>
+        <td doc-type-td>String | TemplateRef</td>
         <td>-</td>
         <td>-</td>
       </tr>
-      <!--<tr>-->
-      <!--<td>onClose</td>-->
-      <!--<td>关闭通知提醒框时的回调函数</td>-->
-      <!--<td>Function</td>-->
-      <!--<td>-</td>-->
-      <!--</tr>-->
+      <tr>
+        <td doc-td [o]="true">atOnClose</td>
+        <td>点击取消/关闭的回调，返回 <code>false</code> 时不关闭</td>
+        <td doc-type-td>(Function () => false | void) | Promise&lt;void | false &gt;</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+
+      <tr>
+        <td doc-td [o]="true">atAfterClose</td>
+        <td>关闭后的回调</td>
+        <td doc-type-td>Function () => void</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
       </tbody>
     </table>
 

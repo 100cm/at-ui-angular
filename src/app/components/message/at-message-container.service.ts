@@ -1,6 +1,7 @@
-import { Injectable }                from '@angular/core';
-import { ComponentCreator }          from '../core/component-creator';
-import { ComponentCreatorBase }      from '../core/component-creator-base';
+import { Injectable } from '@angular/core';
+import { ComponentCreator } from '../core/component-creator';
+import { ComponentCreatorBase } from '../core/component-creator-base';
+import { NotificationConfig } from '../notification/notification/notification-config';
 import { MessageContainerComponent } from './message-container/message-container.component';
 
 @Injectable({
@@ -15,8 +16,12 @@ export class AtMessageContainerService extends ComponentCreator<MessageContainer
     this.messageComponentRef = this.create();
   }
 
-  addMessage(config) {
+  addMessage(config: NotificationConfig): void {
     this.messageComponentRef.instance.addMessage(config);
+  }
+
+  removeMessage(messageId: string): void {
+    this.messageComponentRef.instance.remove(messageId);
   }
 
 }

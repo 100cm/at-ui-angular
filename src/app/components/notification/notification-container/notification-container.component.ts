@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
-import { NotificationConfig } from '../notification/notification-config';
+import { isPromise } from '../../utils/class-helper';
+import { NotificationConfig, NotificationOption } from '../notification/notification-config';
 
 @Component({
   selector: 'at-notification-container',
@@ -26,31 +27,54 @@ export class NotificationContainerComponent implements OnInit {
   constructor(private el: ElementRef) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
   notifications: NotificationConfig[] = [];
 
-  addMessage(notification) {
+  addMessage(notification: NotificationConfig): void {
     this.notifications.push(notification);
   }
 
-  remove(index) {
+  remove(index: string): void {
     const notification = this.notifications.find((n) => {
-      return n.index == index;
+      return n.index === index;
     });
-    notification.state = 'leave';
-    this.removeByIndex(index);
+    if (notification) {
+      this.removeInside(index);
+    }
   }
 
-  removeByIndex(index) {
+  removeInside(index: string): void {
+    const message = this.notifications.find((n) => {
+      return n.index === index;
+    });
+    if (typeof message.atOnClose === 'function') {
+      const result = message.atOnClose(message);
+      const caseClose = (doClose: boolean | void | {}) => (doClose !== false) && this.removeByIndex(message.index); // Users can return "false" to prevent closing by default
+      if (isPromise(result)) {
+        const handleThen = (doClose) => {
+          caseClose(doClose);
+        };
+        (result as Promise<void>).then(handleThen).catch(handleThen);
+      } else {
+        caseClose(result);
+      }
+    }
+  }
+
+  removeByIndex(index: string): void {
+    const notification = this.notifications.find((n) => {
+      return n.index === index;
+    });
+    notification.state = 'leave';
     setTimeout(_ => {
       this.notifications = this.notifications.filter((no) => {
-        return (no.index != index);
+        return (no.index !== index);
       });
+      notification.$atAfterClose.next(notification);
     }, 110);
-
   }
 
 }

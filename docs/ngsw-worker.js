@@ -484,7 +484,7 @@
                             const metaTable = yield this.metadata;
                             ts = (yield metaTable.read(req.url)).ts;
                         }
-                        catch (e) {
+                        catch (_a) {
                             // Otherwise, look for a Date header.
                             const date = res.headers.get('Date');
                             if (date === null) {
@@ -497,7 +497,7 @@
                         const age = this.adapter.time - ts;
                         return age < 0 || age > maxAge;
                     }
-                    catch (e) {
+                    catch (_b) {
                         // Assume stale.
                         return true;
                     }
@@ -510,7 +510,7 @@
                         // time, if it parses correctly.
                         return this.adapter.time > Date.parse(expiresStr);
                     }
-                    catch (e) {
+                    catch (_c) {
                         // The expiration date failed to parse, so revalidate as a precaution.
                         return true;
                     }
@@ -539,7 +539,7 @@
                 try {
                     metadata = yield metaTable.read(url);
                 }
-                catch (e) {
+                catch (_a) {
                     // Do nothing, not found. This shouldn't happen, but it can be handled.
                 }
                 // Return both the response and any available metadata.
@@ -741,7 +741,7 @@
                 try {
                     return yield this.scope.fetch(req);
                 }
-                catch (err) {
+                catch (_a) {
                     return this.adapter.newResponse('', {
                         status: 504,
                         statusText: 'Gateway Timeout',
@@ -1025,7 +1025,7 @@
                     try {
                         this._lru = new LruList(yield table.read('lru'));
                     }
-                    catch (e) {
+                    catch (_a) {
                         this._lru = new LruList();
                     }
                 }
@@ -1128,7 +1128,7 @@
                 try {
                     res = yield timeoutFetch;
                 }
-                catch (e) {
+                catch (_a) {
                     res = undefined;
                 }
                 // If the network fetch times out or errors, fall back on the cache.
@@ -1162,7 +1162,7 @@
                     try {
                         return yield networkFetch;
                     }
-                    catch (err) {
+                    catch (_a) {
                         return this.adapter.newResponse(null, {
                             status: 504,
                             statusText: 'Gateway Timeout',
@@ -1173,7 +1173,7 @@
                     try {
                         return yield networkFetch;
                     }
-                    catch (err) {
+                    catch (_b) {
                         return undefined;
                     }
                 }))();
@@ -1194,7 +1194,7 @@
                 try {
                     yield this.cacheResponse(req, yield res, yield this.lru());
                 }
-                catch (e) {
+                catch (_a) {
                     // TODO: handle this error somehow?
                 }
             });
@@ -1218,7 +1218,7 @@
                         }
                         // Otherwise, or if there was an error, assume the response is expired, and evict it.
                     }
-                    catch (e) {
+                    catch (_a) {
                         // Some error getting the age for the response. Assume it's expired.
                     }
                     lru.remove(req.url);
@@ -1300,7 +1300,7 @@
                 try {
                     return this.scope.fetch(req);
                 }
-                catch (err) {
+                catch (_a) {
                     return this.adapter.newResponse(null, {
                         status: 504,
                         statusText: 'Gateway Timeout',
@@ -1778,8 +1778,8 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
     const IDLE_THRESHOLD = 5000;
     const SUPPORTED_CONFIG_VERSION = 1;
     const NOTIFICATION_OPTION_NAMES = [
-        'actions', 'badge', 'body', 'dir', 'icon', 'lang', 'renotify', 'requireInteraction', 'tag',
-        'vibrate', 'data'
+        'actions', 'badge', 'body', 'data', 'dir', 'icon', 'image', 'lang', 'renotify',
+        'requireInteraction', 'silent', 'tag', 'timestamp', 'title', 'vibrate'
     ];
     var DriverReadyState;
     (function (DriverReadyState) {
@@ -1882,6 +1882,7 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
             this.scope.addEventListener('fetch', (event) => this.onFetch(event));
             this.scope.addEventListener('message', (event) => this.onMessage(event));
             this.scope.addEventListener('push', (event) => this.onPush(event));
+            this.scope.addEventListener('notificationclick', (event) => this.onClick(event));
             // The debugger generates debug pages in response to debugging requests.
             this.debugger = new DebugHandler(this, this.adapter);
             // The IdleScheduler will execute idle tasks after a given delay.
@@ -1979,6 +1980,10 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
             // Handle the push and keep the SW alive until it's handled.
             msg.waitUntil(this.handlePush(msg.data.json()));
         }
+        onClick(event) {
+            // Handle the click event and keep the SW alive until it's handled.
+            event.waitUntil(this.handleClick(event.notification, event.action));
+        }
         handleMessage(msg, from) {
             return __awaiter$5(this, void 0, void 0, function* () {
                 if (isMsgCheckForUpdates(msg)) {
@@ -2004,6 +2009,20 @@ ${msgIdle}`, { headers: this.adapter.newHeaders({ 'Content-Type': 'text/plain' }
                 NOTIFICATION_OPTION_NAMES.filter(name => desc.hasOwnProperty(name))
                     .forEach(name => options[name] = desc[name]);
                 yield this.scope.registration.showNotification(desc['title'], options);
+            });
+        }
+        handleClick(notification, action) {
+            return __awaiter$5(this, void 0, void 0, function* () {
+                notification.close();
+                const options = {};
+                // The filter uses `name in notification` because the properties are on the prototype so
+                // hasOwnProperty does not work here
+                NOTIFICATION_OPTION_NAMES.filter(name => name in notification)
+                    .forEach(name => options[name] = notification[name]);
+                yield this.broadcast({
+                    type: 'NOTIFICATION_CLICK',
+                    data: { action, notification: options },
+                });
             });
         }
         reportStatus(client, promise, nonce) {

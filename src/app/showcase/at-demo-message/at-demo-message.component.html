@@ -57,7 +57,7 @@
       <tr>
         <td doc-td>message</td>
         <td>通知的内容</td>
-        <td doc-type-td>String</td>
+        <td doc-type-td>String | TemplateRef</td>
         <td>-</td>
         <td>-</td>
       </tr>
@@ -68,7 +68,21 @@
         <td>-</td>
         <td>4000</td>
       </tr>
+      <tr>
+        <td doc-td [o]="true">atOnClose</td>
+        <td>点击取消/关闭的回调，返回 <code>false</code> 时不关闭</td>
+        <td doc-type-td>(Function () => false | void) | Promise&lt;void | false &gt;</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
 
+      <tr>
+        <td doc-td [o]="true">atAfterClose</td>
+        <td>关闭后的回调</td>
+        <td doc-type-td>Function () => void</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
       </tbody>
     </table>
 

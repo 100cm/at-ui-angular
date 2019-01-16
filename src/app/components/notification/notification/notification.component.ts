@@ -1,8 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { StatusIconType } from '../../icon/icon-status-type';
 import { NotificationContainerComponent } from '../notification-container/notification-container.component';
 import { NotificationConfig } from './notification-config';
+import Timeout = NodeJS.Timeout;
 
 @Component({
   selector: 'at-notification',
@@ -12,9 +13,29 @@ import { NotificationConfig } from './notification-config';
          class="at-notification-contained  at-notification--{{config.type}}"
          [ngClass]="{'at-notification--with-message ': config.message !=''}"
     >
-      <i class="icon at-notification__icon {{status[config.type]}}"></i>
-      <div class="at-notification__content"><p class="at-notification__title">{{config.title}}</p>
-        <p class="at-notification__message">{{config.message}}</p></div>
+      <ng-container [ngSwitch]="true">
+        <ng-container *ngSwitchCase="isTemplateRef(config.icon)"
+                      [ngTemplateOutlet]="config.icon"></ng-container>
+        <ng-container *ngSwitchCase="!isTemplateRef(config.icon)">
+          <i class="icon at-notification__icon {{status[config.type]}}"></i>
+        </ng-container>
+      </ng-container>
+      <div class="at-notification__content">
+        <ng-container [ngSwitch]="true">
+          <ng-container *ngSwitchCase="isTemplateRef(config.title)"
+                        [ngTemplateOutlet]="config.title"></ng-container>
+          <ng-container *ngSwitchCase="!isTemplateRef(config.title)">
+            <p class="at-notification__title">{{config.title}}</p>
+          </ng-container>
+        </ng-container>
+        <ng-container [ngSwitch]="true">
+          <ng-container *ngSwitchCase="isTemplateRef(config.message)"
+                        [ngTemplateOutlet]="config.message"></ng-container>
+          <ng-container *ngSwitchCase="!isTemplateRef(config.message)">
+            <p class="at-notification__message">{{config.message}}</p>
+          </ng-container>
+        </ng-container>
+      </div>
       <i *ngIf="config.showClose" (click)="remove()" class="icon icon-x at-notification__close">
       </i>
     </div>
@@ -63,12 +84,12 @@ export class NotificationComponent implements OnInit {
 
   }
 
-  timer: any;
+  timer: Timeout;
 
   status = StatusIconType;
 
-  ngOnInit() {
-    if (this.config.duration != 0) {
+  ngOnInit(): void {
+    if (this.config.duration !== 0) {
       this.startRemove();
     }
   }
@@ -76,12 +97,12 @@ export class NotificationComponent implements OnInit {
   @Input()
   config: NotificationConfig;
 
-  remove() {
+  remove(): void {
     this.notificationContainer.remove(this.config.index);
   }
 
-  startRemove() {
-    if (this.config.duration != 0) {
+  startRemove(): void {
+    if (this.config.duration !== 0) {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.remove();
@@ -89,8 +110,12 @@ export class NotificationComponent implements OnInit {
     }
   }
 
-  stopRemove() {
+  stopRemove(): void {
     clearTimeout(this.timer);
+  }
+
+  isTemplateRef(value: {}): boolean {
+    return value instanceof TemplateRef;
   }
 
 }

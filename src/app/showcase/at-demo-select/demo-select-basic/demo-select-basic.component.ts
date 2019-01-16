@@ -19,9 +19,10 @@ export class DemoSelectBasicComponent implements OnInit {
 
   single: any = 3;
 
+
   cancel() {
     // setTimeout(_ => {
-      this.single = undefined;
+    this.single = undefined;
     // }, 1000);
     this.modal = false;
   }
@@ -30,7 +31,7 @@ export class DemoSelectBasicComponent implements OnInit {
     console.log(va);
   }
 
-  setShow(value) {
+  setShow() {
     this.modal = true;
   }
 
@@ -38,5 +39,9 @@ export class DemoSelectBasicComponent implements OnInit {
 
   setOntherOption() {
     this.single = '';
+  }
+
+  changeValue() {
+    this.single = 5;
   }
 }

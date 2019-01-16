@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { StatusIconType } from '../../icon/icon-status-type';
 import { NotificationConfig } from '../../notification/notification/notification-config';
 import { NotificationComponent } from '../../notification/notification/notification.component';
@@ -11,9 +11,15 @@ import { MessageContainerComponent } from '../message-container/message-containe
     <div class="at-message--wrapper" [@enterLeave]="message.state">
       <div class="at-message at-message--{{message.type}}">
         <i class="icon at-message__icon {{status[message.type]}}"></i>
-        <span class="at-message__content">
-      {{message.message}}
-    </span>
+        <ng-container [ngSwitch]="true">
+          <ng-container *ngSwitchCase="isTemplateRef(message.message)"
+                        [ngTemplateOutlet]="message.message"></ng-container>
+          <ng-container *ngSwitchCase="!isTemplateRef(message.message)">
+             <span class="at-message__content">
+                {{message.message}}
+            </span>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
   `,
@@ -41,13 +47,18 @@ export class MessageComponent implements OnInit {
   timer;
   status = StatusIconType;
 
-  ngOnInit() {
+  ngOnInit(): void {
     clearTimeout(this.timer);
     this.timer = setTimeout(_ => {
       this.message_container.remove(this.message.index);
     }, this.message.duration);
   }
 
-  @Input() message: NotificationConfig;
+  isTemplateRef(value: {}): boolean {
+    return value instanceof TemplateRef;
+  }
+
+  @Input()
+  message: NotificationConfig;
 
 }

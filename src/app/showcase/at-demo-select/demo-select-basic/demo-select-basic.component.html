@@ -1,15 +1,5 @@
 <p>从按钮处伸展出来</p>
 
-<at-modal [show]="show2">
-  <div header>
-    我来组成头部
-  </div>
-  <div body>
-    <p>
-      我来组成身体2
-    </p>
-  </div>
-</at-modal>
 <at-modal [(show)]="modal" (onCancel)="cancel()">
   <div header>
     我来组成头部
@@ -23,11 +13,10 @@
                [searchable]="true">
       <at-option *ngFor="let item of selects;let i= index" [atLabel]="item" [atValue]="item"></at-option>
     </at-select>
+    <button at-button (click)="changeValue()"> 改值</button>
   </div>
 </at-modal>
 
 
 <button at-button (click)="setShow()"> 显示/隐藏</button>
 
-
-<button at-button (click)="open()">service调用</button>

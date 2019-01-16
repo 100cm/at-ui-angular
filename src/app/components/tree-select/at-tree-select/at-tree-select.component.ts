@@ -7,18 +7,18 @@ import {
   OnInit,
   Output,
   ViewChild
-}                                          from '@angular/core';
-import { NG_VALUE_ACCESSOR }               from '@angular/forms';
-import { merge, of, Subscription }         from 'rxjs';
-import { filter, tap }                     from 'rxjs/operators';
-import { DropDownAnimation }               from '../../animations/drop-down-animation';
-import { AtSelectControlService }          from '../../select/at-select-control.service';
-import { AtSelectComponent }               from '../../select/at-select.component';
-import { AtTreeNode, AtTreeNodeOptions }   from '../../tree/at-tree-node';
-import { AtTreeComponent }                 from '../../tree/at-tree.component';
-import { AtTreeService }                   from '../../tree/at-tree.service';
-import { AtFormatEmitEvent }               from '../../tree/interface';
-import { InputBoolean, isNotNil }          from '../../utils/class-helper';
+} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { merge, of, Subscription } from 'rxjs';
+import { filter, tap } from 'rxjs/operators';
+import { DropDownAnimation } from '../../animations/drop-down-animation';
+import { AtSelectControlService } from '../../select/at-select-control.service';
+import { AtSelectComponent } from '../../select/at-select.component';
+import { AtTreeNode, AtTreeNodeOptions } from '../../tree/at-tree-node';
+import { AtTreeComponent } from '../../tree/at-tree.component';
+import { AtTreeService } from '../../tree/at-tree.service';
+import { AtFormatEmitEvent } from '../../tree/interface';
+import { InputBoolean, isNotNil } from '../../utils/class-helper';
 import { AtTreeSelectTopControlComponent } from '../at-tree-select-top-control/at-tree-select-top-control.component';
 
 @Component({
@@ -184,31 +184,9 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       }
     } else {
       this.value = [];
-      this.selectedNodes.forEach(node => {
-        this.removeSelected(node, false);
-      });
       this.selectedNodes = [];
     }
     this.updateSelectedNodes();
-  }
-
-  removeSelected(node: AtTreeNode, emit: boolean = true, event?: MouseEvent): void {
-    node.isSelected = false;
-    node.isChecked = false;
-    if (this.atCheckable) {
-      this.treeRef.atTreeService.conduct(node);
-      this.treeRef.atTreeService.setCheckedNodeList(node);
-    } else {
-      this.treeRef.atTreeService.setSelectedNodeList(node, this.atMultiple);
-    }
-    if (emit) {
-      this.atRemoved.emit(node);
-    }
-
-    // Do not trigger the popup
-    if (event && event.stopPropagation) {
-      event.stopPropagation();
-    }
   }
 
   subExpandeChange(): void {

@@ -26,7 +26,7 @@ export class DemoServiceModalComponent implements OnInit {
 
   @ViewChild('template') temp: TemplateRef<void>;
 
-  show(type: 'error' | 'success' | 'info' | 'error'): void {
+  show(type: 'error' | 'success' | 'info' | 'error' | 'warning'): void {
     this.atModalService.modal({
       atType: 'confirm',
       title: type,

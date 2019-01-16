@@ -4,7 +4,7 @@ import {
   style,
   transition,
   trigger
-}                                                                                from '@angular/animations';
+} from '@angular/animations';
 import { CdkConnectedOverlay, CdkOverlayOrigin, ConnectedOverlayPositionChange } from '@angular/cdk/overlay';
 import {
   forwardRef,
@@ -21,17 +21,17 @@ import {
   QueryList,
   Renderer2,
   SimpleChange, ViewChild
-}                                                                                from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR }                               from '@angular/forms';
-import { debounceTime }                                                          from 'rxjs/operators';
-import { DropDownAnimation }                                                     from '../animations/drop-down-animation';
-import { isNotNil, toBoolean }                                                   from '../utils/class-helper';
-import { AtOptionContainerComponent }                                            from './at-option-container.component';
-import { AtOptionGroupComponent }                                                from './at-option-group.component';
-import { AtOptionComponent }                                                     from './at-option.component';
-import { defaultFilterOption, TFilterOption }                                    from './at-option.pipe';
-import { AtSelectControlService }                                                from './at-select-control.service';
-import { AtSelectTopControlComponent }                                           from './at-select-top-control.component';
+} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+import { DropDownAnimation } from '../animations/drop-down-animation';
+import { isNotNil, toBoolean } from '../utils/class-helper';
+import { AtOptionContainerComponent } from './at-option-container.component';
+import { AtOptionGroupComponent } from './at-option-group.component';
+import { AtOptionComponent } from './at-option.component';
+import { defaultFilterOption, TFilterOption } from './at-option.pipe';
+import { AtSelectControlService } from './at-select-control.service';
+import { AtSelectTopControlComponent } from './at-select-top-control.component';
 
 @Component({
   selector: 'at-select',
@@ -105,7 +105,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
         this.atValue = [obj];
       }
       this.at_select_control_service.$writeValueChange.next(this.atValue);
-    } else if (typeof(obj) === 'undefined') {
+    } else if (typeof (obj) === 'undefined') {
       this.at_select_control_service.$writeValueChange.next([]);
     }
   }

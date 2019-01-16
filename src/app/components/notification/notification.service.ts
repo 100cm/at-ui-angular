@@ -1,43 +1,47 @@
-import { Injectable }                     from '@angular/core';
-import { ComponentCreator }               from '../core/component-creator';
-import { ComponentCreatorBase }           from '../core/component-creator-base';
-import { NotificationBaseService }        from './notification-base.service';
-import { NotificationContainerComponent } from './notification-container/notification-container.component';
-import { NotificationConfig }             from './notification/notification-config';
-import { NotificationComponent }          from './notification/notification.component';
+import { Injectable } from '@angular/core';
+import { NotificationBaseService } from './notification-base.service';
+import { NotificationConfig, NotificationOption } from './notification/notification-config';
 
 @Injectable({
-              providedIn: 'root'
-            })
-export class AtNotificationService extends ComponentCreator<NotificationContainerComponent> {
+  providedIn: 'root'
+})
+export class AtNotificationService {
 
-  constructor(public containerbase: NotificationBaseService, public component_base: ComponentCreatorBase) {
-    super(component_base, NotificationContainerComponent);
+  constructor(public containerbase: NotificationBaseService) {
   }
 
-  success(options = {}) {
+  remove(messageId: string): void {
+    this.containerbase.removeMessage(messageId);
+  }
+
+  success(options: NotificationOption = {}): NotificationConfig {
     const config = new NotificationConfig(options, 'success');
     this.containerbase.addMessage(config);
+    return config;
   }
 
-  info(options = {}) {
+  info(options: NotificationOption = {}): NotificationConfig {
     const config = new NotificationConfig(options, 'info');
     this.containerbase.addMessage(config);
+    return config;
   }
 
-  show(options = {}) {
+  show(options: NotificationOption = {}): NotificationConfig {
     const config = new NotificationConfig(options);
     this.containerbase.addMessage(config);
+    return config;
   }
 
-  warning(options = {}) {
+  warning(options: NotificationOption = {}): NotificationConfig {
     const config = new NotificationConfig(options, 'warning');
     this.containerbase.addMessage(config);
+    return config;
   }
 
-  error(options = {}) {
+  error(options: NotificationOption = {}): NotificationConfig {
     const config = new NotificationConfig(options, 'error');
     this.containerbase.addMessage(config);
+    return config;
   }
 
 }

@@ -13,16 +13,23 @@ import { AtFormatEmitEvent } from '../../../components/tree';
     <button (click)="setModal()">更换值</button>
     {{model}}
     <hr>
+    <button at-button (click)="setShow()"> 显示/隐藏</button>
+    <at-modal [(show)]="modal" (onCancel)="cancel()">
+      <div header>
+        我来组成头部
+      </div>
+      <div body>
+        <at-tree-select
+          [(ngModel)]="model2"
+          [atShowSearch]="true"
+          [atMultiple]="true"
+          [atCheckable]="true"
+          [atNodes]="nodes"
+        ></at-tree-select>
+      </div>
+    </at-modal>
     <label>checkbox 的多选</label>
-    <at-tree-select
-      [(ngModel)]="model2"
-      [atShowSearch]="true"
-      [atMultiple]="true"
-      [atCheckable]="true"
-      [atNodes]="nodes"
-    ></at-tree-select>
     <hr>
-
     <label>普通多选</label>
     <at-tree-select
       [(ngModel)]="model3"
@@ -83,5 +90,25 @@ export class DemoTreeSelectComponent implements OnInit {
 
   setModal() {
     this.model = '1002';
+  }
+
+  modal = false;
+
+  selected = ['first'];
+
+  single: any = 3;
+
+  cancel() {
+    // setTimeout(_ => {
+    this.modal = false;
+    setTimeout(_ => {
+      this.model2 = undefined;
+    }, 1000);
+    // }, 1000);
+
+  }
+
+  setShow() {
+    this.modal = true;
   }
 }

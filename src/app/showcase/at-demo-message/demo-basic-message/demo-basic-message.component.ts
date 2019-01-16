@@ -19,9 +19,10 @@ export class DemoBasicMessageComponent implements OnInit {
   ngOnInit() {
   }
 
-  showMessage(info) {
-    this.at_message_service[info]({
-      message: '这是信息哦'
+  showMessage(info): void {
+    let message = this.at_message_service[info]({
+      message: '这是信息哦',
+      duration: 5000
     });
   }
 }
