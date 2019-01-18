@@ -6,7 +6,9 @@ export interface Position {
   y: number;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AtGlobalMonitorService {
 
   constructor() {
@@ -15,7 +17,7 @@ export class AtGlobalMonitorService {
 
   lastClickPosition: Position = {x: 0, y: 0};
 
-  clickDocumentObserve() {
+  clickDocumentObserve(): void {
     document.addEventListener('click', (e) => {
       this.lastClickPosition = {
         x: e.clientX,
@@ -24,6 +26,6 @@ export class AtGlobalMonitorService {
     });
   }
 
-  $windowScrollEvent: Observable<any> = fromEvent(window, 'scroll');
+  $windowScrollEvent: Observable<Event> = fromEvent(window, 'scroll');
 
 }

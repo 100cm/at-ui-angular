@@ -1,13 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
+  CdkConnectedOverlay,
   CdkOverlayOrigin
 } from '@angular/cdk/overlay';
 import {
-  AfterViewChecked, AfterViewInit,
-  ChangeDetectorRef,
-  Component, ComponentRef,
-  ContentChild,
-  ElementRef,
+  AfterViewInit, ChangeDetectorRef,
+  Component, ElementRef,
   EventEmitter,
   Input, OnDestroy,
   OnInit,
@@ -15,26 +13,28 @@ import {
   Renderer2, TemplateRef, Type, ViewChild
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
-import {
-  AtGlobalMonitorService,
-  Position
-} from '../at-global-monitor.service';
+import { AtGlobalMonitorService } from '../at-global-monitor.service';
 import { StatusIconType } from '../icon/icon-status-type';
 import { isPromise } from '../utils/class-helper';
 import { OnClickCallback } from './at-modal.service';
+
+export interface ClickPosition {
+  x: number;
+  y: number;
+}
 
 @Component({
   selector: 'at-modal',
   animations: [trigger('enterLeave', [
     state('enter', style({opacity: 1, transform: 'scale(1)'})),
     transition('* => enter', [
-      style({opacity: 0, transform: 'scale(0.1)'}),
-      animate('100ms linear')
+      style({opacity: 0, transform: 'scale(0.2)'}),
+      animate('200ms linear')
     ]),
-    state('leave', style({opacity: 0, transform: 'scale(0)'})),
+    state('leave', style({opacity: 0, transform: 'scale(0.2)'})),
     transition('* => leave', [
       style({opacity: 1, transform: 'scale(1)'}),
-      animate('100ms linear')
+      animate('180ms linear')
     ])
   ])],
   template: `
@@ -55,8 +55,12 @@ import { OnClickCallback } from './at-modal.service';
           (click)="clickHide($event)"
           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
         >
-          <div class="at-modal" [@enterLeave]="state"
-               [style.width]="width +'px'"
+          <div
+            #modalContainer
+            class="at-modal" [@enterLeave]="state" (@enterLeave.start)="startAnimation()"
+            (@enterLeave.done)="doneAnimation()"
+            [style.width]="width +'px'"
+            [style.transform-origin]="transformOrigin"
           >
             <div *ngIf="showHeader" [ngClass]="{'at-modal__header': true}">
               <div class="at-modal__title" #custom_title>
@@ -105,6 +109,10 @@ import { OnClickCallback } from './at-modal.service';
   `
 })
 export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  constructor(private el: ElementRef, private global_monitor: AtGlobalMonitorService, private cdr: ChangeDetectorRef) {
+  }
+
   ngOnDestroy(): void {
     this.$showSubscription.unsubscribe();
   }
@@ -128,14 +136,41 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() message: string | TemplateRef<void>;
   @Input() atType: 'confirm' | 'normal' = 'normal';
   @Input() atComponent: TemplateRef<void>;
-  atOnClose: OnClickCallback<ModalComponent> = () => {};
-  atOnOk: OnClickCallback<ModalComponent> = () => {};
+  transformOrigin = '0px 0px 0px';
 
-  atAfterOk = () => {};
+  @ViewChild(CdkConnectedOverlay) cdkOverlay: CdkConnectedOverlay;
+  @ViewChild('modalContainer') modal: ElementRef;
+
+  atOnClose: OnClickCallback<ModalComponent> = () => {
+  };
+  atOnOk: OnClickCallback<ModalComponent> = () => {
+  };
+
+  atAfterOk = () => {
+  };
+
+  startAnimation(): void {
+    if (this.state === 'enter') {
+      setTimeout(_ => {
+        this.updateTransformOrigin();
+      });
+    }
+  }
+
+  doneAnimation(): void {
+    if (this.state === 'leave') {
+      Promise.resolve().then(() => {
+          this._show = false;
+          this.showChange.emit(false);
+        }
+      );
+    }
+  }
 
   $showSubscription = Subscription.EMPTY;
 
-  atAfterClose = () => {};
+  atAfterClose = () => {
+  };
 
   ok(): void {
     this.onOk.emit();
@@ -209,12 +244,21 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscribeStatus();
   }
 
+  private updateTransformOrigin(): void {
+    const lastPosition = this.global_monitor.lastClickPosition;
+    if (lastPosition) {
+      this.transformOrigin = `${lastPosition.x - this.modal.nativeElement.offsetLeft}px ${lastPosition.y - this.modal.nativeElement.offsetTop}px 0px`;
+    }
+  }
+
   subscribeStatus(): void {
     if (this.$showSubscription === Subscription.EMPTY) {
       this.$showSubscription = this.$showChange.asObservable().subscribe((show: boolean) => {
-        this._show = show;
+        if (show) {
+          this._show = show;
+          this.showChange.emit(show);
+        }
         this.state = show ? 'enter' : 'leave';
-        this.showChange.emit(show);
       });
     }
   }
