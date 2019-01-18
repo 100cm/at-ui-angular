@@ -19,7 +19,6 @@ export class DemoSelectBasicComponent implements OnInit {
 
   single: any = 3;
 
-
   cancel() {
     // setTimeout(_ => {
     this.single = undefined;
@@ -43,5 +42,9 @@ export class DemoSelectBasicComponent implements OnInit {
 
   changeValue() {
     this.single = 5;
+  }
+
+  changeOption() {
+    this.selects.length ? this.selects = [] : this.selects = [1, 2, 3, 4, 5];
   }
 }

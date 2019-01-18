@@ -263,10 +263,8 @@ export class PagenationComponent implements OnInit {
     this.pageIndexChange.emit(this._current);
   }
 
-  _atPageSizeChange(value: any) {
-    if (value !== this.pageSize) {
-      this.pageSize = value;
-      this.pageSizeChange.emit(this.pageSize);
-    }
+  _atPageSizeChange(value: number): void {
+    this.pageSize = value;
+    this.pageSizeChange.emit(this.pageSize);
   }
 }

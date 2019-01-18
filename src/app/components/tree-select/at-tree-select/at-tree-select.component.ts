@@ -45,7 +45,7 @@ import { AtTreeSelectTopControlComponent } from '../at-tree-select-top-control/a
       tabindex="0">
       <div
         at-tree-select-top-control
-        [allowClear]="allowClear"
+        [allowClear]="atAllowClear"
         [atPlaceHolder]="atPlaceHolder"
         [atShowSearch]="atShowSearch"
         [multiple]="isMultiple"
@@ -79,8 +79,8 @@ import { AtTreeSelectTopControlComponent } from '../at-tree-select-top-control/a
             [atSelectedKeys]="!atCheckable ? value : []"
             (atExpandChange)="atExpandChange.emit($event)"
             (atClick)="atTreeClick.emit($event)"
-            (atCheckedKeysChange)="updateSelectedNodes()"
-            (atSelectedKeysChange)="updateSelectedNodes()"
+            (atCheckedKeysChange)="updateSelectedNodes('check')"
+            (atSelectedKeysChange)="updateSelectedNodes('select')"
             (atCheckBoxChange)="atTreeCheckBoxChange.emit($event)"
           >
           </at-tree>
@@ -156,7 +156,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
     this._selectedNodes = value;
   }
 
-  updateSelectedNodes(): void {
+  updateSelectedNodes(type?: string): void {
     if (this.treeRef) {
       this.selectedNodes = [...(this.atCheckable ? this.treeRef.getCheckedNodeList() : this.treeRef.getSelectedNodeList())];
     } else {
@@ -218,7 +218,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
       this.atCheckable ? this.atTreeCheckBoxChange : of(),
       this.atCleared,
       this.atRemoved
-    ).subscribe(() => {
+    ).subscribe((e) => {
       this.updateSelectedNodes();
       const value = this._selectedNodes.map(node => node.key);
       this.value = [...value];
@@ -235,7 +235,22 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
     });
   }
 
-  subOpenStatus() {
+  subSelectChange(): void {
+    this.at_select_control_service.$selectOptionChange.asObservable().pipe(filter(v => v[0] !== null)).subscribe(options => {
+        this.selectedNodes = options;
+        console.log('options change', this._selectedNodes);
+        const value = this._selectedNodes.map(node => node.key);
+        this.value = [...value];
+        if (this.isMultiple) {
+          this.onChange(value);
+        } else {
+          this.onChange(value.length ? value[0] : null);
+        }
+      }
+    );
+  }
+
+  subOpenStatus(): void {
     this.at_select_control_service.$openStatus.asObservable().pipe().subscribe((open: boolean) => {
       if (open) {
         this.updateCdkConnectedOverlayStatus();
@@ -251,6 +266,7 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
     this.subOpenStatus();
     this.subSearch();
     this.subExpandeChange();
+    this.subSelectChange();
   }
 
   subSearch(): void {

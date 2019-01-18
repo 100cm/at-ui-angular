@@ -1,11 +1,12 @@
-import { Injectable }               from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { AtOptionComponent }        from './at-option.component';
+import { AtTreeNode } from '../tree/at-tree-node';
+import { AtOptionComponent } from './at-option.component';
 
 @Injectable()
 export class AtSelectControlService {
 
-  options: AtOptionComponent[] = [];
+  options: AtOptionComponent[] | AtTreeNode[] = [];
 
   selected_value = [];
 
@@ -15,7 +16,7 @@ export class AtSelectControlService {
     this.$writeValueChange.asObservable().pipe().subscribe((value: any[]) => {
       this.selected_value = value;
       // console.log(this.selected_value)
-      this.options.forEach(option => {
+      (this.options as AtOptionComponent[]).forEach(option => {
           if (value.indexOf(option.atValue) > -1) {
             option.selected = true;
           } else {
@@ -23,7 +24,7 @@ export class AtSelectControlService {
           }
         }
       );
-      // console.log('select value changes')
+      console.log('select value changes');
       // console.log(this.options)
       this.$optionsChange.next(this.options);
     });
@@ -37,29 +38,48 @@ export class AtSelectControlService {
 
   $searchValueChange = new BehaviorSubject<string>('');
 
-  pushOptions(option: AtOptionComponent) {
-    this.options.push(option);
-    this.options.forEach(option => {
-        if (this.selected_value.indexOf(option.atValue) > -1) {
-          option.selected = true;
+  pushOptions(option: AtOptionComponent): void {
+    (this.options as AtOptionComponent[]).push(option);
+    this.changeOptionStatus();
+  }
+
+  changeOptionStatus(value?: string[]): void {
+    (this.options as AtOptionComponent[]).forEach(opt => {
+        if ((value || this.selected_value).indexOf(opt.atValue) > -1) {
+          opt.selected = true;
         } else {
-          option.selected = false;
+          opt.selected = false;
         }
-        // console.log('check option status by current selected value',option.atValue)
       }
     );
     this.$optionsChange.next(this.options);
-    // console.log('push options', this.options)
-    // console.log('current write value', this.selected_value)
   }
 
-  removeOption(option) {
-    this.options = this.options.filter(_ => _ !== option);
+  removeOption(option: AtOptionComponent): void {
+    this.options = (this.options as AtOptionComponent[]).filter(_ => _ !== option);
+    this.$optionsChange.next(this.options);
   }
 
-  removeValue(value) {
-    const selected_value = this.selected_value.filter(_ => _ !== value);
+  removeValue(selectedValue: [], value: string | number): void {
+    const selected_value = selectedValue.filter(_ => _ !== value);
     this.$selectOptionChange.next(selected_value);
+    console.log(selectedValue);
+    console.log(selected_value);
+    this.changeOptionStatus(selected_value);
   }
 
+  removeTreeValue(options: AtTreeNode[], value: string | number): void {
+    this.options = options.filter(op => op.key !== value);
+    this.$optionsChange.next(this.options);
+    this.$selectOptionChange.next(this.options);
+  }
+
+  removeAll(): void {
+    this.changeOptionStatus([]);
+  }
+
+  removeAllTree() {
+    this.$optionsChange.next([]);
+    this.$selectOptionChange.next([]);
+  }
 }

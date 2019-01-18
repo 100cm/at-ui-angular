@@ -9,10 +9,10 @@ import {
   Output,
   Renderer2,
   ViewChild
-}                                                     from '@angular/core';
-import { delay, map }                                 from 'rxjs/operators';
-import { AtSelectControlService }                     from '../../select/at-select-control.service';
-import { AtTreeNode }                                 from '../../tree';
+} from '@angular/core';
+import { delay, map } from 'rxjs/operators';
+import { AtSelectControlService } from '../../select/at-select-control.service';
+import { AtTreeNode } from '../../tree/at-tree-node';
 
 @Component({
   selector: '[at-tree-select-top-control]',
@@ -117,7 +117,7 @@ import { AtTreeNode }                                 from '../../tree';
     '[class.at-select-selection__rendered]': 'true'
   }
 })
-export class AtTreeSelectTopControlComponent {
+export class AtTreeSelectTopControlComponent implements OnInit {
 
   constructor(private renderer: Renderer2, private select_control_service: AtSelectControlService) {
 
@@ -134,7 +134,7 @@ export class AtTreeSelectTopControlComponent {
   @Input() allowClear = false;
   @Input() atPlaceHolder;
 
-  get isSingleMode() {
+  get isSingleMode(): boolean {
     return this.multiple === false;
   }
 
@@ -146,23 +146,24 @@ export class AtTreeSelectTopControlComponent {
   @Input()
   singleValueLabel;
 
-  focusOnInput($event) {
-    $event.stopPropagation();
-    $event.preventDefault();
-    this.select_control_service.$openStatus.next(true);
+  focusOnInput($event: Event): void {
+    if (($event.target as HTMLElement).classList.contains('icon-x')) {
+    } else {
+      this.select_control_service.$openStatus.next(true);
+    }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subPushOption();
     this.subStatusChange();
     this.subSearch();
   }
 
-  getPropertyFromValue(value, key) {
+  getPropertyFromValue(value: string, key: string): string {
     return value[key] || '';
   }
 
-  get selectedOptions() {
+  get selectedOptions(): AtTreeNode[] {
     return this.options;
   }
 
@@ -176,17 +177,17 @@ export class AtTreeSelectTopControlComponent {
 
   options = [];
 
-  subPushOption() {
+  subPushOption(): void {
     this.select_control_service.$optionsChange.asObservable().subscribe(options => {
       this.options = options;
     });
   }
 
-  subSearch() {
+  subSearch(): void {
 
   }
 
-  subStatusChange() {
+  subStatusChange(): void {
     this.select_control_service.$openStatus.asObservable().pipe(map((data) => {
       this.atOpen = data;
       return data;
@@ -222,13 +223,13 @@ export class AtTreeSelectTopControlComponent {
     return this.multiple;
   }
 
-  clear() {
-    this.select_control_service.$selectOptionChange.next([]);
+  clear(): void {
+    this.select_control_service.removeAllTree();
   }
 
-  removeValueFormSelected($event, value: AtTreeNode) {
+  removeValueFormSelected($event: Event, value: AtTreeNode): void {
     $event.preventDefault();
-    this.select_control_service.removeValue(value.key);
+    this.select_control_service.removeTreeValue(this.options, value.key);
   }
 
   get placeHolderDisplay(): string {

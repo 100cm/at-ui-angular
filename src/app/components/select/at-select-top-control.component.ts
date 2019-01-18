@@ -4,12 +4,12 @@ import {
   style,
   transition,
   trigger
-}                                                                                   from '@angular/animations';
-import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
-import { delay, map }                                                               from 'rxjs/operators';
-import { isNotNil }                                                                 from '../utils/class-helper';
-import { AtOptionComponent }                                                        from './at-option.component';
-import { AtSelectControlService }                                                   from './at-select-control.service';
+} from '@angular/animations';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { delay, map } from 'rxjs/operators';
+import { isNotNil } from '../utils/class-helper';
+import { AtOptionComponent } from './at-option.component';
+import { AtSelectControlService } from './at-select-control.service';
 
 @Component({
   selector: '[at-select-top-control]',
@@ -113,7 +113,7 @@ import { AtSelectControlService }                                               
     '[class.at-select-selection__rendered]': 'true'
   }
 })
-export class AtSelectTopControlComponent {
+export class AtSelectTopControlComponent implements OnInit {
 
   constructor(private renderer: Renderer2, private select_control_service: AtSelectControlService) {
 
@@ -130,7 +130,7 @@ export class AtSelectTopControlComponent {
   @Input() allowClear = false;
   @Input() atPlaceHolder;
 
-  get isSingleMode() {
+  get isSingleMode(): boolean {
     return this.multiple === false;
   }
 
@@ -143,22 +143,22 @@ export class AtSelectTopControlComponent {
   @Input()
   singleValueLabel;
 
-  focusOnInput($event) {
+  focusOnInput($event: Event): void {
     $event.stopPropagation();
     $event.preventDefault();
     this.select_control_service.$openStatus.next(true);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.subPushOption();
     this.subStatusChange();
   }
 
-  getPropertyFromValue(value, key) {
+  getPropertyFromValue(value: string, key: string): string {
     return value[key] || '';
   }
 
-  get selectedOptions() {
+  get selectedOptions(): AtOptionComponent[] {
     return this.options.filter(_ => _.selected);
   }
 
@@ -172,7 +172,7 @@ export class AtSelectTopControlComponent {
 
   options = [];
 
-  subPushOption() {
+  subPushOption(): void {
     this.select_control_service.$optionsChange.asObservable().subscribe(options => {
       // console.log('top control get options')
       this.options = options;
@@ -180,7 +180,7 @@ export class AtSelectTopControlComponent {
     });
   }
 
-  subStatusChange() {
+  subStatusChange(): void {
     this.select_control_service.$openStatus.asObservable().pipe(map((data) => {
       this.atOpen = data;
       return data;
@@ -216,13 +216,15 @@ export class AtSelectTopControlComponent {
     return this.multiple;
   }
 
-  clear() {
+  clear(): void {
     this.select_control_service.$selectOptionChange.next([]);
+    this.select_control_service.removeAll();
   }
 
-  removeValueFormSelected($event, value: AtOptionComponent) {
+  removeValueFormSelected($event: Event, value: AtOptionComponent): void {
     $event.preventDefault();
-    this.select_control_service.removeValue(value.atValue);
+    const selectedValue = this.selectedOptions.map(opt => opt.atValue) as [];
+    this.select_control_service.removeValue(selectedValue, value.atValue);
   }
 
   get placeHolderDisplay(): string {

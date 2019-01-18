@@ -14,6 +14,7 @@
       <at-option *ngFor="let item of selects;let i= index" [atLabel]="item" [atValue]="item"></at-option>
     </at-select>
     <button at-button (click)="changeValue()"> 改值</button>
+    <button at-button (click)="changeOption()"> 改select option</button>
   </div>
 </at-modal>
 

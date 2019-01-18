@@ -3,8 +3,6 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { StatusIconType } from '../../icon/icon-status-type';
 import { NotificationContainerComponent } from '../notification-container/notification-container.component';
 import { NotificationConfig } from './notification-config';
-import Timeout = NodeJS.Timeout;
-
 @Component({
   selector: 'at-notification',
   template: `
@@ -84,7 +82,7 @@ export class NotificationComponent implements OnInit {
 
   }
 
-  timer: Timeout;
+  timer;
 
   status = StatusIconType;
 

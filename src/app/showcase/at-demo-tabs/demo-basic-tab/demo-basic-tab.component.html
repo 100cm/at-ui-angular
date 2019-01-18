@@ -44,3 +44,16 @@
   </at-tab>
 </at-tab-set>
 
+<hr>
+
+<at-tab-set style="height:220px;" [position]="'right'" [atIndex]="index">
+  <at-tab *ngFor="let item of tabs" [atTitle]="atTabHeading">
+    <ng-template #atTabHeading>
+      设置{{item}}
+    </ng-template>
+    <div>
+      <div>基础设置{{item}}</div>
+    </div>
+  </at-tab>
+</at-tab-set>
+

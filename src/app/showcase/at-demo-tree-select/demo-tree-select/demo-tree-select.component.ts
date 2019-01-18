@@ -21,9 +21,6 @@ import { AtFormatEmitEvent } from '../../../components/tree';
       <div body>
         <at-tree-select
           [(ngModel)]="model2"
-          [atShowSearch]="true"
-          [atMultiple]="true"
-          [atCheckable]="true"
           [atNodes]="nodes"
         ></at-tree-select>
       </div>
@@ -33,6 +30,7 @@ import { AtFormatEmitEvent } from '../../../components/tree';
     <label>普通多选</label>
     <at-tree-select
       [(ngModel)]="model3"
+      [atAllowClear]="true"
       [atShowSearch]="true"
       [atMultiple]="true"
       [atNodes]="nodes"
@@ -79,7 +77,7 @@ export class DemoTreeSelectComponent implements OnInit {
   }
 
   model = '';
-  model2 = ['1003'];
+  model2 = '1003';
   model3 = [];
 
   ngOnInit(): void {
@@ -101,10 +99,6 @@ export class DemoTreeSelectComponent implements OnInit {
   cancel() {
     // setTimeout(_ => {
     this.modal = false;
-    setTimeout(_ => {
-      this.model2 = undefined;
-    }, 1000);
-    // }, 1000);
 
   }
 
