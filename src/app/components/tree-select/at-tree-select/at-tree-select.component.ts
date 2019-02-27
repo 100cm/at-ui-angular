@@ -238,7 +238,6 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
   subSelectChange(): void {
     this.at_select_control_service.$selectOptionChange.asObservable().pipe(filter(v => v[0] !== null)).subscribe(options => {
         this.selectedNodes = options;
-        console.log('options change', this._selectedNodes);
         const value = this._selectedNodes.map(node => node.key);
         this.value = [...value];
         if (this.isMultiple) {

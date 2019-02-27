@@ -10,6 +10,10 @@ export default {
   Select: {
     notFoundContent: 'No Result Found'
   },
+  Modal: {
+    cancel: 'Cancel',
+    ok: 'Confirm'
+  },
   Page: {
     go: 'Go',
     per: '/page',

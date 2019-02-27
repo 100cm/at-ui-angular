@@ -24,7 +24,6 @@ export class AtSelectControlService {
           }
         }
       );
-      console.log('select value changes');
       // console.log(this.options)
       this.$optionsChange.next(this.options);
     });
@@ -63,8 +62,6 @@ export class AtSelectControlService {
   removeValue(selectedValue: [], value: string | number): void {
     const selected_value = selectedValue.filter(_ => _ !== value);
     this.$selectOptionChange.next(selected_value);
-    console.log(selectedValue);
-    console.log(selected_value);
     this.changeOptionStatus(selected_value);
   }
 

@@ -10,6 +10,10 @@ export default {
   Select: {
     notFoundContent: '无匹配结果'
   },
+  Modal: {
+    cancel: '取消',
+    ok: '确认'
+  },
   Page: {
     go: '前往',
     per: '条/页',

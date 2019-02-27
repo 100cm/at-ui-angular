@@ -90,10 +90,10 @@ export interface ClickPosition {
               </div>
               <div *ngIf="custom_footer.children.length == 0 &&  custom_footer.innerText.length == 0">
                 <button class="at-btn" (click)="cancelInside()">
-                  <span class="at-btn__text">取消</span>
+                  <span class="at-btn__text">{{'Modal.cancel' | atI18n}}</span>
                 </button>
                 <button (click)="okInside()" type="primary" class="at-btn at-btn--primary">
-                  <span class="at-btn__text">确认</span>
+                  <span class="at-btn__text">{{'Modal.ok' | atI18n}}</span>
                 </button>
               </div>
             </div>

@@ -3,7 +3,6 @@ import { ComponentCreator } from '../core/component-creator';
 import { ComponentCreatorBase } from '../core/component-creator-base';
 import { NotificationContainerComponent } from './notification-container/notification-container.component';
 import { NotificationConfig } from './notification/notification-config';
-import { NotificationComponent } from './notification/notification.component';
 
 @Injectable({
   providedIn: 'root'
