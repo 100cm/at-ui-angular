@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { ComponentCreator } from '../core/component-creator';
 import { ComponentCreatorBase } from '../core/component-creator-base';
 import { NotificationConfig } from '../notification/notification/notification-config';
@@ -11,8 +11,8 @@ export class AtMessageContainerService extends ComponentCreator<MessageContainer
 
   messageComponentRef;
 
-  constructor(public component_base: ComponentCreatorBase) {
-    super(component_base, MessageContainerComponent);
+  constructor(public component_base: ComponentCreatorBase, public cdr: ChangeDetectorRef) {
+    super(component_base, cdr, MessageContainerComponent);
     this.messageComponentRef = this.create();
   }
 

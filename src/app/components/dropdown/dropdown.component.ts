@@ -239,9 +239,9 @@ export class DropdownComponent implements OnInit {
   }
 
   get _hasBackdrop(): boolean {
-    return this.trigger === 'click' || this.trigger == 'contextmenu';
+    return this.trigger === 'click' || this.trigger === 'contextmenu';
   }
 
-  constructor(private _renderer: Renderer2, protected _changeDetector: ChangeDetectorRef) {
+  constructor(private _renderer: Renderer2, public _changeDetector: ChangeDetectorRef) {
   }
 }
