@@ -6,8 +6,8 @@ import { ModalComponent } from './modal.component';
 @Injectable()
 export class ModalBaseService extends ComponentCreator<ModalComponent> {
 
-  constructor(private base_creator: ComponentCreatorBase, public  cdr: ChangeDetectorRef) {
-    super(base_creator, cdr, ModalComponent, 'modal-');
+  constructor(private base_creator: ComponentCreatorBase) {
+    super(base_creator, ModalComponent, 'modal-');
   }
 
 }

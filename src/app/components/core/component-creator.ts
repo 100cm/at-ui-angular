@@ -14,7 +14,6 @@ let globalCounter = 0;
 export class ComponentCreator<T> {
 
   constructor(private base: ComponentCreatorBase,
-              public cdr: ChangeDetectorRef,
               private component?: Type<T>, private _idPrefix: string = '') {
 
   }
@@ -23,16 +22,16 @@ export class ComponentCreator<T> {
   componentRef: ComponentRef<T>;
   messages: Array<MessageContainer<T>>;
 
-  create(): ComponentRef<T> {
-    const componentRef = this.base.componentFactoryResolver
-      .resolveComponentFactory(this.component)
-      .create(this.base.injector);
-    this.base.appRef.attachView(componentRef.hostView);
-    this.cdr.detectChanges();
-    this.domElem = (componentRef.hostView as EmbeddedViewRef<any>)
-      .rootNodes[0] as HTMLElement;
-    document.body.appendChild(this.domElem);
-    return componentRef;
+  create(): void {
+    Promise.resolve().then(_ => {
+      this.componentRef = this.base.componentFactoryResolver
+        .resolveComponentFactory(this.component)
+        .create(this.base.injector);
+      this.base.appRef.attachView(this.componentRef.hostView);
+      this.domElem = (this.componentRef.hostView as EmbeddedViewRef<any>)
+        .rootNodes[0] as HTMLElement;
+      document.body.appendChild(this.domElem);
+    });
   }
 
   remove(ref: ComponentRef<T>): void {

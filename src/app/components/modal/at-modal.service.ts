@@ -40,12 +40,11 @@ export type OnClickCallback<T> = ((instance: T) => (false | void | {}) | Promise
 export class AtModalService {
 
   constructor(private base_modal_service: ModalBaseService, private ngZone: NgZone) {
-
+    this.base_modal_service.create();
   }
 
   modal(config?: ModalOption): ModalComponent {
-    const ref = this.base_modal_service.create();
-    const instance = ref.instance;
+    const instance = this.base_modal_service.componentRef.instance;
     const propConfig = {...config};
     // 删掉ok 和cancel 回掉
     if (config) {
@@ -59,7 +58,7 @@ export class AtModalService {
     instance.setShow(true);
     const $sub: Subscription = instance.showChange.subscribe(open => {
       if (open === false) {
-        this.base_modal_service.remove(ref);
+        this.base_modal_service.remove(this.base_modal_service.componentRef);
         $sub.unsubscribe();
       }
     });

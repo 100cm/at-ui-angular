@@ -9,19 +9,17 @@ import { MessageContainerComponent } from './message-container/message-container
 })
 export class AtMessageContainerService extends ComponentCreator<MessageContainerComponent> {
 
-  messageComponentRef;
-
-  constructor(public component_base: ComponentCreatorBase, public cdr: ChangeDetectorRef) {
-    super(component_base, cdr, MessageContainerComponent);
-    this.messageComponentRef = this.create();
+  constructor(public component_base: ComponentCreatorBase) {
+    super(component_base, MessageContainerComponent);
+    this.create();
   }
 
   addMessage(config: NotificationConfig): void {
-    this.messageComponentRef.instance.addMessage(config);
+    this.componentRef.instance.addMessage(config);
   }
 
   removeMessage(messageId: string): void {
-    this.messageComponentRef.instance.remove(messageId);
+    this.componentRef.instance.remove(messageId);
   }
 
 }

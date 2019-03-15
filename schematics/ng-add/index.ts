@@ -18,11 +18,11 @@ import {getProjectTargetOptions} from '../utils/project-targets';
 import {Schema} from './schema';
 
 const ADD_CONFIG = {
-  COMPILED_THEME_PATH: 'node_modules/at-ng/assets/at-ng.css',
+  COMPILED_THEME_PATH: 'node_modules/at-ng/assets/index.css',
   BOOT_PAGE_PATH: 'src/app/app.component.html',
   BOOT_PAGE_HTML: `<!-- At Ui For Angular -->
 <a  target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1NvvIwTtYBeNjy1XdXXXXyVXa-89-131.svg">
+    Happy Coding
 </a>`
 };
 
