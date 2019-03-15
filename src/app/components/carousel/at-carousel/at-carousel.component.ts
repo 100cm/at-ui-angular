@@ -29,8 +29,8 @@ export type SwipeDirection = 'swipeleft' | 'swiperight';
       <div class="slick-list" #slickList tabindex="-1" (keydown)="onKeyDown($event)"
            (swipeleft)="swipe('swipeleft')" (swiperight)="swipe('swiperight')"
            (pan)="swipeInProgress($event);">
-        <div class="slick-track" [style.transform]="transform" #slickTrack
-             (mousedown)="$event.preventDefault()">
+        <div class="slick-track" [style.transform]="transform" #slickTrack>
+             <!--(mousedown)="$event.preventDefault()">-->
           <ng-content></ng-content>
         </div>
       </div>
