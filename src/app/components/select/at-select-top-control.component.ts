@@ -144,9 +144,11 @@ export class AtSelectTopControlComponent implements OnInit {
   singleValueLabel;
 
   focusOnInput($event: Event): void {
-    $event.stopPropagation();
-    $event.preventDefault();
-    this.select_control_service.$openStatus.next(true);
+    if (!this.atDisabled) {
+      $event.stopPropagation();
+      $event.preventDefault();
+      this.select_control_service.$openStatus.next(true);
+    }
   }
 
   ngOnInit(): void {

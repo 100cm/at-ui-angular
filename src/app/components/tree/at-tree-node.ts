@@ -12,7 +12,7 @@ export interface AtTreeNodeOptions {
   children?: AtTreeNodeOptions[];
 
   // tslint:disable-next-line:no-any
-  [ key: string ]: any;
+  [key: string]: any;
 }
 
 export class AtTreeNode {
@@ -63,7 +63,7 @@ export class AtTreeNode {
     } else {
       this.level = 0;
     }
-    if (typeof(option.children) !== 'undefined' && option.children !== null) {
+    if (typeof (option.children) !== 'undefined' && option.children !== null) {
       option.children.forEach(
         (nodeOptions) => {
           if (option.checked && !option.disabled && !nodeOptions.disabled && !nodeOptions.disableCheckbox) {
@@ -139,5 +139,14 @@ export class AtTreeNode {
 
   public clearChildren(): void {
     this.children = [];
+  }
+
+  public remove(): void {
+    const parentNode = this.getParentNode();
+    if (parentNode) {
+      const index = parentNode.getChildren().findIndex(n => n.key === this.key);
+      parentNode.getChildren().splice(index, 1);
+      parentNode.origin.children.splice(index, 1);
+    }
   }
 }

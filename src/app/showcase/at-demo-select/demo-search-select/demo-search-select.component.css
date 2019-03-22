@@ -1,0 +1,4 @@
+/*.at-see*/
+::ng-deep .at-select__list {
+  max-height: 100px;
+}

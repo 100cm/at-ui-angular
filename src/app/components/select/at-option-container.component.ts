@@ -7,21 +7,24 @@ import {
   Output,
   QueryList,
   ViewChildren
-}                               from '@angular/core';
-import { isNotNil }               from '../utils/class-helper';
+} from '@angular/core';
+import { isNotNil } from '../utils/class-helper';
 import { AtOptionGroupComponent } from './at-option-group.component';
-import { AtOptionComponent }      from './at-option.component';
+import { AtOptionComponent } from './at-option.component';
 
-import { merge, Subject, Subscription }                     from 'rxjs';
-import { AtOptionLiComponent }                              from './at-option-li.component';
+import { merge, Subject, Subscription } from 'rxjs';
+import { AtOptionLiComponent } from './at-option-li.component';
 import { defaultFilterOption, AtOptionPipe, TFilterOption } from './at-option.pipe';
-import { AtSelectControlService }                           from './at-select-control.service';
+import { AtSelectControlService } from './at-select-control.service';
 
 @Component({
   selector: '[at-option-container]',
   preserveWhitespaces: false,
   template: `
-    <div class="at-select__dropdown at-select__dropdown--bottom">
+    <div class="at-select__dropdown at-select__dropdown--bottom"
+         #ul
+         (scroll)="dropDownScroll($event,ul)"
+    >
       <ul *ngIf="isNotFoundDisplay" class="at-select__not-found">
         <li>
           {{ 'Select.notFoundContent' | atI18n }}
@@ -54,6 +57,8 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
   atFilterOption: TFilterOption = defaultFilterOption;
 
   atServerSearch = false;
+
+  @Output() readonly atScrollToBottom = new EventEmitter<void>();
 
   ngAfterContentInit(): void {
   }
@@ -127,5 +132,12 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
     return !this.listOfFilterOption.length;
   }
 
+  dropDownScroll(e: MouseEvent, ul: HTMLUListElement): void {
+    e.preventDefault();
+    e.stopPropagation();
+    if (ul && (ul.scrollHeight - ul.scrollTop === ul.clientHeight)) {
+      this.atScrollToBottom.emit();
+    }
+  }
 
 }

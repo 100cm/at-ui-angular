@@ -12,7 +12,8 @@
 </div>
 
 <hr>
-<at-select [(ngModel)]="single"  [atMode]="'multiple'" [searchable]="true">
+<at-select [(ngModel)]="single" (atScrollToBottom)="bottom()" [atDisabled]="true" [atMode]="'multiple'"
+           [searchable]="true">
   <at-option [atLabel]="'first'" [atValue]="1"></at-option>
   <at-option [atLabel]="'section'" [atValue]="2"></at-option>
   <at-option [atLabel]="'next'" [atValue]="3"></at-option>

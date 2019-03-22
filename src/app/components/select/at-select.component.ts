@@ -57,6 +57,7 @@ import { AtSelectTopControlComponent } from './at-select-top-control.component';
       <div
         at-select-top-control
         [multiple]="multiple"
+        [atDisabled]="atDisabled"
         [allowClear]="allowClear"
         [atPlaceHolder]="atPlaceHolder"
         [atShowSearch]="searchable"
@@ -73,7 +74,8 @@ import { AtSelectTopControlComponent } from './at-select-top-control.component';
       [cdkConnectedOverlayOpen]="atOpen">
       <div [ngClass]="dropDownClassMap" [@dropDownAnimation]="dropDownPosition "
            [ngStyle]="atDropdownStyle">
-        <div at-option-container [multiple]="multiple" [at_select_control_service]="at_select_control_service">
+        <div at-option-container (atScrollToBottom)="scrollBottom()" [multiple]="multiple"
+             [at_select_control_service]="at_select_control_service">
         </div>
       </div>
     </ng-template>
@@ -190,7 +192,14 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
     });
   }
 
+  scrollBottom(): void {
+    this.atScrollToBottom.emit();
+  }
+
   ngAfterViewInit(): void {
+    this.at_select_control_service.$searchValueChange.asObservable().subscribe(data => {
+      this.search.emit(data);
+    });
   }
 
   close(): void {

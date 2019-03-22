@@ -109,7 +109,7 @@
   &__footer {
     position: relative;
     margin: 16px 0;
-    height: $table-footer-height;
+    min-height: $table-footer-height;
 
     .at-pagination {
       float: right;

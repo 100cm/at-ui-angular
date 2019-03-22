@@ -1,6 +1,6 @@
 {
   "name": "at-ng",
-  "version": "7.2.6",
+  "version": "7.2.8-rc1",
   "license": "MIT",
   "author": "zhou351711778",
   "scripts": {
@@ -25,7 +25,7 @@
   "dependencies": {
     "tslib": "^1.7.1"
   },
-  "peerDependencies": {
+  "peerDependerm-sncies": {
     "@angular/animations": "^7.0.0",
     "@angular/cdk": "^7.0.0",
     "@angular/common": "^7.0.0",

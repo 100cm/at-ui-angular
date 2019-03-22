@@ -11,11 +11,16 @@ export class NotificationBaseService extends ComponentCreator<NotificationContai
 
   constructor(public component_base: ComponentCreatorBase) {
     super(component_base, NotificationContainerComponent);
-    this.create();
   }
 
   addMessage(config: NotificationConfig): void {
-    this.componentRef.instance.addMessage(config);
+    if (this.componentRef) {
+      this.componentRef.instance.addMessage(config);
+    } else {
+      this.create().then(_ => {
+        this.componentRef.instance.addMessage(config);
+      });
+    }
   }
 
   removeMessage(messageId: string): void {

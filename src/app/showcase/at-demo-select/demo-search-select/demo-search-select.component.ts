@@ -7,15 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemoSearchSelectComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+
   selected = ['first'];
 
   single = 'first';
 
   search(text) {
     console.log(text);
+  }
+
+  bottom(): void {
+    console.log('bottom');
   }
 }

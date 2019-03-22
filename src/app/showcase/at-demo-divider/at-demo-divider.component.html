@@ -1,0 +1,27 @@
+<label>divider</label>
+<doc-section>
+  <div sample>
+    <div>
+      <button at-button>abc</button>
+      <at-divider [vertical]="true"></at-divider>
+      <button at-button>def</button>
+      <at-divider [vertical]="true"></at-divider>
+    </div>
+  </div>
+</doc-section>
+
+
+<doc-section>
+  <div sample>
+    <div>
+      <at-divider [vertical]="false" [text]="te">
+        <ng-template #te>
+          asdasd
+        </ng-template>
+      </at-divider>
+
+      <at-divider [vertical]="false">
+      </at-divider>
+    </div>
+  </div>
+</doc-section>

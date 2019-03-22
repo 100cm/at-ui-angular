@@ -7474,7 +7474,7 @@ $info-color               : #78A4FA;
   display: inline-block;
   margin-left: 10px;
   color: #3F536E;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1;
   vertical-align: middle;
 }
@@ -7848,7 +7848,7 @@ $info-color               : #78A4FA;
   min-width: 28px;
   height: 28px;
   color: #3F536E;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 28px;
   text-align: center;
   border: 1px solid #C5D9E8;
@@ -7889,7 +7889,7 @@ $info-color               : #78A4FA;
   content: '•••';
   display: inline-block;
   color: #ECECEC;
-  font-size: 8px;
+  font-size: 10px;
   text-align: center;
   line-height: 28px;
   letter-spacing: 1px;
@@ -7910,7 +7910,7 @@ $info-color               : #78A4FA;
 .at-pagination__total {
   float: left;
   height: 28px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 28px;
   margin-right: 12px;
 }
@@ -7918,7 +7918,7 @@ $info-color               : #78A4FA;
 .at-pagination__quickjump {
   float: left;
   margin-left: 12px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 28px;
 }
 /* line 91, ../sass/components/pagination.scss */
@@ -7939,7 +7939,7 @@ $info-color               : #78A4FA;
 /* line 105, ../sass/components/pagination.scss */
 .at-pagination__simple-paging {
   float: left;
-  font-size: 12px;
+  font-size: 14px;
 }
 /* line 109, ../sass/components/pagination.scss */
 .at-pagination__simple-paging input {
@@ -7972,7 +7972,7 @@ $info-color               : #78A4FA;
 .at-pagination--small .at-pagination__prev,
 .at-pagination--small .at-pagination__next {
   height: 20px;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 20px;
 }
 /* line 143, ../sass/components/pagination.scss */
@@ -7986,7 +7986,7 @@ $info-color               : #78A4FA;
 /* line 152, ../sass/components/pagination.scss */
 .at-pagination--small .at-pagination__item--jump-prev:after,
 .at-pagination--small .at-pagination__item--jump-next:after {
-  font-size: 7px;
+  font-size: 10px;
   line-height: 20px;
 }
 /* line 157, ../sass/components/pagination.scss */
@@ -8010,11 +8010,11 @@ $info-color               : #78A4FA;
 .at-pagination--small .at-pagination__quickjump .at-input__original {
   margin: 0 6px;
   height: 20px;
-  font-size: 11px;
+  font-size: 14px;
 }
 /* line 178, ../sass/components/pagination.scss */
 .at-pagination--simple {
-  font-size: 12px;
+  font-size: 14px;
 }
 /* line 181, ../sass/components/pagination.scss */
 .at-pagination--simple .at-input__original {
@@ -8034,7 +8034,7 @@ $info-color               : #78A4FA;
 }
 /* line 195, ../sass/components/pagination.scss */
 .at-pagination--simple.at-pagination--small {
-  font-size: 11px;
+  font-size: 14px;
 }
 /* line 198, ../sass/components/pagination.scss */
 .at-pagination--simple.at-pagination--small .at-input__original {
@@ -8043,7 +8043,7 @@ $info-color               : #78A4FA;
 }
 /* line 202, ../sass/components/pagination.scss */
 .at-pagination--simple.at-pagination--small .at-input__original input {
-  font-size: 11px;
+  font-size: 14px;
 }
 /* line 206, ../sass/components/pagination.scss */
 .at-pagination--simple.at-pagination--small .at-pagination__prev,
@@ -8055,7 +8055,7 @@ $info-color               : #78A4FA;
 }
 /* line 213, ../sass/components/pagination.scss */
 .at-pagination--simple.at-pagination--small .at-pagination__simple-paging {
-  font-size: 11px;
+  font-size: 14px;
 }
 /* line 216, ../sass/components/pagination.scss */
 .at-pagination--simple.at-pagination--small .at-pagination__simple-paging span {
@@ -8820,7 +8820,7 @@ $info-color               : #78A4FA;
 .at-table {
   position: relative;
   color: #3F536E;
-  font-size: 12px;
+  font-size: 14px;
   /* modifier */
 }
 /* line 11, ../sass/components/table.scss */
@@ -8833,7 +8833,7 @@ $info-color               : #78A4FA;
 }
 /* line 18, ../sass/components/table.scss */
 .at-table table th, .at-table table td {
-  height: 40px;
+  height: 46px;
   text-align: left;
   text-overflow: ellipsis;
   vertical-align: middle;
@@ -8920,7 +8920,7 @@ $info-color               : #78A4FA;
 .at-table__footer {
   position: relative;
   margin: 16px 0;
-  height: 28px;
+  min-height: 28px;
 }
 /* line 114, ../sass/components/table.scss */
 .at-table__footer .at-pagination {
@@ -8975,11 +8975,11 @@ $info-color               : #78A4FA;
 }
 /* line 172, ../sass/components/table.scss */
 .at-table--large {
-  font-size: 13px;
+  font-size: 16px;
 }
 /* line 176, ../sass/components/table.scss */
 .at-table--large table th, .at-table--large table td {
-  height: 56px;
+  height: 53px;
 }
 /* line 181, ../sass/components/table.scss */
 .at-table--small {
@@ -8987,7 +8987,7 @@ $info-color               : #78A4FA;
 }
 /* line 185, ../sass/components/table.scss */
 .at-table--small table th, .at-table--small table td {
-  height: 32px;
+  height: 36px;
 }
 /* line 190, ../sass/components/table.scss */
 .at-table--small .at-table__thead .at-table__column-sorter {
@@ -9042,7 +9042,7 @@ $info-color               : #78A4FA;
 
 /* line 50, ../sass/components/form.scss */
 .at-form-item {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 /* line 17, ../sass/mixins/lib/clearfix.scss */
 .at-form-item::after {
@@ -12271,4 +12271,75 @@ li.at-select-tree-treenode-disabled > .at-select-tree-node-content-wrapper:hover
 .at-collapse--simple .at-collapse__header {
   border-bottom: 1px solid #DFDFDF;
   background-color: transparent;
+}
+
+/* line 1, ../sass/components/divider.scss */
+.at-divider {
+  box-sizing: border-box;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  -webkit-font-feature-settings: 'tnum';
+  font-feature-settings: 'tnum';
+  background: #e8e8e8;
+}
+/* line 13, ../sass/components/divider.scss */
+.at-divider-inner-text {
+  display: inline-block;
+  padding: 0 24px;
+}
+/* line 18, ../sass/components/divider.scss */
+.at-divider-vertical {
+  position: relative;
+  top: -.06em;
+  display: inline-block;
+  width: 1px;
+  height: .9em;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+/* line 28, ../sass/components/divider.scss */
+.at-divider-horizontal {
+  display: block;
+  clear: both;
+  width: 100%;
+  min-width: 100%;
+  height: 1px;
+  margin: 24px 0;
+}
+/* line 37, ../sass/components/divider.scss */
+.at-divider-with-text {
+  display: table;
+  margin: 16px 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+  text-align: center;
+  background: 0 0;
+}
+/* line 47, ../sass/components/divider.scss */
+.at-divider-with-text:before {
+  position: relative;
+  top: 50%;
+  display: table-cell;
+  width: 50%;
+  border-top: 1px solid #e8e8e8;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  content: '';
+}
+/* line 58, ../sass/components/divider.scss */
+.at-divider-with-text:after {
+  position: relative;
+  top: 50%;
+  display: table-cell;
+  width: 50%;
+  border-top: 1px solid #e8e8e8;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  content: '';
 }

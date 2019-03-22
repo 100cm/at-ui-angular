@@ -4,11 +4,13 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 @Component({
   encapsulation: ViewEncapsulation.None,
   selector: 'at-textarea',
-  template: `<div class="at-textarea" data-v-a01f69b8="">
-  <textarea [placeholder]="atPlaceholder" [(ngModel)]="value" rows="2" class="at-textarea__original" style="">
+  template: `
+    <div class="at-textarea">
+  <textarea [placeholder]="atPlaceholder" [disabled]="atDisabled" [(ngModel)]="value" rows="2"
+            class="at-textarea__original" style="" [class.at-textarea__original--disabled]="atDisabled">
 
   </textarea>
-  </div>
+    </div>
   `,
   providers: [
     {
@@ -43,6 +45,9 @@ export class TextareaComponent implements OnInit {
 
   @Input()
   atPlaceholder: string = '请输入';
+
+  @Input()
+  atDisabled: boolean = false;
 
   writeValue(value: any): void {
     this._value = value;

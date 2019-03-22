@@ -175,6 +175,7 @@ import { StartupComponent }                 from './showcase/startup/startup.com
 import { UpdateLogComponent }               from './showcase/update-log/update-log.component';
 import { DocTdComponent }                   from './showcase/doc-td/doc-td.component';
 import { DocTypeTdComponent }               from './showcase/doc-type-td/doc-type-td.component';
+import { AtDemoDividerComponent } from './showcase/at-demo-divider/at-demo-divider.component';
 
 @NgModule({
   declarations: [
@@ -342,7 +343,9 @@ import { DocTypeTdComponent }               from './showcase/doc-type-td/doc-typ
 
     DocTdComponent,
 
-    DocTypeTdComponent
+    DocTypeTdComponent,
+
+    AtDemoDividerComponent
 
   ],
   imports: [

@@ -43,26 +43,28 @@ export class AtModalService {
     this.base_modal_service.create();
   }
 
-  modal(config?: ModalOption): ModalComponent {
-    const instance = this.base_modal_service.componentRef.instance;
-    const propConfig = {...config};
-    // 删掉ok 和cancel 回掉
-    if (config) {
-      delete propConfig.cancel;
-      delete propConfig.ok;
-    }
-    for (const key in propConfig) {
-      instance[key] = propConfig[key];
-    }
-    instance.subscribeStatus();
-    instance.setShow(true);
-    const $sub: Subscription = instance.showChange.subscribe(open => {
-      if (open === false) {
-        this.base_modal_service.remove(this.base_modal_service.componentRef);
-        $sub.unsubscribe();
+  modal(config?: ModalOption): Promise<ModalComponent> {
+    return this.base_modal_service.create().then(_ => {
+      const instance = this.base_modal_service.componentRef.instance;
+      const propConfig = {...config};
+      // 删掉ok 和cancel 回掉
+      if (config) {
+        delete propConfig.cancel;
+        delete propConfig.ok;
       }
+      for (const key in propConfig) {
+        instance[key] = propConfig[key];
+      }
+      instance.subscribeStatus();
+      instance.setShow(true);
+      const $sub: Subscription = instance.showChange.subscribe(open => {
+        if (open === false) {
+          this.base_modal_service.remove(this.base_modal_service.componentRef);
+          $sub.unsubscribe();
+        }
+      });
+      return instance;
     });
-    return instance;
   }
 
   success(config: ModalOption): void {

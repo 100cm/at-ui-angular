@@ -120,6 +120,12 @@ export class AtDemoComponentsComponent implements OnInit {
       name_en: 'slider'
     },
 
+    {
+      name: '分割线',
+      url: '/components/divider',
+      name_en: 'divider'
+    },
+
     {name: 'tab', url: '/components/tab', name_en: 'tab'},
 
     {name: '拖拽释放', url: '/components/dnd', name_en: 'DnD'}

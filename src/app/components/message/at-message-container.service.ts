@@ -11,11 +11,16 @@ export class AtMessageContainerService extends ComponentCreator<MessageContainer
 
   constructor(public component_base: ComponentCreatorBase) {
     super(component_base, MessageContainerComponent);
-    this.create();
   }
 
   addMessage(config: NotificationConfig): void {
-    this.componentRef.instance.addMessage(config);
+    if (this.componentRef) {
+      this.componentRef.instance.addMessage(config);
+    } else {
+      this.create().then(_ => {
+        this.componentRef.instance.addMessage(config);
+      });
+    }
   }
 
   removeMessage(messageId: string): void {

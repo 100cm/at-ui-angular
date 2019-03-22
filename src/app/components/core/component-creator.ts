@@ -22,8 +22,8 @@ export class ComponentCreator<T> {
   componentRef: ComponentRef<T>;
   messages: Array<MessageContainer<T>>;
 
-  create(): void {
-    Promise.resolve().then(_ => {
+  create(): Promise<void> {
+    return Promise.resolve().then(_ => {
       this.componentRef = this.base.componentFactoryResolver
         .resolveComponentFactory(this.component)
         .create(this.base.injector);

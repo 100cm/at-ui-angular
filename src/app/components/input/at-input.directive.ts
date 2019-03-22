@@ -1,15 +1,15 @@
 import { forwardRef, Directive, ElementRef, HostBinding, Input } from '@angular/core';
-import { atInputSize, InputComponent }                           from './input.component';
+import { atInputSize, InputComponent } from './input.component';
 
 @Directive({
-             selector: '[at-input]'
-           })
+  selector: '[at-input]'
+})
 export class AtInputDirective {
 
   constructor(public el: ElementRef) {
   }
 
-  onChange: any  = Function.prototype;
+  onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
   @HostBinding(`class.at-input--lg`)
@@ -27,6 +27,11 @@ export class AtInputDirective {
     return true;
   }
 
+  @HostBinding('class.at-input--disabled')
+  get disableCls(): boolean {
+    return this.atDisabled;
+  }
+
   private _atStatus = 'original';
   private _disabled = false;
 
@@ -40,11 +45,12 @@ export class AtInputDirective {
     this._atStatus = value;
   }
 
-  get disabled(): boolean {
+  get atDisabled(): boolean {
     return this._disabled;
   }
 
-  set disabled(value: boolean) {
+  @Input()
+  set atDisabled(value: boolean) {
     this._disabled = value;
   }
 
