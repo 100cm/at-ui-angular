@@ -48,6 +48,6 @@ export class AtDemoTreeSelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  code = require('./demo-tree-select/demo-tree-select.component.ts');
+  code = require('!!raw-loader!./demo-tree-select/demo-tree-select.component.ts');
 
 }

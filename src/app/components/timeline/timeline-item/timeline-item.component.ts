@@ -19,7 +19,7 @@ import { TimelineComponent } from '../timeline.component';
 })
 export class TimelineItemComponent implements OnInit {
 
-  @ContentChild(TimelineDotDirective) timeline_dot;
+  @ContentChild(TimelineDotDirective, /* TODO: add static flag */ {static: true}) timeline_dot;
 
   constructor(private timeline_component: TimelineComponent) {
     this.timeline_component.pushTimeline(this);

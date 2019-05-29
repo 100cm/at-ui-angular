@@ -123,7 +123,7 @@ export class AtSelectTopControlComponent implements OnInit {
   isComposing = false;
   atOpen = false;
 
-  @ViewChild('inputElement') inputElement: ElementRef;
+  @ViewChild('inputElement', { static: false }) inputElement: ElementRef;
 
   @Input() multiple;
   @Input() atShowSearch = false;

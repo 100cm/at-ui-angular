@@ -124,9 +124,9 @@ export class TimeComponent implements OnInit {
     }
   }
 
-  @ViewChild('hour_panel') hour_panel;
-  @ViewChild('minute_panel') minute_panel;
-  @ViewChild('second_panel') second_panel;
+  @ViewChild('hour_panel', { static: true }) hour_panel;
+  @ViewChild('minute_panel', { static: true }) minute_panel;
+  @ViewChild('second_panel', { static: true }) second_panel;
 
   inited = false;
 

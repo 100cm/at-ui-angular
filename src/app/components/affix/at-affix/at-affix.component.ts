@@ -14,7 +14,7 @@ export class AtAffixComponent implements OnInit {
   constructor(private monitor: AtGlobalMonitorService) {
   }
 
-  @ViewChild('child') childElement: ElementRef;
+  @ViewChild('child', { static: true }) childElement: ElementRef;
 
   private _atTarget: HTMLElement | Window = window;
 

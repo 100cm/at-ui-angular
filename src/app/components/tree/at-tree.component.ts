@@ -10,12 +10,12 @@ import {
   Output,
   SimpleChange,
   TemplateRef
-}                                                   from '@angular/core';
-import { NG_VALUE_ACCESSOR }                          from '@angular/forms';
-import { Observable, ReplaySubject, Subscription }    from 'rxjs';
-import { isNotNil, InputBoolean }                     from '../utils/class-helper';
-import { AtTreeNode }                                 from './at-tree-node';
-import { AtTreeService }                              from './at-tree.service';
+} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
+import { isNotNil, InputBoolean } from '../utils/class-helper';
+import { AtTreeNode } from './at-tree-node';
+import { AtTreeService } from './at-tree.service';
 import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
 
 @Component({
@@ -176,7 +176,7 @@ export class AtTreeComponent implements OnInit, OnChanges, OnDestroy {
   @Output() readonly atOnDrop: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
   @Output() readonly atOnDragEnd: EventEmitter<AtFormatEmitEvent> = new EventEmitter();
   // tslint:disable-next-line:no-any
-  @ContentChild('atTreeTemplate') atTreeTemplate: TemplateRef<any>;
+  @ContentChild('atTreeTemplate', /* TODO: add static flag */ {static: false}) atTreeTemplate: TemplateRef<any>;
   _searchValue = null;
   atDefaultSubject = new ReplaySubject<{ type: string, keys: string[] }>(6);
   atDefaultSubscription: Subscription;

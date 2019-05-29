@@ -10,7 +10,7 @@ export class AtDemoAffixComponent implements OnInit {
   constructor() {
   }
 
-  basic = require('./demo-affix-basic/demo-affix-basic.component.html');
+  basic = require('!!raw-loader!./demo-affix-basic/demo-affix-basic.component.html');
 
   ngOnInit() {
   }

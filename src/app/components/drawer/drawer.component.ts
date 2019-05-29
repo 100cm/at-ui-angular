@@ -71,7 +71,7 @@ export class DrawerComponent implements OnInit {
     return typeof this.atWidth === 'number' ? `${this.atWidth}px` : this.atWidth;
   }
 
-  @ViewChild('drawerTemplate') drawerTemplate: TemplateRef<{}>;
+  @ViewChild('drawerTemplate', { static: true }) drawerTemplate: TemplateRef<{}>;
   @Input() @InputBoolean() atClosable     = true;
   @Input() @InputBoolean() atMaskClosable = true;
   @Input() @InputBoolean() atMask         = true;

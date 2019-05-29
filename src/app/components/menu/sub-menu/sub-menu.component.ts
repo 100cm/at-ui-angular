@@ -91,7 +91,7 @@ export class SubMenuComponent implements OnInit {
   triggerWidth = null;
   isInSubMenu = false;
   level = 1;
-  @ViewChild(CdkConnectedOverlay) cdkOverlay: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay, { static: true }) cdkOverlay: CdkConnectedOverlay;
   @ContentChildren(SubMenuComponent, {descendants: true}) subMenus: QueryList<SubMenuComponent> | QueryList<AtDropSubmenuComponent>;
 
   @Output() readonly openChange = new EventEmitter<boolean>();
@@ -196,7 +196,7 @@ export class SubMenuComponent implements OnInit {
     return this._active;
   }
 
-  @ViewChild('popover') popover: ViewContainerRef;
+  @ViewChild('popover', { static: false }) popover: ViewContainerRef;
 
   get onHoverClass() {
     const classMap = {};

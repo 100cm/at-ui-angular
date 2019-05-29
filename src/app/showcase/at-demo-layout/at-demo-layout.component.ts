@@ -97,8 +97,8 @@ export class AtDemoLayoutComponent implements OnInit {
     '        </div>\n' +
     '      </div>';
 
-  dashboard_one_code = require('../admin/admin.component.html');
-  dashboard_two_code = require('../admin/admin.component_two.html');
+  dashboard_one_code = require('!!raw-loader!../admin/admin.component.html');
+  dashboard_two_code = require('!!raw-loader!../admin/admin.component_two.html');
 
   x = 4;
 // noinspection TsLint

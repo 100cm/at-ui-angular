@@ -31,7 +31,7 @@ export class TagComponent implements OnInit, ClassHelper {
 
   private _closeable: boolean = false;
 
-  @ViewChild('tag') tagSpan: any;
+  @ViewChild('tag', { static: false }) tagSpan: any;
 
   private _color = 'default';
 

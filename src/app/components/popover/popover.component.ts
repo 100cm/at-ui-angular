@@ -13,77 +13,77 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation
-}                                                                                    from '@angular/core';
-import { fromEvent, Observable, Subject, Subscription }                                from 'rxjs';
-import { debounceTime, mapTo, merge }                                                  from 'rxjs/operators';
-import { DropDownAnimation }                                                           from '../animations/drop-down-animation';
-import { fadeAnimation }                                                               from '../animations/fade-animation';
+} from '@angular/core';
+import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, mapTo, merge } from 'rxjs/operators';
+import { DropDownAnimation } from '../animations/drop-down-animation';
+import { fadeAnimation } from '../animations/fade-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                    from '../core/overlay/overlay-position-map';
-import { DropdownMenuItemComponent }                                                   from '../menu/dropdown-menu-item/dropdown-menu-item.component';
-import { toCamelCase, underscoreToCamelCase }                                          from '../utils/class-helper';
-import { PopTriggerDirective }                                                         from './pop-trigger.directive';
+} from '../core/overlay/overlay-position-map';
+import { DropdownMenuItemComponent } from '../menu/dropdown-menu-item/dropdown-menu-item.component';
+import { toCamelCase, underscoreToCamelCase } from '../utils/class-helper';
+import { PopTriggerDirective } from './pop-trigger.directive';
 
 @Component({
-             selector: 'at-popover',
-             animations: [fadeAnimation],
-             template: `
-               <div class="at-popover">
-                 <ng-content select="[pop-trigger]"></ng-content>
-               </div>
-               <ng-template
-                 #overlay="cdkConnectedOverlay"
-                 cdkConnectedOverlay
-                 [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
-                 [cdkConnectedOverlayPositions]="_positions"
-                 [cdkConnectedOverlayOrigin]="_atOrigin"
-                 (backdropClick)="_hide()"
-                 (detach)="_hide()"
-                 [cdkConnectedOverlayMinWidth]="_triggerWidth"
-                 (positionChange)="_onPositionChange($event)"
-                 [cdkConnectedOverlayOpen]="atVisible"
-               >
-                 <div
-                   [@fadeAnimation]="''+($visible | async)"
-                   (mouseenter)="_onMouseEnterEvent($event)"
-                   (mouseleave)="_onMouseLeaveEvent($event)"
-                   [style.minWidth.px]="_triggerWidth"
-                   (click)="_clickDropDown($event)">
-                   <div class="at-popover__popper " [ngClass]="placeClass">
-                     <div class="at-popover__arrow"></div>
-                     <div class="at-popover__content">
-                       <ng-content></ng-content>
-                     </div>
-                   </div>
-                   <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
-                 </div>
-               </ng-template>
+  selector: 'at-popover',
+  animations: [fadeAnimation],
+  template: `
+    <div class="at-popover">
+      <ng-content select="[pop-trigger]"></ng-content>
+    </div>
+    <ng-template
+      #overlay="cdkConnectedOverlay"
+      cdkConnectedOverlay
+      [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+      [cdkConnectedOverlayPositions]="_positions"
+      [cdkConnectedOverlayOrigin]="_atOrigin"
+      (backdropClick)="_hide()"
+      (detach)="_hide()"
+      [cdkConnectedOverlayMinWidth]="_triggerWidth"
+      (positionChange)="_onPositionChange($event)"
+      [cdkConnectedOverlayOpen]="atVisible"
+    >
+      <div
+        [@fadeAnimation]="''+($visible | async)"
+        (mouseenter)="_onMouseEnterEvent($event)"
+        (mouseleave)="_onMouseLeaveEvent($event)"
+        [style.minWidth.px]="_triggerWidth"
+        (click)="_clickDropDown($event)">
+        <div class="at-popover__popper " [ngClass]="placeClass">
+          <div class="at-popover__arrow"></div>
+          <div class="at-popover__content">
+            <ng-content></ng-content>
+          </div>
+        </div>
+        <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
+      </div>
+    </ng-template>
 
 
-             `
-           })
+  `
+})
 export class PopoverComponent implements OnInit {
 
-  private _clickHide                                     = false;
-          _visible                                       = false;
-          hasFilterButton                                = false;
-          _triggerWidth                                  = 0;
-          _placement: any                                = 'bottom';
-          _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
-          _positions: ConnectionPositionPair[]           = [...DEFAULT_DROPDOWN_POSITIONS];
-          _subscription: Subscription;
-          _prefix                                        = 'at-popover--';
+  private _clickHide = false;
+  _visible = false;
+  hasFilterButton = false;
+  _triggerWidth = 0;
+  _placement: any = 'bottom';
+  _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
+  _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
+  _subscription: Subscription;
+  _prefix = 'at-popover--';
 
-  @ContentChild(DropdownMenuItemComponent) _atMenu;
-  @ContentChild(PopTriggerDirective) _atOrigin;
+  @ContentChild(DropdownMenuItemComponent, /* TODO: add static flag */ {static: false}) _atMenu;
+  @ContentChild(PopTriggerDirective, /* TODO: add static flag */ {static: false}) _atOrigin;
 
-  @Input() trigger: 'click' | 'hover'              = 'hover';
-  @Output() _visibleChange                         = new Subject<boolean>();
-           $visible                                = this._visibleChange.asObservable();
+  @Input() trigger: 'click' | 'hover' = 'hover';
+  @Output() _visibleChange = new Subject<boolean>();
+  $visible = this._visibleChange.asObservable();
   @Output() atVisibleChange: EventEmitter<boolean> = new EventEmitter();
-  @ViewChild(CdkConnectedOverlay) _cdkOverlay: CdkConnectedOverlay;
+  @ViewChild(CdkConnectedOverlay, {static: true}) _cdkOverlay: CdkConnectedOverlay;
 
   toBoolean(value: boolean | string): boolean {
     return value === '' || (value && value !== 'false');
@@ -108,14 +108,14 @@ export class PopoverComponent implements OnInit {
   }
 
   get placeClass() {
-    const classMap                                  = {};
+    const classMap = {};
     classMap[`${this._prefix}${this._placement}`] = true;
     return classMap;
   }
 
   @Input()
   set placement(value: any) {
-    this._placement        = underscoreToCamelCase(value);
+    this._placement = underscoreToCamelCase(value);
     this._dropDownPosition = (this.atPlacement.indexOf('top') !== -1) ? 'top' : 'bottom';
     this._positions.unshift(POSITION_MAP[underscoreToCamelCase(value)] as ConnectionPositionPair);
   }
@@ -173,8 +173,8 @@ export class PopoverComponent implements OnInit {
     /** should remove after https://github.com/angular/material2/pull/8765 merged **/
     if (this._cdkOverlay && this._cdkOverlay.overlayRef) {
       this._cdkOverlay.overlayRef.updateSize({
-                                               minWidth: this._triggerWidth
-                                             });
+        minWidth: this._triggerWidth
+      });
     }
   }
 
@@ -187,7 +187,7 @@ export class PopoverComponent implements OnInit {
       this.atVisibleChange.emit(this.atVisible);
     }
     this._changeDetector.markForCheck();
-  }
+  };
 
   _startSubscribe(observable$: Observable<boolean>): void {
     this._subscription = observable$.pipe(debounceTime(50))
@@ -210,7 +210,7 @@ export class PopoverComponent implements OnInit {
       if (this.trigger === 'hover') {
         const mouseEnterOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseenter').pipe(mapTo(true));
         const mouseLeaveOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseleave').pipe(mapTo(false));
-        mouse$                  = mouseEnterOrigin$.pipe(merge(mouseLeaveOrigin$));
+        mouse$ = mouseEnterOrigin$.pipe(merge(mouseLeaveOrigin$));
       }
       if (this.trigger === 'click') {
         mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));

@@ -138,8 +138,8 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() atComponent: TemplateRef<void>;
   transformOrigin = '0px 0px 0px';
 
-  @ViewChild(CdkConnectedOverlay) cdkOverlay: CdkConnectedOverlay;
-  @ViewChild('modalContainer') modal: ElementRef;
+  @ViewChild(CdkConnectedOverlay, { static: true }) cdkOverlay: CdkConnectedOverlay;
+  @ViewChild('modalContainer', { static: false }) modal: ElementRef;
 
   atOnClose: OnClickCallback<ModalComponent> = () => {
   };
@@ -214,7 +214,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  @ViewChild(CdkOverlayOrigin) overlay: CdkOverlayOrigin;
+  @ViewChild(CdkOverlayOrigin, { static: true }) overlay: CdkOverlayOrigin;
 
   @Output() readonly showChange = new EventEmitter<boolean>();
   private _show = false;

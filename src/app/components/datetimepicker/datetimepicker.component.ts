@@ -161,7 +161,7 @@ export class DatetimepickerComponent implements OnInit {
   _visible = false;
   dropdownPosition = 'bottom';
 
-  @ViewChild(CdkConnectedOverlay) overlay;
+  @ViewChild(CdkConnectedOverlay, { static: true }) overlay;
 
   set atVisible(value: boolean) {
     this._visible = value;
@@ -284,7 +284,7 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  @ViewChild('timeinput') input: InputComponent;
+  @ViewChild('timeinput', { static: true }) input: InputComponent;
 
   preYear() {
     this.atYear = this.atYear - 1;

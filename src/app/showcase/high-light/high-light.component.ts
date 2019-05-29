@@ -11,7 +11,7 @@ import * as HighLight                                    from 'highlight.js';
            })
 export class HighLightComponent implements OnInit {
   _code;
-  @ViewChild('code') codeElement: ElementRef;
+  @ViewChild('code', { static: true }) codeElement: ElementRef;
   @Input() atLanguage: string = 'html';
 
   get atCode() {

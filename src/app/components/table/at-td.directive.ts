@@ -1,6 +1,4 @@
 import { Component, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
-import { HOST }                                                                                     from '@angular/core/src/render3/interfaces/view';
-
 @Component({
   selector: '[at-td]',
   template: `

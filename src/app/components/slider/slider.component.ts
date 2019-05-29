@@ -119,11 +119,11 @@ export class SliderComponent implements OnInit {
     this.sliderValue = value || 0;
   }
 
-  @ViewChild('sliderDot') dot: ElementRef;
+  @ViewChild('sliderDot', { static: true }) dot: ElementRef;
 
-  @ViewChild('sliderDotEnd') dotEnd: ElementRef;
+  @ViewChild('sliderDotEnd', { static: false }) dotEnd: ElementRef;
 
-  @ViewChild('slider') sliderEle: ElementRef;
+  @ViewChild('slider', { static: true }) sliderEle: ElementRef;
 
   @Input() range = 100;
 

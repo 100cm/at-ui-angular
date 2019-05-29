@@ -10,9 +10,9 @@ export class AtDemoBreadcrumbComponent implements OnInit {
   constructor() {
   }
 
-  basic = require('./demo-basic-breadcrumb/demo-basic-breadcrumb.component.html');
+  basic = require('!!raw-loader!./demo-basic-breadcrumb/demo-basic-breadcrumb.component.html');
 
-  sep = require('./demo-separate-breadcrumb/demo-separate-breadcrumb.component.html');
+  sep = require('!!raw-loader!./demo-separate-breadcrumb/demo-separate-breadcrumb.component.html');
 
   ngOnInit() {
   }

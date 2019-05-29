@@ -20,7 +20,7 @@ export class AtOptionComponent {
 
   private _disabled = false;
   private _customContent = false;
-  @ViewChild(TemplateRef) template: TemplateRef<void>;
+  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<void>;
   @Input() atLabel: string;
   // tslint:disable-next-line:no-any
   @Input() atValue: any;

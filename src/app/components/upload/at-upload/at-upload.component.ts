@@ -56,7 +56,7 @@ export class AtUploadComponent implements OnInit {
   constructor() {
   }
 
-  @ViewChild('file_input') fileEle: ElementRef;
+  @ViewChild('file_input', { static: true }) fileEle: ElementRef;
 
   @Input() multiple = true;
 

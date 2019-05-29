@@ -161,7 +161,7 @@ import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
 })
 
 export class AtTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('dragElement') dragElement: ElementRef;
+  @ViewChild('dragElement', { static: true }) dragElement: ElementRef;
 
   @Input() @InputBoolean() atShowLine: boolean;
   @Input() @InputBoolean() atShowExpand: boolean;

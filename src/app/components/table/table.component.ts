@@ -96,7 +96,7 @@ export class TableComponent implements OnInit {
     this._ths = value.toArray();
   }
 
-  @ViewChild(AtTheadDirective, {read: ElementRef}) fixed_head: ElementRef;
+  @ViewChild(AtTheadDirective, { read: ElementRef, static: false }) fixed_head: ElementRef;
 
   marginTop = 0;
 

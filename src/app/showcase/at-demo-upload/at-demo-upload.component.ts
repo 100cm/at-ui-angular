@@ -10,7 +10,7 @@ export class AtDemoUploadComponent implements OnInit {
   constructor() {
   }
 
-  basic = require('./at-demo-upload-basic/at-demo-upload-basic.component.html');
+  basic = require('!!raw-loader!./at-demo-upload-basic/at-demo-upload-basic.component.html');
 
   ngOnInit() {
   }

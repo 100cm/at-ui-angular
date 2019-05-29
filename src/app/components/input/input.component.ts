@@ -202,10 +202,10 @@ export class InputComponent implements OnInit {
   showAppend: boolean = true;
   showPrepend: boolean = true;
 
-  @ViewChild('prepend') prepend: any;
-  @ViewChild('append') append: any;
+  @ViewChild('prepend', { static: true }) prepend: any;
+  @ViewChild('append', { static: true }) append: any;
 
-  @ViewChild('input') inputField: ElementRef;
+  @ViewChild('input', { static: false }) inputField: ElementRef;
 
   ngAfterContentInit() {
     this.showAppend = (this.trim(this.append.nativeElement.innerHTML).length > 0);

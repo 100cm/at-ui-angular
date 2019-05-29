@@ -36,7 +36,7 @@ export class DemoBasicNotificationComponent implements OnInit {
 
   note: NotificationConfig;
 
-  @ViewChild('custom') custom: TemplateRef<void>;
+  @ViewChild('custom', { static: true }) custom: TemplateRef<void>;
 
   close(): void {
     this.component_creator.remove(this.note.index);

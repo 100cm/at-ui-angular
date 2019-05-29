@@ -59,7 +59,7 @@ export class ButtonComponent implements OnInit {
     this._setClassMap();
   }
 
-  @ViewChild('text') text: ElementRef;
+  @ViewChild('text', { static: true }) text: ElementRef;
 
   _type: AtButtonType = 'default';
   _el: HTMLElement;

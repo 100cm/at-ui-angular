@@ -14,9 +14,9 @@ export class AtDemoPopoverComponent implements OnInit {
   constructor() {
   }
 
-  basic = require('./demo-basic-popover/demo-basic-popover.component.html');
-  position = require('./demo-position-popover/demo-position-popover.component.html');
-  content = require('./demo-content-popover/demo-content-popover.component.html');
+  basic = require('!!raw-loader!./demo-basic-popover/demo-basic-popover.component.html');
+  position = require('!!raw-loader!./demo-position-popover/demo-position-popover.component.html');
+  content = require('!!raw-loader!./demo-content-popover/demo-content-popover.component.html');
 
   ngOnInit() {
   }

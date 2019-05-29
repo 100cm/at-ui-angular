@@ -16,7 +16,7 @@ export class AtDemoInputComponent implements OnInit {
 
   prepend = require('!!raw-loader!./demo-pend-input/demo-pend-input.component.html');
 
-  icon_input = require('./demo-icon-input/demo-icon-input.component.html');
+  icon_input = require('!!raw-loader!./demo-icon-input/demo-icon-input.component.html');
 
   constructor() {
 

@@ -1,5 +1,6 @@
 {
   "configVersion": 1,
+  "timestamp": 1559120354676,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -9,10 +10,11 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.cb29046342990e5c3e97.js",
-        "/polyfills.a20ad73b65b278647b5e.js",
-        "/runtime.ec2944dd8b20ec099bf3.js",
-        "/styles.a91ef571754b0c1d48df.css"
+        "/main.f21a866a560e2ae1af3f.js",
+        "/polyfills-es5.69d2f902b7fa654ec4d5.js",
+        "/polyfills.68cc6b3b24a3eccacb95.js",
+        "/runtime.741402d1d47331ce975c.js",
+        "/styles.84346a631f812b290712.css"
       ],
       "patterns": []
     },
@@ -42,6 +44,7 @@
         "/assets/sass/components/checkbox.scss",
         "/assets/sass/components/collapse.scss",
         "/assets/sass/components/datepicker.scss",
+        "/assets/sass/components/divider.scss",
         "/assets/sass/components/dnd.scss",
         "/assets/sass/components/drawer.scss",
         "/assets/sass/components/dropdown.scss",
@@ -133,17 +136,18 @@
     "/assets/sass/components/carousel.scss": "eecc09eb8587e8d12ae1a1124f4f65a541b71762",
     "/assets/sass/components/checkbox.scss": "7311fe8f96e2b8c296c38428601411c127a1b126",
     "/assets/sass/components/collapse.scss": "678cb9bd96d8b9488572930f76a8769020c1b2af",
-    "/assets/sass/components/datepicker.scss": "f7b111e0f939039b3048eb642fba37dd80a6ed72",
+    "/assets/sass/components/datepicker.scss": "fe9ac5ae4a1aba37b8f5b879e4c0c844c8a5f9b8",
+    "/assets/sass/components/divider.scss": "fe152c4c24ee67ca8903f2bc860296821e912cf2",
     "/assets/sass/components/dnd.scss": "f765d2a58865c7c72d35c4740b9d2699329a8f72",
     "/assets/sass/components/drawer.scss": "21159029dbf4c11f5caea27ff8e13314ae06fe86",
     "/assets/sass/components/dropdown.scss": "d54e56eb2f8138a743bf772294b1ac2ffb407e07",
-    "/assets/sass/components/form.scss": "b389ea06dcd30dc22732baece01d6b62c173daa2",
-    "/assets/sass/components/index.scss": "69b4ab5f95456e6e6296194fd8b269ade0403fa4",
+    "/assets/sass/components/form.scss": "a801bfdb476f34e50523e0f3f496949b9bfeecd9",
+    "/assets/sass/components/index.scss": "bada36a987b2ed24a9bdc2ece396dd088683bb37",
     "/assets/sass/components/input-number.scss": "2b08c7b8d716b97552fd8a4119feb34a9e414c0e",
     "/assets/sass/components/input.scss": "db4a97f768c30931e6311f39c4f8991859dd99ce",
     "/assets/sass/components/layout.scss": "0e94857fc39982b5d796567e4bf5510eceffc81f",
     "/assets/sass/components/loading-bar.scss": "b2fa38d69ec92251070dc6de7e44d6034514e3c5",
-    "/assets/sass/components/menu.scss": "11bfe377f560825142967680334d4defe83bfa1c",
+    "/assets/sass/components/menu.scss": "a69fdd522af82a9c307c3a970f8ffc3951bea332",
     "/assets/sass/components/message.scss": "10023dd308cb6992381c9347e349d45522e0d783",
     "/assets/sass/components/modal.scss": "284fbf7cebd2e017c58d78f5c70de600857b7c58",
     "/assets/sass/components/notification.scss": "fae3c51256f0eea1f7e3eed073555a54094fea88",
@@ -156,7 +160,7 @@
     "/assets/sass/components/steps.scss": "898fb0d95a26c5bbeb8421e17a387b2fdcb46ad6",
     "/assets/sass/components/switch.scss": "4037760ec06dcd5ee10538e971d90148d8d77d6b",
     "/assets/sass/components/tab.scss": "a9080b15c0bd07f0ff26a57c531ea5274671ce47",
-    "/assets/sass/components/table.scss": "5db685bddaec01a25c8419586e9abffd65ea7626",
+    "/assets/sass/components/table.scss": "0d0ff7cb097c5151a7e0c73474579661b4c2bbaf",
     "/assets/sass/components/tag.scss": "78e4e8544201fdab1f1ad1e9e12d368c2c6104c3",
     "/assets/sass/components/textarea.scss": "6720c7317b932b2be0b1a66dcff9f77173ac6dac",
     "/assets/sass/components/timeline.scss": "5ad8941a1f8225ce9e0e5e040d7489d8bb5ce03a",
@@ -187,7 +191,7 @@
     "/assets/sass/mixins/lib/size.scss": "f23b77090d7703fbd32efdc8125b5e389363f004",
     "/assets/sass/mixins/lib/tint.scss": "37742463f456f002cbe36f2318fbe079160ee324",
     "/assets/sass/stylesheets/index.css": "7aedb9bd3291199c6da340b6b7cfd3303bca2cf5",
-    "/assets/sass/variables/default.scss": "9eb8c4b6b40e6e2c92dc5384d47ae791dd8e0aab",
+    "/assets/sass/variables/default.scss": "eeed98747e69cdcf8ed5aa3d3f50d7c8685224e2",
     "/assets/sass/variables/index.scss": "310898cc74b16c17fe32144310cd6bbd8dfac736",
     "/assets/sass/variables/timing-function.scss": "c157f7ef4e4dfc97c77bf8d2d72954ee122d205e",
     "/assets/stylesheets/fonts/aticon.eot": "9d26f96808b19b381f79fa747b1bc76d4e8aaf3a",
@@ -198,13 +202,14 @@
     "/assets/stylesheets/fonts/feather.svg": "a9aa009779f346cc6cd6ce17ba10060ce7f9f34d",
     "/assets/stylesheets/fonts/feather.ttf": "28ab955241342557409385f350f6664770d764c3",
     "/assets/stylesheets/fonts/feather.woff": "22574b7f62823253ef1189c6f6846011596d0443",
-    "/assets/stylesheets/index.css": "054813bddb016956d9da5cca7bdee60356713727",
+    "/assets/stylesheets/index.css": "7a3305eff6460d9f6d8cff03b998bf2d005bae59",
     "/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/index.html": "bd5ccbee0a383280d105b344f59b862625648299",
-    "/main.cb29046342990e5c3e97.js": "70cb622deeed464fba320a705e6cf2ca7ab30212",
-    "/polyfills.a20ad73b65b278647b5e.js": "e150d158bbc64032a5ee0ca2044d9ec4bb7fe6d7",
-    "/runtime.ec2944dd8b20ec099bf3.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
-    "/styles.a91ef571754b0c1d48df.css": "f650e6869345018523b86e48ceb7bf197245e844"
+    "/index.html": "306383d09a3092636f95f938b02117aa15d3a3d1",
+    "/main.f21a866a560e2ae1af3f.js": "45127d568e449babd4c82c833d525da7024e2df8",
+    "/polyfills-es5.69d2f902b7fa654ec4d5.js": "e3aac0d6ebd3f9f1286da2a0bbb8631c4642986c",
+    "/polyfills.68cc6b3b24a3eccacb95.js": "bb370ea825be0128454d350760e81ce9cd72b398",
+    "/runtime.741402d1d47331ce975c.js": "b62956c2192bfe5516d6374e753773901ed50ec5",
+    "/styles.84346a631f812b290712.css": "0b86944a1dc12736e78547b78875b1d8e5bbac7f"
   },
   "navigationUrls": [
     {

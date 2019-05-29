@@ -9,9 +9,9 @@ export class AtDemoTimelineComponent implements OnInit {
 
   constructor() { }
 
-  pendingCode = require('./at-demo-pending-timeline/at-demo-pending-timeline.component.html');
-  basicCode = require('./at-demo-timeline-basic/at-demo-timeline-basic.component.html');
-  dotCode = require('./at-demo-timeline-dot/at-demo-timeline-dot.component.html');
+  pendingCode = require('!!raw-loader!./at-demo-pending-timeline/at-demo-pending-timeline.component.html');
+  basicCode = require('!!raw-loader!./at-demo-timeline-basic/at-demo-timeline-basic.component.html');
+  dotCode = require('!!raw-loader!./at-demo-timeline-dot/at-demo-timeline-dot.component.html');
 
   ngOnInit() {
   }

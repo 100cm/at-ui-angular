@@ -112,8 +112,8 @@ export class AtTabsetComponent implements AfterContentChecked, OnInit, AfterView
   isViewInit = false;
   listOfatTabComponent: AtTabComponent[] = [];
   @Input() atTabBarExtraContent: TemplateRef<void>;
-  @ViewChild(AtTabsNavComponent) atTabsNavComponent: AtTabsNavComponent;
-  @ViewChild('tabContent') tabContent: ElementRef;
+  @ViewChild(AtTabsNavComponent, { static: true }) atTabsNavComponent: AtTabsNavComponent;
+  @ViewChild('tabContent', { static: true }) tabContent: ElementRef;
   @Input() atShowPagination = true;
   @Input() atHideAll = false;
   @Input() atTabBarGutter: number;

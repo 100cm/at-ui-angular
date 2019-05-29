@@ -96,8 +96,8 @@ export class AtCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   timeout;
 
   @ContentChildren(AtCarouselDirective) slideContents: QueryList<AtCarouselDirective>;
-  @ViewChild('slickList') slickList: ElementRef;
-  @ViewChild('slickTrack') slickTrack: ElementRef;
+  @ViewChild('slickList', { static: true }) slickList: ElementRef;
+  @ViewChild('slickTrack', { static: true }) slickTrack: ElementRef;
   @Output() readonly atAfterChange: EventEmitter<number> = new EventEmitter();
   @Output() readonly atBeforeChange: EventEmitter<{ from: number; to: number }> = new EventEmitter();
   @Input() atEnableSwipe = true;

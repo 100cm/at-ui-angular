@@ -1,4 +1,4 @@
-import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair }         from '@angular/cdk/overlay';
+import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,76 +13,76 @@ import {
   Renderer2,
   ViewChild,
   ViewEncapsulation
-}                                                                                            from '@angular/core';
+} from '@angular/core';
 import { combineLatest, fromEvent, merge, BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, mapTo, takeUntil }                           from 'rxjs/operators';
-import { DropDownAnimation }                                                                   from '../animations/drop-down-animation';
+import { debounceTime, distinctUntilChanged, map, mapTo, takeUntil } from 'rxjs/operators';
+import { DropDownAnimation } from '../animations/drop-down-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                            from '../core/overlay/overlay-position-map';
+} from '../core/overlay/overlay-position-map';
 import {
   DropdownMenuItemComponent
-}                                                                                            from '../menu/dropdown-menu-item/dropdown-menu-item.component';
-import { DropdownDirective }                                                                   from './dropdown.directive';
+} from '../menu/dropdown-menu-item/dropdown-menu-item.component';
+import { DropdownDirective } from './dropdown.directive';
 
 @Component({
-             selector: 'at-dropdown',
-             changeDetection: ChangeDetectionStrategy.OnPush,
-             template: `
-               <div class="trigger-{{atVisible}}">
-                 <ng-content select="[at-dropdown]"></ng-content>
-               </div>
-               <ng-template
-                 cdkConnectedOverlay
-                 [cdkConnectedOverlayBackdropClass]="'select-back-drop'"
-                 [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
-                 [cdkConnectedOverlayPositions]="_positions"
-                 [cdkConnectedOverlayOrigin]="_atOrigin"
-                 [cdkConnectedOverlayOffsetX]="mousePosition.x"
-                 [cdkConnectedOverlayOffsetY]="mousePosition.y"
-                 (backdropClick)="_hide()"
-                 [cdkConnectedOverlayMinWidth]="_triggerWidth"
-                 (positionChange)="_onPositionChange($event)"
-                 [cdkConnectedOverlayOpen]="atVisible"
-               >
-                 <div
-                   class="{{'at-dropdown at-dropdown-placement-'+atPlacement}} overlay-menu overlay-menu-vertical"
-                   [@dropDownAnimation]="_dropDownPosition"
-                   (mouseenter)="_onMouseEnterEvent($event)"
-                   (mouseleave)="_onMouseLeaveEvent($event)"
-                   [style.minWidth.px]="_triggerWidth"
-                   (click)="_clickDropDown($event)">
-                   <ng-content></ng-content>
-                   <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
-                 </div>
-               </ng-template>
-             `,
-             animations: [DropDownAnimation]
-           })
+  selector: 'at-dropdown',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="trigger-{{atVisible}}">
+      <ng-content select="[at-dropdown]"></ng-content>
+    </div>
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayBackdropClass]="'select-back-drop'"
+      [cdkConnectedOverlayHasBackdrop]="_hasBackdrop"
+      [cdkConnectedOverlayPositions]="_positions"
+      [cdkConnectedOverlayOrigin]="_atOrigin"
+      [cdkConnectedOverlayOffsetX]="mousePosition.x"
+      [cdkConnectedOverlayOffsetY]="mousePosition.y"
+      (backdropClick)="_hide()"
+      [cdkConnectedOverlayMinWidth]="_triggerWidth"
+      (positionChange)="_onPositionChange($event)"
+      [cdkConnectedOverlayOpen]="atVisible"
+    >
+      <div
+        class="{{'at-dropdown at-dropdown-placement-'+atPlacement}} overlay-menu overlay-menu-vertical"
+        [@dropDownAnimation]="_dropDownPosition"
+        (mouseenter)="_onMouseEnterEvent($event)"
+        (mouseleave)="_onMouseLeaveEvent($event)"
+        [style.minWidth.px]="_triggerWidth"
+        (click)="_clickDropDown($event)">
+        <ng-content></ng-content>
+        <!--<ng-content select="[at-dropdown-custom]"></ng-content>-->
+      </div>
+    </ng-template>
+  `,
+  animations: [DropDownAnimation]
+})
 
 export class DropdownComponent implements OnInit {
 
   @Input() custom_content = false;
 
   private unsubscribe$ = new Subject<void>();
-          $subOpen     = new BehaviorSubject<boolean>(false);
+  $subOpen = new BehaviorSubject<boolean>(false);
 
-  private _clickHide                                     = false;
-  private _visible                                       = false;
-          hasFilterButton                                = false;
-          _triggerWidth                                  = 0;
-          _placement: any                                = 'bottom';
-          _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
-          _positions: ConnectionPositionPair[]           = [...DEFAULT_DROPDOWN_POSITIONS];
-          mousePosition: any                             = {};
-          _subscription: Subscription;
-  @ContentChild(DropdownDirective) _atOrigin;
-  @ContentChild(DropdownMenuItemComponent) _atMenu;
-  @Input() trigger: 'click' | 'hover' | 'contextmenu'    = 'hover';
-  @Output() _visibleChange                               = new Subject<boolean>();
-  @Output() atVisibleChange: EventEmitter<boolean>       = new EventEmitter();
-  @ViewChild(CdkConnectedOverlay) _cdkOverlay: CdkConnectedOverlay;
+  private _clickHide = false;
+  private _visible = false;
+  hasFilterButton = false;
+  _triggerWidth = 0;
+  _placement: any = 'bottom';
+  _dropDownPosition: 'top' | 'center' | 'bottom' = 'bottom';
+  _positions: ConnectionPositionPair[] = [...DEFAULT_DROPDOWN_POSITIONS];
+  mousePosition: any = {};
+  _subscription: Subscription;
+  @ContentChild(DropdownDirective, /* TODO: add static flag */ {static: false}) _atOrigin;
+  @ContentChild(DropdownMenuItemComponent, /* TODO: add static flag */ {static: false}) _atMenu;
+  @Input() trigger: 'click' | 'hover' | 'contextmenu' = 'hover';
+  @Output() readonly _visibleChange = new Subject<boolean>();
+  @Output() readonly atVisibleChange: EventEmitter<boolean> = new EventEmitter();
+  @ViewChild(CdkConnectedOverlay, {static: true}) _cdkOverlay: CdkConnectedOverlay;
 
   toBoolean(value: boolean | string): boolean {
     return value === '' || (value && value !== 'false');
@@ -113,7 +113,7 @@ export class DropdownComponent implements OnInit {
 
   @Input()
   set placement(value: any) {
-    this._placement        = value;
+    this._placement = value;
     this._dropDownPosition = (this.atPlacement.indexOf('top') !== -1) ? 'top' : 'bottom';
     this._positions.unshift(POSITION_MAP[this._placement] as ConnectionPositionPair);
   }
@@ -164,8 +164,8 @@ export class DropdownComponent implements OnInit {
     /** should remove after https://github.com/angular/material2/pull/8765 merged **/
     if (this._cdkOverlay && this._cdkOverlay.overlayRef) {
       this._cdkOverlay.overlayRef.updateSize({
-                                               minWidth: this._triggerWidth
-                                             });
+        minWidth: this._triggerWidth
+      });
     }
   }
 
@@ -178,10 +178,10 @@ export class DropdownComponent implements OnInit {
       this.atVisibleChange.emit(this.atVisible);
     }
     this._changeDetector.markForCheck();
-  }
+  };
 
   _startSubscribe(observable$: Observable<boolean>): void {
-    const $pre     = observable$;
+    const $pre = observable$;
     const final$ = combineLatest($pre, this.$subOpen).pipe(map(value => value[0] || value[1]), debounceTime(50), distinctUntilChanged());
     final$.pipe(takeUntil(this.unsubscribe$)).subscribe(this._onVisibleChange);
   }
@@ -209,7 +209,7 @@ export class DropdownComponent implements OnInit {
       if (this.trigger === 'hover') {
         const mouseEnterOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseenter').pipe(mapTo(true));
         const mouseLeaveOrigin$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'mouseleave').pipe(mapTo(false));
-        mouse$                  = merge(mouseEnterOrigin$, mouseLeaveOrigin$);
+        mouse$ = merge(mouseEnterOrigin$, mouseLeaveOrigin$);
       }
       if (this.trigger === 'click') {
         mouse$ = fromEvent(this._atOrigin.elementRef.nativeElement, 'click').pipe(mapTo(true));
@@ -222,11 +222,11 @@ export class DropdownComponent implements OnInit {
         this._renderer.listen(this._atOrigin.elementRef.nativeElement, 'contextmenu', (e) => {
           e.preventDefault();
           e.stopPropagation();
-          const width       = this._atOrigin.elementRef.nativeElement.offsetWidth;
-          const height      = this._atOrigin.elementRef.nativeElement.offsetHeight;
+          const width = this._atOrigin.elementRef.nativeElement.offsetWidth;
+          const height = this._atOrigin.elementRef.nativeElement.offsetHeight;
           const clientWidth = e.clientX;
-          const body        = document.getElementsByTagName('body')[0];
-          let x           = e.offsetX;
+          const body = document.getElementsByTagName('body')[0];
+          let x = e.offsetX;
           clientWidth + 100 > body.clientWidth ? x = x - 105 : x;
           // if over the client
           this.mousePosition = {x, y: e.offsetY - height};

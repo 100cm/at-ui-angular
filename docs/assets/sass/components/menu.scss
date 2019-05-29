@@ -17,11 +17,13 @@
   font-size: $menu-font-size;
   background-color: $menu-bg-color-light;
   .icon-chevron-up {
-    transition: all .3s
-  }
-  .chevron_open {
+    transition: all .3s;
     -webkit-transform: rotate(-180deg);
     transform: rotate(-180deg)
+  }
+  .chevron_open {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg)
   }
 
   /* element */

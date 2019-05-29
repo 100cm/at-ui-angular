@@ -24,7 +24,7 @@ export class DemoServiceModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @ViewChild('template') temp: TemplateRef<void>;
+  @ViewChild('template', { static: true }) temp: TemplateRef<void>;
 
   show(type: 'error' | 'success' | 'info' | 'error' | 'warning'): void {
     this.atModalService.modal({

@@ -10,7 +10,7 @@ export class AtDemoSliderComponent implements OnInit {
   constructor() {
   }
 
-  slider_basic = require('./demo-basic-slider/demo-basic-slider.component.html');
+  slider_basic = require('!!raw-loader!./demo-basic-slider/demo-basic-slider.component.html');
 
   ngOnInit() {
   }

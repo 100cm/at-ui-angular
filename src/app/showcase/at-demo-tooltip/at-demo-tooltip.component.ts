@@ -13,6 +13,6 @@ export class AtDemoTooltipComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  basic_code = require('./demo-basic-tooltip/demo-basic-tooltip.component.html');
-  place_code = require('./demo-position-tooltip/demo-position-tooltip.component.html');
+  basic_code = require('!!raw-loader!./demo-basic-tooltip/demo-basic-tooltip.component.html');
+  place_code = require('!!raw-loader!./demo-position-tooltip/demo-position-tooltip.component.html');
 }

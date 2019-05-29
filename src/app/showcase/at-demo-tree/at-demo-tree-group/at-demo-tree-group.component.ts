@@ -24,7 +24,7 @@ import { AtTreeNode, AtTreeNodeOptions } from '../../../components/tree/at-tree-
 })
 export class AtDemoTreeGroupComponent implements OnInit {
 
-  @ViewChild('treeCom') treeCom;
+  @ViewChild('treeCom', { static: true }) treeCom;
   defaultCheckedKeys = ['1001', '1002'];
   defaultSelectedKeys = ['10011'];
   defaultExpandedKeys = ['100', '1001'];

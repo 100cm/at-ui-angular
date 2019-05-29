@@ -12,6 +12,6 @@ export class AtDemoTabsComponent implements OnInit {
   ngOnInit() {
   }
 
-  baisc = require('./demo-basic-tab/demo-basic-tab.component.html');
+  baisc = require('!!raw-loader!./demo-basic-tab/demo-basic-tab.component.html');
 
 }

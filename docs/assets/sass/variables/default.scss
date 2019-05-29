@@ -560,7 +560,7 @@ $popover-content-padding: 8px 12px;
 $progress-height: 10px;
 $progress-border-radius: 50px;
 $progress-font-color: $text-color;
-$progress-font-size: $font-size-smer;
+$progress-font-size: $font-size-base;
 
 $progress-track-bg-color: $grey-200;
 $progress-bar-bg-color: $brand-color-light;
@@ -594,8 +594,8 @@ $tooltip-border-color: rgba(0, 0, 0, .75);
 
 /* Table */
 $table-font-size-small: $font-size-smest;
-$table-font-size: $font-size-smer;
-$table-font-size-large: $font-size-sm;
+$table-font-size: $font-size-base;
+$table-font-size-large: $font-size-normal;
 
 $table-text-color: $text-color;
 $table-border-color: $grey-100;
@@ -604,9 +604,9 @@ $table-tr-bg-color-hover: $bg-color-lighter;
 $table-tr-bg-color-stripe: tint($grey-50, 50%);
 $table-footer-height: 28px;
 
-$table-cell-height-small: 32px;
-$table-cell-height: 40px;
-$table-cell-height-large: 56px;
+$table-cell-height-small: 36px;
+$table-cell-height: 46px;
+$table-cell-height-large: 53px;
 $table-cell-padding: 0 16px;
 
 $table-sorter-width: 9px;
@@ -671,9 +671,9 @@ $menu-icon-color-inline: $border-color-base;
 $pagination-item-size-sm: 20px;
 $pagination-item-size: 28px;
 $pagination-input-width: 40px;
-$pagination-item-font-size-sm: $font-size-smest;
-$pagination-item-font-size: $font-size-smer;
-$pagination-btn-font-size: $font-size-smer;
+$pagination-item-font-size-sm: $font-size-base;
+$pagination-item-font-size: $font-size-base;
+$pagination-btn-font-size: $font-size-base;
 
 $pagination-item-text-color: $text-color;
 $pagination-item-text-color-hover: $brand-blue-400;

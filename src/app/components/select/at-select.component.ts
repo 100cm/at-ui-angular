@@ -124,10 +124,10 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   overlayMinWidth: number;
   searchValue: string = '';
   dropDownClassMap;
-  @ViewChild(CdkOverlayOrigin) cdkOverlayOrigin: CdkOverlayOrigin;
-  @ViewChild(CdkConnectedOverlay) cdkConnectedOverlay: CdkConnectedOverlay;
-  @ViewChild(AtSelectTopControlComponent) atSelectTopControlComponent: AtSelectTopControlComponent;
-  @ViewChild(AtOptionContainerComponent) atOptionContainerComponent: AtOptionContainerComponent;
+  @ViewChild(CdkOverlayOrigin, {static: true}) cdkOverlayOrigin: CdkOverlayOrigin;
+  @ViewChild(CdkConnectedOverlay, {static: true}) cdkConnectedOverlay: CdkConnectedOverlay;
+  @ViewChild(AtSelectTopControlComponent, /* TODO: add static flag */ {static: false}) atSelectTopControlComponent: AtSelectTopControlComponent;
+  @ViewChild(AtOptionContainerComponent, {static: false}) atOptionContainerComponent: AtOptionContainerComponent;
   /** should move to at-option-container when https://github.com/angular/angular/issues/20810 resolved **/
   @Output() readonly search = new EventEmitter<string>();
   @Output() readonly atScrollToBottom = new EventEmitter<void>();

@@ -85,9 +85,9 @@ export class AtTabsNavComponent implements AfterContentChecked, AfterContentInit
   tabLabelCount: number;
   scrollDistanceChanged: boolean;
   @ContentChildren(AtTabLabelDirective) listOfatTabLabelDirective: QueryList<AtTabLabelDirective>;
-  @ViewChild(AtTabsInkBarDirective) atTabsInkBarDirective: AtTabsInkBarDirective;
-  @ViewChild('navContainerElement') navContainerElement: ElementRef;
-  @ViewChild('navListElement') navListElement: ElementRef;
+  @ViewChild(AtTabsInkBarDirective, { static: true }) atTabsInkBarDirective: AtTabsInkBarDirective;
+  @ViewChild('navContainerElement', { static: true }) navContainerElement: ElementRef;
+  @ViewChild('navListElement', { static: true }) navListElement: ElementRef;
   @Output() readonly atOnNextClick = new EventEmitter<void>();
   @Output() readonly atOnPrevClick = new EventEmitter<void>();
   @Input() atTabBarExtraContent: TemplateRef<void>;

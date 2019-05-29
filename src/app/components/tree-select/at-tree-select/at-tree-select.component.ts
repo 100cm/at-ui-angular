@@ -141,8 +141,8 @@ export class AtTreeSelectComponent extends AtSelectComponent implements OnInit {
 
   @Input() atCheckable = false;
 
-  @ViewChild('treeRef') treeRef: AtTreeComponent;
-  @ViewChild(AtTreeSelectTopControlComponent) atTreeSelectTopControlComponent: AtTreeSelectTopControlComponent;
+  @ViewChild('treeRef', { static: false }) treeRef: AtTreeComponent;
+  @ViewChild(AtTreeSelectTopControlComponent, { static: true }) atTreeSelectTopControlComponent: AtTreeSelectTopControlComponent;
 
   showTree = true;
 

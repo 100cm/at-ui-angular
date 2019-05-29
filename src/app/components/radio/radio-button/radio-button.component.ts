@@ -30,7 +30,7 @@ export class RadioButtonComponent extends RadioComponent implements OnInit {
     return true;
   }
 
-  @ViewChild('content_span') content_span: any;
+  @ViewChild('content_span', { static: true }) content_span: any;
 
   _prefixCls = 'at-radio-button';
 

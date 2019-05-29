@@ -43,7 +43,7 @@ export class AtTabComponent implements OnDestroy, OnInit {
   @Output() readonly atSelect = new EventEmitter<void>();
   @Output() readonly atDeselect = new EventEmitter<void>();
   @Input() atForceRender = false;
-  @ViewChild(TemplateRef) content: TemplateRef<void>;
+  @ViewChild(TemplateRef, { static: true }) content: TemplateRef<void>;
 
   @Input()
   set atTitle(value: string | TemplateRef<void>) {
