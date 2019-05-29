@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
     </at-checkbox>
     <hr>
     <div>半选模式</div>
-    <at-checkbox [label]="'check me!'" [indeterminate]="true" [(ngModel)]="checked">
+    <at-checkbox [label]="'check me!'" [atDisabled]="true" [indeterminate]="true" [(ngModel)]="checked">
 
     </at-checkbox>`,
   styleUrls: ['./demo-basic-checkbox.component.css']

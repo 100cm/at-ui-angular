@@ -1,13 +1,15 @@
 import { forwardRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR }                                          from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 type CheckState = 'checked' | 'unchecked' | 'disabled' | 'indeterminate';
 
 @Component({
   selector: 'at-checkbox,[at-checkbox]',
   template: `<label (click)="check($event)"
-
-                    class="at-checkbox at-checkbox--{{status}}">
+                    [ngClass]="{'at-checkbox--disabled':atDisabled ,'at-checkbox':true ,'at-checkbox--checked': status ==='checked'
+                    ,'at-checkbox--indeterminate': status === 'indeterminate'
+                    }"
+  >
 
   <span class="at-checkbox__input"><span
     class="at-checkbox__inner"></span>
@@ -57,9 +59,7 @@ export class AtCheckboxComponent implements OnInit {
   }
 
   get status(): string {
-    if (this.atDisabled) {
-      return 'disabled';
-    } else if (this.checked) {
+    if (this.checked) {
       return 'checked';
     } else if (this.indeterminate) {
       return 'indeterminate';

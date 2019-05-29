@@ -9,20 +9,20 @@ import {
   OnInit,
   Renderer2,
   ViewChild
-}                                                                                      from '@angular/core';
-import { NG_VALUE_ACCESSOR }                                                           from '@angular/forms';
-import * as momentI                                                                    from 'moment';
-import { fromEvent, Observable, Subject, Subscription }                                from 'rxjs';
-import { debounceTime, mapTo, merge }                                                  from 'rxjs/operators';
-import { DropDownAnimation }                                                           from '../animations/drop-down-animation';
+} from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import * as momentI from 'moment';
+import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, mapTo, merge } from 'rxjs/operators';
+import { DropDownAnimation } from '../animations/drop-down-animation';
 import {
   DEFAULT_DROPDOWN_POSITIONS,
   POSITION_MAP
-}                                                                                      from '../core/overlay/overlay-position-map';
-import { AtI18nInterface }                                                             from '../i18n/at-i18n.interface';
-import { AtI18nService }                                                               from '../i18n/at-i18n.service';
-import { InputComponent }                                                              from '../input/input.component';
-import { underscoreToCamelCase }                                                       from '../utils/class-helper';
+} from '../core/overlay/overlay-position-map';
+import { AtI18nInterface } from '../i18n/at-i18n.interface';
+import { AtI18nService } from '../i18n/at-i18n.service';
+import { InputComponent } from '../input/input.component';
+import { underscoreToCamelCase } from '../utils/class-helper';
 
 const moment = momentI;
 
@@ -30,11 +30,11 @@ const moment = momentI;
   selector: 'atDatetimePicker',
   template: `
     <div class="at-date-input-wrapper">
-      <atInput [ngModel]="atValue | atFormat: format" #timeinput (onFocus)="_show()"></atInput>
+      <atInput [ngModel]="atValue | atFormat: format" #timeinput [icon]="inputIcon" (onFocus)="_show()"></atInput>
       <i (click)="clear($event)"
          *ngIf="allowClear"
          class="icon icon-x at_date_picker_clear"
-         style="background: white;z-index: 2"></i>
+         style="z-index: 2" [style.right.px]="inputIcon ? 24 : 8"></i>
     </div>
     <ng-template
       #overlay="cdkConnectedOverlay"
@@ -123,6 +123,8 @@ export class DatetimepickerComponent implements OnInit {
               private at_i18n_service: AtI18nService,
               private _renderer: Renderer2, private cdr: ChangeDetectorRef) {
   }
+
+  @Input() inputIcon;
 
   il8n: AtI18nInterface;
   _atType = 'full';
@@ -402,7 +404,9 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   selectHour(hour) {
-    const time = moment(this.atValue);
+
+    const time = this.atValue === '' ? moment() : moment(this.atValue);
+
     time.set('h', hour);
     this.atValue = time;
 
@@ -415,7 +419,8 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   selectMinutes(minute) {
-    const time = moment(this.atValue);
+    const time = this.atValue === '' ? moment() : moment(this.atValue);
+
     time.set('m', minute);
     this.atValue = time;
 
@@ -427,7 +432,8 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   selectSecond(second) {
-    const time = moment(this.atValue);
+    const time = this.atValue === '' ? moment() : moment(this.atValue);
+
     time.set('s', second);
     this.atValue = time;
 

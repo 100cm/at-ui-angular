@@ -35,6 +35,8 @@ export class AtTreeNode {
   isSelected: boolean;
   isLoading: boolean;
   isMatched: boolean;
+  // tslint:disable-next-line:no-any
+  extra_props: any;
 
   constructor(option: AtTreeNodeOptions, parent: AtTreeNode = null) {
     this.title = option.title || '---';
@@ -54,7 +56,7 @@ export class AtTreeNode {
     this.isSelected = (!option.disabled && option.selected) || false;
     this.isLoading = false;
     this.isMatched = false;
-
+    this.extra_props = option.extra_props;
     /**
      * parent's checked status will affect children while initializing
      */
