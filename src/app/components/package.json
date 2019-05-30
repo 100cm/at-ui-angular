@@ -2,7 +2,9 @@
   "name": "at-ng",
   "version": "8.0.2",
   "license": "MIT",
+  "homepage": "https://100cm.github.io/at-ui-angular/",
   "author": "zhou351711778",
+  "repository": "https://github.com/100cm/at-ui-angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
