@@ -1,6 +1,8 @@
 <p align="center">
-  <a href="https://at.aotu.io/">
-    <img width="200" src="http://storage.360buyimg.com/mtd/home/logo-at1502718221686.svg">
+  <a style="text-align: center" href="https://at.aotu.io/">
+    <img style="max-width:100%; display:inline-block" width=150 height=140 src="http://storage.360buyimg.com/mtd/home/logo-at1502718221686.svg">
+    <span style="font-size: 30px;color: #aaa; margin: 0 20px; display: inline-block!important; vertical-align: middle;"> + </span>
+    <img  style="max-width:100%; display:inline-block" height="150" src="https://img.alicdn.com/tfs/TB1Z0PywTtYBeNjy1XdXXXXyVXa-186-200.svg">
   </a>
 </p>
 
@@ -8,25 +10,23 @@
 
 <div align="center">
 
-An enterprise-class UI components based on Ant Design and Angular.
+An enterprise-class UI components based on At UI Design and Angular.
 
-[![npm package](https://img.shields.io/npm/v/ng-zorro-antd.svg?style=flat-square)](https://www.npmjs.org/package/at-ng)
+[![npm package](https://img.shields.io/badge/version-8.0.2-green.svg)](https://www.npmjs.org/package/at-ng)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE)
-[![Gitter](https://img.shields.io/gitter/room/ng-zorro/ng-zorro-antd.svg?style=flat-square)](https://gitter.im/ng-zorro/ng-zorro-antd)
-[![extension-for-VSCode](https://img.shields.io/badge/extension%20for-VSCode-blue.svg?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=cipchk.ng-zorro-vscode)
 
 </div>
-ng-at is a modular front-end UI framework for developing fast and powerful web interfaces based on Angular 7+.
+at-ng is a modular front-end UI framework for developing fast and powerful web interfaces based on Angular 7+.
 
 
 #Last version
 
-[7.0.2.rc2 ](http://ng-at.thunderjava.com/)
+[8.0.2 ](http://ng-at.thunderjava.com/)
 
 
 ## Features
 
-- Based on `Angular 7 +`
+- Based on `Angular 8 +`
 - A npm + webpack + babel front-end development workflow
 - Support ES2015
 - CSS Style independent, make consistent user interfaces (See: [AT-UI-Style](https://github.com/at-ui/at-ui-style))
@@ -81,9 +81,3 @@ Add the AtModule to your root module
 MIT
 
 
-[npm-version-image]: https://img.shields.io/npm/v/at-ui.svg?style=flat-square
-[npm-version-url]: https://www.npmjs.com/package/at-ng
-[david-dm-image]: https://david-dm.org/AT-UI/at-ui.svg?style=flat-square
-[david-dm-url]: https://david-dm.org/AT-UI/at-ui
-[travis-image]: https://img.shields.io/travis/AT-UI/at-ui/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/AT-UI/at-ui
