@@ -10,7 +10,7 @@ AT-NG
 
 <div align="center">
 
-An enterprise-class UI components based on At UI Design and Angular.
+An enterprise-class UI components based on At UI Design and Angular. 🚀🚀🚀
 
 [![npm package](https://img.shields.io/badge/version-8.0.2-green.svg)](https://www.npmjs.org/package/at-ng)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE)
@@ -42,16 +42,16 @@ at-ng is a modular front-end UI framework for developing fast and powerful web i
 | --------- | --------- | --------- | --------- | --------- | --------- |
 | IE11, Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions
 
-> at-ng dependent on @angular/cdk 
+> NOTICE: At-ng dependent on @angular/cdk 
 
-## Links
+## 🔗Links
 
 - [Home Page](http://ng-at.thunderjava.com)
 - [Angular](https://angular.io/)
 - [Webpack](https://webpack.js.org/)
 - [AT-UI for Vue](https://github.com/AT-UI/at-ui) (official library)
 
-## Install
+## 📦Install
 
 - Recommended use `npm`
 
@@ -60,16 +60,16 @@ npm install at-ng
 ```
 
 
-## Usage
+## 🔨Usage
 
 Because of the style of `AT-UI` is independent. It's a separate project. So we should add `AT-UI-Style` to
 cli config file
 
-```js
+```
 ++  "../node_modules/at-ng/assets/index.css",
 ```
 
-we could also have theme system now.
+We could also have theme system now. 🎨 
 
 Create a standalone less file named theme.less in src folder, and add the path of it to the list of styles in angular.json file.
 
@@ -78,48 +78,49 @@ Create a standalone less file named theme.less in src folder, and add the path o
 ...
   "styles": [
     ...
-    "src/theme.less"
+    "src/theme.scss"
     ...
   ]
 ...
 
 ```
 
-Here is an example of theme.less
+Copy the scss variable file from `~node_modules/at-ng/styles/sass/variables/default` to `theme.scss`
+
+Here is an example of theme.scss
 
 ```
 
 @import "~node_modules/at-ng/styles/sass/mixins/index";
 $css-prefix: at;
 
-/* The Color of O2Team Brand */
+/* change the brand color */
 $brand-color: #c41d7f;
-$brand-color-white: tint($brand-color, 95%);
-$brand-color-light: tint($brand-color, 60%);
-$brand-color-dark: tint($brand-color, 1%);
-
 ....
 
+/*  config the icon font path  */
 $font-path: '~node_modules/at-ng/styles/sass/fonts';
 
+/*  import the entry file that conatins all scss files  */
 @import "~node_modules/at-ng/styles/sass/entry";
 
 ```
-
-Copy the scss variable file from `~node_modules/at-ng/styles/sass/variables/default`
 
 Add the AtModule to your root module
 
 ```js
 @NgModule({
-  declarations: [
-	...
-  ],
   imports: [
-  ++ AtModule.forRoot(),
+   AtModule.forRoot(),
   ]
-
+  })
 ```
+
+
+## 💉Other dependencies
+
+
+
 
 ## License
 
