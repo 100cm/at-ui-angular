@@ -19,12 +19,12 @@ An enterprise-class UI components based on At UI Design and Angular.
 at-ng is a modular front-end UI framework for developing fast and powerful web interfaces based on Angular 7+.
 
 
-#Latest version
+## Latest version
 
 [8.0.2 ](http://ng-at.thunderjava.com/)
 
 
-## ✨✨Features
+## ✨Features
 
 - Based on `Angular 8 +`
 - A npm + webpack + babel front-end development workflow
@@ -37,6 +37,12 @@ at-ng is a modular front-end UI framework for developing fast and powerful web i
 - Modern browsers and Internet Explorer 9+
 - [Electron](http://electron.atom.io/)
 - [NW.js](http://nwjs.io)
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/electron/electron_48x48.png" alt="Electron" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Electron |
+| --------- | --------- | --------- | --------- | --------- | --------- |
+| IE11, Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions | last 2 versions
+
+> at-ng dependent on @angular/cdk 
 
 ## Links
 
@@ -56,12 +62,51 @@ npm install at-ng
 
 ## Usage
 
-Because the style of `AT-UI` is independent. It's a separate project. So we should add `AT-UI-Style` to
+Because of the style of `AT-UI` is independent. It's a separate project. So we should add `AT-UI-Style` to
 cli config file
 
 ```js
 ++  "../node_modules/at-ng/assets/index.css",
 ```
+
+we could also have theme system now.
+
+Create a standalone less file named theme.less in src folder, and add the path of it to the list of styles in angular.json file.
+
+```
+
+...
+  "styles": [
+    ...
+    "src/theme.less"
+    ...
+  ]
+...
+
+```
+
+Here is an example of theme.less
+
+```
+
+@import "~node_modules/at-ng/styles/sass/mixins/index";
+$css-prefix: at;
+
+/* The Color of O2Team Brand */
+$brand-color: #c41d7f;
+$brand-color-white: tint($brand-color, 95%);
+$brand-color-light: tint($brand-color, 60%);
+$brand-color-dark: tint($brand-color, 1%);
+
+....
+
+$font-path: '~node_modules/at-ng/styles/sass/fonts';
+
+@import "~node_modules/at-ng/styles/sass/entry";
+
+```
+
+Copy the scss variable file from `~node_modules/at-ng/styles/sass/variables/default`
 
 Add the AtModule to your root module
 
