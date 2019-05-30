@@ -1,7 +1,7 @@
 /**
  * Slider Style
  */
-@import '../variables/index.scss';
+
 
 .at-slider {
   position: relative;
@@ -11,6 +11,7 @@
     float: right;
     margin-top: 3px;
   }
+
   &__track {
     position: relative;
     margin: $slider-margin;
@@ -22,6 +23,7 @@
     user-select: none;
     cursor: pointer;
   }
+
   &__bar {
     position: absolute;
     top: 0;
@@ -29,7 +31,9 @@
     height: $slider-bar-height;
     background-color: $slider-bar-bg-color;
     border-radius: $slider-bar-border-radius;
+
   }
+
   &__mark {
     position: absolute;
     width: $slider-mark-size;
@@ -42,6 +46,7 @@
     &__not {
       border: solid 2px $grey-800 !important;
     }
+
     &__text {
       top: 14px;
       position: absolute;
@@ -52,6 +57,7 @@
       text-align: center;
     }
   }
+
   &__dot-wrapper {
     position: absolute;
     top: $slider-dot-wrapper-offset;
@@ -65,9 +71,11 @@
     &.at-slider__dot-wrapper--hover {
       cursor: grab;
     }
+
     &.at-slider__dot-wrapper--drag {
       cursor: grabbing;
     }
+
     /* tooltip */
     .at-tooltip {
       display: block;
@@ -82,21 +90,23 @@
         vertical-align: middle;
       }
     }
+
     .at-tooltip__trigger {
       vertical-align: middle;
     }
   }
+
   &__dot {
     width: $slider-dot-size;
     height: $slider-dot-size;
     border-radius: 50%;
-    background-color: $slider-dot-color;
+    border: 1px solid $brand-color-light;
+    background: white;
     transition: all .3s;
 
     &:hover,
     &--hover,
     &--drag {
-      background-color: $slider-dot-color-hover;
       transform: scale(1.3);
     }
 
@@ -115,6 +125,7 @@
     .at-slider__bar {
       background-color: $slider-bar-bg-color-disabled;
     }
+
     .at-slider__dot {
       background-color: $slider-dot-color-disabled;
     }

@@ -1,7 +1,7 @@
 /**
  * Button Style
  */
-@import '../variables/index.scss';
+
 
 $btn-hover-tint-percent: 15%;
 $btn-active-shade-percent: 10%;
@@ -59,7 +59,7 @@ $btn-active-shade-percent: 10%;
   }
   &:disabled,
   &:disabled:hover,
-  &:disabled:active, {
+  &:disabled:active{
     cursor: not-allowed;
     color: $btn-disabled-color;
     border-color: $btn-disabled-border;
@@ -121,7 +121,7 @@ $btn-active-shade-percent: 10%;
 
     &:disabled,
     &:disabled:hover,
-    &:disabled:active, {
+    &:disabled:active {
       background: none;
     }
   }

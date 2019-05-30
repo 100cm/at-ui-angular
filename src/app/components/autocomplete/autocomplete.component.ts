@@ -24,7 +24,7 @@ import { DropDownAnimation }                    from '../animations/drop-down-an
             <ng-container *ngFor="let item of atDataSource">
               <li *ngIf="highlight(item).length" (click)="changeAuto(item)" class="at-select__option">
                 {{highlight(item)[0]}}
-                <span style="color:#6190E8">{{ highlight(item).length ? searchValue : ''}}</span>{{highlight(item)[1]}}
+                <span class="span-active">{{ highlight(item).length ? searchValue : ''}}</span>{{highlight(item)[1]}}
               </li>
               <li *ngIf="!highlight(item).length" (click)="changeAuto(item)" class="at-select__option">
                 {{item}}

@@ -1,12 +1,7 @@
-/**
- * AT-UI
- */
-
-/* Mixin */
 @import './mixins/index.scss';
 
 /* Variables */
-@import './variables/index.scss';
+@import './variables/timing-function.scss';
 
 /* Core */
 @import './core/index.scss';

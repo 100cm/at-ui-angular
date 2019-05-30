@@ -1,10 +1,10 @@
-@import '../variables/index.scss';
+
 // Border color
 $border-color-base: $progress-track-bg-color; // base border outline a component
 $border-color-split: $progress-track-bg-color; // split border inside a component
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
-$tabs-card-head-background: $brand-blue-200;
+$tabs-card-head-background: $brand-color-white;
 $tabs-card-height: 40px;
 $tabs-card-active-color: $brand-color;
 $tabs-title-font-size: $font-size-base;
@@ -18,7 +18,7 @@ $tabs-vertical-padding: 8px 24px;
 $tabs-vertical-margin: 0 0 16px 0;
 $tabs-scrolling-size: 32px;
 $tabs-highlight-color: $brand-color;
-$tabs-hover-color: $brand-blue-800;
+$tabs-hover-color: $brand-color-dark;
 $tabs-active-color: $brand-color;
 $heading-color: fade(#000, 85%);
 .at-tabs {

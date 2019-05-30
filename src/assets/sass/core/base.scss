@@ -1,7 +1,6 @@
 /**
  * AT-Desktop UI Base Stylesheet
  */
-@import '../variables/index.scss';
 @import '../mixins/index.scss';
 
 * {
@@ -11,6 +10,7 @@
   &:before, &:after {
     box-sizing: border-box;
   }
+
   outline: none;
 }
 
@@ -68,13 +68,16 @@ a {
   &:hover {
     color: $link-hover-color;
   }
+
   &:active {
     color: $link-active-color;
   }
+
   &:hover, &:active {
     outline: 0;
     text-decoration: none;
   }
+
   &[disabled] {
     color: $link-disabled-color;
     cursor: not-allowed;
@@ -169,6 +172,10 @@ p {
 
 .text-larger {
   font-size: $font-size-lger;
+}
+
+.span-active {
+  color: $brand-color;
 }
 
 /*// Color

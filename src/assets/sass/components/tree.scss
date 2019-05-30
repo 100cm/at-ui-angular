@@ -25,7 +25,7 @@
       background: 0 0;
     }
     > li span.at-tree-node-content-wrapper:hover:before {
-      background: #e6f7ff;
+      background: $brand-color-white;
     }
     > li span.at-tree-node-content-wrapper.at-tree-node-selected {
       color: #fff;
@@ -84,7 +84,7 @@
     background: 0 0;
   }
   > li span.at-tree-node-content-wrapper:hover:before {
-    background: #e6f7ff;
+    background: $brand-color-white;
   }
   > li span.at-tree-node-content-wrapper.at-tree-node-selected {
     color: #fff;
@@ -416,10 +416,10 @@
     height: 24px;
     line-height: 24px;
     &:hover {
-      background-color: #e6f7ff;
+      background-color: $brand-color-white;
     }
     &.at-tree-node-selected {
-      background-color: $blue-300;
+      background-color: $brand-color-light;
     }
   }
   span {
@@ -936,7 +936,7 @@ li.at-tree-treenode-disabled > {
       transition: all .3s;
       width: calc(100% - 24px);
       &:hover {
-        background-color: #e6f7ff;
+        background-color: $brand-color-white;
       }
       &.at-select-tree-node-selected {
         background-color: $blue-300;

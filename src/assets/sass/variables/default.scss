@@ -3,21 +3,23 @@
  */
 @import '../mixins/index.scss';
 
-/* Prefix */
 $css-prefix: at;
 
 /* The Color of O2Team Brand */
 $brand-color: #6190E8;
-$brand-color-light: #78A4F4;
-$brand-color-dark: #346FC2;
+$brand-color-white: tint($brand-color, 95%);
+$brand-color-light: tint($brand-color, 60%);
+$brand-color-dark: tint($brand-color, 1%);
+
+$font-path: './fonts';
 
 /* Color */
-$color-normal: #6190E8;
-$color-primary: #6190E8;
+$color-normal: $brand-color;
+$color-primary: $brand-color;
 $color-success: #13CE66;
 $color-error: #FF4949;
 $color-warning: #FFC82C;
-$color-info: #78A4FA;
+$color-info: $brand-color-light;
 $color-white: #FFF;
 
 /* Color PalettC */
@@ -101,8 +103,8 @@ $black-900: #101C2E;
 $text-color: #3F536E;
 $title-color: #2C405A;
 
-$border-color-gray: #CCC;
-$border-color-base: #C5D9E8;
+$border-color-gray: #DFDFDF;
+$border-color-base: #DFDFDF;
 $border-color-split: tint($border-color-base, 20%);
 $border-color-light: tint($border-color-base, 30%);
 $border-color-lighter: tint($border-color-base, 50%);
@@ -141,9 +143,9 @@ $line-height-base: 1.5;
 $line-height-computed: floor($font-size-base * $line-height-base);
 
 /* Link */
-$link-color: $brand-blue-500;
-$link-hover-color: $brand-blue-400;
-$link-active-color: $brand-blue-700;
+$link-color: $brand-color;
+$link-hover-color: $brand-color-light;
+$link-active-color: $brand-color-dark;
 $link-disabled-color: $grey-500;
 $link-hover-decoration: none;
 
@@ -164,8 +166,8 @@ $btn-default-bg-hover: $border-color-lightest;
 $btn-default-bg-active: $border-color-lighter;
 $btn-default-border: $border-color-base;
 
-$btn-primary-bg: $brand-blue-500;
-$btn-primary-border: $brand-blue-500;
+$btn-primary-bg: $brand-color;
+$btn-primary-border: $brand-color;
 
 $btn-success-bg: $green-500;
 $btn-success-border: $green-500;
@@ -179,7 +181,7 @@ $btn-warning-border: $yellow-500;
 $btn-info-bg: $blue-500;
 $btn-info-border: $blue-500;
 
-$btn-text-border: $brand-blue-500;
+$btn-text-border: $brand-color;
 
 $btn-disabled-color: $grey-300;
 $btn-disabled-bg: $grey-50;
@@ -213,8 +215,8 @@ $checkbox-size: 16px;
 $checkbox-font-size: $font-size-smer;
 
 $checkbox-border-c: $border-color-base;
-$checkbox-border-c-hover: $brand-blue-400;
-$checkbox-border-c-checked: $brand-blue-400;
+$checkbox-border-c-hover: $brand-color;
+$checkbox-border-c-checked: $brand-color;
 $checkbox-border-c-disabled: $grey-100;
 $checkbox-bg-c-disabled: $grey-50;
 $checkbox-label-c-disabled: $grey-700;
@@ -236,8 +238,8 @@ $input-font-color: $text-color;
 $input-font-color-disabled: $grey-700;
 
 $input-border-color: $border-color-base;
-$input-border-color-hover: $brand-blue-400;
-$input-border-color-focus: $brand-blue-400;
+$input-border-color-hover: $brand-color;
+$input-border-color-focus: $brand-color;
 $input-border-color-disabled: $grey-100;
 $input-border-color-success: $color-success;
 $input-border-color-error: $color-error;
@@ -313,11 +315,11 @@ $switch-border-radius-base: 20px;
 $switch-border-radius-lg: 24px;
 
 $switch-border-color: $grey-500;
-$switch-border-color-checked: $brand-blue-400;
+$switch-border-color-checked: $brand-color;
 $switch-border-color-disabled: $grey-100;
 
 $switch-bg-color: $grey-500;
-$switch-bg-color-checked: $brand-blue-400;
+$switch-bg-color-checked: $brand-color;
 $switch-bg-color-disabled: $grey-100;
 
 $switch-font-color: $color-white;
@@ -338,13 +340,13 @@ $switch-circle-bg-color-disabled: $grey-400;
 $slider-bar-height: 4px;
 $slider-margin: 8px 0;
 
-$slider-bar-bg-color: $brand-blue-400;
+$slider-bar-bg-color: $brand-color;
 $slider-bar-bg-color-disabled: $grey-400;
 $slider-track-bg-color: $grey-100;
 $slider-bar-border-radius: 2px;
 
-$slider-dot-color: $brand-blue-400;
-$slider-dot-color-hover: $brand-blue-600;
+$slider-dot-color: $brand-color;
+$slider-dot-color-hover: $brand-color-dark;
 $slider-dot-color-disabled: $grey-300;
 $slider-dot-size: 12px;
 $slider-mark-size: 10px;
@@ -463,8 +465,8 @@ $radio-size: 16px;
 $radio-dot-size: 8px;
 $radio-font-size: $font-size-smer;
 
-$radio-border-c-hover: $brand-blue-400;
-$radio-border-c-checked: $brand-blue-400;
+$radio-border-c-hover: $brand-color;
+$radio-border-c-checked: $brand-color;
 $radio-border-c-disabled: $grey-100;
 $radio-bg-c-disabled: $grey-50;
 $radio-dot-c-disabled: $grey-300;
@@ -483,8 +485,8 @@ $select-font-size-lg: $font-size-normal;
 $select-bg-color: $color-white;
 $select-font-color: $text-color;
 
-$select-border-c-hover: $brand-blue-400;
-$select-border-c-checked: $brand-blue-400;
+$select-border-c-hover: $brand-color;
+$select-border-c-checked: $brand-color;
 $select-border-c-disabled: $grey-100;
 $select-bg-c-disabled: $grey-50;
 
@@ -508,8 +510,8 @@ $select-dropdown-bg-color: $color-white;
 $select-dropdown-height: 200px;
 
 $dropdown-option-padding-base: 6px 12px;
-$dropdown-option-bg-c-hover: $brand-blue-50;
-$dropdown-option-bg-c-selected: $grey-50;
+$dropdown-option-bg-c-hover: tint($brand-color, 90%);
+$dropdown-option-bg-c-selected: tint($brand-color, 85%);
 
 $option-group-font-c: $grey-500;
 
@@ -563,7 +565,7 @@ $progress-font-color: $text-color;
 $progress-font-size: $font-size-base;
 
 $progress-track-bg-color: $grey-200;
-$progress-bar-bg-color: $brand-color-light;
+$progress-bar-bg-color: $brand-color;
 $progress-bar-bg-color-success: $color-success;
 $progress-bar-bg-color-error: $color-error;
 
@@ -628,7 +630,7 @@ $dropdown-font-size: $font-size-smer;
 
 $dropdown-item-padding: 8px 16px;
 $dropdown-item-min-width: 100px;
-$dropdown-item-bg-color-hover: $brand-blue-50;
+$dropdown-item-bg-color-hover: $brand-color-white;
 $dropdown-item-bg-color-disabled: $grey-300;
 
 $dropdown-divided-color: $brand-blue-50;
@@ -644,9 +646,9 @@ $menu-bg-color-dark-hover: $black-600;
 $menu-font-size: $font-size-base;
 $menu-icon-size: $font-size-base;
 
-$menu-item-text-color-active: $brand-blue-500;
+$menu-item-text-color-active: $brand-color;
 $menu-item-bg-color-active: $brand-blue-50;
-$menu-item-bg-color-active-inline: rgba(236, 242, 252, 0.2);
+$menu-item-bg-color-active-inline: $brand-color-white;
 
 $menu-submenu-padding: 12px 16px;
 $menu-item-padding: 12px 16px;
@@ -662,9 +664,9 @@ $menu-dropdown-item-padding: 12px 16px;
 $menu-dropdown-item-font-size: $font-size-smer;
 
 $menu-height-horizontal: 48px;
-$menu-border-color: $border-color-lighter;
-$menu-prefix-bg-color: $brand-blue-500;
-$menu-prefix-bg-color-dark: $brand-blue-500;
+$menu-border-color: $border-color-gray;
+$menu-prefix-bg-color: $brand-color;
+$menu-prefix-bg-color-dark: $brand-color;
 $menu-icon-color-inline: $border-color-base;
 
 /* Pagination */
@@ -676,16 +678,16 @@ $pagination-item-font-size: $font-size-base;
 $pagination-btn-font-size: $font-size-base;
 
 $pagination-item-text-color: $text-color;
-$pagination-item-text-color-hover: $brand-blue-400;
+$pagination-item-text-color-hover: $brand-color-light;
 $pagination-item-text-color-active: $color-white;
 $pagination-btn-jump-text-color: $grey-100;
 
 $pagination-item-bg-color: $color-white;
-$pagination-item-bg-color-active: $brand-blue-400;
+$pagination-item-bg-color-active: $brand-color;
 
 $pagination-item-border-color: $border-color-base;
-$pagination-item-border-color-hover: $brand-blue-400;
-$pagination-item-border-color-active: $brand-blue-400;
+$pagination-item-border-color-hover: $brand-color-light;
+$pagination-item-border-color-active: $brand-color;
 
 /* Tabs */
 $tabs-border-color: $grey-100;
@@ -695,7 +697,7 @@ $tabs-nav-font-size: $font-size-base;
 $tabs-nav-font-size-sm: $font-size-smer;
 $tabs-navigation-btn-width: 32px;
 $tabs-navigation-color: $text-color;
-$tabs-navigation-color-hover: $brand-blue-500;
+$tabs-navigation-color-hover: $brand-color;
 $tabs-navigation-color-disabled: $grey-400;
 
 $tabs-nav-item-padding: 0 20px;
@@ -718,22 +720,22 @@ $step-color-error: $red-500;
 $step-text-color: $black-200;
 
 $step-bg-color: $color-white;
-$step-bg-color-active: $brand-blue-500;
+$step-bg-color-active: $brand-color;
 $step-bg-color-error: $red-500;
 
 $step-border-color: $grey-600;
-$step-border-color-active: $brand-blue-500;
+$step-border-color-active: $brand-color;
 $step-border-color-error: $red-500;
 
 $step-icon-color: $grey-600;
-$step-icon-color-active: $brand-blue-500;
+$step-icon-color-active: $brand-color;
 $step-icon-color-error: $red-500;
 
 $step-label-size: 30px;
 $step-label-size-sm: 18px;
 
 $step-line-color: $grey-600;
-$step-line-color-active: $brand-blue-500;
+$step-line-color-active: $brand-color;
 
 $step-main-height-vertical: 64px;
 $step-main-height-vertical-sm: 48px;
@@ -802,7 +804,7 @@ $border-color-base: $progress-track-bg-color; // base border outline a component
 $border-color-split: $progress-track-bg-color; // split border inside a component
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
-$tabs-card-head-background: $brand-blue-200;
+$tabs-card-head-background: $brand-color-white;
 $tabs-card-height: 40px;
 $tabs-card-active-color: $brand-color;
 $tabs-title-font-size: $font-size-base;
@@ -816,7 +818,7 @@ $tabs-vertical-padding: 8px 24px;
 $tabs-vertical-margin: 0 0 16px 0;
 $tabs-scrolling-size: 32px;
 $tabs-highlight-color: $brand-color;
-$tabs-hover-color: $brand-blue-800;
+$tabs-hover-color: $brand-color-dark;
 $tabs-active-color: $brand-color;
 $heading-color: fade(#000, 85%);
 
@@ -826,5 +828,3 @@ $tree-directory-selected-color: #fff;
 $tree-directory-selected-bg: $brand-color;
 
 $highlight-color: $red-600;
-
-

@@ -1,4 +1,4 @@
-@import '../variables/index.scss';
+
 
 .over-flow-wrapper {
   position: absolute;
@@ -60,7 +60,7 @@
   line-height: 1.5;
   a {
     &:hover {
-      color: $blue-500;
+      color: $brand-color;
     }
   }
   &--footer {
@@ -99,13 +99,13 @@
         .month-select {
           @include date-select;
           &:hover {
-            color: $blue-500;
+            color: $brand-color;
           }
         }
         .year-select {
           @include date-select;
           &:hover {
-            color: $blue-500;
+            color: $brand-color;
           }
         }
 
@@ -175,7 +175,7 @@
               cursor: pointer;
               transition: background .3s ease;
               &:hover {
-                background: $blue-100;
+                background: $brand-color-white;
                 cursor: pointer;
               }
             }
@@ -191,16 +191,16 @@
             }
             &--today {
               .at-date {
-                border: 1px solid $blue-500;
+                border: 1px solid $brand-color;
 
               }
             }
             &--selected {
               .at-date {
-                background: $blue-500;
+                background: $brand-color;
                 color: white;
                 &:hover {
-                  background: $blue-500 !important;
+                  background: $brand-color !important;
                 }
               }
             }
