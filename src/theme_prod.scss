@@ -1,17 +1,16 @@
 /**
  * Default Variables
  */
-@import '../mixins/index.scss';
-
+@import "assets/sass/mixins/index";
 $css-prefix: at;
 
 /* The Color of O2Team Brand */
-$brand-color: #6190E8;
+$brand-color: #c41d7f;
 $brand-color-white: tint($brand-color, 95%);
 $brand-color-light: tint($brand-color, 60%);
 $brand-color-dark: tint($brand-color, 1%);
 
-$font-path: './fonts';
+$font-path: '/at-ui-angular/assets/sass/fonts';
 
 /* Color */
 $color-normal: $brand-color;
@@ -23,17 +22,16 @@ $color-info: $brand-color-light;
 $color-white: #FFF;
 
 /* Color PalettC */
-$primary-50: tint($brand-color, 100%);
-$primary-100: tint($brand-color, 80%);
-$primary-200: tint($brand-color, 60%);
-$primary-300: tint($brand-color, 40%);
-$primary-400: tint($brand-color, 20%);
-$primary-500: $brand-color;
-$primary-600: tint_black($brand-color, 20%);
-$primary-700: tint_black($brand-color, 40%);
-$primary-800: tint_black($brand-color, 60%);
-$primary-900: tint_black($brand-color, 80%);
-$primary-1000: tint_black($brand-color, 100%);
+$brand-blue-50: #ECF2FC;
+$brand-blue-100: #D0DEF8;
+$brand-blue-200: #B0C8F4;
+$brand-blue-300: #90B1EF;
+$brand-blue-400: #79A1EB;
+$brand-blue-500: #6190E8;
+$brand-blue-600: #5988E5;
+$brand-blue-700: #4F7DE2;
+$brand-blue-800: #4573DE;
+$brand-blue-900: #3361D8;
 
 $green-50: #E3F9ED;
 $green-100: #B8F0D1;
@@ -550,7 +548,7 @@ $popover-bg-color: $color-white;
 $popover-title-bg-color: $grey-50;
 $popover-border-color: $grey-100;
 $popover-arrow-shadow: rgba(0, 0, 0, .07);
-$popover-title-border-color: $primary-50;
+$popover-title-border-color: $brand-blue-50;
 
 $popover-arrow-size: 6px;
 $popover-arrow-bg-color: $popover-bg-color;
@@ -634,7 +632,7 @@ $dropdown-item-min-width: 100px;
 $dropdown-item-bg-color-hover: $brand-color-white;
 $dropdown-item-bg-color-disabled: $grey-300;
 
-$dropdown-divided-color: $primary-50;
+$dropdown-divided-color: $brand-blue-50;
 
 /* Menu */
 $menu-text-color: $text-color;
@@ -648,7 +646,7 @@ $menu-font-size: $font-size-base;
 $menu-icon-size: $font-size-base;
 
 $menu-item-text-color-active: $brand-color;
-$menu-item-bg-color-active: $primary-50;
+$menu-item-bg-color-active: $brand-blue-50;
 $menu-item-bg-color-active-inline: $brand-color-white;
 
 $menu-submenu-padding: 12px 16px;
@@ -829,3 +827,5 @@ $tree-directory-selected-color: #fff;
 $tree-directory-selected-bg: $brand-color;
 
 $highlight-color: $red-600;
+
+@import "assets/sass/entry";

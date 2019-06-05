@@ -7,6 +7,8 @@
   },
   "whitelistedNonPeerDependencies": [
     "tslib",
+    "date-fns",
+    "tinycolor2",
     "angular"
   ]
 }

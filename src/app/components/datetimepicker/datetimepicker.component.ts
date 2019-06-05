@@ -11,7 +11,6 @@ import {
   ViewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as momentI from 'moment';
 import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, mapTo, merge } from 'rxjs/operators';
 import { DropDownAnimation } from '../animations/drop-down-animation';
@@ -23,8 +22,7 @@ import { AtI18nInterface } from '../i18n/at-i18n.interface';
 import { AtI18nService } from '../i18n/at-i18n.service';
 import { InputComponent } from '../input/input.component';
 import { underscoreToCamelCase } from '../utils/class-helper';
-
-const moment = momentI;
+import { BladeDate } from './blade-date';
 
 @Component({
   selector: 'atDatetimePicker',
@@ -161,7 +159,7 @@ export class DatetimepickerComponent implements OnInit {
   _visible = false;
   dropdownPosition = 'bottom';
 
-  @ViewChild(CdkConnectedOverlay, { static: true }) overlay;
+  @ViewChild(CdkConnectedOverlay, {static: true}) overlay;
 
   set atVisible(value: boolean) {
     this._visible = value;
@@ -205,20 +203,20 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  atYear = moment(this.atValue || this.showValue).year();
+  atYear = new BladeDate(this.atValue || this.showValue).getYear();
 
-  atMonth = moment(this.atValue || this.showValue).month();
+  atMonth = new BladeDate(this.atValue || this.showValue).getMonth();
 
-  selectedDate = moment(this.atValue).date();
-  selectedYear = moment(this.atValue).year();
-  selectedMonth = moment(this.atValue).month();
+  selectedDate = new BladeDate(this.atValue).getDate();
+  selectedYear = new BladeDate(this.atValue).getYear();
+  selectedMonth = new BladeDate(this.atValue).getMonth();
 
   private _selected_second;
   private _selected_minutes;
   private _selected_hour;
 
   get selected_second(): number {
-    return moment(this.atValue).second();
+    return new BladeDate(this.atValue).getSeconds();
   }
 
   set selected_second(value: number) {
@@ -226,7 +224,7 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   get selected_minutes(): number {
-    return moment(this.atValue).minutes();
+    return new BladeDate(this.atValue).getMinutes();
   }
 
   set selected_minutes(value: number) {
@@ -234,7 +232,7 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   get selected_hour(): number {
-    return moment(this.atValue).hour();
+    return new BladeDate(this.atValue).getHours();
   }
 
   set selected_hour(value: number) {
@@ -271,7 +269,7 @@ export class DatetimepickerComponent implements OnInit {
   }
 
   _onPositionChange(position: ConnectedOverlayPositionChange): void {
-    this.dropdownPosition = position.connectionPair.originY == 'top' ? 'bottom' : 'top';
+    this.dropdownPosition = position.connectionPair.originY === 'top' ? 'bottom' : 'top';
     this.cdr.detectChanges();
   }
 
@@ -284,7 +282,7 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  @ViewChild('timeinput', { static: true }) input: InputComponent;
+  @ViewChild('timeinput', {static: true}) input: InputComponent;
 
   preYear() {
     this.atYear = this.atYear - 1;
@@ -328,20 +326,21 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  updateDate(value) {
+  updateDate(value: BladeDate | Date | string): void {
     if (this.atValue === value) {
       return;
     }
     this.atValue = value;
-    this.selectedMonth = moment(this.atValue).month();
-    this.selectedYear = moment(this.atValue).year();
-    this.selectedDate = moment(this.atValue).date();
-    this.atYear = moment(this.atValue).year();
-    this.atMonth = moment(this.atValue).month();
+    const date = new BladeDate(value);
+    this.selectedMonth = date.getMonth();
+    this.selectedYear = date.getYear();
+    this.selectedDate = date.getDate();
+    this.atYear = date.getYear();
+    this.atMonth = date.getMonth();
 
   }
 
-  clearDate() {
+  clearDate(): void {
     this._atValue = '';
     this.onChange('');
   }
@@ -403,13 +402,10 @@ export class DatetimepickerComponent implements OnInit {
     this.atYear = this.atYear + 10;
   }
 
-  selectHour(hour) {
-
-    const time = this.atValue === '' ? moment() : moment(this.atValue);
-
-    time.set('h', hour);
+  selectHour(hour: number): void {
+    let time: BladeDate = this.atValue === '' ? new BladeDate() : new BladeDate(this.atValue);
+    time = time.setHours(hour);
     this.atValue = time;
-
     let change_date = this.atValue;
     if (this.format) {
       change_date = change_date.format(this.format);
@@ -418,10 +414,9 @@ export class DatetimepickerComponent implements OnInit {
 
   }
 
-  selectMinutes(minute) {
-    const time = this.atValue === '' ? moment() : moment(this.atValue);
-
-    time.set('m', minute);
+  selectMinutes(minute: number): void {
+    let time: BladeDate = this.atValue === '' ? new BladeDate() : new BladeDate(this.atValue);
+    time = time.setMinutes(minute);
     this.atValue = time;
 
     let change_date = this.atValue;
@@ -431,10 +426,9 @@ export class DatetimepickerComponent implements OnInit {
     this.onChange(change_date);
   }
 
-  selectSecond(second) {
-    const time = this.atValue === '' ? moment() : moment(this.atValue);
-
-    time.set('s', second);
+  selectSecond(second: number): void {
+    let time: BladeDate = this.atValue === '' ? new BladeDate() : new BladeDate(this.atValue);
+    time = time.setSeconds(second);
     this.atValue = time;
 
     let change_date = this.atValue;
@@ -445,7 +439,7 @@ export class DatetimepickerComponent implements OnInit {
     this.atVisible = false;
   }
 
-  setMode(mode) {
+  setMode(mode: string) {
     this.mode = mode;
   }
 }

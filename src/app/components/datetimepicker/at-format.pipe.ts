@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as momentI from 'moment';
-const  moment = momentI;
+import { BladeDate } from './blade-date';
+
 @Pipe({
   name: 'atFormat'
 })
@@ -8,7 +8,7 @@ export class AtFormatPipe implements PipeTransform {
 
   transform(value: Date, formatString: string): string {
     if (value) {
-      return moment(value).format(formatString);
+      return new BladeDate(value).format(formatString);
     } else {
       return '';
     }

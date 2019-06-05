@@ -5,7 +5,8 @@ export default {
     chooseDate: '选择日期',
     Monday: '一', TuesDay: '二', Wednesday: '三', ThursDay: '四', Friday: '五', Saturday: '六', Sunday: '日',
     MonthName: '月',
-    YearName: '年'
+    YearName: '年',
+    months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
   },
   Select: {
     notFoundContent: '无匹配结果'

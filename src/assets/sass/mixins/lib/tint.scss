@@ -22,3 +22,10 @@
   ) {
   @return mix(#FFF, $color, $percent);
 }
+
+@function tint_black(
+  $color,
+  $percent
+) {
+  @return mix(#000, $color, $percent);
+}

@@ -1,6 +1,6 @@
 {
   "name": "at-ng",
-  "version": "8.0.2",
+  "version": "8.0.2-rc2",
   "license": "MIT",
   "homepage": "https://100cm.github.io/at-ui-angular/",
   "author": "zhou351711778",
@@ -25,16 +25,16 @@
     "frontend"
   ],
   "dependencies": {
-    "tslib": "^1.9.3"
+    "date-fns": "^1.29.0",
+    "@angular/cdk": "^8.0.0",
+    "tinycolor2": "1.4.1"
   },
   "peerDependerm-sncies": {
     "@angular/animations": "^8.0.0",
     "@angular/cdk": "^8.0.0",
     "@angular/common": "^8.0.0",
     "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0",
-    "tinycolor2": "1.4.1",
-    "moment": "^2.18.1"
+    "@angular/forms": "^8.0.0"
   },
   "main": "bundles/at-ng.js.umd.js",
   "module": "fesm5/at-ng.js.js",

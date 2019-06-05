@@ -5,7 +5,8 @@ export interface AtI18nInterface {
       chooseTime: string, chooseDate: string,
       Monday: string, TuesDay: string, Wednesday: string, ThursDay: string, Friday: string, Saturday: string, Sunday: string,
       MonthName: string,
-      YearName: string
+      YearName: string,
+      months: string[]
     };
   Select: {
     notFoundContent: string
