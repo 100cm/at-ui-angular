@@ -1,0 +1,26 @@
+/**
+ * Default Variables
+ */
+@import '../mixins/index.scss';
+
+$css-prefix: at;
+
+/* The Color of O2Team Brand */
+$brand-color: #6190E8;
+
+/* Color PalettC */
+$primary-100: generateColor($brand-color, 5, true);
+$primary-200: generateColor($brand-color, 4, true);
+$primary-300: generateColor($brand-color, 3, true);
+$primary-400: generateColor($brand-color, 2, true);
+$primary-500: generateColor($brand-color, 1, true);
+$primary-600: $brand-color;
+$primary-700: generateColor($brand-color, 1, false);
+$primary-800: generateColor($brand-color, 2, false);
+$primary-900: generateColor($brand-color, 3, false);
+$primary-1000: generateColor($brand-color, 4, false);
+
+$font-path: './fonts';
+
+@import "./default";
+
