@@ -52,12 +52,12 @@ export interface ClickPosition {
         <div class="at-modal__mask"></div>
         <div
           role="dialog"
+          [ngClass]="classes"
           (click)="clickHide($event)"
           class="at-modal__wrapper at-modal--{{atType}} at-modal--{{atType}}-{{status}}"
         >
           <div
             #modalContainer
-            [ngClass]="classes"
             class="at-modal" [@enterLeave]="state" (@enterLeave.start)="startAnimation()"
             (@enterLeave.done)="doneAnimation()"
             [style.width]="width +'px'"
