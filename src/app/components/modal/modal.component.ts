@@ -57,6 +57,7 @@ export interface ClickPosition {
         >
           <div
             #modalContainer
+            [ngClass]="classes"
             class="at-modal" [@enterLeave]="state" (@enterLeave.start)="startAnimation()"
             (@enterLeave.done)="doneAnimation()"
             [style.width]="width +'px'"
@@ -136,6 +137,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() message: string | TemplateRef<void>;
   @Input() atType: 'confirm' | 'normal' = 'normal';
   @Input() atComponent: TemplateRef<void>;
+  @Input() classes = {};
   transformOrigin = '0px 0px 0px';
 
   @ViewChild(CdkConnectedOverlay) cdkOverlay: CdkConnectedOverlay;
