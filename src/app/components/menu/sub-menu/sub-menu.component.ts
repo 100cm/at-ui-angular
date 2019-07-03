@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger }                                  from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   ChangeDetectorRef,
@@ -15,14 +15,14 @@ import {
   SkipSelf, TemplateRef,
   ViewChild,
   ViewContainerRef
-}                                                                                      from '@angular/core';
-import { combineLatest, BehaviorSubject, Subject }                                     from 'rxjs';
-import { POSITION_MAP }                                                                from '../../core/overlay/overlay-position-map';
-import { MenuComponent }                                                               from '../menu.component';
+} from '@angular/core';
+import { combineLatest, BehaviorSubject, Subject } from 'rxjs';
+import { POSITION_MAP } from '../../core/overlay/overlay-position-map';
+import { MenuComponent } from '../menu.component';
 
 import { auditTime, map, takeUntil } from 'rxjs/operators';
-import { ExpandAnimation }           from '../../animations/expand-animation';
-import { AtDropSubmenuComponent }    from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
+import { ExpandAnimation } from '../../animations/expand-animation';
+import { AtDropSubmenuComponent } from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
 
 @Component({
   selector: '[at-submenu]',
@@ -38,11 +38,13 @@ import { AtDropSubmenuComponent }    from '../../dropdown/at-drop-submenu/at-dro
          #origin="cdkOverlayOrigin"
     >
       <ng-content select="[title]"></ng-content>
-      <i *ngIf="subMenuType == 'inline'" [ngClass]="{chevron_open: isOpen}"
+      <i *ngIf="subMenuType == 'inline' && !arrowIcon" [ngClass]="{chevron_open: isOpen}"
          class="icon icon-chevron-up"></i>
 
-      <i *ngIf="subMenuType == 'vertical' || (subMenuType == 'horizontal' && isInSubMenu )"
+      <i *ngIf="subMenuType == 'vertical' || (subMenuType == 'horizontal' && isInSubMenu )  && !arrowIcon"
          class="icon icon-chevron-right right-arrow"></i>
+
+      <ng-template [ngTemplateOutlet]="arrowIcon"></ng-template>
 
     </div>
     <ng-template
@@ -95,6 +97,7 @@ export class SubMenuComponent implements OnInit {
   @ContentChildren(SubMenuComponent, {descendants: true}) subMenus: QueryList<SubMenuComponent> | QueryList<AtDropSubmenuComponent>;
 
   @Output() readonly openChange = new EventEmitter<boolean>();
+  @Input() arrowIcon: TemplateRef<void>;
 
   get overlayPositions(): ConnectionPositionPair[] {
     if (this.subMenuType === 'horizontal') {
@@ -104,7 +107,7 @@ export class SubMenuComponent implements OnInit {
     }
   }
 
-  @Input() icon: string | TemplateRef<any> = '';
+  @Input() icon: string | TemplateRef<void> = '';
 
   placement = 'rightTop';
 

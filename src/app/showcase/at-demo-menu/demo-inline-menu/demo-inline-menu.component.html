@@ -1,6 +1,9 @@
 <div style="width: 100%;border: 1px solid #e2ecf4">
+  <ng-template #arrow>
+    <i>s</i>
+  </ng-template>
   <ul at-menu [theme]="'dracula'" [atType]="'inline'" style="width: 240px">
-    <li at-submenu>
+    <li at-submenu [arrowIcon]="arrow">
       <span title><i class="icon icon-mail"></i> 介绍组</span>
       <ul>
         <li at-menu-item>Option Item</li>

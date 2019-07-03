@@ -9,7 +9,11 @@
       我来组成身体
       {{ single}}
     </p>
-    <at-select [(ngModel)]="single" (change)="change($event)" [atPlaceHolder]="'Select'" [atSize]="'large'"
+    <ng-template #icon>
+      <i>s</i>
+    </ng-template>
+    <at-select [arrowIcon]="icon" [(ngModel)]="single" (change)="change($event)" [atPlaceHolder]="'Select'"
+               [atSize]="'large'"
                [searchable]="true">
       <at-option *ngFor="let item of selects;let i= index" [atLabel]="item" [atValue]="item"></at-option>
     </at-select>

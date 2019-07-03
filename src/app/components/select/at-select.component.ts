@@ -20,7 +20,7 @@ import {
   Output,
   QueryList,
   Renderer2,
-  SimpleChange, ViewChild
+  SimpleChange, ViewChild, TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
@@ -56,6 +56,7 @@ import { AtSelectTopControlComponent } from './at-select-top-control.component';
       tabindex="0">
       <div
         at-select-top-control
+        [arrowIcon]="arrowIcon"
         [multiple]="multiple"
         [atDisabled]="atDisabled"
         [allowClear]="allowClear"
@@ -147,6 +148,7 @@ export class AtSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @Input() allowClear = false;
   @Input() tagAble = false;
   @Input() atDisabled = false;
+  @Input() arrowIcon: TemplateRef<void>;
   atOpen = false;
 
   get atMode(): 'default' | 'multiple' | 'tags' {

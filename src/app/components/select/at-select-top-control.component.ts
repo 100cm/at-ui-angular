@@ -5,7 +5,17 @@ import {
   transition,
   trigger
 } from '@angular/animations';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { delay, map } from 'rxjs/operators';
 import { isNotNil } from '../utils/class-helper';
 import { AtOptionComponent } from './at-option.component';
@@ -73,7 +83,8 @@ import { AtSelectControlService } from './at-select-control.service';
             <span class="at-select-search__field__mirror">{{inputValue}}&nbsp;</span>
           </div>
         </div>
-        <i class="icon icon-chevron-down at-select__arrow"></i>
+        <ng-template [ngTemplateOutlet]="arrowIcon"></ng-template>
+        <i *ngIf="!arrowIcon" class="icon icon-chevron-down at-select__arrow"></i>
         <i *ngIf="allowClear" (click)="clear($event)"
            class="icon icon-x at-select__clear ng-tns-c14-34 ng-star-inserted"
            style="background: white;z-index: 2"></i>
@@ -103,7 +114,8 @@ import { AtSelectControlService } from './at-select-control.service';
              (ngModelChange)="setInputValue($event)"
              [disabled]="atDisabled"
              placeholder=""/>
-      <i class="icon icon-chevron-down at-select__arrow"></i>
+      <i *ngIf="!arrowIcon" class="icon icon-chevron-down at-select__arrow"></i>
+      <ng-template [ngTemplateOutlet]="arrowIcon"></ng-template>
       <i *ngIf="allowClear" (click)="clear($event)"
          class="icon icon-x at-select__clear ng-tns-c14-34 ng-star-inserted"
          style="background: white;z-index: 2"></i>
@@ -142,6 +154,9 @@ export class AtSelectTopControlComponent implements OnInit {
 
   @Input()
   singleValueLabel;
+
+  @Input()
+  arrowIcon: TemplateRef<void>;
 
   focusOnInput($event: Event): void {
     if (!this.atDisabled) {
