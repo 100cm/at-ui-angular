@@ -32,6 +32,7 @@ import { AtFormatEmitEvent } from '../../../components/tree';
       [(ngModel)]="model3"
       [atAllowClear]="true"
       [atShowSearch]="true"
+      [atCheckable]="true"
       [atMultiple]="true"
       [atNodes]="nodes"
     ></at-tree-select>
@@ -47,6 +48,7 @@ export class DemoTreeSelectComponent implements OnInit {
     title: 'parent 1',
     key: '100',
     expanded: true,
+    disableCheckbox: true,
     children: [{
       title: 'parent 1-0',
       key: '1001',
