@@ -82,6 +82,7 @@ export class AtOptionContainerComponent implements AfterContentInit, OnDestroy {
         }
       });
       this.at_select_control_service.options = this.options;
+      this.at_select_control_service.$searchValueChange.next('');
       this.at_select_control_service.$selectOptionChange.next(
         this.options.filter(_ => _.selected).map(_ => _.atValue)
       );

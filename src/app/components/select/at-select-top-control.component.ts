@@ -154,6 +154,7 @@ export class AtSelectTopControlComponent implements OnInit {
   ngOnInit(): void {
     this.subPushOption();
     this.subStatusChange();
+    this.subSearchValue();
   }
 
   getPropertyFromValue(value: string, key: string): string {
@@ -193,6 +194,10 @@ export class AtSelectTopControlComponent implements OnInit {
     });
   }
 
+  subSearchValue(): void {
+    this.select_control_service.$searchValueChange.asObservable().subscribe( data => this.inputValue = data);
+  }
+
   get selectedValueDisplay(): { [key: string]: string } {
     let showSelectedValue = false;
     let opacity = 1;
@@ -227,6 +232,7 @@ export class AtSelectTopControlComponent implements OnInit {
     $event.preventDefault();
     const selectedValue = this.selectedOptions.map(opt => opt.atValue) as [];
     this.select_control_service.removeValue(selectedValue, value.atValue);
+    this.inputValue = '';
   }
 
   get placeHolderDisplay(): string {
