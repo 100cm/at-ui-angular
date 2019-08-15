@@ -42,6 +42,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/theme.scss",
+                  "with": "src/theme.prod.scss"
                 }
               ],
               "serviceWorker": true

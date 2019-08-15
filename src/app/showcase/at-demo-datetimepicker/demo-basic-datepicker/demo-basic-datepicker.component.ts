@@ -15,4 +15,5 @@ export class DemoBasicDatepickerComponent implements OnInit {
 
   current_date = '';
 
+  disableDate = new Date();
 }

@@ -14,7 +14,6 @@ import { AtCollapseModule } from './collapse/collapse.module';
 import { AtColorPickerModule } from './color-picker/at-color-picker.module';
 import { AtDatetimepickerModule } from './datetimepicker/at-datetimepicker.module';
 import { AtDividerModule } from './divider/divider.module';
-import { AtDndModule } from './drag-and-drop/at-dnd.module';
 import { AtDrawerModule } from './drawer/at-drawer.module';
 import { AtDropdownModule } from './dropdown/at-dropdown.module';
 import { AtFormModule } from './form/at-form.module';
@@ -83,7 +82,6 @@ export *                                  from './message';
 export *                                  from './badge';
 export *                                  from './i18n';
 export *                                  from './color-picker';
-export *                                  from './drag-and-drop';
 export *                                  from './collapse';
 export *                                  from './tree-select';
 export *                                  from './autocomplete';
@@ -129,7 +127,6 @@ export *                                  from './divider';
     AtMenuModule,
     AtColorPickerModule,
     AtI18nModule,
-    AtDndModule,
     AtDividerModule,
     AtCollapseModule,
     AtTreeSelectModule,

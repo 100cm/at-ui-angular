@@ -65,8 +65,6 @@ import { AtDemoColorPickerComponent }       from './showcase/at-demo-color-picke
 import { AtDemoComponentsComponent }        from './showcase/at-demo-components/at-demo-components.component';
 import { AtDemoDatetimepickerComponent }    from './showcase/at-demo-datetimepicker/at-demo-datetimepicker.component';
 import { DemoBasicDatepickerComponent }     from './showcase/at-demo-datetimepicker/demo-basic-datepicker/demo-basic-datepicker.component';
-import { AtDemoDndBasicComponent }          from './showcase/at-demo-dnd/at-demo-dnd-basic/at-demo-dnd-basic.component';
-import { AtDemoDndComponent }               from './showcase/at-demo-dnd/at-demo-dnd.component';
 import { AtDemoDocSectionComponent }        from './showcase/at-demo-doc-section/at-demo-doc-section.component';
 import { AtDemoDrawerComponent }            from './showcase/at-demo-drawer/at-demo-drawer.component';
 import { AtDemoDropdownComponent }          from './showcase/at-demo-dropdown/at-demo-dropdown.component';
@@ -176,6 +174,7 @@ import { UpdateLogComponent }               from './showcase/update-log/update-l
 import { DocTdComponent }                   from './showcase/doc-td/doc-td.component';
 import { DocTypeTdComponent }               from './showcase/doc-type-td/doc-type-td.component';
 import { AtDemoDividerComponent } from './showcase/at-demo-divider/at-demo-divider.component';
+import { AtDemoThemeComponent } from './showcase/at-demo-theme/at-demo-theme.component';
 
 @NgModule({
   declarations: [
@@ -322,11 +321,6 @@ import { AtDemoDividerComponent } from './showcase/at-demo-divider/at-demo-divid
     AtDemoColorPickerComponent,
 
     I18NComponent,
-
-    AtDemoDndComponent,
-
-    AtDemoDndBasicComponent,
-
     AtDemoCollapseComponent,
 
     DemoBasicCollapseComponent,
@@ -345,7 +339,9 @@ import { AtDemoDividerComponent } from './showcase/at-demo-divider/at-demo-divid
 
     DocTypeTdComponent,
 
-    AtDemoDividerComponent
+    AtDemoDividerComponent,
+
+    AtDemoThemeComponent
 
   ],
   imports: [

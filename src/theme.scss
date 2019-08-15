@@ -2,13 +2,24 @@
  * Default Variables
  */
 @import "assets/sass/mixins/index";
+
 $css-prefix: at;
 
 /* The Color of O2Team Brand */
-$brand-color: #c41d7f;
-$brand-color-white: tint($brand-color, 95%);
-$brand-color-light: tint($brand-color, 60%);
-$brand-color-dark: tint($brand-color, 1%);
+$brand-color: #6190E8;
+
+/* Color PalettC */
+$primary-100: generateColor($brand-color, 5, true);
+$primary-200: generateColor($brand-color, 4, true);
+$primary-300: generateColor($brand-color, 3, true);
+$primary-400: generateColor($brand-color, 2, true);
+$primary-500: generateColor($brand-color, 1, true);
+$primary-600: $brand-color;
+$primary-700: generateColor($brand-color, 1, false);
+$primary-800: generateColor($brand-color, 2, false);
+$primary-900: generateColor($brand-color, 3, false);
+$primary-1000: generateColor($brand-color, 4, false);
+
 
 $font-path: '/assets/sass/fonts';
 
@@ -18,7 +29,7 @@ $color-primary: $brand-color;
 $color-success: #13CE66;
 $color-error: #FF4949;
 $color-warning: #FFC82C;
-$color-info: $brand-color-light;
+$color-info: $primary-100;
 $color-white: #FFF;
 
 /* Color PalettC */
@@ -143,8 +154,8 @@ $line-height-computed: floor($font-size-base * $line-height-base);
 
 /* Link */
 $link-color: $brand-color;
-$link-hover-color: $brand-color-light;
-$link-active-color: $brand-color-dark;
+$link-hover-color: $primary-500;
+$link-active-color: $primary-700;
 $link-disabled-color: $grey-500;
 $link-hover-decoration: none;
 
@@ -345,7 +356,7 @@ $slider-track-bg-color: $grey-100;
 $slider-bar-border-radius: 2px;
 
 $slider-dot-color: $brand-color;
-$slider-dot-color-hover: $brand-color-dark;
+$slider-dot-color-hover: $primary-500;
 $slider-dot-color-disabled: $grey-300;
 $slider-dot-size: 12px;
 $slider-mark-size: 10px;
@@ -629,7 +640,7 @@ $dropdown-font-size: $font-size-smer;
 
 $dropdown-item-padding: 8px 16px;
 $dropdown-item-min-width: 100px;
-$dropdown-item-bg-color-hover: $brand-color-white;
+$dropdown-item-bg-color-hover: $primary-100;
 $dropdown-item-bg-color-disabled: $grey-300;
 
 $dropdown-divided-color: $brand-blue-50;
@@ -647,7 +658,7 @@ $menu-icon-size: $font-size-base;
 
 $menu-item-text-color-active: $brand-color;
 $menu-item-bg-color-active: $brand-blue-50;
-$menu-item-bg-color-active-inline: $brand-color-white;
+$menu-item-bg-color-active-inline: $primary-100;
 
 $menu-submenu-padding: 12px 16px;
 $menu-item-padding: 12px 16px;
@@ -677,7 +688,7 @@ $pagination-item-font-size: $font-size-base;
 $pagination-btn-font-size: $font-size-base;
 
 $pagination-item-text-color: $text-color;
-$pagination-item-text-color-hover: $brand-color-light;
+$pagination-item-text-color-hover: $primary-500;
 $pagination-item-text-color-active: $color-white;
 $pagination-btn-jump-text-color: $grey-100;
 
@@ -685,7 +696,7 @@ $pagination-item-bg-color: $color-white;
 $pagination-item-bg-color-active: $brand-color;
 
 $pagination-item-border-color: $border-color-base;
-$pagination-item-border-color-hover: $brand-color-light;
+$pagination-item-border-color-hover: $primary-500;
 $pagination-item-border-color-active: $brand-color;
 
 /* Tabs */
@@ -803,7 +814,7 @@ $border-color-base: $progress-track-bg-color; // base border outline a component
 $border-color-split: $progress-track-bg-color; // split border inside a component
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
-$tabs-card-head-background: $brand-color-white;
+$tabs-card-head-background: $primary-100;
 $tabs-card-height: 40px;
 $tabs-card-active-color: $brand-color;
 $tabs-title-font-size: $font-size-base;
@@ -817,7 +828,7 @@ $tabs-vertical-padding: 8px 24px;
 $tabs-vertical-margin: 0 0 16px 0;
 $tabs-scrolling-size: 32px;
 $tabs-highlight-color: $brand-color;
-$tabs-hover-color: $brand-color-dark;
+$tabs-hover-color: $primary-500;
 $tabs-active-color: $brand-color;
 $heading-color: fade(#000, 85%);
 
@@ -829,3 +840,4 @@ $tree-directory-selected-bg: $brand-color;
 $highlight-color: $red-600;
 
 @import "assets/sass/entry";
+

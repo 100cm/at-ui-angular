@@ -57,6 +57,11 @@ export class AtCheckboxComponent implements OnInit {
     return this._checked;
   }
 
+  @Input()
+  set checked(value: boolean) {
+    this._checked = value;
+  }
+
   _indeterminate = false;
 
   get indeterminate(): boolean {
@@ -95,7 +100,7 @@ export class AtCheckboxComponent implements OnInit {
     e.preventDefault();
     if (!this.atDisabled) {
       this._checked = !this._checked;
-      this.onChange(this._checked);
+      this.onChange && this.onChange(this._checked);
       this.changeCheck.emit(this._checked);
     }
   }

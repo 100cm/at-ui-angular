@@ -1,8 +1,10 @@
 {
   "name": "at-ng",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "license": "MIT",
   "author": "zhou351711778",
+  "homepage": "https://100cm.github.io/at-ui-angular/",
+  "repository": "https://github.com/100cm/at-ui-angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +34,8 @@
     "@angular-devkit/schematics": "^8.0.0",
     "@angular/cdk": "^8.0.0",
     "@angular/pwa": "^0.10.2",
-    "moment": "^2.18.1",
+    "@ant-design/colors": "^3.1.0",
+    "date-fns": "^1.29.0",
     "tsickle": "^0.35.0",
     "tslib": "^1.9.3"
   },
@@ -87,7 +90,7 @@
     "zone.js": "0.9.1"
   },
   "peerDependencies": {
-    "moment": "^2.18.1",
+    "date-fns": "^1.29.0",
     "tinycolor2": "1.4.1"
   }
 }

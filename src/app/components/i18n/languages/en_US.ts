@@ -5,7 +5,8 @@ export default {
     chooseDate: 'Select date',
     Monday: 'Mon', TuesDay: 'Tues', Wednesday: 'Wed', ThursDay: 'Thur', Friday: 'Fri', Saturday: 'Sat', Sunday: 'Sun',
     MonthName: ' -',
-    YearName: ''
+    YearName: '',
+    months: ['Jan', 'Feb', 'Mon', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   },
   Select: {
     notFoundContent: 'No Result Found'

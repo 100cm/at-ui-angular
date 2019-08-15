@@ -1,11 +1,10 @@
 @import './mixins/index.scss';
-
 /* Variables */
 @import './variables/timing-function.scss';
 
+@import "./variables/default";
 /* Core */
 @import './core/index.scss';
-
 /* Components */
 @import './components/index.scss';
 

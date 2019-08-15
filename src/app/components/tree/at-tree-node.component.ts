@@ -14,13 +14,13 @@ import {
   SimpleChange,
   TemplateRef,
   ViewChild
-}                                                   from '@angular/core';
-import { fromEvent, Observable, Subject }             from 'rxjs';
-import { takeUntil }                                  from 'rxjs/operators';
-import { InputBoolean }                               from '../utils/class-helper';
-import { AtTreeNode }                                 from './at-tree-node';
-import { isCheckDisabled }                            from './at-tree-util';
-import { AtTreeService }                              from './at-tree.service';
+} from '@angular/core';
+import { fromEvent, Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { InputBoolean } from '../utils/class-helper';
+import { AtTreeNode } from './at-tree-node';
+import { isCheckDisabled } from './at-tree-util';
+import { AtTreeService } from './at-tree.service';
 import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
 
 @Component({
@@ -47,7 +47,8 @@ import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
         <at-icon *ngIf="!atTreeNode.isLoading" [svg]="down" class="at-tree-switcher-icon">
           <ng-template #down> <svg viewBox="0 0 1024 1024" fill="currentColor" width="1em" height="1em"
                                    class="ng-tns-c12-112" data-icon="caret-down" aria-hidden="true">
-            <path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path></svg>
+            <path
+              d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path></svg>
             </ng-template>
         </at-icon>
         <i *ngIf="atTreeNode.isLoading" class="at-btn__icon icon at-btn__loading icon-loader"></i>
@@ -59,13 +60,13 @@ import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
       </ng-container>
     </span>
       </ng-container>
-      <ng-container *ngIf="atCheckable">
-    <span
-      class="at-tree-checkbox"
-      [class.at-tree-checkbox-checked]="atTreeNode.isChecked"
-      [class.at-tree-checkbox-indeterminate]="atTreeNode.isHalfChecked"
-      [class.at-tree-checkbox-disabled]="(atTreeNode.isDisabled || atTreeNode.isDisableCheckbox)"
-      (click)="_clickCheckBox($event)">
+      <ng-container *ngIf="!atTreeNode.isDisableCheckbox && atCheckable">
+        <span
+          class="at-tree-checkbox"
+          [class.at-tree-checkbox-checked]="atTreeNode.isChecked"
+          [class.at-tree-checkbox-indeterminate]="atTreeNode.isHalfChecked"
+          [class.at-tree-checkbox-disabled]="(atTreeNode.isDisabled || atTreeNode.isDisableCheckbox)"
+          (click)="_clickCheckBox($event)">
       <span class="at-tree-checkbox-inner"></span>
     </span>
       </ng-container>
@@ -161,7 +162,7 @@ import { AtFormatBeforeDropEvent, AtFormatEmitEvent } from './interface';
 })
 
 export class AtTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('dragElement', { static: true }) dragElement: ElementRef;
+  @ViewChild('dragElement', {static: true}) dragElement: ElementRef;
 
   @Input() @InputBoolean() atShowLine: boolean;
   @Input() @InputBoolean() atShowExpand: boolean;

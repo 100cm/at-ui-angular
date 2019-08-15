@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import * as momentI from 'moment';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
-const moment = momentI;
+import { ColComponent } from '../../grid/col/col.component';
+import { BladeDate } from '../blade-date';
+
 @Component({
   selector: 'at-time',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div at-row>
       <div #hour_panel at-col [span]="8" class="at-time-panel">
@@ -52,7 +52,7 @@ export class TimeComponent implements OnInit {
     this._buildSeconds();
   }
 
-  @Input() date = moment();
+  @Input() date = new BladeDate();
 
   seconds: any[];
 
@@ -64,9 +64,9 @@ export class TimeComponent implements OnInit {
   private _selected_minutes;
   private _selected_hour;
 
-  @Output() selectHour: EventEmitter<any> = new EventEmitter();
-  @Output() selectMinute: EventEmitter<any> = new EventEmitter();
-  @Output() selectSecond: EventEmitter<any> = new EventEmitter();
+  @Output() readonly selectHour: EventEmitter<any> = new EventEmitter();
+  @Output() readonly selectMinute: EventEmitter<any> = new EventEmitter();
+  @Output() readonly selectSecond: EventEmitter<any> = new EventEmitter();
 
   get selected_second() {
     return this._selected_second;
@@ -74,7 +74,9 @@ export class TimeComponent implements OnInit {
 
   @Input()
   set selected_second(value) {
-    this._selected_second = value;
+    setTimeout(_ => {
+      this._selected_second = value;
+    });
   }
 
   get selected_minutes() {
@@ -82,8 +84,10 @@ export class TimeComponent implements OnInit {
   }
 
   @Input()
-  set selected_minutes(value) {
-    this._selected_minutes = value;
+  set selected_minutes(value: number) {
+    setTimeout(_ => {
+      this._selected_minutes = value;
+    });
   }
 
   get selected_hour(): number {
@@ -92,10 +96,13 @@ export class TimeComponent implements OnInit {
 
   @Input()
   set selected_hour(value: number) {
-    this._selected_hour = value;
+    setTimeout(_ => {
+        this._selected_hour = value;
+      }
+    );
   }
 
-  _buildHours() {
+  _buildHours(): void {
     this.hours = [];
     for (let i = 0; i <= 23; i++) {
       this.hours.push({
@@ -105,7 +112,7 @@ export class TimeComponent implements OnInit {
     }
   }
 
-  _buildMinutes() {
+  _buildMinutes(): void {
     this.minutes = [];
     for (let i = 0; i <= 59; i++) {
       this.minutes.push({
@@ -115,7 +122,7 @@ export class TimeComponent implements OnInit {
     }
   }
 
-  _buildSeconds() {
+  _buildSeconds(): void {
     this.seconds = [];
     for (let i = 0; i <= 59; i++) {
       this.seconds.push({
@@ -125,9 +132,9 @@ export class TimeComponent implements OnInit {
     }
   }
 
-  @ViewChild('hour_panel', { static: true }) hour_panel;
-  @ViewChild('minute_panel', { static: true }) minute_panel;
-  @ViewChild('second_panel', { static: true }) second_panel;
+  @ViewChild('hour_panel', {static: true}) hour_panel;
+  @ViewChild('minute_panel', {static: true}) minute_panel;
+  @ViewChild('second_panel', {static: true}) second_panel;
 
   inited = false;
 
@@ -161,32 +168,32 @@ export class TimeComponent implements OnInit {
 
   }
 
-  _select_minutes(index) {
+  _select_minutes(index: number) {
     this.selected_minutes = index;
     this.selectMinute.emit(index);
   }
 
-  _select_hour(index) {
+  _select_hour(index: number) {
     this.selected_hour = index;
     this.selectHour.emit(index);
   }
 
-  _select_second(index) {
+  _select_second(index: number) {
     this.selected_second = index;
     this.selectSecond.emit(index);
   }
 
   confirmTime() {
     const second = this.seconds.find((s) => {
-      return s.index == this.selected_second;
+      return s.index === this.selected_second;
     });
 
     const minute = this.minutes.find((s) => {
-      return s.index == this.selected_minutes;
+      return s.index === this.selected_minutes;
     });
 
     const hour = this.hours.find((s) => {
-      return s.index == this.selected_hour;
+      return s.index === this.selected_hour;
     });
   }
 

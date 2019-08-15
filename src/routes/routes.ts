@@ -16,7 +16,6 @@ import { AtDemoColorPickerComponent } from '../app/showcase/at-demo-color-picker
 import { AtDemoComponentsComponent } from '../app/showcase/at-demo-components/at-demo-components.component';
 import { AtDemoDatetimepickerComponent } from '../app/showcase/at-demo-datetimepicker/at-demo-datetimepicker.component';
 import { AtDemoDividerComponent } from '../app/showcase/at-demo-divider/at-demo-divider.component';
-import { AtDemoDndComponent } from '../app/showcase/at-demo-dnd/at-demo-dnd.component';
 import { AtDemoDrawerComponent } from '../app/showcase/at-demo-drawer/at-demo-drawer.component';
 import { AtDemoDropdownComponent } from '../app/showcase/at-demo-dropdown/at-demo-dropdown.component';
 import { AtDemoFormComponent } from '../app/showcase/at-demo-form/at-demo-form.component';
@@ -41,6 +40,7 @@ import { AtDemoTableComponent } from '../app/showcase/at-demo-table/at-demo-tabl
 import { AtDemoTabsComponent } from '../app/showcase/at-demo-tabs/at-demo-tabs.component';
 import { AtDemoTagComponent } from '../app/showcase/at-demo-tag/at-demo-tag.component';
 import { AtDemoTextareaComponent } from '../app/showcase/at-demo-textarea/at-demo-textarea.component';
+import { AtDemoThemeComponent } from '../app/showcase/at-demo-theme/at-demo-theme.component';
 import { AtDemoTimelineComponent } from '../app/showcase/at-demo-timeline/at-demo-timeline.component';
 import { AtDemoTooltipComponent } from '../app/showcase/at-demo-tooltip/at-demo-tooltip.component';
 import { AtDemoTreeSelectComponent } from '../app/showcase/at-demo-tree-select/at-demo-tree-select.component';
@@ -104,11 +104,11 @@ const appRoutes: Routes = [
       {path: 'carousel', component: AtDemoCarouselComponent},
       {path: 'drawer', component: AtDemoDrawerComponent},
       {path: 'color-picker', component: AtDemoColorPickerComponent},
-      {path: 'dnd', component: AtDemoDndComponent},
       {path: 'collapse', component: AtDemoCollapseComponent},
       {path: 'tree-select', component: AtDemoTreeSelectComponent},
       {path: 'auto-complete', component: AtDemoAutocompeleteComponent},
-      {path: 'divider', component: AtDemoDividerComponent}
+      {path: 'divider', component: AtDemoDividerComponent},
+      {path: 'theme', component: AtDemoThemeComponent}
     ]
 
   },
