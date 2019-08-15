@@ -1,7 +1,17 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  Renderer2
+} from '@angular/core';
 
 @Component({
   selector: '[at-drop-menu-item]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content>
     </ng-content>

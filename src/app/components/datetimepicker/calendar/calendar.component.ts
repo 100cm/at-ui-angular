@@ -1,81 +1,78 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import * as momentI       from 'moment';
+import * as momentI from 'moment';
 import 'moment/locale/zh-cn';
 import { AtI18nInterface } from '../../i18n/at-i18n.interface';
-import { AtI18nService }   from '../../i18n/at-i18n.service';
-import { AtDate }          from '../at-day';
+import { AtI18nService } from '../../i18n/at-i18n.service';
+import { AtDate } from '../at-day';
+
 const moment = momentI;
 @Component({
-             selector: 'at-calendar',
-             template: `
-               <table cellspacing="0" role="grid" *ngIf="atType =='full'" class="at-calendar-table">
-                 <thead>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Sunday}}</span></th>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Monday}}</span></th>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.TuesDay}}</span></th>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Wednesday}}</span>
-                 </th>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.ThursDay}}</span>
-                 </th>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Friday}}</span></th>
-                 <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Saturday}}</span>
-                 </th>
-                 </thead>
-                 <tbody>
-                 <tr role="row" *ngFor="let week of weeks">
-                   <td
-                     role="gridcell"
-                     *ngFor="let day of week.days" class="at-date-cell"
-                     (click)="clickDay(day)"
-                     [ngClass]="{'at-date-cell--last-month':day.isLastMonth,
-'at-date-cell--selected':day.isSelectedDay ,
-'at-date-cell--today':day.isCurrentDay,
-'at-date-cell--next-month':day.isNextMonth,
-'at-date-cell--disabled':day.disabled}">
-                     <div class="at-date">{{day.number}}</div>
-                   </td>
-                 </tr>
-                 </tbody>
-               </table>
+  selector: 'at-calendar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <table cellspacing="0" role="grid" *ngIf="atType =='full'" class="at-calendar-table">
+      <thead>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Sunday}}</span></th>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Monday}}</span></th>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.TuesDay}}</span></th>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Wednesday}}</span></th>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.ThursDay}}</span></th>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Friday}}</span></th>
+        <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Saturday}}</span></th>
+      </thead>
+      <tbody>
+        <tr role="row" *ngFor="let week of weeks">
+          <td
+            role="gridcell"
+            *ngFor="let day of week.days" class="at-date-cell"
+            (click)="clickDay(day)"
+            [ngClass]="{
+              'at-date-cell--last-month':day.isLastMonth,
+              'at-date-cell--selected':day.isSelectedDay ,
+              'at-date-cell--today':day.isCurrentDay,
+              'at-date-cell--next-month':day.isNextMonth,
+              'at-date-cell--disabled':day.disabled}">
+            <div class="at-date">{{day.number}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-               <table cellspacing="0" role="grid" *ngIf="atType=='month'" class="at-calendar-table">
-                 <tbody>
-                 <tr role="row" *ngFor="let month of months">
-                   <td
-                     role="gridcell"
-                     *ngFor="let single of month" class="at-month-cell"
-                     (click)="clickMonth(single)"
-                     [ngClass]="{
+    <table cellspacing="0" role="grid" *ngIf="atType=='month'" class="at-calendar-table">
+      <tbody>
+        <tr role="row" *ngFor="let month of months">
+          <td
+            role="gridcell"
+            *ngFor="let single of month" class="at-month-cell"
+            (click)="clickMonth(single)"
+            [ngClass]="{
               'at-date-cell--selected':single.isSelectedMonth ,
               'at-date-cell--today':single.isCurrentMonth}">
-                     <a class="at-date">{{single.name}}</a>
-                   </td>
-                 </tr>
-                 </tbody>
-               </table>
+            <a class="at-date">{{single.name}}</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-               <table cellspacing="0" role="grid" *ngIf="atType=='year'" class="at-calendar-table">
-                 <tbody>
-                 <tr role="row" *ngFor="let section of years">
-                   <td
-                     role="gridcell"
-                     *ngFor="let year of section" class="at-month-cell"
-                     (click)="clickYear(year.year)"
-                     [ngClass]="{
+    <table cellspacing="0" role="grid" *ngIf="atType=='year'" class="at-calendar-table">
+      <tbody>
+        <tr role="row" *ngFor="let section of years">
+          <td
+            role="gridcell"
+            *ngFor="let year of section" class="at-month-cell"
+            (click)="clickYear(year.year)"
+            [ngClass]="{
               'at-date-cell--selected':year.isSelectedYear ,
               'at-date-cell--today':year.isCurrentYear}">
-                     <div class="at-date">{{year.year}}</div>
-                   </td>
-                 </tr>
-                 </tbody>
-               </table>
+            <div class="at-date">{{year.year}}</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  `
+})
 
-
-
-             `
-
-           })
 export class CalendarComponent implements OnInit {
 
   @Output() _clickMonth: EventEmitter<any> = new EventEmitter();

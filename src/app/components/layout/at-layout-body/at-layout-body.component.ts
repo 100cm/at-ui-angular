@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
-             selector: 'at-layout-body',
-             template: `
-               <ng-content>
-               </ng-content>`,
-             host: {
-               '[class.at-layout-body]': 'true',
-               '[class.at-layout-body-has-side]': 'hasSideBar'
-             }
-           })
+  selector: 'at-layout-body',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <ng-content>
+    </ng-content>`,
+  host: {
+    '[class.at-layout-body]': 'true',
+    '[class.at-layout-body-has-side]': 'hasSideBar'
+  }
+})
 export class AtLayoutBodyComponent implements OnInit {
 
   hasSideBar = false;
@@ -17,7 +18,7 @@ export class AtLayoutBodyComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

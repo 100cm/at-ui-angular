@@ -1,7 +1,8 @@
-import { Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'at-badge',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<span class="at-badge at-badge--{{atType}}">
   <span #content>
   <ng-content>

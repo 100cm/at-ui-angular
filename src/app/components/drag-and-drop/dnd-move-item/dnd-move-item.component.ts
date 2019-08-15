@@ -1,33 +1,33 @@
-import { forwardRef, Component, OnInit } from '@angular/core';
-import { NG_VALUE_ACCESSOR }             from '@angular/forms';
-import { fromEvent }                     from 'rxjs';
-import { concatAll, map, takeUntil }     from 'rxjs/operators';
-import { DndItemComponent }              from '../dnd-item/dnd-item.component';
+import { ChangeDetectionStrategy, Component, forwardRef, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { fromEvent } from 'rxjs';
+import { concatAll, map, takeUntil } from 'rxjs/operators';
+import { DndItemComponent } from '../dnd-item/dnd-item.component';
 
 @Component({
-             selector: 'at-dnd-move-item',
-             template: `
-               <div *ngIf="drag_enter == true && show_drag_line == true" class="drag-over-place"></div>
-               <div [class.dz-drag-start]="dragAndDropStart" class="none-drag-event">
-                 <ng-content></ng-content>
-               </div>
-               <div #drag_view
-                    style="position: fixed" [style.left.px]="-2000" [style.top.px]="-2000">
-               </div>
+  selector: 'at-dnd-move-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div *ngIf="drag_enter == true && show_drag_line == true" class="drag-over-place"></div>
+    <div [class.dz-drag-start]="dragAndDropStart" class="none-drag-event">
+      <ng-content></ng-content>
+    </div>
+    <div #drag_view
+         style="position: fixed" [style.left.px]="-2000" [style.top.px]="-2000">
+    </div>
+  `,
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => DndItemComponent),
+    multi: true
+  }],
+  styles: [`
+    :host {
+      display: block;
+    }
+  `]
+})
 
-
-             `,
-             providers: [{
-               provide: NG_VALUE_ACCESSOR,
-               useExisting: forwardRef(() => DndItemComponent),
-               multi: true
-             }],
-             styles: [
-                 `:host {
-                 display: block;
-               }`
-             ]
-           })
 export class DndMoveItemComponent extends DndItemComponent implements OnInit {
 
   writeValue(obj: any): void {

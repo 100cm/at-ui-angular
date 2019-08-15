@@ -1,10 +1,10 @@
 import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
-  forwardRef,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
+  forwardRef,
   Input,
   OnInit,
   Renderer2,
@@ -15,19 +15,15 @@ import * as momentI from 'moment';
 import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, mapTo, merge } from 'rxjs/operators';
 import { DropDownAnimation } from '../animations/drop-down-animation';
-import {
-  DEFAULT_DROPDOWN_POSITIONS,
-  POSITION_MAP
-} from '../core/overlay/overlay-position-map';
 import { AtI18nInterface } from '../i18n/at-i18n.interface';
 import { AtI18nService } from '../i18n/at-i18n.service';
 import { InputComponent } from '../input/input.component';
-import { underscoreToCamelCase } from '../utils/class-helper';
 
 const moment = momentI;
 
 @Component({
   selector: 'atDatetimePicker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-date-input-wrapper">
       <atInput [ngModel]="atValue | atFormat: format" #timeinput [icon]="inputIcon" (onFocus)="_show()"></atInput>
@@ -260,6 +256,7 @@ export class DatetimepickerComponent implements OnInit {
     } else {
       this.clearDate();
     }
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: (_: any) => {}): void {

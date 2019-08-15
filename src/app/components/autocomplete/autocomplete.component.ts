@@ -1,5 +1,5 @@
 import { CdkOverlayOrigin }                     from '@angular/cdk/overlay';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { DropDownAnimation }                    from '../animations/drop-down-animation';
 
 @Component({
@@ -37,13 +37,14 @@ import { DropDownAnimation }                    from '../animations/drop-down-an
     </ng-template>
 
   `,
-  animations: [DropDownAnimation]
+  animations: [DropDownAnimation],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutoCompleteComponent implements OnInit {
 
   public cdkOverlayOrigin: CdkOverlayOrigin;
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -79,6 +80,7 @@ export class AutoCompleteComponent implements OnInit {
     } else {
       this.atOpen = false;
     }
+    this.changeDetectorRef.markForCheck();
   }
 
   highlight(item: string): string[] {

@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit } from '@angular/core';
 import { isPromise } from '../../utils/class-helper';
-import { NotificationConfig, NotificationOption } from '../notification/notification-config';
+import { NotificationConfig } from '../notification/notification-config';
 
 @Component({
   selector: 'at-notification-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-notification-container">
       <at-notification *ngFor="let item of notifications" [config]="item"></at-notification>
@@ -24,7 +25,7 @@ import { NotificationConfig, NotificationOption } from '../notification/notifica
 })
 export class NotificationContainerComponent implements OnInit {
 
-  constructor(private el: ElementRef) {
+  constructor(private el: ElementRef, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -35,6 +36,7 @@ export class NotificationContainerComponent implements OnInit {
 
   addMessage(notification: NotificationConfig): void {
     this.notifications.push(notification);
+    this.changeDetectorRef.detectChanges();
   }
 
   remove(index: string): void {

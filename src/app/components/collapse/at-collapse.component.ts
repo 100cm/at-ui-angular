@@ -1,10 +1,11 @@
 import { coerceBooleanProperty }                 from '@angular/cdk/coercion';
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ExpandAnimation }                       from '../animations/expand-animation';
 import { AtCollapseItemComponent }               from './at-collapse-item/at-collapse-item.component';
 
 @Component({
   selector: 'at-collapse',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [ExpandAnimation],
   template: `
     <div class="at-collapse" [class.at-collapse--simple]="atSimple">

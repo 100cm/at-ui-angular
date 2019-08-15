@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NotificationContainerComponent } from '../../notification/notification-container/notification-container.component';
 
 @Component({
   selector: 'at-message-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-message__wrapper">
-
       <at-message [message]="message" *ngFor="let message of notifications"></at-message>
-
     </div>
   `,
   styles: [`

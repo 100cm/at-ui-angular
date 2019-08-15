@@ -1,17 +1,18 @@
-import { Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
-import { AtDropSubmenuComponent }                                       from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
-import { MenuListComponent }                                            from '../menu-list/menu-list.component';
-import { MenuComponent }                                                from '../menu.component';
-import { SubMenuComponent }                                             from '../sub-menu/sub-menu.component';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, OnInit, Renderer2 } from '@angular/core';
+import { AtDropSubmenuComponent } from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
+import { MenuComponent } from '../menu.component';
+import { SubMenuComponent } from '../sub-menu/sub-menu.component';
 
 @Component({
-             selector: '[at-drop-menu-list]',
-             template: `
-               <ng-content></ng-content>`
-           })
+  selector: '[at-drop-menu-list]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <ng-content></ng-content>
+  `
+})
 export class DropMenuListComponent extends MenuComponent implements OnInit {
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   constructor(public el: ElementRef, public render: Renderer2) {
@@ -22,7 +23,7 @@ export class DropMenuListComponent extends MenuComponent implements OnInit {
 
   @HostBinding('class.at-dropdown-menu') menu = true;
 
-  get verticalClass() {
+  get verticalClass(): boolean {
     return false;
   }
 

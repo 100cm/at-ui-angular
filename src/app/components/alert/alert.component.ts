@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger }     from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'at-alert',
@@ -27,8 +27,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       transition('shown => hidden', animate('600ms')),
       transition('hidden => shown', animate('300ms'))
     ])
-  ]
-
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertComponent implements OnInit {
 

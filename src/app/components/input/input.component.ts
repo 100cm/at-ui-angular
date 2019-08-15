@@ -1,13 +1,14 @@
 import {
   forwardRef, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
-  ViewChild
-}                          from '@angular/core';
+  ViewChild, ChangeDetectionStrategy, ChangeDetectorRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export type atInputSize = 'small' | 'normal' | 'large';
 
 @Component({
   selector: 'atInput',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
       class="{{_prefixCls}} {{_prefixCls}}--{{atSize}} {{_prefixCls}}--{{atStatus}} at-input-number--{{disabled ? 'disabled' : ''}} "
@@ -55,10 +56,10 @@ export type atInputSize = 'small' | 'normal' | 'large';
 })
 export class InputComponent implements OnInit {
 
-  constructor(public elementRef: ElementRef) {
+  constructor(public elementRef: ElementRef, private changeDetectorRef: ChangeDetectorRef) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   private _atStatus = 'original';
@@ -227,6 +228,7 @@ export class InputComponent implements OnInit {
 
   writeValue(value: any): void {
     this._value = value;
+    this.changeDetectorRef.markForCheck();
   }
 
   registerOnChange(fn: (_: any) => {}): void {

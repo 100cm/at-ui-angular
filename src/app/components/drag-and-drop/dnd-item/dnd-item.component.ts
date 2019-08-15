@@ -1,24 +1,26 @@
 import {
-  forwardRef,
-  ApplicationRef,
-  ChangeDetectorRef, Component, ComponentFactoryResolver,
+  ChangeDetectionStrategy,
+  Component,
   ContentChild,
-  ElementRef, EventEmitter,
-  HostListener, Injector,
-  Input, NgZone,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Input,
+  NgZone,
   OnInit,
-  Optional,
-  Output, Renderer2, ViewChild
+  Output,
+  Renderer2,
+  ViewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { fromEvent, timer } from 'rxjs';
-import { concatAll, debounce, map, merge, switchMap, takeUntil } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 import { AtDndContent, DndContainerComponent } from '../dnd-container/dnd-container.component';
 import { DragTriggerDirective } from '../drag-trigger.directive';
 
 @Component({
   selector: 'at-dnd-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container *ngIf="drag_enter == true && show_drag_line == true">
       <div class="drag-over-place"></div>

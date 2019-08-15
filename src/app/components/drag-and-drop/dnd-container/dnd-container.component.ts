@@ -1,6 +1,6 @@
-import { forwardRef, Component, ElementRef, Input, OnInit } from '@angular/core';
-import { NG_VALUE_ACCESSOR }                                from '@angular/forms';
-import { DndItemComponent }                                 from '../dnd-item/dnd-item.component';
+import { ChangeDetectionStrategy, Component, ElementRef, forwardRef, OnInit } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DndItemComponent } from '../dnd-item/dnd-item.component';
 
 const _ = require('lodash');
 
@@ -12,15 +12,18 @@ export interface AtDndContent {
 }
 
 @Component({
-             selector: 'at-dnd-container',
-             template: `
-               <ng-content></ng-content>`,
-             providers: [{
-               provide: NG_VALUE_ACCESSOR,
-               useExisting: forwardRef(() => DndContainerComponent),
-               multi: true
-             }]
-           })
+  selector: 'at-dnd-container',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <ng-content></ng-content>
+  `,
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => DndContainerComponent),
+    multi: true
+  }]
+})
+
 export class DndContainerComponent implements OnInit {
 
   constructor(public el: ElementRef) {

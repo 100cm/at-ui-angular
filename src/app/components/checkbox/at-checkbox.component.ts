@@ -1,10 +1,20 @@
-import { forwardRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  forwardRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 type CheckState = 'checked' | 'unchecked' | 'disabled' | 'indeterminate';
 
 @Component({
   selector: 'at-checkbox,[at-checkbox]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<label (click)="check($event)"
                     [ngClass]="{'at-checkbox--disabled':atDisabled ,'at-checkbox':true ,'at-checkbox--checked': status ==='checked'
                     ,'at-checkbox--indeterminate': status === 'indeterminate'
@@ -75,7 +85,7 @@ export class AtCheckboxComponent implements OnInit {
     this._label = value;
   }
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -96,6 +106,7 @@ export class AtCheckboxComponent implements OnInit {
 
   writeValue(value: boolean): void {
     this._checked = value;
+    this.changeDetectorRef.markForCheck();
   }
 
   registerOnChange(fn: (_: boolean) => {}): void {

@@ -1,16 +1,27 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, Optional, Renderer2 } from '@angular/core';
-import { MenuComponent }                                                                        from '../menu.component';
-import { SubMenuComponent }                                                                     from '../sub-menu/sub-menu.component';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  Optional,
+  Renderer2
+} from '@angular/core';
+import { MenuComponent } from '../menu.component';
+import { SubMenuComponent } from '../sub-menu/sub-menu.component';
 
 @Component({
   selector: '[at-menu-item]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content></ng-content>
   `
 })
 export class MenuItemComponent implements OnInit {
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   _el: any;

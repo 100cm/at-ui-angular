@@ -22,7 +22,7 @@ export class DemoFormBasicComponent implements OnInit {
     return this.validateForm.controls[name];
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

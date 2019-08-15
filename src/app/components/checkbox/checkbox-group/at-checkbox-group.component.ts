@@ -1,18 +1,19 @@
 import {
   forwardRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ContentChildren,
   Input,
-  OnInit,
-  QueryList,
-  ViewChild
-}                              from '@angular/core';
+  OnInit, QueryList, ViewChild
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR }   from '@angular/forms';
 import { AtCheckboxComponent } from '../at-checkbox.component';
 
 @Component({
   selector: 'at-checkbox-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-checkbox-group">
       <at-checkbox *ngFor="let option of _checkList" [label]="option.label"
@@ -32,7 +33,7 @@ import { AtCheckboxComponent } from '../at-checkbox.component';
 })
 export class AtCheckboxGroupComponent implements OnInit {
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class AtCheckboxGroupComponent implements OnInit {
 
   writeValue<T>(value: T[]): void {
     this._checkList = value;
+    this.changeDetectorRef.markForCheck();
   }
 
   registerOnChange(fn: (value: string[]) => {}): void {

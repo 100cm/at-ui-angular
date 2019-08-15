@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { BreadcrumbComponent }                   from '../breadcrumb.component';
 
 @Component({
   selector: 'at-bread-item,[at-bread-item]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span class="at_breadcrumb__text">
       <ng-content></ng-content>

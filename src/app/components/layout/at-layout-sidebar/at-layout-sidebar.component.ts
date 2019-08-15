@@ -1,15 +1,16 @@
-import { Component, HostBinding, Input, OnInit, Optional } from '@angular/core';
-import { AtLayoutBodyComponent }                           from '../at-layout-body/at-layout-body.component';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, OnInit, Optional } from '@angular/core';
+import { AtLayoutBodyComponent } from '../at-layout-body/at-layout-body.component';
 
 @Component({
-             selector: 'at-layout-sidebar',
-             template: `
-               <div class="at-layout-sidebar-children">
-                 <ng-content>
-                 </ng-content>
-               </div>`,
-             host: {'[class.at-layout-sidebar]': 'true'}
-           })
+  selector: 'at-layout-sidebar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="at-layout-sidebar-children">
+      <ng-content></ng-content>
+    </div>
+  `,
+  host: {'[class.at-layout-sidebar]': 'true'}
+})
 export class AtLayoutSidebarComponent implements OnInit {
 
   constructor(@Optional() private atLayoutBody: AtLayoutBodyComponent) {
@@ -17,7 +18,7 @@ export class AtLayoutSidebarComponent implements OnInit {
 
   @Input() atWidth = 256;
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.atLayoutBody) {
       this.atLayoutBody.hasSideBar = true;
     }

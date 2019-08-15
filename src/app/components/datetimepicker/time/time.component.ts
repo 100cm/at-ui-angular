@@ -1,9 +1,10 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import * as momentI from 'moment';
-import { ColComponent } from '../../grid/col/col.component';
+
 const moment = momentI;
 @Component({
   selector: 'at-time',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div at-row>
       <div #hour_panel at-col [span]="8" class="at-time-panel">

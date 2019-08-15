@@ -1,12 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { StatusIconType } from '../../icon/icon-status-type';
 import { NotificationConfig } from '../../notification/notification/notification-config';
-import { NotificationComponent } from '../../notification/notification/notification.component';
 import { MessageContainerComponent } from '../message-container/message-container.component';
 
 @Component({
   selector: 'at-message',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-message--wrapper" [@enterLeave]="message.state">
       <div class="at-message at-message--{{message.type}}">

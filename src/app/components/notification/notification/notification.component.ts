@@ -1,10 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { StatusIconType } from '../../icon/icon-status-type';
 import { NotificationContainerComponent } from '../notification-container/notification-container.component';
 import { NotificationConfig } from './notification-config';
+
 @Component({
   selector: 'at-notification',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div (mouseenter)="stopRemove()" (mouseleave)="startRemove()"
          [@enterLeave]="config.state"
@@ -78,7 +80,7 @@ import { NotificationConfig } from './notification-config';
 })
 export class NotificationComponent implements OnInit {
 
-  constructor(public notificationContainer: NotificationContainerComponent) {
+  constructor(public notificationContainer: NotificationContainerComponent, private changeDetectorRef: ChangeDetectorRef) {
 
   }
 
@@ -97,6 +99,7 @@ export class NotificationComponent implements OnInit {
 
   remove(): void {
     this.notificationContainer.remove(this.config.index);
+    this.changeDetectorRef.detectChanges();
   }
 
   startRemove(): void {
