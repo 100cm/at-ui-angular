@@ -20,7 +20,6 @@ export class BladeDate implements IndexableObject {
   // locale: string; // Custom specified locale ID
 
   constructor(date?: Date | string | BladeDate) {
-
     if (date) {
       if (date instanceof Date) {
         this.nativeDate = date;
@@ -156,9 +155,8 @@ export class BladeDate implements IndexableObject {
   }
 
   endOf(grain: 'month'): BladeDate | null {
-    switch (grain) {
-      case 'month':
-        return new BladeDate(endOfMonth(this.nativeDate));
+    if (grain === 'month') {
+      return new BladeDate(endOfMonth(this.nativeDate));
     }
     return null;
   }

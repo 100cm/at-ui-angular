@@ -1,13 +1,13 @@
 <p>日期格式为年/月/日</p>
-<atDatetimePicker [allowClear]="true" [inputIcon]="'calendar'" [format]="'YYYY-MM-DD HH:mm:ss'" [(ngModel)]="current_date"></atDatetimePicker>
+<at-datetime-picker [allowClear]="true" [inputIcon]="'calendar'" [format]="'YYYY-MM-DD HH:mm:ss'" [(ngModel)]="current_date"></at-datetime-picker>
 {{current_date}}
 <hr>
 
 <p>日期格式为月/日</p>
-<atDatetimePicker [format]="'MM-DD'" [(ngModel)]="current_date"></atDatetimePicker>
+<at-datetime-picker [format]="'MM-DD'" [(ngModel)]="current_date"></at-datetime-picker>
 {{current_date}}
 <hr>
 
 <p>2017年9月1日之前日期不可选</p>
-<atDatetimePicker [disableDate]="disableDate" [format]="'YYYY-MM-DD'" [(ngModel)]="current_date"></atDatetimePicker>
+<at-datetime-picker [disableDate]="disableDate" [format]="'YYYY-MM-DD'" [(ngModel)]="current_date"></at-datetime-picker>
 {{current_date}}
