@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { fromEvent, Observable, Subscription }                           from 'rxjs';
 import { AtGlobalMonitorService }                                        from '../../at-global-monitor.service';
 
@@ -12,7 +21,7 @@ import { AtGlobalMonitorService }                                        from '.
 })
 export class AtAffixComponent implements OnInit {
 
-  constructor(private monitor: AtGlobalMonitorService) {
+  constructor(private monitor: AtGlobalMonitorService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   @ViewChild('child', { static: true }) childElement: ElementRef;
@@ -51,6 +60,7 @@ export class AtAffixComponent implements OnInit {
       } else if (this._atTarget instanceof Element) {
         // fix the basis style height
         this.style.top = this._atTarget.getBoundingClientRect().top + 'px';
+        this.changeDetectorRef.markForCheck();
       }
     });
 
@@ -72,6 +82,7 @@ export class AtAffixComponent implements OnInit {
       this.style = {};
       this.fixed = false;
     }
+    this.changeDetectorRef.markForCheck();
   }
 
   setCache(rect: { [x: string]: number }): void {

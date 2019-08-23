@@ -1,10 +1,18 @@
 import { animate, state, style, transition, trigger }     from '@angular/animations';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 
 @Component({
   selector: 'at-alert',
   template: `
-    <div [@visibilityChanged]="state" *ngIf="!this.closed"
+    <div [@visibilityChanged]="state" *ngIf="!closed"
          class="at-alert at-alert--{{atType}}"
          [ngClass]="{'at-alert--with-description': desc}"
     >
@@ -32,7 +40,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 })
 export class AlertComponent implements OnInit {
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -79,6 +87,7 @@ export class AlertComponent implements OnInit {
     setTimeout(_ => {
       this.closed = true;
       this.onClose.emit(this.closed);
+      this.changeDetectorRef.detectChanges();
     }, 300);
   }
 
