@@ -9,7 +9,7 @@ import { BreadcrumbComponent }                   from '../breadcrumb.component';
       <ng-content></ng-content>
     </span>
     <span *ngIf="!isLast" class="at-breadcrumb__separator">
-                 <ng-container *ngIf="!isString();else custom_sep ">
+                 <ng-container *ngIf="isString();else custom_sep ">
                      {{separator}}
                  </ng-container>
                <ng-template #custom_sep>
@@ -36,6 +36,6 @@ export class AtBreadItemComponent implements OnInit {
   }
 
   isString(): boolean {
-    return this.separator instanceof String;
+    return typeof this.separator === 'string';
   }
 }
