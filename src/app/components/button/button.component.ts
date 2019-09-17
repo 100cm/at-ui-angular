@@ -1,4 +1,13 @@
-import { AfterContentInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 export type AtButtonType = 'default' | 'primary' | 'text' | 'success' | 'error' | 'warning' | 'info';
 export type AtButtonShape = 'circle' | null ;
@@ -6,6 +15,7 @@ export type AtButtonSize = 'small' | 'large' | 'smaller' ;
 
 @Component({
   selector: '[at-button]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<i *ngIf="atIcon != null" class="at-btn__icon icon {{atIcon}}"></i>
   <span #text [class.at-btn__text]="showText" [style.display]="showText ? '' : 'none'">
   <ng-content></ng-content>

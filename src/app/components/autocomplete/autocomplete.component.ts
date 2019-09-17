@@ -1,11 +1,10 @@
 import { CdkOverlayOrigin }                     from '@angular/cdk/overlay';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { DropDownAnimation }                    from '../animations/drop-down-animation';
 
 @Component({
   selector: 'at-auto-complete',
   template: `
-
     <ng-template
       cdkConnectedOverlay
       [cdkConnectedOverlayHasBackdrop]="true"
@@ -32,18 +31,17 @@ import { DropDownAnimation }                    from '../animations/drop-down-an
             </ng-container>
           </ul>
         </div>
-
       </div>
     </ng-template>
-
   `,
-  animations: [DropDownAnimation]
+  animations: [DropDownAnimation],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutoCompleteComponent implements OnInit {
 
   public cdkOverlayOrigin: CdkOverlayOrigin;
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -55,8 +53,8 @@ export class AutoCompleteComponent implements OnInit {
 
   @Input() atDataSource = [];
 
-  overlayMinWidth;
-  overlayWidth;
+  overlayMinWidth: number;
+  overlayWidth: number;
 
   dropDownPosition: 'top' | 'center' | 'bottom' | 'hidden' = 'bottom';
 
@@ -69,16 +67,23 @@ export class AutoCompleteComponent implements OnInit {
   // noinspection TsLint
   changeValue(value: string, origin: ElementRef, component: any) {
     this.bindComponent = component;
+    this.searchValue = value;
     if (value) {
       this.cdkOverlayOrigin = {elementRef: origin};
       const width = origin.nativeElement.offsetWidth;
       this.overlayMinWidth = width;
       this.overlayWidth = width;
       this.atOpen = true;
-      this.searchValue = value;
     } else {
-      this.atOpen = false;
+      this.atOpen = !this.atOpen;
+      if (this.atOpen) {
+        this.cdkOverlayOrigin = {elementRef: origin};
+        const width = origin.nativeElement.offsetWidth;
+        this.overlayMinWidth = width;
+        this.overlayWidth = width;
+      }
     }
+    this.changeDetectorRef.markForCheck();
   }
 
   highlight(item: string): string[] {
@@ -88,6 +93,7 @@ export class AutoCompleteComponent implements OnInit {
       highlightKeys.push(item.slice(0, index));
       highlightKeys.push(item.slice(index + this.searchValue.length, item.length));
     }
+    this.changeDetectorRef.markForCheck();
     return highlightKeys;
   }
 
@@ -97,6 +103,7 @@ export class AutoCompleteComponent implements OnInit {
     this.bindComponent.onChange(value);
     this.searchValue = value;
     this.atOpen = false;
+    this.changeDetectorRef.markForCheck();
   }
 
 }

@@ -1,6 +1,6 @@
 import {
   AfterContentInit,
-  AfterViewInit,
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
@@ -14,7 +14,7 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild
-}                              from '@angular/core';
+} from '@angular/core';
 import { Subject }             from 'rxjs';
 import { takeUntil }           from 'rxjs/operators';
 import { toBoolean, toNumber } from '../../utils/class-helper';
@@ -24,6 +24,7 @@ export type SwipeDirection = 'swipeleft' | 'swiperight';
 
 @Component({
   selector: 'at-carousel',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="slick-initialized slick-slider">
       <div class="slick-list" #slickList tabindex="-1" (keydown)="onKeyDown($event)"
@@ -79,7 +80,7 @@ export type SwipeDirection = 'swipeleft' | 'swiperight';
     `
   ]
 })
-export class AtCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AtCarouselComponent implements OnInit, AfterViewInit, OnDestroy, AfterContentInit {
 
   ngOnInit(): void {
   }
@@ -190,6 +191,7 @@ export class AtCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
       }
       this.slideContents.forEach(slide => slide.isActive = slide === content);
       this.atAfterChange.emit(i);
+      // this.changeDetectorRef.detectChanges();
     }
   }
 
@@ -231,8 +233,9 @@ export class AtCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
   setUpAutoPlay(): void {
     this.clearTimeout();
     if (this.atAutoPlay && this.atAutoPlaySpeed > 0) {
-      this.timeout = setTimeout(_ => {
+      this.timeout = setTimeout(() => {
         this.setActive(this.slideContents.toArray()[this.nextIndex], this.nextIndex);
+        this.changeDetectorRef.detectChanges();
       }, this.atAutoPlaySpeed);
     }
   }
@@ -309,7 +312,7 @@ export class AtCarouselComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  constructor(public elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(public elementRef: ElementRef, private renderer: Renderer2, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngAfterContentInit(): void {

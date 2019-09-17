@@ -105,8 +105,8 @@ export class AtSketchFieldsComponent {
     }
   }
 
-  @Input() atDisableAlpha                   = false;
-  @Output() onChange                        = new EventEmitter<any>();
+  @Input() atDisableAlpha = false;
+  @Output() readonly onChange = new EventEmitter<any>();
            input: { [key: string]: string } = {
              width: '100%',
              padding: '4px 10% 3px',
@@ -125,7 +125,7 @@ export class AtSketchFieldsComponent {
              textTransform: 'capitalize'
            };
 
-  round(value) {
+  round(value: number): number {
     return Math.round(value);
   }
 

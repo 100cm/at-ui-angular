@@ -6,14 +6,14 @@ export type atMenuType = 'vertical' | 'horizontal' | 'inline';
 export type atMenuTheme = 'light' | 'dark' | 'dracula';
 
 @Component({
-             selector: '[at-menu]',
-             template: `
-               <ng-content></ng-content>
-             `
-           })
+  selector: '[at-menu]',
+  template: `
+    <ng-content></ng-content>
+  `
+})
 export class MenuComponent implements OnInit {
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._renderer.addClass(this._el, this._prefixCls);
   }
 
@@ -53,38 +53,38 @@ export class MenuComponent implements OnInit {
   }
 
   @HostBinding(`class.at-menu--vertical`)
-  get verticalClass() {
-    return this.atType == 'vertical';
+  get verticalClass(): boolean {
+    return this.atType === 'vertical';
   }
 
   @HostBinding(`class.at-menu--horizontal`)
-  get horizontalClass() {
-    return this.atType == 'horizontal';
+  get horizontalClass(): boolean {
+    return this.atType === 'horizontal';
   }
 
   @HostBinding(`class.at-menu--inline`)
-  get inlineClass() {
-    return this.atType == 'inline';
+  get inlineClass(): boolean {
+    return this.atType === 'inline';
   }
 
   @HostBinding('class.at-menu--dark')
-  get darkTheme() {
-    return this.theme == 'dark';
+  get darkTheme(): boolean {
+    return this.theme === 'dark';
   }
 
   @HostBinding('class.at-menu--dracula')
-  get draculaTheme() {
-    return this.theme == 'dracula';
+  get draculaTheme(): boolean {
+    return this.theme === 'dracula';
   }
 
   @HostBinding('class.at-menu--light')
-  get lightTheme() {
-    return this.theme == 'light';
+  get lightTheme(): boolean {
+    return this.theme === 'light';
   }
 
-  clearAllOpen(sub_menu_ref) {
+  clearAllOpen(sub_menu_ref): void {
     this.sub_menus.forEach(sub_menu => {
-      (sub_menu.isOpen && sub_menu_ref != sub_menu) ? sub_menu.isOpen = false : null;
+      (sub_menu.isOpen && sub_menu_ref !== sub_menu) ? sub_menu.isOpen = false : null;
     });
   }
 

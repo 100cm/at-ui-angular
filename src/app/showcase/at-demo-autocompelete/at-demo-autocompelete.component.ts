@@ -10,7 +10,7 @@ export class AtDemoAutocompeleteComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     setTimeout(_ => {
       this.changeSource();
     }, 5000);
@@ -22,7 +22,7 @@ export class AtDemoAutocompeleteComponent implements OnInit {
 
   model = '';
 
-  changeSource() {
+  changeSource(): void {
     this.dataSource = ['123', 'sdad'];
   }
 }

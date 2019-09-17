@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostBinding,
@@ -8,12 +9,13 @@ import {
   Optional,
   Renderer2,
   SimpleChanges
-}                       from '@angular/core';
-import { isNotNil }     from '../../utils/class-helper';
+} from '@angular/core';
+import { isNotNil } from '../../utils/class-helper';
 import { RowComponent } from '../row/row.component';
 
 @Component({
   selector: '[at-col]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content></ng-content>
   `

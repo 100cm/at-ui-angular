@@ -1,10 +1,10 @@
-import { UploadModule } from './upload.module';
+import { AtUploadModule } from './upload.module';
 
 describe('UploadModule', () => {
-  let uploadModule: UploadModule;
+  let uploadModule: AtUploadModule;
 
   beforeEach(() => {
-    uploadModule = new UploadModule();
+    uploadModule = new AtUploadModule();
   });
 
   it('should create an instance', () => {

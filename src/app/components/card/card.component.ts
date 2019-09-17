@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'at-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div [ngClass]="{'at-card-bordered':border}">
       <ng-content>

@@ -1,11 +1,12 @@
-import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
-import { ClassHelper }                                     from '../../utils/class-helper';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { ClassHelper } from '../../utils/class-helper';
 
 export  type RowFlexType = 'center' | 'end' | 'start' | 'around' | 'between';
 export type RowFlexAlign = 'top' | 'middle' | 'bottom';
 
 @Component({
   selector: '[at-row]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-content></ng-content>
   `

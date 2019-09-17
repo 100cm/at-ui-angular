@@ -10,7 +10,7 @@ export class AtDemoFormComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   basic = require('!!raw-loader!./demo-form-basic/demo-form-basic.component');

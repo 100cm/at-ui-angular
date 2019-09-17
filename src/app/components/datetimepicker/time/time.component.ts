@@ -1,10 +1,18 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-
-import { ColComponent } from '../../grid/col/col.component';
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { BladeDate } from '../blade-date';
 
 @Component({
   selector: 'at-time',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div at-row>
       <div #hour_panel at-col [span]="8" class="at-time-panel">
@@ -41,12 +49,12 @@ import { BladeDate } from '../blade-date';
   `
 
 })
-export class TimeComponent implements OnInit {
+export class TimeComponent implements OnInit, AfterViewChecked {
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._buildHours();
     this._buildMinutes();
     this._buildSeconds();
@@ -54,40 +62,36 @@ export class TimeComponent implements OnInit {
 
   @Input() date = new BladeDate();
 
-  seconds: any[];
+  seconds: TimeItem[];
 
-  minutes: any[];
+  minutes: TimeItem[];
 
-  hours: any[];
+  hours: TimeItem[];
 
   private _selected_second;
   private _selected_minutes;
   private _selected_hour;
 
-  @Output() readonly selectHour: EventEmitter<any> = new EventEmitter();
-  @Output() readonly selectMinute: EventEmitter<any> = new EventEmitter();
-  @Output() readonly selectSecond: EventEmitter<any> = new EventEmitter();
+  @Output() readonly selectHour: EventEmitter<number> = new EventEmitter();
+  @Output() readonly selectMinute: EventEmitter<number> = new EventEmitter();
+  @Output() readonly selectSecond: EventEmitter<number> = new EventEmitter();
 
-  get selected_second() {
+  get selected_second(): number {
     return this._selected_second;
   }
 
   @Input()
-  set selected_second(value) {
-    setTimeout(_ => {
-      this._selected_second = value;
-    });
+  set selected_second(value: number) {
+    this._selected_second = value;
   }
 
-  get selected_minutes() {
+  get selected_minutes(): number {
     return this._selected_minutes;
   }
 
   @Input()
   set selected_minutes(value: number) {
-    setTimeout(_ => {
-      this._selected_minutes = value;
-    });
+    this._selected_minutes = value;
   }
 
   get selected_hour(): number {
@@ -96,10 +100,7 @@ export class TimeComponent implements OnInit {
 
   @Input()
   set selected_hour(value: number) {
-    setTimeout(_ => {
-        this._selected_hour = value;
-      }
-    );
+    this._selected_hour = value;
   }
 
   _buildHours(): void {
@@ -138,18 +139,18 @@ export class TimeComponent implements OnInit {
 
   inited = false;
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     if (!this.inited) {
       this.inited = true;
       this.setPosition();
     }
   }
 
-  ngAfterContentInited() {
+  ngAfterContentInited(): void {
 
   }
 
-  setPosition() {
+  setPosition(): void {
     const m_p = this.selected_minutes / 60;
     const h_p = this.selected_hour / 24;
     const s_p = this.selected_second / 60;
@@ -168,22 +169,22 @@ export class TimeComponent implements OnInit {
 
   }
 
-  _select_minutes(index: number) {
+  _select_minutes(index: number): void {
     this.selected_minutes = index;
     this.selectMinute.emit(index);
   }
 
-  _select_hour(index: number) {
+  _select_hour(index: number): void {
     this.selected_hour = index;
     this.selectHour.emit(index);
   }
 
-  _select_second(index: number) {
+  _select_second(index: number): void {
     this.selected_second = index;
     this.selectSecond.emit(index);
   }
 
-  confirmTime() {
+  confirmTime(): void {
     const second = this.seconds.find((s) => {
       return s.index === this.selected_second;
     });
@@ -197,4 +198,9 @@ export class TimeComponent implements OnInit {
     });
   }
 
+}
+
+interface TimeItem {
+  name: string;
+  index: number;
 }

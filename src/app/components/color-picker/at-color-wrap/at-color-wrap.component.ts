@@ -24,7 +24,7 @@ export interface ColorEvent {
   selector: 'at-color-wrap',
   template: ''
 })
-export class AtColorWrapComponent implements OnInit {
+export class AtColorWrapComponent implements OnInit, OnDestroy {
 
   @Input() atClassName = '';
   private _atColor: HSLA = {
@@ -60,7 +60,7 @@ export class AtColorWrapComponent implements OnInit {
 
   }
 
-  setState(data) {
+  setState(data): void {
     this.oldHue = data.oldHue;
     this.hsl = data.hsl;
     this.hsv = data.hsv;
@@ -70,7 +70,7 @@ export class AtColorWrapComponent implements OnInit {
     this.afterValidChange();
   }
 
-  handleChange(data, $event) {
+  handleChange(data, $event): void {
     const isValidColor = simpleCheckForValidColor(data);
     if (isValidColor) {
       const color = toState(data, data.h || this.oldHue);
@@ -80,10 +80,10 @@ export class AtColorWrapComponent implements OnInit {
   }
 
   /** hook for components after a complete change */
-  afterValidChange() {
+  afterValidChange(): void {
   }
 
-  handleSwatchHover(data, $event) {
+  handleSwatchHover(data, $event): void {
     const isValidColor = simpleCheckForValidColor(data);
     if (isValidColor) {
       const color = toState(data, data.h || this.oldHue);

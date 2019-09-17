@@ -1,9 +1,19 @@
-import { Component, EventEmitter, Host, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy, ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Host,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef
+} from '@angular/core';
 import { ExpandAnimation }                                                   from '../../animations/expand-animation';
 import { AtCollapseComponent }                                               from '../at-collapse.component';
 
 @Component({
   selector: 'at-collapse-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div (click)="open()" class="at-collapse__header">
       <i class="icon at-collapse__icon icon-chevron-right"></i>
@@ -62,9 +72,10 @@ export class AtCollapseItemComponent implements OnInit {
       this.at_collapse.setAllClose();
     }
     this._atOpen = value;
+    this.changeDetectorRef.markForCheck();
   }
 
-  constructor(@Host() private at_collapse: AtCollapseComponent) {
+  constructor(@Host() private at_collapse: AtCollapseComponent, private changeDetectorRef: ChangeDetectorRef) {
     this.at_collapse.pushItems(this);
   }
 

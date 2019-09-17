@@ -10,7 +10,7 @@ export class DemoPositionFormComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   position = 'horizontal';

@@ -1,10 +1,11 @@
 import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
   forwardRef,
+  AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
-  HostListener,
   Input,
   OnInit,
   Renderer2,
@@ -14,22 +15,18 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, mapTo, merge } from 'rxjs/operators';
 import { DropDownAnimation } from '../animations/drop-down-animation';
-import {
-  DEFAULT_DROPDOWN_POSITIONS,
-  POSITION_MAP
-} from '../core/overlay/overlay-position-map';
-import { AtI18nInterface } from '../i18n/at-i18n.interface';
-import { AtI18nService } from '../i18n/at-i18n.service';
-import { InputComponent } from '../input/input.component';
-import { underscoreToCamelCase } from '../utils/class-helper';
+import { AtI18nInterface, AtI18nService } from '../i18n';
+import { InputComponent } from '../input';
+import { AtDate } from './at-day';
 import { BladeDate } from './blade-date';
 
 @Component({
-  selector: 'atDatetimePicker',
+  selector: 'at-datetime-picker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-date-input-wrapper">
       <atInput [ngModel]="atValue | atFormat: format" #timeinput [icon]="inputIcon" (onFocus)="_show()"></atInput>
-      <i (click)="clear($event)"
+      <i (click)="clear()"
          *ngIf="allowClear"
          class="icon icon-x at_date_picker_clear"
          style="z-index: 2" [style.right.px]="inputIcon ? 24 : 8"></i>
@@ -115,7 +112,7 @@ import { BladeDate } from './blade-date';
   animations: [DropDownAnimation]
 
 })
-export class DatetimepickerComponent implements OnInit {
+export class DatetimepickerComponent implements OnInit, AfterViewInit {
 
   constructor(private el: ElementRef,
               private at_i18n_service: AtI18nService,
@@ -180,23 +177,23 @@ export class DatetimepickerComponent implements OnInit {
 
   private _atValue = null;
 
-  get atValue() {
+  get atValue(): BladeDate | Date | string {
     return this._atValue;
   }
 
   _show_value;
 
-  set showValue(value) {
+  set showValue(value: BladeDate | Date | string) {
     if (value) {
       this._show_value = value;
     }
   }
 
-  get showValue() {
+  get showValue(): BladeDate | Date | string {
     return this._show_value;
   }
 
-  set atValue(value) {
+  set atValue(value: BladeDate | Date | string) {
     if (value) {
       this._atValue = value;
       this._show_value = value;
@@ -240,8 +237,8 @@ export class DatetimepickerComponent implements OnInit {
   }
 
 // ngModel Access
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
 
   @Input() format = 'YYYY-MM-DD';
   @Input() disableDate;
@@ -252,7 +249,7 @@ export class DatetimepickerComponent implements OnInit {
 
   @Input() allowClear = true;
 
-  writeValue(value: any): void {
+  writeValue(value: BladeDate | Date | string): void {
     if (value) {
       this.updateDate(value);
     } else {
@@ -260,6 +257,7 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line:no-any
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
@@ -273,7 +271,7 @@ export class DatetimepickerComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.at_i18n_service.localChange.subscribe(il8n => {
       this.il8n = il8n;
     });
@@ -284,15 +282,15 @@ export class DatetimepickerComponent implements OnInit {
 
   @ViewChild('timeinput', {static: true}) input: InputComponent;
 
-  preYear() {
+  preYear(): void {
     this.atYear = this.atYear - 1;
   }
 
-  nextYear() {
+  nextYear(): void {
     this.atYear = this.atYear + 1;
   }
 
-  preMonth() {
+  preMonth(): void {
     if (this.atMonth - 1 < 0) {
       this.atMonth = 11;
       this.preYear();
@@ -301,11 +299,11 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  clear() {
+  clear(): void {
     this.clearDate();
   }
 
-  nextMonth() {
+  nextMonth(): void {
     if (this.atMonth + 1 > 11) {
       this.atMonth = 0;
       this.nextYear();
@@ -314,13 +312,9 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  clickDate(date) {
+  clickDate(date: AtDate): void {
     this.updateDate(date.date);
-    let change_date = this.atValue;
-    if (this.format) {
-      change_date = change_date.format(this.format);
-    }
-    this.onChange(change_date);
+    this.handleFormat();
     if (this.choice_modal.indexOf('time') === -1) {
       this.atVisible = false;
     }
@@ -337,7 +331,7 @@ export class DatetimepickerComponent implements OnInit {
     this.selectedDate = date.getDate();
     this.atYear = date.getYear();
     this.atMonth = date.getMonth();
-
+    this.cdr.markForCheck();
   }
 
   clearDate(): void {
@@ -349,7 +343,7 @@ export class DatetimepickerComponent implements OnInit {
     this._visibleChange.next(false);
   }
 
-  _show() {
+  _show(): void {
     this._visibleChange.next(true);
   }
 
@@ -359,14 +353,14 @@ export class DatetimepickerComponent implements OnInit {
       this.atVisible = visible;
     }
     this.cdr.markForCheck();
-  };
+  }
 
   _startSubscribe(observable$: Observable<boolean>): void {
     this._subscription = observable$.pipe(debounceTime(50))
       .subscribe(this._onVisibleChange);
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     // this.cssTop = this.input.inputField.nativeElement.offsetHeight + 'px'
     let mouse$: Observable<boolean>;
     if (this.input) {
@@ -379,26 +373,26 @@ export class DatetimepickerComponent implements OnInit {
     }
   }
 
-  clickMonth(month) {
+  clickMonth(month: number): void {
     // this.atValue = moment(this.atValue).year(this.atYear).month(month.index).toDate();
-    this.atMonth = month.index;
+    this.atMonth = month;
     this.atType = 'full';
   }
 
-  clickYear(year) {
+  clickYear(year: number): void {
     this.atYear = year;
     this.atType = 'month';
   }
 
-  setCal(s) {
+  setCal(s: string): void {
     this.atType = s;
   }
 
-  preCentury() {
+  preCentury(): void {
     this.atYear = this.atYear - 10;
   }
 
-  nextCenury() {
+  nextCenury(): void {
     this.atYear = this.atYear + 10;
   }
 
@@ -406,40 +400,35 @@ export class DatetimepickerComponent implements OnInit {
     let time: BladeDate = this.atValue === '' ? new BladeDate() : new BladeDate(this.atValue);
     time = time.setHours(hour);
     this.atValue = time;
-    let change_date = this.atValue;
-    if (this.format) {
-      change_date = change_date.format(this.format);
-    }
-    this.onChange(change_date);
-
+    this.handleFormat();
   }
 
   selectMinutes(minute: number): void {
     let time: BladeDate = this.atValue === '' ? new BladeDate() : new BladeDate(this.atValue);
     time = time.setMinutes(minute);
     this.atValue = time;
-
-    let change_date = this.atValue;
-    if (this.format) {
-      change_date = change_date.format(this.format);
-    }
-    this.onChange(change_date);
+    this.handleFormat();
   }
 
   selectSecond(second: number): void {
     let time: BladeDate = this.atValue === '' ? new BladeDate() : new BladeDate(this.atValue);
     time = time.setSeconds(second);
     this.atValue = time;
-
-    let change_date = this.atValue;
-    if (this.format) {
-      change_date = change_date.format(this.format);
-    }
-    this.onChange(change_date);
+    this.handleFormat();
     this.atVisible = false;
   }
 
-  setMode(mode: string) {
+  handleFormat(): void {
+    const change_date = this.atValue;
+    let change_date_format: string;
+    if (this.format) {
+      // @ts-ignore
+      change_date_format = change_date.format(this.format);
+    }
+    this.onChange(change_date_format);
+  }
+
+  setMode(mode: string): void {
     this.mode = mode;
   }
 }

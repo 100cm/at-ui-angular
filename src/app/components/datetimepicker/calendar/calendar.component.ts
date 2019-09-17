@@ -1,13 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AtI18nInterface } from '../../i18n/at-i18n.interface';
-import { AtI18nService } from '../../i18n/at-i18n.service';
 import { AtDate } from '../at-day';
 import { BladeDate } from '../blade-date';
 
+type atDateType = 'full' | 'month' | 'year';
+
 @Component({
   selector: 'at-calendar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <table cellspacing="0" role="grid" *ngIf="atType =='full'" class="at-calendar-table">
+    <table cellspacing="0" role="grid" *ngIf="atType ==='full'" class="at-calendar-table">
       <thead>
       <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Sunday}}</span></th>
       <th class="column-header"><span class="column-header-inner">{{locale?.DatePicker?.Monday}}</span></th>
@@ -37,13 +39,13 @@ import { BladeDate } from '../blade-date';
       </tbody>
     </table>
 
-    <table cellspacing="0" role="grid" *ngIf="atType=='month'" class="at-calendar-table">
+    <table cellspacing="0" role="grid" *ngIf="atType==='month'" class="at-calendar-table">
       <tbody>
       <tr role="row" *ngFor="let month of months">
         <td
           role="gridcell"
           *ngFor="let single of month" class="at-month-cell"
-          (click)="clickMonth(single)"
+          (click)="clickMonth(single.index)"
           [ngClass]="{
               'at-date-cell--selected':single.isSelectedMonth ,
               'at-date-cell--today':single.isCurrentMonth}">
@@ -53,7 +55,7 @@ import { BladeDate } from '../blade-date';
       </tbody>
     </table>
 
-    <table cellspacing="0" role="grid" *ngIf="atType=='year'" class="at-calendar-table">
+    <table cellspacing="0" role="grid" *ngIf="atType==='year'" class="at-calendar-table">
       <tbody>
       <tr role="row" *ngFor="let section of years">
         <td
@@ -68,84 +70,79 @@ import { BladeDate } from '../blade-date';
       </tr>
       </tbody>
     </table>
-
-
-
   `
-
 })
 export class CalendarComponent implements OnInit {
 
-  @Output() _clickMonth: EventEmitter<any> = new EventEmitter();
-  @Output() _clickYear: EventEmitter<any> = new EventEmitter();
+  @Output() readonly _clickMonth: EventEmitter<number> = new EventEmitter();
+  @Output() readonly _clickYear: EventEmitter<number> = new EventEmitter();
 
-  constructor(private at_i18n_service: AtI18nService) {
+  constructor() {
   }
 
-  @Output() _clickDate: EventEmitter<any> = new EventEmitter();
+  @Output() readonly _clickDate: EventEmitter<AtDate> = new EventEmitter();
 
   @Input()
-  set disableDate(value) {
-    console.log(value);
+  set disableDate(value: string) {
     this._disabledDate = value;
     this.buildCalendar();
   }
 
-  get disableDate() {
+  get disableDate(): string {
     return this._disabledDate;
   }
 
   _show_value;
 
   @Input()
-  set showValue(value) {
+  set showValue(value: Date) {
     this._show_value = value;
     this.buildCalendar();
   }
 
-  get showValue() {
+  get showValue(): Date {
     return this._show_value || new Date();
   }
 
   monthName = [];
-  _disabledDate;
+  _disabledDate: string;
 
   @Input() private;
-  _atType: 'full' | 'month' | 'year' = 'full';
+  _atType: atDateType = 'full';
 
-  get atType() {
+  get atType(): atDateType {
     return this._atType;
   }
 
   @Input()
-  set atType(value) {
+  set atType(value: atDateType) {
     this._atType = value;
     this.buildCalendar();
   }
 
-  private _weeks: any[] = [];
+  private _weeks: object[] = [];
 
-  private _months: any[] = [];
+  private _months: Month[][] = [];
 
-  private _years: any[] = [];
+  private _years: Year[][] = [];
 
-  get years(): any[] {
+  get years(): Year[][] {
     return this._years;
   }
 
-  set years(value: any[]) {
+  set years(value: Year[][]) {
     this._years = value;
   }
 
-  get months(): any[] {
+  get months(): Month[][] {
     return this._months;
   }
 
-  set months(value: any[]) {
+  set months(value: Month[][]) {
     this._months = value;
   }
 
-  get atValue() {
+  get atValue(): string | Date {
     return this._atValue || new Date();
   }
 
@@ -163,11 +160,11 @@ export class CalendarComponent implements OnInit {
   private _atMonth = new BladeDate().getMonth();
   private _atDay;
 
-  get weeks(): any[] {
+  get weeks(): object[] {
     return this._weeks;
   }
 
-  set weeks(value: any[]) {
+  set weeks(value: object[]) {
     this._weeks = value;
   }
 
@@ -218,12 +215,12 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.monthName = this._locale.DatePicker.months;
   }
 
-  buildWeeks(d: BladeDate): AtDate[] {
-    const weeks: any[] = [];
+  buildWeeks(d: BladeDate): object[] {
+    const weeks = [];
     const start = d.clone().setDate(1).setDay(0);
     const month = d.clone();
     let done = false;
@@ -260,7 +257,7 @@ export class CalendarComponent implements OnInit {
     return days;
   }
 
-  buildYears(year: number) {
+  buildYears(year: number): Year[][] {
     let century = [];
     const temp_array = [];
     for (const i of Array.from(Array(20).keys())) {
@@ -279,9 +276,9 @@ export class CalendarComponent implements OnInit {
     return century;
   }
 
-  buildMonths(date: BladeDate) {
+  buildMonths(date: BladeDate): Month[][] {
     const formatMonths = [];
-    let months: any[] = [];
+    let months: Month[] = [];
     for (let i = 0; i < 12; i++) {
       months.push({
         index: i,
@@ -311,11 +308,24 @@ export class CalendarComponent implements OnInit {
     }
   }
 
-  clickMonth(single): void {
+  clickMonth(single: number): void {
     this._clickMonth.emit(single);
   }
 
-  clickYear(year): void {
+  clickYear(year: number): void {
     this._clickYear.emit(year);
   }
+}
+
+interface Month {
+  index: number;
+  name: string;
+  isCurrentMonth: boolean;
+  isSelectedMonth: boolean;
+}
+
+interface Year {
+  year: number;
+  isSelectedYear: boolean;
+  isCurrentYear: boolean;
 }

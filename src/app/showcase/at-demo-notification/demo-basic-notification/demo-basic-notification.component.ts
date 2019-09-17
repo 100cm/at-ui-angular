@@ -46,10 +46,10 @@ export class DemoBasicNotificationComponent implements OnInit {
     this.note = this.component_creator.show({
       title: '消息标题',
       message: '这是消息内容哦～～～',
-      atOnClose: () => false,
+      // atOnClose: () => false,
       ...option
     });
-    this.note.atAfterClose.subscribe(data => alert('closed'));
+    // this.note.atAfterClose.subscribe(data => alert('closed'));
   }
 
 }

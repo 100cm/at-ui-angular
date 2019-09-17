@@ -1,7 +1,8 @@
-import { Component, HostBinding, Input, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'at-divider',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span class="at-divider-inner-text" *ngIf="vertical == false && text">
       <ng-template [ngTemplateOutlet]="text"></ng-template>

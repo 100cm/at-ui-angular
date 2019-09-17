@@ -1,16 +1,19 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { CdkConnectedOverlay, CdkOverlayOrigin } from '@angular/cdk/overlay';
 import {
-  CdkConnectedOverlay,
-  CdkOverlayOrigin
-} from '@angular/cdk/overlay';
-import {
-  AfterViewInit, ChangeDetectorRef,
-  Component, ElementRef,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
   EventEmitter,
-  Input, OnDestroy,
+  Input,
+  OnDestroy,
   OnInit,
   Output,
-  Renderer2, TemplateRef, Type, ViewChild
+  TemplateRef,
+  Type,
+  ViewChild
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { AtGlobalMonitorService } from '../at-global-monitor.service';
@@ -25,6 +28,7 @@ export interface ClickPosition {
 
 @Component({
   selector: 'at-modal',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [trigger('enterLeave', [
     state('enter', style({opacity: 1, transform: 'scale(1)'})),
     transition('* => enter', [
@@ -103,9 +107,7 @@ export interface ClickPosition {
           </div>
         </div>
       </ng-template>
-
     </div>
-
   `
 })
 export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -142,12 +144,12 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('modalContainer', { static: false }) modal: ElementRef;
 
   atOnClose: OnClickCallback<ModalComponent> = () => {
-  };
+  }
   atOnOk: OnClickCallback<ModalComponent> = () => {
-  };
+  }
 
   atAfterOk = () => {
-  };
+  }
 
   startAnimation(): void {
     if (this.state === 'enter') {
@@ -170,7 +172,7 @@ export class ModalComponent implements OnInit, AfterViewInit, OnDestroy {
   $showSubscription = Subscription.EMPTY;
 
   atAfterClose = () => {
-  };
+  }
 
   ok(): void {
     this.onOk.emit();

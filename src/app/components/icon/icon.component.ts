@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'at-icon',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <i [ngStyle]="{'font-size':size+'px'}" class="icon icon-{{type}}">
       <ng-template *ngTemplateOutlet="svg"></ng-template>

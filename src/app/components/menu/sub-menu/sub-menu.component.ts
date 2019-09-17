@@ -1,31 +1,36 @@
-import { animate, state, style, transition, trigger }                                  from '@angular/animations';
 import { CdkConnectedOverlay, ConnectedOverlayPositionChange, ConnectionPositionPair } from '@angular/cdk/overlay';
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   HostBinding,
-  HostListener,
   Inject,
   Input,
   OnInit,
-  Optional, Output, QueryList,
+  Optional,
+  Output,
+  QueryList,
   Renderer2,
-  SkipSelf, TemplateRef,
+  SkipSelf,
+  TemplateRef,
   ViewChild,
   ViewContainerRef
-}                                                                                      from '@angular/core';
-import { combineLatest, BehaviorSubject, Subject }                                     from 'rxjs';
-import { POSITION_MAP }                                                                from '../../core/overlay/overlay-position-map';
-import { MenuComponent }                                                               from '../menu.component';
+} from '@angular/core';
+import { combineLatest, BehaviorSubject, Subject } from 'rxjs';
 
 import { auditTime, map, takeUntil } from 'rxjs/operators';
-import { ExpandAnimation }           from '../../animations/expand-animation';
-import { AtDropSubmenuComponent }    from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
+import { ExpandAnimation } from '../../animations/expand-animation';
+import { POSITION_MAP } from '../../core/overlay/overlay-position-map';
+import { AtDropSubmenuComponent } from '../../dropdown/at-drop-submenu/at-drop-submenu.component';
+import { MenuComponent } from '../menu.component';
 
 @Component({
   selector: '[at-submenu]',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="at-menu__submenu-title"
          #trigger
@@ -80,7 +85,7 @@ import { AtDropSubmenuComponent }    from '../../dropdown/at-drop-submenu/at-dro
     ExpandAnimation
   ]
 })
-export class SubMenuComponent implements OnInit {
+export class SubMenuComponent implements OnInit, AfterViewInit {
 
   _el: any;
   nativeElement: any;
@@ -178,12 +183,12 @@ export class SubMenuComponent implements OnInit {
   }
 
   @HostBinding('class.at-menu__item--active')
-  get activeCls() {
+  get activeCls(): boolean {
     return this.active;
   }
 
   @HostBinding('class.at-menu__submenu--opened')
-  get OpenCls() {
+  get OpenCls(): boolean {
     return this.isOpen;
   }
 
@@ -198,7 +203,7 @@ export class SubMenuComponent implements OnInit {
 
   @ViewChild('popover', { static: false }) popover: ViewContainerRef;
 
-  get onHoverClass() {
+  get onHoverClass(): object {
     const classMap = {};
     classMap[`menu-item-on-hover-${this.parent._atType}`] = this.hoverOn;
     classMap[`menu-item-on-select`] = this.hoverOn && this.isInSubMenu;
@@ -209,7 +214,7 @@ export class SubMenuComponent implements OnInit {
     return this.subMenuType === 'inline' ? this.level * 23 : null;
   }
 
-  show() {
+  show(): void {
     this._isOpen = !this._isOpen;
   }
 
@@ -225,7 +230,8 @@ export class SubMenuComponent implements OnInit {
       this.subMenuComponent.$subOpen.next(this.isOpen);
     }
     this.hoverOn = this.isOpen;
-  };
+    this.cd.detectChanges();
+  }
 
   hoverOn = false;
 
@@ -281,7 +287,7 @@ export class SubMenuComponent implements OnInit {
 
   }
 
-  get themeClass() {
+  get themeClass(): string {
     const themeClassMap = {'dark': 'at-menu--dark', 'light': 'at-menu--light', 'dracula': 'at-menu--dracula'};
     return themeClassMap[this.parent.theme];
   }
