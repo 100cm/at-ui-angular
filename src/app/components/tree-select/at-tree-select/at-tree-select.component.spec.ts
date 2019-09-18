@@ -1,20 +1,23 @@
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AtTreeSelectModule } from '../at-tree-select.module';
 
 import { AtTreeSelectComponent } from './at-tree-select.component';
 
 describe('AtTreeSelectComponent', () => {
-  let component: AtTreeSelectComponent;
-  let fixture: ComponentFixture<AtTreeSelectComponent>;
+  let component: TreeSelectTestComponent;
+  let fixture: ComponentFixture<TreeSelectTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AtTreeSelectComponent ]
+      declarations: [ TreeSelectTestComponent ],
+      imports: [ AtTreeSelectModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AtTreeSelectComponent);
+    fixture = TestBed.createComponent(TreeSelectTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +26,9 @@ describe('AtTreeSelectComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+@Component({
+  template: ``
+})
+export class TreeSelectTestComponent {
+
+}

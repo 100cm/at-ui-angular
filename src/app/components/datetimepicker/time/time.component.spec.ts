@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AtGridModule, ColComponent } from '../../grid';
 
 import { TimeComponent } from './time.component';
 
@@ -8,7 +9,8 @@ describe('TimeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeComponent ]
+      declarations: [ TimeComponent ],
+      imports: [ AtGridModule ]
     })
     .compileComponents();
   }));

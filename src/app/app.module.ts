@@ -341,17 +341,18 @@ import { AtDemoThemeComponent } from './showcase/at-demo-theme/at-demo-theme.com
 
     AtDemoDividerComponent,
 
-    AtDemoThemeComponent
+    AtDemoThemeComponent,
+
+    IntroComponent
 
   ],
   imports: [
     routing,
     CommonModule,
-    FormsModule,
     AtModule.forRoot(),
     ReactiveFormsModule,
-
-    BrowserModule, BrowserAnimationsModule, ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    BrowserModule, BrowserAnimationsModule, ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    FormsModule,
   ],
   providers: [{provide: AT_I18N, useValue: en_US}],
   bootstrap: [AppComponent]

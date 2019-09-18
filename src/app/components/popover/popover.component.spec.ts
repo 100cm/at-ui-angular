@@ -1,20 +1,23 @@
+import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AtPopoverModule } from './at-popover.module';
 
 import { PopoverComponent } from './popover.component';
 
 describe('PopoverComponent', () => {
-  let component: PopoverComponent;
-  let fixture: ComponentFixture<PopoverComponent>;
+  let component: PopoverTestComponent;
+  let fixture: ComponentFixture<PopoverTestComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopoverComponent ]
+      declarations: [ PopoverTestComponent ],
+      imports: [ AtPopoverModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PopoverComponent);
+    fixture = TestBed.createComponent(PopoverTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +26,10 @@ describe('PopoverComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+@Component({
+  template: ``
+})
+export class PopoverTestComponent {
+  constructor() {}
+}

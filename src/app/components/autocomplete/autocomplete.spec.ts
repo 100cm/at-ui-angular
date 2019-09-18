@@ -8,7 +8,7 @@ import { InputComponent } from '../input';
 import { AutoCompleteComponent } from './autocomplete.component';
 import { AutoCompleteModule } from './autocomplete.module';
 
-describe('CheckboxGroupComponent', () => {
+describe('AutocompleteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
