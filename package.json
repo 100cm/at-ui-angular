@@ -40,7 +40,7 @@
     "tslib": "^1.9.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.800.0",
+    "@angular-devkit/build-angular": "^15.0.0",
     "@angular-devkit/build-ng-packagr": "^0.800.0",
     "@angular/animations": "^8.0.0",
     "@angular/cli": "^8.0.0",
